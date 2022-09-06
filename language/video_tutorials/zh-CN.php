@@ -81,7 +81,7 @@ jr_define('_JOMRES_TUTORIAL_PROPERTY_FEATURES_DESC', '在本视频中，我们�
 jr_define('_JOMRES_TUTORIAL_SHORTCODES', 'Shortcodes');
 jr_define('_JOMRES_TUTORIAL_SHORTCODES_DESC', 'Shortcodes 是 Jomres 的一个非常强大的功能。Joomla 和 Wordpress 的原理是一样的。在这个视频中，我们将向您展示在哪里查看短代码（这个列表会根据插件的不同而变化)安装)以及如何使用它们。您可以使用文章或模块中的代码。');
 
-    jr_define('_JOMRES_TUTORIAL_LOGFILES', '日志文件');
+	jr_define('_JOMRES_TUTORIAL_LOGFILES', '日志文件');
 jr_define('_JOMRES_TUTORIAL_LOGFILES_DESC', '此视频将向您展示如何查看日志文件。系统运行时会进行大量日志记录。在生产模式下（站点配置 > 调试)生成的日志较少，因此如果您正在测试新功能，那么您应该将您的站点设置为开发。如果您想将自己的日志记录添加到您的 Jomres 脚本中，请查看 <a "http://www.jomres.net/manual/developers-guide/56-other-discussions /339-logging-in-jomres" target="_blank">我们的手册页关于如何做。</a>这里我们将抛出一个假错误，然后查看日志文件。因为站点设置为开发那里是很多信息，通常您只会看到一条消息，指出存在错误并且已报告。');
 
 jr_define('_JOMRES_TUTORIAL_TRANSLATIONS', '翻译标签和其他字符串');
@@ -98,4 +98,3 @@ jr_define('_JOMRES_TUTORIAL_ADMIN_PROPERTY_CATEGORIES_DESC', '物业类别是一
 
 jr_define('_JOMRES_TUTORIAL_ADMIN_COMPLETING_PROPERTY', '站点管理员查看属性');
 jr_define('_JOMRES_TUTORIAL_ADMIN_COMPLETING_PROPERTY_DESC', '<p>你不能从这里管理属性，你只能从前端管理属性，但是在这个列表中你可以看到待批准的属性（如果该功能已启用)和任何不完整（例如仍然需要上传图片,设置价格等)。点击属性名称以进入该属性的仪表板。然后您将能够使用页面顶部的指南部分来查看步骤您需要完成并发布一个属性。</p> ');
-

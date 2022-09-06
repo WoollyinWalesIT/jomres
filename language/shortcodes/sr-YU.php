@@ -209,20 +209,20 @@ jr_define('_JOMRES_GUEST_BLACKLISTED', 'Guest blacklisted');
 jr_define('_JOMRES_GUEST_BLACKLISTED_DESC', 'If this guest is black listed then they will no longer be able to make bookings in this property.');
 jr_define('_JOMRES_SESSION_HANDLER', 'Session handler');
 jr_define('_JOMRES_SESSION_HANDLER_DESC', 'Save jomres session files to disk or to database. Recommended: database');
-jr_define('_JOMRES_MAP_HEIGHT',"Map height (px) ");
-jr_define('_JOMRES_MAP_ZOOMLEVEL',"Map zoom level ");
-jr_define('_JOMRES_MAP_MAPTYPE',"Map type ");
+jr_define('_JOMRES_MAP_HEIGHT', "Map height (px) ");
+jr_define('_JOMRES_MAP_ZOOMLEVEL', "Map zoom level ");
+jr_define('_JOMRES_MAP_MAPTYPE', "Map type ");
 
-jr_define('_JOMRES_TEMPLATE_PACKAGES',"Template Override Manager");
-jr_define('_JOMRES_TEMPLATE_PACKAGES_LEAD',"Template packages are plugins that can provide override templates for various core Jomres template files.");
-jr_define('_JOMRES_TEMPLATE_PACKAGES_INFO',"This page lists any template files that can be overridden by a template package's template files. If you want to override a certain template file, click on the edit button for that file, on the next page you will be able to choose which version you want to override with. Note, these overrides take priority over both Jomres Core and any Wordpress or Joomla theme/template overrides. You can disable an override by deleting it in the List Template Overrides page.");
-jr_define('_JOMRES_TEMPLATE_PACKAGE_NAME',"Template name");
-jr_define('_JOMRES_TEMPLATE_PACKAGE_PATH',"Current path");
-jr_define('_JOMRES_TEMPLATE_PACKAGE_NOT_OVERRIDDEN',"Not overridden");
-jr_define('_JOMRES_TEMPLATE_PACKAGES_EDIT_INFO',"You can choose which template file to override the Core template files by changing the dropdown");
+jr_define('_JOMRES_TEMPLATE_PACKAGES', "Template Override Manager");
+jr_define('_JOMRES_TEMPLATE_PACKAGES_LEAD', "Template packages are plugins that can provide override templates for various core Jomres template files.");
+jr_define('_JOMRES_TEMPLATE_PACKAGES_INFO', "This page lists any template files that can be overridden by a template package's template files. If you want to override a certain template file, click on the edit button for that file, on the next page you will be able to choose which version you want to override with. Note, these overrides take priority over both Jomres Core and any Wordpress or Joomla theme/template overrides. You can disable an override by deleting it in the List Template Overrides page.");
+jr_define('_JOMRES_TEMPLATE_PACKAGE_NAME', "Template name");
+jr_define('_JOMRES_TEMPLATE_PACKAGE_PATH', "Current path");
+jr_define('_JOMRES_TEMPLATE_PACKAGE_NOT_OVERRIDDEN', "Not overridden");
+jr_define('_JOMRES_TEMPLATE_PACKAGES_EDIT_INFO', "You can choose which template file to override the Core template files by changing the dropdown");
 
 
-jr_define('_JOMRES_OVERALL_ROOMS_BOOKED',"Percentage Rooms Booked");
+jr_define('_JOMRES_OVERALL_ROOMS_BOOKED', "Percentage Rooms Booked");
 
 jr_define('_JOMRES_SHORTCODES_06005NEW_PROPERTY', 'Displays the create new property form.');
 
@@ -232,18 +232,18 @@ jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_REVIEWS_LIMIT', 'Number of revi
 
 jr_define('_JOMRES_SHORTCODES_06000SHORTLIST', 'Displays the users shortlisted properties. If the user is registered these are their favourites, if not logged in then just those items added through the Favourite icon during the visit.');
 
-jr_define( '_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE', 'Minimum deposit value' );
-jr_define( '_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE_DESC', "If the calculated deposit is less than this figure, then set deposit to this value instead. This figure might itself be over-ridden if it does not satisfy the site's minimum deposit setting. Leave it set to 0 to not use the setting." );
+jr_define('_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE', 'Minimum deposit value');
+jr_define('_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE_DESC', "If the calculated deposit is less than this figure, then set deposit to this value instead. This figure might itself be over-ridden if it does not satisfy the site's minimum deposit setting. Leave it set to 0 to not use the setting.");
 
 jr_define('_JOMRES_SHORTCODES_06000SHOW_CONSENT_FORM', 'Shows the GDPR compliant consent form.');
 
-jr_define( '_JOMRES_SHORTCODE_PROPERTY_ROOM_TYPE_LIST', 'Property room type list' );
-jr_define( '_JOMRES_SHORTCODE_PROPERTY_ROOM_TYPE', 'Show a property room type' );
+jr_define('_JOMRES_SHORTCODE_PROPERTY_ROOM_TYPE_LIST', 'Property room type list');
+jr_define('_JOMRES_SHORTCODE_PROPERTY_ROOM_TYPE', 'Show a property room type');
 
-jr_define( '_JOMRES_SHORTCODE_LOGIN_FORM', 'Show the login form' );
+jr_define('_JOMRES_SHORTCODE_LOGIN_FORM', 'Show the login form');
 
 jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_ROOM_TYPE', 'Show a list of rooms of a certain room type');
-jr_define( '_JOMRES_SHORTCODES_06000SHOW_PROPERTY_ROOM_TYPE_ARG_ROOM_TYPE_ID', 'Room type id' );
+jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_ROOM_TYPE_ARG_ROOM_TYPE_ID', 'Room type id');
 
 jr_define('_JOMRES_SHORTCODES_06001DASHBOARD', 'Dashboard');
 
@@ -257,5 +257,3 @@ jr_define('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_MRPSRP', 'Whet
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER', 'Optional. If the property id is not set, you can pass a number instead.');
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH', 'Optional. Alternative template path. Cannot be passed via url. Must be absolute.');
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME', 'Optional. Alternative template name.');
-
-

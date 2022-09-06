@@ -399,7 +399,7 @@ jr_define('_JOMRES_COM_MONTHSTOSHOW_DESC', '如果房间可用, 该显示多少�
 jr_define('_JOMRES_COM_A_GATEWAYLIST', '接口');
 jr_define('_JOMRES_COM_A_CANCEL', '取消');
 jr_define('_JOMRES_FRONT_BLACKBOOKING_DESC', '请选择你不想对外提供服务的房间, 以及相应时段. <br>如果房间没有特定标记, 它将不能用于私人预订,直到任何一个公开预订已经完成或者取消.<br/> 当您选择了合适日期, 点选蓝色 "启用" 按钮重新核查房间是否可用. ');
-jr_define('_JOMRES_JR_NOTLOGGEDIN', '<center><b>您已退出站点</b> 请重新登陆后继续操作.');
+jr_define('_JOMRES_JR_NOTLOGGEDIN', '<b>您已退出站点</b> 请重新登陆后继续操作.');
 jr_define('_JOMRES_JR_BLACKBOOKING_REASON', '理由');
 jr_define('_JOMRES_COM_A_GATEWAY_USEGATEWAYS', '使用支付接口?');
 jr_define('_JOMRES_COM_A_GATEWAY_BOOKING_CHOOSE', '请选择您的付款方法.');
@@ -744,22 +744,22 @@ jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_PERPERSON', '每人每晚');
 // Jomres 3.1.11
 // Jomres 3.1.13
 if (!defined('_PN_OF')) {
-    jr_define('_PN_OF', 'of');
+	jr_define('_PN_OF', 'of');
 }
 if (!defined('_PN_START')) {
-    jr_define('_PN_START', 'Start');
+	jr_define('_PN_START', 'Start');
 }
 if (!defined('_PN_PREVIOUS')) {
-    jr_define('_PN_PREVIOUS', 'Prev');
+	jr_define('_PN_PREVIOUS', 'Prev');
 }
 if (!defined('_PN_NEXT')) {
-    jr_define('_PN_NEXT', 'Next');
+	jr_define('_PN_NEXT', 'Next');
 }
 if (!defined('_PN_END')) {
-    jr_define('_PN_END', 'End');
+	jr_define('_PN_END', 'End');
 }
 if (!defined('_PN_RESULTS')) {
-    jr_define('_PN_RESULTS', 'Results');
+	jr_define('_PN_RESULTS', 'Results');
 }jr_define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_TITLE', '请注意，这不是预订表格，而是您发送的电子邮件。<br/>请输入您想发送给的消息');
 jr_define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL', '联系酒店');
 jr_define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_SUBJECT', '物业查询');
@@ -1133,7 +1133,7 @@ jr_define('_JOMRES_SUSPENSIONS_MANAGER_SUSPENDED', '此帐户已被暂停，目�
 jr_define('_JOMRES_SUSPENSIONS_SUSPENDED_EMAIL_TITLE', '经理账户被暂停');
 jr_define('_JOMRES_SUSPENSIONS_UNSUSPENDED_EMAIL_TITLE', '经理账户恢复');
 jr_define('_JOMRES_SUSPENSIONS_MANAGER_SUSPENDED_EMAIL', '请注意，您的物业经理帐户已被暂停。在帐户恢复之前，您将无法执行任何物业管理功能。');
-jr_define('_JOMRES_SUSPENSIONS_MANAGER_UNSUSPENDED_EMAIL', '请注意，您的物业经理帐户现已激活。您可以继续执行任何物业管理功能。请登录您的帐户并确保已发布适当的物业。谢谢。' );
+jr_define('_JOMRES_SUSPENSIONS_MANAGER_UNSUSPENDED_EMAIL', '请注意，您的物业经理帐户现已激活。您可以继续执行任何物业管理功能。请登录您的帐户并确保已发布适当的物业。谢谢。');
 jr_define('_JOMCOMP_MYUSER_REMOVE', '删除收藏');
 jr_define('_JOMRES_DATA_ARCHIVE_TITLE', '预订数据存档');
 jr_define('_JOMRES_DATA_ARCHIVE_TITLE_DESC', '预订数据存档是点击确认预订按钮后捕获的预订信息的原始转储。将鼠标悬停在日期上可查看原始数据转储。该信息存储在 XXX__jomres_booking_data_archive 表中。');
@@ -1523,7 +1523,7 @@ jr_define('_JOMRES_VAT_PROPERTY_VAT_NUMBER_NOT_VALIDATED', '增值税号未验�
 jr_define('_JOMRES_COM_YOURBUSINESS_INSTRUCTIONS', '此处输入的业务详细信息将用于佣金和订阅发票。');
 jr_define('_JRPORTAL_INVOICES_SUBSCRIPTION_PROFILE_ERROR_EXPL', "您似乎还没有填写您的帐户详细信息。要在网站上列出您的财产，我们需要您先填写您的帐户详细信息，然后我们才能进一步操作。");
 jr_define('_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT', '生产还是开发？');
-jr_define('_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_DESC', '如果您将此选项设置为开发，我们将启用错误报告，否则设置为生产时将关闭。如果这是一个实时服务器，我们建议您将此选项设置为"生产"。' );
+jr_define('_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_DESC', '如果您将此选项设置为开发，我们将启用错误报告，否则设置为生产时将关闭。如果这是一个实时服务器，我们建议您将此选项设置为"生产"。');
 jr_define('_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_SETTING_PRODUCTION', '生产');
 jr_define('_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_SETTING_DEVELOPMENT', '开发');
 //v7.3.3
@@ -1735,7 +1735,7 @@ jr_define('_JOMRES_TEST_EMAIL_RESULT_SUCCESS', '测试邮件发送成功');
 jr_define('_JOMRES_TEST_EMAIL_RESULT_FAILURE', '测试邮件未发送');
 jr_define('_INVOICE_TRANSACTIONS', '交易');
 jr_define('_OPENEXCHANGE_API', '开放汇率API密钥');
-jr_define('_OPENEXCHANGE_API_DESC', '要在服务之间转换价格，您需要一个开放汇率 API 密钥。您必须有一个 API 密钥才能在 Jomres 中正确显示价格，但是您可以 <a href="https://openexchangerates.org /signup/free" _target="_blank">注册一个免费密钥</a>（每小时更新，每月 1000 次请求 - 无 HTTPS、电子邮件支持或高级功能)。Jomres 每天下载一次汇率，只要你只在少数几个网站上使用密钥，你不太可能超过这些限制。在 Jomres 8.3 之前，我们使用了一个较旧的、未记录的 Yahoo 功能，但发现使用此功能与 Yahoo 的条款和条件。因此，我们必须假设该功能可能会在未来某个时候消失，因此更改为使用开放汇率。');
+jr_define('_OPENEXCHANGE_API_DESC', '要在服务之间转换价格，您需要一个开放汇率 API 密钥。您必须有一个 API 密钥才能在 Jomres 中正确显示价格，但是您可以 <a href="https://openexchangerates.org /signup/free" target="_blank">注册一个免费密钥</a>（每小时更新，每月 1000 次请求 - 无 HTTPS、电子邮件支持或高级功能)。Jomres 每天下载一次汇率，只要你只在少数几个网站上使用密钥，你不太可能超过这些限制。在 Jomres 8.3 之前，我们使用了一个较旧的、未记录的 Yahoo 功能，但发现使用此功能与 Yahoo 的条款和条件。因此，我们必须假设该功能可能会在未来某个时候消失，因此更改为使用开放汇率。');
 jr_define('_JOMRES_COMMISSION', '委员会');
 jr_define('_JOMRES_MEDIA_CENTRE_NOTES_CORE_EXTRAS', '如果您为单个可选附加项上传多张图片，则只会使用第一张图片。');
 jr_define('_JRPORTAL_INVOICES_PAYNOW', '立即付款');
@@ -1899,7 +1899,7 @@ jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE', "选择你想上传图片的资源");
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_SPECIFIC', "特定资源");
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_ALREADY_UPLOADED', "该资源的图片已经上传");
 jr_define('_JOMRES_MARKDOWN_TITLE', '文本格式');
-jr_define('_JOMRES_MARKDOWN_DESC', '您可以使用简单的 Markdown 格式在此处输入文本。您不需要了解任何 HTML，只需使用按钮使信息看起来像您想要的那样，或者根据这些示例格式化文本。' );
+jr_define('_JOMRES_MARKDOWN_DESC', '您可以使用简单的 Markdown 格式在此处输入文本。您不需要了解任何 HTML，只需使用按钮使信息看起来像您想要的那样，或者根据这些示例格式化文本。');
 jr_define('_JOMRES_MARKDOWN_EMPHASIS', '重点');
 jr_define('_JOMRES_MARKDOWN_BOLD', '粗体');
 jr_define('_JOMRES_MARKDOWN_ITALICS', '斜体');
@@ -1931,84 +1931,85 @@ jr_define('_JOMRES_BOOKING_FORM_EXTERNAL_URL_DESC', '如果您想使用第 3 方
 jr_define('_JOMRES_ROOM_TAGLINE', '标语(简短的房间描述/副标题)');
 jr_define('_JOMRES_ROOM_DESCRIPTION', '房间描述');
 jr_define('_JOMRES_GUEST_BLACKLISTED', '访客黑名单');
-jr_define('_JOMRES_GUEST_BLACKLISTED_DESC', '如果此客人被列入黑名单，则他们将无法再预订此住宿。');jr_define('_JOMRES_SESSION_HANDLER', 'Session handler');
+jr_define('_JOMRES_GUEST_BLACKLISTED_DESC', '如果此客人被列入黑名单，则他们将无法再预订此住宿。');
+jr_define('_JOMRES_SESSION_HANDLER', 'Session handler');
 jr_define('_JOMRES_SESSION_HANDLER_DESC', '将 jomres 会话文件保存到磁盘或数据库。推荐：数据库');
-jr_define('_JOMRES_MAP_HEIGHT',"地图高度(px)");
-jr_define('_JOMRES_MAP_ZOOMLEVEL',"地图缩放级别");
-jr_define('_JOMRES_MAP_MAPTYPE',"地图类型");
-jr_define('_JOMRES_TEMPLATE_PACKAGES',"模板覆盖管理器");
-jr_define('_JOMRES_TEMPLATE_PACKAGES_LEAD',"模板包是可以为各种核心Jomres模板文件提供覆盖模板的插件。");
-jr_define('_JOMRES_TEMPLATE_PACKAGES_INFO',"这个页面列出了所有可以被模板包的模板文件覆盖的模板文件。如果你想覆盖某个模板文件，点击那个文件的编辑按钮，在下一页你会能够选择要覆盖的版本。请注意，这些覆盖优先于 Jomres Core 和任何 Wordpress 或 Joomla 主题/模板覆盖。您可以通过在列表模板覆盖页面中删除它来禁用覆盖。");
-jr_define('_JOMRES_TEMPLATE_PACKAGE_NAME',"模板名称");
-jr_define('_JOMRES_TEMPLATE_PACKAGE_PATH',"当前路径");
-jr_define('_JOMRES_TEMPLATE_PACKAGE_NOT_OVERRIDDEN',"未覆盖");
-jr_define('_JOMRES_TEMPLATE_PACKAGES_EDIT_INFO',"您可以通过更改下拉列表来选择覆盖核心模板文件的模板文件");
+jr_define('_JOMRES_MAP_HEIGHT', "地图高度(px)");
+jr_define('_JOMRES_MAP_ZOOMLEVEL', "地图缩放级别");
+jr_define('_JOMRES_MAP_MAPTYPE', "地图类型");
+jr_define('_JOMRES_TEMPLATE_PACKAGES', "模板覆盖管理器");
+jr_define('_JOMRES_TEMPLATE_PACKAGES_LEAD', "模板包是可以为各种核心Jomres模板文件提供覆盖模板的插件。");
+jr_define('_JOMRES_TEMPLATE_PACKAGES_INFO', "这个页面列出了所有可以被模板包的模板文件覆盖的模板文件。如果你想覆盖某个模板文件，点击那个文件的编辑按钮，在下一页你会能够选择要覆盖的版本。请注意，这些覆盖优先于 Jomres Core 和任何 Wordpress 或 Joomla 主题/模板覆盖。您可以通过在列表模板覆盖页面中删除它来禁用覆盖。");
+jr_define('_JOMRES_TEMPLATE_PACKAGE_NAME', "模板名称");
+jr_define('_JOMRES_TEMPLATE_PACKAGE_PATH', "当前路径");
+jr_define('_JOMRES_TEMPLATE_PACKAGE_NOT_OVERRIDDEN', "未覆盖");
+jr_define('_JOMRES_TEMPLATE_PACKAGES_EDIT_INFO', "您可以通过更改下拉列表来选择覆盖核心模板文件的模板文件");
 
 
-jr_define('_JOMRES_OVERALL_ROOMS_BOOKED',"预订的房间百分比");
+jr_define('_JOMRES_OVERALL_ROOMS_BOOKED', "预订的房间百分比");
 
 
-jr_define('_JOMRES_OVERALL_ROOMS_BOOKED',"预订的房间百分比");
-jr_define('_JOMRES_SELECT_WIDGETS',"选择小部件");
-jr_define('_JOMRES_INTERVAL',"间隔");
-jr_define('_JOMRES_TIMELINE',"时间线");
-jr_define('_JOMRES_CPANEL_GRID',"控制面板主页布局");
-jr_define('_JOMRES_CPANEL_GRID_DESC',"选择您的前端物业管理控制面板主页的网格布局。");
+jr_define('_JOMRES_OVERALL_ROOMS_BOOKED', "预订的房间百分比");
+jr_define('_JOMRES_SELECT_WIDGETS', "选择小部件");
+jr_define('_JOMRES_INTERVAL', "间隔");
+jr_define('_JOMRES_TIMELINE', "时间线");
+jr_define('_JOMRES_CPANEL_GRID', "控制面板主页布局");
+jr_define('_JOMRES_CPANEL_GRID_DESC', "选择您的前端物业管理控制面板主页的网格布局。");
 
-jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_MARKER_IMAGES',"谷歌地图标记");
-jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_TOWN_IMAGES',"城镇图片");
-jr_define('_JOMRES_PTYPE_CHANGE_WARNING',"更改属性类型将删除所有房间、资费、属性设置并重置可用性。");
+jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_MARKER_IMAGES', "谷歌地图标记");
+jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_TOWN_IMAGES', "城镇图片");
+jr_define('_JOMRES_PTYPE_CHANGE_WARNING', "更改属性类型将删除所有房间、资费、属性设置并重置可用性。");
 jr_define('_JOMRES_VERSIONCHECK_VERSIONWARNING_UPDATEINFO', '请注意，更新后您必须通过 Jomres 插件管理器更新任何已安装的 Jomres 插件。如果您安装了核心插件，但没有有效的 Jomres 许可证，那么我们<em>做不建议您更新 Jomres，因为较旧的插件通常可能不适用于较新版本的 Jomres。');
 jr_define('_JOMRES_VERSIONCHECK_VERSIONWARNING_UPDATEINFO_KEYVALID', '请注意，更新后您必须通过 Jomres 插件管理器更新任何已安装的 Jomres 插件。');
 jr_define('_JOMRES_VERSIONCHECK_VERSIONWARNING_RENEWALS', "如果您想更新 Jomres 及其插件，您将需要续订许可证。请访问 <a href='https://www.jomres.net/pricing' target='_blank'>我们的网站</a>了解更多信息。在大多数情况下，这些许可证是完整许可证价格的 50%。请确保您在尝试购买续订之前已登录我们的商店。");
-jr_define('_JOMRES_PAYMENT_METHOD_USED',"付款方式：");
+jr_define('_JOMRES_PAYMENT_METHOD_USED', "付款方式：");
 
-jr_define('_JOMRES_PRICES',"连接");
+jr_define('_JOMRES_PRICES', "连接");
 
 
-jr_define('_OAUTH_TITLE',"应用密钥管理");
-jr_define('_OAUTH_APPS',"REST API 客户端详细信息");
-jr_define('_OAUTH_IDENTIFIER',"标识符");
-jr_define('_OAUTH_APIKEY',"客户端 ID");
-jr_define('_OAUTH_SECRET',"秘密");
-jr_define('_OAUTH_CREATED',"创建/更新应用程序");
-jr_define('_OAUTH_CLIENT_ID_INFO',"Client ID 和 Secret 是为您创建的。标识符是为了让您可以轻松识别此密钥对。");
-jr_define('_OAUTH_SCOPE_TITLE',"权限(客户端可以做什么)");
+jr_define('_OAUTH_TITLE', "应用密钥管理");
+jr_define('_OAUTH_APPS', "REST API 客户端详细信息");
+jr_define('_OAUTH_IDENTIFIER', "标识符");
+jr_define('_OAUTH_APIKEY', "客户端 ID");
+jr_define('_OAUTH_SECRET', "秘密");
+jr_define('_OAUTH_CREATED', "创建/更新应用程序");
+jr_define('_OAUTH_CLIENT_ID_INFO', "Client ID 和 Secret 是为您创建的。标识符是为了让您可以轻松识别此密钥对。");
+jr_define('_OAUTH_SCOPE_TITLE', "权限(客户端可以做什么)");
 jr_define('_OAUTH_SCOPE_CATEGORY_USER', "用户权限");
 jr_define('_OAUTH_SCOPE_CATEGORY_PROPERTIES', "属性权限");
 
-jr_define('API_DOCUMENTATION_TITLE',"App REST API 文档");
+jr_define('API_DOCUMENTATION_TITLE', "App REST API 文档");
 
-jr_define('_OAUTH_CONFIG',"API 核心配置");
+jr_define('_OAUTH_CONFIG', "API 核心配置");
 
-jr_define('_OAUTH_CONFIG_SHOW',"在Jomres主菜单中显示API客户端配置选项？");
-jr_define('_OAUTH_CONFIG_SHOW_DESC',"您可以选择不在 Jomres 主菜单的\"我的帐户\"部分中显示 API 客户端配置选项。您可以决定使用 Jomres 简码在其他页面上显示它们。");
+jr_define('_OAUTH_CONFIG_SHOW', "在Jomres主菜单中显示API客户端配置选项？");
+jr_define('_OAUTH_CONFIG_SHOW_DESC', "您可以选择不在 Jomres 主菜单的\"我的帐户\"部分中显示 API 客户端配置选项。您可以决定使用 Jomres 简码在其他页面上显示它们。");
 
-jr_define( '_JOMRES_SHORTCODES_06000API_CORE_DOCS', "显示 API 核心文档页面。API 核心允许用户创建 API 客户端，然后用于访问 API 核心文档中概述的 API 功能。");
+jr_define('_JOMRES_SHORTCODES_06000API_CORE_DOCS', "显示 API 核心文档页面。API 核心允许用户创建 API 客户端，然后用于访问 API 核心文档中概述的 API 功能。");
 
-jr_define( '_JOMRES_SHORTCODES_06005API_CORE_CLIENT_ADMIN', "显示 API 核心管理页面，物业经理可以在其中配置 API 客户端。请注意，这是一个仅限注册用户的功能，因此用户必须先注册并登录才能看到此页面。" );
+jr_define('_JOMRES_SHORTCODES_06005API_CORE_CLIENT_ADMIN', "显示 API 核心管理页面，物业经理可以在其中配置 API 客户端。请注意，这是一个仅限注册用户的功能，因此用户必须先注册并登录才能看到此页面。");
 
-jr_define('API_METHODS_TITLE',"API 方法");
-jr_define('API_METHODS_DESCRIPTION',"此方法列表基于您安装的 API 功能插件并自动生成。如果您安装或删除 API 功能插件，您必须访问此页面以重建您站点上可用的 API 方法列表。 ");
+jr_define('API_METHODS_TITLE', "API 方法");
+jr_define('API_METHODS_DESCRIPTION', "此方法列表基于您安装的 API 功能插件并自动生成。如果您安装或删除 API 功能插件，您必须访问此页面以重建您站点上可用的 API 方法列表。 ");
 
-jr_define('_OAUTH_REDIRECT_URI',"重定向URI");
-jr_define('_OAUTH_IDENTIFIER_PLACEHOLDER',"给我一个对你有意义的名字，比如我的手机");
+jr_define('_OAUTH_REDIRECT_URI', "重定向URI");
+jr_define('_OAUTH_IDENTIFIER_PLACEHOLDER', "给我一个对你有意义的名字，比如我的手机");
 
-jr_define('_OAUTH_GRANT_TYPES',"该系统支持两种授权类型，客户端凭据和隐式。如果您使用 <em>client_credentials</em> 流程，那么您将需要客户端 ID 和客户端密码。如果使用 <em >implicit</em> 那么您的应用程序将只发送客户端 ID，您将登录系统以明确授权该应用程序。");
+jr_define('_OAUTH_GRANT_TYPES', "该系统支持两种授权类型，客户端凭据和隐式。如果您使用 <em>client_credentials</em> 流程，那么您将需要客户端 ID 和客户端密码。如果使用 <em >implicit</em> 那么您的应用程序将只发送客户端 ID，您将登录系统以明确授权该应用程序。");
 
-jr_define('_OAUTH_IMPLICIT_NOTES',"要使用<em>隐式</em>授权类型流程，您将需要使用此 url 来授权您的应用程序。当调用此 url 并且您已授权该应用程序时，系统将发出然后您的应用程序将使用它来调用此系统的 API 的令牌");
-jr_define('_OAUTH_AUTHORISATION_URL',"授权网址");
+jr_define('_OAUTH_IMPLICIT_NOTES', "要使用<em>隐式</em>授权类型流程，您将需要使用此 url 来授权您的应用程序。当调用此 url 并且您已授权该应用程序时，系统将发出然后您的应用程序将使用它来调用此系统的 API 的令牌");
+jr_define('_OAUTH_AUTHORISATION_URL', "授权网址");
 
 jr_define('WEBHOOKS_CORE', 'Webhooks');
 
-jr_define('_WEBHOOKS_CONFIG_SHOW',"在Jomres主菜单中显示Webhook配置选项？");
-jr_define('_WEBHOOKS_CONFIG_SHOW_DESC',"您可以选择不在 Jomres 主菜单的\"我的帐户\"部分中显示 Webhook 配置选项。您可以决定使用 Jomres 简码在其他页面上显示它们。");
+jr_define('_WEBHOOKS_CONFIG_SHOW', "在Jomres主菜单中显示Webhook配置选项？");
+jr_define('_WEBHOOKS_CONFIG_SHOW_DESC', "您可以选择不在 Jomres 主菜单的\"我的帐户\"部分中显示 Webhook 配置选项。您可以决定使用 Jomres 简码在其他页面上显示它们。");
 
-jr_define('WEBHOOKS_DOCUMENTATION_TITLE',"Webhooks 文档");
+jr_define('WEBHOOKS_DOCUMENTATION_TITLE', "Webhooks 文档");
 
-jr_define( '_JOMRES_SHORTCODES_06000WEBHOOKS_DOCS', "显示 API 核心文档页面。API 核心允许用户创建 API 客户端，然后用于访问 API 核心文档中概述的 API 功能。");
+jr_define('_JOMRES_SHORTCODES_06000WEBHOOKS_DOCS', "显示 API 核心文档页面。API 核心允许用户创建 API 客户端，然后用于访问 API 核心文档中概述的 API 功能。");
 
-jr_define( '_JOMRES_SHORTCODES_06005WEBHOOKS_CLIENT_ADMIN', "显示 API 核心管理页面，物业经理可以在其中配置 API 客户端。请注意，这是一个仅限注册用户的功能，因此用户必须先注册并登录才能看到此页面。" );
+jr_define('_JOMRES_SHORTCODES_06005WEBHOOKS_CLIENT_ADMIN', "显示 API 核心管理页面，物业经理可以在其中配置 API 客户端。请注意，这是一个仅限注册用户的功能，因此用户必须先注册并登录才能看到此页面。");
 
 jr_define('WEBHOOKS_INTEGRATION_EDIT', '编辑集成');
 jr_define('WEBHOOKS_INTEGRATION_ID', '集成ID');
@@ -2016,110 +2017,110 @@ jr_define('WEBHOOKS_INTEGRATION_URL', 'URL 或名称');
 jr_define('WEBHOOKS_ENABLED', '启用');
 jr_define('WEBHOOKS_AUTH_METHOD_SELECT', '认证方法/集成');
 
-jr_define( 'WEBHOOKS_MANAGER_PROPERTIES_NONE', '您创建的任何 webhooks 都不会被触发，因为您没有分配给任何属性。超级属性管理器通常不会分配单个属性，因此您可能需要一个新用户来创建 webhook。');
-jr_define( 'WEBHOOKS_MANAGER_PROPERTIES_ASSIGNED_DESC', '您创建的任何 webhooks 都将针对以下属性触发：');
+jr_define('WEBHOOKS_MANAGER_PROPERTIES_NONE', '您创建的任何 webhooks 都不会被触发，因为您没有分配给任何属性。超级属性管理器通常不会分配单个属性，因此您可能需要一个新用户来创建 webhook。');
+jr_define('WEBHOOKS_MANAGER_PROPERTIES_ASSIGNED_DESC', '您创建的任何 webhooks 都将针对以下属性触发：');
 
 
 jr_define('PORTAL_REVIEWS_LIMIT', '评论限制');
-jr_define( 'PORTAL_REVIEWS_LIMIT_DESC', '使用此设置来限制在属性详细信息页面中显示的评论数量。');
+jr_define('PORTAL_REVIEWS_LIMIT_DESC', '使用此设置来限制在属性详细信息页面中显示的评论数量。');
 jr_define('PORTAL_REVIEWS_SHOW_ALL_REVIEWS', '显示所有评论');
 
 jr_define('VIDEO_TUTORIALS', '视频教程');
 
 jr_define('_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE', '最低存款价值');
-jr_define( '_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE_DESC', "如果计算出的存款小于这个数字，那么将存款设置为这个值。如果它不满足网站的最低存款设置，这个数字本身可能会被覆盖。将其设置为 0 以不使用设置。");
+jr_define('_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE_DESC', "如果计算出的存款小于这个数字，那么将存款设置为这个值。如果它不满足网站的最低存款设置，这个数字本身可能会被覆盖。将其设置为 0 以不使用设置。");
 
 jr_define('JOMRES_INCOMPLETE', '不完整');
 jr_define('JOMRES_WATING_APPROVAL', '待批准');
 jr_define('JOMRES_GOOGLE_MAPS_PDETAILS', '物业详情图');
 
-jr_define( 'HAS_STARS_TITLE', '允许星星分类吗？');
-jr_define( '_JOMRES_MEDIA_CENTRE_DBIMPORT_FORCE', '强制将图像详细信息重新导入数据库');
-jr_define( '_JOMRES_MEDIA_CENTRE_S3IMPORT_FORCE', '强制将图像重新上传到 S3 存储桶');
-jr_define( '_JOMRES_UNINSTALL_TABLES', '卸载时删除所有Jomres数据？');
-jr_define( '_JOMRES_UNINSTALL_TABLES_DESC', '如果设置为yes，卸载时Jomres将删除所有它的数据库表。这将从数据库中删除所有Jomres数据并且无法撤消。');
+jr_define('HAS_STARS_TITLE', '允许星星分类吗？');
+jr_define('_JOMRES_MEDIA_CENTRE_DBIMPORT_FORCE', '强制将图像详细信息重新导入数据库');
+jr_define('_JOMRES_MEDIA_CENTRE_S3IMPORT_FORCE', '强制将图像重新上传到 S3 存储桶');
+jr_define('_JOMRES_UNINSTALL_TABLES', '卸载时删除所有Jomres数据？');
+jr_define('_JOMRES_UNINSTALL_TABLES_DESC', '如果设置为yes，卸载时Jomres将删除所有它的数据库表。这将从数据库中删除所有Jomres数据并且无法撤消。');
 
 jr_define('TRANSACTION_IDS', '交易ID');
 jr_define('PAYMENT_METHOD', '付款方式');
 jr_define('POA_DISPLAY_PRICE', 'POA 价格');
-jr_define( 'POA_DISPLAY_PRICE_DESC', '当属性显示在列表中时，系统将尝试根据今天的日期从配置的关税中查找有效价格，或者如果在搜索中使用了日期，则基于这些日期. 如果不能，那么它会显示 POA (Price on application)，这意味着客人应该联系你获取价格。如果你愿意，你可以在这里配置一个价格，而不是 POA 文本。这个图如果无法确定其他价格，则将是要显示的"后备"价格。');
+jr_define('POA_DISPLAY_PRICE_DESC', '当属性显示在列表中时，系统将尝试根据今天的日期从配置的关税中查找有效价格，或者如果在搜索中使用了日期，则基于这些日期. 如果不能，那么它会显示 POA (Price on application)，这意味着客人应该联系你获取价格。如果你愿意，你可以在这里配置一个价格，而不是 POA 文本。这个图如果无法确定其他价格，则将是要显示的"后备"价格。');
 
-jr_define( 'PLUGINMANAGER_INSTALL', '您需要先安装插件管理器，然后才能安装 Jomres 插件，您现在要这样做吗？');
-jr_define( 'PLUGINMANAGER_REINSTALL', '您需要先更新插件管理器，然后才能更新任何已安装的插件，您现在要这样做吗？');
-jr_define( 'PLUGINMANAGER_INSTALL_BUTTON', "让我们这样做吧！");
+jr_define('PLUGINMANAGER_INSTALL', '您需要先安装插件管理器，然后才能安装 Jomres 插件，您现在要这样做吗？');
+jr_define('PLUGINMANAGER_REINSTALL', '您需要先更新插件管理器，然后才能更新任何已安装的插件，您现在要这样做吗？');
+jr_define('PLUGINMANAGER_INSTALL_BUTTON', "让我们这样做吧！");
 
 jr_define('INCLUDEINFILTERS', '包含在过滤器中吗？');
-jr_define( 'INCLUDEINFILTERS_DESC', 'Ajax Composite Search 中的属性特征过滤器可能会变得很长，因此您可以将此选项设置为否以防止该特征显示在属性特征列表中。');
+jr_define('INCLUDEINFILTERS_DESC', 'Ajax Composite Search 中的属性特征过滤器可能会变得很长，因此您可以将此选项设置为否以防止该特征显示在属性特征列表中。');
 
-jr_define( 'REVIEW_REMINDER_PT1', "你有");
-jr_define( 'REVIEW_REMINDER_PT2', " 您还没有留下评论的预订。请留下评论。");
-jr_define( 'BOOKINGS_AWAITING_REVIEWS', "等待评论的预订");
-jr_define( 'REVIEW_NAG', "唠叨客人评论？");
-jr_define( 'REVIEW_NAG_DESC', "一旦客人从预订中被取消，系统会提醒他们为他们的预订发表评论。将此选项设置为否可禁用此提醒。");
+jr_define('REVIEW_REMINDER_PT1', "你有");
+jr_define('REVIEW_REMINDER_PT2', " 您还没有留下评论的预订。请留下评论。");
+jr_define('BOOKINGS_AWAITING_REVIEWS', "等待评论的预订");
+jr_define('REVIEW_NAG', "唠叨客人评论？");
+jr_define('REVIEW_NAG_DESC', "一旦客人从预订中被取消，系统会提醒他们为他们的预订发表评论。将此选项设置为否可禁用此提醒。");
 
-jr_define( 'HIDDEN_ADDRESS_SETTING', "隐藏地址？");
-jr_define( 'HIDDEN_ADDRESS_SETTING_DESC', "如果您将此选项设置为是，则只有已经在您的物业上预订的客人才能看到该物业的街道地址。您可能希望使用此设置来隐藏该物业的确切位置例如，如果它经常无人看管。");
+jr_define('HIDDEN_ADDRESS_SETTING', "隐藏地址？");
+jr_define('HIDDEN_ADDRESS_SETTING_DESC', "如果您将此选项设置为是，则只有已经在您的物业上预订的客人才能看到该物业的街道地址。您可能希望使用此设置来隐藏该物业的确切位置例如，如果它经常无人看管。");
 jr_define('HIDDEN_ADDRESS_PLACEHOLDER', "隐藏");
-jr_define( '_JOMRES_MEDIA_CENTRE_OPTIMIZE_IMAGES', '优化上传图片？');
-jr_define( '_JOMRES_MEDIA_CENTRE_OPTIMIZE_IMAGES_DESC', '启用后，图像将针对网络进行优化（文件大小最多可缩小 75%)。根据上传的图像类型，您的服务器需要由托管安装这些库中的一个或多个提供者：optipng、pngquant、pngcrush、pngout、advpng、jpegtran、jpegoptim、gifsicle');
+jr_define('_JOMRES_MEDIA_CENTRE_OPTIMIZE_IMAGES', '优化上传图片？');
+jr_define('_JOMRES_MEDIA_CENTRE_OPTIMIZE_IMAGES_DESC', '启用后，图像将针对网络进行优化（文件大小最多可缩小 75%)。根据上传的图像类型，您的服务器需要由托管安装这些库中的一个或多个提供者：optipng、pngquant、pngcrush、pngout、advpng、jpegtran、jpegoptim、gifsicle');
 jr_define('DATABASE_INTEGRITY_CHECK', '数据库完整性检查');
 jr_define('OBSOLETE_FILES_CHECK', '过时文件检查');
 jr_define('DATATABLES_COLVIS', '列可见性');
 
 jr_define('API_TOKEN_LIFETIME', 'API 令牌生命周期');
-jr_define( 'API_TOKEN_LIFETIME_DESC', 'API 令牌保持有效的时间，以秒为单位。86400 = 1 天，31536000 = 1 年');
+jr_define('API_TOKEN_LIFETIME_DESC', 'API 令牌保持有效的时间，以秒为单位。86400 = 1 天，31536000 = 1 年');
 
 
 jr_define('ENCRYPTION_TITLE', '加密');
 jr_define('ENCRYPTION_FILE_LOCATION', '加密文件位置');
-jr_define( 'ENCRYPTION_FILE_LOCATION_DESC', '**永不删除加密文件** <br/> 用户数据以加密方式存储在表中，以确保"静态数据"得到安全保护，符合 GDPR 建议。默认情况下加密密钥存储在 Jomres 安装根目录下的"encryption_key.class.php"文件中（通常为 /public_html/jomres)。您可以在此处更改文件的存储位置。如果更改位置，则必须移动文件，不要等待 Jomres 创建新版本，否则您将无法解码客人的详细信息。');
+jr_define('ENCRYPTION_FILE_LOCATION_DESC', '**永不删除加密文件** <br/> 用户数据以加密方式存储在表中，以确保"静态数据"得到安全保护，符合 GDPR 建议。默认情况下加密密钥存储在 Jomres 安装根目录下的"encryption_key.class.php"文件中（通常为 /public_html/jomres)。您可以在此处更改文件的存储位置。如果更改位置，则必须移动文件，不要等待 Jomres 创建新版本，否则您将无法解码客人的详细信息。');
 
 jr_define('_JOMRES_COM_YOURBUSINESS_DESC', '您在此处保存的信息将用于为该物业生成的发票');
 
 jr_define('_JOMRES_GDPR_POLICIES', 'GDPR 政策');
-jr_define( '_JOMRES_GDPR_POLICIES_DESC', '在这里您可以配置在创建预订或发票后多久将其从系统中删除，以确保您符合 GDPR。');
+jr_define('_JOMRES_GDPR_POLICIES_DESC', '在这里您可以配置在创建预订或发票后多久将其从系统中删除，以确保您符合 GDPR。');
 
-jr_define( '_JOMRES_GDPR_BOOKING_RETENTION', '预订保留期（天)');
-jr_define( '_JOMRES_GDPR_BOOKING_RETENTION_DESC', '预订出发日期后多少天应该删除预订？删除时，预订和发票都会被删除。典型的保留期可能是 365 天。');
+jr_define('_JOMRES_GDPR_BOOKING_RETENTION', '预订保留期（天)');
+jr_define('_JOMRES_GDPR_BOOKING_RETENTION_DESC', '预订出发日期后多少天应该删除预订？删除时，预订和发票都会被删除。典型的保留期可能是 365 天。');
 
-jr_define( '_JOMRES_GDPR_INVOICE_RETENTION', '发票保留（非预订)期');
-jr_define( '_JOMRES_GDPR_INVOICE_RETENTION_DESC', '其他发票，例如佣金和订阅发票，与预订无关。因此，在删除预订发票和合同时，它们不会被删除。根据您所在的国家/地区和您自己的商业惯例，您需要配置不同的保留期。典型的保留期可能是 3653 天，也就是 10 年。');
+jr_define('_JOMRES_GDPR_INVOICE_RETENTION', '发票保留（非预订)期');
+jr_define('_JOMRES_GDPR_INVOICE_RETENTION_DESC', '其他发票，例如佣金和订阅发票，与预订无关。因此，在删除预订发票和合同时，它们不会被删除。根据您所在的国家/地区和您自己的商业惯例，您需要配置不同的保留期。典型的保留期可能是 3653 天，也就是 10 年。');
 
 
-jr_define( '_JOMRES_GDPR_CONSENT_FORM_INTRO', '您的数据');
-jr_define( '_JOMRES_GDPR_CONSENT_FORM_THIRD_PARTIES', '本网站的某些功能需要存储有关您访问的信息。这仅用于为您提供服务，绝不会与任何其他人共享，不再需要时将被删除。');
-jr_define( '_JOMRES_GDPR_CONSENT_FORM_CONSENT_REQUEST', '你允许我们存储这些信息吗？？' );
+jr_define('_JOMRES_GDPR_CONSENT_FORM_INTRO', '您的数据');
+jr_define('_JOMRES_GDPR_CONSENT_FORM_THIRD_PARTIES', '本网站的某些功能需要存储有关您访问的信息。这仅用于为您提供服务，绝不会与任何其他人共享，不再需要时将被删除。');
+jr_define('_JOMRES_GDPR_CONSENT_FORM_CONSENT_REQUEST', '你允许我们存储这些信息吗？？');
 jr_define('_JOMRES_GDPR_CONSENT_FORM_DETAIL', '详细');
-jr_define( '_JOMRES_GDPR_CONSENT_FORM_COOKIE', '您必须同意我们存储这些数据，您才能在本网站上进行预订。无论您是否同意存储您的数据，我们都会在您的计算机上存储一个 cookie 以告知我们无论您是否选择加入。这有助于我们确保我们不会不断询问您是否要选择加入或退出，并且它不包含任何个人身份信息 (PII)。如果您改变主意，您可以随时访问"应用权限"页面选择加入或退出。');
-jr_define( '_JOMRES_GDPR_CONSENT_FORM_BASIC_INFORMATION', '信息根据您访问的性质存储不同的时间段。因此，如果您只是环顾四周，我们将存储大致的地理位置（国家级别)信息。如果您执行搜索，那么使搜索表单更加用户友好，我们将存储您最近搜索过的内容。这些信息通常最多存储 24 小时，仅用于让您的访问更加愉快。');
-jr_define( '_JOMRES_GDPR_CONSENT_FORM_BOOKINGS_INTRO', '当您向我们预订时，必须存储更多信息。');
-jr_define( '_JOMRES_GDPR_CONSENT_FORM_BOOKINGS_1', '预订表格的技术细节被捕获并保留最多 60 天。这是必需的，以便在预订获得批准后，按需预订可以变成完整预订，并供我们的团队分析如果预订出现问题。如果您在预订时未登录，那么我们将通过电子邮件向您发送用户名和密码，以便您可以查看您的预订历史并行使您的被遗忘权 (RTBF)希望这样做。');
-jr_define( '_JOMRES_GDPR_CONSENT_FORM_BOOKINGS_2', '在预订表格中输入的数据，例如姓名、电子邮件地址、真实地址在预订出发日期后最多存储 365 天。此信息以加密形式存储在我们的数据库中以便只有授权的人才能查看它。如果您进行预订，那么根据法律，我们必须在预订有效期间存储您的 PII。预订完成后，无论是因为它已被取消还是您已被退房，那么您将能够通过登录并访问"您的数据"页面来行使您的 RTBF。已完成预订的发票信息仍将安全地存储在我们的数据库中，以确保我们遵守相关税法，但您将能够删除所有其他 PII预订完成后。');
-jr_define( '_JOMRES_GDPR_CONSENT_FORM_BOOKINGS_3', '当您同意按照上述方式存储您的信息时，我们有法律义务将此同意存储在我们的数据库中。此信息将包括您的 IP 号码和选择加入表格的内容。我们将无限期保留此同意通知（这是法律要求)。');
+jr_define('_JOMRES_GDPR_CONSENT_FORM_COOKIE', '您必须同意我们存储这些数据，您才能在本网站上进行预订。无论您是否同意存储您的数据，我们都会在您的计算机上存储一个 cookie 以告知我们无论您是否选择加入。这有助于我们确保我们不会不断询问您是否要选择加入或退出，并且它不包含任何个人身份信息 (PII)。如果您改变主意，您可以随时访问"应用权限"页面选择加入或退出。');
+jr_define('_JOMRES_GDPR_CONSENT_FORM_BASIC_INFORMATION', '信息根据您访问的性质存储不同的时间段。因此，如果您只是环顾四周，我们将存储大致的地理位置（国家级别)信息。如果您执行搜索，那么使搜索表单更加用户友好，我们将存储您最近搜索过的内容。这些信息通常最多存储 24 小时，仅用于让您的访问更加愉快。');
+jr_define('_JOMRES_GDPR_CONSENT_FORM_BOOKINGS_INTRO', '当您向我们预订时，必须存储更多信息。');
+jr_define('_JOMRES_GDPR_CONSENT_FORM_BOOKINGS_1', '预订表格的技术细节被捕获并保留最多 60 天。这是必需的，以便在预订获得批准后，按需预订可以变成完整预订，并供我们的团队分析如果预订出现问题。如果您在预订时未登录，那么我们将通过电子邮件向您发送用户名和密码，以便您可以查看您的预订历史并行使您的被遗忘权 (RTBF)希望这样做。');
+jr_define('_JOMRES_GDPR_CONSENT_FORM_BOOKINGS_2', '在预订表格中输入的数据，例如姓名、电子邮件地址、真实地址在预订出发日期后最多存储 365 天。此信息以加密形式存储在我们的数据库中以便只有授权的人才能查看它。如果您进行预订，那么根据法律，我们必须在预订有效期间存储您的 PII。预订完成后，无论是因为它已被取消还是您已被退房，那么您将能够通过登录并访问"您的数据"页面来行使您的 RTBF。已完成预订的发票信息仍将安全地存储在我们的数据库中，以确保我们遵守相关税法，但您将能够删除所有其他 PII预订完成后。');
+jr_define('_JOMRES_GDPR_CONSENT_FORM_BOOKINGS_3', '当您同意按照上述方式存储您的信息时，我们有法律义务将此同意存储在我们的数据库中。此信息将包括您的 IP 号码和选择加入表格的内容。我们将无限期保留此同意通知（这是法律要求)。');
 
-jr_define( '_JOMRES_GDPR_CONSENT_NOT_SET', '您还没有告诉我们我们是否可以收集关于您的个人身份信息' );
-jr_define( '_JOMRES_GDPR_CONSENT_OPTED_IN', '您已同意我们收集必要的个人身份信息以进行预订');
-jr_define( '_JOMRES_GDPR_CONSENT_OPTED_OUT', '您告诉我们不要收集个人身份信息');
+jr_define('_JOMRES_GDPR_CONSENT_NOT_SET', '您还没有告诉我们我们是否可以收集关于您的个人身份信息');
+jr_define('_JOMRES_GDPR_CONSENT_OPTED_IN', '您已同意我们收集必要的个人身份信息以进行预订');
+jr_define('_JOMRES_GDPR_CONSENT_OPTED_OUT', '您告诉我们不要收集个人身份信息');
 
-jr_define( '_JOMRES_GDPR_NOCONSENT_INTRO', '您没有允许我们收集您的私人数据' );
-jr_define( '_JOMRES_GDPR_NOCONSENT_DIDNOTCONSENT', '为了让您在本网站上执行某些操作，我们必须收集有关您的个人身份信息，但您尚未允许我们这样做。');
-jr_define( '_JOMRES_GDPR_NOCONSENT_DIDNOTCONSENT_LINK_TEXT', '更改您的权限');
-jr_define( '_JOMRES_GDPR_NOCONSENT_DIDNOTCONSENT_LINK_CONTINUE', '继续查看属性');
+jr_define('_JOMRES_GDPR_NOCONSENT_INTRO', '您没有允许我们收集您的私人数据');
+jr_define('_JOMRES_GDPR_NOCONSENT_DIDNOTCONSENT', '为了让您在本网站上执行某些操作，我们必须收集有关您的个人身份信息，但您尚未允许我们这样做。');
+jr_define('_JOMRES_GDPR_NOCONSENT_DIDNOTCONSENT_LINK_TEXT', '更改您的权限');
+jr_define('_JOMRES_GDPR_NOCONSENT_DIDNOTCONSENT_LINK_CONTINUE', '继续查看属性');
 
 jr_define('_JOMRES_GDPR_APP_MENU_ITEM', '应用权限');
 
 jr_define('_JOMRES_GDPR_DOWNLOAD_GUEST_DATA', '访客数据');
-jr_define( '_JOMRES_GDPR_DOWNLOAD_GUEST_DATA_DESC', '这些是各个酒店为您存储的详细信息。不同的酒店可能持有不同的记录，具体取决于您在预订时输入的内容。');
-jr_define( '_JOMRES_GDPR_DOWNLOAD_GUEST_DATA_DESC_NONE', '您在该系统中没有存储任何酒店的任何数据' );
+jr_define('_JOMRES_GDPR_DOWNLOAD_GUEST_DATA_DESC', '这些是各个酒店为您存储的详细信息。不同的酒店可能持有不同的记录，具体取决于您在预订时输入的内容。');
+jr_define('_JOMRES_GDPR_DOWNLOAD_GUEST_DATA_DESC_NONE', '您在该系统中没有存储任何酒店的任何数据');
 jr_define('_JOMRES_GDPR_DOWNLOAD_PROFILE_DATA', '个人资料数据');
-jr_define( '_JOMRES_GDPR_DOWNLOAD_PROFILE_DATA_DESC', '这是我们为您保存的主要数据集，与您与不同属性共享的数据集不同。');
-jr_define( '_JOMRES_GDPR_DOWNLOAD_PROFILE_DATA_DESC_NONE', '您还没有保存任何个人资料信息' );
-jr_define( '_JOMRES_GDPR_DOWNLOAD_PROFILE_DATA_TEXT', '这是我们为您存储在本网站上的个人身份信息。它以JSON（JavaScript Object Notation)格式构建，这是一种轻量级的数据交换格式。它易于人类阅读和编写，机器很容易解析和生成。');
+jr_define('_JOMRES_GDPR_DOWNLOAD_PROFILE_DATA_DESC', '这是我们为您保存的主要数据集，与您与不同属性共享的数据集不同。');
+jr_define('_JOMRES_GDPR_DOWNLOAD_PROFILE_DATA_DESC_NONE', '您还没有保存任何个人资料信息');
+jr_define('_JOMRES_GDPR_DOWNLOAD_PROFILE_DATA_TEXT', '这是我们为您存储在本网站上的个人身份信息。它以JSON（JavaScript Object Notation)格式构建，这是一种轻量级的数据交换格式。它易于人类阅读和编写，机器很容易解析和生成。');
 
 jr_define('_JOMRES_GDPR_REDACTION_STRING', '匿名');
 
 jr_define('_JOMRES_GDPR_MY_DATA', '你的数据');
-jr_define( '_JOMRES_GDPR_MY_DATA_PRIVACY_NOTICE', '通过接受这些使用条款协议（本"协议")，您同意：
+jr_define('_JOMRES_GDPR_MY_DATA_PRIVACY_NOTICE', '通过接受这些使用条款协议（本"协议")，您同意：
 
 <ul>
 <li>
@@ -2148,39 +2149,39 @@ jr_define( '_JOMRES_GDPR_MY_DATA_PRIVACY_NOTICE', '通过接受这些使用条�
 </li>
 </ul>
 ');
-jr_define( '_JOMRES_GDPR_MY_DATA_LEAD', '安全性和透明度对我们很重要。');
-jr_define( '_JOMRES_GDPR_MY_DATA_INTRO', '我们非常重视存储您的数据的责任。所有个人身份信息 (PII) 都使用行业标准算法加密存储在我们的数据库中，以确保只有授权用户才能查看这些信息。');
+jr_define('_JOMRES_GDPR_MY_DATA_LEAD', '安全性和透明度对我们很重要。');
+jr_define('_JOMRES_GDPR_MY_DATA_INTRO', '我们非常重视存储您的数据的责任。所有个人身份信息 (PII) 都使用行业标准算法加密存储在我们的数据库中，以确保只有授权用户才能查看这些信息。');
 
-jr_define( '_JOMRES_GDPR_MY_DATA_DOWNLOAD_TEXT', '您可以下载我们为您存储的所有 PII。');
+jr_define('_JOMRES_GDPR_MY_DATA_DOWNLOAD_TEXT', '您可以下载我们为您存储的所有 PII。');
 jr_define('_JOMRES_GDPR_MY_DATA_DOWNLOAD_BUTTON', '立即下载');
 
 jr_define('_JOMRES_GDPR_MY_RTBF_LEAD', '被遗忘的权利(RTBF)');
-jr_define( '_JOMRES_GDPR_MY_RTBF_INTRO', '我们相信您应该能够<a href="https://gdpr-info.eu/art-17-gdpr/" target="_blank">删除</a>您的< a href="https://gdpr-info.eu/art-4-gdpr/" target="_blank">个人身份信息</a>如果您愿意并且可行。' );
-jr_define( '_JOMRES_GDPR_MY_RTBF_NOTREGISTERED_OPTEDIN', '您没有在本站注册。您的大致位置（国家)和 IP 号码将被存储最多 24 小时，然后删除。');
-jr_define( '_JOMRES_GDPR_MY_RTBF_NOTREGISTERED_OPTEDOUT', '您未在此站点上注册并且您已选择退出数据收集。我们尚未存储您的 PII。');
-jr_define( '_JOMRES_GDPR_MY_RTBF_REGISTERED_NOBOOKINGS', '您已在该网站上注册并且没有任何待处理或活动预订。我们可以将我们目前为您保存的大部分信息匿名化。您愿意这样做吗？' );
-jr_define( '_JOMRES_GDPR_MY_RTBF_REGISTERED_NOBOOKINGS_NOTE', '注意：这不会删除您的帐户，它只是将我们的记录匿名化，以便您的帐户无法与您作为个人关联。根据法律，我们必须继续存储您的 PII 以用于发票目的，但是我们会删除所有客人记录。');
+jr_define('_JOMRES_GDPR_MY_RTBF_INTRO', '我们相信您应该能够<a href="https://gdpr-info.eu/art-17-gdpr/" target="_blank">删除</a>您的< a href="https://gdpr-info.eu/art-4-gdpr/" target="_blank">个人身份信息</a>如果您愿意并且可行。');
+jr_define('_JOMRES_GDPR_MY_RTBF_NOTREGISTERED_OPTEDIN', '您没有在本站注册。您的大致位置（国家)和 IP 号码将被存储最多 24 小时，然后删除。');
+jr_define('_JOMRES_GDPR_MY_RTBF_NOTREGISTERED_OPTEDOUT', '您未在此站点上注册并且您已选择退出数据收集。我们尚未存储您的 PII。');
+jr_define('_JOMRES_GDPR_MY_RTBF_REGISTERED_NOBOOKINGS', '您已在该网站上注册并且没有任何待处理或活动预订。我们可以将我们目前为您保存的大部分信息匿名化。您愿意这样做吗？');
+jr_define('_JOMRES_GDPR_MY_RTBF_REGISTERED_NOBOOKINGS_NOTE', '注意：这不会删除您的帐户，它只是将我们的记录匿名化，以便您的帐户无法与您作为个人关联。根据法律，我们必须继续存储您的 PII 以用于发票目的，但是我们会删除所有客人记录。');
 
-jr_define( '_JOMRES_GDPR_MY_RTBF_REGISTERED_FUTUREBOOKINGS', '您已在网站上注册，但您有未完成的预订，我们目前无法对您的数据进行匿名处理。这些数据将在预订完成后最多保留一年，然后将被删除，如果您没有选择在那之前删除它。');
-jr_define( '_JOMRES_GDPR_MY_RTBF_REGISTERED_PROPERTYMANAGERS', '由于您是我们网站上的物业经理，我们无法为您提供自动删除数据的功能。相反，请直接联系我们，以便我们可以将您的物业分配给另一位经理。一旦我们这样做并删除您作为物业经理的身份，您将能够自动删除您的数据。');
+jr_define('_JOMRES_GDPR_MY_RTBF_REGISTERED_FUTUREBOOKINGS', '您已在网站上注册，但您有未完成的预订，我们目前无法对您的数据进行匿名处理。这些数据将在预订完成后最多保留一年，然后将被删除，如果您没有选择在那之前删除它。');
+jr_define('_JOMRES_GDPR_MY_RTBF_REGISTERED_PROPERTYMANAGERS', '由于您是我们网站上的物业经理，我们无法为您提供自动删除数据的功能。相反，请直接联系我们，以便我们可以将您的物业分配给另一位经理。一旦我们这样做并删除您作为物业经理的身份，您将能够自动删除您的数据。');
 
-jr_define( '_JOMRES_GDPR_MY_RTBF_FORGET_ME', '忘记我！' );
-jr_define( '_JOMRES_GDPR_MY_RTBF_FORGET_ME_WARNING', '这无法撤消！');
-jr_define( '_JOMRES_GDPR_MY_RTBF_FORGET_ME_FORGOTTEN', '您的数据已被删除！');
+jr_define('_JOMRES_GDPR_MY_RTBF_FORGET_ME', '忘记我！');
+jr_define('_JOMRES_GDPR_MY_RTBF_FORGET_ME_WARNING', '这无法撤消！');
+jr_define('_JOMRES_GDPR_MY_RTBF_FORGET_ME_FORGOTTEN', '您的数据已被删除！');
 
-jr_define( '_JOMRES_CANNOT_BOOK_INVALID_EMAIL', '对不起，您的电子邮件地址无效，无法进行预订');
+jr_define('_JOMRES_CANNOT_BOOK_INVALID_EMAIL', '对不起，您的电子邮件地址无效，无法进行预订');
 
-jr_define( '_JOMRES_GDPR_RTBF_ANONYMISE_GUEST_INTRO', '此页面使您能够匿名将其信息存储在系统中的任何客人。这使您能够遵守 GDPR，但您不​​能编辑此页面上的任何其他信息。为此您必须以物业经理的身份登录前端。假设是一位历史访客已与您联系，要求您允许他们行使被遗忘的权利。如果他们无法登录网站前端（可能是用户不是在他们预订时为他们创建的)然后你可以在确认他们的身份后使用这个区域来匿名他们。');
+jr_define('_JOMRES_GDPR_RTBF_ANONYMISE_GUEST_INTRO', '此页面使您能够匿名将其信息存储在系统中的任何客人。这使您能够遵守 GDPR，但您不​​能编辑此页面上的任何其他信息。为此您必须以物业经理的身份登录前端。假设是一位历史访客已与您联系，要求您允许他们行使被遗忘的权利。如果他们无法登录网站前端（可能是用户不是在他们预订时为他们创建的)然后你可以在确认他们的身份后使用这个区域来匿名他们。');
 
 jr_define('_JOMRES_GDPR_RTBF_ANONYMISE_GUEST', '匿名访客');
 jr_define('_JOMRES_GDPR_RTBF_UNKNOWN_PROPERTY', 'DELETED PROPERTY');
 jr_define('_JOMRES_GDPR_RTBF_GUEST_REDACTED', '访客数据匿名');
-jr_define( '_JOMRES_GDPR_RTBF_GUEST_CANNOT_REDACT', '不能匿名');
+jr_define('_JOMRES_GDPR_RTBF_GUEST_CANNOT_REDACT', '不能匿名');
 
-jr_define( '_JOMRES_GDPR_CONSENT_TRIGGER_FORM', '在您进行预订之前，我们需要您的许可来存储您的信息。单击此处授予我们许可。' );
+jr_define('_JOMRES_GDPR_CONSENT_TRIGGER_FORM', '在您进行预订之前，我们需要您的许可来存储您的信息。单击此处授予我们许可。');
 
 jr_define('_JOMRES_GDPR_CONFIG_ENABLE', '启用符合 GDPR 的功能？');
-jr_define( '_JOMRES_GDPR_CONFIG_ENABLE_DESC', '我们不建议您禁用 GDPR 兼容功能。Jomres 具有内置功能，可帮助您确保网站的 Jomres 部分符合 GDPR。如果您禁用此功能（并且如果您在欧盟或与欧盟公民有业务往来，则不应该这样做)然后 Jomres 将自动假定该网站的每个访问者都已允许启用他们的个人数据。应用程序权限和我的数据页面将不会显示，并且不会提示用户授予他们收集数据的权限。');
+jr_define('_JOMRES_GDPR_CONFIG_ENABLE_DESC', '我们不建议您禁用 GDPR 兼容功能。Jomres 具有内置功能，可帮助您确保网站的 Jomres 部分符合 GDPR。如果您禁用此功能（并且如果您在欧盟或与欧盟公民有业务往来，则不应该这样做)然后 Jomres 将自动假定该网站的每个访问者都已允许启用他们的个人数据。应用程序权限和我的数据页面将不会显示，并且不会提示用户授予他们收集数据的权限。');
 
 
 jr_define('EMPTY_TEMP_DIR', '空临时目录');
@@ -2188,30 +2189,30 @@ jr_define('EMPTY_TEMP_DIR_DONE', '临时文件已删除');
 
 jr_define('MACHINE_TRANSLATION', '机器翻译');
 jr_define('MACHINE_TRANSLATION_DEFAULT_LANG', '源语言');
-jr_define( 'MACHINE_TRANSLATION_DEFAULT_LANG_DESC', '可以挂钩机器翻译功能。这允许您以一种语言输入字符串，并且可以从远程服务中提取翻译。请注意，并非所有翻译服务都支持所有语言。请参阅这些服务以了解更多详情。' );
+jr_define('MACHINE_TRANSLATION_DEFAULT_LANG_DESC', '可以挂钩机器翻译功能。这允许您以一种语言输入字符串，并且可以从远程服务中提取翻译。请注意，并非所有翻译服务都支持所有语言。请参阅这些服务以了解更多详情。');
 
 jr_define('_JOMRES_PROPERTY_ROOM_TYPES_EDIT', '房间类型');
 jr_define('_JOMRES_PROPERTY_ROOM_TYPES_NEW', '新房间类型');
-jr_define( '_JOMRES_PROPERTY_ROOM_TYPES_EDIT_LEAD', '您可以在此页面上创建和编辑房间类型。这些房间类型将仅针对此属性。设置您的属性时，您首先需要一些房间类型。您可以使用由以下人员创建的房间类型管理员，或者您可以添加自己的。一旦您拥有一个或多个房间类型，您就可以创建该房间类型的房间。拥有房间后，您可以为这些房间创建资费（价格)，因为资费与房间类型相关联.');
-jr_define( '_JOMRES_CONFIG_ROOM_TYPES_CREATING_TITLE', '经理可以创建房间类型吗？' );
-jr_define( '_JOMRES_CONFIG_ROOM_TYPES_CREATING_DESC', '使用此选项来配置管理员是否可以在前端创建自己的房间类型。我们强烈建议您在第一次开始使用 Jomres 时将此选项设置为否，特别是如果您正在创建一个门户网站，因为您应该在管理员区域创建所有房型。经理创建的房型将出现在搜索表单中，但由于这些房型特定于个别酒店，如果选择了该房型，则搜索结果中只会显示一个房型在搜索期间。如果您希望只有超级物业经理可以创建房间类型，请将此选项设置为是，并使用访问控制插件仅允许超级经理查看"设置 > 房间类型"菜单选项。只有出租的物业在属性中退出房间并使用高级或微观管理费率编辑模式可以使用此选项。别墅/公寓类型的属性将无法使用它。');
+jr_define('_JOMRES_PROPERTY_ROOM_TYPES_EDIT_LEAD', '您可以在此页面上创建和编辑房间类型。这些房间类型将仅针对此属性。设置您的属性时，您首先需要一些房间类型。您可以使用由以下人员创建的房间类型管理员，或者您可以添加自己的。一旦您拥有一个或多个房间类型，您就可以创建该房间类型的房间。拥有房间后，您可以为这些房间创建资费（价格)，因为资费与房间类型相关联.');
+jr_define('_JOMRES_CONFIG_ROOM_TYPES_CREATING_TITLE', '经理可以创建房间类型吗？');
+jr_define('_JOMRES_CONFIG_ROOM_TYPES_CREATING_DESC', '使用此选项来配置管理员是否可以在前端创建自己的房间类型。我们强烈建议您在第一次开始使用 Jomres 时将此选项设置为否，特别是如果您正在创建一个门户网站，因为您应该在管理员区域创建所有房型。经理创建的房型将出现在搜索表单中，但由于这些房型特定于个别酒店，如果选择了该房型，则搜索结果中只会显示一个房型在搜索期间。如果您希望只有超级物业经理可以创建房间类型，请将此选项设置为是，并使用访问控制插件仅允许超级经理查看"设置 > 房间类型"菜单选项。只有出租的物业在属性中退出房间并使用高级或微观管理费率编辑模式可以使用此选项。别墅/公寓类型的属性将无法使用它。');
 jr_define('_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_UPDATE', '房间/物业类型更新');
-jr_define( '_JOMRES_PROPERTY_ROOM_TYPES_CONFIG_TITLE', '在搜索选项中显示房间类型');
-jr_define( '_JOMRES_PROPERTY_ROOM_TYPES_CONFIG_DESC', '如果您选择允许物业经理创建他们自己的房间类型，您可以选择是否在您选择显示房间类型的搜索选项中显示那些创建的房间类型。');
+jr_define('_JOMRES_PROPERTY_ROOM_TYPES_CONFIG_TITLE', '在搜索选项中显示房间类型');
+jr_define('_JOMRES_PROPERTY_ROOM_TYPES_CONFIG_DESC', '如果您选择允许物业经理创建他们自己的房间类型，您可以选择是否在您选择显示房间类型的搜索选项中显示那些创建的房间类型。');
 
 
-jr_define( '_JOMRES_QUICKBOOKING_EMAIL_ADDRESS_NOTE', "您不应在每次预订时重复使用相同的电子邮件地址。<br/>如果您的企业拥有唯一的域（例如，不是 Gmail 电子邮件地址)，请使用客人的电话号码作为他们的电子邮件地址。电子邮件地址将类似于 123456@mydomain.com<br/>这将确保在您创建预订时创建一个新客人。");
+jr_define('_JOMRES_QUICKBOOKING_EMAIL_ADDRESS_NOTE', "您不应在每次预订时重复使用相同的电子邮件地址。<br/>如果您的企业拥有唯一的域（例如，不是 Gmail 电子邮件地址)，请使用客人的电话号码作为他们的电子邮件地址。电子邮件地址将类似于 123456@mydomain.com<br/>这将确保在您创建预订时创建一个新客人。");
 
 jr_define('_JOMRES_LOGIN_USERNAME', '电子邮件地址');
 jr_define('_JOMRES_LOGIN_PASSWORD', '密码');
-jr_define( '_JOMRES_LOGIN_REASON_EMAIL_ALREADY_USED',"很高兴您愿意再次与我们预订。为了能够一起管理您的所有预订，您需要登录，以便将预订添加到您的帐户中。这也确保您有权使用所提供的电子邮件地址。");
+jr_define('_JOMRES_LOGIN_REASON_EMAIL_ALREADY_USED', "很高兴您愿意再次与我们预订。为了能够一起管理您的所有预订，您需要登录，以便将预订添加到您的帐户中。这也确保您有权使用所提供的电子邮件地址。");
 
-jr_define( '_JOMRES_LOGIN_RESET_MESSAGE', '如果您不知道密码，我们可以向您发送密码重置电子邮件。请按照该电子邮件中的说明重置密码。');
-jr_define( '_JOMRES_LOGIN_RESET_BUTTON', '忘记密码？' );
+jr_define('_JOMRES_LOGIN_RESET_MESSAGE', '如果您不知道密码，我们可以向您发送密码重置电子邮件。请按照该电子邮件中的说明重置密码。');
+jr_define('_JOMRES_LOGIN_RESET_BUTTON', '忘记密码？');
 
 jr_define('_JOMRES_REVIEWS_ANONYMISE', '匿名你的名字？');
 jr_define('_JOMRES_REVIEWS_ANONYMISE_DESC', '如果您在审核时选择匿名您的姓名，我们将使用您的姓名缩写。');
-jr_define('ANONYMOUS','匿名');
+jr_define('ANONYMOUS', '匿名');
 
 jr_define('_JOMRES_REVIEWS_REPLY_SAID', '说');
 jr_define('_JOMRES_REVIEWS_REPLY_OPPORTUNITY', '回复此评论');
@@ -2373,7 +2374,7 @@ jr_define('GUEST_PROFILE_OPTIONAL', '这些字段是可选的，但是主机可�
 
 jr_define('GUEST_PROFILE_DRIVING_LICENSE', '驾照');
 jr_define('GUEST_PROFILE_PASSPORT_NUMBER', '护照号码');
-jr_define('GUEST_PROFILE_IBAN','IBAN 号码');
+jr_define('GUEST_PROFILE_IBAN', 'IBAN 号码');
 jr_define('GUEST_PROFILE_ABOUT_ME', '关于我');
 jr_define('GUEST_PROFILE_ABOUT_ME_HINTS', '这个"关于我"部分是公开可见的，所以不要输入任何私人信息。也就是说，尽可能多地分享你觉得舒服的东西，比如你的激情，你的以谋生、您的爱好等为目的。您可以使用 Markup 为其添加一些爵士乐。房东会希望他们可以信任您的财产。确保您的照片是您的真实照片，而不是您的狗或汽车（是的，伙计们，我们正在和你说话！);');
 
@@ -2413,8 +2414,8 @@ jr_define('GUEST_PROFILE_REVIEW_GUEST_CONTENT_EXAMPLES', '以下是一些示例�
 
 jr_define('GUEST_PROFILE_UNKNOWN', '对不起，我找不到那个用户。很可能他们还没有填写他们的帐户详细信息。');
 
-jr_define('GUEST_PROFILE_USERSTATUS_GUEST','访客');
-jr_define('GUEST_PROFILE_USERSTATUS_HOST','主机');
+jr_define('GUEST_PROFILE_USERSTATUS_GUEST', '访客');
+jr_define('GUEST_PROFILE_USERSTATUS_HOST', '主机');
 jr_define('GUEST_PROFILE_USERSTATUS_ADMIN', '管理员');
 
 jr_define('WORDPRESS_THEME_ADVICE', 'Jomres 是建立在 Bootstrap 框架之上的，所以你必须在基于 Bootstrap 的主题上使用它。我们推荐一个基于 Bootstrap 3 的主题。如果你没有访问主题，那么我们建议你使用Wordpress 的 Jomres Leohtian 主题，您可以 <a href="https://www.jomres.net/download/free-downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress" target="_blank ">从这里下载。</a>');
@@ -2439,83 +2440,83 @@ jr_define('_JOMRES_APPROVALS_MANAGER_EMAIL_CONTENT_UNAPPROVED', "您的财产未
 
 
 
-jr_define('_JOMRES_GUESTTYPES_IS_CHILD',"这是儿童客人类型吗？");
-jr_define('_JOMRES_GUESTTYPES_IS_CHILD_DESC',"如果此客人类型将被归类为儿童客人类型，请将其设置为是。");
+jr_define('_JOMRES_GUESTTYPES_IS_CHILD', "这是儿童客人类型吗？");
+jr_define('_JOMRES_GUESTTYPES_IS_CHILD_DESC', "如果此客人类型将被归类为儿童客人类型，请将其设置为是。");
 
-jr_define('_JOMRES_GUESTTYPES_INTRO',"如果你想按每人每晚收费，那么你需要创建一些客人类型。");
-jr_define('_JOMRES_GUESTTYPES_INSTRUCTIONS',"您可以根据需要创建任意数量的访客类型，尝试从创建一种名为\"成人\"的访客类型开始。将所有设置保留为默认值。接下来，例如，如果您想要为 12 岁以下的儿童提供 50% 的折扣，您将创建一个新的客人类型，并将其命名为\"12 岁以下的儿童\"。将\"添加差异？\"选项设置为 -（负)并将\"差异\"设置为 50。这意味着当儿童被添加到预订中时，他们需要支付房间房费的 50%。");
-jr_define('_JOMRES_MICROMANAGE_PICKERDROPDOWN_EDITPRICES',"手动设置价格");
-jr_define('_JOMRES_MICROMANAGE_PICKERDROPDOWN_EDITMINDAYS',"手动设置最少晚数");
-jr_define('_JOMRES_MICROMANAGE_PICKER_SETMINDAYS',"设置最少晚数");
+jr_define('_JOMRES_GUESTTYPES_INTRO', "如果你想按每人每晚收费，那么你需要创建一些客人类型。");
+jr_define('_JOMRES_GUESTTYPES_INSTRUCTIONS', "您可以根据需要创建任意数量的访客类型，尝试从创建一种名为\"成人\"的访客类型开始。将所有设置保留为默认值。接下来，例如，如果您想要为 12 岁以下的儿童提供 50% 的折扣，您将创建一个新的客人类型，并将其命名为\"12 岁以下的儿童\"。将\"添加差异？\"选项设置为 -（负)并将\"差异\"设置为 50。这意味着当儿童被添加到预订中时，他们需要支付房间房费的 50%。");
+jr_define('_JOMRES_MICROMANAGE_PICKERDROPDOWN_EDITPRICES', "手动设置价格");
+jr_define('_JOMRES_MICROMANAGE_PICKERDROPDOWN_EDITMINDAYS', "手动设置最少晚数");
+jr_define('_JOMRES_MICROMANAGE_PICKER_SETMINDAYS', "设置最少晚数");
 
-jr_define('_JOMRES_MICROMANAGE_PICKER_TYPE_DOW',"按星期几设置<em>每晚价格</em>");
-jr_define('_JOMRES_MICROMANAGE_PICKER_TYPE_INTERVAL_RATES',"按日期范围设置<em>每晚价格</em>");
-jr_define('_JOMRES_MICROMANAGE_PICKER_TYPE_INTERVAL_MINDAYS',"按日期范围设置<em>最少晚数</em>");
+jr_define('_JOMRES_MICROMANAGE_PICKER_TYPE_DOW', "按星期几设置<em>每晚价格</em>");
+jr_define('_JOMRES_MICROMANAGE_PICKER_TYPE_INTERVAL_RATES', "按日期范围设置<em>每晚价格</em>");
+jr_define('_JOMRES_MICROMANAGE_PICKER_TYPE_INTERVAL_MINDAYS', "按日期范围设置<em>最少晚数</em>");
 
-jr_define('_JOMRES_MICROMANAGE_PICKER_INSTRUCTIONS_RATES',"日期选择器和费率输入允许您为给定的日期范围设置一个价格。选择开始和结束日期，输入价格，然后单击设置每晚价格按钮。");
-jr_define('_JOMRES_MICROMANAGE_PICKER_INSTRUCTIONS_MINDAYS',"日期选择器和最少晚数输入允许您为给定日期范围的最少晚数设置一个值。选择开始和结束日期，输入最少晚数的数字，然后单击\"设置\"最少晚数。");
+jr_define('_JOMRES_MICROMANAGE_PICKER_INSTRUCTIONS_RATES', "日期选择器和费率输入允许您为给定的日期范围设置一个价格。选择开始和结束日期，输入价格，然后单击设置每晚价格按钮。");
+jr_define('_JOMRES_MICROMANAGE_PICKER_INSTRUCTIONS_MINDAYS', "日期选择器和最少晚数输入允许您为给定日期范围的最少晚数设置一个值。选择开始和结束日期，输入最少晚数的数字，然后单击\"设置\"最少晚数。");
 
-jr_define('_JOMRES_MICROMANAGE_PICKERS_SELECTOR_INFO',"使用此下拉菜单可在为各个日期设置价格和为各个日期设置最少晚数之间进行更改。您可以使用<em>按星期几</em>选择器，<em>按日期范围选择器或通过手动编辑日期来设置价格/最少入住天数。");
-jr_define('_JOMRES_MICROMANAGE_PICKERS_SELECTOR_INFO_SMALL_VIEWPORT',"使用此下拉菜单可在为各个日期设置价格和为各个日期设置最少晚数之间进行更改。您可以使用<em>按日期范围</em>选择器或按以下方式设置价格/最少晚数手动编辑日期。");
-jr_define('_JOMRES_MICROMANAGE_PICKERS_SELECTOR',"设置价格或最少入住天数");
+jr_define('_JOMRES_MICROMANAGE_PICKERS_SELECTOR_INFO', "使用此下拉菜单可在为各个日期设置价格和为各个日期设置最少晚数之间进行更改。您可以使用<em>按星期几</em>选择器，<em>按日期范围选择器或通过手动编辑日期来设置价格/最少入住天数。");
+jr_define('_JOMRES_MICROMANAGE_PICKERS_SELECTOR_INFO_SMALL_VIEWPORT', "使用此下拉菜单可在为各个日期设置价格和为各个日期设置最少晚数之间进行更改。您可以使用<em>按日期范围</em>选择器或按以下方式设置价格/最少晚数手动编辑日期。");
+jr_define('_JOMRES_MICROMANAGE_PICKERS_SELECTOR', "设置价格或最少入住天数");
 
-jr_define('_JOMRES_MICROMANAGE_PICKER_BYDOW',"按星期几设置<em>最少晚数</em>");
-jr_define('_JOMRES_MICROMANAGE_PICKER_BYDOW_INFO',"星期几字段允许您为给定的星期几设置最少晚数，一旦您单击星期几按钮，一周中的所有天数都将设置为该最少晚数设置。 ");
+jr_define('_JOMRES_MICROMANAGE_PICKER_BYDOW', "按星期几设置<em>最少晚数</em>");
+jr_define('_JOMRES_MICROMANAGE_PICKER_BYDOW_INFO', "星期几字段允许您为给定的星期几设置最少晚数，一旦您单击星期几按钮，一周中的所有天数都将设置为该最少晚数设置。 ");
 
 
-jr_define('_JOMRES_MICROMANAGE_MANUALLY',"手动设置价格/最少入住天数");
-jr_define('_JOMRES_MICROMANAGE_SET_PRICES',"设置价格");
-jr_define('_JOMRES_MICROMANAGE_SET_MINDAYS',"设置最少晚数");
+jr_define('_JOMRES_MICROMANAGE_MANUALLY', "手动设置价格/最少入住天数");
+jr_define('_JOMRES_MICROMANAGE_SET_PRICES', "设置价格");
+jr_define('_JOMRES_MICROMANAGE_SET_MINDAYS', "设置最少晚数");
 
-jr_define('_JOMRES_MICROMANAGE_PRICE',"每晚");
-jr_define('_JOMRES_MICROMANAGE_MINDAYS',"最少晚数");
-jr_define('_JOMRES_MICROMANAGE_MAXDAYS',"最多晚数");
+jr_define('_JOMRES_MICROMANAGE_PRICE', "每晚");
+jr_define('_JOMRES_MICROMANAGE_MINDAYS', "最少晚数");
+jr_define('_JOMRES_MICROMANAGE_MAXDAYS', "最多晚数");
 
-jr_define('_JOMRES_MICROMANAGE_INTRO',"在这里您可以创建您的资费，这些资费与您在您的物业中拥有的房间类型相关联。");
+jr_define('_JOMRES_MICROMANAGE_INTRO', "在这里您可以创建您的资费，这些资费与您在您的物业中拥有的房间类型相关联。");
 
-jr_define('_JOMRES_MICROMANAGE_BASIC_SETTINGS',"最常用的选项");
+jr_define('_JOMRES_MICROMANAGE_BASIC_SETTINGS', "最常用的选项");
 
-jr_define('_JOMRES_MICROMANAGE_MODAL_BUTTON',"使用说明");
+jr_define('_JOMRES_MICROMANAGE_MODAL_BUTTON', "使用说明");
 
-jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS',"如果您想为不同数量的客人添加不同的价格，则<em>您可以为每种房型创建多个关税</em>，并在这些关税中设置不同的最小/最大客人值。 ");
+jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS', "如果您想为不同数量的客人添加不同的价格，则<em>您可以为每种房型创建多个关税</em>，并在这些关税中设置不同的最小/最大客人值。 ");
 
-jr_define('_JOMRES_MICROMANAGE_INFO',"在提供资费之前，为资费命名，定义最大晚数，以及预订表格中要求的最少和最多客人数。<br/><br/>使用日期选择器面板将价格和最少入住天数设置添加到一系列日期，或直接编辑输入。如果您不想在某些日期提供关税，请将价格设置为 0（零)那些日期。<br/><br/>您可以在不同日期设置不同的最少晚数，因此如果您想在节日/会议周期间预订更长的时间，那么您可以将这些期间的最少晚数设置得更高。<br/ ><br/>如果您按每人每人 (PPPN) 收费，您可以在\"设置\">\"属性配置\">\"关税和货币\"选项卡中启用该设置，然后在\"设置\">\"客人类型\"中创建您需要的客人类型。");
+jr_define('_JOMRES_MICROMANAGE_INFO', "在提供资费之前，为资费命名，定义最大晚数，以及预订表格中要求的最少和最多客人数。<br/><br/>使用日期选择器面板将价格和最少入住天数设置添加到一系列日期，或直接编辑输入。如果您不想在某些日期提供关税，请将价格设置为 0（零)那些日期。<br/><br/>您可以在不同日期设置不同的最少晚数，因此如果您想在节日/会议周期间预订更长的时间，那么您可以将这些期间的最少晚数设置得更高。<br/ ><br/>如果您按每人每人 (PPPN) 收费，您可以在\"设置\">\"属性配置\">\"关税和货币\"选项卡中启用该设置，然后在\"设置\">\"客人类型\"中创建您需要的客人类型。");
 
-jr_define('_JOMRES_MICROMANAGE_EXTRAOPTIONS',"额外选项");
-jr_define('_JOMRES_MICROMANAGE_EXTRA_OPTIONS',"这些是不常用的附加选项，但您仍然可以使用。<br/><strong>忽略 PPPN</strong> 意味着忽略每人每晚。您可以有几种不同的资费对于相同的房型，例如，其中一种按每人每晚收费，另一种不收费。<br/><strong>允许周末</strong>\"允许周末\"选项让您可以选择仅收取工作日可用，例如，如果您想要为商务旅客提供特殊关税。在这种情况下，您可以将选项设置为\"否\"，将最少晚数设置为 1，最多晚数为 5。<br/><strong>周末only</strong> 仅周末选项与允许周末选项相反。您可以在\"属性配置\"设置中配置您认为是周末的日子。这使您能够定义您可能想要的仅周末费率为特别活动提供优惠。<br/><strong>入住日期</strong> 此选项使您能够强制仅在一周中的某些天签到，最好与\"物业配置\">\"预订\"选项卡 >\"固定时段\"选项结合使用。大多数用户希望将此选项设置为全部。<br/>最后两个选项<strong>已选择的最小房间</strong>和<strong>已选择的最大房间</strong>非常专业且对关税极其复杂的物业很有用。 <em>除非您有特定需求，否则您应该保留这些选项。</em>如果您只想在客人已在预订表格中选择 N 个房间时提供此资费，请使用它们，例如您可以有一个基本费率，其中这些选项保留为默认值，第二个费率将已选择的最小房间选项设置为 1，然后一旦选择了房间，将在预订表格中提供第二个费率。" );
+jr_define('_JOMRES_MICROMANAGE_EXTRAOPTIONS', "额外选项");
+jr_define('_JOMRES_MICROMANAGE_EXTRA_OPTIONS', "这些是不常用的附加选项，但您仍然可以使用。<br/><strong>忽略 PPPN</strong> 意味着忽略每人每晚。您可以有几种不同的资费对于相同的房型，例如，其中一种按每人每晚收费，另一种不收费。<br/><strong>允许周末</strong>\"允许周末\"选项让您可以选择仅收取工作日可用，例如，如果您想要为商务旅客提供特殊关税。在这种情况下，您可以将选项设置为\"否\"，将最少晚数设置为 1，最多晚数为 5。<br/><strong>周末only</strong> 仅周末选项与允许周末选项相反。您可以在\"属性配置\"设置中配置您认为是周末的日子。这使您能够定义您可能想要的仅周末费率为特别活动提供优惠。<br/><strong>入住日期</strong> 此选项使您能够强制仅在一周中的某些天签到，最好与\"物业配置\">\"预订\"选项卡 >\"固定时段\"选项结合使用。大多数用户希望将此选项设置为全部。<br/>最后两个选项<strong>已选择的最小房间</strong>和<strong>已选择的最大房间</strong>非常专业且对关税极其复杂的物业很有用。 <em>除非您有特定需求，否则您应该保留这些选项。</em>如果您只想在客人已在预订表格中选择 N 个房间时提供此资费，请使用它们，例如您可以有一个基本费率，其中这些选项保留为默认值，第二个费率将已选择的最小房间选项设置为 1，然后一旦选择了房间，将在预订表格中提供第二个费率。");
 
-jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS_LIST_PAGE',"您可以为同一房间类型创建多个资费，因此您可以为最少/最多 1 - 7 天创建一个资费，以及最少天数为 7，最多 14 天的第二个资费，以及依此类推。这允许您根据需要创建简单或复杂的定价方案。它还允许您创建具有不同条件的多个费率，因此您可以拥有第二套费率，其中住宿加早餐的价格较低，以及另一套更昂贵的住宿费、早餐费和晚餐费。");
+jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS_LIST_PAGE', "您可以为同一房间类型创建多个资费，因此您可以为最少/最多 1 - 7 天创建一个资费，以及最少天数为 7，最多 14 天的第二个资费，以及依此类推。这允许您根据需要创建简单或复杂的定价方案。它还允许您创建具有不同条件的多个费率，因此您可以拥有第二套费率，其中住宿加早餐的价格较低，以及另一套更昂贵的住宿费、早餐费和晚餐费。");
 
-jr_define('_JOMRES_MICROMANAGE_USE_SELECTED_DATES',"只设置日期选择器日期");
+jr_define('_JOMRES_MICROMANAGE_USE_SELECTED_DATES', "只设置日期选择器日期");
 jr_define('_JOMRES_PROPERTY_HCATEGORIES', '属性类别');
 jr_define('_JOMRES_PROPERTY_HCATEGORIES_HEDIT', '编辑属性类别');
-jr_define('_JOMRES_STOP_READTHISFIRST1',"停止！");
-jr_define('_JOMRES_STOP_READTHISFIRST2',"感谢安装 Jomres");
-jr_define('_JOMRES_STOP_READTHISFIRST3',"属性管理在面向公众的页面中进行，而不是在管理员区域。");
-jr_define('_JOMRES_STOP_READTHISFIRST4',"如果您不熟悉 Jomres，请访问帮助部分 > 入门页面。");
+jr_define('_JOMRES_STOP_READTHISFIRST1', "停止！");
+jr_define('_JOMRES_STOP_READTHISFIRST2', "感谢安装 Jomres");
+jr_define('_JOMRES_STOP_READTHISFIRST3', "属性管理在面向公众的页面中进行，而不是在管理员区域。");
+jr_define('_JOMRES_STOP_READTHISFIRST4', "如果您不熟悉 Jomres，请访问帮助部分 > 入门页面。");
 
 
-jr_define('_JOMRES_CONFIG_SYNDICATION_TITLE',"加入Jomres Syndicate");
-jr_define('_JOMRES_CONFIG_SYNDICATION_DESC',"一旦您的网站设置完毕并准备好开始接待访问者，请加入 Jomres.net 辛迪加并在其他 Jomres 网站上列出您的财产。");
+jr_define('_JOMRES_CONFIG_SYNDICATION_TITLE', "加入Jomres Syndicate");
+jr_define('_JOMRES_CONFIG_SYNDICATION_DESC', "一旦您的网站设置完毕并准备好开始接待访问者，请加入 Jomres.net 辛迪加并在其他 Jomres 网站上列出您的财产。");
 
 
 
-jr_define('_JOMRES_MICROMANAGE_CREATE_ROOM_1',"在创建资费之前，您至少需要一间以下类型之一的房间:");
-jr_define('_JOMRES_MICROMANAGE_CREATE_ROOM_2',"转到设置>房间并先创建一个房间，完成后您将能够为该房间类型创建资费。");
+jr_define('_JOMRES_MICROMANAGE_CREATE_ROOM_1', "在创建资费之前，您至少需要一间以下类型之一的房间:");
+jr_define('_JOMRES_MICROMANAGE_CREATE_ROOM_2', "转到设置>房间并先创建一个房间，完成后您将能够为该房间类型创建资费。");
 
-jr_define('JOMRES_PLATFORM',"Jomres 平台");
+jr_define('JOMRES_PLATFORM', "Jomres 平台");
 
 
-jr_define('JOMRES_PLATFORM_CONNECTED',"已连接");
-jr_define('JOMRES_PLATFORM_CONNECTED_DESC',"如果您已经将您的 Stripe 帐户与 Jomres 平台连接，请将其设置为是。");
+jr_define('JOMRES_PLATFORM_CONNECTED', "已连接");
+jr_define('JOMRES_PLATFORM_CONNECTED_DESC', "如果您已经将您的 Stripe 帐户与 Jomres 平台连接，请将其设置为是。");
 
-jr_define('JOMRES_PLATFORM_ACCOUNT_ID',"Stripe 真实账户号码");
-jr_define('JOMRES_PLATFORM_ACCOUNT_ID_DESC',"这是您的 Stripe 帐户 ID，可以在设置 > 帐户信息下的 Stripe 仪表板中找到，看起来像 acct_xxxxxxxxx 如果您有多个 Jomres 安装并且您想在整个系统中使用同一个帐户，则可以使用此字段所有站点，并且您已经连接到我们。如果您还没有连接到 Jomres 平台，则在此处输入您的详细信息是不够的。相反，请访问工具栏中\"帮助\"部分下的\"获取连接\"菜单选项。如果您需要要测试付款，请在站点配置的调试选项卡中将您的站点从生产设置为开发。");
-jr_define('JOMRES_PLATFORM_LIVE_SECRET_KEY',"条纹实时密钥");
-jr_define('JOMRES_PLATFORM_LIVE_SECRET_KEY_DESC','在您的 Stripe 仪表板中转到开发人员 > API 密钥以查找您的密钥。系统使用这些密钥来验证从付款表单返回的预订数据是否有效以及在保存预订之前已支付押金.');
+jr_define('JOMRES_PLATFORM_ACCOUNT_ID', "Stripe 真实账户号码");
+jr_define('JOMRES_PLATFORM_ACCOUNT_ID_DESC', "这是您的 Stripe 帐户 ID，可以在设置 > 帐户信息下的 Stripe 仪表板中找到，看起来像 acct_xxxxxxxxx 如果您有多个 Jomres 安装并且您想在整个系统中使用同一个帐户，则可以使用此字段所有站点，并且您已经连接到我们。如果您还没有连接到 Jomres 平台，则在此处输入您的详细信息是不够的。相反，请访问工具栏中\"帮助\"部分下的\"获取连接\"菜单选项。如果您需要要测试付款，请在站点配置的调试选项卡中将您的站点从生产设置为开发。");
+jr_define('JOMRES_PLATFORM_LIVE_SECRET_KEY', "条纹实时密钥");
+jr_define('JOMRES_PLATFORM_LIVE_SECRET_KEY_DESC', '在您的 Stripe 仪表板中转到开发人员 > API 密钥以查找您的密钥。系统使用这些密钥来验证从付款表单返回的预订数据是否有效以及在保存预订之前已支付押金.');
 
-jr_define('JOMRES_PLATFORM_TEST_SECRET_KEY',"条带测试密钥");
-jr_define('JOMRES_PLATFORM_TEST_SECRET_KEY_DESC',' ');
+jr_define('JOMRES_PLATFORM_TEST_SECRET_KEY', "条带测试密钥");
+jr_define('JOMRES_PLATFORM_TEST_SECRET_KEY_DESC', ' ');
 
 
 
@@ -2654,23 +2655,23 @@ jr_define('PLUGIN_UPDATE_MESSAGE1_LINK', '更新插件');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', '获取新密钥');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', '保存新密钥');
 
-jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"属性类型图像");
-	jr_define('JOMRES_SITE_SIDEBAR_HELP_TITLE',"需要帮助预订？");
-	jr_define('JOMRES_SITE_SIDEBAR_HELP_BLURB',"请拨打我们的客服电话，与我们的一位代表交谈，他们将帮助您满足您的所有假期需求。");
+jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES', "属性类型图像");
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_TITLE', "需要帮助预订？");
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_BLURB', "请拨打我们的客服电话，与我们的一位代表交谈，他们将帮助您满足您的所有假期需求。");
 
-	jr_define('JOMRES_SITE_SIDEBAR_WHY_TITLE',"为什么要和我们一起预订？");
-	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_TITLE',"我们提供最优惠的预订价格");
-	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB1',"我们拥有目前市场上价格最优惠的房产。");
-	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB2',"无预订费。省钱！");
-	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_TITLE',"精选属性");
-	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_HOTELS',"属性");
-	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS',"客人评论");
-	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE',"我们一直在这里");
-	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT',"随时给我们打电话或发电子邮件");
-	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT',"在旅行之前、期间和之后获得 24 小时支持");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_TITLE', "为什么要和我们一起预订？");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_TITLE', "我们提供最优惠的预订价格");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB1', "我们拥有目前市场上价格最优惠的房产。");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB2', "无预订费。省钱！");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_TITLE', "精选属性");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_HOTELS', "属性");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS', "客人评论");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE', "我们一直在这里");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT', "随时给我们打电话或发电子邮件");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT', "在旅行之前、期间和之后获得 24 小时支持");
 
-	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA',"社交媒体");
-	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD',"在社交媒体上找到我们");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA', "社交媒体");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD', "在社交媒体上找到我们");
 
 	jr_define('JOMRES_REVIEW_SCORE_TOP_1', "优秀");
 	jr_define('JOMRES_REVIEW_SCORE_TOP_2', "异常");
@@ -2686,7 +2687,7 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"属性类�
 
 	jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', '你想去哪里？');
 	jr_define('DATA_SOURCES_TITLE', "刷新数据源");
-	jr_define( 'DATA_SOURCES_TITLE_INFO', "数据源已刷新。数据源由搜索小部件中的自动完成输入字段使用，它们通常会自动更新，但是如果需要，此页面会强制手动更新数据。" );
+	jr_define('DATA_SOURCES_TITLE_INFO', "数据源已刷新。数据源由搜索小部件中的自动完成输入字段使用，它们通常会自动更新，但是如果需要，此页面会强制手动更新数据。");
 
 	jr_define('_OAUTH_TOKEN_REQUEST_URI', "要发送令牌请求，请将请求发送到此 url");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "主视图属性脚本");
@@ -2716,7 +2717,7 @@ jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', '保存更改后，页面中�
 	jr_define('JOMRES_TRANSLATIONS_TITLE', '翻译');
 	jr_define('JOMRES_TRANSLATIONS_LEAD', '在此页面上，您可以将标签从一种语言翻译成另一种语言。当您访问该页面时，您将看到您已经创建的字符串及其值，无论您当前使用什么语言。在顶部设置 目标语言，然后对于您要翻译的标签，单击标签，弹出窗口将让您输入新的翻译。对于较长的文本行，您可以粘贴来自其他来源的文本。请记住，任何 HTML 都将被删除 .<br/>
 您可以将目标语言设置为您当前的语言并使用此页面在此处重命名项目，而不是访问它们的各个页面。');
-jr_define('JOMRES_TARGET_LANGUAGE', '目标语言');
+	jr_define('JOMRES_TARGET_LANGUAGE', '目标语言');
 
 	jr_define('API_CLIENTS_INFO', 'API 客户端是客户端 ID/秘密密钥对，允许远程系统使用您授予他们使用权限的 API 功能。在此页面上，您可以根据需要创建任意数量的客户端/秘密密钥对，每个密钥对使用 您需要的任何权限组合。');
 	jr_define('CLIENT_TOKEN', '访问令牌');

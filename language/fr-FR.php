@@ -716,22 +716,22 @@ jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_PERPERSON', ' par personne par nuit ')
 // Jomres 3.1.11
 // Jomres 3.1.13
 if (!defined('_PN_OF')) {
-    jr_define('_PN_OF', 'de');
+	jr_define('_PN_OF', 'de');
 }
 if (!defined('_PN_START')) {
-    jr_define('_PN_START', 'Début');
+	jr_define('_PN_START', 'Début');
 }
 if (!defined('_PN_PREVIOUS')) {
-    jr_define('_PN_PREVIOUS', 'Précédent');
+	jr_define('_PN_PREVIOUS', 'Précédent');
 }
 if (!defined('_PN_NEXT')) {
-    jr_define('_PN_NEXT', 'Suivant');
+	jr_define('_PN_NEXT', 'Suivant');
 }
 if (!defined('_PN_END')) {
-    jr_define('_PN_END', 'Fin');
+	jr_define('_PN_END', 'Fin');
 }
 if (!defined('_PN_RESULTS')) {
-    jr_define('_PN_RESULTS', 'Résultats');
+	jr_define('_PN_RESULTS', 'Résultats');
 }
 jr_define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_TITLE', 'Attention ! Ceci n\'est pas une demande de réservation automatique, mais que vous n\'envoyez qu\'un mail.<br/>Rédiger le message à envoyer à destination de ');
 jr_define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL', 'Contacter l\'établissement');
@@ -1699,7 +1699,7 @@ jr_define('_JOMRES_PROPERTYFEATURES_HSHOW_CATEGORIES_DESC', 'Définissez ce para
 jr_define('_JOMRES_ACTION_UNDO_CHECKIN', 'Annuler l\'arrivé');
 jr_define('_JOMRES_ACTION_UNDO_CHECKOUT', 'Annuler le départ');
 jr_define('_JOMRES_STATUS_UNISSUED', 'Non délivré');
-jr_define('DEFAULT_TERMS_AND_CONDITIONS','Informations Légales - Conditions Générales de Vente (CGV) - RGPD');
+jr_define('DEFAULT_TERMS_AND_CONDITIONS', 'Informations Légales - Conditions Générales de Vente (CGV) - RGPD');
 jr_define('_JOMRES_SUPPORTKEY_DESC_VALID', 'Votre clé de téléchargement et de support est valide, vous pourrez télécharger des plugins via le gestionnaire de plugins.');
 jr_define('_JOMRES_SUPPORTKEY_DESC_INVALID', 'Votre clé de téléchargement et de support n\'est PAS valide, vous ne pourrez PAS télécharger de plugins via le gestionnaire de plugins.');
 jr_define('_JOMRES_SRP_RESOURCE_TYPE', 'Sous-type');
@@ -1872,58 +1872,58 @@ jr_define('_JOMRES_GUEST_BLACKLISTED', 'Client(s) blacklisté(s)');
 jr_define('_JOMRES_GUEST_BLACKLISTED_DESC', 'Si ce client figure sur la liste noire, il ne pourra plus faire de réservation dans cet établissement.');
 jr_define('_JOMRES_SESSION_HANDLER', 'Gestionnaire de session');
 jr_define('_JOMRES_SESSION_HANDLER_DESC', 'Enregistrez les fichiers de session Jomres sur le disque ou dans la base de données. Recommandé : base de données');
-jr_define('_JOMRES_MAP_HEIGHT','Hauteur de la carte (map) en px ');
-jr_define('_JOMRES_MAP_ZOOMLEVEL','Niveau de zomm de la carte (map) ');
-jr_define('_JOMRES_MAP_MAPTYPE','Type de carte (map) ');
-jr_define('_JOMRES_TEMPLATE_PACKAGES','Gestionnaire de remplacement de template');
-jr_define('_JOMRES_TEMPLATE_PACKAGES_LEAD','Les packages de template sont des plugins pouvant fournir des modèles de substitution pour divers fichiers de template Jomres.');
-jr_define('_JOMRES_TEMPLATE_PACKAGES_INFO','Cette page répertorie tous les templates pouvant être remplacés par les templates du package de templates. Si vous souhaitez remplacer un certain template, cliquez sur le bouton d\'édition correspondant à ce fichier. Sur la page suivante, vous pourrez choisir la version à remplacer. Notez que ces templates de remplacement ont priorité sur les templates de remplacement du cœur de Jomres (Core) et sur tous les thème/templates de Wordpress ou de Joomla. Vous pouvez désactiver un template de remplacement en le supprimant dans la page Liste des templates de remplacement.');
-jr_define('_JOMRES_TEMPLATE_PACKAGE_NAME','Nom du template');
-jr_define('_JOMRES_TEMPLATE_PACKAGE_PATH','Chemin actuel');
-jr_define('_JOMRES_TEMPLATE_PACKAGE_NOT_OVERRIDDEN','Non remplacé');
-jr_define('_JOMRES_TEMPLATE_PACKAGES_EDIT_INFO','Vous pouvez choisir le fichier de template à remplacer par les fichiers de template de base en modifiant la liste déroulante.');
-jr_define('_JOMRES_OVERALL_ROOMS_BOOKED','Pourcentage de chambres réservées');
-jr_define('_JOMRES_OVERALL_ROOMS_BOOKED','Pourcentage de chambres réservées');
-jr_define('_JOMRES_SELECT_WIDGETS','Sélectionner les widgets');
-jr_define('_JOMRES_INTERVAL','Intervalle');
-jr_define('_JOMRES_TIMELINE','Timeline (ligne du temps)');
-jr_define('_JOMRES_CPANEL_GRID','Panneau de contrôle de la mise en page de la page d\'accueil');
-jr_define('_JOMRES_CPANEL_GRID_DESC','Sélectionnez la grille de mise en page (grid layout) de votre page d\'accueil de votre Gestionnaire des établissement, via le site.');
-jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_MARKER_IMAGES','Marqueurs de Google Map');
-jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_TOWN_IMAGES','Images des villes');
-jr_define('_JOMRES_PTYPE_CHANGE_WARNING','La modification du type d\'établissement supprimera toutes les chambres, les tarifs, les paramètres de propriété et réinitialisera la disponibilité.');
+jr_define('_JOMRES_MAP_HEIGHT', 'Hauteur de la carte (map) en px ');
+jr_define('_JOMRES_MAP_ZOOMLEVEL', 'Niveau de zomm de la carte (map) ');
+jr_define('_JOMRES_MAP_MAPTYPE', 'Type de carte (map) ');
+jr_define('_JOMRES_TEMPLATE_PACKAGES', 'Gestionnaire de remplacement de template');
+jr_define('_JOMRES_TEMPLATE_PACKAGES_LEAD', 'Les packages de template sont des plugins pouvant fournir des modèles de substitution pour divers fichiers de template Jomres.');
+jr_define('_JOMRES_TEMPLATE_PACKAGES_INFO', 'Cette page répertorie tous les templates pouvant être remplacés par les templates du package de templates. Si vous souhaitez remplacer un certain template, cliquez sur le bouton d\'édition correspondant à ce fichier. Sur la page suivante, vous pourrez choisir la version à remplacer. Notez que ces templates de remplacement ont priorité sur les templates de remplacement du cœur de Jomres (Core) et sur tous les thème/templates de Wordpress ou de Joomla. Vous pouvez désactiver un template de remplacement en le supprimant dans la page Liste des templates de remplacement.');
+jr_define('_JOMRES_TEMPLATE_PACKAGE_NAME', 'Nom du template');
+jr_define('_JOMRES_TEMPLATE_PACKAGE_PATH', 'Chemin actuel');
+jr_define('_JOMRES_TEMPLATE_PACKAGE_NOT_OVERRIDDEN', 'Non remplacé');
+jr_define('_JOMRES_TEMPLATE_PACKAGES_EDIT_INFO', 'Vous pouvez choisir le fichier de template à remplacer par les fichiers de template de base en modifiant la liste déroulante.');
+jr_define('_JOMRES_OVERALL_ROOMS_BOOKED', 'Pourcentage de chambres réservées');
+jr_define('_JOMRES_OVERALL_ROOMS_BOOKED', 'Pourcentage de chambres réservées');
+jr_define('_JOMRES_SELECT_WIDGETS', 'Sélectionner les widgets');
+jr_define('_JOMRES_INTERVAL', 'Intervalle');
+jr_define('_JOMRES_TIMELINE', 'Timeline (ligne du temps)');
+jr_define('_JOMRES_CPANEL_GRID', 'Panneau de contrôle de la mise en page de la page d\'accueil');
+jr_define('_JOMRES_CPANEL_GRID_DESC', 'Sélectionnez la grille de mise en page (grid layout) de votre page d\'accueil de votre Gestionnaire des établissement, via le site.');
+jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_MARKER_IMAGES', 'Marqueurs de Google Map');
+jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_TOWN_IMAGES', 'Images des villes');
+jr_define('_JOMRES_PTYPE_CHANGE_WARNING', 'La modification du type d\'établissement supprimera toutes les chambres, les tarifs, les paramètres de propriété et réinitialisera la disponibilité.');
 jr_define('_JOMRES_VERSIONCHECK_VERSIONWARNING_UPDATEINFO', 'Veuillez noter qu\'après la mise à jour, vous devez mettre à jour les plug-ins Jomres déjà installés via le gestionnaire de plug-ins Jomres. Si des plug-ins du cœur (Core) sont installés, mais que vous ne possédez pas de licence Jomres valide, nous <em>déconseillons</ em> de mettre à jour Jomres, car les anciens plug-ins risquent de ne pas fonctionner avec les versions les plus récentes de Jomres.');
 jr_define('_JOMRES_VERSIONCHECK_VERSIONWARNING_UPDATEINFO_KEYVALID', 'Veuillez noter qu\'après la mise à jour, vous devez mettre à jour les plug-ins Jomres déjà installés, via le gestionnaire de plug-ins Jomres.');
 jr_define('_JOMRES_VERSIONCHECK_VERSIONWARNING_RENEWALS', 'Si vous souhaitez mettre à jour Jomres et ses plugins, vous aurez besoin de renouvellement de licence . Veuillez visiter notre <a href="https://www.jomres.net/pricing" target="_blank"> </a> pour plus d\'informations. Dans la plupart des cas, ces licences représentent 50 % du prix d\'une licence complète. Veuillez vous assurer que vous êtes connecté à notre boutique avant de tenter d\'acheter un renouvellement.');
-jr_define('_JOMRES_PAYMENT_METHOD_USED','Méthode de paiements : ');
+jr_define('_JOMRES_PAYMENT_METHOD_USED', 'Méthode de paiements : ');
 jr_define('_JOMRES_PRICES', 'Get Connected');
-jr_define('_OAUTH_TITLE','Gestion des clés du logiciel');
-jr_define('_OAUTH_APPS','Détails du client de l\'API REST');
-jr_define('_OAUTH_IDENTIFIER','Identifier');
-jr_define('_OAUTH_APIKEY','ID client');
-jr_define('_OAUTH_SECRET','Secret');
-jr_define('_OAUTH_CREATED','Logiciel mis à jour/installé');
-jr_define('_OAUTH_CLIENT_ID_INFO','L\'ID client et ID secret sont créés pour vous. L\'identifiant sert à identifier facilement cette paire de clés.');
-jr_define('_OAUTH_SCOPE_TITLE','Permissions (ce que le client peut faire)');
-jr_define('_OAUTH_SCOPE_CATEGORY_USER','Permissions de l\'utilisateur');
-jr_define('_OAUTH_SCOPE_CATEGORY_PROPERTIES','Permissions de l\'établissement');
-jr_define('API_DOCUMENTATION_TITLE','Documentation App REST API');
-jr_define('_OAUTH_CONFIG',' Configuration de base de l\'API');
-jr_define('_OAUTH_CONFIG_SHOW','Afficher les options de configuration du client API dans le menu principal de Jomres ?');
-jr_define('_OAUTH_CONFIG_SHOW_DESC','Vous pouvez choisir de ne pas afficher les options de configuration du client API dans la section Mon compte du menu principal de Jomres. Vous pouvez plutôt décider que vous souhaitez les afficher sur d\'autres pages à l\'aide des codes abrégés de Jomres (Shortcodes).');
+jr_define('_OAUTH_TITLE', 'Gestion des clés du logiciel');
+jr_define('_OAUTH_APPS', 'Détails du client de l\'API REST');
+jr_define('_OAUTH_IDENTIFIER', 'Identifier');
+jr_define('_OAUTH_APIKEY', 'ID client');
+jr_define('_OAUTH_SECRET', 'Secret');
+jr_define('_OAUTH_CREATED', 'Logiciel mis à jour/installé');
+jr_define('_OAUTH_CLIENT_ID_INFO', 'L\'ID client et ID secret sont créés pour vous. L\'identifiant sert à identifier facilement cette paire de clés.');
+jr_define('_OAUTH_SCOPE_TITLE', 'Permissions (ce que le client peut faire)');
+jr_define('_OAUTH_SCOPE_CATEGORY_USER', 'Permissions de l\'utilisateur');
+jr_define('_OAUTH_SCOPE_CATEGORY_PROPERTIES', 'Permissions de l\'établissement');
+jr_define('API_DOCUMENTATION_TITLE', 'Documentation App REST API');
+jr_define('_OAUTH_CONFIG', ' Configuration de base de l\'API');
+jr_define('_OAUTH_CONFIG_SHOW', 'Afficher les options de configuration du client API dans le menu principal de Jomres ?');
+jr_define('_OAUTH_CONFIG_SHOW_DESC', 'Vous pouvez choisir de ne pas afficher les options de configuration du client API dans la section Mon compte du menu principal de Jomres. Vous pouvez plutôt décider que vous souhaitez les afficher sur d\'autres pages à l\'aide des codes abrégés de Jomres (Shortcodes).');
 jr_define('_JOMRES_SHORTCODES_06000API_CORE_DOCS', 'Affiche la page de documentation de base de l\'API. API Core permet aux utilisateurs de créer des clients API, qui sont ensuite utilisés pour accéder aux fonctionnalités de l\'API décrites dans la documentation d\'API Core.');
 jr_define('_JOMRES_SHORTCODES_06005API_CORE_CLIENT_ADMIN', 'Affiche la page d\'administration principale de l\'API, où les gestionnaires d\'établissements peuvent configurer des clients API. Notez qu\'il s\'agit d\'une fonctionnalité réservée aux utilisateurs enregistrés. Les utilisateurs doivent donc être enregistrés et connectés avant de pouvoir afficher cette page.');
-jr_define('API_METHODS_TITLE','Méthodes de l\'API (en ligne et en anglais)');
-jr_define('API_METHODS_DESCRIPTION','Cette liste de méthodes est basée sur vos plug-ins de fonction d\'API installés et est générée automatiquement. Si vous installez ou supprimez un plug-in de fonctionnalité d\'API, vous devez visiter cette page pour reconstruire cette liste de méthodes d\'API disponibles sur votre site.');
-jr_define('_OAUTH_REDIRECT_URI','Redirection URI');
-jr_define('_OAUTH_IDENTIFIER_PLACEHOLDER','Donnez-lui un nom qui a du sens pour vous, tel que Mon téléphone');
-jr_define('_OAUTH_GRANT_TYPES','Ce système prend en charge deux types d\'authentification : les informations d\'identification du client et les informations implicites. Si vous utilisez le flux <em>client_credentials</ em>, vous aurez besoin de l\'ID client et de l\'ID secret. Si vous utilisez <em>les informations implicites</ em>, votre application n\'enverra que l\'identifiant du client et vous vous connecterez au système pour autoriser explicitement cette application.');
-jr_define('_OAUTH_IMPLICIT_NOTES','Pour utiliser le flux d\'authentification <em>implicite</ em>, vous devez utiliser cette URL pour autoriser vos applications. Lorsque cette URL est appelée et que vous avez autorisé l\'application, le système émettra un jeton que vos applications utiliseront ensuite pour appeler l\'API de ce système.');
-jr_define('_OAUTH_AUTHORISATION_URL','URL d\'autorisation');
+jr_define('API_METHODS_TITLE', 'Méthodes de l\'API (en ligne et en anglais)');
+jr_define('API_METHODS_DESCRIPTION', 'Cette liste de méthodes est basée sur vos plug-ins de fonction d\'API installés et est générée automatiquement. Si vous installez ou supprimez un plug-in de fonctionnalité d\'API, vous devez visiter cette page pour reconstruire cette liste de méthodes d\'API disponibles sur votre site.');
+jr_define('_OAUTH_REDIRECT_URI', 'Redirection URI');
+jr_define('_OAUTH_IDENTIFIER_PLACEHOLDER', 'Donnez-lui un nom qui a du sens pour vous, tel que Mon téléphone');
+jr_define('_OAUTH_GRANT_TYPES', 'Ce système prend en charge deux types d\'authentification : les informations d\'identification du client et les informations implicites. Si vous utilisez le flux <em>client_credentials</ em>, vous aurez besoin de l\'ID client et de l\'ID secret. Si vous utilisez <em>les informations implicites</ em>, votre application n\'enverra que l\'identifiant du client et vous vous connecterez au système pour autoriser explicitement cette application.');
+jr_define('_OAUTH_IMPLICIT_NOTES', 'Pour utiliser le flux d\'authentification <em>implicite</ em>, vous devez utiliser cette URL pour autoriser vos applications. Lorsque cette URL est appelée et que vous avez autorisé l\'application, le système émettra un jeton que vos applications utiliseront ensuite pour appeler l\'API de ce système.');
+jr_define('_OAUTH_AUTHORISATION_URL', 'URL d\'autorisation');
 jr_define('WEBHOOKS_CORE', 'Webhooks');
-jr_define('_WEBHOOKS_CONFIG_SHOW','Afficher les options de configuration Webhook dans le menu principal de Jomres ?');
-jr_define('_WEBHOOKS_CONFIG_SHOW_DESC','Vous pouvez choisir de ne pas afficher les options de configuration Webhook dans la section Mon compte du menu principal de Jomres. Vous pouvez plutôt décider que vous souhaitez les afficher sur d\'autres pages à l\'aide des codes abrégs Jomres (Shortcodes).');
-jr_define('WEBHOOKS_DOCUMENTATION_TITLE','Documentation Webhooks');
+jr_define('_WEBHOOKS_CONFIG_SHOW', 'Afficher les options de configuration Webhook dans le menu principal de Jomres ?');
+jr_define('_WEBHOOKS_CONFIG_SHOW_DESC', 'Vous pouvez choisir de ne pas afficher les options de configuration Webhook dans la section Mon compte du menu principal de Jomres. Vous pouvez plutôt décider que vous souhaitez les afficher sur d\'autres pages à l\'aide des codes abrégs Jomres (Shortcodes).');
+jr_define('WEBHOOKS_DOCUMENTATION_TITLE', 'Documentation Webhooks');
 jr_define('_JOMRES_SHORTCODES_06000WEBHOOKS_DOCS', 'Afficher la page de documentation de base de l\'API. API Core permet aux utilisateurs de créer des clients API, qui sont ensuite utilisés pour accéder aux fonctionnalités de l\'API décrites dans la documentation d\'API Core.');
 jr_define('_JOMRES_SHORTCODES_06005WEBHOOKS_CLIENT_ADMIN', 'Afficher la page d\'administration principale de l\'API, où les gestionnaires d\'établissement peuvent configurer des clients API. Notez qu\'il s\'agit d\'une fonctionnalité réservée aux utilisateurs enregistrés. Les utilisateurs doivent donc être enregistrés et connectés avant de pouvoir afficher cette page.');
 jr_define('WEBHOOKS_INTEGRATION_EDIT', 'Modifier l\'intégration');
@@ -1937,8 +1937,8 @@ jr_define('PORTAL_REVIEWS_LIMIT', 'Limitation des avis');
 jr_define('PORTAL_REVIEWS_LIMIT_DESC', 'Utilisez ce paramètre pour limiter le nombre d\'avis affichés dans la page Descriptif de l\'établissement.');
 jr_define('PORTAL_REVIEWS_SHOW_ALL_REVIEWS', 'Afficher tous las avis');
 jr_define('VIDEO_TUTORIALS', 'Tutoriels vidéos');
-jr_define( '_JOMRES_PROPERTY_HCATEGORIES', 'Catégories des établissements et des activités' );
-jr_define( '_JOMRES_PROPERTY_HCATEGORIES_HEDIT', 'Modifier la catégorie de l\établissement' );
+jr_define('_JOMRES_PROPERTY_HCATEGORIES', 'Catégories des établissements et des activités');
+jr_define('_JOMRES_PROPERTY_HCATEGORIES_HEDIT', 'Modifier la catégorie de l\établissement');
 jr_define('_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE', 'Valeur minimum de l\'acompte');
 jr_define('_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE_DESC', 'Si l\'acompte calculé est inférieur à ce chiffre, définisser l\'acompte sur cette valeur. Ce chiffre peut lui-même être dépassé s\'il ne satisfait pas le paramètre de l\'acompte minimum du site. Laissez-le sur 0 pour ne pas utiliser le paramètre.');
 jr_define('_JOMRES_MEDIA_CENTRE_DBIMPORT_WARNING', 'Pour augmenter la vitesse de votre site, nous vous recommandons d\'importer les informations du site existant et des images des établissements dans la base de données.');
@@ -2027,7 +2027,7 @@ jr_define('_JOMRES_GDPR_MY_DATA_INTRO', 'Nous prenons très au sérieux notre re
 jr_define('_JOMRES_GDPR_MY_DATA_DOWNLOAD_TEXT', 'Vous pouvez télécharger tous vos informations personnelles que nous conservons pour vous.');
 jr_define('_JOMRES_GDPR_MY_DATA_DOWNLOAD_BUTTON', 'Télécharger maintenant');
 jr_define('_JOMRES_GDPR_MY_RTBF_LEAD', 'Droit à l\'oubli');
-jr_define('_JOMRES_GDPR_MY_RTBF_INTRO', 'Conformément au RGPD, vous devrez pouvoir <a href="https://gdpr-info.eu/art-17-gdpr/" target="_blank">supprimer ou modifier </a>vos <a href = "https: / /gdpr-info.eu/art-4-gdpr/   " target="_blank"Informations personnelles</a>. ');
+jr_define('_JOMRES_GDPR_MY_RTBF_INTRO', 'Conformément au RGPD, vous devrez pouvoir <a href="https://gdpr-info.eu/art-17-gdpr/" target="_blank">supprimer ou modifier </a>vos <a href = "https://gdpr-info.eu/art-4-gdpr/" target="_blank">Informations personnelles</a>. ');
 jr_define('_JOMRES_GDPR_MY_RTBF_NOTREGISTERED_OPTEDIN', 'Vous n\'êtes pas enregistré sur ce site. Votre localisation de pays et votre numéro IP seront néanmoins enregistrés pendant 24 heures au maximum, puis supprimés.');
 jr_define('_JOMRES_GDPR_MY_RTBF_NOTREGISTERED_OPTEDOUT', 'Vous n\'êtes pas enregistré sur ce site et vous avez décidé de ne pas autoriser la collecte de vos données. Nous n\'avons donc pas stocké vos informations personnelles.');
 jr_define('_JOMRES_GDPR_MY_RTBF_REGISTERED_NOBOOKINGS', 'Vous êtes enregistré sur le site et vous n\'avez aucune réservation en cours ou en attente. Nous pouvons anonymiser la plupart des informations que nous détenons actuellement vous concernant. Voulez-vous que nous le fassions ?');
@@ -2062,7 +2062,7 @@ jr_define('_JOMRES_PROPERTY_ROOM_TYPES_CONFIG_DESC', 'Si vous choisissez d\'auto
 jr_define('_JOMRES_QUICKBOOKING_EMAIL_ADDRESS_NOTE', 'Vous ne devez pas réutiliser la même adresse mail pour chaque réservation.<br/>Si vous avez une adresse d\'un nom de domaine pour votre société ou votre activité (par exemple : contact@monsite.com, et non une adresse mail de type Gmail ou hotmail), utilisez le numéro de téléphone du client ou de la personne qui occupe la réservation comme mail. L’adresse mail ressemblera alors à quelque chose comme 0612345678@monsite.com <br/> Cela garantira la création d’un nouveau client lors de la réservation.');
 jr_define('_JOMRES_LOGIN_USERNAME', 'Mail');
 jr_define('_JOMRES_LOGIN_PASSWORD', 'Mot de passe');
-jr_define('_JOMRES_LOGIN_REASON_EMAIL_ALREADY_USED','Nous sommes ravis que vous souhaitiez réserver de nouveau dans notre établissement ! Pour pouvoir gérer toutes vos réservations ensemble, vous devez vous connecter à votre compte pour que la réservation puisse être ajoutée. Cela garantit également que vous êtes autorisé à utiliser l\'adresse mail fournie.');
+jr_define('_JOMRES_LOGIN_REASON_EMAIL_ALREADY_USED', 'Nous sommes ravis que vous souhaitiez réserver de nouveau dans notre établissement ! Pour pouvoir gérer toutes vos réservations ensemble, vous devez vous connecter à votre compte pour que la réservation puisse être ajoutée. Cela garantit également que vous êtes autorisé à utiliser l\'adresse mail fournie.');
 jr_define('_JOMRES_LOGIN_RESET_MESSAGE', 'Si vous ne connaissez pas votre mot de passe, faite une demande de réinitialisation. Veuillez suivre les instructions du mail reçu pour réinitialiser votre mot de passe.');
 jr_define('_JOMRES_LOGIN_RESET_BUTTON', 'Mot de passe oublié ?');
 jr_define('_JOMRES_REVIEWS_ANONYMISE', 'Anonymiser votre nom ?');
@@ -2106,7 +2106,7 @@ jr_define('_JOMRES_LIBRARY_PACKAGES', 'Liste des bibliothèques');
 jr_define('_JOMRES_LIBRARY_PACKAGES_DESC', 'Liste des bibliothèques utilisées dans Jomres');
 jr_define('_JOMRES_LIBRARY_PACKAGES_REFRESH', 'Rafraîchir la liste');
 // This could be changed if whitelisting, so site "World's best booking site" would change this to "WBBS" or similar. (Added by Vince - Translated at 10/07/2019)
-jr_define('_JOMRES_REFERRER_SYSTEM', 'Jomres'); 
+jr_define('_JOMRES_REFERRER_SYSTEM', 'Jomres');
 jr_define('_JOMRES_LIBRARY_PACKAGES', 'Paquets de bibliothèques');
 jr_define('_JOMRES_LIBRARY_PACKAGES_DESC', 'Les modules Vendor et Node sont des paquets (packages) distincts et gratuits pour Jomres. Vous pouvez réinstaller les packages sur cette page.');
 jr_define('_JOMRES_LIBRARY_PACKAGES_REFRESH', 'Réinstaller les paquets (packages) de bibliothèques');
@@ -2126,7 +2126,7 @@ jr_define('_LIST_USERS_LEGEND_PROPERTYMANAGER', 'Manger');
 jr_define('_LIST_USERS_LEGEND_SUPERPROPERTYMANAGER', 'Super Manager');
 jr_define('_LIST_USERS_LEGEND_SUSPENDED', 'Suspendu(e)');
 jr_define('_LIST_USERS_LEGEND_DELETEDFROMCMS', 'Supprimé(e) du CMS');
-// Updated two templates with new definitions, removed hard coded button… 08/07/2019. 
+// Updated two templates with new definitions, removed hard coded button… 08/07/2019.
 jr_define('_JOMRES_RANDOM_EMAILS_IN_QUICKBOOKINGS_DOMIAN_DESCRIPTION', 'Cela ne doit pas être obligatoirement un domaine de messagerie tel que gmail ou Outlook. Il peut s\'agir de votre propre domaine ou de tout autre chose, tel que @monsite.com.');
 jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD_FORM', 'Zone de téléchargement');
 jr_define('_REVIEW_JOMRES_PLEASEREVIEW', 'si vous aimez Jomres, n\'hésitez pas à laisser un commentaire sur l\'un de ces sites');//Added and translated at 19/07/2019
@@ -2190,7 +2190,7 @@ jr_define('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTIES', 'Total des établissemen
 jr_define('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTIES_DESC', 'C\'est le nombre d\'établissements disponibles dans le JSN (Jomres Syndicate Network).');
 jr_define('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTY_DISPLAYS', 'Total d\'établissements affichés : ');
 jr_define('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTY_DISPLAYS_DESC', 'Au total, toutes les fois où un établissement Jomres a été lié à un autre site basé sur Jomres.');
-jr_define('_JOMRES_SYNDICATION_STATS_BLURB', 'Le JSN (Jomres Syndicate Network) est une fonctionnalité gratuite mise à la disposition de tous les utilisateurs de Jomres. Son but est de vous fournir gratuitement de la publicité pour vos établissements sur d’autres sites basés sur Jomres. L’objectif est de vous aider à lancer votre site rapidement, en offrant de la publicité gratuite pour que vos établissemnts soient reconnues et fiables, car ils sont liées à des sites Web plus fiables et d’une grande pertinence, qui sont déjà bien connus des moteurs de recherches. Voir cet <a href="https://www.jomres.net/features/jomres-syndication-network" target="_blank"> article sur notre site Web </a> et <a href = "https: // www .jomres.net/manual/developers-guide-2/387-jomres-syndication-network "target ="_blank "> dans le manuel </a> pour plus d\'informations.');
+jr_define('_JOMRES_SYNDICATION_STATS_BLURB', 'Le JSN (Jomres Syndicate Network) est une fonctionnalité gratuite mise à la disposition de tous les utilisateurs de Jomres. Son but est de vous fournir gratuitement de la publicité pour vos établissements sur d’autres sites basés sur Jomres. L’objectif est de vous aider à lancer votre site rapidement, en offrant de la publicité gratuite pour que vos établissemnts soient reconnues et fiables, car ils sont liées à des sites Web plus fiables et d’une grande pertinence, qui sont déjà bien connus des moteurs de recherches. Voir cet <a href="https://www.jomres.net/features/jomres-syndication-network" target="_blank"> article sur notre site Web </a> et <a href = "https: // www .jomres.net/manual/developers-guide-2/387-jomres-syndication-network " target="_blank"> dans le manuel </a> pour plus d\'informations.');
 jr_define('GUEST_PROFILE_INFORMATION', 'Il s\’agit des données de votre profil client. Les champs avec ce symbole <i class="fa fa-users" aria-hidden="true"></i> sont visibles publiquement, alors que les champs avec ce symbole <i class="fa fa-user-secret" aria-hidden="true"></i> ne peut être vu que par vous, l\'établissement et les administrateurs du site.<br/><br/> Les hôtes ne peuvent voir vos informations privées que si vous avez déjà créé une réservation.<br/><br/> Vos informations sont cryptées en toute sécurité et stockées dans notre base de données avec l\'encryptage AES-256.');
 jr_define('GUEST_PROFILE_OPTIONAL', 'Ces champs sont facultatifs. Cependant, l\'établissement prend en compte ces informations pour valider votre réservation. Il est donc préférable de les remplir.');
 jr_define('GUEST_PROFILE_DRIVING_LICENSE', 'Numéro de permis de conduire');
@@ -2222,7 +2222,7 @@ jr_define('GUEST_PROFILE_USERSTATUS_GUEST', 'Client');
 jr_define('GUEST_PROFILE_USERSTATUS_HOST', 'Établissement');
 jr_define('GUEST_PROFILE_USERSTATUS_ADMIN', 'Gestionaire');
 jr_define('GUEST_PROFILE_UNKNOWN', 'Désolé, je ne trouve pas ce client. Très probablement, il n\'a pas encore renseigné les informations détaillées de son compte.');
-jr_define('WORDPRESS_THEME_ADVICE', 'Jomres est construit sur le framework Bootstrap, vous devez donc l\'utiliser avec thème basé sur Bootstrap. Nous vous recommandons Bootstrap 3. Si vous n’avez pas accès à un thème, nous vous recommandons d’utiliser le thème Jomres Leohtian pour Wordpress que vous pouvez <a href="https://www.jomres.net/download/free-downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress "target ="_blank"> télécharger ici.</a>');
+jr_define('WORDPRESS_THEME_ADVICE', 'Jomres est construit sur le framework Bootstrap, vous devez donc l\'utiliser avec thème basé sur Bootstrap. Nous vous recommandons Bootstrap 3. Si vous n’avez pas accès à un thème, nous vous recommandons d’utiliser le thème Jomres Leohtian pour Wordpress que vous pouvez <a href="https://www.jomres.net/download/free-downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress " target="_blank"> télécharger ici.</a>');
 jr_define('BOOKING_NOSHOW_MENU', 'Marquer comme No Show');
 jr_define('BOOKING_NOSHOW_AUDIT_LOG', 'La réservation est un No Show');
 jr_define('BOOKING_NOSHOW_BOOKINGS', 'Réservations');
@@ -2238,69 +2238,69 @@ jr_define('CMF_CONFIG_KEY_DESC', 'The Channel Management Framework license key. 
 jr_define('_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT_UNAPPROVED', 'Your property has not been approved');
 jr_define('_JOMRES_APPROVALS_MANAGER_EMAIL_CONTENT_UNAPPROVED', "Your property as been unapproved. If you think that this was done in error please contact us. ");
 
-jr_define('_JOMRES_GUESTTYPES_IS_CHILD',"Est-ce un Enfant ?");
-jr_define('_JOMRES_GUESTTYPES_IS_CHILD_DESC',"Oui, si ce type de client serait classé comme Enfant.");
+jr_define('_JOMRES_GUESTTYPES_IS_CHILD', "Est-ce un Enfant ?");
+jr_define('_JOMRES_GUESTTYPES_IS_CHILD_DESC', "Oui, si ce type de client serait classé comme Enfant.");
 
-jr_define('_JOMRES_GUESTTYPES_INTRO',"Si vous souhaitez facturer par personne et par nuit, vous devrez créer certains types de clients.");
-jr_define('_JOMRES_GUESTTYPES_INSTRUCTIONS',"Vous pouvez créer autant de types de clients que vous le souhaitez. Commencez par créer un seul type de client Adulte. Laissez tous les paramètres à leurs valeurs par défaut. Ensuite, si vous souhaitez par exemple accorder aux enfants de moins de 12 ans une réduction de 50 %, vous créez un nouveau type d’invité, que vous appelez Enfants de moins de 12 ans. Définissez le paramètre Ajouter variable ? Option - (Négatif) et réglez la variable sur 50. Cela signifie que lorsque des enfants sont ajoutés à une réservation, ils sont facturés à 50 % du coût de la chambre. " );
-
-
-jr_define('_JOMRES_MICROMANAGE_PICKERDROPDOWN_EDITPRICES',"Définir les prix manuellement");
-jr_define('_JOMRES_MICROMANAGE_PICKERDROPDOWN_EDITMINDAYS',"Définir les prix minimums des nuitées manuellement");
-jr_define('_JOMRES_MICROMANAGE_PICKER_SETMINDAYS',"Définir le prix minimum des nuitées");
-jr_define('_JOMRES_MICROMANAGE_PICKER_TYPE_DOW',"Définir les <em>prix des nuitées</em> par jour de la semaine");
-jr_define('_JOMRES_MICROMANAGE_PICKER_TYPE_INTERVAL_RATES',"Définir les <em>prix des nuitées</em> et par périodes");
-jr_define('_JOMRES_MICROMANAGE_PICKER_TYPE_INTERVAL_MINDAYS',"Définir les <em>prix mininums des nuitées</em> par périodes");
-jr_define('_JOMRES_MICROMANAGE_PICKER_INSTRUCTIONS_RATES',"Les sélecteurs de date et le montant du tarif vous permettent de définir un prix pour une période donnée. Choisissez une date de début et de fin, entrez un prix et cliquez sur le bouton Définir le prix des nuitées.");
-jr_define('_JOMRES_MICROMANAGE_PICKER_INSTRUCTIONS_MINDAYS',"Les sélecteurs de date et le montant minimum des nuitées vous permettent de définir une valeur pour le nombre minimum de nuitées pour une période donnée. Choisissez une date de début et de fin, entrez un nombre pour le nombre de nuitées minimums et cliquez sur 'Définir le montant minimum des nuitées'.");
-jr_define('_JOMRES_MICROMANAGE_PICKERS_SELECTOR_INFO',"Utilisez ce menu déroulant pour changer les prix entre les dates individuelles et les nuitées minimums. Vous pouvez utiliser le sélecteur <em> par jour de la semaine </em>, le sélecteur <em> par périodes </ em> ou définir les prix minimums des nuitées en modifiant manuellement les dates.");
-jr_define('_JOMRES_MICROMANAGE_PICKERS_SELECTOR_INFO_SMALL_VIEWPORT',"Utilisez ce menu déroulant pour changer les prix entre les dates individuelles et les prix minimums des nuitées. Vous pouvez utiliser le sélecteur <em> par périodes </ em> ou définir les prix minimums des nuitées en modifiant manuellement les dates.");
-jr_define('_JOMRES_MICROMANAGE_PICKERS_SELECTOR',"Définir les prix ou les nuitées munimums");
-jr_define('_JOMRES_MICROMANAGE_PICKER_BYDOW',"Définir les <em>nuitées minimums</em> par jour de la semaine");
-jr_define('_JOMRES_MICROMANAGE_PICKER_BYDOW_INFO',"Les champs du jour de la semaine vous permettent de définir un nombre minimum de nuits pour un jour de la semaine donné. Lorsque vous cliquez sur le bouton du jour de la semaine, tous les jours de la semaine sont réglés sur ce réglage de nuitées minimum.");
-jr_define('_JOMRES_MICROMANAGE_MANUALLY',"Définir manuellement les prix et nuitées minimums");
-jr_define('_JOMRES_MICROMANAGE_SET_PRICES',"Définir les prix");
-jr_define('_JOMRES_MICROMANAGE_SET_MINDAYS',"Définir les nuitées minimums");
-jr_define('_JOMRES_MICROMANAGE_PRICE',"Par nuitée");
-jr_define('_JOMRES_MICROMANAGE_MINDAYS',"Nuitées minimums");
-jr_define('_JOMRES_MICROMANAGE_MAXDAYS',"Nuitées maximums");
-jr_define('_JOMRES_MICROMANAGE_INTRO',"Ici, vous pouvez créer vos tarifs qui sont associés aux types de chambres de votre établissement. ");
-jr_define('_JOMRES_MICROMANAGE_BASIC_SETTINGS',"Options les plus couramment utilisées");
-jr_define('_JOMRES_MICROMANAGE_MODAL_BUTTON',"Explications");
-jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS',"Si vous souhaitez ajouter différents prix pour différents nombres de clients, <em> vous pouvez créer plusieurs tarifs pour chaque type de chambre </ em> et avoir différentes valeurs ninimums/maximums de client ces tarifs.");
-jr_define('_JOMRES_MICROMANAGE_INFO',"Donnez un nom au tarif, définissez le nombre maximal de nuitées, ainsi que le nombre minimal et maximal de clients, qui seront obligatoires dans le formulaire de réservation avant que le tarif ne soit proposé. <br/> <br/> Utilisez le panneau du sélecteur de date pour ajouter des prix et les réglages minimums de nuitées pour une période, ou modifier les informations directement. Si vous ne souhaitez pas que le tarif soit offert à certaines dates, laissez le prix à 0 (zéro) à ces dates. <br/> <br/> Vous pouvez avoir différents prix minimums nuitées à différentes dates. Par exemple, si vous souhaitez que les réservations soient plus longues pendant les semaines d'un festival ou d'une convention, vous pouvez définir les prix des nuitées pour ces périodes seulement. <br/> <br /> Si vous facturez un montant par personne (PPPN), vous pouvez activer ce paramètre dans l'onglet Paramètres > Configuration de l\'établissement > Tarifs et Devises, puis créer les types de clients dont vous avez besoin dans Paramètres > Types de clients.");
-jr_define('_JOMRES_MICROMANAGE_EXTRAOPTIONS',"Options supplémentaires");
-jr_define('_JOMRES_MICROMANAGE_EXTRA_OPTIONS',"Ce sont des options supplémentaires qui ne sont pas couramment utilisées, mais à votre disposition. <br/> <strong> Ignorer PPPN (par personne et par nuit)</strong>. Vous pouvez avoir plusieurs tarifs différents pour le même type de chambre ; par exemple un tarif par personne et par nuit et un autre tarif.<br/><strong>Autoriser les week-ends.</strong> L'option vous donne la possibilité de créer un tarif disponible uniquement en semaine ; par exemple si vous souhaitez un tarif spécial pour la clientèle d'affaires. Dans ce cas, définissez l'option sur NON et les nuitées minimums sur 1 et les nuitées maximums au maximum sur 5. <br/><strong> Uniquement les week-ends </strong> L'option est l'inverse de l'option Autoriser les week-ends. Les jours de semaine peuvent être configuré dans vos paramètres de configuration d'établissement. Cela vous permet aussi de définir un tarif week-end unique que vous voudrez peut-être proposer pour des événements spéciaux. <br /> <strong> Arrivées en semaine.</strong> Cette option vous permet de forcer l’enregistrement uniquement certains jours de la semaine. Il est préférable de l'utiliser conjointement avec les options Configuration des établissements > Réservations > Périodes fixes. La majorité des utilisateurs voudront laisser cette option définie sur Tous. <br/> Les deux dernières options, <strong> Nombre minimum de chambres déjà sélectionnées </ strong> et <strong> Nombre maximum de chambres déjà sélectionnées </ strong> sont très spécialisées et utiles pour les établissements avec des tarifs extrêmement compliqués.<em> Sauf si vous avez un besoin spécifique, vous devez laisser ces options de côté.</em> Utilisez-les, si vous souhaitez que ce tarif ne soit proposé que si le client a déjà sélectionné X nombre de chambres dans le formulaire de réservation ; par exemple, vous pouvez avoir un tarif de base où ces options sont laissées à la valeur par défaut et un deuxième tarif où l'option de chambres minimum déjà sélectionnées est définie sur 1, alors ce second tarif sera proposé dans le formulaire de réservation une fois la chambre sélectionnée.");
-jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS_LIST_PAGE',"Vous pouvez créer plusieurs tarifs pour le même type de chambre. Ainsi, vous pouvez créer un tarif pour une période de 1 à 7 jours et un second tarif où le nombre de jours minimum est de 7, le nombre maximal de jours 14, etc. Cela vous permet de créer des schémas de tarification aussi simples ou aussi compliqués que vous le souhaitez. Il vous permet également de créer plusieurs tarifs avec différentes conditions, de sorte que vous puissiez avoir un deuxième ensemble de tarifs où le prix est inférieur pour Bed & Breakfast, et un autre ensemble de tarifs plus coûteux pour le lit + petit-déjeuner + repas du soir.");
-jr_define('_JOMRES_MICROMANAGE_USE_SELECTED_DATES',"Définir uniquement les jours du sélecteur de date ");
-jr_define('_JOMRES_STOP_READTHISFIRST1',"Stop!");
-jr_define('_JOMRES_STOP_READTHISFIRST2',"Merci d'avoir installé Jomres");
-jr_define('_JOMRES_STOP_READTHISFIRST3',"La gestion des propriétés est effectuée dans les pages publiques, pas dans la zone administrateur.");
-jr_define('_JOMRES_STOP_READTHISFIRST4',"Si vous n'êtes pas familier avec Jomres, veuillez visiter la section Aide > page de démarrage.");
+jr_define('_JOMRES_GUESTTYPES_INTRO', "Si vous souhaitez facturer par personne et par nuit, vous devrez créer certains types de clients.");
+jr_define('_JOMRES_GUESTTYPES_INSTRUCTIONS', "Vous pouvez créer autant de types de clients que vous le souhaitez. Commencez par créer un seul type de client Adulte. Laissez tous les paramètres à leurs valeurs par défaut. Ensuite, si vous souhaitez par exemple accorder aux enfants de moins de 12 ans une réduction de 50 %, vous créez un nouveau type d’invité, que vous appelez Enfants de moins de 12 ans. Définissez le paramètre Ajouter variable ? Option - (Négatif) et réglez la variable sur 50. Cela signifie que lorsque des enfants sont ajoutés à une réservation, ils sont facturés à 50 % du coût de la chambre. ");
 
 
-jr_define('_JOMRES_CONFIG_SYNDICATION_TITLE',"Rejoignez le Syndicat Jomres");
-jr_define('_JOMRES_CONFIG_SYNDICATION_DESC',"Une fois que vous avez configuré votre site et prêt à commencer à recevoir des visiteurs, rejoignez le syndicat Jomres.net et obtenez vos propriétés répertoriées sur d'autres sites Jomres.");
+jr_define('_JOMRES_MICROMANAGE_PICKERDROPDOWN_EDITPRICES', "Définir les prix manuellement");
+jr_define('_JOMRES_MICROMANAGE_PICKERDROPDOWN_EDITMINDAYS', "Définir les prix minimums des nuitées manuellement");
+jr_define('_JOMRES_MICROMANAGE_PICKER_SETMINDAYS', "Définir le prix minimum des nuitées");
+jr_define('_JOMRES_MICROMANAGE_PICKER_TYPE_DOW', "Définir les <em>prix des nuitées</em> par jour de la semaine");
+jr_define('_JOMRES_MICROMANAGE_PICKER_TYPE_INTERVAL_RATES', "Définir les <em>prix des nuitées</em> et par périodes");
+jr_define('_JOMRES_MICROMANAGE_PICKER_TYPE_INTERVAL_MINDAYS', "Définir les <em>prix mininums des nuitées</em> par périodes");
+jr_define('_JOMRES_MICROMANAGE_PICKER_INSTRUCTIONS_RATES', "Les sélecteurs de date et le montant du tarif vous permettent de définir un prix pour une période donnée. Choisissez une date de début et de fin, entrez un prix et cliquez sur le bouton Définir le prix des nuitées.");
+jr_define('_JOMRES_MICROMANAGE_PICKER_INSTRUCTIONS_MINDAYS', "Les sélecteurs de date et le montant minimum des nuitées vous permettent de définir une valeur pour le nombre minimum de nuitées pour une période donnée. Choisissez une date de début et de fin, entrez un nombre pour le nombre de nuitées minimums et cliquez sur 'Définir le montant minimum des nuitées'.");
+jr_define('_JOMRES_MICROMANAGE_PICKERS_SELECTOR_INFO', "Utilisez ce menu déroulant pour changer les prix entre les dates individuelles et les nuitées minimums. Vous pouvez utiliser le sélecteur <em> par jour de la semaine </em>, le sélecteur <em> par périodes </ em> ou définir les prix minimums des nuitées en modifiant manuellement les dates.");
+jr_define('_JOMRES_MICROMANAGE_PICKERS_SELECTOR_INFO_SMALL_VIEWPORT', "Utilisez ce menu déroulant pour changer les prix entre les dates individuelles et les prix minimums des nuitées. Vous pouvez utiliser le sélecteur <em> par périodes </ em> ou définir les prix minimums des nuitées en modifiant manuellement les dates.");
+jr_define('_JOMRES_MICROMANAGE_PICKERS_SELECTOR', "Définir les prix ou les nuitées munimums");
+jr_define('_JOMRES_MICROMANAGE_PICKER_BYDOW', "Définir les <em>nuitées minimums</em> par jour de la semaine");
+jr_define('_JOMRES_MICROMANAGE_PICKER_BYDOW_INFO', "Les champs du jour de la semaine vous permettent de définir un nombre minimum de nuits pour un jour de la semaine donné. Lorsque vous cliquez sur le bouton du jour de la semaine, tous les jours de la semaine sont réglés sur ce réglage de nuitées minimum.");
+jr_define('_JOMRES_MICROMANAGE_MANUALLY', "Définir manuellement les prix et nuitées minimums");
+jr_define('_JOMRES_MICROMANAGE_SET_PRICES', "Définir les prix");
+jr_define('_JOMRES_MICROMANAGE_SET_MINDAYS', "Définir les nuitées minimums");
+jr_define('_JOMRES_MICROMANAGE_PRICE', "Par nuitée");
+jr_define('_JOMRES_MICROMANAGE_MINDAYS', "Nuitées minimums");
+jr_define('_JOMRES_MICROMANAGE_MAXDAYS', "Nuitées maximums");
+jr_define('_JOMRES_MICROMANAGE_INTRO', "Ici, vous pouvez créer vos tarifs qui sont associés aux types de chambres de votre établissement. ");
+jr_define('_JOMRES_MICROMANAGE_BASIC_SETTINGS', "Options les plus couramment utilisées");
+jr_define('_JOMRES_MICROMANAGE_MODAL_BUTTON', "Explications");
+jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS', "Si vous souhaitez ajouter différents prix pour différents nombres de clients, <em> vous pouvez créer plusieurs tarifs pour chaque type de chambre </ em> et avoir différentes valeurs ninimums/maximums de client ces tarifs.");
+jr_define('_JOMRES_MICROMANAGE_INFO', "Donnez un nom au tarif, définissez le nombre maximal de nuitées, ainsi que le nombre minimal et maximal de clients, qui seront obligatoires dans le formulaire de réservation avant que le tarif ne soit proposé. <br/> <br/> Utilisez le panneau du sélecteur de date pour ajouter des prix et les réglages minimums de nuitées pour une période, ou modifier les informations directement. Si vous ne souhaitez pas que le tarif soit offert à certaines dates, laissez le prix à 0 (zéro) à ces dates. <br/> <br/> Vous pouvez avoir différents prix minimums nuitées à différentes dates. Par exemple, si vous souhaitez que les réservations soient plus longues pendant les semaines d'un festival ou d'une convention, vous pouvez définir les prix des nuitées pour ces périodes seulement. <br/> <br /> Si vous facturez un montant par personne (PPPN), vous pouvez activer ce paramètre dans l'onglet Paramètres > Configuration de l\'établissement > Tarifs et Devises, puis créer les types de clients dont vous avez besoin dans Paramètres > Types de clients.");
+jr_define('_JOMRES_MICROMANAGE_EXTRAOPTIONS', "Options supplémentaires");
+jr_define('_JOMRES_MICROMANAGE_EXTRA_OPTIONS', "Ce sont des options supplémentaires qui ne sont pas couramment utilisées, mais à votre disposition. <br/> <strong> Ignorer PPPN (par personne et par nuit)</strong>. Vous pouvez avoir plusieurs tarifs différents pour le même type de chambre ; par exemple un tarif par personne et par nuit et un autre tarif.<br/><strong>Autoriser les week-ends.</strong> L'option vous donne la possibilité de créer un tarif disponible uniquement en semaine ; par exemple si vous souhaitez un tarif spécial pour la clientèle d'affaires. Dans ce cas, définissez l'option sur NON et les nuitées minimums sur 1 et les nuitées maximums au maximum sur 5. <br/><strong> Uniquement les week-ends </strong> L'option est l'inverse de l'option Autoriser les week-ends. Les jours de semaine peuvent être configuré dans vos paramètres de configuration d'établissement. Cela vous permet aussi de définir un tarif week-end unique que vous voudrez peut-être proposer pour des événements spéciaux. <br /> <strong> Arrivées en semaine.</strong> Cette option vous permet de forcer l’enregistrement uniquement certains jours de la semaine. Il est préférable de l'utiliser conjointement avec les options Configuration des établissements > Réservations > Périodes fixes. La majorité des utilisateurs voudront laisser cette option définie sur Tous. <br/> Les deux dernières options, <strong> Nombre minimum de chambres déjà sélectionnées </ strong> et <strong> Nombre maximum de chambres déjà sélectionnées </ strong> sont très spécialisées et utiles pour les établissements avec des tarifs extrêmement compliqués.<em> Sauf si vous avez un besoin spécifique, vous devez laisser ces options de côté.</em> Utilisez-les, si vous souhaitez que ce tarif ne soit proposé que si le client a déjà sélectionné X nombre de chambres dans le formulaire de réservation ; par exemple, vous pouvez avoir un tarif de base où ces options sont laissées à la valeur par défaut et un deuxième tarif où l'option de chambres minimum déjà sélectionnées est définie sur 1, alors ce second tarif sera proposé dans le formulaire de réservation une fois la chambre sélectionnée.");
+jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS_LIST_PAGE', "Vous pouvez créer plusieurs tarifs pour le même type de chambre. Ainsi, vous pouvez créer un tarif pour une période de 1 à 7 jours et un second tarif où le nombre de jours minimum est de 7, le nombre maximal de jours 14, etc. Cela vous permet de créer des schémas de tarification aussi simples ou aussi compliqués que vous le souhaitez. Il vous permet également de créer plusieurs tarifs avec différentes conditions, de sorte que vous puissiez avoir un deuxième ensemble de tarifs où le prix est inférieur pour Bed & Breakfast, et un autre ensemble de tarifs plus coûteux pour le lit + petit-déjeuner + repas du soir.");
+jr_define('_JOMRES_MICROMANAGE_USE_SELECTED_DATES', "Définir uniquement les jours du sélecteur de date ");
+jr_define('_JOMRES_STOP_READTHISFIRST1', "Stop!");
+jr_define('_JOMRES_STOP_READTHISFIRST2', "Merci d'avoir installé Jomres");
+jr_define('_JOMRES_STOP_READTHISFIRST3', "La gestion des propriétés est effectuée dans les pages publiques, pas dans la zone administrateur.");
+jr_define('_JOMRES_STOP_READTHISFIRST4', "Si vous n'êtes pas familier avec Jomres, veuillez visiter la section Aide > page de démarrage.");
+
+
+jr_define('_JOMRES_CONFIG_SYNDICATION_TITLE', "Rejoignez le Syndicat Jomres");
+jr_define('_JOMRES_CONFIG_SYNDICATION_DESC', "Une fois que vous avez configuré votre site et prêt à commencer à recevoir des visiteurs, rejoignez le syndicat Jomres.net et obtenez vos propriétés répertoriées sur d'autres sites Jomres.");
 
 
 
-jr_define('_JOMRES_MICROMANAGE_CREATE_ROOM_1',"Vous avez besoin d'au moins une chambre de l'un des types suivants avant de pouvoir créer un tarif :");
-jr_define('_JOMRES_MICROMANAGE_CREATE_ROOM_2',"Allez dans Paramètres > Chambres et créez d'abord une chambre, une fois que vous aurez fait cela, vous pourrez créer un tarif pour ce type de chambre.");
+jr_define('_JOMRES_MICROMANAGE_CREATE_ROOM_1', "Vous avez besoin d'au moins une chambre de l'un des types suivants avant de pouvoir créer un tarif :");
+jr_define('_JOMRES_MICROMANAGE_CREATE_ROOM_2', "Allez dans Paramètres > Chambres et créez d'abord une chambre, une fois que vous aurez fait cela, vous pourrez créer un tarif pour ce type de chambre.");
 
-jr_define('JOMRES_PLATFORM',"Plateforme Jomres");
+jr_define('JOMRES_PLATFORM', "Plateforme Jomres");
 
 
-jr_define('JOMRES_PLATFORM_CONNECTED',"Connecté");
-jr_define('JOMRES_PLATFORM_CONNECTED_DESC',"Réglez-le sur Oui si vous avez déjà connecté votre compte Stripe à la plate-forme Jomres.");
+jr_define('JOMRES_PLATFORM_CONNECTED', "Connecté");
+jr_define('JOMRES_PLATFORM_CONNECTED_DESC', "Réglez-le sur Oui si vous avez déjà connecté votre compte Stripe à la plate-forme Jomres.");
 
-jr_define('JOMRES_PLATFORM_ACCOUNT_ID',"numéro de compte Stripe Live");
-jr_define('JOMRES_PLATFORM_ACCOUNT_ID_DESC',"C'est l'identifiant de votre compte Stripe qui se trouve dans votre tableau de bord Stripe sous Paramètres> Informations sur le compte et ressemble à acct_xxxxxxxxx Vous utiliseriez ce champ si vous avez plusieurs installations Jomres et que vous souhaitez utiliser le même compte à travers tous les sites et vous vous êtes déjà connecté à nous. Si vous ne vous êtes pas connecté à la plate-forme Jomres, il ne suffit pas d'entrer vos coordonnées ici. Au lieu de cela, veuillez visiter l'option de menu Se connecter dans la barre d'outils, sous la section Aide. Si vous voulez pour tester les paiements, dans l'onglet Débogage de la configuration du site, définissez votre site de Production à Développement.");
+jr_define('JOMRES_PLATFORM_ACCOUNT_ID', "numéro de compte Stripe Live");
+jr_define('JOMRES_PLATFORM_ACCOUNT_ID_DESC', "C'est l'identifiant de votre compte Stripe qui se trouve dans votre tableau de bord Stripe sous Paramètres> Informations sur le compte et ressemble à acct_xxxxxxxxx Vous utiliseriez ce champ si vous avez plusieurs installations Jomres et que vous souhaitez utiliser le même compte à travers tous les sites et vous vous êtes déjà connecté à nous. Si vous ne vous êtes pas connecté à la plate-forme Jomres, il ne suffit pas d'entrer vos coordonnées ici. Au lieu de cela, veuillez visiter l'option de menu Se connecter dans la barre d'outils, sous la section Aide. Si vous voulez pour tester les paiements, dans l'onglet Débogage de la configuration du site, définissez votre site de Production à Développement.");
 
-jr_define('JOMRES_PLATFORM_LIVE_SECRET_KEY',"Stripe clé secrète en direct");
-jr_define('JOMRES_PLATFORM_LIVE_SECRET_KEY_DESC','Allez à Développeurs > Clés API dans votre tableau de bord Stripe pour trouver vos clés secrètes. Celles-ci sont utilisées par le système pour vérifier que les données de réservation renvoyées par le formulaire de paiement sont valides et que les acomptes ont été payés avant d\'enregistrer la réservation .' );
+jr_define('JOMRES_PLATFORM_LIVE_SECRET_KEY', "Stripe clé secrète en direct");
+jr_define('JOMRES_PLATFORM_LIVE_SECRET_KEY_DESC', 'Allez à Développeurs > Clés API dans votre tableau de bord Stripe pour trouver vos clés secrètes. Celles-ci sont utilisées par le système pour vérifier que les données de réservation renvoyées par le formulaire de paiement sont valides et que les acomptes ont été payés avant d\'enregistrer la réservation .');
 
-jr_define('JOMRES_PLATFORM_TEST_SECRET_KEY',"Clé secrète de test de bande");
-jr_define('JOMRES_PLATFORM_TEST_SECRET_KEY_DESC',' ' );
+jr_define('JOMRES_PLATFORM_TEST_SECRET_KEY', "Clé secrète de test de bande");
+jr_define('JOMRES_PLATFORM_TEST_SECRET_KEY_DESC', ' ');
 
 
 
@@ -2441,24 +2441,24 @@ jr_define('PLUGIN_UPDATE_MESSAGE1_LINK', 'Mettre à jour les plugins');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Obtenir une nouvelle clé');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Enregistrer la nouvelle clé');
 
-jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Images de type de propriété");
+jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES', "Images de type de propriété");
 
-	jr_define('JOMRES_SITE_SIDEBAR_HELP_TITLE',"Besoin d'aide pour réserver ?");
-	jr_define('JOMRES_SITE_SIDEBAR_HELP_BLURB',"Appelez notre service client au numéro ci-dessous pour parler à l'un de nos représentants qui vous aidera avec tous vos besoins de vacances.");
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_TITLE', "Besoin d'aide pour réserver ?");
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_BLURB', "Appelez notre service client au numéro ci-dessous pour parler à l'un de nos représentants qui vous aidera avec tous vos besoins de vacances.");
 
-	jr_define('JOMRES_SITE_SIDEBAR_WHY_TITLE',"Pourquoi réserver avec nous ?");
-	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_TITLE',"Nous offrons les meilleurs tarifs de réservation");
-	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB1',"Nous avons les propriétés les moins chères actuellement sur le marché.");
-	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB2',"Pas de frais de réservation. Économisez de l'argent!");
-	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_TITLE',"Grande sélection de propriétés");
-	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_HOTELS',"propriétés");
-	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS'," avis clients");
-	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE',"Nous sommes toujours là");
-	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT',"Appelez-nous ou envoyez-nous un e-mail, à tout moment");
-	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT',"Obtenez une assistance 24h/24 avant, pendant et après votre voyage");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_TITLE', "Pourquoi réserver avec nous ?");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_TITLE', "Nous offrons les meilleurs tarifs de réservation");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB1', "Nous avons les propriétés les moins chères actuellement sur le marché.");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB2', "Pas de frais de réservation. Économisez de l'argent!");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_TITLE', "Grande sélection de propriétés");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_HOTELS', "propriétés");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS', " avis clients");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE', "Nous sommes toujours là");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT', "Appelez-nous ou envoyez-nous un e-mail, à tout moment");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT', "Obtenez une assistance 24h/24 avant, pendant et après votre voyage");
 
-	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA',"Médias sociaux");
-	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD',"Retrouvez-nous sur les réseaux sociaux");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA', "Médias sociaux");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD', "Retrouvez-nous sur les réseaux sociaux");
 
 	jr_define('JOMRES_REVIEW_SCORE_TOP_1', "Exceptionnel");
 	jr_define('JOMRES_REVIEW_SCORE_TOP_2', "Exceptionnel");
@@ -2473,8 +2473,8 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Images de 
 	jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Remise");
 
 	jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', 'Où voulez-vous aller ?');
-	jr_define( 'DATA_SOURCES_TITLE', "Actualiser les sources de données" );
-	jr_define( 'DATA_SOURCES_TITLE_INFO', "Les sources de données sont actualisées. Les sources de données sont utilisées par les champs d'entrée de saisie semi-automatique dans le widget de recherche et elles sont généralement mises à jour automatiquement, mais cette page force la mise à jour manuelle des données si nécessaire." );
+	jr_define('DATA_SOURCES_TITLE', "Actualiser les sources de données");
+	jr_define('DATA_SOURCES_TITLE_INFO', "Les sources de données sont actualisées. Les sources de données sont utilisées par les champs d'entrée de saisie semi-automatique dans le widget de recherche et elles sont généralement mises à jour automatiquement, mais cette page force la mise à jour manuelle des données si nécessaire.");
 
 	jr_define('_OAUTH_TOKEN_REQUEST_URI', "Pour envoyer une demande de jeton, envoyez la demande à cette url");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "Le script de propriété de la vue principale");
@@ -2505,9 +2505,9 @@ jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Une fois que vous avez enreg
 	jr_define('JOMRES_TRANSLATIONS_TITLE', 'Traductions');
 	jr_define('JOMRES_TRANSLATIONS_LEAD', 'Sur cette page, vous pouvez traduire des étiquettes d\'une langue à une autre. Lorsque vous visitez la page, vous verrez les chaînes que vous avez déjà créées et leur valeur dans la langue que vous utilisez actuellement. En haut, définissez le langue cible, puis pour les étiquettes que vous souhaitez traduire, cliquez sur l\'étiquette et une fenêtre contextuelle vous permettra d\'entrer votre nouvelle traduction. Pour les lignes de texte plus longues, vous pouvez coller le texte d\'une autre source. N\'oubliez pas que tout code HTML sera supprimé .<br/>
 Vous pouvez laisser la langue cible définie sur votre langue actuelle et utiliser cette page pour renommer les éléments ici, au lieu de visiter leurs pages individuelles.');
-jr_define('JOMRES_TARGET_LANGUAGE', 'Langue cible');
+	jr_define('JOMRES_TARGET_LANGUAGE', 'Langue cible');
 
 	jr_define('API_CLIENTS_INFO', 'Les clients API sont des paires de clés ID client/secrète qui permettent aux systèmes distants d\'utiliser les fonctionnalités de l\'API que vous leur autorisez à utiliser. Sur cette page, vous pouvez créer autant de paires de clés client/secrète que vous le souhaitez, chacune avec toute combinaison d\'autorisations dont vous avez besoin.');
-jr_define('CLIENT_TOKEN', 'Jeton d\'accès');
-jr_define('CLIENT_TOKEN_INFO', "Les jetons d'accès peuvent être demandés à l'aide de l'ID client et du secret. Certains clients peuvent déjà avoir un jeton d'accès créé pour eux, auquel cas vous pouvez utiliser ce jeton d'accès. Si vous pensez que le jeton peut avoir été compromis, ou vous voulez simplement le changer, vous pouvez faire expirer les jetons du client. Tous les jetons associés à la paire client/secret seront expirés.");
-jr_define('DELETE_TOKEN', 'Expire les jetons');
+	jr_define('CLIENT_TOKEN', 'Jeton d\'accès');
+	jr_define('CLIENT_TOKEN_INFO', "Les jetons d'accès peuvent être demandés à l'aide de l'ID client et du secret. Certains clients peuvent déjà avoir un jeton d'accès créé pour eux, auquel cas vous pouvez utiliser ce jeton d'accès. Si vous pensez que le jeton peut avoir été compromis, ou vous voulez simplement le changer, vous pouvez faire expirer les jetons du client. Tous les jetons associés à la paire client/secret seront expirés.");
+	jr_define('DELETE_TOKEN', 'Expire les jetons');

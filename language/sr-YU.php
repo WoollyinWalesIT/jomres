@@ -172,7 +172,7 @@ jr_define('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_POSTCODE_EXPL', 'Poštanski broj (PA
 jr_define('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_LANDLINE_EXPL', 'Tel');
 jr_define('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_MOBILE_EXPL', 'Mobilni');
 jr_define('_JOMRES_FRONT_MR_QUICKRES_STEP2_NOROOMSINRANGE', 'Nema soba koje sadrže sve parametre koje ste vi tražili');
-jr_define('_JOMRES_FRONT_MR_BOOKINGMADE', '<center>Hvala vam što ste odabrali nas i nadamo se da ćete uživati u boravku.<br><br> <b>Ovo je samo preliminarna rezervacija, i neće biti potvrdjena dok ne primite potvrdno pismo.</center>');
+jr_define('_JOMRES_FRONT_MR_BOOKINGMADE', 'Hvala vam što ste odabrali nas i nadamo se da ćete uživati u boravku.<br><br> Ovo je samo preliminarna rezervacija, i neće biti potvrdjena dok ne primite potvrdno pismo.');
 jr_define('_JOMRES_FRONT_MR_BOOKIN_TITLE', 'Prijavite gosta ');
 jr_define('_JOMRES_FRONT_MR_BOOKIN_GUESTBOOKEDIN', 'Gost je prijavljen ');
 jr_define('_JOMRES_FRONT_MR_BOOKOUT_TITLE', 'Gosti za odjavu ');
@@ -400,7 +400,7 @@ jr_define('_JOMRES_COM_MONTHSTOSHOW_DESC', 'U dostupnosti sobe, koliko meseci na
 jr_define('_JOMRES_COM_A_GATEWAYLIST', 'Payment Gateways');
 jr_define('_JOMRES_COM_A_CANCEL', 'Poništi');
 jr_define('_JOMRES_FRONT_BLACKBOOKING_DESC', 'Molim vas odaberite sobu ili sobe koje ne želite da budu u upotrebi, i potrebne datume. <br>Ako soba nema oznaku, onda ne može biti korišćena za crne rezervacije dok neka od rezervacija ne bude otkazana ili završena.<br/> Kada ste odabrali tražene datume, kliknite na plavo dugme "apply" da proverite dostupnost sobe. ');
-jr_define('_JOMRES_JR_NOTLOGGEDIN', '<center><b>Izgleda da ste izlogovani zbog neaktivnosti</b> Molimo vas ulogujte se ponovo.');
+jr_define('_JOMRES_JR_NOTLOGGEDIN', '<b>Izgleda da ste izlogovani zbog neaktivnosti</b> Molimo vas ulogujte se ponovo.');
 jr_define('_JOMRES_JR_BLACKBOOKING_REASON', 'Razlog');
 jr_define('_JOMRES_COM_A_GATEWAY_USEGATEWAYS', 'Koristi payment gateway?');
 jr_define('_JOMRES_COM_A_GATEWAY_BOOKING_CHOOSE', 'Molim vas odaberite način plaćanja.');
@@ -749,22 +749,22 @@ jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_PERPERSON', 'po osobi po noćenju ');
 // Jomres 3.1.11
 // Jomres 3.1.13
 if (!defined('_PN_OF')) {
-    jr_define('_PN_OF', 'of');
+	jr_define('_PN_OF', 'of');
 }
 if (!defined('_PN_START')) {
-    jr_define('_PN_START', 'Start');
+	jr_define('_PN_START', 'Start');
 }
 if (!defined('_PN_PREVIOUS')) {
-    jr_define('_PN_PREVIOUS', 'Prev');
+	jr_define('_PN_PREVIOUS', 'Prev');
 }
 if (!defined('_PN_NEXT')) {
-    jr_define('_PN_NEXT', 'Next');
+	jr_define('_PN_NEXT', 'Next');
 }
 if (!defined('_PN_END')) {
-    jr_define('_PN_END', 'End');
+	jr_define('_PN_END', 'End');
 }
 if (!defined('_PN_RESULTS')) {
-    jr_define('_PN_RESULTS', 'Results');
+	jr_define('_PN_RESULTS', 'Results');
 }
 jr_define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_TITLE', 'Imajte na umu da ovo nije formular za rezervaciju, već šaljete email upit vlasniku objekta.<br/>
 Unesite poruku koju želite da pošaljete za ');
@@ -1940,211 +1940,212 @@ jr_define('_JOMRES_BOOKING_FORM_EXTERNAL_URL_DESC', 'Ovde možete da podesite sp
 jr_define('_JOMRES_ROOM_TAGLINE', 'Tagline (kratak opis sobe/podnaslov)');
 jr_define('_JOMRES_ROOM_DESCRIPTION', 'Opis sobe');
 jr_define('_JOMRES_GUEST_BLACKLISTED', 'Guest blacklisted');
-jr_define('_JOMRES_GUEST_BLACKLISTED_DESC', 'If this guest is black listed then they will no longer be able to make bookings in this property.');jr_define('_JOMRES_SESSION_HANDLER', 'Session handler');
+jr_define('_JOMRES_GUEST_BLACKLISTED_DESC', 'If this guest is black listed then they will no longer be able to make bookings in this property.');
+jr_define('_JOMRES_SESSION_HANDLER', 'Session handler');
 jr_define('_JOMRES_SESSION_HANDLER_DESC', 'Save jomres session files to disk or to database. Recommended: database');
-jr_define('_JOMRES_MAP_HEIGHT',"Map height (px) ");
-jr_define('_JOMRES_MAP_ZOOMLEVEL',"Map zoom level ");
-jr_define('_JOMRES_MAP_MAPTYPE',"Map type ");
-jr_define('_JOMRES_TEMPLATE_PACKAGES',"Template Override Manager");
-jr_define('_JOMRES_TEMPLATE_PACKAGES_LEAD',"Template packages are plugins that can provide override templates for various core Jomres template files.");
-jr_define('_JOMRES_TEMPLATE_PACKAGES_INFO',"This page lists any template files that can be overridden by a template package's template files. If you want to override a certain template file, click on the edit button for that file, on the next page you will be able to choose which version you want to override with. Note, these overrides take priority over both Jomres Core and any Wordpress or Joomla theme/template overrides. You can disable an override by deleting it in the List Template Overrides page.");
-jr_define('_JOMRES_TEMPLATE_PACKAGE_NAME',"Template name");
-jr_define('_JOMRES_TEMPLATE_PACKAGE_PATH',"Current path");
-jr_define('_JOMRES_TEMPLATE_PACKAGE_NOT_OVERRIDDEN',"Not overridden");
-jr_define('_JOMRES_TEMPLATE_PACKAGES_EDIT_INFO',"You can choose which template file to override the Core template files by changing the dropdown");
+jr_define('_JOMRES_MAP_HEIGHT', "Map height (px) ");
+jr_define('_JOMRES_MAP_ZOOMLEVEL', "Map zoom level ");
+jr_define('_JOMRES_MAP_MAPTYPE', "Map type ");
+jr_define('_JOMRES_TEMPLATE_PACKAGES', "Template Override Manager");
+jr_define('_JOMRES_TEMPLATE_PACKAGES_LEAD', "Template packages are plugins that can provide override templates for various core Jomres template files.");
+jr_define('_JOMRES_TEMPLATE_PACKAGES_INFO', "This page lists any template files that can be overridden by a template package's template files. If you want to override a certain template file, click on the edit button for that file, on the next page you will be able to choose which version you want to override with. Note, these overrides take priority over both Jomres Core and any Wordpress or Joomla theme/template overrides. You can disable an override by deleting it in the List Template Overrides page.");
+jr_define('_JOMRES_TEMPLATE_PACKAGE_NAME', "Template name");
+jr_define('_JOMRES_TEMPLATE_PACKAGE_PATH', "Current path");
+jr_define('_JOMRES_TEMPLATE_PACKAGE_NOT_OVERRIDDEN', "Not overridden");
+jr_define('_JOMRES_TEMPLATE_PACKAGES_EDIT_INFO', "You can choose which template file to override the Core template files by changing the dropdown");
 
 
-jr_define('_JOMRES_OVERALL_ROOMS_BOOKED',"Procenat Rezervisanih Soba");
+jr_define('_JOMRES_OVERALL_ROOMS_BOOKED', "Procenat Rezervisanih Soba");
 
 
-jr_define('_JOMRES_OVERALL_ROOMS_BOOKED',"Procenat Rezervisanih Soba");
-jr_define('_JOMRES_SELECT_WIDGETS',"Izaberi table");
-jr_define('_JOMRES_INTERVAL',"Period");
-jr_define('_JOMRES_TIMELINE',"Timeline");
-jr_define('_JOMRES_CPANEL_GRID',"Control panel home layout");
-jr_define('_JOMRES_CPANEL_GRID_DESC',"Select the grid layout of your frontend property management control panel home page.");
+jr_define('_JOMRES_OVERALL_ROOMS_BOOKED', "Procenat Rezervisanih Soba");
+jr_define('_JOMRES_SELECT_WIDGETS', "Izaberi table");
+jr_define('_JOMRES_INTERVAL', "Period");
+jr_define('_JOMRES_TIMELINE', "Timeline");
+jr_define('_JOMRES_CPANEL_GRID', "Control panel home layout");
+jr_define('_JOMRES_CPANEL_GRID_DESC', "Select the grid layout of your frontend property management control panel home page.");
 
-jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_MARKER_IMAGES',"Google Map Markers");
-jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_TOWN_IMAGES',"Town images");
-jr_define('_JOMRES_PTYPE_CHANGE_WARNING',"Ako izmenite tip objekta obrisaćete sve sobe, cene, dostupnost kao i podešavanja koja ste postavili za objekat.");
+jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_MARKER_IMAGES', "Google Map Markers");
+jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_TOWN_IMAGES', "Town images");
+jr_define('_JOMRES_PTYPE_CHANGE_WARNING', "Ako izmenite tip objekta obrisaćete sve sobe, cene, dostupnost kao i podešavanja koja ste postavili za objekat.");
 jr_define('_JOMRES_VERSIONCHECK_VERSIONWARNING_UPDATEINFO', 'Please note, after updating you must update any Jomres Plugins that are already installed, through the Jomres plugin manager. If you have Core plugins installed, but do not have a valid Jomres license then we <em>do not</em> recommend that you update Jomres as older plugins often may not work with newer versions of Jomres. ');
 jr_define('_JOMRES_VERSIONCHECK_VERSIONWARNING_UPDATEINFO_KEYVALID', 'Please note, after updating you must update any Jomres Plugins that are already installed, through the Jomres plugin manager.');
 jr_define('_JOMRES_VERSIONCHECK_VERSIONWARNING_RENEWALS', "If you would like to update Jomres and it's plugins you will need a renewal license. Please visit <a href='https://www.jomres.net/pricing' target='_blank'>our site</a> for more information. In most cases these licenses are 50% of the price of a full license. Please ensure that you have logged into our shop before attempting to purchase a renewal.");
-jr_define('_JOMRES_PAYMENT_METHOD_USED',"Način plaćanja : ");
+jr_define('_JOMRES_PAYMENT_METHOD_USED', "Način plaćanja : ");
 
-jr_define('_JOMRES_PRICES',"Get Connected");
-
-
-jr_define('_OAUTH_TITLE',"App key management");
-jr_define('_OAUTH_APPS',"REST API client details");
-jr_define('_OAUTH_IDENTIFIER',"Identifier");
-jr_define('_OAUTH_APIKEY',"Client ID");
-jr_define('_OAUTH_SECRET',"Secret");
-jr_define('_OAUTH_CREATED',"Created/Updated App");
-jr_define('_OAUTH_CLIENT_ID_INFO',"The Client ID and Secret are created for you. The Identifier is so that you can easily identify this key pair.");
-jr_define('_OAUTH_SCOPE_TITLE',"Permissions ( what the client can do ) ");
-jr_define('_OAUTH_SCOPE_CATEGORY_USER' , "User permissions");
-jr_define('_OAUTH_SCOPE_CATEGORY_PROPERTIES' , "Property permissions");
-
-jr_define('API_DOCUMENTATION_TITLE',"App REST API documentation");
-
-jr_define('_OAUTH_CONFIG',"API Core configuration");
-
-jr_define('_OAUTH_CONFIG_SHOW',"Show API client configuration options in Jomres main menu?");
-jr_define('_OAUTH_CONFIG_SHOW_DESC',"You may choose to not show the API client configuration options in the 'My Account' section of the Jomres mainmenu. You could instead decide that you wanted to show them on other pages using Jomres Shortcodes.");
-
-jr_define( '_JOMRES_SHORTCODES_06000API_CORE_DOCS', "Displays the API core documentation page. The API Core allows users to create API clients, which are then used to access the API functionality which is outlined in the API Core documentation." );
-
-jr_define( '_JOMRES_SHORTCODES_06005API_CORE_CLIENT_ADMIN', "Displays the API core administration page, where property managers can configure API clients. Note that this is a registered user only feature, so users must be registered and logged in before they can see this page." );
-
-jr_define('API_METHODS_TITLE',"API Methods");
-jr_define('API_METHODS_DESCRIPTION',"This list of methods is based on your installed API feature plugins and is automatically generated. If you install or delete an API feature plugin you must visit this page to rebuild this list of API methods available on your site.");
-
-jr_define('_OAUTH_REDIRECT_URI',"Redirect URI");
-jr_define('_OAUTH_IDENTIFIER_PLACEHOLDER',"Give me a name that's meaningful to you, such as My Phone");
-
-jr_define('_OAUTH_GRANT_TYPES',"This system supports two grant types , Client Credentials and Implicit. If you are using the <em>client_credentials</em> flow then you will need both the client id and the client secret. If using <em>implicit</em> then your app would send just the client id and you would log into the system to explicitly authorise that app.");
-
-jr_define('_OAUTH_IMPLICIT_NOTES',"To use the <em>implicit</em> grant type flow, you will need to use this url to authorise your apps. When this url is called, and you have authorised the app the system will issue a token that you apps will then use to call this system's API ");
-jr_define('_OAUTH_AUTHORISATION_URL',"Authorisation URL");
-
-jr_define( 'WEBHOOKS_CORE', 'Webhooks' );
-
-jr_define('_WEBHOOKS_CONFIG_SHOW',"Show Webhook configuration options in Jomres main menu?");
-jr_define('_WEBHOOKS_CONFIG_SHOW_DESC',"You may choose to not show the Webhook configuration options in the 'My Account' section of the Jomres mainmenu. You could instead decide that you wanted to show them on other pages using Jomres Shortcodes.");
-
-jr_define('WEBHOOKS_DOCUMENTATION_TITLE',"Webhooks documentation");
-
-jr_define( '_JOMRES_SHORTCODES_06000WEBHOOKS_DOCS', "Displays the API core documentation page. The API Core allows users to create API clients, which are then used to access the API functionality which is outlined in the API Core documentation." );
-
-jr_define( '_JOMRES_SHORTCODES_06005WEBHOOKS_CLIENT_ADMIN', "Displays the API core administration page, where property managers can configure API clients. Note that this is a registered user only feature, so users must be registered and logged in before they can see this page." );
-
-jr_define( 'WEBHOOKS_INTEGRATION_EDIT', 'Edit Integration' );
-jr_define( 'WEBHOOKS_INTEGRATION_ID', 'Integration ID' );
-jr_define( 'WEBHOOKS_INTEGRATION_URL', 'URL or Name' );
-jr_define( 'WEBHOOKS_ENABLED', 'Enabled' );
-
-jr_define( 'WEBHOOKS_AUTH_METHOD_SELECT', 'Authentication method/Integration' );
-
-jr_define( 'WEBHOOKS_MANAGER_PROPERTIES_NONE', 'Any webhooks you create will not be triggered as you are not assigned to any properties. Super property managers are not typically assigned individual properties, so you may need a new user for webhook creation.' );
-jr_define( 'WEBHOOKS_MANAGER_PROPERTIES_ASSIGNED_DESC', 'Any webhooks you create will be triggered against the following properties : ' );
+jr_define('_JOMRES_PRICES', "Get Connected");
 
 
-jr_define( 'PORTAL_REVIEWS_LIMIT', 'Reviews limit' );
-jr_define( 'PORTAL_REVIEWS_LIMIT_DESC', 'Use this setting to limit the number of reviews shown in the property details page.' );
-jr_define( 'PORTAL_REVIEWS_SHOW_ALL_REVIEWS', 'Vidi sve recenzije' );
+jr_define('_OAUTH_TITLE', "App key management");
+jr_define('_OAUTH_APPS', "REST API client details");
+jr_define('_OAUTH_IDENTIFIER', "Identifier");
+jr_define('_OAUTH_APIKEY', "Client ID");
+jr_define('_OAUTH_SECRET', "Secret");
+jr_define('_OAUTH_CREATED', "Created/Updated App");
+jr_define('_OAUTH_CLIENT_ID_INFO', "The Client ID and Secret are created for you. The Identifier is so that you can easily identify this key pair.");
+jr_define('_OAUTH_SCOPE_TITLE', "Permissions ( what the client can do ) ");
+jr_define('_OAUTH_SCOPE_CATEGORY_USER', "User permissions");
+jr_define('_OAUTH_SCOPE_CATEGORY_PROPERTIES', "Property permissions");
 
-jr_define( 'VIDEO_TUTORIALS', 'Video uputstva' );
+jr_define('API_DOCUMENTATION_TITLE', "App REST API documentation");
 
-jr_define( '_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE', 'Minimalna vrednost depozita' );
-jr_define( '_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE_DESC', "Ako je izračunati depozit manji od ove cifre, postavite depozit na ovu vrednost. Ova cifra može sama po sebi biti zamenjena ako ne zadovoljava postavku minimalnog depozita na sajtu. Ostavite ga na 0 da ne koristite ovu opciju." );
+jr_define('_OAUTH_CONFIG', "API Core configuration");
 
-jr_define( '_JOMRES_MEDIA_CENTRE_DBIMPORT_WARNING', 'To increase your site speed, we recommend importing details of the existing site and properties images to database.');
-jr_define( '_JOMRES_MEDIA_CENTRE_DBIMPORT_ACTION', 'Import existing images details to database');
+jr_define('_OAUTH_CONFIG_SHOW', "Show API client configuration options in Jomres main menu?");
+jr_define('_OAUTH_CONFIG_SHOW_DESC', "You may choose to not show the API client configuration options in the 'My Account' section of the Jomres mainmenu. You could instead decide that you wanted to show them on other pages using Jomres Shortcodes.");
 
-jr_define( '_JOMRES_S3_ACTIVE_DESC', 'Experimental feature. If enabled, images uploaded using the media centre feature will also be copied to your Amazon S3 bucket and served from your Amazon S3 bucket url. When enabling this the first time, you`ll also be promted to import existing images to your S3 bucket.');
-jr_define( '_JOMRES_CLOUDFRONT_DMAIN', 'CloudFront domain');
-jr_define( '_JOMRES_CLOUDFRONT_DMAIN_DESC', 'Replace your default Amazon S3 domain with your CloudFront domain');
-jr_define( '_JOMRES_S3_SSLTLS_DESC', 'Recommended to be enabled. For Windows and Mac OSX only, if libcurl wasn`t built with Schannel or Secure Transport support (the native SSL libraries included in Windows and Mac OS X), you should set this to No.');
-jr_define( '_JOMRES_MEDIA_CENTRE_S3IMPORT_WARNING', 'You`ve enabled the Amazon S3 integration, so you`ll have to copy all existing images to your S3 bucket. Images are now served to your site visitors from your Amazon S3 url, so you`ll need to copy them first to your S3 bucket, otherwise they won`t be visible to your site visitors.');
-jr_define( '_JOMRES_MEDIA_CENTRE_S3IMPORT_WARNING2', 'Once you click this button, please do not interrupt the process and wait for a success or error message. Depending on server speed, this may take a while to complete.');
-jr_define( '_JOMRES_MEDIA_CENTRE_S3IMPORT_ACTION', 'Copy existing images to Amazon S3 bucket');
+jr_define('_JOMRES_SHORTCODES_06000API_CORE_DOCS', "Displays the API core documentation page. The API Core allows users to create API clients, which are then used to access the API functionality which is outlined in the API Core documentation.");
 
+jr_define('_JOMRES_SHORTCODES_06005API_CORE_CLIENT_ADMIN', "Displays the API core administration page, where property managers can configure API clients. Note that this is a registered user only feature, so users must be registered and logged in before they can see this page.");
 
-jr_define( 'JOMRES_INCOMPLETE', 'Nekompletnoo' );
-jr_define( 'JOMRES_WATING_APPROVAL', 'Čeka odobrenje' );
-jr_define( 'JOMRES_GOOGLE_MAPS_PDETAILS', 'Property details map' );
+jr_define('API_METHODS_TITLE', "API Methods");
+jr_define('API_METHODS_DESCRIPTION', "This list of methods is based on your installed API feature plugins and is automatically generated. If you install or delete an API feature plugin you must visit this page to rebuild this list of API methods available on your site.");
 
-jr_define( 'HAS_STARS_TITLE', 'Allows stars classification?');
-jr_define( '_JOMRES_MEDIA_CENTRE_DBIMPORT_FORCE', 'Force reimport image details to database');
-jr_define( '_JOMRES_MEDIA_CENTRE_S3IMPORT_FORCE', 'Force reupload images to S3 bucket');
-jr_define( '_JOMRES_UNINSTALL_TABLES', 'Delete all Jomres data when uninstalling?');
-jr_define( '_JOMRES_UNINSTALL_TABLES_DESC', 'If set to yes, Jomres will delete all it`s database tables when uninstalled. This will delete all Jomres data from db and can`t be undone.');
+jr_define('_OAUTH_REDIRECT_URI', "Redirect URI");
+jr_define('_OAUTH_IDENTIFIER_PLACEHOLDER', "Give me a name that's meaningful to you, such as My Phone");
 
-jr_define( 'TRANSACTION_IDS', 'Broj transakcije');
-jr_define( 'PAYMENT_METHOD', 'Način plaćanja');
-jr_define( 'POA_DISPLAY_PRICE', 'Cena na upit');
-jr_define( 'POA_DISPLAY_PRICE_DESC', 'Kada se objekti prikažu na listi, sistem će pokušati da pronađe važeću cenu iz konfigurisanih tarifa na osnovu ili današnjeg datuma, ili ako su datumi korišćeni u pretrazi, onda na osnovu tih datuma. Ako ne može, prikazaće se POA (cena na upit), što znači da bi gost trebalo da vas kontaktira da dobije cenu. Ako želite, ovde možete da konfigurišete cenu koja će biti prikazana umesto teksta CENA NA UPIT. Ova cifra bi bila „rezervna“ cena za prikaz ako se ne može odrediti druga cena.');
+jr_define('_OAUTH_GRANT_TYPES', "This system supports two grant types , Client Credentials and Implicit. If you are using the <em>client_credentials</em> flow then you will need both the client id and the client secret. If using <em>implicit</em> then your app would send just the client id and you would log into the system to explicitly authorise that app.");
 
-jr_define( 'PLUGINMANAGER_INSTALL', 'You need to install the plugin manager before you can install Jomres plugins, would you like to do that now?');
-jr_define( 'PLUGINMANAGER_REINSTALL', 'You need to update the plugin manager before you can update any installed plugins, would you like to do that now?');
-jr_define( 'PLUGINMANAGER_INSTALL_BUTTON', "Let's do this!");
+jr_define('_OAUTH_IMPLICIT_NOTES', "To use the <em>implicit</em> grant type flow, you will need to use this url to authorise your apps. When this url is called, and you have authorised the app the system will issue a token that you apps will then use to call this system's API ");
+jr_define('_OAUTH_AUTHORISATION_URL', "Authorisation URL");
 
-jr_define( 'INCLUDEINFILTERS', 'Include in filters?');
-jr_define( 'INCLUDEINFILTERS_DESC', 'Property feature filters in Ajax Composite Search can become very long, so you can set this option to No to prevent this feature from showing in the property feature list.');
+jr_define('WEBHOOKS_CORE', 'Webhooks');
 
-jr_define( 'REVIEW_REMINDER_PT1', "Imate ");
-jr_define( 'REVIEW_REMINDER_PT2', " rezervaciju (e) za koje još niste ostavili recenziju. Molimo ostavite recenziju.");
-jr_define( 'BOOKINGS_AWAITING_REVIEWS', "Rezervacije koje čekaju recenzije");
-jr_define( 'REVIEW_NAG', "Nag guests for reviews?");
-jr_define( 'REVIEW_NAG_DESC', "Once a guest has been booked out from a booking, the system will remind them to post a review for their booking. Set this option to No to disable this reminder.");
+jr_define('_WEBHOOKS_CONFIG_SHOW', "Show Webhook configuration options in Jomres main menu?");
+jr_define('_WEBHOOKS_CONFIG_SHOW_DESC', "You may choose to not show the Webhook configuration options in the 'My Account' section of the Jomres mainmenu. You could instead decide that you wanted to show them on other pages using Jomres Shortcodes.");
 
-jr_define( 'SEND_EMAIL_COPIES_TO_SITE_ADMINS_TITLE', "Send copies of the booking emails to site admins?");
-jr_define( 'SEND_EMAIL_COPIES_TO_SITE_ADMINS_DESC', "When enabled, copies of the booking emails sent to property managers will be sent to all site admins too.");
+jr_define('WEBHOOKS_DOCUMENTATION_TITLE', "Webhooks documentation");
 
-jr_define( 'HIDDEN_ADDRESS_SETTING', "Da li želite da sakrijete adresu?");
-jr_define( 'HIDDEN_ADDRESS_SETTING_DESC', "Ako ovu opciju postavite na Da, tada će samo gosti koji su već izvršili rezervaciju na vašem objektu moći da vide adresu ulice objekta. Možda biste želeli da koristite ovo podešavanje da sakrijete tačnu lokaciju imovine ako se, na primer, ne nalazite u tom objektu, nije u vašoj blizini ili nije obezbeđen....");
-jr_define( 'HIDDEN_ADDRESS_PLACEHOLDER', "*****");
-jr_define( '_JOMRES_MEDIA_CENTRE_OPTIMIZE_IMAGES', 'Optimize images on upload?');
-jr_define( '_JOMRES_MEDIA_CENTRE_OPTIMIZE_IMAGES_DESC', 'When enabled, images will be optimized for web (file size can be up to 75% smaller). Depending on the uploaded image type, your server needs to have one or more of these libraries installed by the hosting provider: optipng, pngquant, pngcrush, pngout, advpng, jpegtran, jpegoptim, gifsicle');
-jr_define( 'DATABASE_INTEGRITY_CHECK', 'Database Integrity Check');
-jr_define( 'OBSOLETE_FILES_CHECK', 'Obsolete Files Check');
-jr_define( 'DATATABLES_COLVIS', 'Column Visibility');
+jr_define('_JOMRES_SHORTCODES_06000WEBHOOKS_DOCS', "Displays the API core documentation page. The API Core allows users to create API clients, which are then used to access the API functionality which is outlined in the API Core documentation.");
 
-jr_define( 'API_TOKEN_LIFETIME', 'API token lifetime');
-jr_define( 'API_TOKEN_LIFETIME_DESC', 'How long an API token remains valid for, in seconds. 86400 = 1 day, 31536000 = 1 year');
+jr_define('_JOMRES_SHORTCODES_06005WEBHOOKS_CLIENT_ADMIN', "Displays the API core administration page, where property managers can configure API clients. Note that this is a registered user only feature, so users must be registered and logged in before they can see this page.");
+
+jr_define('WEBHOOKS_INTEGRATION_EDIT', 'Edit Integration');
+jr_define('WEBHOOKS_INTEGRATION_ID', 'Integration ID');
+jr_define('WEBHOOKS_INTEGRATION_URL', 'URL or Name');
+jr_define('WEBHOOKS_ENABLED', 'Enabled');
+
+jr_define('WEBHOOKS_AUTH_METHOD_SELECT', 'Authentication method/Integration');
+
+jr_define('WEBHOOKS_MANAGER_PROPERTIES_NONE', 'Any webhooks you create will not be triggered as you are not assigned to any properties. Super property managers are not typically assigned individual properties, so you may need a new user for webhook creation.');
+jr_define('WEBHOOKS_MANAGER_PROPERTIES_ASSIGNED_DESC', 'Any webhooks you create will be triggered against the following properties : ');
 
 
-jr_define( 'ENCRYPTION_TITLE', 'Encryption' );
-jr_define( 'ENCRYPTION_FILE_LOCATION', 'Encryption file location' );
-jr_define( 'ENCRYPTION_FILE_LOCATION_DESC', '**Never delete the encryption file** <br/> User data is stored encrypted in tables to ensure that "data at rest" is protected securely, in accordance with GDPR recommendations. By default the encryption key is stored in the file "encryption_key.class.php" in the root of your Jomres installation (typically /public_html/jomres). You can change where the file is stored here. If you do change the location, you must MOVE the file, do not wait for Jomres to create a new version otherwise you will not be able to decode your guests\'s details.' );
+jr_define('PORTAL_REVIEWS_LIMIT', 'Reviews limit');
+jr_define('PORTAL_REVIEWS_LIMIT_DESC', 'Use this setting to limit the number of reviews shown in the property details page.');
+jr_define('PORTAL_REVIEWS_SHOW_ALL_REVIEWS', 'Vidi sve recenzije');
+
+jr_define('VIDEO_TUTORIALS', 'Video uputstva');
+
+jr_define('_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE', 'Minimalna vrednost depozita');
+jr_define('_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE_DESC', "Ako je izračunati depozit manji od ove cifre, postavite depozit na ovu vrednost. Ova cifra može sama po sebi biti zamenjena ako ne zadovoljava postavku minimalnog depozita na sajtu. Ostavite ga na 0 da ne koristite ovu opciju.");
+
+jr_define('_JOMRES_MEDIA_CENTRE_DBIMPORT_WARNING', 'To increase your site speed, we recommend importing details of the existing site and properties images to database.');
+jr_define('_JOMRES_MEDIA_CENTRE_DBIMPORT_ACTION', 'Import existing images details to database');
+
+jr_define('_JOMRES_S3_ACTIVE_DESC', 'Experimental feature. If enabled, images uploaded using the media centre feature will also be copied to your Amazon S3 bucket and served from your Amazon S3 bucket url. When enabling this the first time, you`ll also be promted to import existing images to your S3 bucket.');
+jr_define('_JOMRES_CLOUDFRONT_DMAIN', 'CloudFront domain');
+jr_define('_JOMRES_CLOUDFRONT_DMAIN_DESC', 'Replace your default Amazon S3 domain with your CloudFront domain');
+jr_define('_JOMRES_S3_SSLTLS_DESC', 'Recommended to be enabled. For Windows and Mac OSX only, if libcurl wasn`t built with Schannel or Secure Transport support (the native SSL libraries included in Windows and Mac OS X), you should set this to No.');
+jr_define('_JOMRES_MEDIA_CENTRE_S3IMPORT_WARNING', 'You`ve enabled the Amazon S3 integration, so you`ll have to copy all existing images to your S3 bucket. Images are now served to your site visitors from your Amazon S3 url, so you`ll need to copy them first to your S3 bucket, otherwise they won`t be visible to your site visitors.');
+jr_define('_JOMRES_MEDIA_CENTRE_S3IMPORT_WARNING2', 'Once you click this button, please do not interrupt the process and wait for a success or error message. Depending on server speed, this may take a while to complete.');
+jr_define('_JOMRES_MEDIA_CENTRE_S3IMPORT_ACTION', 'Copy existing images to Amazon S3 bucket');
+
+
+jr_define('JOMRES_INCOMPLETE', 'Nekompletnoo');
+jr_define('JOMRES_WATING_APPROVAL', 'Čeka odobrenje');
+jr_define('JOMRES_GOOGLE_MAPS_PDETAILS', 'Property details map');
+
+jr_define('HAS_STARS_TITLE', 'Allows stars classification?');
+jr_define('_JOMRES_MEDIA_CENTRE_DBIMPORT_FORCE', 'Force reimport image details to database');
+jr_define('_JOMRES_MEDIA_CENTRE_S3IMPORT_FORCE', 'Force reupload images to S3 bucket');
+jr_define('_JOMRES_UNINSTALL_TABLES', 'Delete all Jomres data when uninstalling?');
+jr_define('_JOMRES_UNINSTALL_TABLES_DESC', 'If set to yes, Jomres will delete all it`s database tables when uninstalled. This will delete all Jomres data from db and can`t be undone.');
+
+jr_define('TRANSACTION_IDS', 'Broj transakcije');
+jr_define('PAYMENT_METHOD', 'Način plaćanja');
+jr_define('POA_DISPLAY_PRICE', 'Cena na upit');
+jr_define('POA_DISPLAY_PRICE_DESC', 'Kada se objekti prikažu na listi, sistem će pokušati da pronađe važeću cenu iz konfigurisanih tarifa na osnovu ili današnjeg datuma, ili ako su datumi korišćeni u pretrazi, onda na osnovu tih datuma. Ako ne može, prikazaće se POA (cena na upit), što znači da bi gost trebalo da vas kontaktira da dobije cenu. Ako želite, ovde možete da konfigurišete cenu koja će biti prikazana umesto teksta CENA NA UPIT. Ova cifra bi bila „rezervna“ cena za prikaz ako se ne može odrediti druga cena.');
+
+jr_define('PLUGINMANAGER_INSTALL', 'You need to install the plugin manager before you can install Jomres plugins, would you like to do that now?');
+jr_define('PLUGINMANAGER_REINSTALL', 'You need to update the plugin manager before you can update any installed plugins, would you like to do that now?');
+jr_define('PLUGINMANAGER_INSTALL_BUTTON', "Let's do this!");
+
+jr_define('INCLUDEINFILTERS', 'Include in filters?');
+jr_define('INCLUDEINFILTERS_DESC', 'Property feature filters in Ajax Composite Search can become very long, so you can set this option to No to prevent this feature from showing in the property feature list.');
+
+jr_define('REVIEW_REMINDER_PT1', "Imate ");
+jr_define('REVIEW_REMINDER_PT2', " rezervaciju (e) za koje još niste ostavili recenziju. Molimo ostavite recenziju.");
+jr_define('BOOKINGS_AWAITING_REVIEWS', "Rezervacije koje čekaju recenzije");
+jr_define('REVIEW_NAG', "Nag guests for reviews?");
+jr_define('REVIEW_NAG_DESC', "Once a guest has been booked out from a booking, the system will remind them to post a review for their booking. Set this option to No to disable this reminder.");
+
+jr_define('SEND_EMAIL_COPIES_TO_SITE_ADMINS_TITLE', "Send copies of the booking emails to site admins?");
+jr_define('SEND_EMAIL_COPIES_TO_SITE_ADMINS_DESC', "When enabled, copies of the booking emails sent to property managers will be sent to all site admins too.");
+
+jr_define('HIDDEN_ADDRESS_SETTING', "Da li želite da sakrijete adresu?");
+jr_define('HIDDEN_ADDRESS_SETTING_DESC', "Ako ovu opciju postavite na Da, tada će samo gosti koji su već izvršili rezervaciju na vašem objektu moći da vide adresu ulice objekta. Možda biste želeli da koristite ovo podešavanje da sakrijete tačnu lokaciju imovine ako se, na primer, ne nalazite u tom objektu, nije u vašoj blizini ili nije obezbeđen....");
+jr_define('HIDDEN_ADDRESS_PLACEHOLDER', "*****");
+jr_define('_JOMRES_MEDIA_CENTRE_OPTIMIZE_IMAGES', 'Optimize images on upload?');
+jr_define('_JOMRES_MEDIA_CENTRE_OPTIMIZE_IMAGES_DESC', 'When enabled, images will be optimized for web (file size can be up to 75% smaller). Depending on the uploaded image type, your server needs to have one or more of these libraries installed by the hosting provider: optipng, pngquant, pngcrush, pngout, advpng, jpegtran, jpegoptim, gifsicle');
+jr_define('DATABASE_INTEGRITY_CHECK', 'Database Integrity Check');
+jr_define('OBSOLETE_FILES_CHECK', 'Obsolete Files Check');
+jr_define('DATATABLES_COLVIS', 'Column Visibility');
+
+jr_define('API_TOKEN_LIFETIME', 'API token lifetime');
+jr_define('API_TOKEN_LIFETIME_DESC', 'How long an API token remains valid for, in seconds. 86400 = 1 day, 31536000 = 1 year');
+
+
+jr_define('ENCRYPTION_TITLE', 'Encryption');
+jr_define('ENCRYPTION_FILE_LOCATION', 'Encryption file location');
+jr_define('ENCRYPTION_FILE_LOCATION_DESC', '**Never delete the encryption file** <br/> User data is stored encrypted in tables to ensure that "data at rest" is protected securely, in accordance with GDPR recommendations. By default the encryption key is stored in the file "encryption_key.class.php" in the root of your Jomres installation (typically /public_html/jomres). You can change where the file is stored here. If you do change the location, you must MOVE the file, do not wait for Jomres to create a new version otherwise you will not be able to decode your guests\'s details.');
 
 jr_define('_JOMRES_COM_YOURBUSINESS_DESC', 'Informacije koje sačuvate ovde će se koristiti na fakturama generisanim za ovaj objekat');
 
-jr_define( '_JOMRES_GDPR_POLICIES', 'GDPR Policies' );
-jr_define( '_JOMRES_GDPR_POLICIES_DESC', 'Here you can configure how long after a booking or invoice has been created it is removed from the system to ensure that you are compliant with the GDPR.' );
+jr_define('_JOMRES_GDPR_POLICIES', 'GDPR Policies');
+jr_define('_JOMRES_GDPR_POLICIES_DESC', 'Here you can configure how long after a booking or invoice has been created it is removed from the system to ensure that you are compliant with the GDPR.');
 
-jr_define( '_JOMRES_GDPR_BOOKING_RETENTION', 'Booking Retention period (in days)' );
-jr_define( '_JOMRES_GDPR_BOOKING_RETENTION_DESC', 'How many days after a booking departure date should the booking be deleted? When it is deleted, both the booking and the invoice are removed. A typical retention period might be 365 days.' );
+jr_define('_JOMRES_GDPR_BOOKING_RETENTION', 'Booking Retention period (in days)');
+jr_define('_JOMRES_GDPR_BOOKING_RETENTION_DESC', 'How many days after a booking departure date should the booking be deleted? When it is deleted, both the booking and the invoice are removed. A typical retention period might be 365 days.');
 
-jr_define( '_JOMRES_GDPR_INVOICE_RETENTION', 'Invoice retention (non-booking) period' );
-jr_define( '_JOMRES_GDPR_INVOICE_RETENTION_DESC', 'Other invoices, such as commission and subscription invoices, are not tied to bookings. As a result they will not be deleted when booking invoices and contracts are deleted. Depending on your country, and your own business practices, you will need to configure a different retention period. A typical retention period might be 3653 days, which is 10 years.' );
+jr_define('_JOMRES_GDPR_INVOICE_RETENTION', 'Invoice retention (non-booking) period');
+jr_define('_JOMRES_GDPR_INVOICE_RETENTION_DESC', 'Other invoices, such as commission and subscription invoices, are not tied to bookings. As a result they will not be deleted when booking invoices and contracts are deleted. Depending on your country, and your own business practices, you will need to configure a different retention period. A typical retention period might be 3653 days, which is 10 years.');
 
 
-jr_define( '_JOMRES_GDPR_CONSENT_FORM_INTRO', 'Vaši podaci' );
-jr_define( '_JOMRES_GDPR_CONSENT_FORM_THIRD_PARTIES', 'Neke funkcije ove veb stranice moraju da čuvaju informacije o vašoj poseti. Ovo se koristi samo za pružanje usluga vama, nikada se ne deli ni sa kim drugim i briše se kada više nije potrebno.' );
-jr_define( '_JOMRES_GDPR_CONSENT_FORM_CONSENT_REQUEST', 'DA LI NAM DAJETE DOZVOLU DA ČUVAMO OVE INFORMACIJE??' );
-jr_define( '_JOMRES_GDPR_CONSENT_FORM_DETAIL', 'Detaljnije' );
-jr_define( '_JOMRES_GDPR_CONSENT_FORM_COOKIE', 'Morate da pristanete da čuvamo ove podatke kako biste mogli da rezervišete na ovom sajtu. Bez obzira na to da li se slažete da se vaši podaci čuvaju ili ne, mi ćemo sačuvati kolačić na vašem računaru kako bi nam rekli da li ste se uključili ili ne. Ovo nam pomaže da osiguramo da vas stalno ne pitamo da li želite da se prijavite ili odjavite i ne sadrži nikakve lične podatke . Ako se predomislite, u bilo kom trenutku možete da posetite stranicu Dozvole aplikacije da biste je uključili ili isključili.' );
-jr_define( '_JOMRES_GDPR_CONSENT_FORM_BASIC_INFORMATION', 'Informacije se čuvaju u različitim vremenskim periodima u zavisnosti od prirode vaše posete. Dakle, ako samo gledate okolo, mi ćemo sačuvati približne informacije o geografskoj lokaciji (na nivou zemlje). Ako vršite pretrage, da bismo formulare za pretragu učinili lakšim za korisnika, mi ćemo čuvati poslednje stvari koje ste tražili. Ove informacije se obično čuvaju najviše 24 sata i koriste se samo da bi vaša poseta bila prijatnija.' );
-jr_define( '_JOMRES_GDPR_CONSENT_FORM_BOOKINGS_INTRO', 'Kada napravite rezervaciju kod nas, po potrebi se čuva više informacija.' );
-jr_define( '_JOMRES_GDPR_CONSENT_FORM_BOOKINGS_1', 'Tehnički podaci obrasca za rezervaciju se snimaju i čuvaju najviše 60 dana. Ovo je potrebno kako bi se rezervacije na zahtev mogle pretvoriti u pune rezervacije kada rezervacija bude odobrena i radi analize od strane naših timova u slučaju da postoji problem sa rezervacijom. Ako niste bili prijavljeni kada ste napravili rezervaciju, poslaćemo vam imejlom korisničko ime i lozinku kako biste mogli da vidite svoju istoriju rezervacija i iskoristite svoje pravo da budete zaboravljeni (RTBF) ako to želite.' );
-jr_define( '_JOMRES_GDPR_CONSENT_FORM_BOOKINGS_2', 'Podaci uneti u formular za rezervaciju, na primer ime, adresa e-pošte, prava adresa, čuvaju se najviše 365 dana nakon datuma završetka rezervacije (napuštanje objekta). Ove informacije se čuvaju u šifrovanoj formi u našoj bazi podataka tako da samo ovlašćene osobe mogu da ih vide. Ako napravite rezervaciju, po zakonu moramo da čuvamo vaše lične podatke dok je rezervacija važeća. Kada se rezervacija završi, bilo zato što je otkazana ili ste odjavljeni, tada ćete moći da iskoristite svoj RTBF tako što ćete se prijaviti i posetiti stranicu „Vaši podaci“. Informacije o fakturi za izvršene rezervacije i dalje će biti bezbedno uskladištene u našoj bazi podataka kako bismo bili sigurni da se pridržavamo relevantnih poreskih zakona, ali ćete moći da uklonite sve druge lične informacije nakon što rezervacija bude završena.' );
-jr_define( '_JOMRES_GDPR_CONSENT_FORM_BOOKINGS_3', 'Kada pristanete da se vaši podaci čuvaju na gore opisani način, mi smo zakonski obavezni da sačuvamo ovu saglasnost u našoj bazi podataka. Ove informacije će uključivati vašu IP adresu i sadržaj obrasca za prijavu. Zadržaćemo ovo obaveštenje o saglasnosti na neodređeno vreme (ovo je zakonski zahtev).' );
+jr_define('_JOMRES_GDPR_CONSENT_FORM_INTRO', 'Vaši podaci');
+jr_define('_JOMRES_GDPR_CONSENT_FORM_THIRD_PARTIES', 'Neke funkcije ove veb stranice moraju da čuvaju informacije o vašoj poseti. Ovo se koristi samo za pružanje usluga vama, nikada se ne deli ni sa kim drugim i briše se kada više nije potrebno.');
+jr_define('_JOMRES_GDPR_CONSENT_FORM_CONSENT_REQUEST', 'DA LI NAM DAJETE DOZVOLU DA ČUVAMO OVE INFORMACIJE??');
+jr_define('_JOMRES_GDPR_CONSENT_FORM_DETAIL', 'Detaljnije');
+jr_define('_JOMRES_GDPR_CONSENT_FORM_COOKIE', 'Morate da pristanete da čuvamo ove podatke kako biste mogli da rezervišete na ovom sajtu. Bez obzira na to da li se slažete da se vaši podaci čuvaju ili ne, mi ćemo sačuvati kolačić na vašem računaru kako bi nam rekli da li ste se uključili ili ne. Ovo nam pomaže da osiguramo da vas stalno ne pitamo da li želite da se prijavite ili odjavite i ne sadrži nikakve lične podatke . Ako se predomislite, u bilo kom trenutku možete da posetite stranicu Dozvole aplikacije da biste je uključili ili isključili.');
+jr_define('_JOMRES_GDPR_CONSENT_FORM_BASIC_INFORMATION', 'Informacije se čuvaju u različitim vremenskim periodima u zavisnosti od prirode vaše posete. Dakle, ako samo gledate okolo, mi ćemo sačuvati približne informacije o geografskoj lokaciji (na nivou zemlje). Ako vršite pretrage, da bismo formulare za pretragu učinili lakšim za korisnika, mi ćemo čuvati poslednje stvari koje ste tražili. Ove informacije se obično čuvaju najviše 24 sata i koriste se samo da bi vaša poseta bila prijatnija.');
+jr_define('_JOMRES_GDPR_CONSENT_FORM_BOOKINGS_INTRO', 'Kada napravite rezervaciju kod nas, po potrebi se čuva više informacija.');
+jr_define('_JOMRES_GDPR_CONSENT_FORM_BOOKINGS_1', 'Tehnički podaci obrasca za rezervaciju se snimaju i čuvaju najviše 60 dana. Ovo je potrebno kako bi se rezervacije na zahtev mogle pretvoriti u pune rezervacije kada rezervacija bude odobrena i radi analize od strane naših timova u slučaju da postoji problem sa rezervacijom. Ako niste bili prijavljeni kada ste napravili rezervaciju, poslaćemo vam imejlom korisničko ime i lozinku kako biste mogli da vidite svoju istoriju rezervacija i iskoristite svoje pravo da budete zaboravljeni (RTBF) ako to želite.');
+jr_define('_JOMRES_GDPR_CONSENT_FORM_BOOKINGS_2', 'Podaci uneti u formular za rezervaciju, na primer ime, adresa e-pošte, prava adresa, čuvaju se najviše 365 dana nakon datuma završetka rezervacije (napuštanje objekta). Ove informacije se čuvaju u šifrovanoj formi u našoj bazi podataka tako da samo ovlašćene osobe mogu da ih vide. Ako napravite rezervaciju, po zakonu moramo da čuvamo vaše lične podatke dok je rezervacija važeća. Kada se rezervacija završi, bilo zato što je otkazana ili ste odjavljeni, tada ćete moći da iskoristite svoj RTBF tako što ćete se prijaviti i posetiti stranicu „Vaši podaci“. Informacije o fakturi za izvršene rezervacije i dalje će biti bezbedno uskladištene u našoj bazi podataka kako bismo bili sigurni da se pridržavamo relevantnih poreskih zakona, ali ćete moći da uklonite sve druge lične informacije nakon što rezervacija bude završena.');
+jr_define('_JOMRES_GDPR_CONSENT_FORM_BOOKINGS_3', 'Kada pristanete da se vaši podaci čuvaju na gore opisani način, mi smo zakonski obavezni da sačuvamo ovu saglasnost u našoj bazi podataka. Ove informacije će uključivati vašu IP adresu i sadržaj obrasca za prijavu. Zadržaćemo ovo obaveštenje o saglasnosti na neodređeno vreme (ovo je zakonski zahtev).');
 
-jr_define( '_JOMRES_GDPR_CONSENT_NOT_SET', 'Još nam niste rekli da li možemo da prikupljamo lične podatke o vama' );
-jr_define( '_JOMRES_GDPR_CONSENT_OPTED_IN', 'Dali ste saglasnost da prikupljamo neophodne lične informacije za preuzimanje rezervacija' );
-jr_define( '_JOMRES_GDPR_CONSENT_OPTED_OUT', 'Rekli ste nam da ne prikupljamo lične podatke' );
+jr_define('_JOMRES_GDPR_CONSENT_NOT_SET', 'Još nam niste rekli da li možemo da prikupljamo lične podatke o vama');
+jr_define('_JOMRES_GDPR_CONSENT_OPTED_IN', 'Dali ste saglasnost da prikupljamo neophodne lične informacije za preuzimanje rezervacija');
+jr_define('_JOMRES_GDPR_CONSENT_OPTED_OUT', 'Rekli ste nam da ne prikupljamo lične podatke');
 
-jr_define( '_JOMRES_GDPR_NOCONSENT_INTRO', 'You have not given us permission to collect your private data' );
-jr_define( '_JOMRES_GDPR_NOCONSENT_DIDNOTCONSENT', 'For you to perform certain actions on this website we have to collect Personally Identifiable Information about you, but you have not given us permission to do so.' );
-jr_define( '_JOMRES_GDPR_NOCONSENT_DIDNOTCONSENT_LINK_TEXT', 'Change your permissions' );
-jr_define( '_JOMRES_GDPR_NOCONSENT_DIDNOTCONSENT_LINK_CONTINUE', 'Continue viewing properties' );
+jr_define('_JOMRES_GDPR_NOCONSENT_INTRO', 'You have not given us permission to collect your private data');
+jr_define('_JOMRES_GDPR_NOCONSENT_DIDNOTCONSENT', 'For you to perform certain actions on this website we have to collect Personally Identifiable Information about you, but you have not given us permission to do so.');
+jr_define('_JOMRES_GDPR_NOCONSENT_DIDNOTCONSENT_LINK_TEXT', 'Change your permissions');
+jr_define('_JOMRES_GDPR_NOCONSENT_DIDNOTCONSENT_LINK_CONTINUE', 'Continue viewing properties');
 
-jr_define( '_JOMRES_GDPR_APP_MENU_ITEM', 'Dozvole aplikacija' );
+jr_define('_JOMRES_GDPR_APP_MENU_ITEM', 'Dozvole aplikacija');
 
-jr_define( '_JOMRES_GDPR_DOWNLOAD_GUEST_DATA', 'Guest data' );
-jr_define( '_JOMRES_GDPR_DOWNLOAD_GUEST_DATA_DESC', 'Ovo su detalji koje za vas cuvaju razliciti objekti. Razliciti objekti mogu imati razlicite evidencije, u zavisnosti od toga cta ste uneli kada ste napravili rezervaciju.' );
-jr_define( '_JOMRES_GDPR_DOWNLOAD_GUEST_DATA_DESC_NONE', 'You do not have any data stored with any hotels in this system' );
-jr_define( '_JOMRES_GDPR_DOWNLOAD_PROFILE_DATA', 'Profile data' );
-jr_define( '_JOMRES_GDPR_DOWNLOAD_PROFILE_DATA_DESC', 'Ovo je glavni skup podataka koji cuvamo za vas, za razliku od onih koje ste podelili sa razlicitim objektima.' );
-jr_define( '_JOMRES_GDPR_DOWNLOAD_PROFILE_DATA_DESC_NONE', 'You have not saved any profile information' );
-jr_define( '_JOMRES_GDPR_DOWNLOAD_PROFILE_DATA_TEXT', 'Evo ličnih podataka koje čuvamo na ovoj veb stranici za vas. Konstruisan je u JSON (JavaScript Object Notation) formatu koji je lagan format za razmenu podataka. Ljudima je lako čitati i pisati, a mašinama je lako raščlaniti i generisati.' );
+jr_define('_JOMRES_GDPR_DOWNLOAD_GUEST_DATA', 'Guest data');
+jr_define('_JOMRES_GDPR_DOWNLOAD_GUEST_DATA_DESC', 'Ovo su detalji koje za vas cuvaju razliciti objekti. Razliciti objekti mogu imati razlicite evidencije, u zavisnosti od toga cta ste uneli kada ste napravili rezervaciju.');
+jr_define('_JOMRES_GDPR_DOWNLOAD_GUEST_DATA_DESC_NONE', 'You do not have any data stored with any hotels in this system');
+jr_define('_JOMRES_GDPR_DOWNLOAD_PROFILE_DATA', 'Profile data');
+jr_define('_JOMRES_GDPR_DOWNLOAD_PROFILE_DATA_DESC', 'Ovo je glavni skup podataka koji cuvamo za vas, za razliku od onih koje ste podelili sa razlicitim objektima.');
+jr_define('_JOMRES_GDPR_DOWNLOAD_PROFILE_DATA_DESC_NONE', 'You have not saved any profile information');
+jr_define('_JOMRES_GDPR_DOWNLOAD_PROFILE_DATA_TEXT', 'Evo ličnih podataka koje čuvamo na ovoj veb stranici za vas. Konstruisan je u JSON (JavaScript Object Notation) formatu koji je lagan format za razmenu podataka. Ljudima je lako čitati i pisati, a mašinama je lako raščlaniti i generisati.');
 
-jr_define( '_JOMRES_GDPR_REDACTION_STRING', 'Anonymised' );
+jr_define('_JOMRES_GDPR_REDACTION_STRING', 'Anonymised');
 
-jr_define( '_JOMRES_GDPR_MY_DATA', 'Vaši podaci' );
-jr_define( '_JOMRES_GDPR_MY_DATA_PRIVACY_NOTICE', 'Prihvatanjem ovog Ugovora o uslovima korišćenja (ovaj „Ugovor“), saglasni ste da:
+jr_define('_JOMRES_GDPR_MY_DATA', 'Vaši podaci');
+jr_define('_JOMRES_GDPR_MY_DATA_PRIVACY_NOTICE', 'Prihvatanjem ovog Ugovora o uslovima korišćenja (ovaj „Ugovor“), saglasni ste da:
 
 <ul>
 	<li>
@@ -2172,68 +2173,68 @@ jr_define( '_JOMRES_GDPR_MY_DATA_PRIVACY_NOTICE', 'Prihvatanjem ovog Ugovora o u
 		Čuvaćete informacije o svom nalogu i nadziraćete ga i bićete u potpunosti odgovorni za svako korišćenje vašeg naloga od Vas ili bilo koga drugog osim Vas.
 	</li>
 </ul>
-' );
-jr_define( '_JOMRES_GDPR_MY_DATA_LEAD', 'Bezbednost i transparentnost su nam važni.' );
-jr_define( '_JOMRES_GDPR_MY_DATA_INTRO', 'Svoju odgovornost u vezi sa čuvanjem vaših podataka shvatamo veoma ozbiljno. Sve informacije koje mogu da identifikuju ličnosti (PII) se čuvaju šifrovane u našoj bazi podataka pomoću industrijskih standardnih algoritama kako bi se osiguralo da samo ovlašćeni korisnici mogu da vide ove informacije.' );
+');
+jr_define('_JOMRES_GDPR_MY_DATA_LEAD', 'Bezbednost i transparentnost su nam važni.');
+jr_define('_JOMRES_GDPR_MY_DATA_INTRO', 'Svoju odgovornost u vezi sa čuvanjem vaših podataka shvatamo veoma ozbiljno. Sve informacije koje mogu da identifikuju ličnosti (PII) se čuvaju šifrovane u našoj bazi podataka pomoću industrijskih standardnih algoritama kako bi se osiguralo da samo ovlašćeni korisnici mogu da vide ove informacije.');
 
-jr_define( '_JOMRES_GDPR_MY_DATA_DOWNLOAD_TEXT', 'Možete preuzeti sve PII podatke koje čuvamo za vas.' );
-jr_define( '_JOMRES_GDPR_MY_DATA_DOWNLOAD_BUTTON', 'Preuzmi' );
+jr_define('_JOMRES_GDPR_MY_DATA_DOWNLOAD_TEXT', 'Možete preuzeti sve PII podatke koje čuvamo za vas.');
+jr_define('_JOMRES_GDPR_MY_DATA_DOWNLOAD_BUTTON', 'Preuzmi');
 
-jr_define( '_JOMRES_GDPR_MY_RTBF_LEAD', 'Pravo Na Zaborav (RTBF)' );
-jr_define( '_JOMRES_GDPR_MY_RTBF_INTRO', 'Verujemo da biste trebali biti u mogućnosti da <a href="https://gdpr-info.eu/art-17-gdpr/" target="_blank">izbrišete</a> svoje <a href="https://gdpr-info.eu/art-4-gdpr/" target="_blank">lične podatke </a>ako želite i ako je to izvodljivo. ' );
-jr_define( '_JOMRES_GDPR_MY_RTBF_NOTREGISTERED_OPTEDIN', 'Niste registrovani na ovom sajtu. Vaša opšta lokacija (država) i IP adresa će biti sačuvani najviše 24 sata, a zatim će biti izbrisani.' );
-jr_define( '_JOMRES_GDPR_MY_RTBF_NOTREGISTERED_OPTEDOUT', 'You are not registered on this site and you have opted out of data collection. We have not stored your PII.' );
+jr_define('_JOMRES_GDPR_MY_RTBF_LEAD', 'Pravo Na Zaborav (RTBF)');
+jr_define('_JOMRES_GDPR_MY_RTBF_INTRO', 'Verujemo da biste trebali biti u mogućnosti da <a href="https://gdpr-info.eu/art-17-gdpr/" target="_blank">izbrišete</a> svoje <a href="https://gdpr-info.eu/art-4-gdpr/" target="_blank">lične podatke </a>ako želite i ako je to izvodljivo. ');
+jr_define('_JOMRES_GDPR_MY_RTBF_NOTREGISTERED_OPTEDIN', 'Niste registrovani na ovom sajtu. Vaša opšta lokacija (država) i IP adresa će biti sačuvani najviše 24 sata, a zatim će biti izbrisani.');
+jr_define('_JOMRES_GDPR_MY_RTBF_NOTREGISTERED_OPTEDOUT', 'You are not registered on this site and you have opted out of data collection. We have not stored your PII.');
 
-jr_define( '_JOMRES_GDPR_MY_RTBF_REGISTERED_NOBOOKINGS', 'Registrovani ste na sajtu i nemate nerešene ili aktivne rezervacije. Možemo da anonimiziramo većinu informacija koje trenutno imamo za vas. Da li biste želeli to da uradite? ' );
-jr_define( '_JOMRES_GDPR_MY_RTBF_REGISTERED_NOBOOKINGS_NOTE', 'Napomena: Ovo ne briše vaš nalog, već samo anonimizira našu evidenciju tako da vaš nalog ne može biti povezan sa vama kao osobom. Po zakonu moramo da nastavimo da čuvamo vaše podatke za potrebe fakturisanja, ali ćemo izbrisati sve podatke o gostima.' );
+jr_define('_JOMRES_GDPR_MY_RTBF_REGISTERED_NOBOOKINGS', 'Registrovani ste na sajtu i nemate nerešene ili aktivne rezervacije. Možemo da anonimiziramo većinu informacija koje trenutno imamo za vas. Da li biste želeli to da uradite? ');
+jr_define('_JOMRES_GDPR_MY_RTBF_REGISTERED_NOBOOKINGS_NOTE', 'Napomena: Ovo ne briše vaš nalog, već samo anonimizira našu evidenciju tako da vaš nalog ne može biti povezan sa vama kao osobom. Po zakonu moramo da nastavimo da čuvamo vaše podatke za potrebe fakturisanja, ali ćemo izbrisati sve podatke o gostima.');
 
-jr_define( '_JOMRES_GDPR_MY_RTBF_REGISTERED_FUTUREBOOKINGS', 'Registrovani ste na sajtu, ali imate neizvršene rezervacije i u ovom trenutku ne možemo da anonimiziramo vaše podatke. Ovi podaci će se čuvati najviše godinu dana nakon što je rezervacija završena, a zatim će biti izbrisani, ako ne odlučite da ih uklonite pre tog vremena.' );
-jr_define( '_JOMRES_GDPR_MY_RTBF_REGISTERED_PROPERTYMANAGERS', 'Pošto ste menadžer objekta na našem sajtu, ne možemo vam ponuditi mogućnost automatskog brisanja vaših podataka. Umesto toga, kontaktirajte nas direktno kako bismo mogli da vaš objekat uklonimo sa sajta ili dodamo drugom menadžeru ako to želite. Kada to uradimo i uklonimo vaš status menadžera objekta, moći ćete automatski da izbrišete svoje podatke.' );
+jr_define('_JOMRES_GDPR_MY_RTBF_REGISTERED_FUTUREBOOKINGS', 'Registrovani ste na sajtu, ali imate neizvršene rezervacije i u ovom trenutku ne možemo da anonimiziramo vaše podatke. Ovi podaci će se čuvati najviše godinu dana nakon što je rezervacija završena, a zatim će biti izbrisani, ako ne odlučite da ih uklonite pre tog vremena.');
+jr_define('_JOMRES_GDPR_MY_RTBF_REGISTERED_PROPERTYMANAGERS', 'Pošto ste menadžer objekta na našem sajtu, ne možemo vam ponuditi mogućnost automatskog brisanja vaših podataka. Umesto toga, kontaktirajte nas direktno kako bismo mogli da vaš objekat uklonimo sa sajta ili dodamo drugom menadžeru ako to želite. Kada to uradimo i uklonimo vaš status menadžera objekta, moći ćete automatski da izbrišete svoje podatke.');
 
-jr_define( '_JOMRES_GDPR_MY_RTBF_FORGET_ME', 'Zaboravi me (obriši sve moje podatke)!' );
-jr_define( '_JOMRES_GDPR_MY_RTBF_FORGET_ME_WARNING', 'Ovo se ne može poništiti!' );
-jr_define( '_JOMRES_GDPR_MY_RTBF_FORGET_ME_FORGOTTEN', 'Vaši podaci su obrisani!' );
+jr_define('_JOMRES_GDPR_MY_RTBF_FORGET_ME', 'Zaboravi me (obriši sve moje podatke)!');
+jr_define('_JOMRES_GDPR_MY_RTBF_FORGET_ME_WARNING', 'Ovo se ne može poništiti!');
+jr_define('_JOMRES_GDPR_MY_RTBF_FORGET_ME_FORGOTTEN', 'Vaši podaci su obrisani!');
 
-jr_define( '_JOMRES_CANNOT_BOOK_INVALID_EMAIL', 'Sorry, you cannot make a booking as your email address is invalid' );
+jr_define('_JOMRES_CANNOT_BOOK_INVALID_EMAIL', 'Sorry, you cannot make a booking as your email address is invalid');
 
-jr_define( '_JOMRES_GDPR_RTBF_ANONYMISE_GUEST_INTRO', 'This page gives you the ability to anonymise any guests who have their information stored in the system. This allows you to be compliant with the GDPR, however you cannot edit any other information on this page. To do that you have to log into the frontend as a property manager. The assumption is that a historic guest has contacted you requesting that you allow them to exercise their right to be forgotten. If they are unable to log into the frontend of the site (perhaps a user was not created for them when they booked) then you can use this area to anonymise them once you have confirmed their identity.' );
+jr_define('_JOMRES_GDPR_RTBF_ANONYMISE_GUEST_INTRO', 'This page gives you the ability to anonymise any guests who have their information stored in the system. This allows you to be compliant with the GDPR, however you cannot edit any other information on this page. To do that you have to log into the frontend as a property manager. The assumption is that a historic guest has contacted you requesting that you allow them to exercise their right to be forgotten. If they are unable to log into the frontend of the site (perhaps a user was not created for them when they booked) then you can use this area to anonymise them once you have confirmed their identity.');
 
-jr_define( '_JOMRES_GDPR_RTBF_ANONYMISE_GUEST', 'Anonymise guest' );
-jr_define( '_JOMRES_GDPR_RTBF_UNKNOWN_PROPERTY', 'DELETED PROPERTY' );
-jr_define( '_JOMRES_GDPR_RTBF_GUEST_REDACTED', 'Guest data anonymised' );
-jr_define( '_JOMRES_GDPR_RTBF_GUEST_CANNOT_REDACT', 'Cannot anonymise' );
+jr_define('_JOMRES_GDPR_RTBF_ANONYMISE_GUEST', 'Anonymise guest');
+jr_define('_JOMRES_GDPR_RTBF_UNKNOWN_PROPERTY', 'DELETED PROPERTY');
+jr_define('_JOMRES_GDPR_RTBF_GUEST_REDACTED', 'Guest data anonymised');
+jr_define('_JOMRES_GDPR_RTBF_GUEST_CANNOT_REDACT', 'Cannot anonymise');
 
-jr_define( '_JOMRES_GDPR_CONSENT_TRIGGER_FORM', 'We need your permission to store your information before you can make a booking. CLICK HERE to give us permission.' );
+jr_define('_JOMRES_GDPR_CONSENT_TRIGGER_FORM', 'We need your permission to store your information before you can make a booking. CLICK HERE to give us permission.');
 
-jr_define( '_JOMRES_GDPR_CONFIG_ENABLE', 'Enable GDPR compliant functionality?' );
-jr_define( '_JOMRES_GDPR_CONFIG_ENABLE_DESC', 'WE DO NOT RECOMMEND THAT YOU DISABLE THE GDPR COMPLIANT FUNCTIONALITY. Jomres has built-in features that helps you to ensure that the Jomres section of your site is compliant with the GDPR. If you disable this feature (and you should not if you are in the EU or you do business with citizens of the EU) then Jomres will automatically assume that every visitor to the site has given their permission to have their personal data enabled. App permission and My Data pages will not be shown and users will not be prompted to give their permission to have the data collected.' );
+jr_define('_JOMRES_GDPR_CONFIG_ENABLE', 'Enable GDPR compliant functionality?');
+jr_define('_JOMRES_GDPR_CONFIG_ENABLE_DESC', 'WE DO NOT RECOMMEND THAT YOU DISABLE THE GDPR COMPLIANT FUNCTIONALITY. Jomres has built-in features that helps you to ensure that the Jomres section of your site is compliant with the GDPR. If you disable this feature (and you should not if you are in the EU or you do business with citizens of the EU) then Jomres will automatically assume that every visitor to the site has given their permission to have their personal data enabled. App permission and My Data pages will not be shown and users will not be prompted to give their permission to have the data collected.');
 
 
-jr_define( 'EMPTY_TEMP_DIR', 'Empty temp dir' );
-jr_define( 'EMPTY_TEMP_DIR_DONE', 'Temporary files deleted' );
+jr_define('EMPTY_TEMP_DIR', 'Empty temp dir');
+jr_define('EMPTY_TEMP_DIR_DONE', 'Temporary files deleted');
 
-jr_define( 'MACHINE_TRANSLATION', 'Machine translations' );
-jr_define( 'MACHINE_TRANSLATION_DEFAULT_LANG', 'Source language' );
-jr_define( 'MACHINE_TRANSLATION_DEFAULT_LANG_DESC', 'It is possible to hook in machine translation functionality. This allows you to enter strings in one language and translations could be pulled from remote services. Be aware that not all translation services support all languages. See those services for more detail.' );
+jr_define('MACHINE_TRANSLATION', 'Machine translations');
+jr_define('MACHINE_TRANSLATION_DEFAULT_LANG', 'Source language');
+jr_define('MACHINE_TRANSLATION_DEFAULT_LANG_DESC', 'It is possible to hook in machine translation functionality. This allows you to enter strings in one language and translations could be pulled from remote services. Be aware that not all translation services support all languages. See those services for more detail.');
 
-jr_define( '_JOMRES_PROPERTY_ROOM_TYPES_EDIT', 'Tipovi soba' );
-jr_define( '_JOMRES_PROPERTY_ROOM_TYPES_NEW', 'Novi tip sobe' );
-jr_define( '_JOMRES_PROPERTY_ROOM_TYPES_EDIT_LEAD', 'Na ovoj stranici možete kreirati i uređivati tipove soba. Ove vrste soba biće specifične samo za ovaj objekat. Kada postavljate svoj objekat, prvo su vam potrebne neke vrste soba. Možete koristiti ili one tipove soba koje je napravio administrator ili možete dodati svoje (npr. Superior soba, Apartman LUX i slično). Kada imate jednu ili više vrsta soba, možete kreirati sobe tog tipa. Nakon što imate sobe, možete kreirati tarife (cene) za te sobe jer su tarife povezane sa tipovima soba.' );
-jr_define( '_JOMRES_CONFIG_ROOM_TYPES_CREATING_TITLE', 'Managers can create room types?' );
-jr_define( '_JOMRES_CONFIG_ROOM_TYPES_CREATING_DESC', 'Use this option to configure whether or not managers can create their own room types in the frontend. We strongly recommend that you leave this option set to No when you first start using Jomres, especially if you are creating a portal because you should create all room types in the administrator area. Room types created by managers will appear in search forms, but because these room types are specific to individual properties, only one property will be shown in search results if that room type is selected durings searches. If you want so that only Super Property Managers can create room types then leave this option set to Yes and use the Access Control plugin to allow only super managers to view the "Settings > Room types" menu option. Only properties that rent out rooms in the property and use Advanced or Micromanage tariff editing modes can use this option. Villa/apartment type properties will not be able to use it.' );
+jr_define('_JOMRES_PROPERTY_ROOM_TYPES_EDIT', 'Tipovi soba');
+jr_define('_JOMRES_PROPERTY_ROOM_TYPES_NEW', 'Novi tip sobe');
+jr_define('_JOMRES_PROPERTY_ROOM_TYPES_EDIT_LEAD', 'Na ovoj stranici možete kreirati i uređivati tipove soba. Ove vrste soba biće specifične samo za ovaj objekat. Kada postavljate svoj objekat, prvo su vam potrebne neke vrste soba. Možete koristiti ili one tipove soba koje je napravio administrator ili možete dodati svoje (npr. Superior soba, Apartman LUX i slično). Kada imate jednu ili više vrsta soba, možete kreirati sobe tog tipa. Nakon što imate sobe, možete kreirati tarife (cene) za te sobe jer su tarife povezane sa tipovima soba.');
+jr_define('_JOMRES_CONFIG_ROOM_TYPES_CREATING_TITLE', 'Managers can create room types?');
+jr_define('_JOMRES_CONFIG_ROOM_TYPES_CREATING_DESC', 'Use this option to configure whether or not managers can create their own room types in the frontend. We strongly recommend that you leave this option set to No when you first start using Jomres, especially if you are creating a portal because you should create all room types in the administrator area. Room types created by managers will appear in search forms, but because these room types are specific to individual properties, only one property will be shown in search results if that room type is selected durings searches. If you want so that only Super Property Managers can create room types then leave this option set to Yes and use the Access Control plugin to allow only super managers to view the "Settings > Room types" menu option. Only properties that rent out rooms in the property and use Advanced or Micromanage tariff editing modes can use this option. Villa/apartment type properties will not be able to use it.');
 jr_define('_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_UPDATE', 'Room/property type updated');
-jr_define( '_JOMRES_PROPERTY_ROOM_TYPES_CONFIG_TITLE', 'Show room types in search options' );
-jr_define( '_JOMRES_PROPERTY_ROOM_TYPES_CONFIG_DESC', 'If you choose to allow property managers to create their own room types, you can choose whether or not to show those created room types in the search options where you have chosen to show room types.' );
+jr_define('_JOMRES_PROPERTY_ROOM_TYPES_CONFIG_TITLE', 'Show room types in search options');
+jr_define('_JOMRES_PROPERTY_ROOM_TYPES_CONFIG_DESC', 'If you choose to allow property managers to create their own room types, you can choose whether or not to show those created room types in the search options where you have chosen to show room types.');
 
 
-jr_define( '_JOMRES_QUICKBOOKING_EMAIL_ADDRESS_NOTE', "Ne bi trebalo ponovo da koristite istu adresu e-pošte za svaku rezervaciju.<br/>Ako imate jedinstven domen (npr. ne Gmail adresu e-pošte) za svoje preduzeće, koristite broj telefona gosta kao njegovu adresu e-pošte. Adresa e-pošte bi tada izgledala otprilike kao 123456@mojdomen.com<br/>Ovo će osigurati da se novi gost kreira kada napravite rezervaciju ." );
+jr_define('_JOMRES_QUICKBOOKING_EMAIL_ADDRESS_NOTE', "Ne bi trebalo ponovo da koristite istu adresu e-pošte za svaku rezervaciju.<br/>Ako imate jedinstven domen (npr. ne Gmail adresu e-pošte) za svoje preduzeće, koristite broj telefona gosta kao njegovu adresu e-pošte. Adresa e-pošte bi tada izgledala otprilike kao 123456@mojdomen.com<br/>Ovo će osigurati da se novi gost kreira kada napravite rezervaciju .");
 
-jr_define( '_JOMRES_LOGIN_USERNAME', 'Email adresa' );
-jr_define( '_JOMRES_LOGIN_PASSWORD', 'Lozinka' );
-jr_define( '_JOMRES_LOGIN_REASON_EMAIL_ALREADY_USED',"Drago nam je što ponovo želite da rezervišete kod nas. Da biste mogli da upravljate svim vašim rezervacijama, potrebno je da se prijavite kako bi rezervacija mogla da se doda na vaš nalog. Ovo takođe osigurava da ste ovlašćeni da koristite navedenu email adresu." );
+jr_define('_JOMRES_LOGIN_USERNAME', 'Email adresa');
+jr_define('_JOMRES_LOGIN_PASSWORD', 'Lozinka');
+jr_define('_JOMRES_LOGIN_REASON_EMAIL_ALREADY_USED', "Drago nam je što ponovo želite da rezervišete kod nas. Da biste mogli da upravljate svim vašim rezervacijama, potrebno je da se prijavite kako bi rezervacija mogla da se doda na vaš nalog. Ovo takođe osigurava da ste ovlašćeni da koristite navedenu email adresu.");
 
-jr_define( '_JOMRES_LOGIN_RESET_MESSAGE', 'Ako ne znate svoju lozinku, možemo vam poslati novi email za poništavanje lozinke. Pratite uputstva u toj email poruci da biste resetovali lozinku.' );
-jr_define( '_JOMRES_LOGIN_RESET_BUTTON', 'Zaboravili ste lozinku?' );
+jr_define('_JOMRES_LOGIN_RESET_MESSAGE', 'Ako ne znate svoju lozinku, možemo vam poslati novi email za poništavanje lozinke. Pratite uputstva u toj email poruci da biste resetovali lozinku.');
+jr_define('_JOMRES_LOGIN_RESET_BUTTON', 'Zaboravili ste lozinku?');
 
 jr_define('_JOMRES_REVIEWS_ANONYMISE', 'Želite da se vaše ime ne prikazuje?');
 jr_define('_JOMRES_REVIEWS_ANONYMISE_DESC', 'Ako prilikom ocenjivanja ne želite da se prikazuje vaše ime, koristićemo vaše inicijale.');
@@ -2472,86 +2473,86 @@ jr_define('CMF_CONFIG_KEY_DESC', 'The Channel Management Framework license key. 
 jr_define('_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT_UNAPPROVED', 'Vaš objekat nije odobren');
 jr_define('_JOMRES_APPROVALS_MANAGER_EMAIL_CONTENT_UNAPPROVED', "Vaša objekat nije odobren ili je suspendovan. Ako mislite da je ovo učinjeno greškom, molimo Vas da nas kontaktirate. ");
 
-jr_define('_JOMRES_GUESTTYPES_IS_CHILD',"Da li je tip gosta dete?");
-jr_define('_JOMRES_GUESTTYPES_IS_CHILD_DESC',"Podesite ovo na DA ako bi ovaj tip gosta bio klasifikovan kao tip gosta Dete.");
+jr_define('_JOMRES_GUESTTYPES_IS_CHILD', "Da li je tip gosta dete?");
+jr_define('_JOMRES_GUESTTYPES_IS_CHILD_DESC', "Podesite ovo na DA ako bi ovaj tip gosta bio klasifikovan kao tip gosta Dete.");
 
-jr_define('_JOMRES_GUESTTYPES_INTRO',"Ako želite da naplaćujete po osobi po noćenju, moraćete da kreirate tipove gostiju.");
-jr_define('_JOMRES_GUESTTYPES_INSTRUCTIONS',"Možete da kreirate onoliko tipova gostiju koliko vam je potrebno, pokušajte da počnete tako što ćete kreirati samo jedan tip gostiju koji se zove „Odrasli“. Ostavite sva podešavanja na podrazumevanim vrednostima. Zatim, ako na primer želite da deci mlađoj od 12 godina date popust od 50%, kreirali biste novi tip gostiju i nazvali ga „Deca mlađa od 12 godina“. Podesite „Dodati neslaganje?“ opciju na - (negativno) i postavite 'Neslaganje' na 50. To znači da kada se deca dodaju u rezervaciju, njima se naplaćuje 50% cene sobe za sobu. " );
+jr_define('_JOMRES_GUESTTYPES_INTRO', "Ako želite da naplaćujete po osobi po noćenju, moraćete da kreirate tipove gostiju.");
+jr_define('_JOMRES_GUESTTYPES_INSTRUCTIONS', "Možete da kreirate onoliko tipova gostiju koliko vam je potrebno, pokušajte da počnete tako što ćete kreirati samo jedan tip gostiju koji se zove „Odrasli“. Ostavite sva podešavanja na podrazumevanim vrednostima. Zatim, ako na primer želite da deci mlađoj od 12 godina date popust od 50%, kreirali biste novi tip gostiju i nazvali ga „Deca mlađa od 12 godina“. Podesite „Dodati neslaganje?“ opciju na - (negativno) i postavite 'Neslaganje' na 50. To znači da kada se deca dodaju u rezervaciju, njima se naplaćuje 50% cene sobe za sobu. ");
 
-jr_define('_JOMRES_MICROMANAGE_PICKERDROPDOWN_EDITPRICES',"Set prices manually");
-jr_define('_JOMRES_MICROMANAGE_PICKERDROPDOWN_EDITMINDAYS',"Set minimum nights manually");
-jr_define('_JOMRES_MICROMANAGE_PICKER_SETMINDAYS',"Podesi minimum noćenja");
+jr_define('_JOMRES_MICROMANAGE_PICKERDROPDOWN_EDITPRICES', "Set prices manually");
+jr_define('_JOMRES_MICROMANAGE_PICKERDROPDOWN_EDITMINDAYS', "Set minimum nights manually");
+jr_define('_JOMRES_MICROMANAGE_PICKER_SETMINDAYS', "Podesi minimum noćenja");
 
-jr_define('_JOMRES_MICROMANAGE_PICKER_TYPE_DOW',"Podesite <em>cenu noćenja</em> po danu u nedelji");
-jr_define('_JOMRES_MICROMANAGE_PICKER_TYPE_INTERVAL_RATES',"Podesite <em>cenu noćenja</em> prema periodu");
-jr_define('_JOMRES_MICROMANAGE_PICKER_TYPE_INTERVAL_MINDAYS',"Podesite <em>minimalni broj noćenja</em> prema periodu");
+jr_define('_JOMRES_MICROMANAGE_PICKER_TYPE_DOW', "Podesite <em>cenu noćenja</em> po danu u nedelji");
+jr_define('_JOMRES_MICROMANAGE_PICKER_TYPE_INTERVAL_RATES', "Podesite <em>cenu noćenja</em> prema periodu");
+jr_define('_JOMRES_MICROMANAGE_PICKER_TYPE_INTERVAL_MINDAYS', "Podesite <em>minimalni broj noćenja</em> prema periodu");
 
-jr_define('_JOMRES_MICROMANAGE_PICKER_INSTRUCTIONS_RATES',"Birači datuma i unos cene vam omogućavaju da postavite jednu cenu za dati period. Odaberite datum početka i završetka, unesite cenu i kliknite na dugme Postavi cenu po noćenju.");
-jr_define('_JOMRES_MICROMANAGE_PICKER_INSTRUCTIONS_MINDAYS',"Birači datuma i unos minimalnog broja noćenja vam omogućavaju da postavite jednu vrednost za minimalni broj noćenja za dati period. Odaberite datum početka i završetka, unesite broj za minimalni broj noćenja i kliknite na Podesi minimalno noćenja.");
+jr_define('_JOMRES_MICROMANAGE_PICKER_INSTRUCTIONS_RATES', "Birači datuma i unos cene vam omogućavaju da postavite jednu cenu za dati period. Odaberite datum početka i završetka, unesite cenu i kliknite na dugme Postavi cenu po noćenju.");
+jr_define('_JOMRES_MICROMANAGE_PICKER_INSTRUCTIONS_MINDAYS', "Birači datuma i unos minimalnog broja noćenja vam omogućavaju da postavite jednu vrednost za minimalni broj noćenja za dati period. Odaberite datum početka i završetka, unesite broj za minimalni broj noćenja i kliknite na Podesi minimalno noćenja.");
 
-jr_define('_JOMRES_MICROMANAGE_PICKERS_SELECTOR_INFO',"Koristite ovaj padajući meni da biste menjali između podešavanja cena za pojedinačne datume i podešavanja minimalnih noćenja za pojedinačne datume. Možete da koristite birač <em>po danu u nedelji</em> birač po <em>opsegu datuma</em> ili da podesite cene/minimalni broj noćenja tako što ćete ručno izmeniti datume.");
-jr_define('_JOMRES_MICROMANAGE_PICKERS_SELECTOR_INFO_SMALL_VIEWPORT',"Koristite ovaj padajući meni da biste menjali između podešavanja cena za pojedinačne datume i podešavanja minimalnih noćenja za pojedinačne datume. Možete da koristite birač <em>prema rasponu datuma</em> ili da podesite cene/minimalni broj noćenja tako što ćete ručno izmeniti datume.");
-jr_define('_JOMRES_MICROMANAGE_PICKERS_SELECTOR',"Podesi cene ili minimum noćenja");
+jr_define('_JOMRES_MICROMANAGE_PICKERS_SELECTOR_INFO', "Koristite ovaj padajući meni da biste menjali između podešavanja cena za pojedinačne datume i podešavanja minimalnih noćenja za pojedinačne datume. Možete da koristite birač <em>po danu u nedelji</em> birač po <em>opsegu datuma</em> ili da podesite cene/minimalni broj noćenja tako što ćete ručno izmeniti datume.");
+jr_define('_JOMRES_MICROMANAGE_PICKERS_SELECTOR_INFO_SMALL_VIEWPORT', "Koristite ovaj padajući meni da biste menjali između podešavanja cena za pojedinačne datume i podešavanja minimalnih noćenja za pojedinačne datume. Možete da koristite birač <em>prema rasponu datuma</em> ili da podesite cene/minimalni broj noćenja tako što ćete ručno izmeniti datume.");
+jr_define('_JOMRES_MICROMANAGE_PICKERS_SELECTOR', "Podesi cene ili minimum noćenja");
 
-jr_define('_JOMRES_MICROMANAGE_PICKER_BYDOW',"Podesite <em>minimalni broj noćenja</em> po danu u nedelji");
-jr_define('_JOMRES_MICROMANAGE_PICKER_BYDOW_INFO',"Polja za dan u nedelji vam omogućavaju da podesite minimalni broj noćenja za određeni dan u nedelji, kada kliknete na dugme za dan u nedelji, svi dani u nedelji će biti podešeni na to podešavanje minimalnog broja noćenja.");
-
-
-jr_define('_JOMRES_MICROMANAGE_MANUALLY',"Ručno podešavanje cena i minimalnog broj noćenja");
-jr_define('_JOMRES_MICROMANAGE_SET_PRICES',"Podesi cene");
-jr_define('_JOMRES_MICROMANAGE_SET_MINDAYS',"Podesi min noćenja");
-
-jr_define('_JOMRES_MICROMANAGE_PRICE',"Po noćenju");
-jr_define('_JOMRES_MICROMANAGE_MINDAYS',"Min noćenja");
-jr_define('_JOMRES_MICROMANAGE_MAXDAYS',"Max noćenja");
-
-jr_define('_JOMRES_MICROMANAGE_INTRO',"Ovde možete kreirati svoje tarife, koje su povezane sa tipovima soba koje imate u svom objektu. ");
-
-jr_define('_JOMRES_MICROMANAGE_BASIC_SETTINGS',"Najčešće korišćene opcije");
-
-jr_define('_JOMRES_MICROMANAGE_MODAL_BUTTON',"Uputstva i instrukcije");
-
-jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS',"Ako želite da dodate različite cene za različit broj gostiju, onda <em>možete kreirati više od nekoliko tarifa za svaki tip sobe</em> i imati različite minimalne/maksimalne vrednosti gostiju u tim tarifama.");
-
-jr_define('_JOMRES_MICROMANAGE_INFO',"Dajte naziv tarifi, definišite maksimalan broj noćenja, kao i minimalni i maksimalan broj gostiju koji su potrebni u formularu za rezervaciju pre nego što se tarifa ponudi.<br/><br/> Koristite tablu za biranje datuma da biste dodali cene i podešavanja minimalnog broja noćenja u raspon datuma ili direktno uredili unose. Ako ne želite da se tarifa uopšte nudi na određene datume, ostavite cenu podešenu na 0 ( nula ) na te datume. <br/><br/> Možete imati različite minimalne brojeve noćenja na različite datume, tako da ako želite duže rezervacije tokom npr. festivalskih/konferencijskih nedelja, možete podesiti minimalan broj nocenja da budu vecie samo u tim periodima.<br/><br/>Ako naplaćujete po osobi po noćenju (PPPN), možete da omogućite tu postavku u Podešavanja > Opšte konfiguracije > Tab Tarife & Valuta, a zatim kreirate tipove gostiju koje su vam potrebne u Podešavanja > Tipovi gostiju.");
-
-jr_define('_JOMRES_MICROMANAGE_EXTRAOPTIONS',"Extra opcije");
-
-jr_define('_JOMRES_MICROMANAGE_EXTRA_OPTIONS',"Ovo su dodatne opcije koje se ne koriste tako često, ali su vam ipak dostupne. <br/><strong>IGNORIŠI PO OSOBI PO NOĆENJU (PPPN)</strong> Znači ignorisanje po osobi po noći. Možete imati nekoliko različitih tarifa za isti tip sobe, na primer od kojih se jedna naplaćuje po osobi po noći, a druga ne.<br/><strong>DOZVOLI VIKENDE</strong> Opcija Dozvoli vikende vam daje mogućnost da napravite tarifu koja je dostupna samo radnim danima, na primer ako želite posebnu tarifu za poslovne putnike. U tom slučaju biste postavili opciju na Ne i minimalne noći na 1, a maksimalne noći, najviše 5. <br/><strong>SAMO VIKENDI</strong>  Opcija Samo vikendi je suprotna opciji Dozvoli vikende. Ono što smatrate danima vikenda može da se konfiguriše u podešavanjima konfiguracije objekta. Ovo vam daje mogućnost da definišete cenu samo za vikend koju biste možda želeli da ponudite za posebne događaje.<br/><strong>DOLAZAK DAN U NEDELJI</strong> Ova opcija vam daje mogućnost da prisilite prijavu da bude samo određenim danima u nedelji i najbolje je koristiti u kombinaciji sa Opšte Konfiguracije > Kartica Rezervacije > Opcije fiksnih perioda. Većina korisnika će želeti da ovu opciju ostavi na Sve.<br/>Poslednje dve opcije,<strong>Minimalan broj soba je već izabran</strong> i <strong>Maksimalan broj soba je već izabran</strong> su veoma specijalizovane i korisne za nekretnine sa izuzetno komplikovanim tarifama. <em>Osim ako nemate posebne potrebe, trebalo bi da ostavite ove opcije na podrazumevana podešavanja.</em> Koristite ih ako želite da se ova tarifa nudi samo kada je gost već izabrao X broj soba u formularu za rezervaciju, tako da na primer možete imati jednu osnovnu tarifu gde su te opcije ostavljene kao podrazumevane, i drugu tarifu gde je za Minimalan broj soba već izabrana opcija postavljena na 1, onda će ova druga tarifa biti ponuđena u obrascu za rezervaciju kada soba bude izabrana.");
-
-jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS_LIST_PAGE',"Možete kreirati više tarifa za isti tip sobe, tako da možete kreirati jednu tarifu za min/max dana od 1 - 7 i drugu tarifu gde je minimalno dana 7, maksimalno dana 14 itd. Ovo vam omogućava da kreirate šeme cena koje su jednostavne ili komplikovane koliko vam je potrebno. Takođe vam omogućava da kreirate više tarifa sa različitim uslovima, tako da možete imati drugi set tarifa gde je cena niža za noćenje sa doručkom i drugi skup skupljih tarifa za noćenje, doručak i večeru.");
-
-jr_define('_JOMRES_MICROMANAGE_USE_SELECTED_DATES',"Podesite samo dane za biranje datuma");
-jr_define( '_JOMRES_PROPERTY_HCATEGORIES', 'Property Categories' );
-jr_define( '_JOMRES_PROPERTY_HCATEGORIES_HEDIT', 'Edit Property Category' );
-jr_define('_JOMRES_STOP_READTHISFIRST1',"Stop!");
-jr_define('_JOMRES_STOP_READTHISFIRST2',"Thanks for installing Jomres");
-jr_define('_JOMRES_STOP_READTHISFIRST3',"Property management is performed in public facing pages, not the administrator area.");
-jr_define('_JOMRES_STOP_READTHISFIRST4',"If you are not familiar with Jomres please visit the Help section > Getting Started page.");
+jr_define('_JOMRES_MICROMANAGE_PICKER_BYDOW', "Podesite <em>minimalni broj noćenja</em> po danu u nedelji");
+jr_define('_JOMRES_MICROMANAGE_PICKER_BYDOW_INFO', "Polja za dan u nedelji vam omogućavaju da podesite minimalni broj noćenja za određeni dan u nedelji, kada kliknete na dugme za dan u nedelji, svi dani u nedelji će biti podešeni na to podešavanje minimalnog broja noćenja.");
 
 
-jr_define('_JOMRES_CONFIG_SYNDICATION_TITLE',"Join the Jomres Syndicate");
-jr_define('_JOMRES_CONFIG_SYNDICATION_DESC',"Once you have your site setup and ready to start receiving visitors, join the Jomres.net syndicate and get your properties listed on other Jomres sites.");
+jr_define('_JOMRES_MICROMANAGE_MANUALLY', "Ručno podešavanje cena i minimalnog broj noćenja");
+jr_define('_JOMRES_MICROMANAGE_SET_PRICES', "Podesi cene");
+jr_define('_JOMRES_MICROMANAGE_SET_MINDAYS', "Podesi min noćenja");
+
+jr_define('_JOMRES_MICROMANAGE_PRICE', "Po noćenju");
+jr_define('_JOMRES_MICROMANAGE_MINDAYS', "Min noćenja");
+jr_define('_JOMRES_MICROMANAGE_MAXDAYS', "Max noćenja");
+
+jr_define('_JOMRES_MICROMANAGE_INTRO', "Ovde možete kreirati svoje tarife, koje su povezane sa tipovima soba koje imate u svom objektu. ");
+
+jr_define('_JOMRES_MICROMANAGE_BASIC_SETTINGS', "Najčešće korišćene opcije");
+
+jr_define('_JOMRES_MICROMANAGE_MODAL_BUTTON', "Uputstva i instrukcije");
+
+jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS', "Ako želite da dodate različite cene za različit broj gostiju, onda <em>možete kreirati više od nekoliko tarifa za svaki tip sobe</em> i imati različite minimalne/maksimalne vrednosti gostiju u tim tarifama.");
+
+jr_define('_JOMRES_MICROMANAGE_INFO', "Dajte naziv tarifi, definišite maksimalan broj noćenja, kao i minimalni i maksimalan broj gostiju koji su potrebni u formularu za rezervaciju pre nego što se tarifa ponudi.<br/><br/> Koristite tablu za biranje datuma da biste dodali cene i podešavanja minimalnog broja noćenja u raspon datuma ili direktno uredili unose. Ako ne želite da se tarifa uopšte nudi na određene datume, ostavite cenu podešenu na 0 ( nula ) na te datume. <br/><br/> Možete imati različite minimalne brojeve noćenja na različite datume, tako da ako želite duže rezervacije tokom npr. festivalskih/konferencijskih nedelja, možete podesiti minimalan broj nocenja da budu vecie samo u tim periodima.<br/><br/>Ako naplaćujete po osobi po noćenju (PPPN), možete da omogućite tu postavku u Podešavanja > Opšte konfiguracije > Tab Tarife & Valuta, a zatim kreirate tipove gostiju koje su vam potrebne u Podešavanja > Tipovi gostiju.");
+
+jr_define('_JOMRES_MICROMANAGE_EXTRAOPTIONS', "Extra opcije");
+
+jr_define('_JOMRES_MICROMANAGE_EXTRA_OPTIONS', "Ovo su dodatne opcije koje se ne koriste tako često, ali su vam ipak dostupne. <br/><strong>IGNORIŠI PO OSOBI PO NOĆENJU (PPPN)</strong> Znači ignorisanje po osobi po noći. Možete imati nekoliko različitih tarifa za isti tip sobe, na primer od kojih se jedna naplaćuje po osobi po noći, a druga ne.<br/><strong>DOZVOLI VIKENDE</strong> Opcija Dozvoli vikende vam daje mogućnost da napravite tarifu koja je dostupna samo radnim danima, na primer ako želite posebnu tarifu za poslovne putnike. U tom slučaju biste postavili opciju na Ne i minimalne noći na 1, a maksimalne noći, najviše 5. <br/><strong>SAMO VIKENDI</strong>  Opcija Samo vikendi je suprotna opciji Dozvoli vikende. Ono što smatrate danima vikenda može da se konfiguriše u podešavanjima konfiguracije objekta. Ovo vam daje mogućnost da definišete cenu samo za vikend koju biste možda želeli da ponudite za posebne događaje.<br/><strong>DOLAZAK DAN U NEDELJI</strong> Ova opcija vam daje mogućnost da prisilite prijavu da bude samo određenim danima u nedelji i najbolje je koristiti u kombinaciji sa Opšte Konfiguracije > Kartica Rezervacije > Opcije fiksnih perioda. Većina korisnika će želeti da ovu opciju ostavi na Sve.<br/>Poslednje dve opcije,<strong>Minimalan broj soba je već izabran</strong> i <strong>Maksimalan broj soba je već izabran</strong> su veoma specijalizovane i korisne za nekretnine sa izuzetno komplikovanim tarifama. <em>Osim ako nemate posebne potrebe, trebalo bi da ostavite ove opcije na podrazumevana podešavanja.</em> Koristite ih ako želite da se ova tarifa nudi samo kada je gost već izabrao X broj soba u formularu za rezervaciju, tako da na primer možete imati jednu osnovnu tarifu gde su te opcije ostavljene kao podrazumevane, i drugu tarifu gde je za Minimalan broj soba već izabrana opcija postavljena na 1, onda će ova druga tarifa biti ponuđena u obrascu za rezervaciju kada soba bude izabrana.");
+
+jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS_LIST_PAGE', "Možete kreirati više tarifa za isti tip sobe, tako da možete kreirati jednu tarifu za min/max dana od 1 - 7 i drugu tarifu gde je minimalno dana 7, maksimalno dana 14 itd. Ovo vam omogućava da kreirate šeme cena koje su jednostavne ili komplikovane koliko vam je potrebno. Takođe vam omogućava da kreirate više tarifa sa različitim uslovima, tako da možete imati drugi set tarifa gde je cena niža za noćenje sa doručkom i drugi skup skupljih tarifa za noćenje, doručak i večeru.");
+
+jr_define('_JOMRES_MICROMANAGE_USE_SELECTED_DATES', "Podesite samo dane za biranje datuma");
+jr_define('_JOMRES_PROPERTY_HCATEGORIES', 'Property Categories');
+jr_define('_JOMRES_PROPERTY_HCATEGORIES_HEDIT', 'Edit Property Category');
+jr_define('_JOMRES_STOP_READTHISFIRST1', "Stop!");
+jr_define('_JOMRES_STOP_READTHISFIRST2', "Thanks for installing Jomres");
+jr_define('_JOMRES_STOP_READTHISFIRST3', "Property management is performed in public facing pages, not the administrator area.");
+jr_define('_JOMRES_STOP_READTHISFIRST4', "If you are not familiar with Jomres please visit the Help section > Getting Started page.");
+
+
+jr_define('_JOMRES_CONFIG_SYNDICATION_TITLE', "Join the Jomres Syndicate");
+jr_define('_JOMRES_CONFIG_SYNDICATION_DESC', "Once you have your site setup and ready to start receiving visitors, join the Jomres.net syndicate and get your properties listed on other Jomres sites.");
 
 
 
-jr_define('_JOMRES_MICROMANAGE_CREATE_ROOM_1',"You need at least one room of one of the following types before you can create a tariff :");
-jr_define('_JOMRES_MICROMANAGE_CREATE_ROOM_2',"Go to Settings > Rooms and create a room first, once  you have done that you will be able to create a tariff for that room type.");
+jr_define('_JOMRES_MICROMANAGE_CREATE_ROOM_1', "You need at least one room of one of the following types before you can create a tariff :");
+jr_define('_JOMRES_MICROMANAGE_CREATE_ROOM_2', "Go to Settings > Rooms and create a room first, once  you have done that you will be able to create a tariff for that room type.");
 
-jr_define('JOMRES_PLATFORM',"Jomres Platform");
+jr_define('JOMRES_PLATFORM', "Jomres Platform");
 
 
-jr_define('JOMRES_PLATFORM_CONNECTED',"Connected");
-jr_define('JOMRES_PLATFORM_CONNECTED_DESC',"Set this to Yes if you have already connected your Stripe account with the Jomres Platform.");
+jr_define('JOMRES_PLATFORM_CONNECTED', "Connected");
+jr_define('JOMRES_PLATFORM_CONNECTED_DESC', "Set this to Yes if you have already connected your Stripe account with the Jomres Platform.");
 
-jr_define('JOMRES_PLATFORM_ACCOUNT_ID',"Stripe Live Account number");
-jr_define('JOMRES_PLATFORM_ACCOUNT_ID_DESC',"This is your Stripe Account id which can be found in your Stripe Dashboard under Settings > Account information and looks like acct_xxxxxxxxx You would use this field if you have multiple Jomres installations and you want to use the same account across all sites and you have already connected to us. If you have not connected to the Jomres Platform, it's not sufficient to enter your details here. Instead, please visit the Get Connected menu option in the toolbar, under the Help section. If you want to test payments, in the Debugging tab of Site Configuration set your site from Production to Development.");
+jr_define('JOMRES_PLATFORM_ACCOUNT_ID', "Stripe Live Account number");
+jr_define('JOMRES_PLATFORM_ACCOUNT_ID_DESC', "This is your Stripe Account id which can be found in your Stripe Dashboard under Settings > Account information and looks like acct_xxxxxxxxx You would use this field if you have multiple Jomres installations and you want to use the same account across all sites and you have already connected to us. If you have not connected to the Jomres Platform, it's not sufficient to enter your details here. Instead, please visit the Get Connected menu option in the toolbar, under the Help section. If you want to test payments, in the Debugging tab of Site Configuration set your site from Production to Development.");
 
-jr_define('JOMRES_PLATFORM_LIVE_SECRET_KEY',"Stripe live secret key");
-jr_define('JOMRES_PLATFORM_LIVE_SECRET_KEY_DESC','Go to Developers > API keys in your Stripe Dashboard to find your secret keys. These are used by the system to verify booking data returned from the payment form is valid and that deposits have been paid before saving the booking.' );
+jr_define('JOMRES_PLATFORM_LIVE_SECRET_KEY', "Stripe live secret key");
+jr_define('JOMRES_PLATFORM_LIVE_SECRET_KEY_DESC', 'Go to Developers > API keys in your Stripe Dashboard to find your secret keys. These are used by the system to verify booking data returned from the payment form is valid and that deposits have been paid before saving the booking.');
 
-jr_define('JOMRES_PLATFORM_TEST_SECRET_KEY',"Stripe test secret key");
-jr_define('JOMRES_PLATFORM_TEST_SECRET_KEY_DESC',' ' );
+jr_define('JOMRES_PLATFORM_TEST_SECRET_KEY', "Stripe test secret key");
+jr_define('JOMRES_PLATFORM_TEST_SECRET_KEY_DESC', ' ');
 
 
 
@@ -2682,42 +2683,42 @@ jr_define('JOMRES_ORGANISATIION_LANGUGES_DESC', 'Comma seperated list of languag
 jr_define('JOMRES_ORGANISATIION_LOGO_URL', 'Url to your organisation logo');
 
 
-jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Property type images");
+jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES', "Property type images");
 
 
-	jr_define('JOMRES_SITE_SIDEBAR_HELP_TITLE',"Need help booking?");
-	jr_define('JOMRES_SITE_SIDEBAR_HELP_BLURB',"Call our customer services team on the number below to speak to one of our representatives who will help you with all of your holiday needs.");
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_TITLE', "Need help booking?");
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_BLURB', "Call our customer services team on the number below to speak to one of our representatives who will help you with all of your holiday needs.");
 
-	jr_define('JOMRES_SITE_SIDEBAR_WHY_TITLE',"Why book with us?");
-	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_TITLE',"We offer the best booking rates");
-	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB1',"We have the best priced properties currently on the market.");
-	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB2',"No booking fees. Save money!");
-	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_TITLE',"Great selection of properties");
-	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_HOTELS'," properties");
-	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS'," guest reviews");
-	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE',"We’re Always Here");
-	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT',"Call or email us, anytime");
-	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT',"Get 24-hour support before, during, and after your trip");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_TITLE', "Why book with us?");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_TITLE', "We offer the best booking rates");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB1', "We have the best priced properties currently on the market.");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB2', "No booking fees. Save money!");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_TITLE', "Great selection of properties");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_HOTELS', " properties");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS', " guest reviews");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE', "We’re Always Here");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT', "Call or email us, anytime");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT', "Get 24-hour support before, during, and after your trip");
 
-	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA',"Social media");
-	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD',"Find us on social media");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA', "Social media");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD', "Find us on social media");
 
-	jr_define('JOMRES_REVIEW_SCORE_TOP_1',	"Outstanding");
-	jr_define('JOMRES_REVIEW_SCORE_TOP_2',	"Exceptional");
-	jr_define('JOMRES_REVIEW_SCORE_TOP_3',	"Fabulous");
-	jr_define('JOMRES_REVIEW_SCORE_TOP_4',	"Superb");
-	jr_define('JOMRES_REVIEW_SCORE_TOP_5',	"Fantastic");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_1', "Outstanding");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_2', "Exceptional");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_3', "Fabulous");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_4', "Superb");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_5', "Fantastic");
 
-	jr_define('JOMRES_REVIEW_SCORE_VERY_GOOD',	"Very good");
-	jr_define('JOMRES_REVIEW_SCORE_GOOD',	"Good");
+	jr_define('JOMRES_REVIEW_SCORE_VERY_GOOD', "Very good");
+	jr_define('JOMRES_REVIEW_SCORE_GOOD', "Good");
 
 	jr_define('JOMRES_REVIEWS_NONE_NEW', "New listing");
 	jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Discounted");
 
 
 	jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', 'Where do you want to go?');
-	jr_define( 'DATA_SOURCES_TITLE', "Refresh data sources" );
-	jr_define( 'DATA_SOURCES_TITLE_INFO', "Data sources refreshed. Data sources are used by autocomplete input fields in the search widget and they are usually updated automatically, however this page forces the data to be updated manually if required." );
+	jr_define('DATA_SOURCES_TITLE', "Refresh data sources");
+	jr_define('DATA_SOURCES_TITLE_INFO', "Data sources refreshed. Data sources are used by autocomplete input fields in the search widget and they are usually updated automatically, however this page forces the data to be updated manually if required.");
 
 
 	jr_define('_OAUTH_TOKEN_REQUEST_URI', "To send a token request, send the request to this url");
@@ -2758,4 +2759,3 @@ You can leave the target language set to your current language and use this page
 	jr_define('CLIENT_TOKEN', 'Access Token');
 	jr_define('CLIENT_TOKEN_INFO', "Access tokens can be requested using the Client ID and Secret. Some Clients may already have an access token created for it, in which case you can use this access token. If you believe that the token may have been compromised, or you just want to change it, you can expire the client's tokens. All tokens associated with the client/secret pair will be expired.");
 	jr_define('DELETE_TOKEN', 'Expire Tokens');
-

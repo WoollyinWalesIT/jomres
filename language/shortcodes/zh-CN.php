@@ -117,7 +117,7 @@ jr_define('_JOMRES_SHORTCODES_06000ASAMODULE_RANDOM_ARG_ASAMODULE_RANDOM_PTYPE_I
 jr_define('_JOMRES_SHORTCODES_06000ASAMODULE_RANDOM_ARG_ASAMODULE_RANDOM_VERTICAL', '设置为 1 以显示针对垂直小部件/模块位置优化的模块。');
 
 jr_define('_JOMRES_SHORTCODES_06000ASAMODULE_RECENTLY_VIEWED', "显示客人最近查看的属性，通常用于模块或小部件位置。");
-jr_define('_JOMRES_SHORTCODES_06000ASAMODULE_RECENTLY_VIEWED_ARG_ASAMODULE_RECENTLY_VIEWED_LISTLIMIT','可以显示的最大属性数。');
+jr_define('_JOMRES_SHORTCODES_06000ASAMODULE_RECENTLY_VIEWED_ARG_ASAMODULE_RECENTLY_VIEWED_LISTLIMIT', '可以显示的最大属性数。');
 jr_define('_JOMRES_SHORTCODES_06000ASAMODULE_RECENTLY_VIEWED_ARG_ASAMODULE_RECENTLY_VIEWED_VERTICAL', '设置为 1 以显示针对垂直小部件/模块位置优化的模块。');
 
 jr_define('_JOMRES_SHORTCODES_06000ASAMODULE_SPECIFIC_PROPERTIES', '显示许多属性，通常用于模块或小部件位置。');
@@ -159,7 +159,7 @@ jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_SPECIFIC', "特定资源");
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_ALREADY_UPLOADED', "该资源的图片已经上传");
 
 jr_define('_JOMRES_MARKDOWN_TITLE', '文本格式');
-jr_define('_JOMRES_MARKDOWN_DESC', '您可以使用简单的 Markdown 格式在此处输入文本。您不需要了解任何 HTML，只需使用按钮使信息看起来像您想要的那样，或者根据这些示例格式化文本。' );
+jr_define('_JOMRES_MARKDOWN_DESC', '您可以使用简单的 Markdown 格式在此处输入文本。您不需要了解任何 HTML，只需使用按钮使信息看起来像您想要的那样，或者根据这些示例格式化文本。');
 jr_define('_JOMRES_MARKDOWN_EMPHASIS', '重点');
 jr_define('_JOMRES_MARKDOWN_BOLD', '粗体');
 jr_define('_JOMRES_MARKDOWN_ITALICS', '斜体');
@@ -202,20 +202,20 @@ jr_define('_JOMRES_GUEST_BLACKLISTED', '访客黑名单');
 jr_define('_JOMRES_GUEST_BLACKLISTED_DESC', '如果此客人被列入黑名单，则他们将无法再预订此住宿。');
 jr_define('_JOMRES_SESSION_HANDLER', '会话处理程序');
 jr_define('_JOMRES_SESSION_HANDLER_DESC', '将 jomres 会话文件保存到磁盘或数据库。推荐：数据库');
-jr_define('_JOMRES_MAP_HEIGHT',"地图高度(px)");
-jr_define('_JOMRES_MAP_ZOOMLEVEL',"地图缩放级别");
-jr_define('_JOMRES_MAP_MAPTYPE',"地图类型");
+jr_define('_JOMRES_MAP_HEIGHT', "地图高度(px)");
+jr_define('_JOMRES_MAP_ZOOMLEVEL', "地图缩放级别");
+jr_define('_JOMRES_MAP_MAPTYPE', "地图类型");
 
-jr_define('_JOMRES_TEMPLATE_PACKAGES',"模板覆盖管理器");
-jr_define('_JOMRES_TEMPLATE_PACKAGES_LEAD',"模板包是可以为各种核心Jomres模板文件提供覆盖模板的插件。");
-jr_define('_JOMRES_TEMPLATE_PACKAGES_INFO',"这个页面列出了所有可以被模板包的模板文件覆盖的模板文件。如果你想覆盖某个模板文件，点击那个文件的编辑按钮，在下一页你会能够选择要覆盖的版本。请注意，这些覆盖优先于 Jomres Core 和任何 Wordpress 或 Joomla 主题/模板覆盖。您可以通过在列表模板覆盖页面中删除它来禁用覆盖。");
-jr_define('_JOMRES_TEMPLATE_PACKAGE_NAME',"模板名称");
-jr_define('_JOMRES_TEMPLATE_PACKAGE_PATH',"当前路径");
-jr_define('_JOMRES_TEMPLATE_PACKAGE_NOT_OVERRIDDEN',"未覆盖");
-jr_define('_JOMRES_TEMPLATE_PACKAGES_EDIT_INFO',"您可以通过更改下拉列表来选择覆盖核心模板文件的模板文件");
+jr_define('_JOMRES_TEMPLATE_PACKAGES', "模板覆盖管理器");
+jr_define('_JOMRES_TEMPLATE_PACKAGES_LEAD', "模板包是可以为各种核心Jomres模板文件提供覆盖模板的插件。");
+jr_define('_JOMRES_TEMPLATE_PACKAGES_INFO', "这个页面列出了所有可以被模板包的模板文件覆盖的模板文件。如果你想覆盖某个模板文件，点击那个文件的编辑按钮，在下一页你会能够选择要覆盖的版本。请注意，这些覆盖优先于 Jomres Core 和任何 Wordpress 或 Joomla 主题/模板覆盖。您可以通过在列表模板覆盖页面中删除它来禁用覆盖。");
+jr_define('_JOMRES_TEMPLATE_PACKAGE_NAME', "模板名称");
+jr_define('_JOMRES_TEMPLATE_PACKAGE_PATH', "当前路径");
+jr_define('_JOMRES_TEMPLATE_PACKAGE_NOT_OVERRIDDEN', "未覆盖");
+jr_define('_JOMRES_TEMPLATE_PACKAGES_EDIT_INFO', "您可以通过更改下拉列表来选择覆盖核心模板文件的模板文件");
 
 
-jr_define('_JOMRES_OVERALL_ROOMS_BOOKED',"预订的房间百分比");
+jr_define('_JOMRES_OVERALL_ROOMS_BOOKED', "预订的房间百分比");
 
 jr_define('_JOMRES_SHORTCODES_06005NEW_PROPERTY', '显示新建属性表单。');
 
@@ -227,19 +227,19 @@ jr_define('_JOMRES_SHORTCODES_06000SHORTLIST', '显示用户入围的属性。�
 
 jr_define('_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE', '最低存款价值');
 
-jr_define( '_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE_DESC', "如果计算出的存款少于这个数字，那么将存款设置为这个值。如果它不满足网站的最低存款设置，这个数字本身可能会被覆盖。将其设置为 0 以不使用设置。");
+jr_define('_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE_DESC', "如果计算出的存款少于这个数字，那么将存款设置为这个值。如果它不满足网站的最低存款设置，这个数字本身可能会被覆盖。将其设置为 0 以不使用设置。");
 
 jr_define('_JOMRES_SHORTCODES_06000SHOW_CONSENT_FORM', '显示符合 GDPR 的同意书。');
 
-jr_define( '_JOMRES_SHORTCODE_PROPERTY_ROOM_TYPE_LIST', '房型列表');
-jr_define( '_JOMRES_SHORTCODE_PROPERTY_ROOM_TYPE', '显示房屋类型');
+jr_define('_JOMRES_SHORTCODE_PROPERTY_ROOM_TYPE_LIST', '房型列表');
+jr_define('_JOMRES_SHORTCODE_PROPERTY_ROOM_TYPE', '显示房屋类型');
 
 jr_define('_JOMRES_SHORTCODE_LOGIN_FORM', '显示登录表单');
 
 jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_ROOM_TYPE', '显示某个房间类型的房间列表');
 jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_ROOM_TYPE_ARG_ROOM_TYPE_ID', '房间类型ID');
 
-jr_define('_JOMRES_SHORTCODES_06001DASHBOARD','仪表板');
+jr_define('_JOMRES_SHORTCODES_06001DASHBOARD', '仪表板');
 
 jr_define('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES', '显示联合属性列表');
 jr_define('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_LIMIT', '要显示的联合属性数量');

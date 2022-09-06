@@ -10,7 +10,7 @@
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 ##################################################################
-defined( '_JOMRES_INITCHECK' ) or die( '' );
+defined('_JOMRES_INITCHECK') or die('');
 ##################################################################
 
 jr_define('_JOMRES_FAQ', 'Veelgestelde vragen');
@@ -66,5 +66,3 @@ jr_define('_JOMRES_FAQ_MANAGER_ANSWER_ROOMFEATURES', "Kamerkenmerken zijn dingen
 jr_define('_JOMRES_FAQ_ADMIN_CATEGORY_PAYMENTS', 'Betalingen');
 jr_define('_JOMRES_FAQ_ADMIN_QUESTION_TROUBLESHOOTING_NOGATEWAY', "Je kunt de betalingsgateway niet zien nadat je een boeking hebt gemaakt.");
 jr_define('_JOMRES_FAQ_ADMIN_ANSWER_TROUBLESHOOTING_NOGATEWAY', "Als u bent ingelogd als Property Manager, ziet u de betalingsgateway niet, omdat u niet zelf betaalt. Alleen niet-manager gebruikers zien de gateway bij het maken van boekingen.");
-
-

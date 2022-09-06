@@ -10,7 +10,7 @@
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 ##################################################################
-defined( '_JOMRES_INITCHECK' ) or die( '' );
+defined('_JOMRES_INITCHECK') or die('');
 ##################################################################
 
 jr_define('VIDEO_TUTORALS_TITLE', 'Video-tutorials');
@@ -47,7 +47,7 @@ jr_define('_JOMRES_TUTORIAL_MICROMANAGE_TARIFF_EDITING_MODE_MORE_GUESTS_MRP', 'V
 jr_define('_JOMRES_TUTORIAL_MICROMANAGE_TARIFF_EDITING_MODE_MORE_GUESTS_MRP_DESC', 'Je kunt meerdere tarieven maken voor hetzelfde kamertype, dus als je verschillende prijzen wilt voor verschillende aantallen gasten, dan kan dat.');
 
 jr_define('_JOMRES_TUTORIAL_MICROMANAGE_GUEST_TYPES', 'Per persoon per nacht - Gasttypes');
-jr_define('_JOMRES_TUTORIAL_MICROMANAGE_GUEST_TYPES_DESC', 'Om per persoon per nacht in rekening te brengen, moet u gasttypes maken. Verschillende gasttypes kunnen verschillen van de basisprijs van een kamer, dus kinderen van verschillende leeftijden kunnen verschillende kortingen krijgen op basis van hun leeftijd. hoef je niet per persoon per nacht in rekening te brengen voor het gebruik van Guest Types, je kunt ze ook gebruiken als je een vast tarief rekent maar toch het aantal gasten wilt vastleggen, of omdat je het aantal gasten in een boeking wilt beperken.' );
+jr_define('_JOMRES_TUTORIAL_MICROMANAGE_GUEST_TYPES_DESC', 'Om per persoon per nacht in rekening te brengen, moet u gasttypes maken. Verschillende gasttypes kunnen verschillen van de basisprijs van een kamer, dus kinderen van verschillende leeftijden kunnen verschillende kortingen krijgen op basis van hun leeftijd. hoef je niet per persoon per nacht in rekening te brengen voor het gebruik van Guest Types, je kunt ze ook gebruiken als je een vast tarief rekent maar toch het aantal gasten wilt vastleggen, of omdat je het aantal gasten in een boeking wilt beperken.');
 
 jr_define('_JOMRES_TUTORIAL_MEDIA_CENTRE_MRP', 'Mediacentrum - Uploaden van afbeeldingen');
 jr_define('_JOMRES_TUTORIAL_MEDIA_CENTRE_MRP_DESC', 'Alle afbeeldingen worden geüpload via het mediacentrum. In deze video uploaden we de afbeelding van het hoofdgebouw, enkele afbeeldingen in diavoorstellingen, een kleine selectie afbeeldingen die op de pagina met zoekresultaten moeten worden weergegeven en afbeeldingen voor een van de kamers.');
@@ -98,5 +98,3 @@ jr_define('_JOMRES_TUTORIAL_ADMIN_PROPERTY_CATEGORIES_DESC', 'Eigendomcategorie�
 
 jr_define('_JOMRES_TUTORIAL_ADMIN_COMPLETING_PROPERTY', 'Sitebeheerder weergave-eigenschappen');
 jr_define('_JOMRES_TUTORIAL_ADMIN_COMPLETING_PROPERTY_DESC', '<p>Van hieruit beheert u geen eigenschappen, u kunt alleen eigenschappen beheren vanaf de frontend, maar in deze lijst kunt u eigenschappen zien die wachten op goedkeuring (als de functie is ingeschakeld) en alle eigenschappen die dat wel zijn onvolledig (bijv. moet nog afbeeldingen uploaden, prijzen instellen, enz.) Klik op de naam van het onroerend goed om naar het dashboard voor dat onroerend goed te gaan. U kunt dan de gidssecties bovenaan de pagina gebruiken om de stappen te zien die die u moet nemen om een ​​eigenschap in te vullen en te publiceren.</p> ');
-
-

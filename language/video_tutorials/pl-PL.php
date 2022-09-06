@@ -93,5 +93,3 @@ jr_define('_JOMRES_TUTORIAL_ADMIN_PROPERTY_CATEGORIES_DESC', 'Kategorie właści
 
 jr_define('_JOMRES_TUTORIAL_ADMIN_COMPLETING_PROPERTY', 'Administrator witryny wyświetla właściwości');
 jr_define('_JOMRES_TUTORIAL_ADMIN_COMPLETING_PROPERTY_DESC', '<p>Nie zarządzasz właściwościami z tego miejsca, możesz zarządzać tylko właściwościami z interfejsu użytkownika, jednak na tej liście możesz zobaczyć właściwości, które oczekują na zatwierdzenie (jeśli funkcja jest włączona) i wszystkie, które są niekompletne (np. nadal trzeba przesłać obrazy, ustawić ceny itp.). Kliknij nazwę obiektu, aby przejść do pulpitu nawigacyjnego dla tej usługi. Będziesz wtedy mógł skorzystać z sekcji przewodnika u góry strony, aby zobaczyć kroki, które musisz wziąć, aby ukończyć i opublikować właściwość.</p> ');
-
-

@@ -66,6 +66,3 @@ jr_define('_JOMRES_FAQ_MANAGER_ANSWER_ROOMFEATURES', "Oda özellikleri, odayı �
 jr_define('_JOMRES_FAQ_ADMIN_CATEGORY_PAYMENTS', 'Ödemeler');
 jr_define('_JOMRES_FAQ_ADMIN_QUESTION_TROUBLESHOOTING_NOGATEWAY', "Rezervasyon yaptıktan sonra ödeme geçidini göremezsiniz.");
 jr_define('_JOMRES_FAQ_ADMIN_ANSWER_TROUBLESHOOTING_NOGATEWAY', "Eğer Mülk Yöneticisi olarak oturum açtıysanız, ödemeyi kendiniz yapmadığınız için ödeme geçidini görmezsiniz. Yalnızca yönetici olmayan kullanıcılar, rezervasyon yaparken ağ geçidini görebilir.");
-
-
-

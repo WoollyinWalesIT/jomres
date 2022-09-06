@@ -80,7 +80,7 @@ jr_define('_JOMRES_tokyo_PROPERTY_FEATURES_DESC', 'このビデオでは,プロ�
 
 jr_define('_JOMRES_tokyo_SHORTCODES', 'ショートコード');
 jr_define('_JOMRES_tokyo_SHORTCODES_DESC', 'ショートコードはJomresの非常に強力な機能です。原理はJoomlaとWordpressの両方で同じです。このビデオでは,ショートコードを表示する場所を示します（このリストはプラグインによって異なります)インストール済み)およびそれらの使用方法。記事またはモジュールのコードを使用できます。 ');
-    
+	
 jr_define('_JOMRES_tokyo_LOGFILES', 'ログファイル');
 jr_define('_JOMRES_tokyo_LOGFILES_DESC', 'このビデオでは,ログファイルの表示方法を説明します。システムの実行時に大量のログが発生します。本番モード（[サイトの構成]> [デバッグ])では,生成されるログが少なくなるため,新しい機能をテストする場合はサイトを開発に設定する必要があります。独自のログをJomresスクリプトに追加する場合は,<a href="http://www.jomres.net/manual/developers-guide/56-other-discussions/339-logging-in-jomres" target ="_blank">その方法に関するマニュアルページ。</a>ここでは,偽のエラーをスローし,ログファイルを表示します。サイトが開発に設定されているためです。は多くの情報です。通常は,エラーが発生して報告されたことを示すメッセージが表示されます。 ');
 
@@ -98,4 +98,3 @@ jr_define('_JOMRES_tokyo_ADMIN_PROPERTY_CATEGORIES_DESC', 'プロパティカテ
 
 jr_define('_JOMRES_tokyo_ADMIN_COMPLETING_PROPERTY', 'プロパティを表示するサイト管理者');
 jr_define('_JOMRES_tokyo_ADMIN_COMPLETING_PROPERTY_DESC', '<p>ここからプロパティを管理するのではなく,フロントエンドからのみプロパティを管理できますが,このリストには,承認待ちのプロパティ（機能が有効になっている場合)と,不完全です（たとえば,画像をアップロードしたり,価格を設定したりする必要があります)。プロパティ名をクリックすると,そのプロパティのダッシュボードに移動します。その後,ページ上部のガイドセクションを使用して,次の手順を確認できます。プロパティを完成させて公開するには,取る必要があります。</ p> ');
-    

@@ -166,7 +166,7 @@ jr_define('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_POSTCODE_EXPL', 'Postnummer');
 jr_define('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_LANDLINE_EXPL', 'Fast nummer');
 jr_define('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_MOBILE_EXPL', 'Mobilnummer');
 jr_define('_JOMRES_FRONT_MR_QUICKRES_STEP2_NOROOMSINRANGE', 'Det finns inga tillgängliga inkvarteringar som kan tillgodose de parametrar som anges');
-jr_define('_JOMRES_FRONT_MR_BOOKINGMADE', '<center>Tack för Din bokning hos oss och vi hoppas att du njuta av din vistelse.<br><br><b>Observera att detta endast är en preliminär bokning som är bekräftad först då Du får ett bekräftelsebrev från oss.</center>');
+jr_define('_JOMRES_FRONT_MR_BOOKINGMADE', 'Tack för Din bokning hos oss och vi hoppas att du njuta av din vistelse.<br><br><b>Observera att detta endast är en preliminär bokning som är bekräftad först då Du får ett bekräftelsebrev från oss.');
 jr_define('_JOMRES_FRONT_MR_BOOKIN_TITLE', 'Boka gäst');
 jr_define('_JOMRES_FRONT_MR_BOOKIN_GUESTBOOKEDIN', 'Gäst bokas i');
 jr_define('_JOMRES_FRONT_MR_BOOKOUT_TITLE', 'Avboka gäster');
@@ -725,22 +725,22 @@ jr_define('_JOMRES_CONFIRMATION_SPECIALS', 'Ange speciella önskemål i rutan ne
 jr_define('_JOMRES_CONFIRMATION_TERMS_PRETEXT', 'Jag bekräftar att ovanstående uppgifter är korrekta och godkänner');
 jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_PERPERSON', 'per person och natt');
 if (!defined('_PN_OF')) {
-    jr_define('_PN_OF', 'av');
+	jr_define('_PN_OF', 'av');
 }
 if (!defined('_PN_START')) {
-    jr_define('_PN_START', 'Start');
+	jr_define('_PN_START', 'Start');
 }
 if (!defined('_PN_PREVIOUS')) {
-    jr_define('_PN_PREVIOUS', 'Föregående');
+	jr_define('_PN_PREVIOUS', 'Föregående');
 }
 if (!defined('_PN_NEXT')) {
-    jr_define('_PN_NEXT', 'Nästa');
+	jr_define('_PN_NEXT', 'Nästa');
 }
 if (!defined('_PN_END')) {
-    jr_define('_PN_END', 'Slut');
+	jr_define('_PN_END', 'Slut');
 }
 if (!defined('_PN_RESULTS')) {
-    jr_define('_PN_RESULTS', 'Resultat');
+	jr_define('_PN_RESULTS', 'Resultat');
 }
 jr_define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_TITLE', 'Skriv meddelandet du vill skicka till ');
 jr_define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL', 'Kontakta Hotell');
@@ -1498,7 +1498,7 @@ jr_define('_JOMRES_VAT_PROPERTY_VAT_NUMBER_NOT_VALIDATED', 'Momsnummer ej valide
 jr_define('_JOMRES_COM_YOURBUSINESS_INSTRUCTIONS', 'Företagsuppgifter som anges här kommer att användas på provisions- och prenumerationsfakturor.');
 jr_define('_JRPORTAL_INVOICES_SUBSCRIPTION_PROFILE_ERROR_EXPL', "Du verkar inte ha fyllt i dina kontouppgifter ännu. För att lista din egendom på webbplatsen måste du fylla i dina kontouppgifter innan vi kan gå vidare.");
 jr_define('_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT', 'Produktion eller utveckling?');
-jr_define('_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_DESC', 'Om du ställer in det här alternativet till Utveckling kommer vi att aktivera felrapportering, annars kommer den att stängas av när den är inställd på Produktion. Om detta är en liveserver rekommenderar vi att du ställer in det här alternativet till "produktion".' );
+jr_define('_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_DESC', 'Om du ställer in det här alternativet till Utveckling kommer vi att aktivera felrapportering, annars kommer den att stängas av när den är inställd på Produktion. Om detta är en liveserver rekommenderar vi att du ställer in det här alternativet till "produktion".');
 jr_define('_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_SETTING_PRODUCTION', 'Produktion');
 jr_define('_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_SETTING_DEVELOPMENT', 'Utveckling');
 //v7.3.3
@@ -1874,7 +1874,7 @@ jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE', "Välj den resurs du vill ladda upp b
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_SPECIFIC', "Specifik resurs");
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_ALREADY_UPLOADED', "Bilder som redan laddats upp för denna resurs");
 jr_define('_JOMRES_MARKDOWN_TITLE', 'Textformatering');
-jr_define('_JOMRES_MARKDOWN_DESC', 'Du kan skriva in text här med enkel Markdown-formatering. Du behöver inte kunna någon HTML, använd bara knapparna för att få informationen att se ut som du vill, eller formatera text enligt dessa exempel.' );
+jr_define('_JOMRES_MARKDOWN_DESC', 'Du kan skriva in text här med enkel Markdown-formatering. Du behöver inte kunna någon HTML, använd bara knapparna för att få informationen att se ut som du vill, eller formatera text enligt dessa exempel.');
 jr_define('_JOMRES_MARKDOWN_EMPHASIS', 'Betoning');
 jr_define('_JOMRES_MARKDOWN_BOLD', 'fet');
 jr_define('_JOMRES_MARKDOWN_ITALICS', 'kursiv');
@@ -1909,203 +1909,203 @@ jr_define('_JOMRES_GUEST_BLACKLISTED', 'Gäst svartlistad');
 jr_define('_JOMRES_GUEST_BLACKLISTED_DESC', 'Om denna gäst är svartlistad kommer de inte längre att kunna göra bokningar i den här egenskapen.');
 jr_define('_JOMRES_SESSION_HANDLER', 'Sessionshanterare');
 jr_define('_JOMRES_SESSION_HANDLER_DESC', 'Spara jomres sessionsfiler till disk eller databas. Rekommenderas: databas');
-jr_define('_JOMRES_MAP_HEIGHT',"Karthöjd (px) ");
-jr_define('_JOMRES_MAP_ZOOMLEVEL',"Kartzoomnivå ");
-jr_define('_JOMRES_MAP_MAPTYPE',"Karttyp ");
+jr_define('_JOMRES_MAP_HEIGHT', "Karthöjd (px) ");
+jr_define('_JOMRES_MAP_ZOOMLEVEL', "Kartzoomnivå ");
+jr_define('_JOMRES_MAP_MAPTYPE', "Karttyp ");
 
-jr_define('_JOMRES_TEMPLATE_PACKAGES',"Template Override Manager");
-jr_define('_JOMRES_TEMPLATE_PACKAGES_LEAD',"Mallpaket är plugins som kan tillhandahålla åsidosättande mallar för olika Jomres-mallfiler.");
-jr_define('_JOMRES_TEMPLATE_PACKAGES_INFO',"Denna sida listar alla mallfiler som kan åsidosättas av ett mallpakets mallfiler. Om du vill åsidosätta en viss mallfil, klicka på redigera-knappen för den filen, på nästa sida kommer du att visas kunna välja vilken version du vill åsidosätta med. Notera att dessa åsidosättningar har prioritet över både Jomres Core och alla Wordpress- eller Joomla-tema/mallöverstyrningar. Du kan inaktivera en åsidosättning genom att ta bort den på sidan Listmallaröverstyrningar.");
-jr_define('_JOMRES_TEMPLATE_PACKAGE_NAME',"Mallnamn");
-jr_define('_JOMRES_TEMPLATE_PACKAGE_PATH',"Aktuell sökväg");
-jr_define('_JOMRES_TEMPLATE_PACKAGE_NOT_OVERRIDDEN',"Inte åsidosatt");
-jr_define('_JOMRES_TEMPLATE_PACKAGES_EDIT_INFO',"Du kan välja vilken mallfil som ska åsidosätta Core-mallfilerna genom att ändra rullgardinsmenyn");
-
-
-jr_define('_JOMRES_OVERALL_ROOMS_BOOKED',"Procentandel av bokade rum");
+jr_define('_JOMRES_TEMPLATE_PACKAGES', "Template Override Manager");
+jr_define('_JOMRES_TEMPLATE_PACKAGES_LEAD', "Mallpaket är plugins som kan tillhandahålla åsidosättande mallar för olika Jomres-mallfiler.");
+jr_define('_JOMRES_TEMPLATE_PACKAGES_INFO', "Denna sida listar alla mallfiler som kan åsidosättas av ett mallpakets mallfiler. Om du vill åsidosätta en viss mallfil, klicka på redigera-knappen för den filen, på nästa sida kommer du att visas kunna välja vilken version du vill åsidosätta med. Notera att dessa åsidosättningar har prioritet över både Jomres Core och alla Wordpress- eller Joomla-tema/mallöverstyrningar. Du kan inaktivera en åsidosättning genom att ta bort den på sidan Listmallaröverstyrningar.");
+jr_define('_JOMRES_TEMPLATE_PACKAGE_NAME', "Mallnamn");
+jr_define('_JOMRES_TEMPLATE_PACKAGE_PATH', "Aktuell sökväg");
+jr_define('_JOMRES_TEMPLATE_PACKAGE_NOT_OVERRIDDEN', "Inte åsidosatt");
+jr_define('_JOMRES_TEMPLATE_PACKAGES_EDIT_INFO', "Du kan välja vilken mallfil som ska åsidosätta Core-mallfilerna genom att ändra rullgardinsmenyn");
 
 
-jr_define('_JOMRES_OVERALL_ROOMS_BOOKED',"Procentandel av bokade rum");
-jr_define('_JOMRES_SELECT_WIDGETS',"Välj widgets");
-jr_define('_JOMRES_INTERVAL',"Intervall");
-jr_define('_JOMRES_TIMELINE',"Tidslinje");
-jr_define('_JOMRES_CPANEL_GRID',"Kontrollpanelens hemlayout");
-jr_define('_JOMRES_CPANEL_GRID_DESC',"Välj rutnätslayouten för din frontend-egendomshanteringskontrollpanels hemsida.");
+jr_define('_JOMRES_OVERALL_ROOMS_BOOKED', "Procentandel av bokade rum");
 
-jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_MARKER_IMAGES',"Google Map Markers");
-jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_TOWN_IMAGES',"Stadsbilder");
-jr_define('_JOMRES_PTYPE_CHANGE_WARNING',"Ändring av egenskapstyp raderar alla rum, tariffer, fastighetsinställningar och återställer tillgänglighet.");
+
+jr_define('_JOMRES_OVERALL_ROOMS_BOOKED', "Procentandel av bokade rum");
+jr_define('_JOMRES_SELECT_WIDGETS', "Välj widgets");
+jr_define('_JOMRES_INTERVAL', "Intervall");
+jr_define('_JOMRES_TIMELINE', "Tidslinje");
+jr_define('_JOMRES_CPANEL_GRID', "Kontrollpanelens hemlayout");
+jr_define('_JOMRES_CPANEL_GRID_DESC', "Välj rutnätslayouten för din frontend-egendomshanteringskontrollpanels hemsida.");
+
+jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_MARKER_IMAGES', "Google Map Markers");
+jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_TOWN_IMAGES', "Stadsbilder");
+jr_define('_JOMRES_PTYPE_CHANGE_WARNING', "Ändring av egenskapstyp raderar alla rum, tariffer, fastighetsinställningar och återställer tillgänglighet.");
 jr_define('_JOMRES_VERSIONCHECK_VERSIONWARNING_UPDATEINFO', 'Observera att efter uppdatering måste du uppdatera alla Jomres-plugin-program som redan är installerade, genom Jomres-plugin-hanteraren. Om du har Core-plugin-program installerade, men inte har en giltig Jomres-licens, så <em>gör vi not</em>rekommenderar att du uppdaterar Jomres eftersom äldre plugins ofta kanske inte fungerar med nyare versioner av Jomres. ');
 jr_define('_JOMRES_VERSIONCHECK_VERSIONWARNING_UPDATEINFO_KEYVALID', 'Observera att efter uppdatering måste du uppdatera alla Jomres-plugin-program som redan är installerade via Jomres plugin-hanteraren.');
 jr_define('_JOMRES_VERSIONCHECK_VERSIONWARNING_RENEWALS', "Om du vill uppdatera Jomres och dess plugins behöver du en förnyelselicens. Besök <a href='https://www.jomres.net/pricing' target='_blank'>vår webbplats</a> för mer information. I de flesta fall är dessa licenser 50 % av priset för en fullständig licens. Se till att du har loggat in i vår butik innan du försöker köpa en förnyelse.");
-jr_define('_JOMRES_PAYMENT_METHOD_USED',"Betalningsmetod: ");
+jr_define('_JOMRES_PAYMENT_METHOD_USED', "Betalningsmetod: ");
 
-jr_define('_JOMRES_PRICES',"Get Connected");
+jr_define('_JOMRES_PRICES', "Get Connected");
 
-jr_define('_OAUTH_TITLE',"Appnyckelhantering");
-jr_define('_OAUTH_APPS',"REST API-klientdetaljer");
-jr_define('_OAUTH_IDENTIFIER',"Identifierare");
-jr_define('_OAUTH_APIKEY',"Kund-ID");
-jr_define('_OAUTH_SECRET',"Hemlig");
-jr_define('_OAUTH_CREATED',"Skapad/Uppdaterad app");
-jr_define('_OAUTH_CLIENT_ID_INFO',"Klient-ID och hemlighet skapas åt dig. Identifieraren är så att du enkelt kan identifiera detta nyckelpar.");
-jr_define('_OAUTH_SCOPE_TITLE',"Behörigheter (vad klienten kan göra) ");
-jr_define('_OAUTH_SCOPE_CATEGORY_USER' , "Användarbehörigheter");
-jr_define('_OAUTH_SCOPE_CATEGORY_PROPERTIES' , "Egendomsbehörigheter");
+jr_define('_OAUTH_TITLE', "Appnyckelhantering");
+jr_define('_OAUTH_APPS', "REST API-klientdetaljer");
+jr_define('_OAUTH_IDENTIFIER', "Identifierare");
+jr_define('_OAUTH_APIKEY', "Kund-ID");
+jr_define('_OAUTH_SECRET', "Hemlig");
+jr_define('_OAUTH_CREATED', "Skapad/Uppdaterad app");
+jr_define('_OAUTH_CLIENT_ID_INFO', "Klient-ID och hemlighet skapas åt dig. Identifieraren är så att du enkelt kan identifiera detta nyckelpar.");
+jr_define('_OAUTH_SCOPE_TITLE', "Behörigheter (vad klienten kan göra) ");
+jr_define('_OAUTH_SCOPE_CATEGORY_USER', "Användarbehörigheter");
+jr_define('_OAUTH_SCOPE_CATEGORY_PROPERTIES', "Egendomsbehörigheter");
 
-jr_define('API_DOCUMENTATION_TITLE',"App REST API dokumentation");
+jr_define('API_DOCUMENTATION_TITLE', "App REST API dokumentation");
 
-jr_define('_OAUTH_CONFIG',"API Core-konfiguration");
+jr_define('_OAUTH_CONFIG', "API Core-konfiguration");
 
-jr_define('_OAUTH_CONFIG_SHOW',"Visa API-klientkonfigurationsalternativ i Jomres huvudmeny?");
-jr_define('_OAUTH_CONFIG_SHOW_DESC',"Du kan välja att inte visa API-klientens konfigurationsalternativ i avsnittet 'Mitt konto' på Jomres huvudmeny. Du kan istället bestämma att du vill visa dem på andra sidor med Jomres Shortcodes.");
+jr_define('_OAUTH_CONFIG_SHOW', "Visa API-klientkonfigurationsalternativ i Jomres huvudmeny?");
+jr_define('_OAUTH_CONFIG_SHOW_DESC', "Du kan välja att inte visa API-klientens konfigurationsalternativ i avsnittet 'Mitt konto' på Jomres huvudmeny. Du kan istället bestämma att du vill visa dem på andra sidor med Jomres Shortcodes.");
 
-jr_define( '_JOMRES_SHORTCODES_06000API_CORE_DOCS', "Visar API-kärndokumentationssidan. API Core tillåter användare att skapa API-klienter, som sedan används för att komma åt API-funktionaliteten som beskrivs i API Core-dokumentationen." );
+jr_define('_JOMRES_SHORTCODES_06000API_CORE_DOCS', "Visar API-kärndokumentationssidan. API Core tillåter användare att skapa API-klienter, som sedan används för att komma åt API-funktionaliteten som beskrivs i API Core-dokumentationen.");
 
-jr_define( '_JOMRES_SHORTCODES_06005API_CORE_CLIENT_ADMIN', "Visar API-kärnadministrationssidan, där fastighetshanterare kan konfigurera API-klienter. Observera att detta endast är en funktion för registrerade användare, så användare måste vara registrerade och inloggade innan de kan se den här sidan." );
+jr_define('_JOMRES_SHORTCODES_06005API_CORE_CLIENT_ADMIN', "Visar API-kärnadministrationssidan, där fastighetshanterare kan konfigurera API-klienter. Observera att detta endast är en funktion för registrerade användare, så användare måste vara registrerade och inloggade innan de kan se den här sidan.");
 
-jr_define('API_METHODS_TITLE',"API-metoder");
-jr_define('API_METHODS_DESCRIPTION',"Denna lista över metoder är baserad på dina installerade API-funktions-plugin-program och genereras automatiskt. Om du installerar eller tar bort ett API-funktions-plugin måste du besöka den här sidan för att bygga om listan med API-metoder som är tillgängliga på din webbplats. ");
+jr_define('API_METHODS_TITLE', "API-metoder");
+jr_define('API_METHODS_DESCRIPTION', "Denna lista över metoder är baserad på dina installerade API-funktions-plugin-program och genereras automatiskt. Om du installerar eller tar bort ett API-funktions-plugin måste du besöka den här sidan för att bygga om listan med API-metoder som är tillgängliga på din webbplats. ");
 
-jr_define('_OAUTH_REDIRECT_URI',"Omdirigera URI");
-jr_define('_OAUTH_IDENTIFIER_PLACEHOLDER',"Ge mig ett namn som är meningsfullt för dig, såsom Min telefon");
+jr_define('_OAUTH_REDIRECT_URI', "Omdirigera URI");
+jr_define('_OAUTH_IDENTIFIER_PLACEHOLDER', "Ge mig ett namn som är meningsfullt för dig, såsom Min telefon");
 
-jr_define('_OAUTH_GRANT_TYPES',"Det här systemet stöder två tilldelningstyper, klientuppgifter och implicita. Om du använder flödet <em>client_credentials</em> behöver du både klient-id och klienthemlighet. Om du använder <em >implicit</em> då skulle din app bara skicka klient-id och du skulle logga in på systemet för att uttryckligen auktorisera den appen.");
+jr_define('_OAUTH_GRANT_TYPES', "Det här systemet stöder två tilldelningstyper, klientuppgifter och implicita. Om du använder flödet <em>client_credentials</em> behöver du både klient-id och klienthemlighet. Om du använder <em >implicit</em> då skulle din app bara skicka klient-id och du skulle logga in på systemet för att uttryckligen auktorisera den appen.");
 
-jr_define('_OAUTH_IMPLICIT_NOTES',"För att använda det <em>implicita</em> beviljande flödet måste du använda denna webbadress för att auktorisera dina appar. När den här webbadressen anropas och du har auktoriserat appen kommer systemet att utfärda en token som dina appar sedan använder för att anropa detta systems API ");
-jr_define('_OAUTH_AUTHORISATION_URL',"Auktoriserings-URL");
+jr_define('_OAUTH_IMPLICIT_NOTES', "För att använda det <em>implicita</em> beviljande flödet måste du använda denna webbadress för att auktorisera dina appar. När den här webbadressen anropas och du har auktoriserat appen kommer systemet att utfärda en token som dina appar sedan använder för att anropa detta systems API ");
+jr_define('_OAUTH_AUTHORISATION_URL', "Auktoriserings-URL");
 
-jr_define( 'WEBHOOKS_CORE', 'Webhooks' );
+jr_define('WEBHOOKS_CORE', 'Webhooks');
 
-jr_define('_WEBHOOKS_CONFIG_SHOW',"Visa Webhook-konfigurationsalternativ i Jomres huvudmeny?");
-jr_define('_WEBHOOKS_CONFIG_SHOW_DESC',"Du kan välja att inte visa Webhook-konfigurationsalternativen i avsnittet 'Mitt konto' på Jomres huvudmeny. Du kan istället bestämma att du vill visa dem på andra sidor med Jomres Shortcodes.");
+jr_define('_WEBHOOKS_CONFIG_SHOW', "Visa Webhook-konfigurationsalternativ i Jomres huvudmeny?");
+jr_define('_WEBHOOKS_CONFIG_SHOW_DESC', "Du kan välja att inte visa Webhook-konfigurationsalternativen i avsnittet 'Mitt konto' på Jomres huvudmeny. Du kan istället bestämma att du vill visa dem på andra sidor med Jomres Shortcodes.");
 
-jr_define('WEBHOOKS_DOCUMENTATION_TITLE',"Webhooks dokumentation");
+jr_define('WEBHOOKS_DOCUMENTATION_TITLE', "Webhooks dokumentation");
 
-jr_define( '_JOMRES_SHORTCODES_06000WEBHOOKS_DOCS', "Visar API-kärndokumentationssidan. API Core tillåter användare att skapa API-klienter, som sedan används för att komma åt API-funktionaliteten som beskrivs i API Core-dokumentationen." );
+jr_define('_JOMRES_SHORTCODES_06000WEBHOOKS_DOCS', "Visar API-kärndokumentationssidan. API Core tillåter användare att skapa API-klienter, som sedan används för att komma åt API-funktionaliteten som beskrivs i API Core-dokumentationen.");
 
-jr_define( '_JOMRES_SHORTCODES_06005WEBHOOKS_CLIENT_ADMIN', "Visar API-kärnadministrationssidan, där fastighetshanterare kan konfigurera API-klienter. Observera att detta endast är en funktion för registrerade användare, så användare måste vara registrerade och inloggade innan de kan se denna sida." );
+jr_define('_JOMRES_SHORTCODES_06005WEBHOOKS_CLIENT_ADMIN', "Visar API-kärnadministrationssidan, där fastighetshanterare kan konfigurera API-klienter. Observera att detta endast är en funktion för registrerade användare, så användare måste vara registrerade och inloggade innan de kan se denna sida.");
 
-jr_define( 'WEBHOOKS_INTEGRATION_EDIT', 'Redigera integration' );
-jr_define( 'WEBHOOKS_INTEGRATION_ID', 'Integrations-ID' );
-jr_define( 'WEBHOOKS_INTEGRATION_URL', 'URL eller namn' );
-jr_define( 'WEBHOOKS_ENABLED', 'Aktiverad' );
+jr_define('WEBHOOKS_INTEGRATION_EDIT', 'Redigera integration');
+jr_define('WEBHOOKS_INTEGRATION_ID', 'Integrations-ID');
+jr_define('WEBHOOKS_INTEGRATION_URL', 'URL eller namn');
+jr_define('WEBHOOKS_ENABLED', 'Aktiverad');
 
-jr_define( 'WEBHOOKS_AUTH_METHOD_SELECT', 'Autentiseringsmetod/Integration' );
+jr_define('WEBHOOKS_AUTH_METHOD_SELECT', 'Autentiseringsmetod/Integration');
 
-jr_define( 'WEBHOOKS_MANAGER_PROPERTIES_NONE', 'Alla webhooks du skapar kommer inte att triggas eftersom du inte tilldelas några egenskaper. Superfastighetshanterare tilldelas vanligtvis inte enskilda egenskaper, så du kan behöva en ny användare för att skapa webhook.' );
-jr_define( 'WEBHOOKS_MANAGER_PROPERTIES_ASSIGNED_DESC', 'Alla webhooks du skapar kommer att triggas mot följande egenskaper: ' );
-jr_define( 'PORTAL_REVIEWS_LIMIT', 'Recensionsgräns' );
-jr_define( 'PORTAL_REVIEWS_LIMIT_DESC', 'Använd den här inställningen för att begränsa antalet recensioner som visas på sidan med fastighetsdetaljer.' );
-jr_define( 'PORTAL_REVIEWS_SHOW_ALL_REVIEWS', 'Visa alla recensioner' );
+jr_define('WEBHOOKS_MANAGER_PROPERTIES_NONE', 'Alla webhooks du skapar kommer inte att triggas eftersom du inte tilldelas några egenskaper. Superfastighetshanterare tilldelas vanligtvis inte enskilda egenskaper, så du kan behöva en ny användare för att skapa webhook.');
+jr_define('WEBHOOKS_MANAGER_PROPERTIES_ASSIGNED_DESC', 'Alla webhooks du skapar kommer att triggas mot följande egenskaper: ');
+jr_define('PORTAL_REVIEWS_LIMIT', 'Recensionsgräns');
+jr_define('PORTAL_REVIEWS_LIMIT_DESC', 'Använd den här inställningen för att begränsa antalet recensioner som visas på sidan med fastighetsdetaljer.');
+jr_define('PORTAL_REVIEWS_SHOW_ALL_REVIEWS', 'Visa alla recensioner');
 
-jr_define( 'VIDEO_TUTORIALS', 'Video Tutorials');
+jr_define('VIDEO_TUTORIALS', 'Video Tutorials');
 
-jr_define( '_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE', 'Minsta insättningsvärde' );
-jr_define( '_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE_DESC', "Om den beräknade insättningen är mindre än denna siffra, ställ in insättningen till detta värde istället. Denna siffra kan i sig åsidosättas om den inte uppfyller webbplatsens minsta insättningsinställning. Lämna den inställd på 0 till använd inte inställningen." );
+jr_define('_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE', 'Minsta insättningsvärde');
+jr_define('_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE_DESC', "Om den beräknade insättningen är mindre än denna siffra, ställ in insättningen till detta värde istället. Denna siffra kan i sig åsidosättas om den inte uppfyller webbplatsens minsta insättningsinställning. Lämna den inställd på 0 till använd inte inställningen.");
 
-jr_define( '_JOMRES_MEDIA_CENTRE_DBIMPORT_WARNING', 'För att öka din webbplatshastighet rekommenderar vi att du importerar information om den befintliga webbplatsen och egenskapersbilder till databasen.');
-jr_define( '_JOMRES_MEDIA_CENTRE_DBIMPORT_ACTION', 'Importera befintliga bilderdetaljer till databasen');
+jr_define('_JOMRES_MEDIA_CENTRE_DBIMPORT_WARNING', 'För att öka din webbplatshastighet rekommenderar vi att du importerar information om den befintliga webbplatsen och egenskapersbilder till databasen.');
+jr_define('_JOMRES_MEDIA_CENTRE_DBIMPORT_ACTION', 'Importera befintliga bilderdetaljer till databasen');
 
-jr_define( '_JOMRES_S3_ACTIVE_DESC', 'Experimentell funktion. Om den är aktiverad, kommer bilder som laddas upp med mediacenterfunktionen också att kopieras till din Amazon S3-hink och visas från din Amazon S3-bucket-url. När du aktiverar detta första gången kommer du också att vara uppmanas att importera befintliga bilder till din S3-bucket.');
-jr_define( '_JOMRES_CLOUDFRONT_DMAIN', 'CloudFront-domän');
-jr_define( '_JOMRES_CLOUDFRONT_DMAIN_DESC', 'Ersätt din standard Amazon S3-domän med din CloudFront-domän');
-jr_define( '_JOMRES_S3_SSLTLS_DESC', 'Rekommenderas att aktiveras. Endast för Windows och Mac OSX, om libcurl inte byggdes med stöd för Schannel eller Secure Transport (de inbyggda SSL-biblioteken som ingår i Windows och Mac OS X), bör du ställa in detta till Nej.');
-jr_define( '_JOMRES_MEDIA_CENTRE_S3IMPORT_WARNING', 'Du har aktiverat Amazon S3-integrationen, så du måste kopiera alla befintliga bilder till din S3-bucket. Bilder visas nu till dina webbplatsbesökare från din Amazon S3-url, så du behöver att kopiera dem först till din S3-bucket, annars kommer de inte att vara synliga för dina webbplatsbesökare.');
-jr_define( '_JOMRES_MEDIA_CENTRE_S3IMPORT_WARNING2', 'När du klickar på den här knappen, vänligen avbryt inte processen och vänta på ett framgångs- eller felmeddelande. Beroende på serverns hastighet kan detta ta ett tag att slutföra.');
-jr_define( '_JOMRES_MEDIA_CENTRE_S3IMPORT_ACTION', 'Kopiera befintliga bilder till Amazon S3-bucket');
-
-
-jr_define( 'JOMRES_INCOMPLETE', 'Ofullständig' );
-jr_define( 'JOMRES_WATING_APPROVAL', 'Väntar på godkännande' );
-jr_define( 'JOMRES_GOOGLE_MAPS_PDETAILS', 'Fastighetsinformationskarta' );
-
-jr_define( 'HAS_STARS_TITLE', 'Tillåter klassificering av stjärnor?');
-jr_define( '_JOMRES_MEDIA_CENTRE_DBIMPORT_FORCE', 'Tvinga återimport av bilddetaljer till databasen');
-jr_define( '_JOMRES_MEDIA_CENTRE_S3IMPORT_FORCE', 'Tvinga återuppladdning av bilder till S3-bucket');
-jr_define( '_JOMRES_UNINSTALL_TABLES', 'Ta bort all Jomres-data vid avinstallation?');
-jr_define( '_JOMRES_UNINSTALL_TABLES_DESC', 'Om inställt på ja, kommer Jomres att radera alla dess databastabeller när den avinstalleras. Detta kommer att radera alla Jomres-data från db och kan inte ångras.');
-
-jr_define( 'TRANSACTION_IDS', 'Transaktions-id');
-jr_define( 'PAYMENT_METHOD', 'Betalningsmetod');
-jr_define( 'POA_DISPLAY_PRICE', 'POA-pris');
-jr_define( 'POA_DISPLAY_PRICE_DESC', 'När fastigheter visas i en lista kommer systemet att försöka hitta ett giltigt pris från konfigurerade tariffer baserat på antingen dagens datum eller om datum användes i en sökning, sedan baserat på dessa datum . Om den inte kan, kommer den att visa POA (Pris på ansökan), vilket betyder att gästen ska kontakta dig för att få ett pris. Om du vill kan du konfigurera ett pris här som kommer att visas istället för POA-texten. skulle vara ett "reservpris" att visa om inget annat pris kan fastställas.');
-
-jr_define( 'PLUGINMANAGER_INSTALL', 'Du måste installera pluginhanteraren innan du kan installera Jomres plugins, skulle du vilja göra det nu?');
-jr_define( 'PLUGINMANAGER_REINSTALL', 'Du måste uppdatera pluginhanteraren innan du kan uppdatera några installerade plugins, skulle du vilja göra det nu?');
-jr_define( 'PLUGINMANAGER_INSTALL_BUTTON', "Låt oss göra det här!");
-
-jr_define( 'INCLUDEINFILTERS', 'Inkludera i filter?');
-jr_define( 'INCLUDEINFILTERS_DESC', 'Filter för egenskapsfunktioner i Ajax Composite Search kan bli väldigt långa, så du kan ställa in det här alternativet på Nej för att förhindra att den här funktionen visas i egenskapslistan.');
-
-jr_define( 'REVIEW_REMINDER_PT1', "Du har ");
-jr_define( 'REVIEW_REMINDER_PT2', "bokning(er) som du inte har lämnat en recension för ännu. Lämna en recension.");
-jr_define( 'BOOKINGS_AWAITING_REVIEWS', "Bokning som väntar på recensioner");
-jr_define( 'REVIEW_NAG', "Tjata gäster för recensioner?");
-jr_define( 'REVIEW_NAG_DESC', "När en gäst har blivit utbokad från en bokning kommer systemet att påminna dem om att skriva en recension för sin bokning. Ställ in det här alternativet på Nej för att inaktivera denna påminnelse.");
-jr_define( 'HIDDEN_ADDRESS_SETTING', "Dölj adress?");
-jr_define( 'HIDDEN_ADDRESS_SETTING_DESC', "Om du ställer in det här alternativet till Ja, kommer endast gäster som redan har gjort en bokning på din fastighet att kunna se fastighetens gatuadress. Du kanske vill använda den här inställningen för att dölja fastighetens exakta plats om den till exempel rutinmässigt lämnas utan uppsikt.");
-jr_define( 'HIDDEN_ADDRESS_PLACEHOLDER', "HIDDEN");
-jr_define( '_JOMRES_MEDIA_CENTRE_OPTIMIZE_IMAGES', 'Optimera bilder vid uppladdning?');
-jr_define( '_JOMRES_MEDIA_CENTRE_OPTIMIZE_IMAGES_DESC', 'När den är aktiverad optimeras bilderna för webben (filstorleken kan vara upp till 75 % mindre). Beroende på uppladdad bildtyp måste din server ha ett eller flera av dessa bibliotek installerade av webbhotellet leverantör: optipng, pngquant, pngcrush, pngout, advpng, jpegtran, jpegoptim, gifsicle');
-jr_define( 'DATABASE_INTEGRITY_CHECK', 'Databasintegritetskontroll');
-jr_define( 'OBSOLETE_FILES_CHECK', 'Kontroll av föråldrade filer');
-jr_define( 'DATATABLES_COLVIS', 'Kolumnsynlighet');
-
-jr_define( 'API_TOKEN_LIFETIME', 'API-tokens livstid');
-jr_define( 'API_TOKEN_LIFETIME_DESC', 'Hur länge en API-token förblir giltig i sekunder. 86400 = 1 dag, 31536000 = 1 år');
+jr_define('_JOMRES_S3_ACTIVE_DESC', 'Experimentell funktion. Om den är aktiverad, kommer bilder som laddas upp med mediacenterfunktionen också att kopieras till din Amazon S3-hink och visas från din Amazon S3-bucket-url. När du aktiverar detta första gången kommer du också att vara uppmanas att importera befintliga bilder till din S3-bucket.');
+jr_define('_JOMRES_CLOUDFRONT_DMAIN', 'CloudFront-domän');
+jr_define('_JOMRES_CLOUDFRONT_DMAIN_DESC', 'Ersätt din standard Amazon S3-domän med din CloudFront-domän');
+jr_define('_JOMRES_S3_SSLTLS_DESC', 'Rekommenderas att aktiveras. Endast för Windows och Mac OSX, om libcurl inte byggdes med stöd för Schannel eller Secure Transport (de inbyggda SSL-biblioteken som ingår i Windows och Mac OS X), bör du ställa in detta till Nej.');
+jr_define('_JOMRES_MEDIA_CENTRE_S3IMPORT_WARNING', 'Du har aktiverat Amazon S3-integrationen, så du måste kopiera alla befintliga bilder till din S3-bucket. Bilder visas nu till dina webbplatsbesökare från din Amazon S3-url, så du behöver att kopiera dem först till din S3-bucket, annars kommer de inte att vara synliga för dina webbplatsbesökare.');
+jr_define('_JOMRES_MEDIA_CENTRE_S3IMPORT_WARNING2', 'När du klickar på den här knappen, vänligen avbryt inte processen och vänta på ett framgångs- eller felmeddelande. Beroende på serverns hastighet kan detta ta ett tag att slutföra.');
+jr_define('_JOMRES_MEDIA_CENTRE_S3IMPORT_ACTION', 'Kopiera befintliga bilder till Amazon S3-bucket');
 
 
-jr_define( 'ENCRYPTION_TITLE', 'Kryptering' );
-jr_define( 'ENCRYPTION_FILE_LOCATION', 'Plats för krypteringsfilen' );
-jr_define( 'ENCRYPTION_FILE_LOCATION_DESC', '**Radera aldrig krypteringsfilen** <br/> Användardata lagras krypterad i tabeller för att säkerställa att "data i vila" skyddas säkert, i enlighet med GDPR-rekommendationer. Som standard krypteringsnyckeln lagras i filen "encryption_key.class.php" i roten av din Jomres-installation (vanligtvis /public_html/jomres). Du kan ändra var filen lagras här. Om du ändrar platsen måste du FLYTTA filen, vänta inte på att Jomres ska skapa en ny version annars kommer du inte att kunna avkoda dina gästers uppgifter.' );
+jr_define('JOMRES_INCOMPLETE', 'Ofullständig');
+jr_define('JOMRES_WATING_APPROVAL', 'Väntar på godkännande');
+jr_define('JOMRES_GOOGLE_MAPS_PDETAILS', 'Fastighetsinformationskarta');
+
+jr_define('HAS_STARS_TITLE', 'Tillåter klassificering av stjärnor?');
+jr_define('_JOMRES_MEDIA_CENTRE_DBIMPORT_FORCE', 'Tvinga återimport av bilddetaljer till databasen');
+jr_define('_JOMRES_MEDIA_CENTRE_S3IMPORT_FORCE', 'Tvinga återuppladdning av bilder till S3-bucket');
+jr_define('_JOMRES_UNINSTALL_TABLES', 'Ta bort all Jomres-data vid avinstallation?');
+jr_define('_JOMRES_UNINSTALL_TABLES_DESC', 'Om inställt på ja, kommer Jomres att radera alla dess databastabeller när den avinstalleras. Detta kommer att radera alla Jomres-data från db och kan inte ångras.');
+
+jr_define('TRANSACTION_IDS', 'Transaktions-id');
+jr_define('PAYMENT_METHOD', 'Betalningsmetod');
+jr_define('POA_DISPLAY_PRICE', 'POA-pris');
+jr_define('POA_DISPLAY_PRICE_DESC', 'När fastigheter visas i en lista kommer systemet att försöka hitta ett giltigt pris från konfigurerade tariffer baserat på antingen dagens datum eller om datum användes i en sökning, sedan baserat på dessa datum . Om den inte kan, kommer den att visa POA (Pris på ansökan), vilket betyder att gästen ska kontakta dig för att få ett pris. Om du vill kan du konfigurera ett pris här som kommer att visas istället för POA-texten. skulle vara ett "reservpris" att visa om inget annat pris kan fastställas.');
+
+jr_define('PLUGINMANAGER_INSTALL', 'Du måste installera pluginhanteraren innan du kan installera Jomres plugins, skulle du vilja göra det nu?');
+jr_define('PLUGINMANAGER_REINSTALL', 'Du måste uppdatera pluginhanteraren innan du kan uppdatera några installerade plugins, skulle du vilja göra det nu?');
+jr_define('PLUGINMANAGER_INSTALL_BUTTON', "Låt oss göra det här!");
+
+jr_define('INCLUDEINFILTERS', 'Inkludera i filter?');
+jr_define('INCLUDEINFILTERS_DESC', 'Filter för egenskapsfunktioner i Ajax Composite Search kan bli väldigt långa, så du kan ställa in det här alternativet på Nej för att förhindra att den här funktionen visas i egenskapslistan.');
+
+jr_define('REVIEW_REMINDER_PT1', "Du har ");
+jr_define('REVIEW_REMINDER_PT2', "bokning(er) som du inte har lämnat en recension för ännu. Lämna en recension.");
+jr_define('BOOKINGS_AWAITING_REVIEWS', "Bokning som väntar på recensioner");
+jr_define('REVIEW_NAG', "Tjata gäster för recensioner?");
+jr_define('REVIEW_NAG_DESC', "När en gäst har blivit utbokad från en bokning kommer systemet att påminna dem om att skriva en recension för sin bokning. Ställ in det här alternativet på Nej för att inaktivera denna påminnelse.");
+jr_define('HIDDEN_ADDRESS_SETTING', "Dölj adress?");
+jr_define('HIDDEN_ADDRESS_SETTING_DESC', "Om du ställer in det här alternativet till Ja, kommer endast gäster som redan har gjort en bokning på din fastighet att kunna se fastighetens gatuadress. Du kanske vill använda den här inställningen för att dölja fastighetens exakta plats om den till exempel rutinmässigt lämnas utan uppsikt.");
+jr_define('HIDDEN_ADDRESS_PLACEHOLDER', "HIDDEN");
+jr_define('_JOMRES_MEDIA_CENTRE_OPTIMIZE_IMAGES', 'Optimera bilder vid uppladdning?');
+jr_define('_JOMRES_MEDIA_CENTRE_OPTIMIZE_IMAGES_DESC', 'När den är aktiverad optimeras bilderna för webben (filstorleken kan vara upp till 75 % mindre). Beroende på uppladdad bildtyp måste din server ha ett eller flera av dessa bibliotek installerade av webbhotellet leverantör: optipng, pngquant, pngcrush, pngout, advpng, jpegtran, jpegoptim, gifsicle');
+jr_define('DATABASE_INTEGRITY_CHECK', 'Databasintegritetskontroll');
+jr_define('OBSOLETE_FILES_CHECK', 'Kontroll av föråldrade filer');
+jr_define('DATATABLES_COLVIS', 'Kolumnsynlighet');
+
+jr_define('API_TOKEN_LIFETIME', 'API-tokens livstid');
+jr_define('API_TOKEN_LIFETIME_DESC', 'Hur länge en API-token förblir giltig i sekunder. 86400 = 1 dag, 31536000 = 1 år');
+
+
+jr_define('ENCRYPTION_TITLE', 'Kryptering');
+jr_define('ENCRYPTION_FILE_LOCATION', 'Plats för krypteringsfilen');
+jr_define('ENCRYPTION_FILE_LOCATION_DESC', '**Radera aldrig krypteringsfilen** <br/> Användardata lagras krypterad i tabeller för att säkerställa att "data i vila" skyddas säkert, i enlighet med GDPR-rekommendationer. Som standard krypteringsnyckeln lagras i filen "encryption_key.class.php" i roten av din Jomres-installation (vanligtvis /public_html/jomres). Du kan ändra var filen lagras här. Om du ändrar platsen måste du FLYTTA filen, vänta inte på att Jomres ska skapa en ny version annars kommer du inte att kunna avkoda dina gästers uppgifter.');
 
 jr_define('_JOMRES_COM_YOURBUSINESS_DESC', 'Informationen du sparar här kommer att användas på fakturor som genereras för denna fastighet');
 
-jr_define( '_JOMRES_GDPR_POLICIES', 'GDPR-policyer' );
-jr_define( '_JOMRES_GDPR_POLICIES_DESC', 'Här kan du konfigurera hur lång tid efter att en bokning eller faktura har skapats den tas bort från systemet för att säkerställa att du är kompatibel med GDPR.' );
+jr_define('_JOMRES_GDPR_POLICIES', 'GDPR-policyer');
+jr_define('_JOMRES_GDPR_POLICIES_DESC', 'Här kan du konfigurera hur lång tid efter att en bokning eller faktura har skapats den tas bort från systemet för att säkerställa att du är kompatibel med GDPR.');
 
-jr_define( '_JOMRES_GDPR_BOOKING_RETENTION', 'Retentionsperiod för bokning (i dagar)' );
-jr_define( '_JOMRES_GDPR_BOOKING_RETENTION_DESC', 'Hur många dagar efter en boknings avresedatum ska bokningen raderas? När den raderas tas både bokningen och fakturan bort. En typisk lagringsperiod kan vara 365 dagar.' );
+jr_define('_JOMRES_GDPR_BOOKING_RETENTION', 'Retentionsperiod för bokning (i dagar)');
+jr_define('_JOMRES_GDPR_BOOKING_RETENTION_DESC', 'Hur många dagar efter en boknings avresedatum ska bokningen raderas? När den raderas tas både bokningen och fakturan bort. En typisk lagringsperiod kan vara 365 dagar.');
 
-jr_define( '_JOMRES_GDPR_INVOICE_RETENTION', 'Fakturalagringsperiod (icke-bokning)' );
-jr_define( '_JOMRES_GDPR_INVOICE_RETENTION_DESC', 'Andra fakturor, såsom provisions- och prenumerationsfakturor, är inte bundna till bokningar. Som ett resultat av detta kommer de inte att raderas när bokningsfakturor och kontrakt raderas. Beroende på ditt land och din egen affärspraxis, du måste konfigurera en annan lagringsperiod. En typisk lagringsperiod kan vara 3653 dagar, vilket är 10 år.' );
+jr_define('_JOMRES_GDPR_INVOICE_RETENTION', 'Fakturalagringsperiod (icke-bokning)');
+jr_define('_JOMRES_GDPR_INVOICE_RETENTION_DESC', 'Andra fakturor, såsom provisions- och prenumerationsfakturor, är inte bundna till bokningar. Som ett resultat av detta kommer de inte att raderas när bokningsfakturor och kontrakt raderas. Beroende på ditt land och din egen affärspraxis, du måste konfigurera en annan lagringsperiod. En typisk lagringsperiod kan vara 3653 dagar, vilket är 10 år.');
 
 
-jr_define( '_JOMRES_GDPR_CONSENT_FORM_INTRO', 'Dina data' );
-jr_define( '_JOMRES_GDPR_CONSENT_FORM_THIRD_PARTIES', 'Vissa funktioner på denna webbplats behöver lagra information om ditt besök. Detta används endast för att tillhandahålla tjänster till dig, delas aldrig med någon annan och raderas när det inte längre behövs.' );
-jr_define( '_JOMRES_GDPR_CONSENT_FORM_CONSENT_REQUEST', 'GER DU OSS TILLSTÅND ATT LAGRA DENNA INFORMATION??' );
-jr_define( '_JOMRES_GDPR_CONSENT_FORM_DETAIL', 'I detalj' );
-jr_define( '_JOMRES_GDPR_CONSENT_FORM_COOKIE', 'Du måste samtycka till att vi lagrar dessa uppgifter för att du ska kunna göra bokningar på denna webbplats. Oavsett om du samtycker till att din data lagras eller inte, kommer vi att lagra en cookie på din dator för att berätta oss oavsett om du har valt in eller inte. Detta hjälper oss att säkerställa att vi inte ständigt frågar dig om du vill välja in eller inte, och det innehåller ingen personlig identifierbar information (PII). Om du ändrar dig kan besöka sidan "Appbehörigheter" när som helst för att välja in eller bort.' );
-jr_define( '_JOMRES_GDPR_CONSENT_FORM_BASIC_INFORMATION', 'Informationen lagras under olika tidsperioder beroende på typen av ditt besök. Så om du bara tittar dig omkring kommer vi att lagra ungefärlig geografisk platsinformation (landsnivå). Om du gör sökningar, gör sökformulär mer användarvänliga vi lagrar de senaste sakerna du sökte på. Denna information lagras vanligtvis i högst 24 timmar och används endast för att göra ditt besök trevligare.' );
-jr_define( '_JOMRES_GDPR_CONSENT_FORM_BOOKINGS_INTRO', 'När du gör en bokning hos oss lagras av nödvändighet mer information.' );
-jr_define( '_JOMRES_GDPR_CONSENT_FORM_BOOKINGS_1', 'De tekniska detaljerna i bokningsformuläret fångas upp och sparas i maximalt 60 dagar. Detta krävs för att On Request-bokningar ska kunna omvandlas till fullständiga bokningar när en bokning har godkänts och för analys av våra team om det finns ett problem med en bokning. Om du inte var inloggad när du gjorde en bokning kommer vi att skicka ett användarnamn och lösenord via e-post så att du kan se din bokningshistorik och utöva din Rätt att bli glömd (RTBF) om du vill göra det.' );
-jr_define( '_JOMRES_GDPR_CONSENT_FORM_BOOKINGS_2', 'Data som matas in i bokningsformuläret, till exempel namn, e-postadress, riktig adress lagras i maximalt 365 dagar efter bokningens avresedatum. Denna information lagras i krypterad form i vår databas så att endast behöriga personer kan se den. Om du gör en bokning måste vi enligt lag lagra din PII medan bokningen är giltig. När bokningen har slutförts, antingen för att den har avbrutits eller för att du har checkat ut, kommer du att kunna utöva din RTBF genom att logga in och besöka sidan "Dina data". Fakturainformation för genomförda bokningar kommer fortfarande att lagras säkert i vår databas för att säkerställa att vi följer relevanta skattelagar men du kommer att kunna ta bort alla andra PII efter att bokningen är klar.' );
-jr_define( '_JOMRES_GDPR_CONSENT_FORM_BOOKINGS_3', 'När du samtycker till att din information lagras enligt beskrivningen ovan är vi juridiskt skyldiga att lagra detta samtycke i vår databas. Denna information kommer att inkludera ditt IP-nummer och innehållet i anmälningsformuläret. Vi kommer att behåll detta samtyckesbesked på obestämd tid (detta är ett lagkrav).' );
+jr_define('_JOMRES_GDPR_CONSENT_FORM_INTRO', 'Dina data');
+jr_define('_JOMRES_GDPR_CONSENT_FORM_THIRD_PARTIES', 'Vissa funktioner på denna webbplats behöver lagra information om ditt besök. Detta används endast för att tillhandahålla tjänster till dig, delas aldrig med någon annan och raderas när det inte längre behövs.');
+jr_define('_JOMRES_GDPR_CONSENT_FORM_CONSENT_REQUEST', 'GER DU OSS TILLSTÅND ATT LAGRA DENNA INFORMATION??');
+jr_define('_JOMRES_GDPR_CONSENT_FORM_DETAIL', 'I detalj');
+jr_define('_JOMRES_GDPR_CONSENT_FORM_COOKIE', 'Du måste samtycka till att vi lagrar dessa uppgifter för att du ska kunna göra bokningar på denna webbplats. Oavsett om du samtycker till att din data lagras eller inte, kommer vi att lagra en cookie på din dator för att berätta oss oavsett om du har valt in eller inte. Detta hjälper oss att säkerställa att vi inte ständigt frågar dig om du vill välja in eller inte, och det innehåller ingen personlig identifierbar information (PII). Om du ändrar dig kan besöka sidan "Appbehörigheter" när som helst för att välja in eller bort.');
+jr_define('_JOMRES_GDPR_CONSENT_FORM_BASIC_INFORMATION', 'Informationen lagras under olika tidsperioder beroende på typen av ditt besök. Så om du bara tittar dig omkring kommer vi att lagra ungefärlig geografisk platsinformation (landsnivå). Om du gör sökningar, gör sökformulär mer användarvänliga vi lagrar de senaste sakerna du sökte på. Denna information lagras vanligtvis i högst 24 timmar och används endast för att göra ditt besök trevligare.');
+jr_define('_JOMRES_GDPR_CONSENT_FORM_BOOKINGS_INTRO', 'När du gör en bokning hos oss lagras av nödvändighet mer information.');
+jr_define('_JOMRES_GDPR_CONSENT_FORM_BOOKINGS_1', 'De tekniska detaljerna i bokningsformuläret fångas upp och sparas i maximalt 60 dagar. Detta krävs för att On Request-bokningar ska kunna omvandlas till fullständiga bokningar när en bokning har godkänts och för analys av våra team om det finns ett problem med en bokning. Om du inte var inloggad när du gjorde en bokning kommer vi att skicka ett användarnamn och lösenord via e-post så att du kan se din bokningshistorik och utöva din Rätt att bli glömd (RTBF) om du vill göra det.');
+jr_define('_JOMRES_GDPR_CONSENT_FORM_BOOKINGS_2', 'Data som matas in i bokningsformuläret, till exempel namn, e-postadress, riktig adress lagras i maximalt 365 dagar efter bokningens avresedatum. Denna information lagras i krypterad form i vår databas så att endast behöriga personer kan se den. Om du gör en bokning måste vi enligt lag lagra din PII medan bokningen är giltig. När bokningen har slutförts, antingen för att den har avbrutits eller för att du har checkat ut, kommer du att kunna utöva din RTBF genom att logga in och besöka sidan "Dina data". Fakturainformation för genomförda bokningar kommer fortfarande att lagras säkert i vår databas för att säkerställa att vi följer relevanta skattelagar men du kommer att kunna ta bort alla andra PII efter att bokningen är klar.');
+jr_define('_JOMRES_GDPR_CONSENT_FORM_BOOKINGS_3', 'När du samtycker till att din information lagras enligt beskrivningen ovan är vi juridiskt skyldiga att lagra detta samtycke i vår databas. Denna information kommer att inkludera ditt IP-nummer och innehållet i anmälningsformuläret. Vi kommer att behåll detta samtyckesbesked på obestämd tid (detta är ett lagkrav).');
 
-jr_define( '_JOMRES_GDPR_CONSENT_NOT_SET', 'Du har ännu inte berättat för oss om vi kan samla in personligt identifierbar information om dig' );
-jr_define( '_JOMRES_GDPR_CONSENT_OPTED_IN', 'Du har samtyckt till att vi samlar in nödvändig personlig identifierbar information för att ta emot bokningar' );
-jr_define( '_JOMRES_GDPR_CONSENT_OPTED_OUT', 'Du har sagt till oss att inte samla in personligt identifierbar information' );
+jr_define('_JOMRES_GDPR_CONSENT_NOT_SET', 'Du har ännu inte berättat för oss om vi kan samla in personligt identifierbar information om dig');
+jr_define('_JOMRES_GDPR_CONSENT_OPTED_IN', 'Du har samtyckt till att vi samlar in nödvändig personlig identifierbar information för att ta emot bokningar');
+jr_define('_JOMRES_GDPR_CONSENT_OPTED_OUT', 'Du har sagt till oss att inte samla in personligt identifierbar information');
 
-jr_define( '_JOMRES_GDPR_NOCONSENT_INTRO', 'Du har inte gett oss tillåtelse att samla in dina privata uppgifter' );
-jr_define( '_JOMRES_GDPR_NOCONSENT_DIDNOTCONSENT', 'För att du ska kunna utföra vissa åtgärder på denna webbplats måste vi samla in personligt identifierbar information om dig, men du har inte gett oss tillåtelse att göra det.' );
-jr_define( '_JOMRES_GDPR_NOCONSENT_DIDNOTCONSENT_LINK_TEXT', 'Ändra dina behörigheter' );
-jr_define( '_JOMRES_GDPR_NOCONSENT_DIDNOTCONSENT_LINK_CONTINUE', 'Fortsätt visa egenskaper' );
+jr_define('_JOMRES_GDPR_NOCONSENT_INTRO', 'Du har inte gett oss tillåtelse att samla in dina privata uppgifter');
+jr_define('_JOMRES_GDPR_NOCONSENT_DIDNOTCONSENT', 'För att du ska kunna utföra vissa åtgärder på denna webbplats måste vi samla in personligt identifierbar information om dig, men du har inte gett oss tillåtelse att göra det.');
+jr_define('_JOMRES_GDPR_NOCONSENT_DIDNOTCONSENT_LINK_TEXT', 'Ändra dina behörigheter');
+jr_define('_JOMRES_GDPR_NOCONSENT_DIDNOTCONSENT_LINK_CONTINUE', 'Fortsätt visa egenskaper');
 
-jr_define( '_JOMRES_GDPR_APP_MENU_ITEM', 'Appbehörigheter' );
+jr_define('_JOMRES_GDPR_APP_MENU_ITEM', 'Appbehörigheter');
 
-jr_define( '_JOMRES_GDPR_DOWNLOAD_GUEST_DATA', 'Gästdata' );
-jr_define( '_JOMRES_GDPR_DOWNLOAD_GUEST_DATA_DESC', 'Detta är uppgifterna som lagras åt dig av de olika fastigheterna. Olika hotell kan ha olika register, beroende på vad du angav när du gjorde bokningen.' );
-jr_define( '_JOMRES_GDPR_DOWNLOAD_GUEST_DATA_DESC_NONE', 'Du har inga data lagrade på några hotell i detta system' );
-jr_define( '_JOMRES_GDPR_DOWNLOAD_PROFILE_DATA', 'Profildata' );
-jr_define( '_JOMRES_GDPR_DOWNLOAD_PROFILE_DATA_DESC', 'Detta är den huvudsakliga datamängden vi har åt dig, skild från de du har delat med olika egenskaper.' );
-jr_define( '_JOMRES_GDPR_DOWNLOAD_PROFILE_DATA_DESC_NONE', 'Du har inte sparat någon profilinformation' );
-jr_define( '_JOMRES_GDPR_DOWNLOAD_PROFILE_DATA_TEXT', 'Här är den personligt identifierbara informationen som vi lagrar på denna webbplats åt dig. Den är konstruerad i JSON-format (JavaScript Object Notation) som är ett lättviktsformat för datautbyte. Det är lätt för människor att läsa och skriv och det är lätt för maskiner att analysera och generera.' );
+jr_define('_JOMRES_GDPR_DOWNLOAD_GUEST_DATA', 'Gästdata');
+jr_define('_JOMRES_GDPR_DOWNLOAD_GUEST_DATA_DESC', 'Detta är uppgifterna som lagras åt dig av de olika fastigheterna. Olika hotell kan ha olika register, beroende på vad du angav när du gjorde bokningen.');
+jr_define('_JOMRES_GDPR_DOWNLOAD_GUEST_DATA_DESC_NONE', 'Du har inga data lagrade på några hotell i detta system');
+jr_define('_JOMRES_GDPR_DOWNLOAD_PROFILE_DATA', 'Profildata');
+jr_define('_JOMRES_GDPR_DOWNLOAD_PROFILE_DATA_DESC', 'Detta är den huvudsakliga datamängden vi har åt dig, skild från de du har delat med olika egenskaper.');
+jr_define('_JOMRES_GDPR_DOWNLOAD_PROFILE_DATA_DESC_NONE', 'Du har inte sparat någon profilinformation');
+jr_define('_JOMRES_GDPR_DOWNLOAD_PROFILE_DATA_TEXT', 'Här är den personligt identifierbara informationen som vi lagrar på denna webbplats åt dig. Den är konstruerad i JSON-format (JavaScript Object Notation) som är ett lättviktsformat för datautbyte. Det är lätt för människor att läsa och skriv och det är lätt för maskiner att analysera och generera.');
 
-jr_define( '_JOMRES_GDPR_REDACTION_STRING', 'Anonymiserad' );
+jr_define('_JOMRES_GDPR_REDACTION_STRING', 'Anonymiserad');
 
-jr_define( '_JOMRES_GDPR_MY_DATA', 'Dina data' );
-jr_define( '_JOMRES_GDPR_MY_DATA_PRIVACY_NOTICE', 'Genom att acceptera dessa användarvillkor (detta "Avtal") godkänner du att:
+jr_define('_JOMRES_GDPR_MY_DATA', 'Dina data');
+jr_define('_JOMRES_GDPR_MY_DATA_PRIVACY_NOTICE', 'Genom att acceptera dessa användarvillkor (detta "Avtal") godkänner du att:
 
 <ul>
 <li>
@@ -2134,65 +2134,65 @@ Du kommer att skydda din kontoinformation och kommer att övervaka och vara helt
 </li>
 </ul>
 ');
-jr_define( '_JOMRES_GDPR_MY_DATA_LEAD', 'Säkerhet och transparens är viktigt för oss.' );
-jr_define( '_JOMRES_GDPR_MY_DATA_INTRO', 'Vi tar vårt ansvar angående lagring av dina data på största allvar. All personlig identifierbar information (PII) lagras krypterad i vår databas med hjälp av industristandardalgoritmer för att säkerställa att endast auktoriserade användare kan se denna information.' );
+jr_define('_JOMRES_GDPR_MY_DATA_LEAD', 'Säkerhet och transparens är viktigt för oss.');
+jr_define('_JOMRES_GDPR_MY_DATA_INTRO', 'Vi tar vårt ansvar angående lagring av dina data på största allvar. All personlig identifierbar information (PII) lagras krypterad i vår databas med hjälp av industristandardalgoritmer för att säkerställa att endast auktoriserade användare kan se denna information.');
 
-jr_define( '_JOMRES_GDPR_MY_DATA_DOWNLOAD_TEXT', 'Du kan ladda ner alla PII vi lagrar åt dig.' );
-jr_define( '_JOMRES_GDPR_MY_DATA_DOWNLOAD_BUTTON', 'Ladda ner nu' );
+jr_define('_JOMRES_GDPR_MY_DATA_DOWNLOAD_TEXT', 'Du kan ladda ner alla PII vi lagrar åt dig.');
+jr_define('_JOMRES_GDPR_MY_DATA_DOWNLOAD_BUTTON', 'Ladda ner nu');
 
-jr_define( '_JOMRES_GDPR_MY_RTBF_LEAD', 'Rätten att bli glömd (RTBF)' );
-jr_define( '_JOMRES_GDPR_MY_RTBF_INTRO', 'Vi anser att du bör kunna <a href="https://gdpr-info.eu/art-17-gdpr/" target="_blank">radera</a> din < a href="https://gdpr-info.eu/art-4-gdpr/" target="_blank">Personligt identifierbar information </a>om du vill och om det är praktiskt möjligt. ' );
-jr_define( '_JOMRES_GDPR_MY_RTBF_NOTREGISTERED_OPTEDIN', 'Du är inte registrerad på denna sida. Din allmänna plats (land) och IP-nummer kommer att lagras i maximalt 24 timmar och raderas sedan.' );
-jr_define( '_JOMRES_GDPR_MY_RTBF_NOTREGISTERED_OPTEDOUT', 'Du är inte registrerad på denna sida och du har valt bort datainsamling. Vi har inte lagrat din PII.' );
+jr_define('_JOMRES_GDPR_MY_RTBF_LEAD', 'Rätten att bli glömd (RTBF)');
+jr_define('_JOMRES_GDPR_MY_RTBF_INTRO', 'Vi anser att du bör kunna <a href="https://gdpr-info.eu/art-17-gdpr/" target="_blank">radera</a> din < a href="https://gdpr-info.eu/art-4-gdpr/" target="_blank">Personligt identifierbar information </a>om du vill och om det är praktiskt möjligt. ');
+jr_define('_JOMRES_GDPR_MY_RTBF_NOTREGISTERED_OPTEDIN', 'Du är inte registrerad på denna sida. Din allmänna plats (land) och IP-nummer kommer att lagras i maximalt 24 timmar och raderas sedan.');
+jr_define('_JOMRES_GDPR_MY_RTBF_NOTREGISTERED_OPTEDOUT', 'Du är inte registrerad på denna sida och du har valt bort datainsamling. Vi har inte lagrat din PII.');
 
-jr_define( '_JOMRES_GDPR_MY_RTBF_REGISTERED_NOBOOKINGS', 'Du är registrerad på webbplatsen och har inga väntande eller aktiva bokningar. Vi kan anonymisera den mesta informationen vi för närvarande har åt dig. Vill du göra det? ' );
-jr_define( '_JOMRES_GDPR_MY_RTBF_REGISTERED_NOBOOKINGS_NOTE', 'Obs: Detta tar inte bort ditt konto, det anonymiserar helt enkelt våra register så att ditt konto inte kan kopplas till dig som person. Enligt lag måste vi fortsätta att lagra din PII för faktureringsändamål, men vi kommer att göra det. radera alla gästposter.' );
+jr_define('_JOMRES_GDPR_MY_RTBF_REGISTERED_NOBOOKINGS', 'Du är registrerad på webbplatsen och har inga väntande eller aktiva bokningar. Vi kan anonymisera den mesta informationen vi för närvarande har åt dig. Vill du göra det? ');
+jr_define('_JOMRES_GDPR_MY_RTBF_REGISTERED_NOBOOKINGS_NOTE', 'Obs: Detta tar inte bort ditt konto, det anonymiserar helt enkelt våra register så att ditt konto inte kan kopplas till dig som person. Enligt lag måste vi fortsätta att lagra din PII för faktureringsändamål, men vi kommer att göra det. radera alla gästposter.');
 
-jr_define( '_JOMRES_GDPR_MY_RTBF_REGISTERED_FUTUREBOOKINGS', 'Du är registrerad på webbplatsen, men du har bokningar utestående och vi kan inte anonymisera dina uppgifter just nu. Dessa uppgifter kommer att sparas i högst ett år efter att bokningen har slutförts, sedan kommer den att raderas, om du inte väljer att ta bort det innan dess.' );
-jr_define( '_JOMRES_GDPR_MY_RTBF_REGISTERED_PROPERTYMANAGERS', 'Eftersom du är fastighetsförvaltare på vår sida kan vi inte erbjuda dig möjligheten att få dina uppgifter raderade automatiskt. Kontakta oss istället direkt så att vi kan tilldela din/dina fastigheter till en annan förvaltare. När vi har gjort det och tagit bort din status som fastighetsförvaltare kan du automatiskt få dina uppgifter raderade.' );
+jr_define('_JOMRES_GDPR_MY_RTBF_REGISTERED_FUTUREBOOKINGS', 'Du är registrerad på webbplatsen, men du har bokningar utestående och vi kan inte anonymisera dina uppgifter just nu. Dessa uppgifter kommer att sparas i högst ett år efter att bokningen har slutförts, sedan kommer den att raderas, om du inte väljer att ta bort det innan dess.');
+jr_define('_JOMRES_GDPR_MY_RTBF_REGISTERED_PROPERTYMANAGERS', 'Eftersom du är fastighetsförvaltare på vår sida kan vi inte erbjuda dig möjligheten att få dina uppgifter raderade automatiskt. Kontakta oss istället direkt så att vi kan tilldela din/dina fastigheter till en annan förvaltare. När vi har gjort det och tagit bort din status som fastighetsförvaltare kan du automatiskt få dina uppgifter raderade.');
 
-jr_define( '_JOMRES_GDPR_MY_RTBF_FORGET_ME', 'Glöm mig!' );
-jr_define( '_JOMRES_GDPR_MY_RTBF_FORGET_ME_WARNING', 'Detta kan inte ångras!' );
-jr_define( '_JOMRES_GDPR_MY_RTBF_FORGET_ME_FORGOTTEN', 'Din data har raderats!' );
+jr_define('_JOMRES_GDPR_MY_RTBF_FORGET_ME', 'Glöm mig!');
+jr_define('_JOMRES_GDPR_MY_RTBF_FORGET_ME_WARNING', 'Detta kan inte ångras!');
+jr_define('_JOMRES_GDPR_MY_RTBF_FORGET_ME_FORGOTTEN', 'Din data har raderats!');
 
-jr_define( '_JOMRES_CANNOT_BOOK_INVALID_EMAIL', 'Tyvärr, du kan inte göra en bokning eftersom din e-postadress är ogiltig' );
+jr_define('_JOMRES_CANNOT_BOOK_INVALID_EMAIL', 'Tyvärr, du kan inte göra en bokning eftersom din e-postadress är ogiltig');
 
-jr_define( '_JOMRES_GDPR_RTBF_ANONYMISE_GUEST_INTRO', 'Den här sidan ger dig möjlighet att anonymisera alla gäster som har sin information lagrad i systemet. Detta gör att du kan följa GDPR, men du kan inte redigera någon annan information på den här sidan. För att göra det du måste logga in på frontend som fastighetsförvaltare. Antagandet är att en historisk gäst har kontaktat dig och begärt att du ska tillåta dem att utöva sin rätt att bli bortglömd. Om de inte kan logga in på sidans frontend (kanske en användare skapades inte för dem när de bokade) så kan du använda detta område för att anonymisera dem när du har bekräftat deras identitet.' );
-jr_define( '_JOMRES_GDPR_RTBF_ANONYMISE_GUEST', 'Anonymisera gäst' );
-jr_define( '_JOMRES_GDPR_RTBF_UNKNOWN_PROPERTY', 'RADERAD EGENDOM' );
-jr_define( '_JOMRES_GDPR_RTBF_GUEST_REDACTED', 'Gästdata anonymiserad' );
-jr_define( '_JOMRES_GDPR_RTBF_GUEST_CANNOT_REDACT', 'Kan inte anonymisera' );
+jr_define('_JOMRES_GDPR_RTBF_ANONYMISE_GUEST_INTRO', 'Den här sidan ger dig möjlighet att anonymisera alla gäster som har sin information lagrad i systemet. Detta gör att du kan följa GDPR, men du kan inte redigera någon annan information på den här sidan. För att göra det du måste logga in på frontend som fastighetsförvaltare. Antagandet är att en historisk gäst har kontaktat dig och begärt att du ska tillåta dem att utöva sin rätt att bli bortglömd. Om de inte kan logga in på sidans frontend (kanske en användare skapades inte för dem när de bokade) så kan du använda detta område för att anonymisera dem när du har bekräftat deras identitet.');
+jr_define('_JOMRES_GDPR_RTBF_ANONYMISE_GUEST', 'Anonymisera gäst');
+jr_define('_JOMRES_GDPR_RTBF_UNKNOWN_PROPERTY', 'RADERAD EGENDOM');
+jr_define('_JOMRES_GDPR_RTBF_GUEST_REDACTED', 'Gästdata anonymiserad');
+jr_define('_JOMRES_GDPR_RTBF_GUEST_CANNOT_REDACT', 'Kan inte anonymisera');
 
-jr_define( '_JOMRES_GDPR_CONSENT_TRIGGER_FORM', 'Vi behöver ditt tillstånd för att lagra din information innan du kan göra en bokning. KLICKA HÄR för att ge oss tillåtelse.' );
+jr_define('_JOMRES_GDPR_CONSENT_TRIGGER_FORM', 'Vi behöver ditt tillstånd för att lagra din information innan du kan göra en bokning. KLICKA HÄR för att ge oss tillåtelse.');
 
-jr_define( '_JOMRES_GDPR_CONFIG_ENABLE', 'Aktivera GDPR-kompatibel funktionalitet?' );
-jr_define( '_JOMRES_GDPR_CONFIG_ENABLE_DESC', 'VI REKOMMENDERAR DU INTE ATT INAKTIVERA DEN GDPR-KOMPENLIGA FUNKTIONEN. Jomres har inbyggda funktioner som hjälper dig att säkerställa att Jomres-delen av din webbplats är kompatibel med GDPR. (och om du inaktiverar denna funktion. du bör inte göra det om du är i EU eller om du gör affärer med EU-medborgare) då kommer Jomres automatiskt att anta att varje besökare på sajten har gett sin tillåtelse att aktivera sina personuppgifter. Appbehörighet och Mina data-sidor kommer inte att vara visas och användare kommer inte att uppmanas att ge sitt tillstånd att få uppgifterna samlade.' );
+jr_define('_JOMRES_GDPR_CONFIG_ENABLE', 'Aktivera GDPR-kompatibel funktionalitet?');
+jr_define('_JOMRES_GDPR_CONFIG_ENABLE_DESC', 'VI REKOMMENDERAR DU INTE ATT INAKTIVERA DEN GDPR-KOMPENLIGA FUNKTIONEN. Jomres har inbyggda funktioner som hjälper dig att säkerställa att Jomres-delen av din webbplats är kompatibel med GDPR. (och om du inaktiverar denna funktion. du bör inte göra det om du är i EU eller om du gör affärer med EU-medborgare) då kommer Jomres automatiskt att anta att varje besökare på sajten har gett sin tillåtelse att aktivera sina personuppgifter. Appbehörighet och Mina data-sidor kommer inte att vara visas och användare kommer inte att uppmanas att ge sitt tillstånd att få uppgifterna samlade.');
 
 
-jr_define( 'EMPTY_TEMP_DIR', 'Töm temp dir' );
-jr_define( 'EMPTY_TEMP_DIR_DONE', 'Tillfälliga filer raderade' );
+jr_define('EMPTY_TEMP_DIR', 'Töm temp dir');
+jr_define('EMPTY_TEMP_DIR_DONE', 'Tillfälliga filer raderade');
 
-jr_define( 'MACHINE_TRANSLATION', 'Maskinöversättningar' );
-jr_define( 'MACHINE_TRANSLATION_DEFAULT_LANG', 'Källspråk' );
-jr_define( 'MACHINE_TRANSLATION_DEFAULT_LANG_DESC', 'Det är möjligt att koppla in maskinöversättningsfunktioner. Detta låter dig ange strängar på ett språk och översättningar kan hämtas från fjärrtjänster. Tänk på att inte alla översättningstjänster stöder alla språk. Se dessa tjänster för mer detaljer.' );
+jr_define('MACHINE_TRANSLATION', 'Maskinöversättningar');
+jr_define('MACHINE_TRANSLATION_DEFAULT_LANG', 'Källspråk');
+jr_define('MACHINE_TRANSLATION_DEFAULT_LANG_DESC', 'Det är möjligt att koppla in maskinöversättningsfunktioner. Detta låter dig ange strängar på ett språk och översättningar kan hämtas från fjärrtjänster. Tänk på att inte alla översättningstjänster stöder alla språk. Se dessa tjänster för mer detaljer.');
 
-jr_define( '_JOMRES_PROPERTY_ROOM_TYPES_EDIT', 'Rumstyper' );
-jr_define( '_JOMRES_PROPERTY_ROOM_TYPES_NEW', 'Ny rumstyp' );
-jr_define( '_JOMRES_PROPERTY_ROOM_TYPES_EDIT_LEAD', 'Du kan skapa och redigera rumstyper på den här sidan. Dessa rumstyper kommer endast att vara specifika för den här egenskapen. När du konfigurerar din fastighet behöver du först några rumstyper. Du kan använda antingen de rumstyper som skapats av administratören, eller så kan du lägga till dina egna. När du har en eller flera rumstyper kan du sedan skapa rum av den rumstypen. När du har rum kan du sedan skapa tariffer (priser) för dessa rum eftersom tarifferna är kopplade till rumstyperna .' );
-jr_define( '_JOMRES_CONFIG_ROOM_TYPES_CREATING_TITLE', 'Hanterare kan skapa rumstyper?' );
-jr_define( '_JOMRES_CONFIG_ROOM_TYPES_CREATING_DESC', 'Använd det här alternativet för att konfigurera om chefer kan skapa sina egna rumstyper i gränssnittet eller inte. Vi rekommenderar starkt att du låter det här alternativet vara inställt på Nej när du först börjar använda Jomres, särskilt om du skapar en portal eftersom du ska skapa alla rumstyper i administratörsområdet Rumstyper som skapats av chefer kommer att visas i sökformulär, men eftersom dessa rumstyper är specifika för enskilda fastigheter kommer endast en egenskap att visas i sökresultaten om den rumstypen väljs under sökningar. Om du vill att endast Super Property Managers ska kunna skapa rumstyper, lämna det här alternativet inställt på Ja och använd Access Control-plugin för att endast supermanagers ska kunna se menyalternativet "Inställningar > Rumstyper". Endast fastigheter som hyrs ut. ut rum i fastigheten och använd Advanced eller Micromanage tariffredigeringslägen kan använda detta alternativ. Villa/lägenhetstyp egenskaper kommer inte att kunna använda det.' );
+jr_define('_JOMRES_PROPERTY_ROOM_TYPES_EDIT', 'Rumstyper');
+jr_define('_JOMRES_PROPERTY_ROOM_TYPES_NEW', 'Ny rumstyp');
+jr_define('_JOMRES_PROPERTY_ROOM_TYPES_EDIT_LEAD', 'Du kan skapa och redigera rumstyper på den här sidan. Dessa rumstyper kommer endast att vara specifika för den här egenskapen. När du konfigurerar din fastighet behöver du först några rumstyper. Du kan använda antingen de rumstyper som skapats av administratören, eller så kan du lägga till dina egna. När du har en eller flera rumstyper kan du sedan skapa rum av den rumstypen. När du har rum kan du sedan skapa tariffer (priser) för dessa rum eftersom tarifferna är kopplade till rumstyperna .');
+jr_define('_JOMRES_CONFIG_ROOM_TYPES_CREATING_TITLE', 'Hanterare kan skapa rumstyper?');
+jr_define('_JOMRES_CONFIG_ROOM_TYPES_CREATING_DESC', 'Använd det här alternativet för att konfigurera om chefer kan skapa sina egna rumstyper i gränssnittet eller inte. Vi rekommenderar starkt att du låter det här alternativet vara inställt på Nej när du först börjar använda Jomres, särskilt om du skapar en portal eftersom du ska skapa alla rumstyper i administratörsområdet Rumstyper som skapats av chefer kommer att visas i sökformulär, men eftersom dessa rumstyper är specifika för enskilda fastigheter kommer endast en egenskap att visas i sökresultaten om den rumstypen väljs under sökningar. Om du vill att endast Super Property Managers ska kunna skapa rumstyper, lämna det här alternativet inställt på Ja och använd Access Control-plugin för att endast supermanagers ska kunna se menyalternativet "Inställningar > Rumstyper". Endast fastigheter som hyrs ut. ut rum i fastigheten och använd Advanced eller Micromanage tariffredigeringslägen kan använda detta alternativ. Villa/lägenhetstyp egenskaper kommer inte att kunna använda det.');
 jr_define('_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_UPDATE', 'Rum/fastighetstyp uppdaterad');
-jr_define( '_JOMRES_PROPERTY_ROOM_TYPES_CONFIG_TITLE', 'Visa rumstyper i sökalternativ' );
-jr_define( '_JOMRES_PROPERTY_ROOM_TYPES_CONFIG_DESC', 'Om du väljer att tillåta fastighetsskötare att skapa sina egna rumstyper kan du välja om de skapade rumstyperna ska visas eller inte i sökalternativen där du har valt att visa rumstyper.' );
+jr_define('_JOMRES_PROPERTY_ROOM_TYPES_CONFIG_TITLE', 'Visa rumstyper i sökalternativ');
+jr_define('_JOMRES_PROPERTY_ROOM_TYPES_CONFIG_DESC', 'Om du väljer att tillåta fastighetsskötare att skapa sina egna rumstyper kan du välja om de skapade rumstyperna ska visas eller inte i sökalternativen där du har valt att visa rumstyper.');
 
 
-jr_define( '_JOMRES_QUICKBOOKING_EMAIL_ADDRESS_NOTE', "Du bör inte återanvända samma e-postadress för varje bokning.<br/>Om du har en unik domän (t.ex. inte en gmail-e-postadress) för ditt företag, använd gästens telefonnummer som deras e-postadress. E-postadressen skulle då se ut ungefär som 123456@mydomain.com<br/>Detta kommer att säkerställa att en ny gäst skapas när du skapar en bokning ." );
+jr_define('_JOMRES_QUICKBOOKING_EMAIL_ADDRESS_NOTE', "Du bör inte återanvända samma e-postadress för varje bokning.<br/>Om du har en unik domän (t.ex. inte en gmail-e-postadress) för ditt företag, använd gästens telefonnummer som deras e-postadress. E-postadressen skulle då se ut ungefär som 123456@mydomain.com<br/>Detta kommer att säkerställa att en ny gäst skapas när du skapar en bokning .");
 
-jr_define( '_JOMRES_LOGIN_USERNAME', 'E-postadress' );
-jr_define( '_JOMRES_LOGIN_PASSWORD', 'Lösenord' );
-jr_define( '_JOMRES_LOGIN_REASON_EMAIL_ALREADY_USED',"Vi är glada över att du vill boka hos oss igen. För att kunna hantera alla dina bokningar tillsammans är det nödvändigt att du loggar in så att bokningen kan läggas till ditt konto. Detta även säkerställer att du är behörig att använda den angivna e-postadressen." );
-jr_define( '_JOMRES_LOGIN_RESET_MESSAGE', 'Om du inte känner till ditt lösenord kan vi skicka ett e-postmeddelande om lösenordsåterställning. Följ instruktionerna i det e-postmeddelandet för att återställa ditt lösenord.' );
-jr_define( '_JOMRES_LOGIN_RESET_BUTTON', 'Har du glömt ditt lösenord?' );
+jr_define('_JOMRES_LOGIN_USERNAME', 'E-postadress');
+jr_define('_JOMRES_LOGIN_PASSWORD', 'Lösenord');
+jr_define('_JOMRES_LOGIN_REASON_EMAIL_ALREADY_USED', "Vi är glada över att du vill boka hos oss igen. För att kunna hantera alla dina bokningar tillsammans är det nödvändigt att du loggar in så att bokningen kan läggas till ditt konto. Detta även säkerställer att du är behörig att använda den angivna e-postadressen.");
+jr_define('_JOMRES_LOGIN_RESET_MESSAGE', 'Om du inte känner till ditt lösenord kan vi skicka ett e-postmeddelande om lösenordsåterställning. Följ instruktionerna i det e-postmeddelandet för att återställa ditt lösenord.');
+jr_define('_JOMRES_LOGIN_RESET_BUTTON', 'Har du glömt ditt lösenord?');
 
 jr_define('_JOMRES_REVIEWS_ANONYMISE', 'Anonymisera ditt namn?');
 jr_define('_JOMRES_REVIEWS_ANONYMISE_DESC', 'Om du väljer att anonymisera ditt namn när du granskar kommer vi att använda dina initialer istället.');
@@ -2427,84 +2427,84 @@ jr_define('CMF_CONFIG_KEY_DESC', 'Channel Management Framework-licensnyckeln. Du
 jr_define('_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT_UNAPPROVED', 'Din egendom har inte godkänts');
 jr_define('_JOMRES_APPROVALS_MANAGER_EMAIL_CONTENT_UNAPPROVED', "Din egendom har inte blivit godkänd. Om du tror att detta gjordes av misstag kontakta oss. ");
 
-jr_define('_JOMRES_GUESTTYPES_IS_CHILD',"Är det här en barngästtyp?");
-jr_define('_JOMRES_GUESTTYPES_IS_CHILD_DESC',"Sätt detta till Ja om denna gästtyp skulle klassas som en underordnad gästtyp.");
+jr_define('_JOMRES_GUESTTYPES_IS_CHILD', "Är det här en barngästtyp?");
+jr_define('_JOMRES_GUESTTYPES_IS_CHILD_DESC', "Sätt detta till Ja om denna gästtyp skulle klassas som en underordnad gästtyp.");
 
-jr_define('_JOMRES_GUESTTYPES_INTRO',"Om du vill debitera per person och natt måste du skapa några gästtyper.");
-jr_define('_JOMRES_GUESTTYPES_INSTRUCTIONS',"Du kan skapa så många gästtyper du behöver, försök börja med att skapa bara en gästtyp som heter 'Vuxen'. Lämna alla inställningar på sina standardvärden. Därefter, om du till exempel vill ge barn under 12 en rabatt på 50 %, du skulle skapa en ny gästtyp och kalla den 'Barn under 12'. Ställ in alternativet 'Lägg till avvikelse?' på - (negativ) och ställ in 'Varans' till 50. Detta betyder när barn läggs till i en bokning debiteras de 50 % av rumskostnaden för rummet. " );
+jr_define('_JOMRES_GUESTTYPES_INTRO', "Om du vill debitera per person och natt måste du skapa några gästtyper.");
+jr_define('_JOMRES_GUESTTYPES_INSTRUCTIONS', "Du kan skapa så många gästtyper du behöver, försök börja med att skapa bara en gästtyp som heter 'Vuxen'. Lämna alla inställningar på sina standardvärden. Därefter, om du till exempel vill ge barn under 12 en rabatt på 50 %, du skulle skapa en ny gästtyp och kalla den 'Barn under 12'. Ställ in alternativet 'Lägg till avvikelse?' på - (negativ) och ställ in 'Varans' till 50. Detta betyder när barn läggs till i en bokning debiteras de 50 % av rumskostnaden för rummet. ");
 
-jr_define('_JOMRES_MICROMANAGE_PICKERDROPDOWN_EDITPRICES',"Sätt priser manuellt");
-jr_define('_JOMRES_MICROMANAGE_PICKERDROPDOWN_EDITMINDAYS',"Ställ in lägsta antal nätter manuellt");
-jr_define('_JOMRES_MICROMANAGE_PICKER_SETMINDAYS',"Ange lägsta antal nätter");
+jr_define('_JOMRES_MICROMANAGE_PICKERDROPDOWN_EDITPRICES', "Sätt priser manuellt");
+jr_define('_JOMRES_MICROMANAGE_PICKERDROPDOWN_EDITMINDAYS', "Ställ in lägsta antal nätter manuellt");
+jr_define('_JOMRES_MICROMANAGE_PICKER_SETMINDAYS', "Ange lägsta antal nätter");
 
-jr_define('_JOMRES_MICROMANAGE_PICKER_TYPE_DOW',"Ange <em>pris per natt</em> efter veckodag");
-jr_define('_JOMRES_MICROMANAGE_PICKER_TYPE_INTERVAL_RATES',"Ange <em>pris per natt</em> efter datumintervall");
-jr_define('_JOMRES_MICROMANAGE_PICKER_TYPE_INTERVAL_MINDAYS',"Ange <em>minsta nätter</em> efter datumintervall");
+jr_define('_JOMRES_MICROMANAGE_PICKER_TYPE_DOW', "Ange <em>pris per natt</em> efter veckodag");
+jr_define('_JOMRES_MICROMANAGE_PICKER_TYPE_INTERVAL_RATES', "Ange <em>pris per natt</em> efter datumintervall");
+jr_define('_JOMRES_MICROMANAGE_PICKER_TYPE_INTERVAL_MINDAYS', "Ange <em>minsta nätter</em> efter datumintervall");
 
-jr_define('_JOMRES_MICROMANAGE_PICKER_INSTRUCTIONS_RATES',"Datumväljarna och prisinmatningen låter dig ställa in ett pris för ett givet datumintervall. Välj ett start- och slutdatum, ange ett pris och klicka på knappen Ställ in pris per natt.");
-jr_define('_JOMRES_MICROMANAGE_PICKER_INSTRUCTIONS_MINDAYS',"Datumväljarna och inmatningen av minsta antal nätter låter dig ställa in ett värde för minsta antal nätter för ett visst datumintervall. Välj ett start- och slutdatum, ange ett antal för minsta antal nätter och klicka på 'Ange' minsta antal nätter'.");
+jr_define('_JOMRES_MICROMANAGE_PICKER_INSTRUCTIONS_RATES', "Datumväljarna och prisinmatningen låter dig ställa in ett pris för ett givet datumintervall. Välj ett start- och slutdatum, ange ett pris och klicka på knappen Ställ in pris per natt.");
+jr_define('_JOMRES_MICROMANAGE_PICKER_INSTRUCTIONS_MINDAYS', "Datumväljarna och inmatningen av minsta antal nätter låter dig ställa in ett värde för minsta antal nätter för ett visst datumintervall. Välj ett start- och slutdatum, ange ett antal för minsta antal nätter och klicka på 'Ange' minsta antal nätter'.");
 
-jr_define('_JOMRES_MICROMANAGE_PICKERS_SELECTOR_INFO',"Använd den här rullgardinsmenyn för att växla mellan att ställa in priser för enskilda datum, till att ställa in lägsta antal nätter för enskilda datum. Du kan använda väljaren <em>efter veckodag</em>, <em>efter datum range</em>väljare eller ställ in priser/minsta nätter genom att manuellt redigera datumen.");
-jr_define('_JOMRES_MICROMANAGE_PICKERS_SELECTOR_INFO_SMALL_VIEWPORT',"Använd den här rullgardinsmenyn för att växla mellan att ställa in priser för enskilda datum, till att ställa in lägsta nätter för enskilda datum. Du kan använda väljaren <em>efter datumintervall</em> eller ställa in priser/minsta nätter med manuell redigering av datumen.");
-jr_define('_JOMRES_MICROMANAGE_PICKERS_SELECTOR',"Ange priser eller lägsta nätter");
-jr_define('_JOMRES_MICROMANAGE_PICKER_BYDOW',"Ställ in <em>minsta nätter</em> efter veckodag");
-jr_define('_JOMRES_MICROMANAGE_PICKER_BYDOW_INFO',"Veckodag-fälten låter dig ställa in ett minsta antal nätter för en given veckodag, när du väl klickar på veckodag-knappen kommer alla veckodagar att ställas in på min nätter. ");
-
-
-jr_define('_JOMRES_MICROMANAGE_MANUALLY',"Ställ in priser manuellt/minsta nätter");
-jr_define('_JOMRES_MICROMANAGE_SET_PRICES',"Ange priser");
-jr_define('_JOMRES_MICROMANAGE_SET_MINDAYS',"Ange lägsta antal nätter");
-
-jr_define('_JOMRES_MICROMANAGE_PRICE',"Per natt");
-jr_define('_JOMRES_MICROMANAGE_MINDAYS',"Min. nätter");
-jr_define('_JOMRES_MICROMANAGE_MAXDAYS',"Max nätter");
-
-jr_define('_JOMRES_MICROMANAGE_INTRO',"Här kan du skapa dina tariffer, som är kopplade till de rumstyper som du har i din fastighet. ");
-
-jr_define('_JOMRES_MICROMANAGE_BASIC_SETTINGS',"De vanligaste alternativen");
-
-jr_define('_JOMRES_MICROMANAGE_MODAL_BUTTON',"Instruktioner");
-
-jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS',"Om du vill lägga till olika priser för olika antal gäster <em>kan du skapa fler än flera taxor för varje rumstyp</em> och ha olika min/max gästvärden i dessa tariffer. ");
-
-jr_define('_JOMRES_MICROMANAGE_INFO',"Ge tariffen ett namn, definiera det maximala antalet nätter och det lägsta och högsta antalet gäster som krävs i bokningsformuläret innan tariffen erbjuds.<br/><br/> Använd datumväljarpanelen för att lägga till priser och inställningar för lägsta nätter till ett antal datum, eller redigera inmatningarna direkt. Om du inte vill att tariffen ska erbjudas alls på vissa datum, lämna priset inställt på 0 ( noll ) på dessa datum. <br/><br/> Du kan ha olika miniminätter på olika datum, så om du vill ha längre bokningar under festival-/konferensveckor kan du ställa in antalet minsta nätter för att vara högre under just dessa perioder.<br/ ><br/>Om du debiterar per person per pris (PPPN) kan du aktivera den inställningen i Inställningar > Fastighetskonfiguration > fliken Tariffer och valuta och sedan skapa de gästtyper som du behöver i Inställningar > Gästtyper.");
-
-jr_define('_JOMRES_MICROMANAGE_EXTRAOPTIONS',"Extra alternativ");
-
-jr_define('_JOMRES_MICROMANAGE_EXTRA_OPTIONS',"Detta är ytterligare alternativ som inte är så vanligt förekommande, men som ändå är tillgängliga för dig. <br/><strong>Ignorera PPPN</strong> betyder ignorera per person per natt. Du kan ha flera olika tariffer för samma rumstyp, till exempel en som debiterar per person och natt, och en som inte gör det.<br/><strong>Tillåt helger</strong> Alternativet Tillåt helger ger dig möjlighet att göra en taxa som endast är tillgängligt under vardagar, till exempel om du vill ha en speciell taxa för affärsresenärer. I så fall skulle du ställa in alternativet på Nej och min nätter till 1 och max nätter, högst 5. <br/><strong>Helger endast</strong> Alternativet Endast helger är motsatsen till alternativet Tillåt helger. Vad du anser vara helgdagar kan konfigureras i dina inställningar för fastighetskonfiguration. Detta ger dig möjligheten att definiera ett pris för endast helger som du kanske vill erbjudande för speciella evenemang.<br/><strong>Incheckningsdag i veckan </strong> Det här alternativet ger dig möjligheten att tvinga incheckningen att endast ske på vissa veckodagar och används bäst i kombination med Fastighetskonfiguration > fliken Bokningar > Alternativen för fasta perioder. Majoriteten av användarna kommer att vilja låta det här alternativet vara inställt på Alla.<br/>De sista två alternativen, <strong>Min rum redan valda</strong> och <strong>Max rum redan valda</strong> är mycket specialiserade och användbar för fastigheter med extremt komplicerade tariffer. <em>Om du inte har ett specifikt behov bör du lämna dessa alternativ ifred.</em> Använd dem om du bara vill att denna tariff ska erbjudas när gästen redan har valt N antal rum i bokningsformuläret, så t.ex. du kan ha en grundtaxa där dessa alternativ lämnas som standard, och en andra taxa där alternativet för minsta rum som redan valts är satt till 1, då kommer denna andra tariff att erbjudas i bokningsformuläret när ett rum har valts." );
-jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS_LIST_PAGE',"Du kan skapa flera tariffer för samma rumstyp, så att du kan skapa en taxa för min/max dagar på 1 - 7 och en andra taxa där min dagar är 7, max dagar 14, och så vidare. Detta låter dig skapa prisscheman så enkla eller så komplicerade som du behöver. Det låter dig också skapa flera tariffer med olika villkor, så att du kan ha en andra uppsättning tariffer där priset är lägre för Bed & Breakfast, och en annan uppsättning dyrare tariffer för säng, frukost och kvällsmål.");
-
-jr_define('_JOMRES_MICROMANAGE_USE_SELECTED_DATES',"Ange endast datumväljardagar");
-jr_define( '_JOMRES_PROPERTY_HCATEGORIES', 'Egenskapskategorier' );
-jr_define( '_JOMRES_PROPERTY_HCATEGORIES_HEDIT', 'Redigera egenskapskategori' );
-jr_define('_JOMRES_STOP_READTHISFIRST1',"Stoppa!");
-jr_define('_JOMRES_STOP_READTHISFIRST2',"Tack för att du installerade Jomres");
-jr_define('_JOMRES_STOP_READTHISFIRST3',"Fastighetsförvaltning utförs på offentliga sidor, inte administratörsområdet.");
-jr_define('_JOMRES_STOP_READTHISFIRST4',"Om du inte är bekant med Jomres, besök hjälpsektionen > sidan Komma igång.");
+jr_define('_JOMRES_MICROMANAGE_PICKERS_SELECTOR_INFO', "Använd den här rullgardinsmenyn för att växla mellan att ställa in priser för enskilda datum, till att ställa in lägsta antal nätter för enskilda datum. Du kan använda väljaren <em>efter veckodag</em>, <em>efter datum range</em>väljare eller ställ in priser/minsta nätter genom att manuellt redigera datumen.");
+jr_define('_JOMRES_MICROMANAGE_PICKERS_SELECTOR_INFO_SMALL_VIEWPORT', "Använd den här rullgardinsmenyn för att växla mellan att ställa in priser för enskilda datum, till att ställa in lägsta nätter för enskilda datum. Du kan använda väljaren <em>efter datumintervall</em> eller ställa in priser/minsta nätter med manuell redigering av datumen.");
+jr_define('_JOMRES_MICROMANAGE_PICKERS_SELECTOR', "Ange priser eller lägsta nätter");
+jr_define('_JOMRES_MICROMANAGE_PICKER_BYDOW', "Ställ in <em>minsta nätter</em> efter veckodag");
+jr_define('_JOMRES_MICROMANAGE_PICKER_BYDOW_INFO', "Veckodag-fälten låter dig ställa in ett minsta antal nätter för en given veckodag, när du väl klickar på veckodag-knappen kommer alla veckodagar att ställas in på min nätter. ");
 
 
-jr_define('_JOMRES_CONFIG_SYNDICATION_TITLE',"Gå med i Jomres-syndikatet");
-jr_define('_JOMRES_CONFIG_SYNDICATION_DESC',"När du har ställt in din webbplats och redo att börja ta emot besökare, gå med i Jomres.net-syndikatet och få dina fastigheter listade på andra Jomres-webbplatser.");
+jr_define('_JOMRES_MICROMANAGE_MANUALLY', "Ställ in priser manuellt/minsta nätter");
+jr_define('_JOMRES_MICROMANAGE_SET_PRICES', "Ange priser");
+jr_define('_JOMRES_MICROMANAGE_SET_MINDAYS', "Ange lägsta antal nätter");
+
+jr_define('_JOMRES_MICROMANAGE_PRICE', "Per natt");
+jr_define('_JOMRES_MICROMANAGE_MINDAYS', "Min. nätter");
+jr_define('_JOMRES_MICROMANAGE_MAXDAYS', "Max nätter");
+
+jr_define('_JOMRES_MICROMANAGE_INTRO', "Här kan du skapa dina tariffer, som är kopplade till de rumstyper som du har i din fastighet. ");
+
+jr_define('_JOMRES_MICROMANAGE_BASIC_SETTINGS', "De vanligaste alternativen");
+
+jr_define('_JOMRES_MICROMANAGE_MODAL_BUTTON', "Instruktioner");
+
+jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS', "Om du vill lägga till olika priser för olika antal gäster <em>kan du skapa fler än flera taxor för varje rumstyp</em> och ha olika min/max gästvärden i dessa tariffer. ");
+
+jr_define('_JOMRES_MICROMANAGE_INFO', "Ge tariffen ett namn, definiera det maximala antalet nätter och det lägsta och högsta antalet gäster som krävs i bokningsformuläret innan tariffen erbjuds.<br/><br/> Använd datumväljarpanelen för att lägga till priser och inställningar för lägsta nätter till ett antal datum, eller redigera inmatningarna direkt. Om du inte vill att tariffen ska erbjudas alls på vissa datum, lämna priset inställt på 0 ( noll ) på dessa datum. <br/><br/> Du kan ha olika miniminätter på olika datum, så om du vill ha längre bokningar under festival-/konferensveckor kan du ställa in antalet minsta nätter för att vara högre under just dessa perioder.<br/ ><br/>Om du debiterar per person per pris (PPPN) kan du aktivera den inställningen i Inställningar > Fastighetskonfiguration > fliken Tariffer och valuta och sedan skapa de gästtyper som du behöver i Inställningar > Gästtyper.");
+
+jr_define('_JOMRES_MICROMANAGE_EXTRAOPTIONS', "Extra alternativ");
+
+jr_define('_JOMRES_MICROMANAGE_EXTRA_OPTIONS', "Detta är ytterligare alternativ som inte är så vanligt förekommande, men som ändå är tillgängliga för dig. <br/><strong>Ignorera PPPN</strong> betyder ignorera per person per natt. Du kan ha flera olika tariffer för samma rumstyp, till exempel en som debiterar per person och natt, och en som inte gör det.<br/><strong>Tillåt helger</strong> Alternativet Tillåt helger ger dig möjlighet att göra en taxa som endast är tillgängligt under vardagar, till exempel om du vill ha en speciell taxa för affärsresenärer. I så fall skulle du ställa in alternativet på Nej och min nätter till 1 och max nätter, högst 5. <br/><strong>Helger endast</strong> Alternativet Endast helger är motsatsen till alternativet Tillåt helger. Vad du anser vara helgdagar kan konfigureras i dina inställningar för fastighetskonfiguration. Detta ger dig möjligheten att definiera ett pris för endast helger som du kanske vill erbjudande för speciella evenemang.<br/><strong>Incheckningsdag i veckan </strong> Det här alternativet ger dig möjligheten att tvinga incheckningen att endast ske på vissa veckodagar och används bäst i kombination med Fastighetskonfiguration > fliken Bokningar > Alternativen för fasta perioder. Majoriteten av användarna kommer att vilja låta det här alternativet vara inställt på Alla.<br/>De sista två alternativen, <strong>Min rum redan valda</strong> och <strong>Max rum redan valda</strong> är mycket specialiserade och användbar för fastigheter med extremt komplicerade tariffer. <em>Om du inte har ett specifikt behov bör du lämna dessa alternativ ifred.</em> Använd dem om du bara vill att denna tariff ska erbjudas när gästen redan har valt N antal rum i bokningsformuläret, så t.ex. du kan ha en grundtaxa där dessa alternativ lämnas som standard, och en andra taxa där alternativet för minsta rum som redan valts är satt till 1, då kommer denna andra tariff att erbjudas i bokningsformuläret när ett rum har valts.");
+jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS_LIST_PAGE', "Du kan skapa flera tariffer för samma rumstyp, så att du kan skapa en taxa för min/max dagar på 1 - 7 och en andra taxa där min dagar är 7, max dagar 14, och så vidare. Detta låter dig skapa prisscheman så enkla eller så komplicerade som du behöver. Det låter dig också skapa flera tariffer med olika villkor, så att du kan ha en andra uppsättning tariffer där priset är lägre för Bed & Breakfast, och en annan uppsättning dyrare tariffer för säng, frukost och kvällsmål.");
+
+jr_define('_JOMRES_MICROMANAGE_USE_SELECTED_DATES', "Ange endast datumväljardagar");
+jr_define('_JOMRES_PROPERTY_HCATEGORIES', 'Egenskapskategorier');
+jr_define('_JOMRES_PROPERTY_HCATEGORIES_HEDIT', 'Redigera egenskapskategori');
+jr_define('_JOMRES_STOP_READTHISFIRST1', "Stoppa!");
+jr_define('_JOMRES_STOP_READTHISFIRST2', "Tack för att du installerade Jomres");
+jr_define('_JOMRES_STOP_READTHISFIRST3', "Fastighetsförvaltning utförs på offentliga sidor, inte administratörsområdet.");
+jr_define('_JOMRES_STOP_READTHISFIRST4', "Om du inte är bekant med Jomres, besök hjälpsektionen > sidan Komma igång.");
+
+
+jr_define('_JOMRES_CONFIG_SYNDICATION_TITLE', "Gå med i Jomres-syndikatet");
+jr_define('_JOMRES_CONFIG_SYNDICATION_DESC', "När du har ställt in din webbplats och redo att börja ta emot besökare, gå med i Jomres.net-syndikatet och få dina fastigheter listade på andra Jomres-webbplatser.");
 
 
 
-jr_define('_JOMRES_MICROMANAGE_CREATE_ROOM_1',"Du behöver minst ett rum av en av följande typer innan du kan skapa en taxa :");
-jr_define('_JOMRES_MICROMANAGE_CREATE_ROOM_2',"Gå till Inställningar > Rum och skapa ett rum först, när du har gjort det kommer du att kunna skapa en taxa för den rumstypen.");
+jr_define('_JOMRES_MICROMANAGE_CREATE_ROOM_1', "Du behöver minst ett rum av en av följande typer innan du kan skapa en taxa :");
+jr_define('_JOMRES_MICROMANAGE_CREATE_ROOM_2', "Gå till Inställningar > Rum och skapa ett rum först, när du har gjort det kommer du att kunna skapa en taxa för den rumstypen.");
 
-jr_define('JOMRES_PLATFORM',"Jomres-plattformen");
+jr_define('JOMRES_PLATFORM', "Jomres-plattformen");
 
 
-jr_define('JOMRES_PLATFORM_CONNECTED',"Ansluten");
-jr_define('JOMRES_PLATFORM_CONNECTED_DESC',"Sätt detta till Ja om du redan har kopplat ditt Stripe-konto till Jomres-plattformen.");
+jr_define('JOMRES_PLATFORM_CONNECTED', "Ansluten");
+jr_define('JOMRES_PLATFORM_CONNECTED_DESC', "Sätt detta till Ja om du redan har kopplat ditt Stripe-konto till Jomres-plattformen.");
 
-jr_define('JOMRES_PLATFORM_ACCOUNT_ID',"Stripe Live-kontonummer");
-jr_define('JOMRES_PLATFORM_ACCOUNT_ID_DESC',"Detta är ditt Stripe-konto-id som finns i din Stripe Dashboard under Inställningar > Kontoinformation och ser ut som acct_xxxxxxxxxx. Du skulle använda det här fältet om du har flera Jomres-installationer och du vill använda samma konto överallt alla sajter och du har redan anslutit till oss. Om du inte har anslutit till Jomres-plattformen räcker det inte att ange dina uppgifter här. Besök istället menyalternativet Get Connected i verktygsfältet, under Hjälp-sektionen. Om du vill för att testa betalningar, ställ in din webbplats från produktion till utveckling på fliken Debugging i Webbplatskonfiguration.");
+jr_define('JOMRES_PLATFORM_ACCOUNT_ID', "Stripe Live-kontonummer");
+jr_define('JOMRES_PLATFORM_ACCOUNT_ID_DESC', "Detta är ditt Stripe-konto-id som finns i din Stripe Dashboard under Inställningar > Kontoinformation och ser ut som acct_xxxxxxxxxx. Du skulle använda det här fältet om du har flera Jomres-installationer och du vill använda samma konto överallt alla sajter och du har redan anslutit till oss. Om du inte har anslutit till Jomres-plattformen räcker det inte att ange dina uppgifter här. Besök istället menyalternativet Get Connected i verktygsfältet, under Hjälp-sektionen. Om du vill för att testa betalningar, ställ in din webbplats från produktion till utveckling på fliken Debugging i Webbplatskonfiguration.");
 
-jr_define('JOMRES_PLATFORM_LIVE_SECRET_KEY',"Stripe live hemlig nyckel");
-jr_define('JOMRES_PLATFORM_LIVE_SECRET_KEY_DESC','Gå till Utvecklare > API-nycklar i din Stripe Dashboard för att hitta dina hemliga nycklar. Dessa används av systemet för att verifiera bokningsdata som returneras från betalningsformuläret är giltiga och att insättningar har betalats innan bokningen sparas .' );
+jr_define('JOMRES_PLATFORM_LIVE_SECRET_KEY', "Stripe live hemlig nyckel");
+jr_define('JOMRES_PLATFORM_LIVE_SECRET_KEY_DESC', 'Gå till Utvecklare > API-nycklar i din Stripe Dashboard för att hitta dina hemliga nycklar. Dessa används av systemet för att verifiera bokningsdata som returneras från betalningsformuläret är giltiga och att insättningar har betalats innan bokningen sparas .');
 
-jr_define('JOMRES_PLATFORM_TEST_SECRET_KEY',"Stripe test hemlig nyckel");
-jr_define('JOMRES_PLATFORM_TEST_SECRET_KEY_DESC',' ' );
+jr_define('JOMRES_PLATFORM_TEST_SECRET_KEY', "Stripe test hemlig nyckel");
+jr_define('JOMRES_PLATFORM_TEST_SECRET_KEY_DESC', ' ');
 
 
 
@@ -2644,24 +2644,24 @@ jr_define('PLUGIN_UPDATE_MESSAGE1_LINK', 'Uppdatera plugins');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Hämta ny nyckel');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Spara ny nyckel');
 
-jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Egenskapstypbilder");
+jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES', "Egenskapstypbilder");
 
-	jr_define('JOMRES_SITE_SIDEBAR_HELP_TITLE',"Behöver du hjälp att boka?");
-	jr_define('JOMRES_SITE_SIDEBAR_HELP_BLURB',"Ring vår kundtjänst på numret nedan för att prata med en av våra representanter som hjälper dig med alla dina semesterbehov.");
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_TITLE', "Behöver du hjälp att boka?");
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_BLURB', "Ring vår kundtjänst på numret nedan för att prata med en av våra representanter som hjälper dig med alla dina semesterbehov.");
 
-	jr_define('JOMRES_SITE_SIDEBAR_WHY_TITLE',"Varför boka hos oss?");
-	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_TITLE',"Vi erbjuder de bästa bokningspriserna");
-	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB1',"Vi har de mest prisvärda fastigheterna på marknaden för närvarande.");
-	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB2',"Inga bokningsavgifter. Spara pengar!");
-	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_TITLE',"Bra urval av egenskaper");
-	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_HOTELS'," egenskaper");
-	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS'," gästrecensioner");
-	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE',"Vi är alltid här");
-	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT',"Ring eller maila oss när som helst");
-	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT',"Få 24-timmars support före, under och efter din resa");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_TITLE', "Varför boka hos oss?");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_TITLE', "Vi erbjuder de bästa bokningspriserna");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB1', "Vi har de mest prisvärda fastigheterna på marknaden för närvarande.");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB2', "Inga bokningsavgifter. Spara pengar!");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_TITLE', "Bra urval av egenskaper");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_HOTELS', " egenskaper");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS', " gästrecensioner");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE', "Vi är alltid här");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT', "Ring eller maila oss när som helst");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT', "Få 24-timmars support före, under och efter din resa");
 
-	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA',"Sociala medier");
-	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD',"Hitta oss på sociala medier");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA', "Sociala medier");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD', "Hitta oss på sociala medier");
 
 	jr_define('JOMRES_REVIEW_SCORE_TOP_1', "Utestående");
 	jr_define('JOMRES_REVIEW_SCORE_TOP_2', "Exceptionell");
@@ -2676,8 +2676,8 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Egenskapst
 	jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Rabatterade");
 
 	jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', 'Vart vill du åka?');
-	jr_define( 'DATA_SOURCES_TITLE', "Uppdatera datakällor" );
-	jr_define( 'DATA_SOURCES_TITLE_INFO', "Datakällor uppdaterade. Datakällor används av inmatningsfält för autokomplettering i sökwidgeten och de uppdateras vanligtvis automatiskt, men den här sidan tvingar data att uppdateras manuellt om det behövs." );
+	jr_define('DATA_SOURCES_TITLE', "Uppdatera datakällor");
+	jr_define('DATA_SOURCES_TITLE_INFO', "Datakällor uppdaterade. Datakällor används av inmatningsfält för autokomplettering i sökwidgeten och de uppdateras vanligtvis automatiskt, men den här sidan tvingar data att uppdateras manuellt om det behövs.");
 
 	jr_define('_OAUTH_TOKEN_REQUEST_URI', "För att skicka en token-förfrågan, skicka förfrågan till denna url");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "Manuset för huvudvyns egenskap");

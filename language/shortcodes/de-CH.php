@@ -24,7 +24,7 @@ jr_define('_JOMRES_SHORTCODES_06000COMPARE_ARG_PROPERTY_UIDS', 'Eine durch Komma
 jr_define('_JOMRES_SHORTCODES_06000CONTACTOWNER', 'Erstellt das Kontaktinhaberformular. ');
 jr_define('_JOMRES_SHORTCODES_06000CONTACTOWNER_ARG_PROPERTY_UID', 'Übergeben Sie die Objekt-UID des Objekts, das kontaktiert werden soll. Übergeben Sie 0 (Null), um stattdessen den Site-Administrator zu kontaktieren. ');
 
-jr_define ( '_JOMRES_SHORTCODES_06000SHOW_HOTEL_DETAILS', "wird die Info-Seite Details aus dem Immobilienmanager ist Ihre Firmendaten Feld in Eigenschaftskonfiguration. Die Angaben in diesem Register ziehen würden in der Regel für correspondance verwendet werden, so dass Manager Adresse sowohl die Hotel / Apartment haben, und eine separate Adresse für geschäftliche Zwecke.");
+jr_define('_JOMRES_SHORTCODES_06000SHOW_HOTEL_DETAILS', "wird die Info-Seite Details aus dem Immobilienmanager ist Ihre Firmendaten Feld in Eigenschaftskonfiguration. Die Angaben in diesem Register ziehen würden in der Regel für correspondance verwendet werden, so dass Manager Adresse sowohl die Hotel / Apartment haben, und eine separate Adresse für geschäftliche Zwecke.");
 jr_define('_JOMRES_SHORTCODES_06000SHOW_HOTEL_DETAILS_ARG_PROPERTY_UID', 'ID der Unterkunft.');
 
 jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_CALENDAR', "Zeigt den Kalender der Unterkunft");
@@ -73,7 +73,7 @@ jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_ROOMS_ARG_PROPERTY_UID', 'ID de
 
 jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_ROOMS_SLIDESHOW', "Zeigt die Zimmerbilder einer Unterkunft als Diashow.");
 jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_ROOMS_SLIDESHOW_ARG_PROPERTY_UID', 'ID der Eigenschaft.');
-    
+	
 jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_SLIDESHOW', 'Zeigt die Eigenschaften-Diashow.');
 jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_SLIDESHOW_ARG_PROPERTY_UID', 'ID der Eigenschaft.');
 
@@ -116,7 +116,7 @@ jr_define('_JOMRES_SHORTCODES_06000ASAMODULE_RANDOM', 'Zeigt eine zufällige Aus
 jr_define('_JOMRES_SHORTCODES_06000ASAMODULE_RANDOM_ARG_ASAMODULE_RANDOM_LISTLIMIT', 'Die maximale Anzahl von Eigenschaften, die angezeigt werden können.');
 jr_define('_JOMRES_SHORTCODES_06000ASAMODULE_RANDOM_ARG_ASAMODULE_RANDOM_PTYPE_IDS', 'Nur Eigenschaften dieser bestimmten Eigenschaftstypen anzeigen.');
 jr_define('_JOMRES_SHORTCODES_06000ASAMODULE_RANDOM_ARG_ASAMODULE_RANDOM_VERTICAL', 'Auf 1 setzen, um die für eine vertikale Widget-/Modulposition optimierten Module anzuzeigen.');
-    
+	
 jr_define('_JOMRES_SHORTCODES_06000ASAMODULE_RECENTLY_VIEWED', "Zeigt die zuletzt angesehenen Eigenschaften des Gastes an, die normalerweise in Modul- oder Widget-Positionen verwendet werden.");
 jr_define('_JOMRES_SHORTCODES_06000ASAMODULE_RECENTLY_VIEWED_ARG_ASAMODULE_RECENTLY_VIEWED_LISTLIMIT', 'Die maximale Anzahl von Eigenschaften, die angezeigt werden können.');
 jr_define('_JOMRES_SHORTCODES_06000ASAMODULE_RECENTLY_VIEWED_ARG_ASAMODULE_RECENTLY_VIEWED_VERTICAL', 'Auf 1 setzen, um die für eine vertikale Widget-/Modulposition optimierten Module anzuzeigen.');
@@ -160,7 +160,7 @@ jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_SPECIFIC', "Spezifische Ressource");
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_ALREADY_UPLOADED', "Bilder wurden bereits für diese Ressource hochgeladen");
 
 jr_define('_JOMRES_MARKDOWN_TITLE', 'Textformatierung');
-jr_define('_JOMRES_MARKDOWN_DESC', 'Sie können hier Text mit einfacher Markdown-Formatierung eingeben. Sie benötigen keine HTML-Kenntnisse, verwenden Sie einfach die Schaltflächen, um die Informationen wie gewünscht aussehen zu lassen, oder formatieren Sie den Text gemäß diesen Beispielen.' );
+jr_define('_JOMRES_MARKDOWN_DESC', 'Sie können hier Text mit einfacher Markdown-Formatierung eingeben. Sie benötigen keine HTML-Kenntnisse, verwenden Sie einfach die Schaltflächen, um die Informationen wie gewünscht aussehen zu lassen, oder formatieren Sie den Text gemäß diesen Beispielen.');
 jr_define('_JOMRES_MARKDOWN_EMPHASIS', 'Hervorhebung');
 jr_define('_JOMRES_MARKDOWN_BOLD', 'fett');
 jr_define('_JOMRES_MARKDOWN_ITALICS', 'kursiv');
@@ -203,20 +203,20 @@ jr_define('_JOMRES_GUEST_BLACKLISTED', 'Gast auf der schwarzen Liste');
 jr_define('_JOMRES_GUEST_BLACKLISTED_DESC', 'Wenn dieser Gast auf der schwarzen Liste steht, kann er in dieser Unterkunft keine Buchungen mehr vornehmen.');
 jr_define('_JOMRES_SESSION_HANDLER', 'Sitzungshandler');
 jr_define('_JOMRES_SESSION_HANDLER_DESC', 'Jomres-Sitzungsdateien auf Festplatte oder Datenbank speichern. Empfohlen: Datenbank');
-jr_define('_JOMRES_MAP_HEIGHT',"Kartenhöhe (px) ");
-jr_define('_JOMRES_MAP_ZOOMLEVEL',"Kartenzoomstufe ");
-jr_define('_JOMRES_MAP_MAPTYPE',"Kartentyp ");
+jr_define('_JOMRES_MAP_HEIGHT', "Kartenhöhe (px) ");
+jr_define('_JOMRES_MAP_ZOOMLEVEL', "Kartenzoomstufe ");
+jr_define('_JOMRES_MAP_MAPTYPE', "Kartentyp ");
 
-jr_define('_JOMRES_TEMPLATE_PACKAGES',"Vorlagenüberschreibungs-Manager");
-jr_define('_JOMRES_TEMPLATE_PACKAGES_LEAD',"Vorlagenpakete sind Plugins, die Überschreibungsvorlagen für verschiedene Jomres-Kernvorlagendateien bereitstellen können.");
-jr_define('_JOMRES_TEMPLATE_PACKAGES_INFO',"Diese Seite listet alle Vorlagendateien auf, die von den Vorlagendateien eines Vorlagenpakets überschrieben werden können. Wenn Sie eine bestimmte Vorlagendatei überschreiben möchten, klicken Sie auf die Schaltfläche Bearbeiten für diese Datei. Auf der nächsten Seite werden Sie Sie können wählen, mit welcher Version Sie überschreiben möchten. Beachten Sie, dass diese Überschreibungen Vorrang vor Jomres Core und allen Wordpress- oder Joomla-Themen-/Vorlagenüberschreibungen haben. Sie können eine Überschreibung deaktivieren, indem Sie sie auf der Seite \"Vorlagenüberschreibungen auflisten\" löschen.");
-jr_define('_JOMRES_TEMPLATE_PACKAGE_NAME',"Vorlagenname");
-jr_define('_JOMRES_TEMPLATE_PACKAGE_PATH',"Aktueller Pfad");
-jr_define('_JOMRES_TEMPLATE_PACKAGE_NOT_OVERRIDDEN',"Nicht überschrieben");
-jr_define('_JOMRES_TEMPLATE_PACKAGES_EDIT_INFO',"Sie können auswählen, welche Vorlagendatei die Kernvorlagendateien überschreiben soll, indem Sie die Dropdown-Liste ändern");
+jr_define('_JOMRES_TEMPLATE_PACKAGES', "Vorlagenüberschreibungs-Manager");
+jr_define('_JOMRES_TEMPLATE_PACKAGES_LEAD', "Vorlagenpakete sind Plugins, die Überschreibungsvorlagen für verschiedene Jomres-Kernvorlagendateien bereitstellen können.");
+jr_define('_JOMRES_TEMPLATE_PACKAGES_INFO', "Diese Seite listet alle Vorlagendateien auf, die von den Vorlagendateien eines Vorlagenpakets überschrieben werden können. Wenn Sie eine bestimmte Vorlagendatei überschreiben möchten, klicken Sie auf die Schaltfläche Bearbeiten für diese Datei. Auf der nächsten Seite werden Sie Sie können wählen, mit welcher Version Sie überschreiben möchten. Beachten Sie, dass diese Überschreibungen Vorrang vor Jomres Core und allen Wordpress- oder Joomla-Themen-/Vorlagenüberschreibungen haben. Sie können eine Überschreibung deaktivieren, indem Sie sie auf der Seite \"Vorlagenüberschreibungen auflisten\" löschen.");
+jr_define('_JOMRES_TEMPLATE_PACKAGE_NAME', "Vorlagenname");
+jr_define('_JOMRES_TEMPLATE_PACKAGE_PATH', "Aktueller Pfad");
+jr_define('_JOMRES_TEMPLATE_PACKAGE_NOT_OVERRIDDEN', "Nicht überschrieben");
+jr_define('_JOMRES_TEMPLATE_PACKAGES_EDIT_INFO', "Sie können auswählen, welche Vorlagendatei die Kernvorlagendateien überschreiben soll, indem Sie die Dropdown-Liste ändern");
 
 
-jr_define('_JOMRES_OVERALL_ROOMS_BOOKED',"Prozentsatz der gebuchten Zimmer");
+jr_define('_JOMRES_OVERALL_ROOMS_BOOKED', "Prozentsatz der gebuchten Zimmer");
 
 jr_define('_JOMRES_SHORTCODES_06005NEW_PROPERTY', 'Zeigt das Formular zum Erstellen neuer Eigenschaften an.');
 
@@ -226,19 +226,19 @@ jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_REVIEWS_LIMIT', 'Anzahl der anz
 
 jr_define('_JOMRES_SHORTCODES_06000SHORTLIST', 'Zeigt die Eigenschaften der Benutzer in der engeren Auswahl an. Wenn der Benutzer registriert ist, sind dies seine Favoriten, wenn er nicht eingeloggt ist, werden nur die Artikel während des Besuchs über das Favoritensymbol hinzugefügt.');
 
-jr_define( '_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE', 'Mindesteinzahlungswert');
+jr_define('_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE', 'Mindesteinzahlungswert');
 
-jr_define( '_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE_DESC', "Wenn die berechnete Einzahlung geringer ist als dieser Wert, dann setze die Einzahlung stattdessen auf diesen Wert. Diese Zahl könnte selbst überschrieben werden, wenn sie die Mindesteinzahlungseinstellung der Site nicht erfüllt. Belassen Sie es auf 0 bis die Einstellung nicht verwenden." );
+jr_define('_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE_DESC', "Wenn die berechnete Einzahlung geringer ist als dieser Wert, dann setze die Einzahlung stattdessen auf diesen Wert. Diese Zahl könnte selbst überschrieben werden, wenn sie die Mindesteinzahlungseinstellung der Site nicht erfüllt. Belassen Sie es auf 0 bis die Einstellung nicht verwenden.");
 
 jr_define('_JOMRES_SHORTCODES_06000SHOW_CONSENT_FORM', 'Zeigt die DSGVO-konforme Einwilligungserklärung an.');
 
-jr_define( '_JOMRES_SHORTCODE_PROPERTY_ROOM_TYPE_LIST', 'Liste der Zimmertypen der Unterkunft');
-jr_define( '_JOMRES_SHORTCODE_PROPERTY_ROOM_TYPE', 'Zimmertyp einer Unterkunft anzeigen');
+jr_define('_JOMRES_SHORTCODE_PROPERTY_ROOM_TYPE_LIST', 'Liste der Zimmertypen der Unterkunft');
+jr_define('_JOMRES_SHORTCODE_PROPERTY_ROOM_TYPE', 'Zimmertyp einer Unterkunft anzeigen');
 
-jr_define( '_JOMRES_SHORTCODE_LOGIN_FORM', 'Anmeldeformular anzeigen' );
+jr_define('_JOMRES_SHORTCODE_LOGIN_FORM', 'Anmeldeformular anzeigen');
 
 jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_ROOM_TYPE', 'Zeige eine Liste von Zimmern eines bestimmten Zimmertyps');
-jr_define( '_JOMRES_SHORTCODES_06000SHOW_PROPERTY_ROOM_TYPE_ARG_ROOM_TYPE_ID', 'Raumtyp-ID');
+jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_ROOM_TYPE_ARG_ROOM_TYPE_ID', 'Raumtyp-ID');
 
 jr_define('_JOMRES_SHORTCODES_06001DASHBOARD', 'Dashboard');
 
