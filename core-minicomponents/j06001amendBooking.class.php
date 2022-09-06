@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06001amendBooking
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -62,7 +63,7 @@ class j06001amendBooking
 			$current_property_property_type = $basic_property_details->multi_query_result[$defaultProperty]['ptype_id'];
 			
 			foreach ($thisJRUser->authorisedProperties as $p) {
-				if ( $basic_property_details->multi_query_result[$p]['ptype_id'] == $current_property_property_type ) {
+				if ($basic_property_details->multi_query_result[$p]['ptype_id'] == $current_property_property_type) {
 					$obj = new stdClass();
 					$obj->propertys_uid = $p;
 					$obj->property_name =$basic_property_details->multi_query_result[$p]['property_name'];
@@ -71,7 +72,7 @@ class j06001amendBooking
 			}
 			$propertysList = $tmpArray;
 			if (count($propertysList) == 1) {
-				jomresRedirect(get_booking_url($defaultProperty,'', '&amend=1&contractuid='.$contract_uid), '');
+				jomresRedirect(get_booking_url($defaultProperty, '', '&amend=1&contractuid='.$contract_uid), '');
 			}
 			
 			$counter = 0;
@@ -100,7 +101,7 @@ class j06001amendBooking
 			$output[ 'CONTRACTUID' ] = $contract_uid;
 			$output[ '_JOMRES_CONFIRMATION_AMEND' ] = jr_gettext('_JOMRES_CONFIRMATION_AMEND', '_JOMRES_CONFIRMATION_AMEND');
 			
-			$output[ 'BOOKING_FORM_URL' ] = get_booking_url($defaultProperty,'nosef');
+			$output[ 'BOOKING_FORM_URL' ] = get_booking_url($defaultProperty, 'nosef');
 			
 			
 			$pageoutput[ ] = $output;

@@ -11,74 +11,69 @@
  **/
 
 // ################################################################
-defined( '_JOMRES_INITCHECK' ) or die( '' );
+defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j16000save_user
-	{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	function __construct()
-		{
+	{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-		if ( $MiniComponents->template_touch )
-			{
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
 			$this->template_touchable = false;
 			return;
-			}
+		}
 		
-		$id				= (int)jomresGetParam( $_POST, 'id', 0 );
-		$cms_user_id 	= (int)jomresGetParam( $_POST, 'cms_user_id', 0 );
+		$id				= (int)jomresGetParam($_POST, 'id', 0);
+		$cms_user_id 	= (int)jomresGetParam($_POST, 'cms_user_id', 0);
 		
 		$jomres_users = jomres_singleton_abstract::getInstance('jomres_users');
 		
-		if ( $id > 0 && $cms_user_id > 0 )
-			{
-			$jomres_users->get_user( $cms_user_id );
-			}
+		if ($id > 0 && $cms_user_id > 0) {
+			$jomres_users->get_user($cms_user_id);
+		}
 
 		$jomres_users->cms_user_id				= $cms_user_id;
-		$jomres_users->apikey 					= jomresGetParam( $_POST, 'apikey', '' );
-		$jomres_users->authorised_properties 	= jomresGetParam( $_POST, 'authorised_properties', array() );
-		$jomres_users->access_level 			= (int)jomresGetParam( $_POST, 'access_level', 0 );
+		$jomres_users->apikey 					= jomresGetParam($_POST, 'apikey', '');
+		$jomres_users->authorised_properties 	= jomresGetParam($_POST, 'authorised_properties', array());
+		$jomres_users->access_level 			= (int)jomresGetParam($_POST, 'access_level', 0);
 		
 		//some checks
-		if ( empty($jomres_users->authorised_properties) && $jomres_users->access_level < 90 )
-			{
+		if (empty($jomres_users->authorised_properties) && $jomres_users->access_level < 90) {
 			echo "Error, you need to assign at least one property to this user";
 			return;
-			}
-		
-		if ( $jomres_users->id == 0 )
-			{
-			$jomres_users->commit_new_user();
-			}
-		else
-			{
-			$jomres_users->commit_update_user();
-			}
-
-		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=list_users" ), jr_gettext( "_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE", '_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE', false ) );
 		}
+		
+		if ($jomres_users->id == 0) {
+			$jomres_users->commit_new_user();
+		} else {
+			$jomres_users->commit_update_user();
+		}
+
+		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN . "&task=list_users"), jr_gettext("_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE", '_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE', false));
+	}
 
 
 	function getRetVals()
-		{
+	{
 		return null;
-		}
 	}
+}

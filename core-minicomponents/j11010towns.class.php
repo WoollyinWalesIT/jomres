@@ -11,59 +11,57 @@
  **/
 
 // ################################################################
-defined( '_JOMRES_INITCHECK' ) or die( '' );
+defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j11010towns
-	{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
-	function __construct( $componentArgs )
-		{
+	function __construct($componentArgs)
+	{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-		if ( $MiniComponents->template_touch )
-			{
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
 			$this->template_touchable = false;
 			return;
-			}
+		}
 		
-		$this->ret_vals = array ( 
-								"resource_type" => "towns" , 
-								"resource_id_required" => true , 
-								"name" => jr_gettext( '_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_TOWN_IMAGES', '_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_TOWN_IMAGES', false ),
+		$this->ret_vals = array (
+								"resource_type" => "towns" ,
+								"resource_id_required" => true ,
+								"name" => jr_gettext('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_TOWN_IMAGES', '_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_TOWN_IMAGES', false),
 								"upload_root_abs_path" => JOMRES_IMAGELOCATION_ABSPATH,
 								"upload_root_rel_path" => JOMRES_IMAGELOCATION_RELPATH,
-								"notes" => ''  
+								"notes" => ''
 								);
 		
 		$task = get_showtime('task');
-		if (
-			strpos($task,"media_centre") === false
-			)
+		if (strpos($task, "media_centre") === false
+			) {
 			return;
+		}
 
-		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
+		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 		
-		if ( $thisJRUser->userIsManager )
-			{
-			if ( !AJAXCALL && !defined("MEDIACENTRE_ROOMJS") && !defined('JOMRES_API_CMS_ROOT') )
-				{
-				define ("MEDIACENTRE_ROOMJS",1);
+		if ($thisJRUser->userIsManager) {
+			if (!AJAXCALL && !defined("MEDIACENTRE_ROOMJS") && !defined('JOMRES_API_CMS_ROOT')) {
+				define("MEDIACENTRE_ROOMJS", 1);
 				echo '
 				<script>
 				document.addEventListener(\'DOMContentLoaded\', function() {
@@ -73,14 +71,13 @@ class j11010towns
 					});
 				</script>
 				';
-				}
 			}
-		
 		}
+	}
 
 
 	function getRetVals()
-		{
+	{
 		return $this->ret_vals;
-		}
 	}
+}

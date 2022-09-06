@@ -10,55 +10,55 @@
  **/
 
 // ################################################################
-defined( '_JOMRES_INITCHECK' ) or die( '' );
+defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 	
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-     * Called by the webhooks watcher that triggers background tasks for processing by webhook integrations
-	 * 
+	 * Called by the webhooks watcher that triggers background tasks for processing by webhook integrations
+	 *
 	 */
 
 class j06000background_process
-	{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	function __construct()
-		{
-		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-		if ( $MiniComponents->template_touch )
-			{
+	{
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
 			$this->template_touchable = false;
 			return;
-			}
+		}
 
 			
 			$payload_source = jomresGetParam($_REQUEST, 'payload_source', '');
 			
-			logging::log_message("Received deferred message notification " , 'message_handling', 'DEBUG'  );
+			logging::log_message("Received deferred message notification ", 'message_handling', 'DEBUG');
 			
-			if ($payload_source != '' ) {
-				jr_import('jomres_deferred_tasks');
-				$jomres_deferred_tasks = new jomres_deferred_tasks();
-				$jomres_deferred_tasks->handle_message( $payload_source );
-			}
+		if ($payload_source != '') {
+			jr_import('jomres_deferred_tasks');
+			$jomres_deferred_tasks = new jomres_deferred_tasks();
+			$jomres_deferred_tasks->handle_message($payload_source);
 		}
+	}
 
 
 
 
 	function getRetVals()
-		{
+	{
 		return null;
-		}
 	}
+}

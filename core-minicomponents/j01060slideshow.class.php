@@ -17,20 +17,21 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-     * Produces slideshows based on the Galleria slideshow functionality
-	 * 
+	 * Produces slideshows based on the Galleria slideshow functionality
+	 *
 	 */
 
 class j01060slideshow
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -124,7 +125,7 @@ class j01060slideshow
 			default:
 				$output['WIDTH'] = '';
 				break;
-			}
+		}
 
 		$output['RANDOM_IDENTIFIER'] = generateJomresRandomString(10);
 		$output['LIGHTBOX'] = $lightbox;

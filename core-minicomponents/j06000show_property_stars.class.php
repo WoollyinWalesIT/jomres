@@ -24,15 +24,16 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class j06000show_property_stars
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -113,7 +114,7 @@ class j06000show_property_stars
 
 
 		if (get_showtime('task') != 'ajax_search') {
-			if ($alt_stars_number ==0 ) {
+			if ($alt_stars_number ==0) {
 				if ($property_uid == 0) {
 					return;
 				} else {
@@ -129,7 +130,7 @@ class j06000show_property_stars
 		}
 
 		$stars = [];
-		for ($i=0;$i< $number_of_stars;$i++){
+		for ($i=0; $i< $number_of_stars; $i++) {
 			$tmpl = new patTemplate();
 			$tmpl->addRows('pageoutput', [ ]);
 			$tmpl->setRoot($template_path);

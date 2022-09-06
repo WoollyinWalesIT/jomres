@@ -21,15 +21,16 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class j02202a_update_invoice
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
+	 *
+	 * Main functionality of the Minicomponent
 	 *
 	 * Updates an invoice when a deposit is added
-	 * 
+	 *
 	 */
 	 
 	public function __construct()

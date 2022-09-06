@@ -11,53 +11,52 @@
  **/
 
 // ################################################################
-defined( '_JOMRES_INITCHECK' ) or die( '' );
+defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06005oauth_edit_client
-	{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	function __construct()
-		{
-		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-		if ( $MiniComponents->template_touch ){$this->template_touchable = false;return;}
+	{
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
+			return;
+		}
 
 		$ePointFilepath=get_showtime('ePointFilepath');
-		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
+		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 		$available_scopes = array();
-		if (!$thisJRUser->userIsManager)
-			{
+		if (!$thisJRUser->userIsManager) {
 			$available_scopes = array ( "user");
-			}
-		elseif ($thisJRUser->userIsManager && !$thisJRUser->superPropertyManager)
-			{
+		} elseif ($thisJRUser->userIsManager && !$thisJRUser->superPropertyManager) {
 			$available_scopes = array ( "user" , "manager" );
-			}
-			elseif ($thisJRUser->userIsManager && $thisJRUser->superPropertyManager)
-			{
+		} elseif ($thisJRUser->userIsManager && $thisJRUser->superPropertyManager) {
 			$available_scopes = array ( "user" , "manager" , "super" );
-			}
+		}
 
 		jr_import("jomres_oauth_scopes");
 		$scopes_class = new jomres_oauth_scopes($ePointFilepath);
 		$output = array();
 		
-		$client_id = jomresGetParam( $_REQUEST, 'client_id', "" );
+		$client_id = jomresGetParam($_REQUEST, 'client_id', "");
 		
 		$output['PAGETITLE']=jr_gettext('_OAUTH_APPS', '_OAUTH_APPS', false);
 		$output['_OAUTH_APIKEY']=jr_gettext('_OAUTH_APIKEY', '_OAUTH_APIKEY', false);
@@ -78,94 +77,87 @@ class j06005oauth_edit_client
 
 		$output['TOKEN'] = '';
 		if ($client_id != '') {
-			$rightnow = date('Y-m-d H:i:s', strtotime('now') );
+			$rightnow = date('Y-m-d H:i:s', strtotime('now'));
 			$query = "SELECT access_token FROM #__jomres_oauth_access_tokens  WHERE 
             	`client_id` = '".$client_id."' AND 
             	`user_id` = ".(int)$thisJRUser->id." AND
             	`expires` >  '".$rightnow."' ORDER BY `expires` DESC LIMIT 1 ";
 
-			$output['TOKEN'] = doSelectSql($query , 1 );
+			$output['TOKEN'] = doSelectSql($query, 1);
 		}
 
 		$query = "SELECT client_id , client_secret , scope , identifier , redirect_uri FROM #__jomres_oauth_clients WHERE client_id = '".$client_id."' AND user_id = ".(int)$thisJRUser->id . ' LIMIT 1 ';
 		$result = doSelectSql($query);
 
 		$client_scopes = array();
-		if (count($result)>0)
-			{
-			foreach ($result as $client)
-				{
+		if (count($result)>0) {
+			foreach ($result as $client) {
 				$output['CLIENT_ID']=$client->client_id;
 				$output['CLIENT_SECRET']=$client->client_secret;
 				$output['IDENTIFIER']=$client->identifier;
 				
 				$output['REDIRECT_URI']=$client->redirect_uri;
 
-				if (trim($client->scope) != "" )
-					$client_scopes= explode  ( "," , $client->scope );
+				if (trim($client->scope) != "") {
+					$client_scopes= explode(",", $client->scope);
+				}
 
-				if ( $output['CLIENT_SECRET'] == "")
-					{
+				if ($output['CLIENT_SECRET'] == "") {
 					$output['CLIENT_SECRET'] = createNewAPIKey();
-					}
 				}
 			}
-		else
-			{
+		} else {
 			$output['IDENTIFIER']="";
-			$output['CLIENT_ID']=generateJomresRandomString( 15 );
+			$output['CLIENT_ID']=generateJomresRandomString(15);
 			$output['CLIENT_SECRET'] =createNewAPIKey();
-			$output['REDIRECT_URI'] =get_showtime( 'live_site' )."/".JOMRES_ROOT_DIRECTORY."/api/";
-			}
+			$output['REDIRECT_URI'] =get_showtime('live_site')."/".JOMRES_ROOT_DIRECTORY."/api/";
+		}
 
 		$output['AUTHORIZE_URL'] = JOMRES_SITEPAGE_URL_AJAX.'&task=oauth_isauthorised&response_type=token&client_id='.$output['CLIENT_ID'].'&redirect_uri='. $output['REDIRECT_URI'];
 
-		$output['TOKEN_REQUEST_URL'] = get_showtime( 'live_site' ).'/jomres/api/';
+		$output['TOKEN_REQUEST_URL'] = get_showtime('live_site').'/jomres/api/';
 		
 		$rows=array();
-		foreach ($scopes_class->default_scopes as $category => $category_scopes)
-			{
+		foreach ($scopes_class->default_scopes as $category => $category_scopes) {
 			$po=array();
 			$o =array();
 			$scope_rows=array();
 
-			$o['_OAUTH_SCOPE_CATEGORY'] = jr_gettext( $category , $category );
-			foreach ($category_scopes as $scope)
-				{
-				if ( in_array ( $scope->user_type ,  $available_scopes ) )
-					{
+			$o['_OAUTH_SCOPE_CATEGORY'] = jr_gettext($category, $category);
+			foreach ($category_scopes as $scope) {
+				if (in_array($scope->user_type, $available_scopes)) {
 					$sr=array();
 					$sr['CHECKED'] = '';
-					if ( in_array ( $scope->scope ,  $client_scopes ) )
+					if (in_array($scope->scope, $client_scopes)) {
 						$sr['CHECKED'] = "checked='checked'";
+					}
 					
 					$sr['SCOPE'] = $scope->scope;
-					$sr['SCOPE_FRIENDLY'] = jr_gettext( $scope->definition , $scope->definition );
-					$sr['SCOPE_DESCRIPTION'] = jr_gettext( $scope->description , $scope->description );
+					$sr['SCOPE_FRIENDLY'] = jr_gettext($scope->definition, $scope->definition);
+					$sr['SCOPE_DESCRIPTION'] = jr_gettext($scope->description, $scope->description);
 					$scope_rows[]=$sr;
-					}
-				}
-
-			if ( count($scope_rows)>0)
-				{
-				$po[]=$o;
-				$tmpl = new patTemplate();
-				$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND  );
-				$tmpl->readTemplatesFromInput( 'scope_categories.html' );
-				$tmpl->addRows( 'pageoutput', $po );
-				$tmpl->addRows( 'rows', $scope_rows );
-				$rows[]['SCOPES'] = $tmpl->getParsedTemplate();
 				}
 			}
+
+			if (count($scope_rows)>0) {
+				$po[]=$o;
+				$tmpl = new patTemplate();
+				$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+				$tmpl->readTemplatesFromInput('scope_categories.html');
+				$tmpl->addRows('pageoutput', $po);
+				$tmpl->addRows('rows', $scope_rows);
+				$rows[]['SCOPES'] = $tmpl->getParsedTemplate();
+			}
+		}
 		
 		
-		$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
+		$jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
 		$jrtb   = $jrtbar->startTable();
-		$jrtb .= $jrtbar->toolbarItem( 'cancel', jomresURL( JOMRES_SITEPAGE_URL . "&task=oauth" ), '' );
-		$jrtb .= $jrtbar->toolbarItem( 'save', '', '', true, 'save_client' );
-		if ( $client_id != '' ) {
-			$jrtb .= $jrtbar->toolbarItem( 'delete', jomresURL( JOMRES_SITEPAGE_URL . "&task=delete_client&client_id=".$client_id."&no_html=1" ), '' );
-			$jrtb .= $jrtbar->toolbarItem( 'delete', jomresURL( JOMRES_SITEPAGE_URL . "&task=expire_tokens&client_id=".$client_id."&no_html=1" ), jr_gettext('DELETE_TOKEN', 'DELETE_TOKEN', false) );
+		$jrtb .= $jrtbar->toolbarItem('cancel', jomresURL(JOMRES_SITEPAGE_URL . "&task=oauth"), '');
+		$jrtb .= $jrtbar->toolbarItem('save', '', '', true, 'save_client');
+		if ($client_id != '') {
+			$jrtb .= $jrtbar->toolbarItem('delete', jomresURL(JOMRES_SITEPAGE_URL . "&task=delete_client&client_id=".$client_id."&no_html=1"), '');
+			$jrtb .= $jrtbar->toolbarItem('delete', jomresURL(JOMRES_SITEPAGE_URL . "&task=expire_tokens&client_id=".$client_id."&no_html=1"), jr_gettext('DELETE_TOKEN', 'DELETE_TOKEN', false));
 		}
 
 		$jrtb .= $jrtbar->endTable();
@@ -173,16 +165,16 @@ class j06005oauth_edit_client
 		
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
-		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND  );
-		$tmpl->readTemplatesFromInput( 'edit_client.html' );
-		$tmpl->addRows( 'pageoutput', $pageoutput );
-		$tmpl->addRows( 'rows', $rows );
+		$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+		$tmpl->readTemplatesFromInput('edit_client.html');
+		$tmpl->addRows('pageoutput', $pageoutput);
+		$tmpl->addRows('rows', $rows);
 		$tmpl->displayParsedTemplate();
-		}
+	}
 
 
 	function getRetVals()
-		{
+	{
 		return null;
-		}
 	}
+}

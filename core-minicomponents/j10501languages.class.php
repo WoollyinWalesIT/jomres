@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j10501languages
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -45,11 +46,11 @@ class j10501languages
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
 
-		if ( !isset($jrConfig[ 'admin_options_level' ]) ) {
+		if (!isset($jrConfig[ 'admin_options_level' ])) {
 			$jrConfig[ 'admin_options_level' ] = 0;
 		}
 
-		if ( $jrConfig[ 'admin_options_level' ] < 2 ) {
+		if ($jrConfig[ 'admin_options_level' ] < 2) {
 			return;
 		}
 
@@ -61,7 +62,7 @@ class j10501languages
 	
 		$selected_languages = array();
 		if ($jrConfig['selected_languages'] != '') {
-			$selected_languages = explode(',',$jrConfig['selected_languages']);
+			$selected_languages = explode(',', $jrConfig['selected_languages']);
 		}
 		
 		$configurationPanel->startPanel(jr_gettext('_JOMRES_COM_CHOOSELANGUAGES', '_JOMRES_COM_CHOOSELANGUAGES', false));

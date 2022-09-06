@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j16000listproperties_ajax
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -227,13 +228,13 @@ class j16000listproperties_ajax
 
 			$r[] = $p->propertys_uid;
 
-            if ( jomres_bootstrap_version() == 5) {
-                $text_highlight_danger = "badge bg-danger";
-                $text_highlight_warning = "badge bg-warning text-dark";
-            } else {
-                $text_highlight_danger = "label label-orange";
-                $text_highlight_warning = "label label-red";
-            }
+			if (jomres_bootstrap_version() == 5) {
+				$text_highlight_danger = "badge bg-danger";
+				$text_highlight_warning = "badge bg-warning text-dark";
+			} else {
+				$text_highlight_danger = "label label-orange";
+				$text_highlight_warning = "label label-red";
+			}
 
 			if ($p->completed == 1) {
 				if ($p->approved == 1) {
@@ -245,11 +246,11 @@ class j16000listproperties_ajax
 				$r[] = '<span class="'.$text_highlight_danger.'">'.jomres_decode($p->property_name).'</span>';
 			}
 
-            //approval dropdown
-            $options = array();
-            $options[] = jomresHTML::makeOption('0', jr_gettext('_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false));
-            $options[] = jomresHTML::makeOption('1', jr_gettext('_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES', false));
-            $r[] = jomresHTML::selectList($options, 'approved', ' size="1" onchange="setApproval(\''.$p->propertys_uid.'\', this.value );"', 'value', 'text', $p->approved, false);
+			//approval dropdown
+			$options = array();
+			$options[] = jomresHTML::makeOption('0', jr_gettext('_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false));
+			$options[] = jomresHTML::makeOption('1', jr_gettext('_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES', false));
+			$r[] = jomresHTML::selectList($options, 'approved', ' size="1" onchange="setApproval(\''.$p->propertys_uid.'\', this.value );"', 'value', 'text', $p->approved, false);
 
 			$r[] = jomres_decode($p->property_street);
 			$r[] = jomres_decode($p->property_town);

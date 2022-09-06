@@ -17,20 +17,21 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-     * Depreciated plugin, left in place to demonstrate how we can use the trigger after uploading of images to do things post upload
-	 * 
+	 * Depreciated plugin, left in place to demonstrate how we can use the trigger after uploading of images to do things post upload
+	 *
 	 */
 
 class j03382slideshow
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -61,10 +62,10 @@ class j03382slideshow
 	}
 
 
-    /**
-     * @return null
-     */
-    public function getRetVals()
+	/**
+	 * @return null
+	 */
+	public function getRetVals()
 	{
 		return null;
 	}

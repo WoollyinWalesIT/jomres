@@ -17,20 +17,21 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-     * Returns google map template. Used by numerous scripts to provide mapping output.
-	 * 
+	 * Returns google map template. Used by numerous scripts to provide mapping output.
+	 *
 	 */
 
 class j01050x_geocoder
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs = null)
@@ -70,7 +71,7 @@ class j01050x_geocoder
 
 		$output['MAP_STYLE'] = file_get_contents(JOMRES_ASSETS_ABSPATH.'map_styles'.JRDS.$jrConfig['map_style'].'.style');
 		$output['ZOOMLEVEL'] = (int)$jrConfig['map_zoom'];
-		if ( isset( $_REQUEST['map_zoom'] )) {
+		if (isset($_REQUEST['map_zoom'])) {
 			$output['ZOOMLEVEL'] = (int) $_REQUEST['map_zoom'];
 		}
 		$output['MAPTYPE'] = strtoupper($jrConfig['map_type']);
@@ -127,8 +128,8 @@ class j01050x_geocoder
 			} // If we're editing it's ok to use the default data. If we're not, it isn't and it's best to simply not show the map at all
 		}
 		
-		$output[ 'LAT' ] = str_replace( "&#45;" , "-"  , $output[ 'LAT' ] );
-		$output[ 'LONG' ] = str_replace( "&#45;" , "-"  , $output[ 'LONG' ] );
+		$output[ 'LAT' ] = str_replace("&#45;", "-", $output[ 'LAT' ]);
+		$output[ 'LONG' ] = str_replace("&#45;", "-", $output[ 'LONG' ]);
 
 
 		if (!isset($jrConfig[ 'gmap_layer_transit' ])) {
@@ -205,8 +206,8 @@ class j01050x_geocoder
 		set_showtime('current_map_identifier', $output[ 'RANDOM_IDENTIFIER' ]);
 
 		$sanitised_lat_long_hyphes = array ("&#38;#45;" , "&#45;" );
-		$output[ 'LAT' ] = str_replace( $sanitised_lat_long_hyphes, "-" , $output[ 'LAT' ] ) ;
-		$output[ 'LONG' ] = str_replace( $sanitised_lat_long_hyphes, "-" , $output[ 'LONG' ] ) ;
+		$output[ 'LAT' ] = str_replace($sanitised_lat_long_hyphes, "-", $output[ 'LAT' ]) ;
+		$output[ 'LONG' ] = str_replace($sanitised_lat_long_hyphes, "-", $output[ 'LONG' ]) ;
 		
 		$pageoutput[ ] = $output;
 		$tmpl = new patTemplate();

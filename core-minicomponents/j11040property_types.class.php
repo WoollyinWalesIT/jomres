@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j11040property_types
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -45,7 +46,7 @@ class j11040property_types
 		$this->ret_vals = array();
 		
 		$resource_type = jomresGetParam($_REQUEST, 'resource_type', '');
-        $resource_id   = jomresGetParam( $_REQUEST, 'resource_id', '0' );
+		$resource_id   = jomresGetParam($_REQUEST, 'resource_id', '0');
 
 		$jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
 		$jomres_media_centre_images->get_site_images($resource_type);

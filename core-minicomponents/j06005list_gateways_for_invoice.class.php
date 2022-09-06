@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06005list_gateways_for_invoice
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($invoice_id = null)
@@ -39,7 +40,7 @@ class j06005list_gateways_for_invoice
 			$this->template_touchable = false;
 
 			return;
-			}
+		}
 
 		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 
@@ -47,11 +48,11 @@ class j06005list_gateways_for_invoice
 			$this->invoice_id = intval(jomresGetParam($_REQUEST, 'invoice_id', 0));
 		} else {
 			$this->invoice_id = (int) $invoice_id;
-			}
+		}
 
 		if ($this->invoice_id == 0) {
 			return;
-			}
+		}
 
 		$invoice = jomres_singleton_abstract::getInstance('basic_invoice_details');
 		$invoice->gatherData($this->invoice_id);
@@ -59,29 +60,29 @@ class j06005list_gateways_for_invoice
 		if (!$thisJRUser->superPropertyManager) {
 			if ($thisJRUser->id != $invoice->cms_user_id) {
 				throw new Exception('User '.$thisJRUser->username.' is not authorised to view invoice id '.$this->invoice_id);
-				}
 			}
+		}
 
 		jr_import("gateway_plugin_settings");
 		$plugin_settings = new gateway_plugin_settings();
-		$plugin_settings->get_settings_for_property_uid( $invoice->property_uid );
+		$plugin_settings->get_settings_for_property_uid($invoice->property_uid);
 
 		$output = array();
 		$pageoutput = array();
 
 		$rows = array();
 		foreach ($plugin_settings->gateway_settings as $gateway_name => $settings) {
-			if ( (bool)$settings ['balance_payments_supported'] == true ) {
+			if ((bool)$settings ['balance_payments_supported'] == true) {
 				if (isset($settings['active']) && $settings['active'] == '1') {
 					$r = array();
-					$r['FRIENDLYNAME'] = jr_gettext('_JOMRES_CUSTOMTEXT_GATEWAYNAME'.$gateway_name,$gateway_name,false,false);
+					$r['FRIENDLYNAME'] = jr_gettext('_JOMRES_CUSTOMTEXT_GATEWAYNAME'.$gateway_name, $gateway_name, false, false);
 					$r['IMAGE'] = $settings['config_links'] ['button'];
 					$r['LINK'] = JOMRES_SITEPAGE_URL.'&task=invoice_payment_send&gateway='.$gateway_name.'&invoice_id='.$this->invoice_id;
 					$r['PAYNOW'] = jr_gettext('_JRPORTAL_INVOICES_PAYNOW', '_JRPORTAL_INVOICES_PAYNOW', false);
 					$rows[] = $r;
-					}
 				}
 			}
+		}
 		if (!empty($rows)) {
 			$output['PAGETITLE'] = jr_gettext('_JOMRES_COM_A_GATEWAY_BOOKING_CHOOSE', '_JOMRES_COM_A_GATEWAY_BOOKING_CHOOSE', false);
 
@@ -95,12 +96,10 @@ class j06005list_gateways_for_invoice
 
 			if (isset($_REQUEST['invoice_id'])) {
 				echo $this->retVals;
-				}
 			}
-		else {
+		} else {
 			echo "<p class='alert alert-danger'>Error, no gateways have been configured.</p>";
-			}
-
+		}
 	}
 
 

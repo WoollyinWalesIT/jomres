@@ -11,63 +11,67 @@
  **/
 
 // ################################################################
-defined( '_JOMRES_INITCHECK' ) or die( '' );
+defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06002save_integration
-	{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
-	function __construct( $componentArgs )
-		{
+	function __construct($componentArgs)
+	{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-		if ( $MiniComponents->template_touch ) { $this->template_touchable = false; return; }
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
+			return;
+		}
 
 		$ePointFilepath=get_showtime('ePointFilepath');
-		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
+		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 
 		jr_import("webhooks");
 		$webhooks = new webhooks($thisJRUser->id);
 		$all_webhooks = $webhooks->get_all_webhooks();
 
-		$integration_id = (int)jomresGetParam( $_POST,'integration_id', 0 );
+		$integration_id = (int)jomresGetParam($_POST, 'integration_id', 0);
 		
 		$webhook = $webhooks->get_webhook($integration_id);
-		if ( $webhook != false && $integration_id > 0 ) {
+		if ($webhook != false && $integration_id > 0) {
 			if ($thisJRUser->id != $webhook['manager_id']) {
 				return ;
 			}
 		}
 		
 		$settings = array();
-		foreach ( $_POST as $key=>$val ) {
-			if ($key != "nohtml" && $key != "task" && $key != "integration_id" && $key != "jomres_csrf_token" ) {
-				$val = jomresGetParam( $_POST, $key, '' );
+		foreach ($_POST as $key => $val) {
+			if ($key != "nohtml" && $key != "task" && $key != "integration_id" && $key != "jomres_csrf_token") {
+				$val = jomresGetParam($_POST, $key, '');
 				$key = filter_var($key, FILTER_SANITIZE_SPECIAL_CHARS); // Trust nobody
-				$webhooks->set_setting( $integration_id , $key , $val );
+				$webhooks->set_setting($integration_id, $key, $val);
 			}
 		}
 		
 	   
 		$webhooks->commit_integration($integration_id);
 		
-		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=webhooks_core" ), "" ); 
-		}
+		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL . "&task=webhooks_core"), "");
+	}
 
 	/**
 	#
@@ -78,9 +82,7 @@ class j06002save_integration
 	 */
 
 	function getRetVals()
-		{
+	{
 		return null;
-		}
 	}
-
-?>
+}

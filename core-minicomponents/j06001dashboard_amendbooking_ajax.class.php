@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06001dashboard_amendbooking_ajax
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -107,7 +108,7 @@ class j06001dashboard_amendbooking_ajax
 		if ($amendSuccessful === true) {
 			$insertMessage = 'Room changed successfully.';
 			echo json_encode(
-							array(
+				array(
 								'insertStatus' => 1,
 								'insertMessage' => $insertMessage,
 								'id' => $new_id,
@@ -117,7 +118,7 @@ class j06001dashboard_amendbooking_ajax
 								'room_uid' => $bkg->new_room_uid,
 								'this_contract_room_uids' => $bkg->this_contract_room_uids,
 								)
-							);
+			);
 		} else {
 			$insertMessage = $amendSuccessful;
 			echo json_encode(array('insertStatus' => 0, 'insertMessage' => $insertMessage));

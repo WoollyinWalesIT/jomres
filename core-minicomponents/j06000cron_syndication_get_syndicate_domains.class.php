@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06000cron_syndication_get_syndicate_domains
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -55,12 +56,12 @@ class j06000cron_syndication_get_syndicate_domains
 		
 		try {
 			$client = new GuzzleHttp\Client();
-			$response = $client->request('GET', "https://app.jomres.net/jomres/api/get_sites/" , ['connect_timeout' => 10 ] );
+			$response = $client->request('GET', "https://app.jomres.net/jomres/api/get_sites/", ['connect_timeout' => 10 ]);
 
 			$body				= json_decode((string)$response->getBody());
 					
 			if (!empty($body->data->sites->sites)) {
-				foreach ( $body->data->sites->sites as $site ) {
+				foreach ($body->data->sites->sites as $site) {
 					$domain = parse_url($site->api_url);
 					if ($domain) {
 						$now = date("Y-m-d H:i:s");
@@ -69,7 +70,7 @@ class j06000cron_syndication_get_syndicate_domains
 						$new_site_datetime_added			= $now;
 						$new_site_datetime_last_checked		= $now;
 						
-						if (!in_array( $new_site_domain , $existing_domains )) {
+						if (!in_array($new_site_domain, $existing_domains)) {
 							try {
 								$query = "
 									INSERT INTO #__jomres_syndication_domains SET
@@ -79,8 +80,7 @@ class j06000cron_syndication_get_syndicate_domains
 										`last_checked` =  '".$new_site_datetime_last_checked."'
 								";
 								doInsertSql($query);
-							}
-							catch (Exception $e) {
+							} catch (Exception $e) {
 								logging::log_message("Tried to insert domain ".$new_site_domain." but failed ", 'Syndication', 'WARNING');
 							}
 						} else {
@@ -89,8 +89,7 @@ class j06000cron_syndication_get_syndicate_domains
 					}
 				}
 			}
-		}
-		catch (GuzzleHttp\Exception\RequestException $e) {
+		} catch (GuzzleHttp\Exception\RequestException $e) {
 			//  If the user reports problems, the REST API connectivity check should give us some clues
 		}
 	}

@@ -18,19 +18,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	 * @package Jomres\Core\Minicomponents
 	 *
 	 * Builds the cancellation email that is sent to hotels
-     *
+	 *
 	 */
 
 class j03150email_hotel_cancelbooking
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -50,10 +51,10 @@ class j03150email_hotel_cancelbooking
 	}
 
 
-    /**
-     * @return array
-     */
-    public function getRetVals()
+	/**
+	 * @return array
+	 */
+	public function getRetVals()
 	{
 		return $this->ret_vals;
 	}

@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06000cron_gdpr_cleanup
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -51,26 +52,24 @@ class j06000cron_gdpr_cleanup
 			$query = "SELECT contract_uid , invoice_uid FROM #__jomres_contracts WHERE `departure` <= DATE_SUB(CURRENT_TIMESTAMP(), INTERVAL ".(int)$jrConfig[ 'gdpr_booking_retention_period' ]." DAY) ";
 			$result = doSelectSql($query);
 
-			if (!empty($result)) {
-				
-				foreach ($result as $r ){
-					if ($r->contract_uid > 0 && $r->invoice_uid > 0 ) {
-						$jomres_gdpr_cleanup->cleanup_booking($r->contract_uid , $r->invoice_uid );
-					}
+		if (!empty($result)) {
+			foreach ($result as $r) {
+				if ($r->contract_uid > 0 && $r->invoice_uid > 0) {
+					$jomres_gdpr_cleanup->cleanup_booking($r->contract_uid, $r->invoice_uid);
 				}
 			}
+		}
 			
 			$query = "SELECT id FROM #__jomresportal_invoices WHERE `due_date` <= DATE_SUB(CURRENT_TIMESTAMP(), INTERVAL ".(int)$jrConfig[ 'gdpr_other_invoice_retention_period' ]." DAY) ";
 			$result = doSelectSql($query);
 
-			if (!empty($result)) {
-				foreach ($result as $r ){
-					if ( $r->id > 0 ) {
-						$jomres_gdpr_cleanup->cleanup_invoice( $r->id );
-					}
+		if (!empty($result)) {
+			foreach ($result as $r) {
+				if ($r->id > 0) {
+					$jomres_gdpr_cleanup->cleanup_invoice($r->id);
 				}
 			}
-
+		}
 	}
 
 

@@ -18,19 +18,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	 * @package Jomres\Core\Minicomponents
 	 *
 	 * Includes one of two possible template files, plus a little javascript for slider radio buttons that were originally included as part of the Joomla 3 Bootstrap 2 implementation.,
-	 * 
+	 *
 	 */
 
 class j00061bottomtemplate
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)

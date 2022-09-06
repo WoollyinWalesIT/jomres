@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06000show_user_profile
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -50,7 +51,7 @@ class j06000show_user_profile
 		
 		$cms_user_id = (int)jomresGetParam($_REQUEST, 'cms_user_id', 0);
 		
-		if (isset($componentArgs['cms_user_id']) && $cms_user_id == 0 ) {
+		if (isset($componentArgs['cms_user_id']) && $cms_user_id == 0) {
 			$cms_user_id = $componentArgs['cms_user_id'];
 		}
 		
@@ -58,7 +59,7 @@ class j06000show_user_profile
 			$cms_user_id = (int)$thisJRUser->id;
 		}
 		
-		if ($cms_user_id == 0 ) {
+		if ($cms_user_id == 0) {
 			return;
 		}
 		
@@ -77,20 +78,18 @@ class j06000show_user_profile
 		
 		$can_view_private_details = false;	// All users can read public information, only property managers and the user themselves can see private information
 		
-		if ( ($thisJRUser->userIsManager && isset($componentArgs['cms_user_id'])) || $thisJRUser->superPropertyManager ) { // This is a property manager attempting to view a guest's profile, probably for inclusion in the Booking details page, or a super property manager
-
+		if (($thisJRUser->userIsManager && isset($componentArgs['cms_user_id'])) || $thisJRUser->superPropertyManager) { // This is a property manager attempting to view a guest's profile, probably for inclusion in the Booking details page, or a super property manager
 			$property_uid = getDefaultProperty();
 			$query = "SELECT mos_userid FROM #__jomres_guests WHERE mos_userid = ".(int) $cms_user_id." AND property_uid = ".(int)$property_uid;  // We'll check that the guest has been a guest of this property
 			$result = doSelectSql($query);
 			if (count($result) == 1) {
 				$can_view_private_details = true;
-			} elseif ( (int)$thisJRUser->id == $cms_user_id ) {
+			} elseif ((int)$thisJRUser->id == $cms_user_id) {
 					$can_view_private_details = true;
-				} else {
-					return;
-				}
-
-		} elseif ( (int)$thisJRUser->id == $cms_user_id ) {
+			} else {
+				return;
+			}
+		} elseif ((int)$thisJRUser->id == $cms_user_id) {
 			$can_view_private_details = true;
 		}
 		
@@ -99,12 +98,12 @@ class j06000show_user_profile
 		$jrportal_guest_profile->cms_user_id = $cms_user_id;
 		$result = $jrportal_guest_profile->get_guest_profile();
 
-		if ($result == false ) { // Can't find that user, have they been deleted? 
+		if ($result == false) { // Can't find that user, have they been deleted?
 			if ((int)$thisJRUser->id == $cms_user_id) {
-				jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_my_account'), '' );
+				jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_my_account'), '');
 			} else {
 				$output = array();
-				$output['GUEST_PROFILE_UNKNOWN'] = jr_gettext('GUEST_PROFILE_UNKNOWN', 'GUEST_PROFILE_UNKNOWN' , false );
+				$output['GUEST_PROFILE_UNKNOWN'] = jr_gettext('GUEST_PROFILE_UNKNOWN', 'GUEST_PROFILE_UNKNOWN', false);
 				$pageoutput[ ] = $output;
 				$tmpl = new patTemplate();
 				$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
@@ -116,7 +115,6 @@ class j06000show_user_profile
 				}
 				return ;
 			}
-
 		}
 
 		$output = array();
@@ -125,13 +123,13 @@ class j06000show_user_profile
 		$guest_is_also_a_manager = false;
 		
 		$query = "SELECT access_level FROM #__jomres_managers WHERE userid = ".(int)$cms_user_id;
-		$manager_state = doSelectSql($query , 2 );
+		$manager_state = doSelectSql($query, 2);
 		
 		$output[ 'MY_PROPERTIES' ]		= '';
-		if ( !empty($manager_state)) {
+		if (!empty($manager_state)) {
 			$guest_is_also_a_manager = true;
 			$is_super_manager = false;
-			if ($manager_state['access_level'] == 90 ) {
+			if ($manager_state['access_level'] == 90) {
 				$is_super_manager = true;
 			}
 			
@@ -139,14 +137,14 @@ class j06000show_user_profile
 				$query = "SELECT property_uid FROM  FROM #__jomres_managers_propertys_xref WHERE manager_id = ".(int)$cms_user_id;
 			}
 			
-			$output[ 'HOST_PROPERTIES' ]		= $MiniComponents->specificEvent('06000', 'show_host_properties' , array ('output_now' => false , "manager_id" => (int)$cms_user_id ) );
+			$output[ 'HOST_PROPERTIES' ]		= $MiniComponents->specificEvent('06000', 'show_host_properties', array ('output_now' => false , "manager_id" => (int)$cms_user_id ));
 		}
 		
-		$output[ 'GUEST_REVIEWS' ]		= $MiniComponents->specificEvent('06000', 'show_my_reviews' , array ('output_now' => false , "cms_user_id" => (int)$cms_user_id ) );
+		$output[ 'GUEST_REVIEWS' ]		= $MiniComponents->specificEvent('06000', 'show_my_reviews', array ('output_now' => false , "cms_user_id" => (int)$cms_user_id ));
 		
-		$output[ 'HOST_REVIEWS' ]		= $MiniComponents->specificEvent('06000', 'show_host_reviews' , array ('output_now' => false , "cms_user_id" => (int)$cms_user_id ) );
+		$output[ 'HOST_REVIEWS' ]		= $MiniComponents->specificEvent('06000', 'show_host_reviews', array ('output_now' => false , "cms_user_id" => (int)$cms_user_id ));
 		
-		$output[ 'GUEST_PROFILE_TITLE' ] = jr_gettext('GUEST_PROFILE_TITLE', 'GUEST_PROFILE_TITLE' , false );
+		$output[ 'GUEST_PROFILE_TITLE' ] = jr_gettext('GUEST_PROFILE_TITLE', 'GUEST_PROFILE_TITLE', false);
 		
 		$output[ 'FIRSTNAME' ]		= $jrportal_guest_profile->firstname;
 		$output[ 'SURNAME' ]		= $jrportal_guest_profile->surname;
@@ -156,15 +154,15 @@ class j06000show_user_profile
 
 		$output[ 'IMAGE' ]			= $jrportal_guest_profile->image;
 
-		$output[ 'HREGION' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION' , false );
-		$output[ 'HCOUNTRY' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY' , false );
-		$output[ 'GUEST_PROFILE_ABOUT_ME' ] = jr_gettext('GUEST_PROFILE_ABOUT_ME', 'GUEST_PROFILE_ABOUT_ME' , false );
+		$output[ 'HREGION' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', false);
+		$output[ 'HCOUNTRY' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', false);
+		$output[ 'GUEST_PROFILE_ABOUT_ME' ] = jr_gettext('GUEST_PROFILE_ABOUT_ME', 'GUEST_PROFILE_ABOUT_ME', false);
 		
-		$output[ 'GUEST_PROFILE_WELCOME' ] = jr_gettext('GUEST_PROFILE_WELCOME', 'GUEST_PROFILE_WELCOME' , false );
+		$output[ 'GUEST_PROFILE_WELCOME' ] = jr_gettext('GUEST_PROFILE_WELCOME', 'GUEST_PROFILE_WELCOME', false);
 		
-		$output[ 'GUEST_PROFILE_MY_NAME' ] = jr_gettext('GUEST_PROFILE_MY_NAME', 'GUEST_PROFILE_MY_NAME' , false );
-		$output[ 'GUEST_PROFILE_I_COME_FROM' ] = jr_gettext('GUEST_PROFILE_I_COME_FROM', 'GUEST_PROFILE_I_COME_FROM' , false );
-		$output[ 'GUEST_PROFILE_IN' ] = jr_gettext('GUEST_PROFILE_IN', 'GUEST_PROFILE_IN' , false );
+		$output[ 'GUEST_PROFILE_MY_NAME' ] = jr_gettext('GUEST_PROFILE_MY_NAME', 'GUEST_PROFILE_MY_NAME', false);
+		$output[ 'GUEST_PROFILE_I_COME_FROM' ] = jr_gettext('GUEST_PROFILE_I_COME_FROM', 'GUEST_PROFILE_I_COME_FROM', false);
+		$output[ 'GUEST_PROFILE_IN' ] = jr_gettext('GUEST_PROFILE_IN', 'GUEST_PROFILE_IN', false);
 
 
 		if ($can_view_private_details) {
@@ -179,21 +177,20 @@ class j06000show_user_profile
 			$private_output[0][ 'PASSPORT_NUMBER' ]	= $jrportal_guest_profile->passport_number;
 			$private_output[0][ 'IBAN' ]				= $jrportal_guest_profile->iban;
 
-			$private_output[0][ 'HSURNAME' ] = jr_gettext('_JOMRES_COM_MR_DISPGUEST_SURNAME', '_JOMRES_COM_MR_DISPGUEST_SURNAME' , false );
-			$private_output[0][ 'HHOUSE' ] = jr_gettext('_JOMRES_COM_MR_DISPGUEST_HOUSE', '_JOMRES_COM_MR_DISPGUEST_HOUSE' , false );
-			$private_output[0][ 'HSTREET' ] = jr_gettext('_JOMRES_COM_MR_DISPGUEST_STREET', '_JOMRES_COM_MR_DISPGUEST_STREET' , false );
-			$private_output[0][ 'HTOWN' ] = jr_gettext('_JOMRES_COM_MR_DISPGUEST_TOWN', '_JOMRES_COM_MR_DISPGUEST_TOWN' , false );
-			$private_output[0][ 'HPOSTCODE' ] = jr_gettext('_JOMRES_COM_MR_DISPGUEST_POSTCODE', '_JOMRES_COM_MR_DISPGUEST_POSTCODE' , false );
-			$private_output[0][ 'HLANDLINE' ] = jr_gettext('_JOMRES_COM_MR_DISPGUEST_LANDLINE', '_JOMRES_COM_MR_DISPGUEST_LANDLINE' , false );
-			$private_output[0][ 'HMOBILE' ] = jr_gettext('_JOMRES_COM_MR_DISPGUEST_MOBILE', '_JOMRES_COM_MR_DISPGUEST_MOBILE' , false );
-			$private_output[0][ 'HEMAIL' ] = jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL', '_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL' , false );
-			$private_output[0][ 'GUEST_PROFILE_DRIVING_LICENSE' ] = jr_gettext('GUEST_PROFILE_DRIVING_LICENSE', 'GUEST_PROFILE_DRIVING_LICENSE' , false );
-			$private_output[0][ 'GUEST_PROFILE_PASSPORT_NUMBER' ] = jr_gettext('GUEST_PROFILE_PASSPORT_NUMBER', 'GUEST_PROFILE_PASSPORT_NUMBER' , false );
-			$private_output[0][ 'GUEST_PROFILE_IBAN' ] = jr_gettext('GUEST_PROFILE_IBAN', 'GUEST_PROFILE_IBAN' , false );
+			$private_output[0][ 'HSURNAME' ] = jr_gettext('_JOMRES_COM_MR_DISPGUEST_SURNAME', '_JOMRES_COM_MR_DISPGUEST_SURNAME', false);
+			$private_output[0][ 'HHOUSE' ] = jr_gettext('_JOMRES_COM_MR_DISPGUEST_HOUSE', '_JOMRES_COM_MR_DISPGUEST_HOUSE', false);
+			$private_output[0][ 'HSTREET' ] = jr_gettext('_JOMRES_COM_MR_DISPGUEST_STREET', '_JOMRES_COM_MR_DISPGUEST_STREET', false);
+			$private_output[0][ 'HTOWN' ] = jr_gettext('_JOMRES_COM_MR_DISPGUEST_TOWN', '_JOMRES_COM_MR_DISPGUEST_TOWN', false);
+			$private_output[0][ 'HPOSTCODE' ] = jr_gettext('_JOMRES_COM_MR_DISPGUEST_POSTCODE', '_JOMRES_COM_MR_DISPGUEST_POSTCODE', false);
+			$private_output[0][ 'HLANDLINE' ] = jr_gettext('_JOMRES_COM_MR_DISPGUEST_LANDLINE', '_JOMRES_COM_MR_DISPGUEST_LANDLINE', false);
+			$private_output[0][ 'HMOBILE' ] = jr_gettext('_JOMRES_COM_MR_DISPGUEST_MOBILE', '_JOMRES_COM_MR_DISPGUEST_MOBILE', false);
+			$private_output[0][ 'HEMAIL' ] = jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL', '_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL', false);
+			$private_output[0][ 'GUEST_PROFILE_DRIVING_LICENSE' ] = jr_gettext('GUEST_PROFILE_DRIVING_LICENSE', 'GUEST_PROFILE_DRIVING_LICENSE', false);
+			$private_output[0][ 'GUEST_PROFILE_PASSPORT_NUMBER' ] = jr_gettext('GUEST_PROFILE_PASSPORT_NUMBER', 'GUEST_PROFILE_PASSPORT_NUMBER', false);
+			$private_output[0][ 'GUEST_PROFILE_IBAN' ] = jr_gettext('GUEST_PROFILE_IBAN', 'GUEST_PROFILE_IBAN', false);
 			
-			$private_output[0][ 'GUEST_PROFILE_PRIVATE_INFORMATION' ] = jr_gettext('GUEST_PROFILE_PRIVATE_INFORMATION', 'GUEST_PROFILE_PRIVATE_INFORMATION' , false );
-			$private_output[0][ 'GUEST_PROFILE_PRIVATE_INFORMATION_DISCLAIMER' ] = jr_gettext('GUEST_PROFILE_PRIVATE_INFORMATION_DISCLAIMER', 'GUEST_PROFILE_PRIVATE_INFORMATION_DISCLAIMER' , false );
-
+			$private_output[0][ 'GUEST_PROFILE_PRIVATE_INFORMATION' ] = jr_gettext('GUEST_PROFILE_PRIVATE_INFORMATION', 'GUEST_PROFILE_PRIVATE_INFORMATION', false);
+			$private_output[0][ 'GUEST_PROFILE_PRIVATE_INFORMATION_DISCLAIMER' ] = jr_gettext('GUEST_PROFILE_PRIVATE_INFORMATION_DISCLAIMER', 'GUEST_PROFILE_PRIVATE_INFORMATION_DISCLAIMER', false);
 		}
 
 		$pageoutput[ ] = $output;

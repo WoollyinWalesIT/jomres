@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j11010rmtypes
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -43,8 +44,8 @@ class j11010rmtypes
 		}
 
 		$this->ret_vals = array(
-								'resource_type' => 'rmtypes', 
-								'resource_id_required' => false, 
+								'resource_type' => 'rmtypes',
+								'resource_id_required' => false,
 								'name' => jr_gettext('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOMTYPE_IMAGES', '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOMTYPE_IMAGES', false),
 								'upload_root_abs_path' => JOMRES_IMAGELOCATION_ABSPATH,
 								'upload_root_rel_path' => JOMRES_IMAGELOCATION_RELPATH,

@@ -18,19 +18,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	 * @package Jomres\Core\Minicomponents
 	 *
 	 * Shows the Powered By link to jomres.net at the bottom of the page.
-	 * 
+	 *
 	 */
 
 class j00061a_poweredby
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -53,7 +54,7 @@ class j00061a_poweredby
 		}
 
 		$menuoff = get_showtime('menuoff');
-		if ($menuoff === true ) {
+		if ($menuoff === true) {
 			return;
 		}
 

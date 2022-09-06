@@ -18,19 +18,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	 * @package Jomres\Core\Minicomponents
 	 *
 	 * If the user is allowed the script resets the user's current property to the appropriate property uid and then redirects the user to the amend booking script.
-	 * 
+	 *
 	 */
 
 class j00100amendBooking
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -51,7 +52,6 @@ class j00100amendBooking
 		$selectedProperty = (int)jomresGetParam($_REQUEST, 'selectedProperty', 0);
 		
 		if ($selectedProperty > 0 && in_array($selectedProperty, $thisJRUser->authorisedProperties)) {
-			
 			if ($selectedProperty > 0 && $thisJRUser->currentproperty != $selectedProperty) {
 				$thisJRUser->set_currentproperty($selectedProperty);
 				$qString = $_SERVER[ 'QUERY_STRING' ];

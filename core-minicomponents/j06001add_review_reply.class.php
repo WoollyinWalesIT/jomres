@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06001add_review_reply
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -45,7 +46,7 @@ class j06001add_review_reply
 		$rating_id = jomresGetParam($_REQUEST, 'rating_id', 0);
 		$property_uid = getDefaultProperty();
 		
-		if ($rating_id == 0 ) {
+		if ($rating_id == 0) {
 			throw new Exception('Rating id is empty. ');
 		}
 		
@@ -56,34 +57,34 @@ class j06001add_review_reply
 		$Reviews->property_uid = $property_uid;
 		$itemReviews = $Reviews->showReviews($property_uid);
 		
-		if ( isset($itemReviews['fields'][$rating_id] ) ) {
+		if (isset($itemReviews['fields'][$rating_id])) {
 			$review = $itemReviews['fields'][$rating_id];
 			
 			$output = array();
 			$pageoutput = array();
 			
-			$output['PAGETITLE'] = jr_gettext('_JOMRES_REVIEWS_REPLY_OPPORTUNITY', '_JOMRES_REVIEWS_REPLY_OPPORTUNITY' , false );
+			$output['PAGETITLE'] = jr_gettext('_JOMRES_REVIEWS_REPLY_OPPORTUNITY', '_JOMRES_REVIEWS_REPLY_OPPORTUNITY', false);
 			
-			$output['_JOMRES_REVIEWS_TITLE'] = jr_gettext('_JOMRES_REVIEWS_TITLE', '_JOMRES_REVIEWS_TITLE' , false );
-			$output['_JOMRES_REVIEWS_REVIEWBODY'] = jr_gettext('_JOMRES_REVIEWS_REVIEWBODY', '_JOMRES_REVIEWS_REVIEWBODY' , false );
-			$output['_JOMRES_REVIEWS_PROS'] = jr_gettext('_JOMRES_REVIEWS_PROS', '_JOMRES_REVIEWS_PROS' , false );
-			$output['_JOMRES_REVIEWS_CONS'] = jr_gettext('_JOMRES_REVIEWS_CONS', '_JOMRES_REVIEWS_CONS' , false );
-			$output['_JOMRES_REVIEWS_SUBMITTEDDATE'] = jr_gettext('_JOMRES_REVIEWS_SUBMITTEDDATE', '_JOMRES_REVIEWS_SUBMITTEDDATE' , false );
-			$output['_JOMRES_REVIEWS_REPLY_SAID'] = jr_gettext('_JOMRES_REVIEWS_REPLY_SAID', '_JOMRES_REVIEWS_REPLY_SAID' , false );
-			$output['_JOMRES_REVIEWS_AVERAGE_RATING'] = jr_gettext('_JOMRES_REVIEWS_AVERAGE_RATING', '_JOMRES_REVIEWS_AVERAGE_RATING' , false );
-			$output['_JOMRES_REVIEWS_PLACEHOLDER_REPLY'] = jr_gettext('_JOMRES_REVIEWS_PLACEHOLDER_REPLY', '_JOMRES_REVIEWS_PLACEHOLDER_REPLY' , false );
-			$output['_JOMRES_REVIEWS_REPLY_COMMENT'] = jr_gettext('_JOMRES_REVIEWS_REPLY_COMMENT', '_JOMRES_REVIEWS_REPLY_COMMENT' , false );
+			$output['_JOMRES_REVIEWS_TITLE'] = jr_gettext('_JOMRES_REVIEWS_TITLE', '_JOMRES_REVIEWS_TITLE', false);
+			$output['_JOMRES_REVIEWS_REVIEWBODY'] = jr_gettext('_JOMRES_REVIEWS_REVIEWBODY', '_JOMRES_REVIEWS_REVIEWBODY', false);
+			$output['_JOMRES_REVIEWS_PROS'] = jr_gettext('_JOMRES_REVIEWS_PROS', '_JOMRES_REVIEWS_PROS', false);
+			$output['_JOMRES_REVIEWS_CONS'] = jr_gettext('_JOMRES_REVIEWS_CONS', '_JOMRES_REVIEWS_CONS', false);
+			$output['_JOMRES_REVIEWS_SUBMITTEDDATE'] = jr_gettext('_JOMRES_REVIEWS_SUBMITTEDDATE', '_JOMRES_REVIEWS_SUBMITTEDDATE', false);
+			$output['_JOMRES_REVIEWS_REPLY_SAID'] = jr_gettext('_JOMRES_REVIEWS_REPLY_SAID', '_JOMRES_REVIEWS_REPLY_SAID', false);
+			$output['_JOMRES_REVIEWS_AVERAGE_RATING'] = jr_gettext('_JOMRES_REVIEWS_AVERAGE_RATING', '_JOMRES_REVIEWS_AVERAGE_RATING', false);
+			$output['_JOMRES_REVIEWS_PLACEHOLDER_REPLY'] = jr_gettext('_JOMRES_REVIEWS_PLACEHOLDER_REPLY', '_JOMRES_REVIEWS_PLACEHOLDER_REPLY', false);
+			$output['_JOMRES_REVIEWS_REPLY_COMMENT'] = jr_gettext('_JOMRES_REVIEWS_REPLY_COMMENT', '_JOMRES_REVIEWS_REPLY_COMMENT', false);
 			$output[ 'PROPERTY_DETAILS_URL' ] = get_property_details_url($property_uid);
-			$output['_JOMRES_REVIEWS_REPLY_OPPORTUNITY'] = jr_gettext('_JOMRES_REVIEWS_REPLY_OPPORTUNITY', '_JOMRES_REVIEWS_REPLY_OPPORTUNITY' , false );
+			$output['_JOMRES_REVIEWS_REPLY_OPPORTUNITY'] = jr_gettext('_JOMRES_REVIEWS_REPLY_OPPORTUNITY', '_JOMRES_REVIEWS_REPLY_OPPORTUNITY', false);
 			
-			$output['_JOMRES_REVIEWS_REPLY_RULES_WARNING'] = jr_gettext('_JOMRES_REVIEWS_REPLY_RULES_WARNING', '_JOMRES_REVIEWS_REPLY_RULES_WARNING' , false );
-			$output['_JOMRES_REVIEWS_REPLY_RULES_GUIDELINES'] = jr_gettext('_JOMRES_REVIEWS_REPLY_RULES_GUIDELINES', '_JOMRES_REVIEWS_REPLY_RULES_GUIDELINES' , false );
-			$output['_JOMRES_REVIEWS_REPLY_RULES_REPORT'] = jr_gettext('_JOMRES_REVIEWS_REPLY_RULES_REPORT', '_JOMRES_REVIEWS_REPLY_RULES_REPORT' , false );
-			$output['_JOMRES_REVIEWS_REPLY_RULES_FIRM'] = jr_gettext('_JOMRES_REVIEWS_REPLY_RULES_FIRM', '_JOMRES_REVIEWS_REPLY_RULES_FIRM' , false );
-			$output['_JOMRES_REVIEWS_REPLY_RULES_ALLOWED_TITLE'] = jr_gettext('_JOMRES_REVIEWS_REPLY_RULES_ALLOWED_TITLE', '_JOMRES_REVIEWS_REPLY_RULES_ALLOWED_TITLE' , false );
-			$output['_JOMRES_REVIEWS_REPLY_RULES_ALLOWED_TEXT'] = jr_gettext('_JOMRES_REVIEWS_REPLY_RULES_ALLOWED_TEXT', '_JOMRES_REVIEWS_REPLY_RULES_ALLOWED_TEXT' , false );
-			$output['_JOMRES_REVIEWS_REPLY_RULES_NOTALLOWED_TITLE'] = jr_gettext('_JOMRES_REVIEWS_REPLY_RULES_NOTALLOWED_TITLE', '_JOMRES_REVIEWS_REPLY_RULES_NOTALLOWED_TITLE' , false );
-			$output['_JOMRES_REVIEWS_REPLY_RULES_NOTALLOWED_TEXT'] = jr_gettext('_JOMRES_REVIEWS_REPLY_RULES_NOTALLOWED_TEXT', '_JOMRES_REVIEWS_REPLY_RULES_NOTALLOWED_TEXT' , false );
+			$output['_JOMRES_REVIEWS_REPLY_RULES_WARNING'] = jr_gettext('_JOMRES_REVIEWS_REPLY_RULES_WARNING', '_JOMRES_REVIEWS_REPLY_RULES_WARNING', false);
+			$output['_JOMRES_REVIEWS_REPLY_RULES_GUIDELINES'] = jr_gettext('_JOMRES_REVIEWS_REPLY_RULES_GUIDELINES', '_JOMRES_REVIEWS_REPLY_RULES_GUIDELINES', false);
+			$output['_JOMRES_REVIEWS_REPLY_RULES_REPORT'] = jr_gettext('_JOMRES_REVIEWS_REPLY_RULES_REPORT', '_JOMRES_REVIEWS_REPLY_RULES_REPORT', false);
+			$output['_JOMRES_REVIEWS_REPLY_RULES_FIRM'] = jr_gettext('_JOMRES_REVIEWS_REPLY_RULES_FIRM', '_JOMRES_REVIEWS_REPLY_RULES_FIRM', false);
+			$output['_JOMRES_REVIEWS_REPLY_RULES_ALLOWED_TITLE'] = jr_gettext('_JOMRES_REVIEWS_REPLY_RULES_ALLOWED_TITLE', '_JOMRES_REVIEWS_REPLY_RULES_ALLOWED_TITLE', false);
+			$output['_JOMRES_REVIEWS_REPLY_RULES_ALLOWED_TEXT'] = jr_gettext('_JOMRES_REVIEWS_REPLY_RULES_ALLOWED_TEXT', '_JOMRES_REVIEWS_REPLY_RULES_ALLOWED_TEXT', false);
+			$output['_JOMRES_REVIEWS_REPLY_RULES_NOTALLOWED_TITLE'] = jr_gettext('_JOMRES_REVIEWS_REPLY_RULES_NOTALLOWED_TITLE', '_JOMRES_REVIEWS_REPLY_RULES_NOTALLOWED_TITLE', false);
+			$output['_JOMRES_REVIEWS_REPLY_RULES_NOTALLOWED_TEXT'] = jr_gettext('_JOMRES_REVIEWS_REPLY_RULES_NOTALLOWED_TEXT', '_JOMRES_REVIEWS_REPLY_RULES_NOTALLOWED_TEXT', false);
 			
 			$output['TITLE'] = $review['review_title'];
 			$output['REVIEWBODY'] =  $review['review_description'];
@@ -100,11 +101,9 @@ class j06001add_review_reply
 			$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
 			$tmpl->readTemplatesFromInput('add_review_reply.html');
 			echo $tmpl->getParsedTemplate();
-		
 		} else {
 			throw new Exception('Rating does not exist.');
 		}
-		
 	}
 
 

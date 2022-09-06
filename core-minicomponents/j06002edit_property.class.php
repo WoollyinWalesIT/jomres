@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06002edit_property
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -130,8 +131,7 @@ class j06002edit_property
 				logging::log_message('Starting guzzle call to '.$base_uri.$query_string, 'Guzzle', 'DEBUG');
 				
 				$response = $client->request('GET', $query_string)->getBody()->getContents();
-			}
-			catch (Exception $e) {
+			} catch (Exception $e) {
 				$jomres_user_feedback = jomres_singleton_abstract::getInstance('jomres_user_feedback');
 				$jomres_user_feedback->construct_message(array('message'=>'Could not get map coordinates', 'css_class'=>'alert-danger alert-error'));
 			}
@@ -145,13 +145,13 @@ class j06002edit_property
 		}
 
 		//build the map
-        if ( trim($output[ 'APIKEY' ]) != '' ) {
-            $componentArgs = array('property_uid' => $property_uid, 'width' => '400', 'height' => '400', 'editing_map' => true);
-            $MiniComponents->specificEvent('01050', 'x_geocoder', $componentArgs);
-            $output[ 'MAP' ] = $MiniComponents->miniComponentData[ '01050' ][ 'x_geocoder' ];
-        } else {
-            $output[ 'MAP' ] = "<div class='alert alert-danger'>Google Map API key not stored in Site Configuration > Integration tab so cannot show map.</div>";
-        }
+		if (trim($output[ 'APIKEY' ]) != '') {
+			$componentArgs = array('property_uid' => $property_uid, 'width' => '400', 'height' => '400', 'editing_map' => true);
+			$MiniComponents->specificEvent('01050', 'x_geocoder', $componentArgs);
+			$output[ 'MAP' ] = $MiniComponents->miniComponentData[ '01050' ][ 'x_geocoder' ];
+		} else {
+			$output[ 'MAP' ] = "<div class='alert alert-danger'>Google Map API key not stored in Site Configuration > Integration tab so cannot show map.</div>";
+		}
 
 
 		//property policies and disclaimers
@@ -196,13 +196,13 @@ class j06002edit_property
 			
 			$output[ 'MARKDOWN_BUTTON' ] = $MiniComponents->specificEvent('06000', 'show_markdown_modal', array('output_now' => false));
 			
-			$output[ 'PROPERTY_DESCRIPTION' ] = '<textarea class="inputbox form-control" cols="70" rows="5" id="property_description" name="property_description">'.jomres_remove_HTML($current_property_details->property_description , '').'</textarea>';
-			$output[ 'PROPERTY_CHECKIN_TIMES' ] = '<textarea class="inputbox form-control" cols="70" rows="5" id="property_checkin_times" name="property_checkin_times">'.jomres_remove_HTML($current_property_details->property_checkin_times , '').'</textarea>';
-			$output[ 'PROPERTY_AREA_ACTIVITIES' ] = '<textarea class="inputbox form-control" cols="70" rows="5" id="property_area_activities" name="property_area_activities">'.jomres_remove_HTML($current_property_details->property_area_activities , '').'</textarea>';
-			$output[ 'PROPERTY_DRIVING_DIRECTIONS' ] = '<textarea class="inputbox form-control" cols="70" rows="5" id="property_driving_directions" name="property_driving_directions">'.jomres_remove_HTML($current_property_details->property_driving_directions , '').'</textarea>';
-			$output[ 'PROPERTY_AIRPORTS' ] = '<textarea class="inputbox form-control" cols="70" rows="5" id="property_airports" name="property_airports">'.jomres_remove_HTML($current_property_details->property_airports , '').'</textarea>';
-			$output[ 'PROPERTY_OTHERTRANSPORT' ] = '<textarea class="inputbox form-control" cols="70" rows="5" id="property_othertransport" name="property_othertransport">'.jomres_remove_HTML($current_property_details->property_othertransport , '').'</textarea>';
-			$output[ 'PROPERTY_POLICIES_DISCLAIMERS' ] = '<textarea class="inputbox form-control" cols="70" rows="5" id="property_policies_disclaimers" name="property_policies_disclaimers">'.jomres_remove_HTML($property_policies_disclaimers , '').'</textarea>';
+			$output[ 'PROPERTY_DESCRIPTION' ] = '<textarea class="inputbox form-control" cols="70" rows="5" id="property_description" name="property_description">'.jomres_remove_HTML($current_property_details->property_description, '').'</textarea>';
+			$output[ 'PROPERTY_CHECKIN_TIMES' ] = '<textarea class="inputbox form-control" cols="70" rows="5" id="property_checkin_times" name="property_checkin_times">'.jomres_remove_HTML($current_property_details->property_checkin_times, '').'</textarea>';
+			$output[ 'PROPERTY_AREA_ACTIVITIES' ] = '<textarea class="inputbox form-control" cols="70" rows="5" id="property_area_activities" name="property_area_activities">'.jomres_remove_HTML($current_property_details->property_area_activities, '').'</textarea>';
+			$output[ 'PROPERTY_DRIVING_DIRECTIONS' ] = '<textarea class="inputbox form-control" cols="70" rows="5" id="property_driving_directions" name="property_driving_directions">'.jomres_remove_HTML($current_property_details->property_driving_directions, '').'</textarea>';
+			$output[ 'PROPERTY_AIRPORTS' ] = '<textarea class="inputbox form-control" cols="70" rows="5" id="property_airports" name="property_airports">'.jomres_remove_HTML($current_property_details->property_airports, '').'</textarea>';
+			$output[ 'PROPERTY_OTHERTRANSPORT' ] = '<textarea class="inputbox form-control" cols="70" rows="5" id="property_othertransport" name="property_othertransport">'.jomres_remove_HTML($current_property_details->property_othertransport, '').'</textarea>';
+			$output[ 'PROPERTY_POLICIES_DISCLAIMERS' ] = '<textarea class="inputbox form-control" cols="70" rows="5" id="property_policies_disclaimers" name="property_policies_disclaimers">'.jomres_remove_HTML($property_policies_disclaimers, '').'</textarea>';
 		}
 
 		//property type dropdown (extended version, with explanation about what will guests book in this property)
@@ -219,8 +219,7 @@ class j06002edit_property
 
 		$counter = 0;
 		foreach ($current_property_details->all_property_features as $k => $v) {
-
-			if (in_array($current_property_details->ptype_id, $v['ptype_xref']) || (isset($v['ptype_xref'][0]) && $v['ptype_xref'][0] == 0) ) {
+			if (in_array($current_property_details->ptype_id, $v['ptype_xref']) || (isset($v['ptype_xref'][0]) && $v['ptype_xref'][0] == 0)) {
 				$r = array();
 				$r[ 'ischecked' ] = '';
 
@@ -262,8 +261,8 @@ class j06002edit_property
 		}
 
 		$sanitised_lat_long_hyphes = array ("&#38;#45;" , "&#45;" );
-		$output[ 'LAT' ] = str_replace( $sanitised_lat_long_hyphes, "-" , $output[ 'LAT' ] ) ;
-		$output[ 'LONG' ] = str_replace( $sanitised_lat_long_hyphes, "-" , $output[ 'LONG' ] ) ;
+		$output[ 'LAT' ] = str_replace($sanitised_lat_long_hyphes, "-", $output[ 'LAT' ]) ;
+		$output[ 'LONG' ] = str_replace($sanitised_lat_long_hyphes, "-", $output[ 'LONG' ]) ;
 			
 		//other language strings
 		$output[ 'PAGETITLE' ] = jr_gettext('_JOMRES_COM_MR_VRCT_TAB_PROPERTYS', '_JOMRES_COM_MR_VRCT_TAB_PROPERTYS');
@@ -275,7 +274,7 @@ class j06002edit_property
 		$output[ 'HTOWN' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN');
 		$output[ 'HPOSTCODE' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POSTCODE', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POSTCODE');
 		$output[ 'HTELEPHONE' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE');
-		$output[ 'HFAX' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FAX', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FAX',false);
+		$output[ 'HFAX' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FAX', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FAX', false);
 		$output[ 'HEMAIL' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL');
 		$output[ 'HPRICE' ] = jr_gettext('_JOMRES_COM_MR_EXTRA_PRICE', '_JOMRES_COM_MR_EXTRA_PRICE');
 		$output[ 'HFEATURES' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FEATURES', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FEATURES');

@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06001cpanel
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -45,7 +46,7 @@ class j06001cpanel
 
 			return;
 		}
-		jomres_cmsspecific_setmetadata('title', jomres_purify_html( jr_gettext('_JRPORTAL_CPANEL', '_JRPORTAL_CPANEL', false) ));
+		jomres_cmsspecific_setmetadata('title', jomres_purify_html(jr_gettext('_JRPORTAL_CPANEL', '_JRPORTAL_CPANEL', false)));
 		
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
@@ -75,7 +76,7 @@ class j06001cpanel
 		);
 	
 		if (!empty($jomres_widgets->this_page_widgets)) {
-			foreach ($jomres_widgets->this_page_widgets as $widget => $w ) {
+			foreach ($jomres_widgets->this_page_widgets as $widget => $w) {
 				if (isset($w['column']) && $w['column'] <= $number_of_columns) {
 					$c = (int)$w['column'];
 				} else {

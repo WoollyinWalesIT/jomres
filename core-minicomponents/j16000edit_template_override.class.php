@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j16000edit_template_override
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -53,11 +54,10 @@ class j16000edit_template_override
 		$valid_files = array();
 		$file_info = array();
 		foreach ($template_packages as $parent_package => $package_files) {
-			foreach ($package_files as $file ) {
-				if ($file['template_name'] == $template_name ) {
+			foreach ($package_files as $file) {
+				if ($file['template_name'] == $template_name) {
 					$valid_files[] = jomresHTML::makeOption($file['path'], $file['title']);
 					$file_info[$parent_package] = $file;
-					
 				}
 			}
 		}
@@ -67,19 +67,20 @@ class j16000edit_template_override
 		foreach ($valid_files as $file ) {
 			$r=array();
 			//$r['title'] = title
-			
+
 			$rows[]= $r;
 		} */
 
 		$default = '';
-		if (isset($template_overrides->template_overrides[$template_name]))
+		if (isset($template_overrides->template_overrides[$template_name])) {
 			$default = $template_overrides->template_overrides[$template_name]['path'];
+		}
 		
-		$output['DROPDOWN'] = jomresHTML::selectList($valid_files, 'template_path', 'class="input-large" size="1"', 'value', 'text', $default , false );
+		$output['DROPDOWN'] = jomresHTML::selectList($valid_files, 'template_path', 'class="input-large" size="1"', 'value', 'text', $default, false);
 
 
 		$output['TEMPLATE_NAME'] = $template_name;
-		$output['_JOMRES_TEMPLATE_PACKAGES_EDIT_INFO'] =jr_gettext("_JOMRES_TEMPLATE_PACKAGES_EDIT_INFO",'_JOMRES_TEMPLATE_PACKAGES_EDIT_INFO',false,false);
+		$output['_JOMRES_TEMPLATE_PACKAGES_EDIT_INFO'] =jr_gettext("_JOMRES_TEMPLATE_PACKAGES_EDIT_INFO", '_JOMRES_TEMPLATE_PACKAGES_EDIT_INFO', false, false);
 		
 		$jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
 		$jrtb = $jrtbar->startTable();

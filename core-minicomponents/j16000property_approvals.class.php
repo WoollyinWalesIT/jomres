@@ -11,43 +11,44 @@
  **/
 
 // ################################################################
-defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this file is not allowed.' );
+defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.');
 // ################################################################
 	
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j16000property_approvals
-	{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	function __construct()
-		{
+	{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents =jomres_getSingleton('mcHandler');
-		if ($MiniComponents->template_touch)
-			{
-			$this->template_touchable=false; return;
-			}
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable=false;
+			return;
+		}
 		
 		$MiniComponents->specificEvent('16000', 'listproperties', array());
-		}
+	}
 
 
 
 	function getRetVals()
-		{
+	{
 		return null;
-		}
 	}
+}

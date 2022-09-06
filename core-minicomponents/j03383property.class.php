@@ -18,19 +18,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	 * @package Jomres\Core\Minicomponents
 	 *
 	 * Media centre uses this to find images that already exist for the main property image resource.
-     *
+	 *
 	 */
 
 class j03383property
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -57,10 +58,10 @@ class j03383property
 	}
 
 
-    /**
-     * @return array
-     */
-    public function getRetVals()
+	/**
+	 * @return array
+	 */
+	public function getRetVals()
 	{
 		return $this->ret_vals;
 	}

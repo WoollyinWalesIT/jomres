@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j10501integrated_search
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -49,11 +50,11 @@ class j10501integrated_search
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
 
-		if ( !isset($jrConfig[ 'admin_options_level' ]) ) {
+		if (!isset($jrConfig[ 'admin_options_level' ])) {
 			$jrConfig[ 'admin_options_level' ] = 0;
 		}
 
-		if ( $jrConfig[ 'admin_options_level' ] < 2 ) {
+		if ($jrConfig[ 'admin_options_level' ] < 2) {
 			return;
 		}
 

@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j16000translate_lang_file_strings
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -58,10 +59,10 @@ class j16000translate_lang_file_strings
 		
 		$jomres_language_definitions = jomres_singleton_abstract::getInstance('jomres_language_definitions');
 
-        $jomres_language = jomres_singleton_abstract::getInstance('jomres_language');
-        $jomres_language->get_language('faq');
-        $jomres_language->get_language('shotcodes');
-        $jomres_language->get_language('video_tutorials');
+		$jomres_language = jomres_singleton_abstract::getInstance('jomres_language');
+		$jomres_language->get_language('faq');
+		$jomres_language->get_language('shotcodes');
+		$jomres_language->get_language('video_tutorials');
 
 		$javascript = 'onchange="switch_language_context(this.value);"';
 

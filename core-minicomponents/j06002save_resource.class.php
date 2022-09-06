@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06002save_resource
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -80,17 +81,15 @@ class j06002save_resource
 			$jrportal_rooms->commit_new_room();
 		}
 
-		if ($mrConfig[ 'compatability_property_configuration' ] == 1 ) {
-
+		if ($mrConfig[ 'compatability_property_configuration' ] == 1) {
 			jr_import('jomres_calculate_accommodates_value');
-			$jomres_calculate_accommodates_value = new jomres_calculate_accommodates_value( $defaultProperty );
+			$jomres_calculate_accommodates_value = new jomres_calculate_accommodates_value($defaultProperty);
 			$jomres_calculate_accommodates_value->calculate_accommodates_value();
 
 			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=list_occupancy_levels'), '');
 		} else {
 			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=list_resources'), '');
 		}
-
 	}
 
 	public function convert_greaterthans($string)

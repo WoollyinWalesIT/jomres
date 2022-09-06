@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06000show_my_reviews
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -47,13 +48,13 @@ class j06000show_my_reviews
 		
 		$cms_user_id = (int)jomresGetParam($_REQUEST, 'cms_user_id', 0);
 		
-		if (isset($componentArgs['cms_user_id']) && $cms_user_id == 0 ) {
+		if (isset($componentArgs['cms_user_id']) && $cms_user_id == 0) {
 			$cms_user_id = $componentArgs['cms_user_id'];
 		} elseif ($thisJRUser->userIsRegistered && $cms_user_id == 0) {
 			$cms_user_id = (int)$thisJRUser->id;
 		}
 		
-		if ($cms_user_id == 0 ) {
+		if ($cms_user_id == 0) {
 			return;
 		}
 		
@@ -87,12 +88,11 @@ class j06000show_my_reviews
 		$current_property_details->gather_data_multi($property_uids);
 		
 		$rows = array();
-		foreach ( $reviews as $review ) {
-
-			if (array_key_exists ($review->item_id , $current_property_details->multi_query_result)  ) {
+		foreach ($reviews as $review) {
+			if (array_key_exists($review->item_id, $current_property_details->multi_query_result)) {
 				$property = $current_property_details->multi_query_result[$review->item_id];
 				
-				if (  $property['published'] == 1 ) {
+				if ($property['published'] == 1) {
 					$r = array();
 					if (isset($images[$review->item_id]["property"][0][0]["small"])) {
 						$r['IMAGE'] =$images[$review->item_id]["property"][0][0]["small"];

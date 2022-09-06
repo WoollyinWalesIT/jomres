@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06005list_invoices_ajax
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -52,7 +53,7 @@ class j06005list_invoices_ajax
 			$defaultProperty = 0;
 		}
 
-		set_showtime('property_uid',$defaultProperty);
+		set_showtime('property_uid', $defaultProperty);
 		$mrConfig = getPropertySpecificSettings($defaultProperty);
 
 		$startDate = jomresGetParam($_GET, 'startDate', '');
@@ -118,8 +119,8 @@ class j06005list_invoices_ajax
 			$sWhere .= ')';
 		} */
 
-		$guest_matches = search_property_guests_by_string( $search['value'] , $defaultProperty , $thisJRUser->id , $show_all );
-		if ( isset($guest_matches['guest_uids']) && !empty($guest_matches['guest_uids'])) {
+		$guest_matches = search_property_guests_by_string($search['value'], $defaultProperty, $thisJRUser->id, $show_all);
+		if (isset($guest_matches['guest_uids']) && !empty($guest_matches['guest_uids'])) {
 			$sWhere = 'AND (';
 			$count = count($guest_matches['guest_uids']);
 			for ($i = 0; $i < $count; ++$i) {
@@ -177,7 +178,7 @@ class j06005list_invoices_ajax
 					$clause .= 'AND ( a.subscription = 0 OR ( a.subscription = 1 AND a.cms_user_id = '.(int) $thisJRUser->id.' ) ) AND ( a.is_commission = 0 OR ( a.is_commission = 1 AND a.cms_user_id = '.(int) $thisJRUser->id.' ) ) ';
 				}
 				break;
-			}
+		}
 
 		//status
 		if ($invoice_status != 4) {
@@ -202,7 +203,7 @@ class j06005list_invoices_ajax
 		doInsertSql($query);
 
 		$query = SET_GLOBAL_STRING.
-            "
+			"
                 SELECT SQL_CALC_FOUND_ROWS 
 					a.id, 
 					a.cms_user_id, 
@@ -276,7 +277,7 @@ class j06005list_invoices_ajax
 			}
 			if ($thisJRUser->userIsManager == false) {
 				$customTextObj->get_custom_text_for_property($p->property_uid);
-				set_showtime('property_uid',$p->property_uid);
+				set_showtime('property_uid', $p->property_uid);
 			}
 
 			if (jomres_bootstrap_version() == '5') {
@@ -294,22 +295,22 @@ class j06005list_invoices_ajax
 			}
 
 			switch ($p->status) {
-					case 0:
-						$label_class = $label_red;
-						break;
-					case 1:
-						$label_class = $lable_green;
-						break;
-					case 2:
-						$label_class = $label_black;
-						break;
-					case 3:
-						$label_class = $label_orange;
-						break;
-					default:
-						$label_class = $label_muted;
-						break;
-					}
+				case 0:
+					$label_class = $label_red;
+					break;
+				case 1:
+					$label_class = $lable_green;
+					break;
+				case 2:
+					$label_class = $label_black;
+					break;
+				case 3:
+					$label_class = $label_orange;
+					break;
+				default:
+					$label_class = $label_muted;
+					break;
+			}
 
 			if (!using_bootstrap()) {
 				$jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
@@ -359,8 +360,7 @@ class j06005list_invoices_ajax
 					$r[] = '<a href="'.jomresUrl(JOMRES_SITEPAGE_URL.'&task=show_user_profile&cms_user_id='.$p->cms_user_id).'" target="_blank">'.jomres_decode($jomres_encryption->decrypt($p->firstname)).'</a>';
 					$r[] = '<a href="'.jomresUrl(JOMRES_SITEPAGE_URL.'&task=show_user_profile&cms_user_id='.$p->cms_user_id).'" target="_blank">'.jomres_decode($jomres_encryption->decrypt($p->surname)).'</a>';
 				}
-
-			}	
+			}
 
 			$translated_line_items = '';
 			$line_items = explode('<br>', $p->line_items);
@@ -371,28 +371,30 @@ class j06005list_invoices_ajax
 			}
 			$r[] = substr($translated_line_items, 0, -4);
 
-			if ($p->raised_date != '1970-01-01 00:00:01')
+			if ($p->raised_date != '1970-01-01 00:00:01') {
 				$r[] = $p->raised_date;
-			else
+			} else {
 				$r[] = '';
+			}
 			
-			if ($p->due_date != '1970-01-01 00:00:01')
+			if ($p->due_date != '1970-01-01 00:00:01') {
 				$r[] = $p->due_date;
-			else
+			} else {
 				$r[] = '';
+			}
 			
-			if ($p->paid != '1970-01-01 00:00:01')
+			if ($p->paid != '1970-01-01 00:00:01') {
 				$r[] = $p->paid;
-			else
+			} else {
 				$r[] = '';
+			}
 			
-			$r[] = output_price($p->grand_total, $p->currencycode , false );
-			$r[] = output_price($p->init_total, $p->currencycode , false );
+			$r[] = output_price($p->grand_total, $p->currencycode, false);
+			$r[] = output_price($p->init_total, $p->currencycode, false);
 
 			//gateways stuff
 			if ((int) $p->status == 3) {
-				if (
-					(!$thisJRUser->userIsManager && !$thisJRUser->superPropertyManager && $p->contract_id > 0 && $p->approved == 1) || //booking invoice
+				if ((!$thisJRUser->userIsManager && !$thisJRUser->superPropertyManager && $p->contract_id > 0 && $p->approved == 1) || //booking invoice
 					($p->contract_id == 0 && ($p->subscription > 0 || $p->is_commission > 0)) //subscription/commission invoice
 					) {
 					if (!using_bootstrap()) {

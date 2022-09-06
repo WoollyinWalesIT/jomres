@@ -17,20 +17,21 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-     * Builds the new booking email that is sent to guests
-	 * 
+	 * Builds the new booking email that is sent to guests
+	 *
 	 */
 
 class j03150email_guest_newbooking
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -50,10 +51,10 @@ class j03150email_guest_newbooking
 	}
 
 
-    /**
-     * @return array
-     */
-    public function getRetVals()
+	/**
+	 * @return array
+	 */
+	public function getRetVals()
 	{
 		return $this->ret_vals;
 	}

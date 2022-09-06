@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j03000amendBooking
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
+	 *
+	 * Main functionality of the Minicomponent
 	 *
 	 *  When a booking is inserted, if it's an amendment this ensures that overrides are pushed to the booking details stored in the tmpBooking object.
-     *
+	 *
 	 */
 	 
 	public function __construct()

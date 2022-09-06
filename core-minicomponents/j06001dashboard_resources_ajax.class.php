@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06001dashboard_resources_ajax
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -79,7 +80,7 @@ class j06001dashboard_resources_ajax
 				$current_property_details->all_room_types[ $r['room_classes_uid'] ][ 'room_class_abbv' ] = "";
 			}
 			$name .= $current_property_details->all_room_types[ $r['room_classes_uid'] ][ 'room_class_abbv' ];
-			$siteConfig		= jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+			$siteConfig		= jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 			$jrConfig		  = $siteConfig->get();
 			if ($jrConfig['development_production'] == 'development') {
 				$name .= " UID ".$r['room_uid'];

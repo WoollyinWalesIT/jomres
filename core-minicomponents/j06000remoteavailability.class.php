@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06000remoteavailability
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -60,9 +61,9 @@ class j06000remoteavailability
 		if ($property_uid > 0) {
 			$mrConfig = getPropertySpecificSettings($property_uid);
 			if ($mrConfig[ 'singleRoomProperty' ] == '1') {
-				$MiniComponents->specificEvent('06000', 'srpavailabilitycalendar' , array('property_uid' => $property_uid) );
+				$MiniComponents->specificEvent('06000', 'srpavailabilitycalendar', array('property_uid' => $property_uid));
 			} else {
-				$MiniComponents->specificEvent('06000', 'mrpavailabilitycalendar' , array('property_uid' => $property_uid) );
+				$MiniComponents->specificEvent('06000', 'mrpavailabilitycalendar', array('property_uid' => $property_uid));
 			}
 			if (!$return_calendar) {
 				echo $result;

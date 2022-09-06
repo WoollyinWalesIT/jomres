@@ -18,19 +18,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	 * @package Jomres\Core\Minicomponents
 	 *
 	 * Shows the GDPR consent form if required. If config disables the form from being shown then consent is automatically assumed, optin records are saved and we move on.
-	 * 
+	 *
 	 */
 
 class j00060show_gdpr_consent_form
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -45,11 +46,11 @@ class j00060show_gdpr_consent_form
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
 	
-		if(!isset($_COOKIE['jomres_gdpr_consent_form_processed']) && !AJAXCALL && get_showtime("task") != "show_consent_form"){
-			if ($jrConfig[ 'enable_gdpr_compliant_fucntionality' ] == "1" ) {
-				$consent_form = $MiniComponents->specificEvent('06000', 'show_consent_form' , array ('output_now' => false) );
+		if (!isset($_COOKIE['jomres_gdpr_consent_form_processed']) && !AJAXCALL && get_showtime("task") != "show_consent_form") {
+			if ($jrConfig[ 'enable_gdpr_compliant_fucntionality' ] == "1") {
+				$consent_form = $MiniComponents->specificEvent('06000', 'show_consent_form', array ('output_now' => false));
 				$output = array ("CONSENT_FORM" => $consent_form );
-				$output['_JOMRES_GDPR_CONSENT_TRIGGER_FORM'] = jr_gettext('_JOMRES_GDPR_CONSENT_TRIGGER_FORM', '_JOMRES_GDPR_CONSENT_TRIGGER_FORM' , false );
+				$output['_JOMRES_GDPR_CONSENT_TRIGGER_FORM'] = jr_gettext('_JOMRES_GDPR_CONSENT_TRIGGER_FORM', '_JOMRES_GDPR_CONSENT_TRIGGER_FORM', false);
 
 				$pageoutput[] = $output;
 				$tmpl = new patTemplate();

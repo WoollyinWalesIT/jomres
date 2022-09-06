@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06005show_invoice_buyer
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -48,7 +49,7 @@ class j06005show_invoice_buyer
 		$this->retVals = '';
 		
 		$invoice_id = (int)$componentArgs[ 'invoice_id' ]; // We will not allow setting of the invoice id thru the url, only thru the componentArgs value. If it's not set then this page wasn't called thru the view_invoice page therefore it should not be shown
-		if ($invoice_id == 0 ) {
+		if ($invoice_id == 0) {
 			throw new Exception('Error: Invoice id not set.');
 		}
 		
@@ -71,8 +72,8 @@ class j06005show_invoice_buyer
 		$output[ 'REGION' ] = find_region_name($sellerData['county']);
 		$output[ 'COUNTRY' ] = getSimpleCountry($sellerData['country']);
 		$output[ 'POSTCODE' ] = $sellerData['postcode'];
-		$output[ 'LANDLINE' ] =  str_replace("&#38;#43;" , "+" , $sellerData['tel_landline'] );
-		$output[ 'MOBILE' ] = str_replace("&#38;#43;" , "+" , $sellerData['tel_mobile'] );
+		$output[ 'LANDLINE' ] =  str_replace("&#38;#43;", "+", $sellerData['tel_landline']);
+		$output[ 'MOBILE' ] = str_replace("&#38;#43;", "+", $sellerData['tel_mobile']);
 		$output[ 'EMAIL' ] = restore_task_specific_email_address($sellerData['email']);
 		$vat_output[0][ 'VAT_NUMBER' ] = $sellerData['vat_number'];
 

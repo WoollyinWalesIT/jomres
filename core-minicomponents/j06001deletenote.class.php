@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06001deletenote
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -56,7 +57,6 @@ class j06001deletenote
 		$auditMessage = jr_gettext('_JOMCOMP_BOOKINGNOTES_AUDITMESSAGE_DELETE', '_JOMCOMP_BOOKINGNOTES_AUDITMESSAGE_DELETE', false, false);
 		$query = "DELETE FROM #__jomcomp_notes WHERE `id`='".(int) $note_id."' AND `property_uid`='".(int) $defaultProperty."' LIMIT 1";
 		if (doInsertSql($query, $auditMessage)) {
-			
 			$webhook_notification						   = new stdClass();
 			$webhook_notification->webhook_event			= 'booking_note_deleted';
 			$webhook_notification->webhook_event_description = 'Logs when booking notes are deleted.';

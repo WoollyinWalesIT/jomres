@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06001dashboard
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -80,7 +81,7 @@ class j06001dashboard
 		$output = array();
 		$pageoutput = array();
 
-		if ($jrConfig['generate_random_emails'] == 1 && $jrConfig['random_email_domain'] != '' ) {
+		if ($jrConfig['generate_random_emails'] == 1 && $jrConfig['random_email_domain'] != '') {
 			$output['DEFAULT_EMAIL_DOMAIN'] = "@".$jrConfig['random_email_domain'];
 			$output['USE_RANDOM_EMAILS'] = 'true';
 		} else {
@@ -105,7 +106,7 @@ class j06001dashboard
 		//buttons
 		$output['NEXT'] = jr_gettext('COMMON_NEXT', 'COMMON_NEXT', false);
 		$output['PREV'] = jr_gettext('COMMON_PREV', 'COMMON_PREV', false);
-		$output['TODAY'] = str_replace( "'" , "&#39;" , jr_gettext('_JOMRES_DASHBOARD_TODAY', '_JOMRES_DASHBOARD_TODAY', false));
+		$output['TODAY'] = str_replace("'", "&#39;", jr_gettext('_JOMRES_DASHBOARD_TODAY', '_JOMRES_DASHBOARD_TODAY', false));
 		$output['MONTH'] = jr_gettext('_JOMRES_DASHBOARD_MONTH', '_JOMRES_DASHBOARD_MONTH', false);
 		$output['WEEK'] = jr_gettext('_JOMRES_DASHBOARD_WEEK', '_JOMRES_DASHBOARD_WEEK', false);
 		$output['TWOWEEKS'] = jr_gettext('_JOMRES_HTWO_WEEKS', '_JOMRES_HTWO_WEEKS', false);
@@ -115,7 +116,7 @@ class j06001dashboard
 		$output['NEW_BOOKING_URL'] = get_booking_url($property_uid);
 		$output['HBLACK_BOOKINGS'] = jr_gettext('_JOMRES_FRONT_BLACKBOOKING', '_JOMRES_FRONT_BLACKBOOKING', false);
 		$output['BLACK_BOOKINGS_URL'] = jomresUrl(JOMRES_SITEPAGE_URL.'&task=list_black_bookings');
-        $output['_JOMRES_VARIANCES_NOTES'] = jr_gettext('_JOMRES_VARIANCES_NOTES', '_JOMRES_VARIANCES_NOTES', false);
+		$output['_JOMRES_VARIANCES_NOTES'] = jr_gettext('_JOMRES_VARIANCES_NOTES', '_JOMRES_VARIANCES_NOTES', false);
 
 		//legend
 		$output['HLEGEND'] = jr_gettext('_JOMRES_HLEGEND', '_JOMRES_HLEGEND', false);
@@ -294,7 +295,7 @@ class j06001dashboard
 				$temp_arr[] = array ( "guests_uid" =>$customer->guests_uid , "firstname" => stripslashes($jomres_encryption->decrypt($customer->enc_firstname)) , "surname" => stripslashes($jomres_encryption->decrypt($customer->enc_surname)) );
 			}
 			
- 			usort($temp_arr, 'sort_alphabetic' ); 
+			usort($temp_arr, 'sort_alphabetic');
 
 			$ec[] = jomresHTML::makeOption('0', '&nbsp;');
 			foreach ($temp_arr as $customer) {
@@ -314,12 +315,13 @@ class j06001dashboard
 	}
 }
 
-function sort_alphabetic( $a , $b ) {
-		if ($a['surname'] > $b['surname']) {
-			return 1;
-		} else if ($a['surname'] < $b['surname']) {
-			return -1;
-		} else {
-			return 0; 
-		}
+function sort_alphabetic($a, $b)
+{
+	if ($a['surname'] > $b['surname']) {
+		return 1;
+	} elseif ($a['surname'] < $b['surname']) {
+		return -1;
+	} else {
+		return 0;
 	}
+}

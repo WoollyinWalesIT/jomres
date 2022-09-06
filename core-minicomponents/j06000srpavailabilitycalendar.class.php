@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06000srpavailabilitycalendar
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs = null)
@@ -249,7 +250,7 @@ jomresJquery(function(){
 		$showOutMonthDates = false;
 
 		if ($this->pop == 1 || jomresGetParam($_REQUEST, 'task', '') == 'remoteavailability') { // If we are in a popup then it is not suitable to link directly to the booking form, so we'll set a target = "_BLANK" to go to the booking form.
-		$target = ' TARGET="_blank" ';
+			$target = ' TARGET="_blank" ';
 		} else {
 			$target = '';
 		}

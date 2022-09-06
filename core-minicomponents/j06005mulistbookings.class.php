@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06005mulistbookings
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -50,7 +51,7 @@ class j06005mulistbookings
 		$reviewed_contracts_data = doSelectSql($query);
 		$reviewed_contracts = array();
 		if (!empty($reviewed_contracts_data)) {
-			foreach ($reviewed_contracts_data as $review ) {
+			foreach ($reviewed_contracts_data as $review) {
 				$reviewed_contracts[]=$review->contract_uid;
 			}
 		}
@@ -90,10 +91,11 @@ class j06005mulistbookings
 			$output[ 'HPNAME' ] = jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP2_PROPERTYNAME', '_JOMRES_COM_MR_QUICKRES_STEP2_PROPERTYNAME', $editable = false, $isLink = false);
 
 			$output[ 'HMOREINFO' ] = jr_gettext('_JOMRES_COM_A_CLICKFORMOREINFORMATION', '_JOMRES_COM_A_CLICKFORMOREINFORMATION', $editable = false, $isLink = false);
-			if ( isset($_REQUEST['unreviewed']) )
+			if (isset($_REQUEST['unreviewed'])) {
 				$output[ 'TITLE' ] = jr_gettext('BOOKINGS_AWAITING_REVIEWS', 'BOOKINGS_AWAITING_REVIEWS', $editable = false, $isLink = false);
-			else
+			} else {
 				$output[ 'TITLE' ] = jr_gettext('_JOMCOMP_MYUSER_MYBOOKINGS', '_JOMCOMP_MYUSER_MYBOOKINGS', $editable = false, $isLink = false);
+			}
 
 			if (!empty($contracts)) {
 				$basic_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
@@ -101,7 +103,7 @@ class j06005mulistbookings
 
 				$counter = 0;
 				foreach ($contracts as $c) {
-					if ($c->property_uid > 0 ) {
+					if ($c->property_uid > 0) {
 						$jomres_media_centre_images->get_images($c->property_uid, array('property'));
 
 						$basic_property_details->gather_data($c->property_uid);
@@ -123,7 +125,7 @@ class j06005mulistbookings
 							$o = array();
 							$p = array();
 							
-							if ( !in_array($c->contract_uid , $reviewed_contracts ) ) {
+							if (!in_array($c->contract_uid, $reviewed_contracts)) {
 								$o[ 'REVIEWLINK' ] = JOMRES_SITEPAGE_URL.'&task=add_review&property_uid='.$c->property_uid.'&contract_uid='.$c->contract_uid;
 								$o[ 'REVIEWLINK_TEXT' ] = jr_gettext('_JOMRES_REVIEWS_ADD_REVIEW', '_JOMRES_REVIEWS_ADD_REVIEW', $editable = false, $isLink = true);
 							} else {
@@ -138,13 +140,11 @@ class j06005mulistbookings
 							$r['REVIEW_BUTTON'] =$tmpl->getParsedTemplate();
 						}
 
-						if ( isset($_REQUEST['unreviewed']) && !in_array($c->contract_uid , $reviewed_contracts ) ) {
+						if (isset($_REQUEST['unreviewed']) && !in_array($c->contract_uid, $reviewed_contracts)) {
 							$rows[ ] = $r;
 						} elseif (!isset($_REQUEST['unreviewed'])) {
 							$rows[ ] = $r;
 						}
-							
-						
 					}
 				}
 			}

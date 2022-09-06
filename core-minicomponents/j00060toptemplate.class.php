@@ -18,19 +18,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	 * @package Jomres\Core\Minicomponents
 	 *
 	 * Shows the top template, which among other things shows video tutorials, property name, management view switching, editing mode dropdown etc.
-	 * 
+	 *
 	 */
 
 class j00060toptemplate
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -56,7 +57,7 @@ class j00060toptemplate
 		$popup = intval(jomresGetParam($_REQUEST, 'popup', 0));
 		//$tz		 	   	= $componentArgs[ 'tz' ];
 		
-		$jomreslang 		= jomres_singleton_abstract::getInstance( 'jomres_language' );
+		$jomreslang 		= jomres_singleton_abstract::getInstance('jomres_language');
 		
 		$defaultProperty 	= getDefaultProperty();
 
@@ -65,12 +66,11 @@ class j00060toptemplate
 		}
 
 		$output = array();
-        if ( class_exists('channelmanagement_framework_properties' ) ) {  // The channel management framework is installed
+		if (class_exists('channelmanagement_framework_properties')) {  // The channel management framework is installed
+			$mrConfig = getPropertySpecificSettings($defaultProperty);
 
-            $mrConfig = getPropertySpecificSettings( $defaultProperty );
-
-            if ( isset($mrConfig['allow_channel_property_local_admin']) && $mrConfig['allow_channel_property_local_admin'] != '1') {
-                echo '
+			if (isset($mrConfig['allow_channel_property_local_admin']) && $mrConfig['allow_channel_property_local_admin'] != '1') {
+				echo '
 				<!-- start development mode warning -->
 				<div class="isa_warning">
                     <i class="fa fa-info"></i>
@@ -78,10 +78,10 @@ class j00060toptemplate
                     <i class="fa fa-info"></i>
 				</div>
 				';
-            }
-        }
-        if ($jrConfig[ 'development_production' ] != 'production') {
-            echo '
+			}
+		}
+		if ($jrConfig[ 'development_production' ] != 'production') {
+			echo '
 				<!-- start development mode warning -->
 				<div class="isa_warning">
                     <i class="fa fa-warning"></i>
@@ -89,16 +89,16 @@ class j00060toptemplate
                     <i class="fa fa-warning"></i>
 				</div>
 				';
-        }
+		}
 
-        if ($jrConfig['bootstrap_version'] == '0' ) { // It's wordpress that doesn't use a bootstrap theme
-            $tmpl = new patTemplate();
-            $tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
-            $tmpl->readTemplatesFromInput('wordpress_non_bootstrap_tweaks.html');
-            $output[ 'WORDPRESS_NON_BOOTSTRAP_TWEAKS' ] = $tmpl->getParsedTemplate();
-        }
+		if ($jrConfig['bootstrap_version'] == '0') { // It's wordpress that doesn't use a bootstrap theme
+			$tmpl = new patTemplate();
+			$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+			$tmpl->readTemplatesFromInput('wordpress_non_bootstrap_tweaks.html');
+			$output[ 'WORDPRESS_NON_BOOTSTRAP_TWEAKS' ] = $tmpl->getParsedTemplate();
+		}
 
-        $output[ 'VIDEO_TUTORIALS' ] = '';
+		$output[ 'VIDEO_TUTORIALS' ] = '';
 		if (using_bootstrap()) {
 			$jomres_video_tutorials = jomres_singleton_abstract::getInstance('jomres_video_tutorials');
 			$jomres_video_tutorials->property_uid = $defaultProperty;
@@ -119,7 +119,7 @@ class j00060toptemplate
 
 		if (this_cms_is_joomla() || this_cms_is_wordpress()) {
 			if ($thisJRUser->userIsManager) {
-				$output[ 'HACTIVE_PROPERTY' ] = jr_gettext('_JOMRES_HSTATUS_CURRENT', '_JOMRES_HSTATUS_CURRENT',false).': ';
+				$output[ 'HACTIVE_PROPERTY' ] = jr_gettext('_JOMRES_HSTATUS_CURRENT', '_JOMRES_HSTATUS_CURRENT', false).': ';
 
 				set_showtime('menuitem_propertyname', $output[ 'PROPERTYNAME' ]);
 
@@ -158,7 +158,7 @@ class j00060toptemplate
 		$output[ 'NEXT' ] = jr_gettext('_PN_NEXT', '_PN_NEXT', false, false);
 		$output[ 'PREVIOUS' ] = jr_gettext('_PN_PREVIOUS', '_PN_PREVIOUS', false, false);
 
-		$output[ 'BACKLINK' ] = '<a href="javascript:history.go(-1)">'.jr_gettext('_JOMRES_COM_MR_BACK', '_JOMRES_COM_MR_BACK' , false).'</a>';
+		$output[ 'BACKLINK' ] = '<a href="javascript:history.go(-1)">'.jr_gettext('_JOMRES_COM_MR_BACK', '_JOMRES_COM_MR_BACK', false).'</a>';
 		$output[ 'LIVESITE' ] = get_showtime('live_site');
 		$output[ 'DATEPICKERLANG' ] = get_showtime('datepicker_lang');
 		$output[ 'PROPERTY_UID' ] = $defaultProperty;
@@ -168,13 +168,13 @@ class j00060toptemplate
 			if (!get_showtime('heavyweight_system') && $management_view && using_bootstrap()) {
 				jr_import('jomres_property_selector_dropdown');
 				$jomres_property_selector_dropdown = new jomres_property_selector_dropdown();
-				$output['PROPERTY_SELECTOR_DROPDOWN'] = $jomres_property_selector_dropdown->get_dropdown( false );
-				$output['PROPERTY_SELECTOR_DROPDOWN_TRUNCATED'] = $jomres_property_selector_dropdown->get_dropdown( true );
+				$output['PROPERTY_SELECTOR_DROPDOWN'] = $jomres_property_selector_dropdown->get_dropdown(false);
+				$output['PROPERTY_SELECTOR_DROPDOWN_TRUNCATED'] = $jomres_property_selector_dropdown->get_dropdown(true);
 				set_showtime('property_selector_dropdown', $output['PROPERTY_SELECTOR_DROPDOWN']);
 			} else {
 				$current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
 				$current_property_details->gather_data($defaultProperty);
-				$output[ 'PROPERTYNAME' ] = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_NAME_'.$defaultProperty , $current_property_details->property_name , false);
+				$output[ 'PROPERTYNAME' ] = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_NAME_'.$defaultProperty, $current_property_details->property_name, false);
 			}
 		} else {
 			$output[ 'CURRENT_PROPERTY_STYLE' ] = 'display:none;';
@@ -182,13 +182,12 @@ class j00060toptemplate
 		
 		//widgets selection dropdown
 		$widgets_dropdown = array();
-		if (
-			$thisJRUser->userIsManager && 
-			!isset($_REQUEST['calledByModule']) && 
+		if ($thisJRUser->userIsManager &&
+			!isset($_REQUEST['calledByModule']) &&
 				(
-				get_showtime('task') == 'cpanel' || 
+				get_showtime('task') == 'cpanel' ||
 				get_showtime('task') == ''
-				) 
+				)
 			) {
 			$jomres_widgets = jomres_singleton_abstract::getInstance('jomres_widgets');
 			
@@ -211,7 +210,7 @@ class j00060toptemplate
 		}
 		$tmpl->addRows('pageoutput', $pageoutput);
 		//$tmpl->addRows( 'timezone_dropdown', $timezone_dropdown );
-		$tmpl->addRows( 'widgets_dropdown', $widgets_dropdown );
+		$tmpl->addRows('widgets_dropdown', $widgets_dropdown);
 		$tmpl->displayParsedTemplate();
 		$pageoutput = array();
 		$output = array();
@@ -220,9 +219,9 @@ class j00060toptemplate
 	public function touch_template_language()
 	{
 		$output = array();
-		$output[ ] = jr_gettext('_PN_NEXT', '_PN_NEXT',false);
-		$output[ ] = jr_gettext('_PN_PREVIOUS', '_PN_PREVIOUS',false);
-		$output[ ] = jr_gettext('_JOMRES_CONVERSION_DISCLAIMER', '_JOMRES_CONVERSION_DISCLAIMER',false);
+		$output[ ] = jr_gettext('_PN_NEXT', '_PN_NEXT', false);
+		$output[ ] = jr_gettext('_PN_PREVIOUS', '_PN_PREVIOUS', false);
+		$output[ ] = jr_gettext('_JOMRES_CONVERSION_DISCLAIMER', '_JOMRES_CONVERSION_DISCLAIMER', false);
 
 		foreach ($output as $o) {
 			echo $o;

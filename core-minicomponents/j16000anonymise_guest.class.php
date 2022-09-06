@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j16000anonymise_guest
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -47,10 +48,9 @@ class j16000anonymise_guest
 		
 		jr_import('jomres_gdpr_personal_information_collections');
 		$jomres_gdpr_personal_information_collections = new jomres_gdpr_personal_information_collections();
-		$jomres_gdpr_personal_information_collections->redact_non_registered_guest_pii( $guest_id , $property_uid );
+		$jomres_gdpr_personal_information_collections->redact_non_registered_guest_pii($guest_id, $property_uid);
 		
-		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=list_guests" ), jr_gettext( "_JOMRES_GDPR_RTBF_GUEST_REDACTED", '_JOMRES_GDPR_RTBF_GUEST_REDACTED', false ) );
-		
+		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN . "&task=list_guests"), jr_gettext("_JOMRES_GDPR_RTBF_GUEST_REDACTED", '_JOMRES_GDPR_RTBF_GUEST_REDACTED', false));
 	}
 
 

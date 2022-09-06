@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.'
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06005new_property
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -45,11 +46,11 @@ class j06005new_property
 				);
 			return;
 		}
-		jomres_cmsspecific_setmetadata('title', jomres_purify_html( jr_gettext('_JOMRES_USER_LISTMYPROPERTY', '_JOMRES_USER_LISTMYPROPERTY', false) ));
+		jomres_cmsspecific_setmetadata('title', jomres_purify_html(jr_gettext('_JOMRES_USER_LISTMYPROPERTY', '_JOMRES_USER_LISTMYPROPERTY', false)));
 		
 		$jomres_gdpr_optin_consent = new jomres_gdpr_optin_consent();
-		if ( !$jomres_gdpr_optin_consent->user_consents_to_storage()&& !isset($_REQUEST['skip_consent_form'])  ) {
-			echo $consent_form = $MiniComponents->specificEvent('06000', 'show_consent_form' , array ('output_now' => false) );
+		if (!$jomres_gdpr_optin_consent->user_consents_to_storage()&& !isset($_REQUEST['skip_consent_form'])) {
+			echo $consent_form = $MiniComponents->specificEvent('06000', 'show_consent_form', array ('output_now' => false));
 			return;
 		}
 
@@ -65,8 +66,8 @@ class j06005new_property
 		}
 		
 		// You can, by all means, remove this section of code but it's only here to ensure you don't lock yourself out of your own system accidentally
-		if (function_exists("get_number_of_allowed_properties") ) {
-			if (get_showtime('numberOfPropertiesInSystem') >= get_number_of_allowed_properties() ) {
+		if (function_exists("get_number_of_allowed_properties")) {
+			if (get_showtime('numberOfPropertiesInSystem') >= get_number_of_allowed_properties()) {
 				echo '<p class="alert alert-danger">Error, your license does not allow you to add more properties</p>';
 				return;
 			}
@@ -102,7 +103,7 @@ class j06005new_property
 		$output['JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_NOTE1'] = jr_gettext('JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_NOTE1', 'JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_NOTE1', false);
 		$output['JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_NOTE2'] = jr_gettext('JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_NOTE2', 'JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_NOTE2', false);
 
-		$output['DROPDOWN_MAX_OCCUPANCY'] = jomresHTML::integerSelectList(1, 1000, 1, 'max_occupancy', 'class="inputbox" size="1"', 6 );
+		$output['DROPDOWN_MAX_OCCUPANCY'] = jomresHTML::integerSelectList(1, 1000, 1, 'max_occupancy', 'class="inputbox" size="1"', 6);
 		$output['JOMRES_OCCUPANCY_LEVELS_MAX_OCCUPANCY'] = jr_gettext('JOMRES_OCCUPANCY_LEVELS_MAX_OCCUPANCY', 'JOMRES_OCCUPANCY_LEVELS_MAX_OCCUPANCY', false);
 
 		$output['HPROPERTY_TYPE'] = jr_gettext('_JOMRES_FRONT_PTYPE', '_JOMRES_FRONT_PTYPE', false);

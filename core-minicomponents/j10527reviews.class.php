@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j10527reviews
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -45,11 +46,11 @@ class j10527reviews
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
 
-		if ( !isset($jrConfig[ 'admin_options_level' ]) ) {
+		if (!isset($jrConfig[ 'admin_options_level' ])) {
 			$jrConfig[ 'admin_options_level' ] = 0;
 		}
 
-		if ( $jrConfig[ 'admin_options_level' ] < 1 ) {
+		if ($jrConfig[ 'admin_options_level' ] < 1) {
 			return;
 		}
 
@@ -88,7 +89,6 @@ class j10527reviews
 		$configurationPanel->setmiddle('<input type="number" class="input-large" name="cfg_reviews_limit" value="'.$jrConfig[ 'reviews_limit' ].'" />');
 		$configurationPanel->setright(jr_gettext('PORTAL_REVIEWS_LIMIT_DESC', 'PORTAL_REVIEWS_LIMIT_DESC', false));
 		$configurationPanel->insertSetting();
-		
 	}
 
 

@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06001cancel_booking
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -52,7 +53,6 @@ class j06001cancel_booking
 		$current_contract_details->gather_data($contract_uid, $defaultProperty);
 	
 		if (isset($current_contract_details->contract[$contract_uid])) {
-
 				$arrival = $current_contract_details->contract[$contract_uid]['contractdeets']['arrival'];
 				$deposit_paid = $current_contract_details->contract[$contract_uid]['contractdeets']['deposit_paid'];
 				$contract_total = $current_contract_details->contract[$contract_uid]['contractdeets']['contract_total'];

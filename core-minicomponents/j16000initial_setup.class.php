@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j16000initial_setup
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -47,8 +48,7 @@ class j16000initial_setup
 		$output = array();
 		$pageoutput = array();
 
-		if ( !isset($this->jrConfig["initial_setup_step_1_completed"]) || $this->jrConfig["initial_setup_step_1_completed"] == "0" ) {
-
+		if (!isset($this->jrConfig["initial_setup_step_1_completed"]) || $this->jrConfig["initial_setup_step_1_completed"] == "0") {
 			$output['INTRO'] = jr_gettext('_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_TITLE', '_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_TITLE');
 
 			$output['MESSAGE'] = jr_gettext('_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_MESSAGE', '_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_MESSAGE');
@@ -67,8 +67,7 @@ class j16000initial_setup
 			return;
 		}
 
-		if ( !isset($this->jrConfig["initial_setup_step_2_completed"]) || $this->jrConfig["initial_setup_step_2_completed"] == "0" ) {
-
+		if (!isset($this->jrConfig["initial_setup_step_2_completed"]) || $this->jrConfig["initial_setup_step_2_completed"] == "0") {
 			$output['INTRO'] = jr_gettext('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_TITLE', '_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_TITLE');
 			$output['MESSAGE'] = jr_gettext('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_MESSAGE', '_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_MESSAGE');
 			$output['SINGLE'] = jr_gettext('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_JUSTONE', '_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_JUSTONE');
@@ -84,19 +83,17 @@ class j16000initial_setup
 			$tmpl->readTemplatesFromInput('initial_setup_step_2.html');
 			$tmpl->displayParsedTemplate();
 			return;
-
 		}
 
-		if ( !isset($this->jrConfig["initial_setup_step_3_completed"]) || $this->jrConfig["initial_setup_step_3_completed"] == "0" ) {
-
+		if (!isset($this->jrConfig["initial_setup_step_3_completed"]) || $this->jrConfig["initial_setup_step_3_completed"] == "0") {
 			$output['INTRO'] = jr_gettext('_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_TITLE', '_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_TITLE');
 			$output['MESSAGE'] = jr_gettext('_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_MESSAGE', '_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_MESSAGE');
 
-            $output['BS0'] = jr_gettext('_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0', '_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0');
+			$output['BS0'] = jr_gettext('_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0', '_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0');
 			$output['BS2'] = jr_gettext('_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP2', '_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP2');
 			$output['BS3'] = jr_gettext('_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP3', '_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP3');
 			$output['BS4'] = jr_gettext('_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP4', '_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP4');
-            $output['BS5'] = jr_gettext('_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP5', '_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP5');
+			$output['BS5'] = jr_gettext('_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP5', '_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP5');
 
 			$output['STEP'] = 'initial_setup_step_3';
 
@@ -108,20 +105,19 @@ class j16000initial_setup
 			$tmpl->readTemplatesFromInput('initial_setup_step_3.html');
 			$tmpl->displayParsedTemplate();
 			return;
-
 		}
 		// All done,
-		$this->siteConfig->update_setting('initial_setup_done', 1 );
+		$this->siteConfig->update_setting('initial_setup_done', 1);
 		$this->siteConfig->save_config();
 		do {
 			sleep(1); // Writing the file could take a moment
 			clearstatcache();
 			$config_last_modified = filemtime($this->siteConfig->config_file);
-		} while ( $config_last_modified <= $this->siteConfig->config_last_modified);
+		} while ($config_last_modified <= $this->siteConfig->config_last_modified);
 
 		sleep(2);
 
-		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN ), '');
+		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN), '');
 	}
 
 

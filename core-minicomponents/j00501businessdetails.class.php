@@ -18,20 +18,21 @@ defined('_JOMRES_INITCHECK') or die('');
 	 * @package Jomres\Core\Minicomponents
 	 *
 	 * Property Configuration page tabs. Offers business details related settings. These are details that are shown on the invoice and are different to those stored against the hotel.
-	 * 
+	 *
 	 */
 
 
 class j00501businessdetails
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -93,7 +94,7 @@ class j00501businessdetails
 
 		$configurationPanel->startPanel(jr_gettext('_JOMRES_COM_YOURBUSINESS', '_JOMRES_COM_YOURBUSINESS', false));
 
-		$configurationPanel->insertDescription(jr_gettext( '_JOMRES_COM_YOURBUSINESS_DESC', '_JOMRES_COM_YOURBUSINESS_DESC', false ));
+		$configurationPanel->insertDescription(jr_gettext('_JOMRES_COM_YOURBUSINESS_DESC', '_JOMRES_COM_YOURBUSINESS_DESC', false));
 		
 		$configurationPanel->setleft(jr_gettext('_JOMRES_COM_YOURBUSINESS_NAME', '_JOMRES_COM_YOURBUSINESS_NAME', false));
 		$configurationPanel->setmiddle('<input type="text" class="inputbox form-control" size="50" name="cfg_property_business_name" value="'.jomres_decode($mrConfig['property_business_name']).'" />');

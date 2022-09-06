@@ -18,19 +18,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	 * @package Jomres\Core\Minicomponents
 	 *
 	 * This script will build language definition scripts for javascript files that need to be called AFTER all of the other language files have been read in.
-	 * 
+	 *
 	 */
 
 class j00005x_build_javascript_lang_definitions
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -54,7 +55,7 @@ class j00005x_build_javascript_lang_definitions
 
 		$live_scrolling_enabled = 'true';
 		if (!jomres_cmsspecific_areweinadminarea()) {
-			if ($jrConfig['live_scrolling_enabled'] == '0' ) {
+			if ($jrConfig['live_scrolling_enabled'] == '0') {
 				$live_scrolling_enabled = 'false';
 			}
 		}

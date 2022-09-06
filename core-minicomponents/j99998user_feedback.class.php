@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j99998user_feedback
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -54,7 +55,7 @@ class j99998user_feedback
 		$jomres_user_feedback = jomres_singleton_abstract::getInstance('jomres_user_feedback');
 
 		if (!empty($messages)) {
-			foreach ($messages as $msg ) {
+			foreach ($messages as $msg) {
 				$jomres_user_feedback->construct_message(array('message'=>$msg['message'], 'css_class'=>$msg['class']));
 			}
 		}

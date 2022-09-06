@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06000show_property_reviews_stars
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -95,14 +96,15 @@ class j06000show_property_reviews_stars
 			$output[ 'RATING_STARS' ] .= simple_template_output(JOMRES_TEMPLATEPATH_FRONTEND, $template = 'review_star_icon.html', '');
 		}
 
-		$output[ 'ONE_STAR' ] = simple_template_output(JOMRES_TEMPLATEPATH_FRONTEND, $template = 'review_star_icon.html', '');;
+		$output[ 'ONE_STAR' ] = simple_template_output(JOMRES_TEMPLATEPATH_FRONTEND, $template = 'review_star_icon.html', '');
+		;
 
 
 		$output['RATING_TEXT_COLOUR'] = 'text-success';
-		if ( $output[ 'AVERAGE_RATING' ] >= 5 && $output[ 'AVERAGE_RATING' ] < 7 ) {
+		if ($output[ 'AVERAGE_RATING' ] >= 5 && $output[ 'AVERAGE_RATING' ] < 7) {
 			$output['RATING_TEXT_COLOUR'] = 'text-success';
 		}
-		if ( $output[ 'AVERAGE_RATING' ] < 5 ) {
+		if ($output[ 'AVERAGE_RATING' ] < 5) {
 			$output['RATING_TEXT_COLOUR'] = 'text-danger';
 		}
 

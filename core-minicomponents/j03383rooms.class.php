@@ -17,20 +17,21 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-     * Media centre uses this to find images that already exist for the rooms image resource
-	 * 
+	 * Media centre uses this to find images that already exist for the rooms image resource
+	 *
 	 */
 
 class j03383rooms
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -57,10 +58,10 @@ class j03383rooms
 	}
 
 
-    /**
-     * @return array
-     */
-    public function getRetVals()
+	/**
+	 * @return array
+	 */
+	public function getRetVals()
 	{
 		return $this->ret_vals;
 	}

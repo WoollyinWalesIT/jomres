@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j16000listPfeatures
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -81,10 +82,11 @@ class j16000listPfeatures
 			$r[ 'IMAGE' ] = JOMRES_IMAGELOCATION_RELPATH . 'pfeatures/' . $f['image'];
 			$r[ 'CATEGORY' ] = $f['cat_title'];
 
-			if ($f['include_in_filters'] == "1")
+			if ($f['include_in_filters'] == "1") {
 				$r[ 'INCLUDE_IN_FILTERS' ] = jr_gettext('_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES', false);
-			else
+			} else {
 				$r[ 'INCLUDE_IN_FILTERS' ] = jr_gettext('_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false);
+			}
 			
 			$toolbar = jomres_singleton_abstract::getInstance('jomresItemToolbar');
 			$toolbar->newToolbar();

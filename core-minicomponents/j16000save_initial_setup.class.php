@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j16000save_initial_setup
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -50,23 +51,23 @@ class j16000save_initial_setup
 		if (isset($_REQUEST['step'])) {
 			switch ($_REQUEST['step']) {
 				case 'initial_setup_step_1':
-					$this->siteConfig->set_setting('collect_analytics_allowed', (int)$_REQUEST['collect_analytics_allowed'] );
-					$this->siteConfig->set_setting('initial_setup_step_1_completed', 1 );
+					$this->siteConfig->set_setting('collect_analytics_allowed', (int)$_REQUEST['collect_analytics_allowed']);
+					$this->siteConfig->set_setting('initial_setup_step_1_completed', 1);
 
 					break;
 				case 'initial_setup_step_2':
-					$this->siteConfig->set_setting('is_single_property_installation', (int)$_REQUEST['is_single_property_installation'] );
-					$this->siteConfig->set_setting('initial_setup_step_2_completed', 1 );
+					$this->siteConfig->set_setting('is_single_property_installation', (int)$_REQUEST['is_single_property_installation']);
+					$this->siteConfig->set_setting('initial_setup_step_2_completed', 1);
 					break;
 				case 'initial_setup_step_3':
 					$setting = '';
-					if ( (int)$_REQUEST['bootstrap_version'] == '2' ) {
+					if ((int)$_REQUEST['bootstrap_version'] == '2') {
 						$setting = ''; // The first template set, back in 2011, didn't include the version although later versions do
 					} else {
 						$setting = (string)(int)$_REQUEST['bootstrap_version'];
 					}
-					$this->siteConfig->set_setting('bootstrap_version', $setting );
-					$this->siteConfig->set_setting('initial_setup_step_3_completed', 1 );
+					$this->siteConfig->set_setting('bootstrap_version', $setting);
+					$this->siteConfig->set_setting('initial_setup_step_3_completed', 1);
 					break;
 			}
 		}

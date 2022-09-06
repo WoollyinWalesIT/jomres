@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j16000list_gateways
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -59,19 +60,19 @@ class j16000list_gateways
 			$rows = array();
 			
 			$gateway_names = array();
-			foreach ($gateway_plugins as $gw ) {
+			foreach ($gateway_plugins as $gw) {
 				$gateway_names[] = $gw['name'];
-				}
+			}
 			$global_gateway_settings = array();
 				
 			$query = "SELECT `plugin`,`setting`,`value` FROM #__jomres_pluginsettings WHERE `plugin` IN ( ".jomres_implode($gateway_names, false).' ) AND prid = 0';
 			$plugin_settings = doSelectSql($query);
 
 			if (!empty($plugin_settings)) {
-				foreach ($plugin_settings as $setting ) {
+				foreach ($plugin_settings as $setting) {
 					$global_gateway_settings[$setting->plugin][$setting->setting] = $setting->value;
-					}
 				}
+			}
  
 			foreach ($gateway_plugins as $gateway) {
 				$r = array();

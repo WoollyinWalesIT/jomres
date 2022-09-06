@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06002edit_resource
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -66,7 +67,6 @@ class j06002edit_resource
 		$saveText = jr_gettext('_JOMRES_COM_MR_SAVE', '_JOMRES_COM_MR_SAVE', false);
 
 		if ($mrConfig[ 'singleRoomProperty' ] == '0') { //MRPs
-		
 			$room_features_uid			= '';
 			$room_name					= '';
 			$room_number				= '';
@@ -81,7 +81,6 @@ class j06002edit_resource
 			$surcharge					= '';
 
 			if ($roomUid > 0 && $basic_room_details->get_room($roomUid)) {
-
 				$room_classes_uid			= $basic_room_details->room['room_classes_uid'];
 				$room_features_uid			= $basic_room_details->room['room_features_uid'];
 				$room_name					= $basic_room_details->room['room_name'];
@@ -187,7 +186,7 @@ class j06002edit_resource
 
 				$output[ 'MARKDOWN_BUTTON' ] = $MiniComponents->specificEvent('06000', 'show_markdown_modal', array('output_now' => false));
 				
-				$output[ 'ROOM_DESCRIPTION' ] = '<textarea class="inputbox form-control" cols="70" rows="5" id="room_description" name="room_description">'.jomres_remove_HTML( $room_description , '').'</textarea>';
+				$output[ 'ROOM_DESCRIPTION' ] = '<textarea class="inputbox form-control" cols="70" rows="5" id="room_description" name="room_description">'.jomres_remove_HTML($room_description, '').'</textarea>';
 			}
 
 			if ($clone > 0) {

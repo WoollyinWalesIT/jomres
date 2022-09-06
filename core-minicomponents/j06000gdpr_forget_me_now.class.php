@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06000gdpr_forget_me_now
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -51,12 +52,12 @@ class j06000gdpr_forget_me_now
 		$jomres_gdpr_personal_information_collections = new jomres_gdpr_personal_information_collections();
 		$jomres_gdpr_personal_information_collections->set_id($thisJRUser->id);
 		$result = $jomres_gdpr_personal_information_collections->can_redact_this_cms_user();
-		if ($result['can_redact'] == false ) {
+		if ($result['can_redact'] == false) {
 			echo $result['reason'];
 			return;
 		}
 		$jomres_gdpr_personal_information_collections->redact_pii();
-		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_my_account'), jr_gettext('_JOMRES_GDPR_MY_RTBF_FORGET_ME_FORGOTTEN', '_JOMRES_GDPR_MY_RTBF_FORGET_ME_FORGOTTEN', false) );
+		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_my_account'), jr_gettext('_JOMRES_GDPR_MY_RTBF_FORGET_ME_FORGOTTEN', '_JOMRES_GDPR_MY_RTBF_FORGET_ME_FORGOTTEN', false));
 	}
 
 

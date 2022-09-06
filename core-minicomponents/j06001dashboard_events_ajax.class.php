@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06001dashboard_events_ajax
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -72,7 +73,7 @@ class j06001dashboard_events_ajax
 		$guest_contacts = array();
 		$result = array();
 
-		if (jomres_bootstrap_version() == 4 ) {
+		if (jomres_bootstrap_version() == 4) {
 			$img_pending = 'badge badge-info';
 			$img_arrivetoday = 'badge badge-primary';
 			$img_resident = 'badge badge-success';
@@ -100,8 +101,8 @@ class j06001dashboard_events_ajax
 		$from = date('Y/m/d', strtotime($from));
 		$to = date('Y/m/d', strtotime($to));
 
-        $query = SET_GLOBAL_STRING.
-            "SELECT a.contract_uid,
+		$query = SET_GLOBAL_STRING.
+			"SELECT a.contract_uid,
 						DATE_FORMAT(a.arrival, '%Y-%m-%d') AS arrival,
 						DATE_FORMAT(a.departure, '%Y-%m-%d') AS departure,
 						a.guest_uid,
@@ -135,29 +136,25 @@ class j06001dashboard_events_ajax
 		$contractList = doSelectSql($query);
 
 		if (!empty($contractList)) {
-			
-
 			$all_booking_notes = array();
 			$query = "SELECT `contract_uid` , `note` ,`timestamp` FROM #__jomcomp_notes WHERE property_uid = " .(int) $property_uid ;
-			$notesList = doSelectSql ( $query );
+			$notesList = doSelectSql($query);
 			if (!empty($notesList)) {
-				foreach ($notesList as $note ) {
-					if ( trim($note->note) != "" ) {
+				foreach ($notesList as $note) {
+					if (trim($note->note) != "") {
 						$all_booking_notes[$note->contract_uid][] = $note;
 					}
-					
 				}
 			}
 
 			$all_black_booking_reasons = array();
 			$query = "SELECT `contract_uid` , `special_reqs` FROM #__jomres_contracts WHERE property_uid = " .(int) $property_uid ;
-			$notesList = doSelectSql ( $query );
+			$notesList = doSelectSql($query);
 			if (!empty($notesList)) {
-				foreach ($notesList as $note ) {
-					if ( trim($note->special_reqs) != "" ) {
+				foreach ($notesList as $note) {
+					if (trim($note->special_reqs) != "") {
 						$all_black_booking_reasons[$note->contract_uid][] = $note->special_reqs;
 					}
-					
 				}
 			}
 
@@ -188,7 +185,7 @@ class j06001dashboard_events_ajax
 					$end = date('Y-m-d', strtotime($c->departure)).'T23:59:59';
 				}
 
-				if ( !is_channel_property($property_uid)) {
+				if (!is_channel_property($property_uid)) {
 					if ((int) $c->black_booking == 1) {
 						$url = JOMRES_SITEPAGE_URL_NOSEF.'&task=show_black_booking&contract_uid='.$c->contract_uid.'&thisProperty='.$property_uid;
 					} else {
@@ -258,16 +255,16 @@ class j06001dashboard_events_ajax
 				}
 				
 				
-				if (isset($all_booking_notes[$c->contract_uid]) ) {
+				if (isset($all_booking_notes[$c->contract_uid])) {
 					$description .= '<hr/>';
-					foreach ( $all_booking_notes[$c->contract_uid] as $note ) {
+					foreach ($all_booking_notes[$c->contract_uid] as $note) {
 						 $description .= $note->timestamp.' '.sanitiseOverlibOutput($note->note).'<br/>';
 					}
 				}
 				
-				if (isset($all_black_booking_reasons[$c->contract_uid]) ) {
+				if (isset($all_black_booking_reasons[$c->contract_uid])) {
 					$description .= '<hr/>';
-					foreach ( $all_black_booking_reasons[$c->contract_uid] as $note ) {
+					foreach ($all_black_booking_reasons[$c->contract_uid] as $note) {
 						 $description .= sanitiseOverlibOutput($note).'<br/>';
 					}
 				}

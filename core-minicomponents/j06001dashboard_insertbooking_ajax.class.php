@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06001dashboard_insertbooking_ajax
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -101,7 +102,7 @@ class j06001dashboard_insertbooking_ajax
 		$contract_total_nett = $current_property_details->get_nett_accommodation_price($contract_total, $property_uid);
 		$tax = $contract_total - $contract_total_nett;
 
-        $booking_note = jomresGetParam($_GET, 'booking_note', '');
+		$booking_note = jomresGetParam($_GET, 'booking_note', '');
 
 		if ($jrConfig['useGlobalCurrency'] == '1') {
 			$currency_code = $jrConfig['globalCurrencyCode'];
@@ -171,9 +172,9 @@ class j06001dashboard_insertbooking_ajax
 			set_showtime('new_booking_id', $contract_uid);
 			$booking_number = (string) $MiniComponents->miniComponentData[ '03020' ][ 'insertbooking' ]['cartnumber'];
 
-            if ($booking_note != '') {
-                addBookingNote( $contract_uid , $property_uid , $booking_note );
-            }
+			if ($booking_note != '') {
+				addBookingNote($contract_uid, $property_uid, $booking_note);
+			}
 
 			$url = jomresUrl(JOMRES_SITEPAGE_URL.'&task=edit_booking&contract_uid='.$contract_uid);
 			$description = jr_gettext('_JOMRES_BOOKING_NUMBER', '_JOMRES_BOOKING_NUMBER', false).': '.$booking_number.'<br/>';

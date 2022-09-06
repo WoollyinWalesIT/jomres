@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06000show_property_rooms
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -79,7 +80,7 @@ class j06000show_property_rooms
 		if (isset($componentArgs[ 'room_classes_uid' ])) {
 			$room_classes_uid = (int) $componentArgs[ 'room_classes_uid' ];
 		}
-		if (isset($_GET[ 'room_classes_uid' ]) && (int)$_GET[ 'room_classes_uid' ] > 0 ) {
+		if (isset($_GET[ 'room_classes_uid' ]) && (int)$_GET[ 'room_classes_uid' ] > 0) {
 			$room_classes_uid = (int) $_GET[ 'room_classes_uid' ];
 		}
 		
@@ -107,7 +108,7 @@ class j06000show_property_rooms
 			$rows = array();
 
 			foreach ($basic_room_details->rooms as $room) {
-				if ($room['room_classes_uid'] == $room_classes_uid || $room_classes_uid == "*" ) {
+				if ($room['room_classes_uid'] == $room_classes_uid || $room_classes_uid == "*") {
 					$r = array();
 					$r[ 'HEADER_ROOMFLOOR' ] = jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR', '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR', false);
 					$r[ 'HEADER_MAXPEOPLE' ] = jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE', '_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE', false);
@@ -138,7 +139,7 @@ class j06000show_property_rooms
 					$r[ 'IMAGEMEDIUM' ] = JOMRES_IMAGES_RELPATH.'noimage.gif';
 					$r[ 'IMAGETHUMB' ] = JOMRES_IMAGES_RELPATH.'noimage.gif';
 
-					if ( ( isset($jomres_media_centre_images->images['rooms']) && $jomres_media_centre_images->images['rooms'][$room['room_uid']][0]['large'] != '' ) &&
+					if (( isset($jomres_media_centre_images->images['rooms']) && $jomres_media_centre_images->images['rooms'][$room['room_uid']][0]['large'] != '' ) &&
 						isset($jomres_media_centre_images->images['rooms'][$room['room_uid']][0]['large']) &&
 						isset($jomres_media_centre_images->images['rooms'][$room['room_uid']][0]['medium']) &&
 						isset($jomres_media_centre_images->images['rooms'][$room['room_uid']][0]['small'])
@@ -154,7 +155,7 @@ class j06000show_property_rooms
 					$r[ 'TAGLINE' ] = $room['tagline'];
 					$r[ 'DESCRIPTION' ] = $jomres_markdown->get_markdown($room['description']);
 
-					$room_price_output = get_room_price_by_room_type_id( $room['room_classes_uid'] , $property_uid );
+					$room_price_output = get_room_price_by_room_type_id($room['room_classes_uid'], $property_uid);
 					$r[ 'PRICE_PRICE' ]	 = $room_price_output[ 'PRICE_PRICE' ];
 					$r[ 'PRICE_PRE_TEXT' ]  = $room_price_output[ 'PRICE_PRE_TEXT' ];
 					$r[ 'PRICE_POST_TEXT' ] = $room_price_output[ 'PRICE_POST_TEXT' ];
@@ -167,8 +168,6 @@ class j06000show_property_rooms
 					}
 					$rows[ ] = $r;
 				}
-				
-
 			}
 
 			$pageoutput = array();

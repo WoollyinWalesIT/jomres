@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06000dobooking
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -46,8 +47,8 @@ class j06000dobooking
 		
 		$mrConfig = getPropertySpecificSettings();
 
-		if ( $mrConfig[ 'visitorscanbookonline' ] == '0' && $thisJRUser->userIsManager != true ) {
-			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=contactowner&amp;selectedProperty='.get_showtime('property_uid') ) );
+		if ($mrConfig[ 'visitorscanbookonline' ] == '0' && $thisJRUser->userIsManager != true) {
+			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=contactowner&amp;selectedProperty='.get_showtime('property_uid')));
 		}
 
 		if ($thisJRUser->userIsManager) {

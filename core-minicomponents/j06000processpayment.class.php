@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06000processpayment
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -49,17 +50,16 @@ class j06000processpayment
 		
 		request_log();
 
-		if (  !isset($bookingdata["cart_payment"]) || !$bookingdata["cart_payment"] ) {
-			if ($bookingdata[ 'ok_to_book' ] == false ) {
+		if (!isset($bookingdata["cart_payment"]) || !$bookingdata["cart_payment"]) {
+			if ($bookingdata[ 'ok_to_book' ] == false) {
 				die("Naughty bot");
 			}
-
 		}
 
 		$tag = set_booking_number();
 
 		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
-		$siteConfig		= jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+		$siteConfig		= jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig		  = $siteConfig->get();
 		if ($thisJRUser->userIsManager && $jrConfig['development_production'] != 'development') {
 			$plugin = jomres_validate_gateway_plugin();
@@ -89,7 +89,6 @@ class j06000processpayment
 			$gatewayDeets = doSelectSql($query);
 
 			if (!empty($gatewayDeets)) {
-
 				$interrupted = intval(jomresGetParam($_POST, 'interrupted', 0));
 				$interruptOutgoingFile = false;
 

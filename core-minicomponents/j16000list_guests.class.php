@@ -11,36 +11,36 @@
  **/
 
 // ################################################################
-defined( '_JOMRES_INITCHECK' ) or die( '' );
+defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j16000list_guests
-	{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	function __construct()
-		{
+	{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-		if ( $MiniComponents->template_touch )
-			{
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
 			$this->template_touchable = false;
 			return;
-			}
+		}
 
 		jr_import('jomres_encryption');
 		$this->jomres_encryption = new jomres_encryption();
@@ -94,7 +94,7 @@ class j16000list_guests
 			
 		$result = doSelectSql($query);
 
-		foreach ( $result as $g ) {
+		foreach ($result as $g) {
 			$r = array ();
 
 			$r['FIRSTNAME'] = $this->jomres_encryption->decrypt($g->enc_firstname);
@@ -116,10 +116,10 @@ class j16000list_guests
 				$r['PROPERTY_NAME'] = jr_gettext('_JOMRES_GDPR_RTBF_UNKNOWN_PROPERTY', '_JOMRES_GDPR_RTBF_UNKNOWN_PROPERTY', false);
 			}
 			
-			if ($g->property_uid > 0 ) {
-				$toolbar = jomres_singleton_abstract::getInstance( 'jomresItemToolbar' );
+			if ($g->property_uid > 0) {
+				$toolbar = jomres_singleton_abstract::getInstance('jomresItemToolbar');
 				$toolbar->newToolbar();
-				$toolbar->addItem( 'fa fa-pencil-square-o', 'btn btn-info', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=anonymise_guest&guest_id=' . $g->guests_uid.'&property_uid='.$g->property_uid ), jr_gettext( '_JOMRES_GDPR_RTBF_ANONYMISE_GUEST', '_JOMRES_GDPR_RTBF_ANONYMISE_GUEST', false ) );
+				$toolbar->addItem('fa fa-pencil-square-o', 'btn btn-info', '', jomresURL(JOMRES_SITEPAGE_URL_ADMIN . '&task=anonymise_guest&guest_id=' . $g->guests_uid.'&property_uid='.$g->property_uid), jr_gettext('_JOMRES_GDPR_RTBF_ANONYMISE_GUEST', '_JOMRES_GDPR_RTBF_ANONYMISE_GUEST', false));
 				$r['LINKTEXT'] = $toolbar->getToolbar();
 			} else {
 				$r['LINKTEXT'] = jr_gettext('_JOMRES_GDPR_RTBF_GUEST_CANNOT_REDACT', '_JOMRES_GDPR_RTBF_GUEST_CANNOT_REDACT', false);
@@ -130,22 +130,22 @@ class j16000list_guests
 
 		$jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
-		$jrtb .= $jrtbar->toolbarItem('cancel', JOMRES_SITEPAGE_URL_ADMIN, jr_gettext("COMMON_CANCEL",'COMMON_CANCEL',false) );
+		$jrtb .= $jrtbar->toolbarItem('cancel', JOMRES_SITEPAGE_URL_ADMIN, jr_gettext("COMMON_CANCEL", 'COMMON_CANCEL', false));
 		$jrtb .= $jrtbar->endTable();
 		$output['JOMRESTOOLBAR']=$jrtb;
 
 		$pageoutput[] = $output;
 		$tmpl = new patTemplate();
-		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
-		$tmpl->readTemplatesFromInput( 'list_guests.html' );
-		$tmpl->addRows( 'pageoutput', $pageoutput );
-		$tmpl->addRows( 'rows', $rows );
+		$tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
+		$tmpl->readTemplatesFromInput('list_guests.html');
+		$tmpl->addRows('pageoutput', $pageoutput);
+		$tmpl->addRows('rows', $rows);
 		$tmpl->displayParsedTemplate();
-		}
+	}
 
 
 	function getRetVals()
-		{
+	{
 		return null;
-		}
 	}
+}

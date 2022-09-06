@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j16000rerun_plugin_installer_script
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -43,12 +44,12 @@ class j16000rerun_plugin_installer_script
 		}
 		$plugin = jomresGetParam($_REQUEST, 'plugin', '');
 		
-		foreach ($MiniComponents->registeredClasses as $trigger=>$plugins) {
-			foreach ( $plugins as $plugin_name => $plugin_info ) {
-				if ($plugin_name == $plugin ) {
+		foreach ($MiniComponents->registeredClasses as $trigger => $plugins) {
+			foreach ($plugins as $plugin_name => $plugin_info) {
+				if ($plugin_name == $plugin) {
 					$path = $MiniComponents->registeredClasses[$trigger][$plugin_name]['filepath'];
 					if (file_exists($path."plugin_install.php")) {
-						define("JOMRES_INSTALLER",1);
+						define("JOMRES_INSTALLER", 1);
 						require($path."plugin_install.php");
 						jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=showplugins'), 'Install script has been re-run');
 					} else {
@@ -59,7 +60,7 @@ class j16000rerun_plugin_installer_script
 		}
 		
 /* 		if (file_exists()) {
-			
+
 		} */
 
 		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=showplugins'), '');

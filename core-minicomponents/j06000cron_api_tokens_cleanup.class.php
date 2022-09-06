@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06000cron_api_tokens_cleanup
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -43,7 +44,6 @@ class j06000cron_api_tokens_cleanup
 
 			$query = "DELETE FROM #__jomres_oauth_access_tokens WHERE `expires` <= DATE_SUB(CURRENT_TIMESTAMP(), INTERVAL 1 DAY)";
 			doInsertSql($query, '');
-
 	}
 
 

@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j16000ajax_send_test_email
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -68,11 +69,11 @@ class j16000ajax_send_test_email
 				$siteConfig->get_setting('default_from_address'),
 				'TEST EMAIL',
 				jomresGetParam($_REQUEST, 'test_email_address', ''),
-				 jr_gettext('_JOMRES_TEST_EMAIL_SUBJECT', '_JOMRES_TEST_EMAIL_SUBJECT', false),
-				 jr_gettext('_JOMRES_TEST_EMAIL_CONTENT', '_JOMRES_TEST_EMAIL_CONTENT', false),
+				jr_gettext('_JOMRES_TEST_EMAIL_SUBJECT', '_JOMRES_TEST_EMAIL_SUBJECT', false),
+				jr_gettext('_JOMRES_TEST_EMAIL_CONTENT', '_JOMRES_TEST_EMAIL_CONTENT', false),
 				$mode = 1,
 				array()
-				);
+			);
 			$contents = ob_get_contents();
 			ob_end_clean();
 			if ($success) {

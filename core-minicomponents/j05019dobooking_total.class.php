@@ -17,20 +17,21 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-     * Adds javascript and inputs to the booking form if this is a booking that is being amended, pertaining to overriding the booking total
-     *
+	 * Adds javascript and inputs to the booking form if this is a booking that is being amended, pertaining to overriding the booking total
+	 *
 	 */
 
 class j05019dobooking_total
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()

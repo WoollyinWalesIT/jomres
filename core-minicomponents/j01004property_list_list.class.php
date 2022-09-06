@@ -21,15 +21,16 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class j01004property_list_list
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)

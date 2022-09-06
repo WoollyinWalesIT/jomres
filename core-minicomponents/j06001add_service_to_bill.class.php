@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06001add_service_to_bill
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -83,7 +84,7 @@ class j06001add_service_to_bill
 			$contract_uid = jomresGetParam($_POST, 'contract_uid', 0);
 			$service_description = ucfirst(jomresGetParam($_POST, 'service_description', ''));
 			
-			$sv = str_replace( "&#45;" , "-"  , jomresGetParam($_POST, 'service_value', 0.00) );
+			$sv = str_replace("&#45;", "-", jomresGetParam($_POST, 'service_value', 0.00));
 			$service_value = convert_entered_price_into_safe_float($sv);
 
 			$taxrate = jomresGetParam($_POST, 'taxrate', 0);

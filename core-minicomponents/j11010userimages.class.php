@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j11010userimages
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -43,8 +44,8 @@ class j11010userimages
 		}
 		
 		$this->ret_vals = array(
-								'resource_type' => 'userimages', 
-								'resource_id_required' => true, 
+								'resource_type' => 'userimages',
+								'resource_id_required' => true,
 								'name' => 'User profile images',
 								'upload_root_abs_path' => JOMRES_IMAGELOCATION_ABSPATH,
 								'upload_root_rel_path' => JOMRES_IMAGELOCATION_RELPATH,

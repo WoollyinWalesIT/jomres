@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j16000new_property_button
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -51,7 +52,7 @@ class j16000new_property_button
 		$output = array();
 		$pageoutput = array();
 
-		$output['_JOMRES_COM_MR_NEWPROPERTY'] = jr_gettext( '_JOMRES_COM_MR_NEWPROPERTY' , '_JOMRES_COM_MR_NEWPROPERTY' , false , false);
+		$output['_JOMRES_COM_MR_NEWPROPERTY'] = jr_gettext('_JOMRES_COM_MR_NEWPROPERTY', '_JOMRES_COM_MR_NEWPROPERTY', false, false);
 
 		$pageoutput[ ] = $output;
 		$tmpl = new patTemplate();

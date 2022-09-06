@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06002delete_child_rate
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -50,7 +51,7 @@ class j06002delete_child_rate
 		jr_import('jomres_child_rates');
 		$jomres_child_rates = new jomres_child_rates($defaultProperty);
 
-		$jomres_child_rates->delete_child_rate ( $id );
+		$jomres_child_rates->delete_child_rate($id);
 		$jomres_child_rates->save_child_rates();
 
 		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=child_policies'), '');

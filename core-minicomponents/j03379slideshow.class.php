@@ -17,20 +17,21 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-     * Used by the media centre to configure media uploading options for the slideshow images
-	 * 
+	 * Used by the media centre to configure media uploading options for the slideshow images
+	 *
 	 */
 
 class j03379slideshow
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -52,21 +53,21 @@ class j03379slideshow
 		$preview_link = JOMRES_SITEPAGE_URL_AJAX.'&task=show_property_slideshow&property_uid='.$property_uid;
 		
 		$this->ret_vals = array(
-								'resource_type' => 'slideshow', 
-								'resource_id_required' => true, 
+								'resource_type' => 'slideshow',
+								'resource_id_required' => true,
 								'name' => jr_gettext('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_SLIDESHOW', '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_SLIDESHOW', false),
 								'upload_root_abs_path' => JOMRES_IMAGELOCATION_ABSPATH.$property_uid.JRDS,
 								'upload_root_rel_path' => JOMRES_IMAGELOCATION_RELPATH.$property_uid.'/',
 								'notes' => '',
-								'preview_link'=>$preview_link 
+								'preview_link'=>$preview_link
 								);
 	}
 
 
-    /**
-     * @return array
-     */
-    public function getRetVals()
+	/**
+	 * @return array
+	 */
+	public function getRetVals()
 	{
 		return $this->ret_vals;
 	}

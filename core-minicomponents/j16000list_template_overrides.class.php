@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j16000list_template_overrides
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -44,18 +45,17 @@ class j16000list_template_overrides
 		$template_packages = get_showtime('template_packages');
 
 		if (!empty($template_packages)) {
-			
 			$template_overrides = jomres_singleton_abstract::getInstance('template_overrides');
 
 			$template_files_overrideable = array();
 			
 			$already_found = array();
 
-			foreach ( $template_packages as $packages ) {
-				foreach ( $packages as $package_item ) {
+			foreach ($template_packages as $packages) {
+				foreach ($packages as $package_item) {
 					$r = array();
 					$template_name = $package_item['template_name'];
-					if (!in_array($template_name , $already_found)) {
+					if (!in_array($template_name, $already_found)) {
 						$r['TEMPLATE_NAME'] = $template_name;
 
 						$toolbar = jomres_singleton_abstract::getInstance('jomresItemToolbar');
@@ -64,7 +64,7 @@ class j16000list_template_overrides
 							$toolbar = jomres_singleton_abstract::getInstance('jomresItemToolbar');
 							$toolbar->newToolbar();
 							$toolbar->addItem('fa fa-pencil-square-o', 'btn btn-info', '', jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=edit_template_override&template_name='.$template_name), jr_gettext('COMMON_EDIT', 'COMMON_EDIT', false));
-							$toolbar->addSecondaryItem( 'fa fa-trash-o', '', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=delete_template_override&template_name=' . $template_name ), jr_gettext( 'COMMON_DELETE', 'COMMON_DELETE', false ) );
+							$toolbar->addSecondaryItem('fa fa-trash-o', '', '', jomresURL(JOMRES_SITEPAGE_URL_ADMIN . '&task=delete_template_override&template_name=' . $template_name), jr_gettext('COMMON_DELETE', 'COMMON_DELETE', false));
 						} else {
 							$r['PATH'] =jr_gettext('_JOMRES_TEMPLATE_PACKAGE_NOT_OVERRIDDEN', '_JOMRES_TEMPLATE_PACKAGE_NOT_OVERRIDDEN', false);
 							$toolbar = jomres_singleton_abstract::getInstance('jomresItemToolbar');

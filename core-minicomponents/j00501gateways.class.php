@@ -18,20 +18,21 @@ defined('_JOMRES_INITCHECK') or die('');
 	 * @package Jomres\Core\Minicomponents
 	 *
 	 * Property Configuration page tabs. Shows links to the gateway configuration popups
-	 * 
+	 *
 	 */
 
 
 class j00501gateways
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -52,11 +53,11 @@ class j00501gateways
 
 		jr_import("gateway_plugin_settings");
 		$plugin_settings = new gateway_plugin_settings();
-		$gateway_settings = $plugin_settings->get_settings_for_property_uid( get_showtime('property_uid') );
+		$gateway_settings = $plugin_settings->get_settings_for_property_uid(get_showtime('property_uid'));
 
 		if (empty($gateway_settings)) { // No gateways installed
 			return;
-			}
+		}
 
 		$lists = $componentArgs[ 'lists' ];
 
@@ -67,30 +68,30 @@ class j00501gateways
 			$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_GATEWAY_ENABLED', '_JOMRES_COM_A_GATEWAY_ENABLED', false));
 			$configurationPanel->insertSetting();
 
-			foreach ($gateway_settings as $gateway_name => $gw) {
-				if (!isset($plugin_settings->gateway_settings[$gateway_name]['override'])) {
-					$plugin_settings->gateway_settings[$gateway_name]['override'] = 0;
-					}
+		foreach ($gateway_settings as $gateway_name => $gw) {
+			if (!isset($plugin_settings->gateway_settings[$gateway_name]['override'])) {
+				$plugin_settings->gateway_settings[$gateway_name]['override'] = 0;
+			}
 
-				if ( $plugin_settings->gateway_settings[$gateway_name]['override'] != '1') {
-					$configurationPanel->setleft($gw['config_links'][ 'button' ]);
-					$configurationPanel->setmiddle($gw['config_links'][ 'link' ]);
+			if ($plugin_settings->gateway_settings[$gateway_name]['override'] != '1') {
+				$configurationPanel->setleft($gw['config_links'][ 'button' ]);
+				$configurationPanel->setmiddle($gw['config_links'][ 'link' ]);
 					
-					/* if ($gw['balance_payments_supported'] == true )
-						$balances = jr_gettext('GATWAYS_BALANCE_PAYMENTS','GATWAYS_BALANCE_PAYMENTS',false)." : ".(jr_gettext('_JOMRES_COM_MR_YES','_JOMRES_COM_MR_YES',false));
-					else
-						$balances = jr_gettext('GATWAYS_BALANCE_PAYMENTS','GATWAYS_BALANCE_PAYMENTS',false)." : ".(jr_gettext('_JOMRES_COM_MR_NO','_JOMRES_COM_MR_NO',false)); */
+				/* if ($gw['balance_payments_supported'] == true )
+					$balances = jr_gettext('GATWAYS_BALANCE_PAYMENTS','GATWAYS_BALANCE_PAYMENTS',false)." : ".(jr_gettext('_JOMRES_COM_MR_YES','_JOMRES_COM_MR_YES',false));
+				else
+					$balances = jr_gettext('GATWAYS_BALANCE_PAYMENTS','GATWAYS_BALANCE_PAYMENTS',false)." : ".(jr_gettext('_JOMRES_COM_MR_NO','_JOMRES_COM_MR_NO',false)); */
 					
-					if ( $gw[ 'active' ] == "1" )
-						$configurationPanel->setright(jr_gettext('_JOMRES_COM_MR_YES','_JOMRES_COM_MR_YES',false));
-					else
-						$configurationPanel->setright(jr_gettext('_JOMRES_COM_MR_NO','_JOMRES_COM_MR_NO',false));
-			 
-					$configurationPanel->insertSetting();
-					}
+				if ($gw[ 'active' ] == "1") {
+					$configurationPanel->setright(jr_gettext('_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES', false));
+				} else {
+					$configurationPanel->setright(jr_gettext('_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false));
 				}
+			 
+				$configurationPanel->insertSetting();
+			}
+		}
 			$configurationPanel->endPanel();
-
 	}
 
 /**

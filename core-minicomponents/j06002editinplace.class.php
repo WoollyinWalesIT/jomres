@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06002editinplace
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -63,7 +64,7 @@ class j06002editinplace
 		}
 		$theConstant = filter_var($_POST[ 'pk' ], FILTER_SANITIZE_SPECIAL_CHARS);
 
-		$result = updateCustomText($theConstant, $customText, true, $property_uid , 0 , $jomres_target_language);
+		$result = updateCustomText($theConstant, $customText, true, $property_uid, 0, $jomres_target_language);
 		//$result = false;
 		if ($result) {
 			header('Status: 200');

@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.'
 	 * @package Jomres\Core\Minicomponents
 	 *
 	 * Sends the new property welcome email
-     *
+	 *
 	 */
 
 class j04950translation_definitions_x_extras
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -55,25 +56,24 @@ class j04950translation_definitions_x_extras
 		$exList =doSelectSql($query);
 
 		if (!empty($exList)) {
-			foreach($exList as $ex) {
-					$subtitle = jr_gettext('_JOMRES_CUSTOMTEXT_EXTRANAME'.$ex->uid, jomres_decode($ex->name),false);
+			foreach ($exList as $ex) {
+					$subtitle = jr_gettext('_JOMRES_CUSTOMTEXT_EXTRANAME'.$ex->uid, jomres_decode($ex->name), false);
 					$definitions[$section_name][$subtitle][] = [
-						'definition' => jr_gettext('_JOMRES_CUSTOMTEXT_EXTRANAME'.$ex->uid, jomres_decode($ex->name) ),
+						'definition' => jr_gettext('_JOMRES_CUSTOMTEXT_EXTRANAME'.$ex->uid, jomres_decode($ex->name)),
 						'label' => '_JOMRES_COM_MR_EXTRA_NAME',
 						'translate_label' => true
 						];
 
 					$definitions[$section_name][$subtitle][] = [
-						'definition' => jr_gettext('_JOMRES_CUSTOMTEXT_EXTRADESC'.$ex->uid, jomres_decode($ex->desc) ),
+						'definition' => jr_gettext('_JOMRES_CUSTOMTEXT_EXTRADESC'.$ex->uid, jomres_decode($ex->desc)),
 						'label' => '_JOMRES_COM_MR_EXTRA_DESC',
 						'translate_label' => true
 						];
-				}
 			}
+		}
 
 
 		$this->retVals = $definitions;
-		
 	}
 
 	public function getRetVals()

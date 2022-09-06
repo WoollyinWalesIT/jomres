@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06000show_site_sidebar
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -41,51 +42,52 @@ class j06000show_site_sidebar
 		}
 		$this->retVals = null;
 
-        if ( (int)jomres_bootstrap_version() < 5 ) {
-            return '';
-        }
+		if ((int)jomres_bootstrap_version() < 5) {
+			return '';
+		}
 
-        $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-        $jrConfig = $siteConfig->get();
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
 
-        if (!isset($componentArgs) || !isset($componentArgs['property_details_object'])) {
-            throw new Exception('Error, property_details_object not set');
-        }
+		if (!isset($componentArgs) || !isset($componentArgs['property_details_object'])) {
+			throw new Exception('Error, property_details_object not set');
+		}
 
-        $property_details_object = $componentArgs['property_details_object'];
-        unset($property_details_object->multi_query_result); // Don't need it, let's free up some memory
+		$property_details_object = $componentArgs['property_details_object'];
+		unset($property_details_object->multi_query_result); // Don't need it, let's free up some memory
 
-        $property_uid = $property_details_object->property_uid;
+		$property_uid = $property_details_object->property_uid;
 
 		if (!user_can_view_this_property($property_uid)) {
 			return;
 		}
 
-        $pageoutput = array();
-        $output     = array();
+		$pageoutput = array();
+		$output     = array();
 
-        $output['PROPERTY_NAME']    = $property_details_object->property_name;
-        $output['PROPERTY_REGION']  = $property_details_object->property_region;
-        $output['PROPERTY_COUNTRY'] = $property_details_object->property_country;
+		$output['PROPERTY_NAME']    = $property_details_object->property_name;
+		$output['PROPERTY_REGION']  = $property_details_object->property_region;
+		$output['PROPERTY_COUNTRY'] = $property_details_object->property_country;
 		$output['STARS']			= $property_details_object->stars;
 
 
-        $output['BUSINESS_NAME']        = $jrConfig['business_name'];
-        $output['BUSINESS_VAT_NUMBER']  = $jrConfig['business_vat_number'];
-        $output['BUSINESS_ADDRESS']     = $jrConfig['business_address'];
-        $output['BUSINESS_STREET']      = $jrConfig['business_street'];
-        $output['BUSINESS_TOWN']        = $jrConfig['business_town'];
-        $output['BUSINESS_REGION']      = find_region_name($jrConfig['business_region']);
-        $output['BUSINESS_COUNTRY']     = $jrConfig['business_country'];
-        $output['BUSINESS_POSTCODE']    = $jrConfig['business_postcode'];
-        $output['BUSINESS_TELEPHONE']   = jomres_decode($jrConfig['business_telephone']);
-        $output['BUSINESS_EMAIL']       = $jrConfig['business_email'];
+		$output['BUSINESS_NAME']        = $jrConfig['business_name'];
+		$output['BUSINESS_VAT_NUMBER']  = $jrConfig['business_vat_number'];
+		$output['BUSINESS_ADDRESS']     = $jrConfig['business_address'];
+		$output['BUSINESS_STREET']      = $jrConfig['business_street'];
+		$output['BUSINESS_TOWN']        = $jrConfig['business_town'];
+		$output['BUSINESS_REGION']      = find_region_name($jrConfig['business_region']);
+		$output['BUSINESS_COUNTRY']     = $jrConfig['business_country'];
+		$output['BUSINESS_POSTCODE']    = $jrConfig['business_postcode'];
+		$output['BUSINESS_TELEPHONE']   = jomres_decode($jrConfig['business_telephone']);
+		$output['BUSINESS_EMAIL']       = $jrConfig['business_email'];
 
 		
 		$output['_JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES']	= jr_gettext('_JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES', '_JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES', false);
-		if ($jrConfig[ 'business_languages' ] != '' ) {
-			$business_languages = explode ( "," , $jrConfig[ 'business_languages' ]); // We won't ask admin to add quotes around languages, instead we'll do that ourselves
-			$output['BUSINESS_LANGUAGES'] = sprintf("%s", implode(" ", $business_languages ) );;
+		if ($jrConfig[ 'business_languages' ] != '') {
+			$business_languages = explode(",", $jrConfig[ 'business_languages' ]); // We won't ask admin to add quotes around languages, instead we'll do that ourselves
+			$output['BUSINESS_LANGUAGES'] = sprintf("%s", implode(" ", $business_languages));
+			;
 		}
 
 		$output['JOMRES_SITE_SIDEBAR_INSPIRATION']			= jr_gettext('JOMRES_SITE_SIDEBAR_INSPIRATION', 'JOMRES_SITE_SIDEBAR_INSPIRATION', false);
@@ -114,7 +116,7 @@ class j06000show_site_sidebar
 		$output['JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT']		= jr_gettext('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT', 'JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT', false);
 
 		// Property uid of 0 to the contact form will send emails to the site owner's email address as configured in $jrConfig['business_email']
-		$output['CONTACT_FORM']										= $MiniComponents->specificEvent('06000', 'contactowner' , ['property_uid' => 0 , 'noshownow' => true ]);
+		$output['CONTACT_FORM']										= $MiniComponents->specificEvent('06000', 'contactowner', ['property_uid' => 0 , 'noshownow' => true ]);
 
 		$output['JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA']		= jr_gettext('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA', 'JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA', false);
 		$output['JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD']		= jr_gettext('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD', 'JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD', false);
@@ -130,18 +132,17 @@ class j06000show_site_sidebar
 		$social_media_youtube		= [];
 
 		$social_meeja_platforms = get_sm_platforms();
-		foreach ( $social_meeja_platforms as $key => $val ) {
+		foreach ($social_meeja_platforms as $key => $val) {
 			if (!isset($jrConfig[$key])) {
 				if ($key == 'social_media_whatsapp') {
 					$jrConfig[$key] = '359884339947';
 				} else {
 					$jrConfig[$key] = 'jomres';
 				}
-
 			}
 		}
 
-		if ( isset($jrConfig['social_media_facebook']) && trim($jrConfig['social_media_facebook']) != '' ) {
+		if (isset($jrConfig['social_media_facebook']) && trim($jrConfig['social_media_facebook']) != '') {
 			$social_media_facebook		= [ 0 =>
 				[
 					'SOCIAL_MEDIA_FACEBOOK'	=> $jrConfig['social_media_facebook'] ,
@@ -150,17 +151,16 @@ class j06000show_site_sidebar
 				]];
 		}
 
-		if ( isset($jrConfig['social_media_instagram']) && trim($jrConfig['social_media_instagram']) != '' ) {
+		if (isset($jrConfig['social_media_instagram']) && trim($jrConfig['social_media_instagram']) != '') {
 			$social_media_instagram		= [ 0 =>
 			[
 				'SOCIAL_MEDIA_INSTAGRAM'	=> $jrConfig['social_media_instagram'] ,
 				'URL' => $social_meeja_platforms['social_media_instagram']['url'],
 				'NAME' => $social_meeja_platforms['social_media_instagram']['name']
 			]];
-
 		}
 
-		if ( isset($jrConfig['social_media_pintrest']) && trim($jrConfig['social_media_pintrest']) != '' ) {
+		if (isset($jrConfig['social_media_pintrest']) && trim($jrConfig['social_media_pintrest']) != '') {
 			$social_media_pintrest		= [ 0 =>
 			[
 				'SOCIAL_MEDIA_PINTREST'	=> $jrConfig['social_media_pintrest'] ,
@@ -169,7 +169,7 @@ class j06000show_site_sidebar
 			]];
 		}
 
-		if ( isset($jrConfig['social_media_linkedin']) && trim($jrConfig['social_media_linkedin']) != '' ) {
+		if (isset($jrConfig['social_media_linkedin']) && trim($jrConfig['social_media_linkedin']) != '') {
 			$social_media_linkedin		= [ 0 =>
 			[
 				'SOCIAL_MEDIA_LINKEDIN'	=> $jrConfig['social_media_linkedin'] ,
@@ -178,7 +178,7 @@ class j06000show_site_sidebar
 			]];
 		}
 
-		if ( isset($jrConfig['social_media_twitter']) && trim($jrConfig['social_media_twitter']) != '' ) {
+		if (isset($jrConfig['social_media_twitter']) && trim($jrConfig['social_media_twitter']) != '') {
 			$social_media_twitter		= [ 0 =>
 			[
 				'SOCIAL_MEDIA_TWITTER'	=> $jrConfig['social_media_twitter'] ,
@@ -187,7 +187,7 @@ class j06000show_site_sidebar
 			]];
 		}
 
-		if ( isset($jrConfig['social_media_tiktok']) && trim($jrConfig['social_media_tiktok']) != '' ) {
+		if (isset($jrConfig['social_media_tiktok']) && trim($jrConfig['social_media_tiktok']) != '') {
 			$social_media_tiktok		= [ 0 =>
 			[
 				'SOCIAL_MEDIA_TIKTOK'	=> $jrConfig['social_media_tiktok'] ,
@@ -196,7 +196,7 @@ class j06000show_site_sidebar
 			]];
 		}
 
-		if ( isset($jrConfig['social_media_whatsapp']) && trim($jrConfig['social_media_whatsapp']) != '' ) {
+		if (isset($jrConfig['social_media_whatsapp']) && trim($jrConfig['social_media_whatsapp']) != '') {
 			$social_media_whatsapp		= [ 0 =>
 			[
 				'SOCIAL_MEDIA_WHATSAPP'	=> $jrConfig['social_media_whatsapp'] ,
@@ -205,7 +205,7 @@ class j06000show_site_sidebar
 			]];
 		}
 
-		if ( isset($jrConfig['social_media_youtube']) && trim($jrConfig['social_media_youtube']) != '' ) {
+		if (isset($jrConfig['social_media_youtube']) && trim($jrConfig['social_media_youtube']) != '') {
 			$social_media_youtube		= [ 0 =>
 			[
 				'SOCIAL_MEDIA_YOUTUBE'	=> $jrConfig['social_media_youtube'] ,
@@ -334,219 +334,219 @@ class j06000show_site_sidebar
   float(20)
   ["room_types"]=>
   array(1) {
-    [1]=>
-    array(3) {
-      ["abbv"]=>
-      string(19) "Room Double beds xx"
-      ["desc"]=>
-      string(0) ""
-      ["image"]=>
-      string(10) "double.png"
-    }
+	[1]=>
+	array(3) {
+	  ["abbv"]=>
+	  string(19) "Room Double beds xx"
+	  ["desc"]=>
+	  string(0) ""
+	  ["image"]=>
+	  string(10) "double.png"
+	}
   }
   ["rooms"]=>
   array(2) {
-    [1]=>
-    string(1) "1"
-    [2]=>
-    string(1) "2"
+	[1]=>
+	string(1) "1"
+	[2]=>
+	string(1) "2"
   }
   ["rooms_by_type"]=>
   array(1) {
-    [1]=>
-    array(2) {
-      [0]=>
-      string(1) "1"
-      [1]=>
-      string(1) "2"
-    }
+	[1]=>
+	array(2) {
+	  [0]=>
+	  string(1) "1"
+	  [1]=>
+	  string(1) "2"
+	}
   }
   ["rooms_max_people"]=>
   array(1) {
-    [1]=>
-    array(2) {
-      [1]=>
-      string(1) "2"
-      [2]=>
-      string(1) "2"
-    }
+	[1]=>
+	array(2) {
+	  [1]=>
+	  string(1) "2"
+	  [2]=>
+	  string(1) "2"
+	}
   }
   ["this_property_room_classes"]=>
   array(4) {
-    [4]=>
-    array(3) {
-      ["abbv"]=>
-      string(17) "Room 4 Poster bed"
-      ["desc"]=>
-      string(0) ""
-      ["image"]=>
-      string(14) "fourposter.png"
-    }
-    [1]=>
-    array(3) {
-      ["abbv"]=>
-      string(19) "Room Double beds xx"
-      ["desc"]=>
-      string(0) ""
-      ["image"]=>
-      string(10) "double.png"
-    }
-    [3]=>
-    array(3) {
-      ["abbv"]=>
-      string(11) "Room Single"
-      ["desc"]=>
-      string(0) ""
-      ["image"]=>
-      string(10) "single.png"
-    }
-    [2]=>
-    array(3) {
-      ["abbv"]=>
-      string(14) "Room Twin beds"
-      ["desc"]=>
-      string(0) ""
-      ["image"]=>
-      string(8) "twin.png"
-    }
+	[4]=>
+	array(3) {
+	  ["abbv"]=>
+	  string(17) "Room 4 Poster bed"
+	  ["desc"]=>
+	  string(0) ""
+	  ["image"]=>
+	  string(14) "fourposter.png"
+	}
+	[1]=>
+	array(3) {
+	  ["abbv"]=>
+	  string(19) "Room Double beds xx"
+	  ["desc"]=>
+	  string(0) ""
+	  ["image"]=>
+	  string(10) "double.png"
+	}
+	[3]=>
+	array(3) {
+	  ["abbv"]=>
+	  string(11) "Room Single"
+	  ["desc"]=>
+	  string(0) ""
+	  ["image"]=>
+	  string(10) "single.png"
+	}
+	[2]=>
+	array(3) {
+	  ["abbv"]=>
+	  string(14) "Room Twin beds"
+	  ["desc"]=>
+	  string(0) ""
+	  ["image"]=>
+	  string(8) "twin.png"
+	}
   }
   ["features"]=>
   array(9) {
-    [32]=>
-    array(6) {
-      ["abbv"]=>
-      string(12) "24hr service"
-      ["desc"]=>
-      string(17) "24hr Room service"
-      ["image"]=>
-      string(10) "24hour.png"
-      ["cat_id"]=>
-      int(9)
-      ["cat_title"]=>
-      string(8) "Services"
-      ["include_in_filters"]=>
-      int(1)
-    }
-    [34]=>
-    array(6) {
-      ["abbv"]=>
-      string(16) "Bureau de change"
-      ["desc"]=>
-      string(33) "Bureau de change available onsite"
-      ["image"]=>
-      string(13) "fees_euro.png"
-      ["cat_id"]=>
-      int(9)
-      ["cat_title"]=>
-      string(8) "Services"
-      ["include_in_filters"]=>
-      int(1)
-    }
-    [35]=>
-    array(6) {
-      ["abbv"]=>
-      string(16) "Bureau de change"
-      ["desc"]=>
-      string(33) "Bureau de change available onsite"
-      ["image"]=>
-      string(14) "fees_pound.png"
-      ["cat_id"]=>
-      int(9)
-      ["cat_title"]=>
-      string(8) "Services"
-      ["include_in_filters"]=>
-      int(1)
-    }
-    [30]=>
-    array(6) {
-      ["abbv"]=>
-      string(8) "Elevator"
-      ["desc"]=>
-      string(8) "Elevator"
-      ["image"]=>
-      string(12) "elevator.png"
-      ["cat_id"]=>
-      int(0)
-      ["cat_title"]=>
-      string(0) ""
-      ["include_in_filters"]=>
-      int(1)
-    }
-    [40]=>
-    array(6) {
-      ["abbv"]=>
-      string(3) "Gym"
-      ["desc"]=>
-      string(16) "Gymnasium onsite"
-      ["image"]=>
-      string(8) "gym2.png"
-      ["cat_id"]=>
-      int(0)
-      ["cat_title"]=>
-      string(0) ""
-      ["include_in_filters"]=>
-      int(1)
-    }
-    [41]=>
-    array(6) {
-      ["abbv"]=>
-      string(11) "Hairdresser"
-      ["desc"]=>
-      string(18) "Hairdresser onsite"
-      ["image"]=>
-      string(15) "hairdresser.png"
-      ["cat_id"]=>
-      int(0)
-      ["cat_title"]=>
-      string(0) ""
-      ["include_in_filters"]=>
-      int(1)
-    }
-    [4]=>
-    array(6) {
-      ["abbv"]=>
-      string(7) "Minibar"
-      ["desc"]=>
-      string(15) "Minibar in room"
-      ["image"]=>
-      string(20) "air_conditioning.png"
-      ["cat_id"]=>
-      int(0)
-      ["cat_title"]=>
-      string(0) ""
-      ["include_in_filters"]=>
-      int(1)
-    }
-    [77]=>
-    array(6) {
-      ["abbv"]=>
-      string(4) "Wifi"
-      ["desc"]=>
-      string(14) "Wifi available"
-      ["image"]=>
-      string(8) "wifi.png"
-      ["cat_id"]=>
-      int(5)
-      ["cat_title"]=>
-      string(11) "Living Area"
-      ["include_in_filters"]=>
-      int(1)
-    }
-    [47]=>
-    array(6) {
-      ["abbv"]=>
-      string(3) "WWW"
-      ["desc"]=>
-      string(25) "Internet access available"
-      ["image"]=>
-      string(12) "internet.png"
-      ["cat_id"]=>
-      int(2)
-      ["cat_title"]=>
-      string(9) "Amenities"
-      ["include_in_filters"]=>
-      int(1)
-    }
+	[32]=>
+	array(6) {
+	  ["abbv"]=>
+	  string(12) "24hr service"
+	  ["desc"]=>
+	  string(17) "24hr Room service"
+	  ["image"]=>
+	  string(10) "24hour.png"
+	  ["cat_id"]=>
+	  int(9)
+	  ["cat_title"]=>
+	  string(8) "Services"
+	  ["include_in_filters"]=>
+	  int(1)
+	}
+	[34]=>
+	array(6) {
+	  ["abbv"]=>
+	  string(16) "Bureau de change"
+	  ["desc"]=>
+	  string(33) "Bureau de change available onsite"
+	  ["image"]=>
+	  string(13) "fees_euro.png"
+	  ["cat_id"]=>
+	  int(9)
+	  ["cat_title"]=>
+	  string(8) "Services"
+	  ["include_in_filters"]=>
+	  int(1)
+	}
+	[35]=>
+	array(6) {
+	  ["abbv"]=>
+	  string(16) "Bureau de change"
+	  ["desc"]=>
+	  string(33) "Bureau de change available onsite"
+	  ["image"]=>
+	  string(14) "fees_pound.png"
+	  ["cat_id"]=>
+	  int(9)
+	  ["cat_title"]=>
+	  string(8) "Services"
+	  ["include_in_filters"]=>
+	  int(1)
+	}
+	[30]=>
+	array(6) {
+	  ["abbv"]=>
+	  string(8) "Elevator"
+	  ["desc"]=>
+	  string(8) "Elevator"
+	  ["image"]=>
+	  string(12) "elevator.png"
+	  ["cat_id"]=>
+	  int(0)
+	  ["cat_title"]=>
+	  string(0) ""
+	  ["include_in_filters"]=>
+	  int(1)
+	}
+	[40]=>
+	array(6) {
+	  ["abbv"]=>
+	  string(3) "Gym"
+	  ["desc"]=>
+	  string(16) "Gymnasium onsite"
+	  ["image"]=>
+	  string(8) "gym2.png"
+	  ["cat_id"]=>
+	  int(0)
+	  ["cat_title"]=>
+	  string(0) ""
+	  ["include_in_filters"]=>
+	  int(1)
+	}
+	[41]=>
+	array(6) {
+	  ["abbv"]=>
+	  string(11) "Hairdresser"
+	  ["desc"]=>
+	  string(18) "Hairdresser onsite"
+	  ["image"]=>
+	  string(15) "hairdresser.png"
+	  ["cat_id"]=>
+	  int(0)
+	  ["cat_title"]=>
+	  string(0) ""
+	  ["include_in_filters"]=>
+	  int(1)
+	}
+	[4]=>
+	array(6) {
+	  ["abbv"]=>
+	  string(7) "Minibar"
+	  ["desc"]=>
+	  string(15) "Minibar in room"
+	  ["image"]=>
+	  string(20) "air_conditioning.png"
+	  ["cat_id"]=>
+	  int(0)
+	  ["cat_title"]=>
+	  string(0) ""
+	  ["include_in_filters"]=>
+	  int(1)
+	}
+	[77]=>
+	array(6) {
+	  ["abbv"]=>
+	  string(4) "Wifi"
+	  ["desc"]=>
+	  string(14) "Wifi available"
+	  ["image"]=>
+	  string(8) "wifi.png"
+	  ["cat_id"]=>
+	  int(5)
+	  ["cat_title"]=>
+	  string(11) "Living Area"
+	  ["include_in_filters"]=>
+	  int(1)
+	}
+	[47]=>
+	array(6) {
+	  ["abbv"]=>
+	  string(3) "WWW"
+	  ["desc"]=>
+	  string(25) "Internet access available"
+	  ["image"]=>
+	  string(12) "internet.png"
+	  ["cat_id"]=>
+	  int(2)
+	  ["cat_title"]=>
+	  string(9) "Amenities"
+	  ["include_in_filters"]=>
+	  int(1)
+	}
 
  *
  */

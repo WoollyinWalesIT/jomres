@@ -11,32 +11,32 @@
  **/
 
 // ################################################################
-defined( '_JOMRES_INITCHECK' ) or die( '' );
+defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06005oauth
-	{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	function __construct()
-		{
-		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-		if ( $MiniComponents->template_touch )
-			{
+	{
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
 			$this->template_touchable = false;
 			$this->shortcode_data = array (
 				"task" => "oauth",
@@ -44,41 +44,34 @@ class j06005oauth
 				"arguments" => array ()
 				);
 			return;
-			}
+		}
 
 		$jomres_gdpr_optin_consent = new jomres_gdpr_optin_consent();
-		if ( !$jomres_gdpr_optin_consent->user_consents_to_storage()&& !isset($_REQUEST['skip_consent_form'])  ) {
-			echo $consent_form = $MiniComponents->specificEvent('06000', 'show_consent_form' , array ('output_now' => false) );
+		if (!$jomres_gdpr_optin_consent->user_consents_to_storage()&& !isset($_REQUEST['skip_consent_form'])) {
+			echo $consent_form = $MiniComponents->specificEvent('06000', 'show_consent_form', array ('output_now' => false));
 			return;
 		}
 
 		$ePointFilepath=get_showtime('ePointFilepath');
-		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
+		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 
-		if (!$thisJRUser->userIsManager)
-			{
+		if (!$thisJRUser->userIsManager) {
 			$available_scopes = array ( "user");
-			}
-		elseif ($thisJRUser->userIsManager && !$thisJRUser->superPropertyManager)
-			{
+		} elseif ($thisJRUser->userIsManager && !$thisJRUser->superPropertyManager) {
 			$available_scopes = array ( "user" , "manager" );
-			}
-			elseif ($thisJRUser->userIsManager && $thisJRUser->superPropertyManager)
-			{
+		} elseif ($thisJRUser->userIsManager && $thisJRUser->superPropertyManager) {
 			$available_scopes = array ( "user" , "manager" , "super" );
-			}
+		}
 
-		$toolbar = jomres_singleton_abstract::getInstance( 'jomresItemToolbar' );
+		$toolbar = jomres_singleton_abstract::getInstance('jomresItemToolbar');
 		jr_import("jomres_oauth_scopes");
 		$scopes_class = new jomres_oauth_scopes($ePointFilepath);
 		$all_available_scopes = array();
-		foreach ($scopes_class->default_scopes as $category => $category_scopes)
-			{
-			foreach ($category_scopes as $scope)
-				{
-				$all_available_scopes[$scope->scope] = jr_gettext($scope->definition , $scope->definition , false );
-				}
+		foreach ($scopes_class->default_scopes as $category => $category_scopes) {
+			foreach ($category_scopes as $scope) {
+				$all_available_scopes[$scope->scope] = jr_gettext($scope->definition, $scope->definition, false);
 			}
+		}
 		
 		$output = array();
 		$rows=array();
@@ -122,54 +115,49 @@ class j06005oauth
 		$query = "SELECT client_id,scope,identifier FROM #__jomres_oauth_clients WHERE user_id = ".(int)$thisJRUser->id;
 		$result = doSelectSql($query);
 
-		if (count($result)>0)
-			{
-			foreach ($result as $client)
-				{
-				if ($client->client_id != "system" && $client->client_id != $thisJRUser->username)
-					{
+		if (count($result)>0) {
+			foreach ($result as $client) {
+				if ($client->client_id != "system" && $client->client_id != $thisJRUser->username) {
 					$r=array();
 					$r['CLIENT_ID']=$client->client_id;
 					$r['IDENTIFIER']=$client->identifier;
 					$r['SCOPE']= '';
-					if (trim($client->scope) != "" )
-						{
-						$bang= explode  ( "," , $client->scope );
-						foreach ($bang as $scope_definition)
-							{
-							if (isset($all_available_scopes[$scope_definition]))
+					if (trim($client->scope) != "") {
+						$bang= explode(",", $client->scope);
+						foreach ($bang as $scope_definition) {
+							if (isset($all_available_scopes[$scope_definition])) {
 								$r['SCOPE'] .= $all_available_scopes[$scope_definition].", ";
-							
 							}
 						}
+					}
 					$r['SCOPE'] = rtrim(trim($r['SCOPE']), ",");
 					$toolbar->newToolbar();
-					$toolbar->addItem( 'fa fa-pencil-square-o', 'btn btn-info', '', jomresURL( JOMRES_SITEPAGE_URL .'&task=oauth_edit_client&client_id='.$r['CLIENT_ID'] ), jr_gettext( 'COMMON_VIEW', 'COMMON_VIEW', false ) );
+					$toolbar->addItem('fa fa-pencil-square-o', 'btn btn-info', '', jomresURL(JOMRES_SITEPAGE_URL .'&task=oauth_edit_client&client_id='.$r['CLIENT_ID']), jr_gettext('COMMON_VIEW', 'COMMON_VIEW', false));
 					$toolbar->addSecondaryItem('fa fa-trash', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=delete_client&client_id='.$r['CLIENT_ID']), jr_gettext('COMMON_DELETE', 'COMMON_DELETE', false));
 					$r['EDITLINK']=$toolbar->getToolbar();
 					
 					$rows[]=$r;
-					}
 				}
 			}
+		}
 			
 		$toolbar->newToolbar();
-		$toolbar->addItem( 'icon-edit', 'btn btn-info', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=oauth_edit_client&client_id=' ), jr_gettext( 'COMMON_NEW', 'COMMON_NEW', false ) );
+		$toolbar->addItem('icon-edit', 'btn btn-info', '', jomresURL(JOMRES_SITEPAGE_URL . '&task=oauth_edit_client&client_id='), jr_gettext('COMMON_NEW', 'COMMON_NEW', false));
 		$output['JOMRESTOOLBAR']=$toolbar->getToolbar();
 		
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
-		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND  );
-		$tmpl->readTemplatesFromInput( 'list_clients.html' );
-		$tmpl->addRows( 'pageoutput', $pageoutput );
-		$tmpl->addRows( 'rows', $rows );
+		$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+		$tmpl->readTemplatesFromInput('list_clients.html');
+		$tmpl->addRows('pageoutput', $pageoutput);
+		$tmpl->addRows('rows', $rows);
 		$tmpl->displayParsedTemplate();
-		}
+	}
 
 
 
 	function getRetVals()
-		{
+	{
 		return null;
-		}
 	}
+}

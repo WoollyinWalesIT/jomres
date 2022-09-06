@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06001save_guest
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -44,12 +45,12 @@ class j06001save_guest
 		$id = (int)jomresGetParam($_REQUEST, 'id', 0);
 		$defaultProperty = getDefaultProperty();
 		
-		jr_import( 'jrportal_guests' );
+		jr_import('jrportal_guests');
 		$jrportal_guests = new jrportal_guests();
 		$jrportal_guests->id = $id;
 		$jrportal_guests->property_uid = $defaultProperty;
 		
-		if ($id > 0 ) {
+		if ($id > 0) {
 			$jrportal_guests->get_guest(); // if we don't get_guest then the mos_id ( cms_id) will get reset when the guest is saved
 		}
 		
@@ -69,12 +70,13 @@ class j06001save_guest
 		$jrportal_guests->discount = (int) jomresGetParam($_REQUEST, 'discount', 0);
 		$jrportal_guests->blacklisted = (int) jomresGetParam($_REQUEST, 'blacklisted', 0);
 
-		if ( $id > 0 )
+		if ($id > 0) {
 			$jrportal_guests->commit_update_guest();
-		else
+		} else {
 			$jrportal_guests->commit_new_guest();
+		}
 			
-		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=list_guests"), 'Guest saved' );
+		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL."&task=list_guests"), 'Guest saved');
 	}
 
 

@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j10501email_settings
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -45,11 +46,11 @@ class j10501email_settings
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
 
-		if ( !isset($jrConfig[ 'admin_options_level' ]) ) {
+		if (!isset($jrConfig[ 'admin_options_level' ])) {
 			$jrConfig[ 'admin_options_level' ] = 0;
 		}
 
-		if ( $jrConfig[ 'admin_options_level' ] < 1 ) {
+		if ($jrConfig[ 'admin_options_level' ] < 1) {
 			return;
 		}
 
@@ -103,7 +104,7 @@ class j10501email_settings
 		$configurationPanel->setleft(jr_gettext('_JOMRES_TEST_EMAIL_SEND', '_JOMRES_TEST_EMAIL_SEND', false));
 		$configurationPanel->setmiddle('<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">'.jr_gettext('_JOMRES_TEST_EMAIL_SEND', '_JOMRES_TEST_EMAIL_SEND', false).'</button>');
 		$configurationPanel->setright(
-									'<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			'<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 										<div class="modal-dialog">
 											<div class="modal-content">
 											  <div class="modal-header">
@@ -120,7 +121,7 @@ class j10501email_settings
 											</div>
 										</div>
 									</div>'
-									);
+		);
 		$configurationPanel->insertSetting();
 
 		$configurationPanel->endPanel();
@@ -162,7 +163,7 @@ document.addEventListener('DOMContentLoaded', function(){
 }, false);
 //-->
 </script>
-		<?php 
+		<?php
 	}
 
 

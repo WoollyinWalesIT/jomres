@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j10501business_details
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -107,21 +108,21 @@ class j10501business_details
 		$configurationPanel->setright();
 		$configurationPanel->insertSetting();
 
-        if (!isset($jrConfig[ 'business_languages' ])) {
-            $jrConfig[ 'business_languages' ] = '';
-        }
-        $configurationPanel->setleft(jr_gettext('_JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES', '_JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES', false));
-        $configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_business_languages" value="'.jomres_decode($jrConfig[ 'business_languages' ]).'" />');
-        $configurationPanel->setright(jr_gettext('JOMRES_ORGANISATIION_LANGUGES_DESC', 'JOMRES_ORGANISATIION_LANGUGES_DESC', false));
-        $configurationPanel->insertSetting();
+		if (!isset($jrConfig[ 'business_languages' ])) {
+			$jrConfig[ 'business_languages' ] = '';
+		}
+		$configurationPanel->setleft(jr_gettext('_JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES', '_JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES', false));
+		$configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_business_languages" value="'.jomres_decode($jrConfig[ 'business_languages' ]).'" />');
+		$configurationPanel->setright(jr_gettext('JOMRES_ORGANISATIION_LANGUGES_DESC', 'JOMRES_ORGANISATIION_LANGUGES_DESC', false));
+		$configurationPanel->insertSetting();
 
-        if (!isset($jrConfig[ 'business_logo' ])) {
-            $jrConfig[ 'business_logo' ] = '';
-        }
-        $configurationPanel->setleft(jr_gettext('JOMRES_ORGANISATIION_LOGO_URL', 'JOMRES_ORGANISATIION_LOGO_URL', false));
-        $configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_business_logo" value="'.jomres_decode($jrConfig[ 'business_logo' ]).'" />');
-        $configurationPanel->setright();
-        $configurationPanel->insertSetting();
+		if (!isset($jrConfig[ 'business_logo' ])) {
+			$jrConfig[ 'business_logo' ] = '';
+		}
+		$configurationPanel->setleft(jr_gettext('JOMRES_ORGANISATIION_LOGO_URL', 'JOMRES_ORGANISATIION_LOGO_URL', false));
+		$configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_business_logo" value="'.jomres_decode($jrConfig[ 'business_logo' ]).'" />');
+		$configurationPanel->setright();
+		$configurationPanel->insertSetting();
 
 
 		//plugins can add options to this tab
@@ -134,7 +135,7 @@ class j10501business_details
 	{
 		?>
 <script type="text/javascript">
-    document.addEventListener('DOMContentLoaded', function(){
+	document.addEventListener('DOMContentLoaded', function(){
 	jomresJquery("#cfg_business_country").change(function(){
 		var selectedValue = jomresJquery(this).val();
 		jomresJquery.ajax({
@@ -150,10 +151,9 @@ class j10501business_details
 				}
 			});
 		});
-    }, false);
+	}, false);
 </script>
 		<?php
-
 	}
 
 

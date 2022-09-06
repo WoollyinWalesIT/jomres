@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j16000edit_gateway
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -90,7 +91,7 @@ class j16000edit_gateway
 						$results[] = $this->get_snippet_select($key, $setting);
 					break;
 				default:
-				}
+			}
 		}
 		foreach ($results as $r) {
 			$snippets[]['SNIPPET'] = $r;

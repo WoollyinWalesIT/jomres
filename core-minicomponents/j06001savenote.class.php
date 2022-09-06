@@ -18,25 +18,26 @@ defined('_JOMRES_INITCHECK') or die('');
 	** Webhook Details | savenote
 	** Description | Add a webhook note with the property uid, contract uid and note contents.
 	** Data | savenote , contract_uid , property uid, note contents , userid , username
-	** Notes | 
+	** Notes |
 */
 	
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06001savenote
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()

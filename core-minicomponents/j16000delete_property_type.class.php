@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j16000delete_property_type
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -56,14 +57,14 @@ class j16000delete_property_type
 			$message_class = '';
 		} else {
 				$halting_properties = jr_gettext('_JOMRES_COM_PTYPES_NOT_DELETED', '_JOMRES_COM_PTYPES_NOT_DELETED', false);
-				foreach ($jomres_property_types->properties_that_prevent_property_type_from_being_deleted as $property_uid ) {
-					$halting_properties .= $property_uid." ";
-				}
+			foreach ($jomres_property_types->properties_that_prevent_property_type_from_being_deleted as $property_uid) {
+				$halting_properties .= $property_uid." ";
+			}
 			$save_message = $halting_properties;
 			$message_class = 'alert-danger';
 		}
 
-		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=list_property_types'), $save_message , $message_class );
+		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=list_property_types'), $save_message, $message_class);
 	}
 
 

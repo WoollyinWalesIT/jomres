@@ -10,44 +10,42 @@
  **/
 
 // ################################################################
-defined( '_JOMRES_INITCHECK' ) or die( '' );
+defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 class j06002savecustomertypeorder
-	{
+{
 	function __construct()
-		{
+	{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-		if ( $MiniComponents->template_touch )
-			{
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
 			$this->template_touchable = false;
 
 			return;
-			}
+		}
 		
 		$defaultProperty = (int)getDefaultProperty();
 		
-		$order = jomresGetParam( $_POST, 'order', array() );
+		$order = jomresGetParam($_POST, 'order', array());
 		
-		jr_import( 'jrportal_guest_types' );
+		jr_import('jrportal_guest_types');
 		$jrportal_guest_types = new jrportal_guest_types();
 		$jrportal_guest_types->property_uid	= $defaultProperty;
 
-		foreach ( $order as $k => $v )
-			{
+		foreach ($order as $k => $v) {
 			$jrportal_guest_types->id = $k;
 			$jrportal_guest_types->order = $v;
 			
 			$jrportal_guest_types->save_guest_type_order();
-			}
-		
-		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=listcustomertypes" ), jr_gettext( '_JOMRES_MR_AUDIT_REORDER_CUSTOMERTYPE', '_JOMRES_MR_AUDIT_REORDER_CUSTOMERTYPE', false ) );
 		}
+		
+		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL . "&task=listcustomertypes"), jr_gettext('_JOMRES_MR_AUDIT_REORDER_CUSTOMERTYPE', '_JOMRES_MR_AUDIT_REORDER_CUSTOMERTYPE', false));
+	}
 
 	// This must be included in every Event/Mini-component
 	function getRetVals()
-		{
+	{
 		return null;
-		}
 	}
+}

@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06000media_centre_resources_ajax
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -51,8 +52,9 @@ class j06000media_centre_resources_ajax
 		$resource_type = jomresGetParam($_REQUEST, 'resource_type', '');
 		
 		//if resource type is empty, return
-		if ($resource_type == '')
+		if ($resource_type == '') {
 			return;
+		}
 
 		//resource_id_gathering_trigger
 		if (jomres_cmsspecific_areweinadminarea()) {

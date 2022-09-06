@@ -11,36 +11,38 @@
  **/
 
 // ################################################################
-defined( '_JOMRES_INITCHECK' ) or die( '' );
+defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
-class j06002ajax_webhooks_build_auth_form {	
+class j06002ajax_webhooks_build_auth_form
+{
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
-	function __construct($componentArgs) { 
-		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-		if ( $MiniComponents->template_touch ) {
+	function __construct($componentArgs)
+	{
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
 			$this->template_touchable = false;
 			return;
-			}
+		}
 
 		$found_webhook_minicomponents = array();
 		foreach ($MiniComponents->registeredClasses['07300'] as $eventName => $eventDetails) {
-		   $found_webhook_minicomponents[]=$eventName;
+			$found_webhook_minicomponents[]=$eventName;
 		}
 		
 		if (empty($found_webhook_minicomponents)) {
@@ -66,58 +68,60 @@ class j06002ajax_webhooks_build_auth_form {
 		}
 		
 		$this->ePointFilepath=get_showtime('ePointFilepath');
-		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
+		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 		
 		jr_import("webhooks");
 		$webhooks = new webhooks($thisJRUser->id);
 		$all_webhooks = $webhooks->get_all_webhooks();
-		if (isset($all_webhooks[$integration_id]))
+		if (isset($all_webhooks[$integration_id])) {
 			$webhook_setting = $all_webhooks[$integration_id];
+		}
 
 		$MiniComponents->triggerEvent('07300');  // As the authentication methods aren't relevent to front or backend they are numbered in the 07000s
 		$authentication_methods = get_showtime('authentication_methods');
 
-		if (!isset( $authentication_methods[$auth_method]))
+		if (!isset($authentication_methods[$auth_method])) {
 			throw new Exception('Error: Authentication method not recognised.');
+		}
 
 		$snippets = array ();
 		
 		$results = array();
 		foreach ($authentication_methods[$auth_method]['fields'] as $key => $setting) {
-
-			 if (!isset($webhook_setting['settings'][$key])) {
-				 $webhook_setting['settings'][$key] = $setting['default'];
-			} 
+			if (!isset($webhook_setting['settings'][$key])) {
+				$webhook_setting['settings'][$key] = $setting['default'];
+			}
 
 			switch ($setting['format']) {
 				case 'boolean':
-						$results[] = $this->get_snippet_bool($key, $setting , $webhook_setting['settings'][$key] );
+						$results[] = $this->get_snippet_bool($key, $setting, $webhook_setting['settings'][$key]);
 					break;
 				case 'input':
-						$results[] = $this->get_snippet_input($key, $setting , $webhook_setting['settings'][$key] );
+						$results[] = $this->get_snippet_input($key, $setting, $webhook_setting['settings'][$key]);
 					break;
 				case 'password':
-						$results[] = $this->get_snippet_password($key, $setting , $webhook_setting['settings'][$key] );
+						$results[] = $this->get_snippet_password($key, $setting, $webhook_setting['settings'][$key]);
 					break;
 				case 'area':
-						$results[] = $this->get_snippet_area($key, $setting , $webhook_setting['settings'][$key] );
+						$results[] = $this->get_snippet_area($key, $setting, $webhook_setting['settings'][$key]);
 					break;
 				case 'html':
-						$results[] = $this->get_snippet_html($key, $setting , $webhook_setting['settings'][$key] );
+						$results[] = $this->get_snippet_html($key, $setting, $webhook_setting['settings'][$key]);
 					break;
 				case 'select':
-						$results[] = $this->get_snippet_select($key, $setting , $webhook_setting['settings'][$key] );
+						$results[] = $this->get_snippet_select($key, $setting, $webhook_setting['settings'][$key]);
 					break;
 				default:
-				}
+			}
 		}
 		foreach ($results as $r) {
 			$snippets[]['SNIPPET'] = $r;
 		}
 
 		$output['NOTES'] = '';
-		if (isset($authentication_methods[$auth_method]['notes']))
+		if (isset($authentication_methods[$auth_method]['notes'])) {
 			$output['NOTES'] = $authentication_methods[$auth_method]['notes'];
+		}
 		
 		$pageoutput[ ] = $output;
 		$tmpl = new patTemplate();
@@ -159,7 +163,7 @@ class j06002ajax_webhooks_build_auth_form {
 		return $tmpl->getParsedTemplate();
 	}
 
-	public function get_snippet_area($key, $setting , $webhook_setting )
+	public function get_snippet_area($key, $setting, $webhook_setting)
 	{
 		$index = $key;
 
@@ -180,7 +184,7 @@ class j06002ajax_webhooks_build_auth_form {
 		return $tmpl->getParsedTemplate();
 	}
 
-	public function get_snippet_input($key, $setting , $webhook_setting )
+	public function get_snippet_input($key, $setting, $webhook_setting)
 	{
 		$index = $key;
 
@@ -201,7 +205,7 @@ class j06002ajax_webhooks_build_auth_form {
 		return $tmpl->getParsedTemplate();
 	}
 
-	public function get_snippet_password($key, $setting , $webhook_setting )
+	public function get_snippet_password($key, $setting, $webhook_setting)
 	{
 		$index = $key;
 
@@ -222,7 +226,7 @@ class j06002ajax_webhooks_build_auth_form {
 		return $tmpl->getParsedTemplate();
 	}
  
-	public function get_snippet_bool($key, $setting , $webhook_setting )
+	public function get_snippet_bool($key, $setting, $webhook_setting)
 	{
 		$index = $key;
 
@@ -249,7 +253,7 @@ class j06002ajax_webhooks_build_auth_form {
 		return $tmpl->getParsedTemplate();
 	}
 
-	public function get_snippet_select($key, $setting , $webhook_setting )
+	public function get_snippet_select($key, $setting, $webhook_setting)
 	{
 		if (isset($setting['options']) && is_array($setting['options'])) {
 			$index = $key;
@@ -281,7 +285,8 @@ class j06002ajax_webhooks_build_auth_form {
 
 
 
-	function getRetVals() {
+	function getRetVals()
+	{
 		return $this->retVals;
 	}
 }

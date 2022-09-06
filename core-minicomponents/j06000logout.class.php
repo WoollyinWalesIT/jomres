@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06000logout
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -51,7 +52,7 @@ class j06000logout
 			$error = $app->logout();
 			// Check if the log out succeeded.
 			if (!($error instanceof Exception)) {
- 				// Redirect the user.
+				// Redirect the user.
 				$app->redirect(JRoute::_(get_showtime('live_site').'/index.php?option=com_jomres', false));
 			} else {
 				$app->redirect(JRoute::_('index.php?option=com_users&view=login', false));

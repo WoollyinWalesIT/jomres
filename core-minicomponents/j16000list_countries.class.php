@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j16000list_countries
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -58,7 +59,7 @@ class j16000list_countries
 			import_countries();
 		}
 		
-		jomres_cmsspecific_addheaddata("css",JOMRES_NODE_MODULES_RELPATH.'flag-icon-css/css/','flag-icon.min.css');
+		jomres_cmsspecific_addheaddata("css", JOMRES_NODE_MODULES_RELPATH.'flag-icon-css/css/', 'flag-icon.min.css');
 
 		foreach ($jomres_countries->countries as $country) {
 			$r = array();

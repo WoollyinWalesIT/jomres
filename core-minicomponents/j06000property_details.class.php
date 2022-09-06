@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06000property_details
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -50,7 +51,7 @@ class j06000property_details
 		if ($property_uid > 0) {
 			if ($current_property_details->published == 1 || in_array($property_uid, $thisJRUser->authorisedProperties)) {
 				property_header($property_uid);
-				$MiniComponents->triggerEvent('00016',  array('property_uid' => $property_uid));
+				$MiniComponents->triggerEvent('00016', array('property_uid' => $property_uid));
 			}
 		}
 	}

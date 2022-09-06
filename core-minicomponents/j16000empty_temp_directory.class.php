@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j16000empty_temp_directory
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -43,16 +44,13 @@ class j16000empty_temp_directory
 		}
 
 
-	$this->filesystem = jomres_singleton_abstract::getInstance('jomres_filesystem', JOMRESCONFIG_ABSOLUTE_PATH)->getFilesystem();
+		$this->filesystem = jomres_singleton_abstract::getInstance('jomres_filesystem', JOMRESCONFIG_ABSOLUTE_PATH)->getFilesystem();
 	
-	if ( $this->filesystem->deleteDir('local://'.str_replace( JOMRESCONFIG_ABSOLUTE_PATH, '', JOMRES_TEMP_ABSPATH)) ) {
-		if ($this->filesystem->createDir('local://'.str_replace( JOMRESCONFIG_ABSOLUTE_PATH, '', JOMRES_TEMP_ABSPATH))) {
-			echo jr_gettext("EMPTY_TEMP_DIR_DONE","EMPTY_TEMP_DIR_DONE",false);
+		if ($this->filesystem->deleteDir('local://'.str_replace(JOMRESCONFIG_ABSOLUTE_PATH, '', JOMRES_TEMP_ABSPATH))) {
+			if ($this->filesystem->createDir('local://'.str_replace(JOMRESCONFIG_ABSOLUTE_PATH, '', JOMRES_TEMP_ABSPATH))) {
+				echo jr_gettext("EMPTY_TEMP_DIR_DONE", "EMPTY_TEMP_DIR_DONE", false);
+			}
 		}
-	}
-	
-
-
 	}
 
 

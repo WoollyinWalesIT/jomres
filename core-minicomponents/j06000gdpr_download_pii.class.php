@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06000gdpr_download_pii
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -48,7 +49,7 @@ class j06000gdpr_download_pii
 		}
 		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 		
-		if ($thisJRUser->id > 0 ) {
+		if ($thisJRUser->id > 0) {
 			jr_import('jomres_gdpr_personal_information_collections');
 			$jomres_gdpr_personal_information_collections = new jomres_gdpr_personal_information_collections();
 			$jomres_gdpr_personal_information_collections->set_id($thisJRUser->id);

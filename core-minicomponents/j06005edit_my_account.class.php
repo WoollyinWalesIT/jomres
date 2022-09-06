@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06005edit_my_account
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -41,11 +42,11 @@ class j06005edit_my_account
 
 			return;
 		}
-		jomres_cmsspecific_setmetadata('title', jomres_purify_html( jr_gettext('_JOMRES_MY_ACCOUNT_EDIT', '_JOMRES_MY_ACCOUNT_EDIT', false) ));
+		jomres_cmsspecific_setmetadata('title', jomres_purify_html(jr_gettext('_JOMRES_MY_ACCOUNT_EDIT', '_JOMRES_MY_ACCOUNT_EDIT', false)));
 		
 		$jomres_gdpr_optin_consent = new jomres_gdpr_optin_consent();
-		if ( !$jomres_gdpr_optin_consent->user_consents_to_storage()&& !isset($_REQUEST['skip_consent_form']) ) {
-			echo $consent_form = $MiniComponents->specificEvent('06000', 'show_consent_form' , array ('output_now' => false) );
+		if (!$jomres_gdpr_optin_consent->user_consents_to_storage()&& !isset($_REQUEST['skip_consent_form'])) {
+			echo $consent_form = $MiniComponents->specificEvent('06000', 'show_consent_form', array ('output_now' => false));
 			return;
 		}
 
@@ -193,7 +194,7 @@ class j06005edit_my_account
 			
 			$output[ 'MARKDOWN_BUTTON' ] = $MiniComponents->specificEvent('06000', 'show_markdown_modal', array('output_now' => false));
 			
-			$output[ 'ABOUT_ME' ] = '<textarea class="inputbox form-control" cols="70" rows="15" id="about_me" name="about_me">'.jomres_remove_HTML($thisJRUser->about_me , '').'</textarea>';
+			$output[ 'ABOUT_ME' ] = '<textarea class="inputbox form-control" cols="70" rows="15" id="about_me" name="about_me">'.jomres_remove_HTML($thisJRUser->about_me, '').'</textarea>';
 			
 			
 			$pageoutput[ ] = $output;

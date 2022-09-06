@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06000gdpr_my_data
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -62,14 +63,14 @@ class j06000gdpr_my_data
 				$jomres_gdpr_personal_information_collections = new jomres_gdpr_personal_information_collections();
 				$jomres_gdpr_personal_information_collections->set_id($thisJRUser->id);
 				$result = $jomres_gdpr_personal_information_collections->can_redact_this_cms_user();
-			}
+		}
 		
 		$pageoutput = array();
 		
 		if ($result['can_redact'] == true) {
-			$output = array ( 
-				"MESSAGE" =>$result['response']['main'] ,  
-				"NOTE" =>$result['response']['note'] ,  
+			$output = array (
+				"MESSAGE" =>$result['response']['main'] ,
+				"NOTE" =>$result['response']['note'] ,
 				"_JOMRES_GDPR_MY_RTBF_FORGET_ME" => jr_gettext('_JOMRES_GDPR_MY_RTBF_FORGET_ME', '_JOMRES_GDPR_MY_RTBF_FORGET_ME', false) ,
 				"_JOMRES_GDPR_MY_RTBF_FORGET_ME_WARNING" => jr_gettext('_JOMRES_GDPR_MY_RTBF_FORGET_ME_WARNING', '_JOMRES_GDPR_MY_RTBF_FORGET_ME_WARNING', false)
 			);
@@ -80,9 +81,8 @@ class j06000gdpr_my_data
 			$tmpl->addRows('pageoutput', $pageoutput);
 			$tmpl->readTemplatesFromInput('gdpr_my_data_can_redact.html');
 			$message = $tmpl->getParsedTemplate();
-
 		} else {
-			$output = array ( 
+			$output = array (
 				"MESSAGE" =>$result['reason']);
 			$pageoutput[ ] = $output;
 			$tmpl = new patTemplate();

@@ -18,19 +18,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	 * @package Jomres\Core\Minicomponents
 	 *
 	 * Calls the sanity checks class and displays any TODO notifications that the class determines should be shown.
-	 * 
+	 *
 	 */
 
 class j00006sanity_checks
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -42,7 +43,7 @@ class j00006sanity_checks
 
 			return;
 		}
-		if (!defined('JOMRES_NOHTML') || JOMRES_NOHTML == 0 ) {
+		if (!defined('JOMRES_NOHTML') || JOMRES_NOHTML == 0) {
 			$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 
 			

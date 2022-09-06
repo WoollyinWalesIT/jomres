@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j16000review_publish
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -44,7 +45,7 @@ class j16000review_publish
 		$rating_id = (int) $_GET[ 'rating_id' ];
 		$state = (int) $_GET[ 'state' ];
 
-		set_showtime('property_uid', (int)$_REQUEST['property_uid'] );
+		set_showtime('property_uid', (int)$_REQUEST['property_uid']);
 
 		if ($rating_id > 0) {
 			jr_import('jomres_reviews');

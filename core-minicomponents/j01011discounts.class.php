@@ -17,20 +17,21 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-     * If any properties found in a search result set offer discounts, then text is assembled and returned to 01010listproperties
-	 * 
+	 * If any properties found in a search result set offer discounts, then text is assembled and returned to 01010listproperties
+	 *
 	 */
 
 class j01011discounts
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)

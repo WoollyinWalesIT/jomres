@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j16000edit_property_type
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -76,7 +77,7 @@ class j16000edit_property_type
 		foreach ($images as $i) {
 			$i[ 'ISCHECKED' ] = '';
 			
-			if ( $i[ 'IMAGE_FILENAME' ] == $jomres_property_types->property_type['marker'] ) {
+			if ($i[ 'IMAGE_FILENAME' ] == $jomres_property_types->property_type['marker']) {
 				$i[ 'ISCHECKED' ] = 'checked';
 			}
 			

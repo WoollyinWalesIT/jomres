@@ -17,20 +17,21 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-     * Redirects the user to the CMS's login page
-	 * 
+	 * Redirects the user to the CMS's login page
+	 *
 	 */
 
 class j06000copy_button
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -41,11 +42,10 @@ class j06000copy_button
 			return;
 		}
 		
-		if (isset($_REQUEST['copy_button_id']) ) {
-			$button_id = jomresGetParam( $_REQUEST, 'copy_button_id', '' );
+		if (isset($_REQUEST['copy_button_id'])) {
+			$button_id = jomresGetParam($_REQUEST, 'copy_button_id', '');
 			echo simple_template_output(JOMRES_TEMPLATEPATH_FRONTEND, 'copy_button.html', $_REQUEST['copy_button_id']);
 		}
-
 	}
 
 

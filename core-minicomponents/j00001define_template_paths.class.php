@@ -18,19 +18,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	 * @package Jomres\Core\Minicomponents
 	 *
 	 * Obsolete, as template overrides are better understood by users, but left in situ for historic users.
-	 * 
+	 *
 	 */
 
 class j00001define_template_paths
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -68,7 +69,7 @@ class j00001define_template_paths
 		if (!defined('JOMRES_TEMPLATEPATH_ADMINISTRATOR')) {
 			if (!using_bootstrap()) {
 				define('JOMRES_TEMPLATEPATH_ADMINISTRATOR', JOMRESPATH_BASE.JRDS.'assets'.JRDS.'templates'.JRDS.'jquery_ui'.JRDS.'administrator');
-			} elseif (_JOMRES_DETECTED_CMS == 'joomla3' || this_cms_is_wordpress() ) {
+			} elseif (_JOMRES_DETECTED_CMS == 'joomla3' || this_cms_is_wordpress()) {
 				define('JOMRES_TEMPLATEPATH_ADMINISTRATOR', JOMRESPATH_BASE.JRDS.'assets'.JRDS.'templates'.JRDS.'bootstrap'.JRDS.'administrator');
 			} else {
 				define('JOMRES_TEMPLATEPATH_ADMINISTRATOR', JOMRESPATH_BASE.JRDS.'assets'.JRDS.'templates'.JRDS.'bootstrap'.$jrConfig[ 'bootstrap_version' ].JRDS.'administrator');

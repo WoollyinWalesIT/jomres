@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06002save_child_rate
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -51,14 +52,14 @@ class j06002save_child_rate
 		$price				= convert_entered_price_into_safe_float(jomresGetParam($_REQUEST, 'price', ''));
 		$model				= (string) jomresGetParam($_REQUEST, 'model', '');
 
-		if ($model != 'per_night' && $model != 'per_stay' ) {
+		if ($model != 'per_night' && $model != 'per_stay') {
 			throw new Exception('Error: Invalid model sent, possible hack attempt');
 		}
 
 		jr_import('jomres_child_rates');
 		$jomres_child_rates = new jomres_child_rates($defaultProperty);
 
-		$jomres_child_rates->set_child_rate ( $id , $age_from , $age_to , $price , $model);
+		$jomres_child_rates->set_child_rate($id, $age_from, $age_to, $price, $model);
 		$jomres_child_rates->save_child_rates();
 
 		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=child_policies'), '');

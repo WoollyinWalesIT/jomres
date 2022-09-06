@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06001show_network_stats_for_contract
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -54,7 +55,7 @@ class j06001show_network_stats_for_contract
 			$property_uid = getDefaultProperty();
 		}
 
-		if ($contract_uid == 0 ) {
+		if ($contract_uid == 0) {
 			return;
 		}
 		
@@ -63,7 +64,7 @@ class j06001show_network_stats_for_contract
 		
 		if (!array_key_exists($contract_uid, $current_contract_details->contract)) { // The contract uid is wrong. Was it for a different property?
 			return;
-			}
+		}
 		
 		if (!in_array($property_uid, $thisJRUser->authorisedProperties)) {
 			return;

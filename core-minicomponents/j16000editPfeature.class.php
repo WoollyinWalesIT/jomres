@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j16000editPfeature
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -91,7 +92,7 @@ class j16000editPfeature
 		foreach ($images as $i) {
 			$i[ 'ISCHECKED' ] = '';
 			
-			if ( $i[ 'IMAGE_FILENAME' ] == $image ) {
+			if ($i[ 'IMAGE_FILENAME' ] == $image) {
 				$i[ 'ISCHECKED' ] = 'checked';
 			}
 			
@@ -120,7 +121,7 @@ class j16000editPfeature
 		$yesno[ ] = jomresHTML::makeOption('0', jr_gettext('_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false));
 		$yesno[ ] = jomresHTML::makeOption('1', jr_gettext('_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES', false));
 
-		$output[ 'FILTERS' ] = jomresHTML::selectList($yesno, 'include_in_filters', 'class="inputbox" size="1"', 'value', 'text', $jomres_property_features->include_in_filters );
+		$output[ 'FILTERS' ] = jomresHTML::selectList($yesno, 'include_in_filters', 'class="inputbox" size="1"', 'value', 'text', $jomres_property_features->include_in_filters);
 		
 		$jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
 		$jrtb = $jrtbar->startTable();

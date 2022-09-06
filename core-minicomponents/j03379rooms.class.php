@@ -18,19 +18,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	 * @package Jomres\Core\Minicomponents
 	 *
 	 * Used by the media centre to configure media uploading options for the room images
-     *
+	 *
 	 */
 
 class j03379rooms
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -64,16 +65,16 @@ class j03379rooms
 			
 		if ($mrConfig[ 'singleRoomProperty' ] != '1' && $mrConfig['is_real_estate_listing'] != '1') {
 			$this->ret_vals = array(
-									'resource_type' => 'rooms', 
-									'resource_id_required' => true, 
+									'resource_type' => 'rooms',
+									'resource_id_required' => true,
 									'name' => jr_gettext('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOM', '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOM', false),
 									'upload_root_abs_path' => JOMRES_IMAGELOCATION_ABSPATH.$property_uid.JRDS,
 									'upload_root_rel_path' => JOMRES_IMAGELOCATION_RELPATH.$property_uid.'/',
-									'notes' => '', 
-									'preview_link'=>$preview_link 
+									'notes' => '',
+									'preview_link'=>$preview_link
 									);
 
-			if (!AJAXCALL && !defined('MEDIACENTRE_ROOMJS') && !defined('JOMRES_API_CMS_ROOT') ) {
+			if (!AJAXCALL && !defined('MEDIACENTRE_ROOMJS') && !defined('JOMRES_API_CMS_ROOT')) {
 				define('MEDIACENTRE_ROOMJS', 1);
 				echo '
 				<script>
@@ -89,10 +90,10 @@ class j03379rooms
 	}
 
 
-    /**
-     * @return array
-     */
-    public function getRetVals()
+	/**
+	 * @return array
+	 */
+	public function getRetVals()
 	{
 		return $this->ret_vals;
 	}

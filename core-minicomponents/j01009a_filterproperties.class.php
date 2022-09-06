@@ -21,15 +21,16 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class j01009a_filterproperties
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -87,8 +88,9 @@ class j01009a_filterproperties
 					}
 				}
 
-				if( !function_exists('cmp') ) {
-					function cmp($a, $b) {
+				if (!function_exists('cmp')) {
+					function cmp($a, $b)
+					{
 						return strcmp($a->property_region, $b->property_region);
 					}
 				}

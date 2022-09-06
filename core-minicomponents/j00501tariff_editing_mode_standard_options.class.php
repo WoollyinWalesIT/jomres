@@ -18,20 +18,21 @@ defined('_JOMRES_INITCHECK') or die('');
 	 * @package Jomres\Core\Minicomponents
 	 *
 	 * Property Configuration page tabs. Offers the dropdown that allows the manager to change the property's tariff editing mode.
-	 * 
+	 *
 	 */
 
 
 class j00501tariff_editing_mode_standard_options
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -53,12 +54,11 @@ class j00501tariff_editing_mode_standard_options
 		$jrConfig = $siteConfig->get();
 		$mrConfig = getPropertySpecificSettings();
 
-		if ($mrConfig[ 'is_real_estate_listing' ] != 0 ) {
+		if ($mrConfig[ 'is_real_estate_listing' ] != 0) {
 			return;
 		}
 
 		if ($mrConfig['tariffmode'] == 5) {
-
 			if (!isset($mrConfig[ 'extra_guest_price' ])) {
 				$mrConfig[ 'extra_guest_price' ] = '';
 			}
@@ -66,17 +66,16 @@ class j00501tariff_editing_mode_standard_options
 			$configurationPanel->startPanel(jr_gettext('JOMRES_COM_A_TARIFFMODE_STANDARD', 'JOMRES_COM_A_TARIFFMODE_STANDARD', false));
 
 			$configurationPanel->setleft(jr_gettext('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE', 'JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE', false));
-			$configurationPanel->setmiddle( '<input type="text" class="inputbox form-control"  size="5" name="cfg_extra_guest_price" value="'.$mrConfig[ 'extra_guest_price' ].'" />' );
+			$configurationPanel->setmiddle('<input type="text" class="inputbox form-control"  size="5" name="cfg_extra_guest_price" value="'.$mrConfig[ 'extra_guest_price' ].'" />');
 			$configurationPanel->setright(jr_gettext('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE_DESC', 'JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE_DESC', false));
 			$configurationPanel->insertSetting();
 
 			$configurationPanel->endPanel();
 
 			jr_import('jomres_calculate_accommodates_value');
-			$jomres_calculate_accommodates_value = new jomres_calculate_accommodates_value( get_showtime('property_uid') );
+			$jomres_calculate_accommodates_value = new jomres_calculate_accommodates_value(get_showtime('property_uid'));
 			$jomres_calculate_accommodates_value->calculate_accommodates_value();
 		}
-
 	}
 
 /**

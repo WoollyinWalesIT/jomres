@@ -17,20 +17,21 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-     * Ajax script. Set the guest budget found in the list properties page
-	 * 
+	 * Ajax script. Set the guest budget found in the list properties page
+	 *
 	 */
 
 class j06000ajax_locations
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -62,14 +63,14 @@ class j06000ajax_locations
 					"form_element" => "region" ,
 					"element_name" => $region,
 				);
-				if (trim($property_town) != '' ) {
+				if (trim($property_town) != '') {
 					$result[$property_town] = array (
 						"form_element" => "town" ,
 						"element_name" => $property_town,
 					);
 				}
 			}
-			ksort($result, SORT_NATURAL | SORT_FLAG_CASE );
+			ksort($result, SORT_NATURAL | SORT_FLAG_CASE);
 		}
 		echo json_encode($result);
 	}

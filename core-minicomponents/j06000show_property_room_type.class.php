@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06000show_property_room_type
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -71,7 +72,7 @@ class j06000show_property_room_type
 		
 		if (isset($componentArgs[ 'output_now' ])) {
 			$output_now = $componentArgs[ 'output_now' ];
-		} else if (isset($_REQUEST[ 'output_now' ])) {
+		} elseif (isset($_REQUEST[ 'output_now' ])) {
 			$output_now = (bool) jomresGetParam($_REQUEST, 'output_now', 1);
 		} else {
 			$output_now = true;
@@ -90,12 +91,11 @@ class j06000show_property_room_type
 			$jomres_markdown = new jomres_markdown();
 
 
-			$output[ 'ROOM_CLASS_ABBV' ] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int) $room_classes_uid , $jomres_room_types->property_specific_room_type[$property_uid][$room_classes_uid]['room_class_abbv']);
-			$output[ 'ROOM_CLASS_FULL_DESC' ] = $jomres_markdown->get_markdown( jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.(int) $room_classes_uid , $jomres_room_types->property_specific_room_type[$property_uid][$room_classes_uid]['room_class_full_desc'] ) );
+			$output[ 'ROOM_CLASS_ABBV' ] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int) $room_classes_uid, $jomres_room_types->property_specific_room_type[$property_uid][$room_classes_uid]['room_class_abbv']);
+			$output[ 'ROOM_CLASS_FULL_DESC' ] = $jomres_markdown->get_markdown(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.(int) $room_classes_uid, $jomres_room_types->property_specific_room_type[$property_uid][$room_classes_uid]['room_class_full_desc']));
 		} else {
-			
-			$output[ 'ROOM_CLASS_ABBV' ] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int) $room_classes_uid , $jomres_room_types->room_types[$room_classes_uid]['room_class_abbv'] );
-			$output[ 'ROOM_CLASS_FULL_DESC' ] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.(int) $room_classes_uid , $jomres_room_types->room_types[$room_classes_uid]['room_class_full_desc']);
+			$output[ 'ROOM_CLASS_ABBV' ] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int) $room_classes_uid, $jomres_room_types->room_types[$room_classes_uid]['room_class_abbv']);
+			$output[ 'ROOM_CLASS_FULL_DESC' ] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.(int) $room_classes_uid, $jomres_room_types->room_types[$room_classes_uid]['room_class_full_desc']);
 		}
 
 		$output['ROOMS'] = $MiniComponents->specificEvent('06000', 'show_property_rooms', array('output_now' => false, 'property_uid' => $property_uid, 'room_classes_uid' => $room_classes_uid ));
@@ -129,8 +129,6 @@ class j06000show_property_room_type
 		} else {
 			$this->retVals = $template;
 		}
-		
-		
 	}
 
 	public function getRetVals()

@@ -18,19 +18,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	 * @package Jomres\Core\Minicomponents
 	 *
 	 * Sets up the $tmpBookingHandler with data required to amend an existing booking, then displays the original booking information at the top of the booking form.
-	 * 
+	 *
 	 */
 
 class j00101amendBooking
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -81,7 +82,6 @@ class j00101amendBooking
 				$original_rooms = array();
 				
 				foreach ($contract as $c) {
-					
 					$tmpBookingHandler->updateBookingField('amend_deposit_required', $c->deposit_required);
 					$tmpBookingHandler->updateBookingField('amend_deposit_paid', $c->deposit_paid);
 					$tmpBookingHandler->updateBookingField('amend_property_uid', $c->property_uid);
@@ -174,16 +174,16 @@ class j00101amendBooking
 						$original_room_ids = array();
 						$original_rooms_bang = array();
 						if (isset($c->rooms_tariffs)) {
-							$original_rooms_bang = explode(",",$c->rooms_tariffs);
-							foreach ( $original_rooms_bang as $room_tariff_combo ) {
-								$combo_bang = explode("^" , $room_tariff_combo );
+							$original_rooms_bang = explode(",", $c->rooms_tariffs);
+							foreach ($original_rooms_bang as $room_tariff_combo) {
+								$combo_bang = explode("^", $room_tariff_combo);
 								$original_room_ids[] = $combo_bang[0];
 							}
 							
 							$basic_room_details = jomres_singleton_abstract::getInstance('basic_room_details');
 							$basic_room_details->get_all_rooms($c->property_uid);
 							
-							foreach ($original_room_ids as $room_id ) {
+							foreach ($original_room_ids as $room_id) {
 								$or = array ();
 								$or['ORIGINAL_ROOM'] = $basic_room_details->rooms[$room_id]['room_number'].' '.$basic_room_details->rooms[$room_id]['room_name'];
 								

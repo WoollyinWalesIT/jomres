@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j07020showplugins
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -54,7 +55,6 @@ class j07020showplugins
 		$remote_plugins = get_remote_plugin_data();
 
 		if (!empty($remote_plugins)) {
-			
 			if (file_exists(JOMRES_TEMP_ABSPATH.'installed_plugins_data.php')) {
 				$last_modified = filemtime(JOMRES_TEMP_ABSPATH.'installed_plugins_data.php');
 				$seconds_timediff = time() - $last_modified;

@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06000show_property_reviews_summary
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -99,7 +100,7 @@ class j06000show_property_reviews_summary
 			$rating_text,
 			'success'
 		);
-		if ($output['AVERAGE_RATING'] > 5 && $output['AVERAGE_RATING'] < 7  ) {
+		if ($output['AVERAGE_RATING'] > 5 && $output['AVERAGE_RATING'] < 7) {
 			$output['RATING_TEXT_COLOUR'] = 'text-warning';
 			$output['RATING_SCORE_TEXT'] = jomres_badge(
 				$rating_text,

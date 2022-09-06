@@ -17,20 +17,21 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-     * Sends the booking cancellation email intended for the guest
-	 * 
+	 * Sends the booking cancellation email intended for the guest
+	 *
 	 */
 
 class j02163send_email_guest_cancelbooking
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -61,12 +62,14 @@ class j02163send_email_guest_cancelbooking
 		$booking_email_details->parse_email($email_type, $contract_uid);
 
 		if ($email_when_done) {
-			if (!jomresMailer($booking_email_details->data[$contract_uid]['PROPERTY_EMAIL'],
-								$booking_email_details->data[$contract_uid]['PROPERTY_NAME'],
-								$booking_email_details->data[$contract_uid]['EMAIL'],
-								$booking_email_details->parsed_email['subject'],
-								$booking_email_details->parsed_email['text'],
-								$mode = 1)
+			if (!jomresMailer(
+				$booking_email_details->data[$contract_uid]['PROPERTY_EMAIL'],
+				$booking_email_details->data[$contract_uid]['PROPERTY_NAME'],
+				$booking_email_details->data[$contract_uid]['EMAIL'],
+				$booking_email_details->parsed_email['subject'],
+				$booking_email_details->parsed_email['text'],
+				$mode = 1
+			)
 				) {
 				error_logging('Failure in sending new booking email to guest. Target address: '.$booking_email_details->data[$contract_uid]['EMAIL'].' Subject '.$booking_email_details->parsed_email['subject'].$booking_email_details->parsed_email['text']);
 			}

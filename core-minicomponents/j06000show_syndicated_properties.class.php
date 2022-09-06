@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06000show_syndicated_properties
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -69,9 +70,9 @@ class j06000show_syndicated_properties
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
 
-        if (!isset($jrConfig[ 'development_production' ])) {
-            return;
-        }
+		if (!isset($jrConfig[ 'development_production' ])) {
+			return;
+		}
 
 		if ($jrConfig[ 'development_production' ] != 'production') {
 			return;
@@ -94,16 +95,15 @@ class j06000show_syndicated_properties
 			$multi_room_property = (int)$componentArgs[ 'mrp' ];
 			if ($multi_room_property > 1) {
 				$multi_room_property = 1;
-				}
 			}
-		elseif (isset($_REQUEST['mrp'])) {
+		} elseif (isset($_REQUEST['mrp'])) {
 			$multi_room_property = (int)jomresGetParam($_REQUEST, 'mrp', 1);
 			if ($multi_room_property > 1) {
 				$multi_room_property = 1;
-				}
+			}
 		} else {
-			$mrConfig = getPropertySpecificSettings( get_showtime('property_uid') );
-			if ( (int)$mrConfig['singleRoomProperty'] == "1") {
+			$mrConfig = getPropertySpecificSettings(get_showtime('property_uid'));
+			if ((int)$mrConfig['singleRoomProperty'] == "1") {
 				$multi_room_property = "1";
 			} else {
 				$multi_room_property = "0";
@@ -112,7 +112,7 @@ class j06000show_syndicated_properties
 		
 		if (isset($componentArgs[ 'output_now' ])) {
 			$output_now = $componentArgs[ 'output_now' ];
-		} else if (isset($_REQUEST[ 'output_now' ])) {
+		} elseif (isset($_REQUEST[ 'output_now' ])) {
 			$output_now = (bool) jomresGetParam($_REQUEST, 'output_now', 1);
 		} else {
 			$output_now = true;
@@ -122,19 +122,18 @@ class j06000show_syndicated_properties
 		$jomres_syndicate_properties = new jomres_syndicate_properties();
 		
 
-		if ( get_showtime('property_uid') > 0 ) {
+		if (get_showtime('property_uid') > 0) {
 			$basic_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
 			$basic_property_details->gather_data(get_showtime('property_uid'));
 			$jomres_syndicate_properties->base_property_id = get_showtime('property_uid');
-			$jomres_syndicate_properties->base_lat_long = array ( "lat" => $basic_property_details->lat , "long" => $basic_property_details->long ); 
+			$jomres_syndicate_properties->base_lat_long = array ( "lat" => $basic_property_details->lat , "long" => $basic_property_details->long );
 		}
 		
-		$random_properties = $jomres_syndicate_properties->get_random_properties( $limit , $multi_room_property );
+		$random_properties = $jomres_syndicate_properties->get_random_properties($limit, $multi_room_property);
 		
-		if ( !empty($random_properties)) {
+		if (!empty($random_properties)) {
 			$property_templates = array();
-			foreach ($random_properties as $property ) {
-
+			foreach ($random_properties as $property) {
 				$output = array();
 				$pageoutput = array();
 				$template = array();
@@ -183,18 +182,16 @@ class j06000show_syndicated_properties
 			
 			$jomres_syndicate_properties->report_properties_display($random_properties);
 		}
-
-		
 	}
 
-	private function check_thumbnail_exists( $url = '' )
+	private function check_thumbnail_exists($url = '')
 	{
-		if ($url == '' ) {
+		if ($url == '') {
 			return false;
 		}
 
 		$handle = curl_init($url);
-		curl_setopt($handle,  CURLOPT_RETURNTRANSFER, TRUE);
+		curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($handle, CURLOPT_NOBODY, true);
 
 		/* Get the thumbnail */
@@ -202,7 +199,7 @@ class j06000show_syndicated_properties
 
 		/* Check for 404 (file not found). */
 		$httpCode = curl_getinfo($handle, CURLINFO_HTTP_CODE);
-		if($httpCode == 404) {
+		if ($httpCode == 404) {
 			return false;
 		}
 

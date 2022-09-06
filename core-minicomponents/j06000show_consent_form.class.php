@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06000show_consent_form
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -47,7 +48,7 @@ class j06000show_consent_form
 		}
 		
 		$output_now = true;
-		if (isset($componentArgs[ 'output_now' ]) ) {
+		if (isset($componentArgs[ 'output_now' ])) {
 			$output_now = (bool) $componentArgs[ 'output_now' ];
 		}
 
@@ -66,22 +67,20 @@ class j06000show_consent_form
 		$output[ '_JOMRES_GDPR_CONSENT_FORM_BOOKINGS_3' ] = jr_gettext('_JOMRES_GDPR_CONSENT_FORM_BOOKINGS_3', '_JOMRES_GDPR_CONSENT_FORM_BOOKINGS_3', false);
 		
 		if (isset($_REQUEST['return_url'])) {
-			if (isset($_REQUEST['url_already_forwarded']))	 {
+			if (isset($_REQUEST['url_already_forwarded'])) {
 				$output['RETURN_URL'] = $_REQUEST['return_url'];
-			}
-			else {
+			} else {
 				$output['RETURN_URL'] = jr_base64url_encode($_REQUEST['return_url']);
 			}
-				
 		} else {
 			$output['RETURN_URL'] = jr_base64url_encode(getCurrentUrl());
 		}
 		
 		$output['CONSENTED'] = jr_gettext('_JOMRES_GDPR_CONSENT_OPTED_IN', '_JOMRES_GDPR_CONSENT_OPTED_IN', false);
 		
-		if(!isset($_COOKIE['jomres_gdpr_consent_form_processed']) ) {
+		if (!isset($_COOKIE['jomres_gdpr_consent_form_processed'])) {
 			$output['CONSENTED'] = jr_gettext('_JOMRES_GDPR_CONSENT_NOT_SET', '_JOMRES_GDPR_CONSENT_NOT_SET', false);
-		} elseif( (int)$_COOKIE['jomres_gdpr_consent_form_processed'] == 0  ) {
+		} elseif ((int)$_COOKIE['jomres_gdpr_consent_form_processed'] == 0) {
 			$output['CONSENTED'] = jr_gettext('_JOMRES_GDPR_CONSENT_OPTED_OUT', '_JOMRES_GDPR_CONSENT_OPTED_OUT', false);
 		}
 		

@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06000show_property_room
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -96,7 +97,6 @@ class j06000show_property_room
 		$pageoutput = array();
 
 		if (!empty($basic_room_details->room)) {
-			
 			jr_import('jomres_markdown');
 			$jomres_markdown = new jomres_markdown();
 		
@@ -136,8 +136,7 @@ class j06000show_property_room
 			foreach ($roomFeatureUidsArray as $key => $f) {
 				$fr = [];
 				if ($f != '') {
-					if ( jomres_bootstrap_version() == '5' ) {
-
+					if (jomres_bootstrap_version() == '5') {
 							$p = [ 0 => [ 'IMAGE' => $basic_room_details->all_room_features[$f]['image'] , 'FEATURE_DESCRIPTION' => $basic_room_details->all_room_features[$f]['feature_description'] ] ];
 
 							$tmpl = new patTemplate();
@@ -149,7 +148,6 @@ class j06000show_property_room
 					} else {
 						$output[ 'ROOM_FEATURES' ] .= $basic_room_details->all_room_features[ $f ]['tooltip'];
 					}
-
 				}
 			}
 
@@ -157,12 +155,12 @@ class j06000show_property_room
 
 			$surcharge = array();
 			$sc = $basic_room_details->room['surcharge'];
-			if ((float) $sc > 0 ) {
+			if ((float) $sc > 0) {
 				$surcharge = array ( "0" => array ( "SURCHARGE" => output_price($sc) , "SURCHARGE_TEXT" => jr_gettext('_JOMRES_SURCHARGE_TITLE', '_JOMRES_SURCHARGE_TITLE', false) ) );
 			}
 
 
-			$room_price_output = get_room_price_by_room_type_id( $basic_room_details->room['room_classes_uid'] , $property_uid );
+			$room_price_output = get_room_price_by_room_type_id($basic_room_details->room['room_classes_uid'], $property_uid);
 			$output[ 'PRICE_PRE_TEXT' ]  = $room_price_output[ 'PRICE_PRE_TEXT' ];
 			$output[ 'PRICE_PRICE' ]	 = $room_price_output[ 'PRICE_PRICE' ];
 			$output[ 'PRICE_POST_TEXT' ] = $room_price_output[ 'PRICE_POST_TEXT' ];

@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06000show_property_room_types
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -83,7 +84,7 @@ class j06000show_property_room_types
 
 		$jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
 		$jomres_media_centre_images->get_images($property_uid);
-		$jomres_media_centre_images->get_site_images('rmtypes'); // These are administrator created room type images. If the property manager doesn't upload images for a room type (which is quite possible if they aren't given the option) then we'll "fallback" to admin created images instead. 
+		$jomres_media_centre_images->get_site_images('rmtypes'); // These are administrator created room type images. If the property manager doesn't upload images for a room type (which is quite possible if they aren't given the option) then we'll "fallback" to admin created images instead.
 		
 		$resource_type = 'room_types';
 		
@@ -97,7 +98,7 @@ class j06000show_property_room_types
 				if (isset($jomres_media_centre_images->images [$resource_type] [$resource_id])) {
 					$images = $jomres_media_centre_images->images [$resource_type] [$resource_id];
 				} else {
-					if ( isset($basic_property_details->this_property_room_classes[$key]) && file_exists(JOMRES_IMAGELOCATION_ABSPATH.'rmtypes/'.$basic_property_details->this_property_room_classes[$key]['image'])) {
+					if (isset($basic_property_details->this_property_room_classes[$key]) && file_exists(JOMRES_IMAGELOCATION_ABSPATH.'rmtypes/'.$basic_property_details->this_property_room_classes[$key]['image'])) {
 						$images = array( array ( "large" => JOMRES_IMAGELOCATION_RELPATH.'rmtypes/'.$basic_property_details->this_property_room_classes[$key]['image']) );
 					} else {
 						$images = array ( array(
@@ -125,7 +126,7 @@ class j06000show_property_room_types
 							'room_type',
 							array(),
 							$url
-							);
+						);
 
 
 					$room_type[ '_JOMRES_TARIFFSFROM' ] = jr_gettext('_JOMRES_TARIFFSFROM', '_JOMRES_TARIFFSFROM', false);
@@ -134,7 +135,8 @@ class j06000show_property_room_types
 					$room_type[ 'ROOM_TYPE_COUNTER' ] = count($basic_property_details->rooms_by_type[$key]);
 					$room_type[ 'ROOM_TYPE_PAGE_URL' ] = jomresURL(JOMRES_SITEPAGE_URL.'&task=show_property_room_type&property_uid='.$property_uid.'&room_classes_uid='.$key);
 
-					$room_type[ 'ROOM_TYPE_PRICE' ] = jr_gettext('_JOMRES_PRICE_ON_APPLICATION', '_JOMRES_PRICE_ON_APPLICATION', false);;
+					$room_type[ 'ROOM_TYPE_PRICE' ] = jr_gettext('_JOMRES_PRICE_ON_APPLICATION', '_JOMRES_PRICE_ON_APPLICATION', false);
+					;
 					
 					if (isset($this->roomTypePriceRanges[$key])) {
 						$room_type[ 'ROOM_TYPE_PRICE' ] = $this->roomTypePriceRanges[$key];
@@ -165,7 +167,7 @@ class j06000show_property_room_types
 		}
 	}
 
-	private function getTariffRanges($property_uid) 
+	private function getTariffRanges($property_uid)
 	{
 		$this->roomTypePriceRanges = array();
 		
@@ -190,17 +192,16 @@ class j06000show_property_room_types
 			$this->allPropertyTariffs[ $t->roomclass_uid ][] = $roomrate;
 		}
 
-		$to = jr_gettext( '_JOMCOMP_WISEPRICE_TO', '_JOMCOMP_WISEPRICE_TO' );
+		$to = jr_gettext('_JOMCOMP_WISEPRICE_TO', '_JOMCOMP_WISEPRICE_TO');
 
-		foreach ($this->allPropertyTariffs as $key=>$val) {
-			
+		foreach ($this->allPropertyTariffs as $key => $val) {
 			$val = array_unique($val);
 			
-			if (count($val) == 1 ) { // There's only one price for this tariff/room type combo
+			if (count($val) == 1) { // There's only one price for this tariff/room type combo
 				$this->roomTypePriceRanges[$key] = output_price($val[0]);
 			} else {
-				$highest = output_price(max($val)); 
-				$lowest = output_price(min($val)); 
+				$highest = output_price(max($val));
+				$lowest = output_price(min($val));
 				$this->roomTypePriceRanges[$key] = $lowest." ".$to." ".$highest;
 			}
 		}
@@ -210,7 +211,6 @@ class j06000show_property_room_types
 	{
 		$mrConfig = getPropertySpecificSettings($this->property_uid);
 		if ($mrConfig[ 'prices_inclusive' ] == 1) {
-			
 			$jrportal_taxrate = jomres_singleton_abstract::getInstance('jrportal_taxrate');
 			$cfgcode = $mrConfig[ 'accommodation_tax_code' ];
 			$accommodation_tax_rate = (float) $jrportal_taxrate->taxrates[ $cfgcode ][ 'rate' ];

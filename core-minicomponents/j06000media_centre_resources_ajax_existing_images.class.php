@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06000media_centre_resources_ajax_existing_images
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -51,8 +52,9 @@ class j06000media_centre_resources_ajax_existing_images
 		$resource_id = jomresGetParam($_REQUEST, 'resource_id', '0');
 
 		//if resource type is empty, return
-		if ($resource_type == '')
+		if ($resource_type == '') {
 			return;
+		}
 
 		//get_existing_images_trigger
 		if (jomres_cmsspecific_areweinadminarea()) {
@@ -70,12 +72,11 @@ class j06000media_centre_resources_ajax_existing_images
 		$image_result = '';
 		if (!empty($images)) {
 			foreach ($images as $image) {
-
-				if ( isset( $image['small'] ) ) {
+				if (isset($image['small'])) {
 					$image_name = basename($image['small']);
 
 					$image_small_path = str_replace(JOMRES_IMAGELOCATION_RELPATH, '', $image['small']);
-					$image_small_path = str_replace('/', JRDS , $image_small_path);
+					$image_small_path = str_replace('/', JRDS, $image_small_path);
 
 					$output = array();
 					$pageoutput = array();
@@ -107,7 +108,7 @@ class j06000media_centre_resources_ajax_existing_images
 
 					$tmpl->readTemplatesFromInput('media_centre_image_list.html');
 					$tmpl->addRows('pageoutput', $pageoutput);
-					$image_result .= $tmpl->getParsedTemplate();					
+					$image_result .= $tmpl->getParsedTemplate();
 				}
 			}
 

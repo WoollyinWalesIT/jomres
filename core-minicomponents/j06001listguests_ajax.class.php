@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06001listguests_ajax
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -111,8 +112,8 @@ class j06001listguests_ajax
 		$query = 'SET SQL_BIG_SELECTS=1';
 		doInsertSql($query);
 
-        $query = SET_GLOBAL_STRING.
-            "
+		$query = SET_GLOBAL_STRING.
+			"
             SELECT SQL_CALC_FOUND_ROWS 
 						a.guests_uid, 
 						a.mos_userid, 
@@ -173,11 +174,11 @@ class j06001listguests_ajax
 		$filters = array();
 		$search = jomresGetParam($_GET, 'jr_search', array());
 		if (isset($search['value']) && $search['value'] != '') {
-			  for ($i = 0; $i < $n; ++$i) {
+			for ($i = 0; $i < $n; ++$i) {
 				$value = filter_var($search['value'], FILTER_SANITIZE_SPECIAL_CHARS);
 				$filters[] = $value;
 			}
-		$filters = array_unique($filters);
+			$filters = array_unique($filters);
 		}
 
 		foreach ($jomresGuestsList as $g) {
@@ -222,27 +223,24 @@ class j06001listguests_ajax
 			
 			$found = true;
 			
- 			if (!empty($filters)) {
-				foreach ($filters as $filter ) {
-					if (
-						stristr($firstname , $filter )		== false &&
-						stristr($surname , $filter)			== false &&
-						stristr($house , $filter)			== false &&
-						stristr($street , $filter)			== false &&
-						stristr($town , $filter )			== false &&
-						stristr($county , $filter)			== false &&
-						stristr($postcode , $filter)		== false &&
-						stristr($country , $filter)			== false &&
-						stristr($tel_landline , $filter)	== false &&
-						stristr($tel_mobile , $filter)		== false &&
-						stristr($email , $filter)			== false &&
-						stristr($vat_number , $filter)		== false
+			if (!empty($filters)) {
+				foreach ($filters as $filter) {
+					if (stristr($firstname, $filter)		== false &&
+						stristr($surname, $filter)			== false &&
+						stristr($house, $filter)			== false &&
+						stristr($street, $filter)			== false &&
+						stristr($town, $filter)			== false &&
+						stristr($county, $filter)			== false &&
+						stristr($postcode, $filter)		== false &&
+						stristr($country, $filter)			== false &&
+						stristr($tel_landline, $filter)	== false &&
+						stristr($tel_mobile, $filter)		== false &&
+						stristr($email, $filter)			== false &&
+						stristr($vat_number, $filter)		== false
 					) {
 						$found = false;
 					}
-					
 				}
-
 			}
 			
 			if ($found) {
@@ -264,8 +262,6 @@ class j06001listguests_ajax
 
 				$output['data'][] = $r;
 			}
-			
-
 		}
 
 		/*

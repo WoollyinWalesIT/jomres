@@ -18,21 +18,22 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 
 class j16000view_log_file
-{	
+{
+
 	
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 
@@ -99,7 +100,7 @@ class j16000view_log_file
 							default:
 								$r['ROWCLASS'] = '';
 								break;
-							}
+						}
 
 						$r['DATETIME'] = $content_array[0];
 						$r['CHANNEL'] = $content_array[1];

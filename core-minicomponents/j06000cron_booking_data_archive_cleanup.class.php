@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06000cron_booking_data_archive_cleanup
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -43,7 +44,6 @@ class j06000cron_booking_data_archive_cleanup
 
 			$query = "DELETE FROM #__jomres_booking_data_archive WHERE `date` <= DATE_SUB(CURRENT_TIMESTAMP(), INTERVAL 59 DAY)";
 			doInsertSql($query, '');
-
 	}
 
 

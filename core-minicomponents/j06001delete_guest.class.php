@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06001delete_guest
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -44,7 +45,7 @@ class j06001delete_guest
 		$id = jomresGetParam($_REQUEST, 'id', 0);
 		$defaultProperty = getDefaultProperty();
 		
-		jr_import( 'jrportal_guests' );
+		jr_import('jrportal_guests');
 		$jrportal_guests = new jrportal_guests();
 		$jrportal_guests->id = $id;
 		$jrportal_guests->property_uid = $defaultProperty;

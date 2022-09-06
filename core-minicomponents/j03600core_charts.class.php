@@ -17,21 +17,22 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-     * Builds the default bookings chart
-	 * 
+	 * Builds the default bookings chart
+	 *
 	 */
 
 //This is a month view chart of all paid bookings, excludes cancelled/pending/unpaid ones)
 class j03600core_charts
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)

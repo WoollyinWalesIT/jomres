@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j16000addplugin
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -290,8 +291,7 @@ class j16000addplugin
 					
 					$response = $client->request('GET', $query_string, ['sink' => $file_handle]);
 					$content_type = $response->getHeader('Content-Type');
-				}
-				catch (Exception $e) {
+				} catch (Exception $e) {
 					$jomres_user_feedback = jomres_singleton_abstract::getInstance('jomres_user_feedback');
 					$jomres_user_feedback->construct_message(array('message'=>"Could not download plugin $pluginName", 'css_class'=>'alert-danger alert-error'));
 				}

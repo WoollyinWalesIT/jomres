@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06000cron_version_check
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -43,7 +44,6 @@ class j06000cron_version_check
 
 			//check the current version and send an email to any user marked as an admin if there is a new version available
 			$jomres_version_check = jomres_singleton_abstract::getInstance('jomres_version_check');
-
 	}
 
 

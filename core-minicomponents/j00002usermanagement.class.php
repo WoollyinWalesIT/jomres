@@ -17,20 +17,21 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * Loads the thisJRUser object, which is used throughout the system to make decisions based on who the current user is and their status within the system. 
-	 * 
+	 * Loads the thisJRUser object, which is used throughout the system to make decisions based on who the current user is and their status within the system.
+	 *
 	 */
 
 class j00002usermanagement
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs = null)

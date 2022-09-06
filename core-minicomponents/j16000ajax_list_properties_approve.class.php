@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j16000ajax_list_properties_approve
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -59,7 +60,7 @@ class j16000ajax_list_properties_approve
 		$jomresConfig_mailfrom = get_showtime('mailfrom');
 		$jomresConfig_fromname = get_showtime('fromname');
 
-		$link = get_property_details_url($property_uid,'nosef');
+		$link = get_property_details_url($property_uid, 'nosef');
 
 		switch ($approved) {
 			case 1:
@@ -74,7 +75,7 @@ class j16000ajax_list_properties_approve
 				break;
 			default:
 				break;
-			}
+		}
 
 		echo 'Approval status changed to '.$approved;
 		exit;

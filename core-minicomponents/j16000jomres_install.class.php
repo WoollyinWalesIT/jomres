@@ -17,7 +17,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j16000jomres_install
@@ -26,11 +26,11 @@ class j16000jomres_install
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -49,8 +49,7 @@ class j16000jomres_install
 			$jomres_install = new jomres_install('update', false, true);
 			
 			echo '<p class="alert alert-success">Congratulations! Update completed successfully.</p>';
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			$messages = $jomres_install->getMessages();
 
 			foreach ($messages as $m) {

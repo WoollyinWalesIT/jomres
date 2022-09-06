@@ -17,22 +17,23 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-     * Triggers the dobooking class that is used as the booking engine, supplied as a minicomponent to allow easy overriding
-	 * 
+	 * Triggers the dobooking class that is used as the booking engine, supplied as a minicomponent to allow easy overriding
+	 *
 	 */
 
 jr_import('dobooking');
 
 class j05000bookingobject
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -218,7 +219,7 @@ if (!class_exists('booking')) {
 
 			});';
 
-			if (using_bootstrap() && (jomres_bootstrap_version() == '3' || jomres_bootstrap_version() == '4') ) {
+			if (using_bootstrap() && (jomres_bootstrap_version() == '3' || jomres_bootstrap_version() == '4')) {
 				$output .= '
 				jomresJquery(function() {jomresJquery("#dp_trigger_'.$uniqueID.'").on("click", function() {jomresJquery("#'.$uniqueID.'").datepicker("show");})});
 				';

@@ -18,20 +18,21 @@ defined('_JOMRES_INITCHECK') or die('');
 	 * @package Jomres\Core\Minicomponents
 	 *
 	 * Property Configuration page tabs. Offers the dropdown that allows the manager to change the property's tariff editing mode.
-	 * 
+	 *
 	 */
 
 
 class j00501tariff_editing_mode
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -59,7 +60,7 @@ class j00501tariff_editing_mode
 			return;
 		}
 
-		if ( $jrConfig[ 'compatability_property_configuration' ] != 1 ) {
+		if ($jrConfig[ 'compatability_property_configuration' ] != 1) {
 			$configurationPanel->startPanel(jr_gettext('JOMRES_COM_A_TARIFFMODE', 'JOMRES_COM_A_TARIFFMODE', false));
 
 			$configurationPanel->setleft(jr_gettext('JOMRES_COM_A_TARIFFMODE', 'JOMRES_COM_A_TARIFFMODE', false));

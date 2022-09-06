@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06002delete_room_type
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -43,7 +44,7 @@ class j06002delete_room_type
 
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
-		if ( $jrConfig[ 'frontend_room_type_editing_allowed' ] == 0 ) {
+		if ($jrConfig[ 'frontend_room_type_editing_allowed' ] == 0) {
 			return;
 		}
 		
@@ -51,7 +52,7 @@ class j06002delete_room_type
 		
 		$room_classes_uid = intval(jomresGetParam($_REQUEST, 'room_classes_uid', 0));
 		
-		if ($room_classes_uid < 1 ) {
+		if ($room_classes_uid < 1) {
 			throw new Exception('Room class ID not passed');
 		}
 		
@@ -62,7 +63,7 @@ class j06002delete_room_type
 		
 		
 		$jomres_room_types = jomres_singleton_abstract::getInstance('jomres_room_types');
-		$success = $jomres_room_types->delete_room_type( array($room_classes_uid) );
+		$success = $jomres_room_types->delete_room_type(array($room_classes_uid));
 
 		if ($success) {
 			$save_message = jr_gettext('_JOMRES_COM_MR_ROOMCLASS_DELETED', '_JOMRES_COM_MR_ROOMCLASS_DELETED', false);

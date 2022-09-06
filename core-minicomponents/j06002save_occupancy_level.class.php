@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06002save_occupancy_level
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -54,8 +55,8 @@ class j06002save_occupancy_level
 		$jomres_occupancy_levels = new jomres_occupancy_levels($property_uid);
 
 
-		$jomres_occupancy_levels->set_occupancy_level ( $room_type_id , $max_adults , $max_children ,  $max_adults + $max_children );
-		$jomres_occupancy_levels->save_occupancy_levels( $room_type_id );
+		$jomres_occupancy_levels->set_occupancy_level($room_type_id, $max_adults, $max_children, $max_adults + $max_children);
+		$jomres_occupancy_levels->save_occupancy_levels($room_type_id);
 
 		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=list_occupancy_levels'), '');
 	}

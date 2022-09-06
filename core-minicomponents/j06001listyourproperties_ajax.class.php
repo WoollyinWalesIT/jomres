@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06001listyourproperties_ajax
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -136,8 +137,8 @@ class j06001listyourproperties_ajax
 		$query = 'SET SQL_BIG_SELECTS=1';
 		doInsertSql($query);
 
-        $query = SET_GLOBAL_STRING.
-            "
+		$query = SET_GLOBAL_STRING.
+			"
 		    SELECT SQL_CALC_FOUND_ROWS 
 						a.propertys_uid, 
 						a.property_street, 
@@ -257,7 +258,7 @@ class j06001listyourproperties_ajax
 			//end properties toolbar
 
 			$r[] = $p->propertys_uid;
-			$property_name = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_NAME_'.$p->propertys_uid , $p->property_name , false);
+			$property_name = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_NAME_'.$p->propertys_uid, $p->property_name, false);
 			if ($p->propertys_uid == $defaultProperty) {
 				$r[] = '<span class="label label-blue">'.jomres_decode($property_name).'</span>';
 			} else {

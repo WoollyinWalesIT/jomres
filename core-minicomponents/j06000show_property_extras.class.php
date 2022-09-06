@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06000show_property_extras
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -134,7 +135,7 @@ class j06000show_property_extras
 						case '100': // Commission
 							$model_text = jr_gettext('_JOMRES_COMMISSION', '_JOMRES_COMMISSION');
 							break;
-						}
+					}
 					$tax_output = '';
 					if ($rate > 0) {
 						$tax_output = ' ('.$rate.'%)';

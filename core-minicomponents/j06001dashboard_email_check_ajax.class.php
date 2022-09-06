@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06001dashboard_email_check_ajax
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -46,9 +47,9 @@ class j06001dashboard_email_check_ajax
 		
 		$guest_email_already_in_system = true;
 		
-		$guest_uids = search_property_guests_by_string($email_address_to_test , 0 , 0 , 0 );
+		$guest_uids = search_property_guests_by_string($email_address_to_test, 0, 0, 0);
 
-		if (empty($guest_uids['matches']))  {
+		if (empty($guest_uids['matches'])) {
 			$guest_email_already_in_system = false;
 		}
 		//set ajax response

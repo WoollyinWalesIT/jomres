@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j09995menu
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -47,7 +48,7 @@ class j09995menu
 		}
 
 		$menuoff = get_showtime('menuoff');
-		if ($menuoff === true ) {
+		if ($menuoff === true) {
 			return;
 		}
 
@@ -76,7 +77,7 @@ class j09995menu
 		$font_awesome_childpolicies = 'fa-users';
 		$font_awesome_language = 'fa-language';
 
-		if (jomres_bootstrap_version() == '5' ) {
+		if (jomres_bootstrap_version() == '5') {
 			$font_awesome_envelope = 'fa-envelope';
 			$font_awesome_picture = 'fa-images';
 			$font_awesome_dashboard = 'fa-tachometer-alt';
@@ -125,7 +126,7 @@ class j09995menu
 			$jomres_menu->add_item(10, jr_gettext('_JRPORTAL_INVOICES_SHOWINVOICES', '_JRPORTAL_INVOICES_SHOWINVOICES', false), 'list_invoices', 'fa-list');
 		}
 		
-		if ($thisJRUser->accesslevel >= 1 && get_showtime('numberOfPropertiesInSystem') > 1 ) {
+		if ($thisJRUser->accesslevel >= 1 && get_showtime('numberOfPropertiesInSystem') > 1) {
 			$jomres_menu->add_item(10, jr_gettext('_JOMCOMP_MYUSER_VIEWFAVOURITES', '_JOMCOMP_MYUSER_VIEWFAVOURITES', false), 'muviewfavourites', 'fa-heart');
 		}
 		
@@ -138,23 +139,25 @@ class j09995menu
 			$jomres_menu->add_item(10, jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGOUT', '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGOUT', false), 'logout', $font_awesome_logout);
 		}
 		
-		if (!isset($jrConfig[ 'api_core_show' ]))
+		if (!isset($jrConfig[ 'api_core_show' ])) {
 			$jrConfig[ 'api_core_show' ] =1;
+		}
 		
 		if ($thisJRUser->accesslevel >= 1 && $jrConfig[ 'api_core_show' ] == '1') {
 			$jomres_menu->add_item(10, jr_gettext('_OAUTH_TITLE', '_OAUTH_TITLE', false), 'oauth', 'fa-key');
 			$jomres_menu->add_item(10, jr_gettext('API_DOCUMENTATION_TITLE', 'API_DOCUMENTATION_TITLE', false), 'api_documentation', 'fa-book');
 		}
 		
-		if (!isset($jrConfig[ 'webhooks_core_show' ]))
+		if (!isset($jrConfig[ 'webhooks_core_show' ])) {
 			$jrConfig[ 'webhooks_core_show' ] =1;
+		}
 		
 		if ($thisJRUser->accesslevel >= 50 && $jrConfig[ 'api_core_show' ] == '1') {
 			$jomres_menu->add_item(10, jr_gettext('WEBHOOKS_CORE', 'WEBHOOKS_CORE', false), 'webhooks_core', 'fa-key');
 			$jomres_menu->add_item(10, jr_gettext('WEBHOOKS_DOCUMENTATION_TITLE', 'WEBHOOKS_DOCUMENTATION_TITLE', false), 'webhooks_core_documentation', 'fa-book');
 		}
 		
-		if ($jrConfig[ 'enable_gdpr_compliant_fucntionality' ] == "1" ) {
+		if ($jrConfig[ 'enable_gdpr_compliant_fucntionality' ] == "1") {
 			$jomres_menu->add_item(10, jr_gettext('_JOMRES_GDPR_APP_MENU_ITEM', '_JOMRES_GDPR_APP_MENU_ITEM', false), 'show_consent_form', 'fa-lock');
 			$jomres_menu->add_item(10, jr_gettext('_JOMRES_GDPR_MY_DATA', '_JOMRES_GDPR_MY_DATA', false), 'gdpr_my_data', 'fa-lock');
 		}
@@ -165,13 +168,13 @@ class j09995menu
 		}
 
 		$property_limit_reached = false;
-		if (function_exists("get_number_of_allowed_properties") ) {
-			if (get_showtime('numberOfPropertiesInSystem') >= get_number_of_allowed_properties() ) {
+		if (function_exists("get_number_of_allowed_properties")) {
+			if (get_showtime('numberOfPropertiesInSystem') >= get_number_of_allowed_properties()) {
 				$property_limit_reached = true;
 			}
 		}
 		
-		if ($thisJRUser->accesslevel > 50 && $jrConfig['is_single_property_installation'] == '0' && ($jrConfig[ 'selfRegistrationAllowed' ] == '1' || $thisJRUser->accesslevel >= 90) && !$property_limit_reached ) {
+		if ($thisJRUser->accesslevel > 50 && $jrConfig['is_single_property_installation'] == '0' && ($jrConfig[ 'selfRegistrationAllowed' ] == '1' || $thisJRUser->accesslevel >= 90) && !$property_limit_reached) {
 			$jomres_menu->add_item(20, jr_gettext('_JOMRES_COM_MR_NEWPROPERTY', '_JOMRES_COM_MR_NEWPROPERTY', false), 'new_property', 'fa-plus');
 		}
 
@@ -181,7 +184,7 @@ class j09995menu
 			}
 		}
 		
-		if ($thisJRUser->accesslevel > 50 && get_showtime('numberOfPropertiesInSystem') > 1 && isset($thisJRUser->authorisedProperties[1]) ) {
+		if ($thisJRUser->accesslevel > 50 && get_showtime('numberOfPropertiesInSystem') > 1 && isset($thisJRUser->authorisedProperties[1])) {
 			$jomres_menu->add_item(20, jr_gettext('_JOMRES_COM_MR_PROPERTY_DELETE', '_JOMRES_COM_MR_PROPERTY_DELETE', false), 'delete_property', $font_awesome_delete);
 		}
 		
@@ -235,27 +238,23 @@ class j09995menu
 			}
 
 			if ($mrConfig[ 'is_real_estate_listing' ] != '1') {
-
-				if ($mrConfig[ 'tariffmode' ] != 5 ) {
+				if ($mrConfig[ 'tariffmode' ] != 5) {
 					$jomres_menu->add_item(80, jr_gettext('_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES', '_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES', false), 'listcustomertypes', 'fa-users');
 				} else {
 					$jomres_menu->add_item(80, jr_gettext('JOMRES_OCCUPANCY_LEVELS_TITLE', 'JOMRES_OCCUPANCY_LEVELS_TITLE', false), 'list_occupancy_levels', 'fa-users');
 					$jomres_menu->add_item(80, jr_gettext('JOMRES_POLICIES_CHILDREN', 'JOMRES_POLICIES_CHILDREN', false), 'child_policies', $font_awesome_childpolicies);
-					}
+				}
 
 
 				$jomres_menu->add_item(80, jr_gettext('_JOMRES_EMAIL_TEMPLATES_TITLE', '_JOMRES_EMAIL_TEMPLATES_TITLE', false), 'list_emails', $font_awesome_envelope);
 			}
-			if ( 
-				$mrConfig[ 'is_real_estate_listing' ] != '1' && 
-				!get_showtime('is_jintour_property') && 
-				$mrConfig[ 'singleRoomProperty' ] != '1' && 
+			if ($mrConfig[ 'is_real_estate_listing' ] != '1' &&
+				!get_showtime('is_jintour_property') &&
+				$mrConfig[ 'singleRoomProperty' ] != '1' &&
 				$jrConfig[ 'frontend_room_type_editing_allowed' ] == "1"
 				) {
 				$jomres_menu->add_item(80, jr_gettext('_JOMRES_PROPERTY_ROOM_TYPES_EDIT', '_JOMRES_PROPERTY_ROOM_TYPES_EDIT', false), 'list_room_types', 'fa-pencil-square-o');
 			}
-			
-
 		}
 
 		//help section menus

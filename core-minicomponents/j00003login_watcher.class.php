@@ -18,19 +18,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	 * @package Jomres\Core\Minicomponents
 	 *
 	 * Allows users to login through Jomres and uses the CMS's login functionality to log them in. TFA not currently supported.
-	 * 
+	 *
 	 */
 
 class j00003login_watcher
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -43,13 +44,12 @@ class j00003login_watcher
 			return;
 		}
 		
-		if (isset($_POST['jomres_username']) && ($_POST['jomres_password'] ) ) {
-			
+		if (isset($_POST['jomres_username']) && ($_POST['jomres_password'] )) {
 			$username = jomresGetParam($_POST, 'jomres_username', '');
 			$password = jomresGetParam($_POST, 'jomres_password', '');
 			$return_url = $_POST['return_url'];
-			$response = jomres_login_user( $username , $password );
-			if ($response->success == true ) {
+			$response = jomres_login_user($username, $password);
+			if ($response->success == true) {
 				jomresRedirect($return_url);
 			}
 		}

@@ -21,15 +21,16 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class j03020insertbooking
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public $insertSuccessful = true;
@@ -108,7 +109,6 @@ class j03020insertbooking
 			}
 
 			if ($amend_contract && $amend_contractuid != 0 && $thisJRUser->userIsManager) {
-
 				//Booking amendment code
 				system_log('j03020insertbooking :: Amending contract. '.$amend_contractuid.' for '.get_showtime('jomressession'));
 
@@ -279,31 +279,30 @@ class j03020insertbooking
 				add_webhook_notification($webhook_notification);
 				// End Amendment insertion
 			} else {
-			    // New booking insertion
+				// New booking insertion
 				$new_user_id = 0;
 
 				if ($jrConfig[ 'useNewusers' ] == '1') {
 					$all_cms_users = jomres_cmsspecific_getCMSUsers();
 					
 					$cms_user_id = 0;
-					foreach ($all_cms_users as $id=>$user) {  // It's possible that it's a manager making a booking, therefore we will search the existing cms users to find their cms_user_id. If found, we'll set the new_booking_user_id variable to this id
-						if ($user['email'] == $guestDetails->email ) {
+					foreach ($all_cms_users as $id => $user) {  // It's possible that it's a manager making a booking, therefore we will search the existing cms users to find their cms_user_id. If found, we'll set the new_booking_user_id variable to this id
+						if ($user['email'] == $guestDetails->email) {
 							$cms_user_id = $id;
-							set_showtime("new_booking_user_id" , $cms_user_id );
+							set_showtime("new_booking_user_id", $cms_user_id);
 						}
 					}
 
-					if ($cms_user_id == 0 ) {
+					if ($cms_user_id == 0) {
 						$cms_user_id = jomres_cmsspecific_createNewUser($guestDetails->email);
 					}
 
-					if ($cms_user_id > 0 ) {
+					if ($cms_user_id > 0) {
 						$new_booking_user_id = get_showtime("new_booking_user_id");
 						if (!$thisJRUser->is_partner) {
-                            if (is_null($new_booking_user_id) && $thisJRUser->userIsRegistered == false ) { // There's been some confusion (because I'm dim) as to who the cms_user_id refers to, it can either be a manager/receptionist, or the guest themselves so this is designed to definitively decide to make the $new_booking_user_id the newly created $cms_user_id
-                                $new_booking_user_id = $cms_user_id;
-
-                            }
+							if (is_null($new_booking_user_id) && $thisJRUser->userIsRegistered == false) { // There's been some confusion (because I'm dim) as to who the cms_user_id refers to, it can either be a manager/receptionist, or the guest themselves so this is designed to definitively decide to make the $new_booking_user_id the newly created $cms_user_id
+								$new_booking_user_id = $cms_user_id;
+							}
 
 							$already_exists =false;
 							if ($thisJRUser->userIsRegistered) {
@@ -311,8 +310,8 @@ class j03020insertbooking
 								$cms_user_id = $thisJRUser->id;
 							} else {
 								$query = "SELECT cms_user_id FROM #__jomres_guest_profile WHERE cms_user_id = ".(int)$new_booking_user_id;
-								$cms_user_id = doSelectSql($query , 1 );
-								if ( $cms_user_id> 0 ) {
+								$cms_user_id = doSelectSql($query, 1);
+								if ($cms_user_id> 0) {
 									$already_exists =true;
 								}
 							}
@@ -365,20 +364,19 @@ class j03020insertbooking
 									`cms_user_id` = ".(int)$new_booking_user_id;
 								doInsertSql($query, '');
 							}
-                            $thisJRUser->init_user( $new_booking_user_id); // Reinitialise the JR User object
+							$thisJRUser->init_user($new_booking_user_id); // Reinitialise the JR User object
 						}
-						set_showtime("new_booking_user_id" , $new_booking_user_id );
+						set_showtime("new_booking_user_id", $new_booking_user_id);
 					} else {
 						throw new Exception('Did not receive a valid user id after attempting to create/validate a new user in the insert booking script');
 					}
-					
 				}
 
 				$guests_uid = insertGuestDeets(get_showtime('jomressession'));
 
 				$cartnumber = get_booking_number();
 
-				if ( trim($cartnumber) == '') {
+				if (trim($cartnumber) == '') {
 					$cartnumber = jomresGetParam($_REQUEST, 'booking_number', '');
 				}
 
@@ -419,8 +417,9 @@ class j03020insertbooking
 					$sendHotelEmail = $tempBookingData->sendHotelEmail;
 					
 					$channel_manager_booking = 0;
-					if (isset($tempBookingData->channel_manager_booking))
+					if (isset($tempBookingData->channel_manager_booking)) {
 						$channel_manager_booking = $tempBookingData->channel_manager_booking;
+					}
 
 					if ($thisJRUser->userIsRegistered) { // The user is already registered
 						$user = jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id($thisJRUser->id);
@@ -476,7 +475,7 @@ class j03020insertbooking
 									$result = doSelectSql($query);
 									if (!empty($result)) {
 										system_log('j03020insertbooking :: Failed to insert booking looks like the room has been double booked ');
-										if (get_showtime("task") == 'processpayment' ) { // We don't want to trigger errors if this script is being called by other sources such as channel manager import scripts.
+										if (get_showtime("task") == 'processpayment') { // We don't want to trigger errors if this script is being called by other sources such as channel manager import scripts.
 											trigger_error('Failed to insert booking looks like the room has been double booked ', E_USER_ERROR);
 										}
 										$this->insertSuccessful = false;
@@ -616,11 +615,11 @@ class j03020insertbooking
 						$newtext = strip_tags($tmpBookingHandler->getBookingFieldVal('wisepricediscount'));
 					}
 
-                    if ( trim($newtext) != '' ) {
-                        $dt = date('Y-m-d H:i:s');
-                        $query = "INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('".(int) $contract_uid."','".RemoveXSS($newtext)."','$dt','".(int) $property_uid."')";
-                        doInsertSql($query, '');
-                    }
+					if (trim($newtext) != '') {
+						$dt = date('Y-m-d H:i:s');
+						$query = "INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('".(int) $contract_uid."','".RemoveXSS($newtext)."','$dt','".(int) $property_uid."')";
+						doInsertSql($query, '');
+					}
 
 
 					if (empty($contract_uid)) {
@@ -687,7 +686,7 @@ class j03020insertbooking
 				// Update the contract with the number of bookings and number of no shows for this guest's email address. Doing it at this point means that this booking is not taken into account.
 				jr_import('jomres_syndicate_guests');
 				$jomres_syndicate_guests = new jomres_syndicate_guests();
-				$response = $jomres_syndicate_guests->get_booking_stats_for_guest( $tmpBookingHandler->tmpguest['email'] );
+				$response = $jomres_syndicate_guests->get_booking_stats_for_guest($tmpBookingHandler->tmpguest['email']);
 					
 				$query = "UPDATE #__jomres_contracts SET network_stats  = '".json_encode($response)."' WHERE contract_uid = '".$contract_uid."' ";
 				doInsertSql($query, '');
@@ -759,26 +758,25 @@ class j03020insertbooking
 					$webhook_notification->data->contract_uid		   = $contract_uid;
 					add_webhook_notification($webhook_notification);
 				}
-				
 			}
 
 			if (!$secret_key_payment && $amend_contractuid == 0) {
 				$bookingNotes = $tempBookingData->booking_notes;
-                if (!empty($bookingNotes)) {
+				if (!empty($bookingNotes)) {
 					$dt = date('Y-m-d H:i:s');
-                    foreach ($bookingNotes as $k => $v) {
-                        $note = ' '.strip_tags($k).' '.strip_tags($v).'<br/>';
-                        if ( trim(strip_tags($v)) != '' ) {
-                            $query = "INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('".(int) $contract_uid."','".$note."','$dt','".(int) $property_uid."')";
-                            doInsertSql($query, '');
-                        }
-                    }
-                }
+					foreach ($bookingNotes as $k => $v) {
+						$note = ' '.strip_tags($k).' '.strip_tags($v).'<br/>';
+						if (trim(strip_tags($v)) != '') {
+							$query = "INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('".(int) $contract_uid."','".$note."','$dt','".(int) $property_uid."')";
+							doInsertSql($query, '');
+						}
+					}
+				}
 			}
 
 			if (isset($tmpBookingHandler->tmpbooking[ 'gateway' ])) {
-				$query = "INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('" . (int) $contract_uid . "','" . jr_gettext('_JOMRES_PAYMENT_METHOD_USED', '_JOMRES_PAYMENT_METHOD_USED', false)." ". $tmpBookingHandler->tmpbooking[ 'gateway' ] . "','".date( "Y-m-d H-i-s" )."','" . (int) $property_uid . "')";
-				doInsertSql( $query, "" );
+				$query = "INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('" . (int) $contract_uid . "','" . jr_gettext('_JOMRES_PAYMENT_METHOD_USED', '_JOMRES_PAYMENT_METHOD_USED', false)." ". $tmpBookingHandler->tmpbooking[ 'gateway' ] . "','".date("Y-m-d H-i-s")."','" . (int) $property_uid . "')";
+				doInsertSql($query, "");
 			}
 			
 

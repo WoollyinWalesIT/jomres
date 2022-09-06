@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06005add_review
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -50,8 +51,8 @@ class j06005add_review
 		}
 		
 		$jomres_gdpr_optin_consent = new jomres_gdpr_optin_consent();
-		if ( !$jomres_gdpr_optin_consent->user_consents_to_storage()&& !isset($_REQUEST['skip_consent_form']) ) {
-			echo $consent_form = $MiniComponents->specificEvent('06000', 'show_consent_form' , array ('output_now' => false) );
+		if (!$jomres_gdpr_optin_consent->user_consents_to_storage()&& !isset($_REQUEST['skip_consent_form'])) {
+			echo $consent_form = $MiniComponents->specificEvent('06000', 'show_consent_form', array ('output_now' => false));
 			return;
 		}
  
@@ -103,14 +104,14 @@ class j06005add_review
 				$output[ '_JOMRES_COM_A_CANCEL' ] = jr_gettext('_JOMRES_COM_A_CANCEL', '_JOMRES_COM_A_CANCEL', false);
 				
 				$output[ 'CONTRACT_UID' ] = 0;
-				if ( isset($_GET[ 'contract_uid' ] )) {
+				if (isset($_GET[ 'contract_uid' ])) {
 					$output[ 'CONTRACT_UID' ] = (int)$_GET[ 'contract_uid' ];
 				}
 				
 				$yesno = array();
-				$yesno[] = jomresHTML::makeOption( '0',jr_gettext("_JOMRES_COM_MR_NO",'_JOMRES_COM_MR_NO',false)  );
-				$yesno[] = jomresHTML::makeOption( '1',jr_gettext("_JOMRES_COM_MR_YES",'_JOMRES_COM_MR_YES',false)  );
-				$output['ANONYMISE_YESNO']		= jomresHTML::selectList( $yesno, 'anonymise','class="inputbox" size="1"', 'value', 'text', 0);
+				$yesno[] = jomresHTML::makeOption('0', jr_gettext("_JOMRES_COM_MR_NO", '_JOMRES_COM_MR_NO', false));
+				$yesno[] = jomresHTML::makeOption('1', jr_gettext("_JOMRES_COM_MR_YES", '_JOMRES_COM_MR_YES', false));
+				$output['ANONYMISE_YESNO']		= jomresHTML::selectList($yesno, 'anonymise', 'class="inputbox" size="1"', 'value', 'text', 0);
 		
 				$output[ '_JOMRES_REVIEWS_ANONYMISE' ] = jr_gettext('_JOMRES_REVIEWS_ANONYMISE', '_JOMRES_REVIEWS_ANONYMISE', false, false);
 				$output[ '_JOMRES_REVIEWS_ANONYMISE_DESC' ] = jr_gettext('_JOMRES_REVIEWS_ANONYMISE_DESC', '_JOMRES_REVIEWS_ANONYMISE_DESC', false, false);

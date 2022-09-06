@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06001dashboard_get_guest_details_ajax
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -86,13 +87,12 @@ class j06001dashboard_get_guest_details_ajax
 					LIMIT 1 ';
 		$guestDeets = doSelectSql($query, 2);
 
-		foreach ($guestDeets as $key=>$val ) {
-			if ( substr($key, 0, 4) == "enc_" ) {
-				$newkey = substr($key, 4 );
+		foreach ($guestDeets as $key => $val) {
+			if (substr($key, 0, 4) == "enc_") {
+				$newkey = substr($key, 4);
 				$guestDeets[$newkey] = $jomres_encryption->decrypt($val);
 				unset($guestDeets[$key]);
 			}
-			
 		}
 
 		echo json_encode($guestDeets);

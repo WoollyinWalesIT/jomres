@@ -17,20 +17,21 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-     * Sends the new booking email to hotels
-	 * 
+	 * Sends the new booking email to hotels
+	 *
 	 */
 
 class j03100send_email_hotel_newbooking
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -75,13 +76,15 @@ class j03100send_email_hotel_newbooking
 		$booking_email_details->parse_email($email_type, $contract_uid);
 
 		if ($email_when_done) {
-			if (!jomresMailer($booking_email_details->data[$contract_uid]['EMAIL'],
-								$booking_email_details->data[$contract_uid]['FIRSTNAME'].' '.$booking_email_details->data[$contract_uid]['SURNAME'],
-								$booking_email_details->data[$contract_uid]['PROPERTY_EMAIL'],
-								$booking_email_details->parsed_email['subject'],
-								$booking_email_details->parsed_email['text'],
-								$mode = 1,
-								$booking_email_details->parsed_email['attachments'])
+			if (!jomresMailer(
+				$booking_email_details->data[$contract_uid]['EMAIL'],
+				$booking_email_details->data[$contract_uid]['FIRSTNAME'].' '.$booking_email_details->data[$contract_uid]['SURNAME'],
+				$booking_email_details->data[$contract_uid]['PROPERTY_EMAIL'],
+				$booking_email_details->parsed_email['subject'],
+				$booking_email_details->parsed_email['text'],
+				$mode = 1,
+				$booking_email_details->parsed_email['attachments']
+			)
 				) {
 				error_logging('Failure in sending new booking email to hotel. Target address: '.$booking_email_details->data[$contract_uid]['PROPERTY_EMAIL'].' Subject'.$booking_email_details->parsed_email['subject'].$booking_email_details->parsed_email['text']);
 			}
@@ -96,10 +99,10 @@ class j03100send_email_hotel_newbooking
 	}
 
 
-    /**
-     * @return null
-     */
-    public function getRetVals()
+	/**
+	 * @return null
+	 */
+	public function getRetVals()
 	{
 		return null;
 	}
