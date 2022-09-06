@@ -235,22 +235,28 @@ class jomres_language
 	public function define_langfile_to_languages_array()
 	{
 		$langs = array();
+		$langs[ 'ar-AA' ] = 'العربية الموحدة';
 		$langs[ 'ar-AR' ] = 'Argentino';
+		$langs[ 'az-AZ' ] = 'Azərbaycan dili';
 		$langs[ 'bg-BG' ] = 'Bulgarian';
-		$langs[ 'en-GB' ] = 'English';
+		$langs[ 'ca-ES' ] = 'Catalan';
 		$langs[ 'cs-CZ' ] = 'Czech';
 		$langs[ 'da-DK' ] = 'Dansk';
-		$langs[ 'de-DE' ] = 'Deutsch';
 		$langs[ 'de-CH' ] = 'Deutsch Schweiz';
+		$langs[ 'de-DE' ] = 'Deutsch';
 		$langs[ 'el-GR' ] = 'Ελληνικά';
 		$langs[ 'en-CA' ] = 'Canadian';
+		$langs[ 'en-GB' ] = 'English';
 		$langs[ 'en-US' ] = 'American';
 		$langs[ 'es-ES' ] = 'Español';
+		$langs[ 'fa-IR' ] = 'فارسی';
 		$langs[ 'fr-FR' ] = 'Français';
 		$langs[ 'he-IL' ] = 'עברית';
 		$langs[ 'hr-HR' ] = 'Croatian';
 		$langs[ 'hu-HU' ] = 'Hungarian';
+		$langs[ 'hy-AM' ] = 'հայերեն';
 		$langs[ 'it-IT' ] = 'Italiano';
+		$langs[ 'ja-JP' ] = '日本語';
 		$langs[ 'lv-LV' ] = 'Latvian';
 		$langs[ 'nb-NO' ] = 'Norsk';
 		$langs[ 'nl-NL' ] = 'Nederlands';
@@ -262,17 +268,11 @@ class jomres_language
 		$langs[ 'sk-SK' ] = 'Slovak';
 		$langs[ 'sl-SI' ] = 'Slovenian';
 		$langs[ 'sr-YU' ] = 'Srpski';
-		$langs[ 'zh-CN' ] = 'Chinese';
-		$langs[ 'th-TH' ] = 'Thai';
 		$langs[ 'sv-SE' ] = 'Svenska';
-		$langs[ 'ar-AA' ] = 'العربية الموحدة';
-		$langs[ 'ca-ES' ] = 'Catalan';
-		$langs[ 'ja-JP' ] = '日本語';
-		$langs[ 'uk-UA' ] = 'Український';
-		$langs[ 'fa-IR' ] = 'فارسی';
-		$langs[ 'az-AZ' ] = 'Azərbaycan dili';
+		$langs[ 'th-TH' ] = 'Thai';
 		$langs[ 'tr-TR' ] = 'Türkçe';
-		$langs[ 'hy-AM' ] = 'հայերեն';
+		$langs[ 'uk-UA' ] = 'Український';
+		$langs[ 'zh-CN' ] = 'Chinese';
 
 		if (!empty($this->third_party_languages)) {
 			foreach ($this->third_party_languages as $lang) {
