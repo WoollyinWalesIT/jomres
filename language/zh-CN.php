@@ -993,7 +993,7 @@ jr_define('_JOMRES_APIKEY_REMAKE', '制作新的 API 密钥');
 jr_define('_JOMRES_SINGLEPROPERTYINSTALLATION_TITLE', '这是单属性安装吗？');
 jr_define('_JOMRES_SINGLEPROPERTYINSTALLATION_DESC', '如果此选项设置为 Yes，那么对于非授权用户的 Jomres 前端视图将大大简化。从菜单选项中默认调用 Jomres，而不是提供属性列表，只需要客人到系统中第一个物业的预订表格。物业经理也不会看到"物业详情"预览按钮或"添加新物业"按钮。如果您只想列出一个物业并为其进行预订，这是理想之选。<br />');
 jr_define('_JOMRES_AJAXFORM_BILLING_BALANCE_PAYMENT', '余额支付');
-jr_define('_JOMRES_WARNINGS_GLOBALEDITINGMODE', '注意，您正在使用启用了全局编辑模式的编辑模式。如果您了解全局编辑模式的含义，这很好，但是如果不这样做，您可能会导致自己出现问题。如果您不确定如果您应该以这种方式使用 Jomres，请参阅 <a href="http://www.jomres.net/manual/developers-guide/53-customising-jomres/editing-labels-languages/268-editing-mode " target="_blank">编辑模式手册页</a> 了解有关此主题的更多信息。');
+jr_define('_JOMRES_WARNINGS_GLOBALEDITINGMODE', '注意，您正在使用启用了全局编辑模式的编辑模式。如果您了解全局编辑模式的含义，这很好，但是如果不这样做，您可能会导致自己出现问题。如果您不确定如果您应该以这种方式使用 Jomres，请参阅 <a href="https://www.jomres.net/manual/developers-guide/53-customising-jomres/editing-labels-languages/268-editing-mode " target="_blank">编辑模式手册页</a> 了解有关此主题的更多信息。');
 jr_define('_JOMRES_SUPPORTKEY', '支持键');
 jr_define('_JOMRES_SUPPORTKEY_DESC', '您的支持许可证密钥号（也称为您的许可证号)。您需要一个最新的许可证才能下载 Jomres 插件。');
 jr_define('_JOMRES_PERSONAL_DISCOUNT', '个人折扣');
@@ -1296,7 +1296,7 @@ jr_define('_JOMRES_LICENSESERVER_USERNAME_DESC', '如果您在许可证服务器
 jr_define('_JOMRES_VERSIONCHECK_THISJOMRESVERSION', '这个 Jomres 版本：');
 jr_define('_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION', '最新的 Jomres 版本');
 jr_define('_JOMRES_VERSIONCHECK_VERSIONWARNING', 'Alert : Jomres有新版本可用，建议您尽早升级。');
-jr_define('_JOMRES_PRODUCT_INFORMATION', '欢迎使用 Jomres。核心系统是免费的，但可以通过安装插件来增强。要访问这些插件，您需要下载和支持许可证。如果您想购买 Jomres Starter , 商业或企业许可证，<a href="http://www.jomres.net/prices" target="_blank">请访问我们的网站</a>了解如何升级。');
+jr_define('_JOMRES_PRODUCT_INFORMATION', '欢迎使用 Jomres。核心系统是免费的，但可以通过安装插件来增强。要访问这些插件，您需要下载和支持许可证。如果您想购买 Jomres Starter , 商业或企业许可证，<a href="https://www.jomres.net/prices" target="_blank">请访问我们的网站</a>了解如何升级。');
 jr_define('_JOMRES_PRODUCT_INFORMATION2', '该系统适用于任何场景，无论是单个属性的简单预订表格，还是具有多个用户、多种语言、多个属性的站点。请参阅"帮助"菜单中的部分，包括"入门"页面，它将指导您完成第一步。');
 jr_define('_JOMRES_ROBBED_PORTALUI_CURRENT_PROPERTY', '活动属性');
 jr_define('_JOMRES_CONFIG_ALTERNATE_SMTP_TITLE', '电子邮件设置');
@@ -1664,7 +1664,7 @@ jr_define('_JOMRES_EMAIL_TEMPLATES_TEXT', '电子邮件文本');
 jr_define('_JOMRES_EMAIL_TEMPLATES_TYPE', '电子邮件类型');
 jr_define('_JOMRES_EMAIL_TEMPLATES_NAME', '电子邮件名称');
 jr_define('_JOMRES_EMAIL_TEMPLATES_DESC', '邮件描述');
-jr_define('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS', '有关自定义电子邮件和可用输出列表的帮助，请参阅此页面：<a href="http://www.jomres.net/manual/property-managers-guide/48-your -toolbar/settings/254-email-templates" target="_blank">电子邮件模板帮助</a>');
+jr_define('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS', '有关自定义电子邮件和可用输出列表的帮助，请参阅此页面：<a href="https://www.jomres.net/manual/property-managers-guide/48-your -toolbar/settings/254-email-templates" target="_blank">电子邮件模板帮助</a>');
 jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILNAME', '网站管理员新预订电子邮件');
 jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILDESC', '如果启用了全球 Paypal 网关，则在进行新预订时向站点管理员发送电子邮件');
 jr_define('_JOMRES_HOTEL_NEWBOOKING_EMAILNAME', '酒店新预订邮件');
@@ -1849,7 +1849,7 @@ jr_define('_JOMRES_SEND_ERROR_EMAIL_DESC', "历史上应该调查的问题已经
 
 jr_define('_JOMRES_MANAGE_PROPERTIES', '管理属性');
 jr_define('_JOMRES_CONFIG_IPINFODB_KEY_WARNING', "您没有设置 IP 检测 API 密钥。这是系统自动检测用户位置并自动设置其货币和国家所必需的。请<a href='http://www .jomres.net/manual/site-managers-guide/35-control-panel/main/site-configuration/128-site-configuration-currency-conversion-currency-codes-tab' target='_blank'>查看我们的手册关于如何创建 IP 检测 API 密钥</a>并将密钥保存在 Jomres > 站点配置 > 货币转换/货币代码中的页面。");
-jr_define('_JOMRES_CONFIG_OPENEXCHANGERATES_KEY_WARNING', "您没有开放汇率 API 密钥集。这是允许系统自动下载和使用货币汇率所必需的。请<a href='http://www.jomres.net /manual/site-managers-guide/35-control-panel/main/site-configuration/128-site-configuration-currency-conversion-currency-codes-tab' target='_blank'>查看我们的手册页，了解如何创建 IP 检测 API 密钥</a>并将密钥保存在 Jomres > 站点配置 > 货币转换/货币代码中。");
+jr_define('_JOMRES_CONFIG_OPENEXCHANGERATES_KEY_WARNING', "您没有开放汇率 API 密钥集。这是允许系统自动下载和使用货币汇率所必需的。请<a href='https://www.jomres.net /manual/site-managers-guide/35-control-panel/main/site-configuration/128-site-configuration-currency-conversion-currency-codes-tab' target='_blank'>查看我们的手册页，了解如何创建 IP 检测 API 密钥</a>并将密钥保存在 Jomres > 站点配置 > 货币转换/货币代码中。");
 jr_define('_JOMRES_PERMIT_NUMBER_TITLE', '许可证号');
 jr_define('_JOMRES_PERMIT_NUMBER_DESCRIPTION', '某些国家/地区立法规定您必须为您的财产显示许可证编号。如果您有这样的编号，请在此处输入，它将被添加到财产标题部分。');
 jr_define('_JOMRES_SHORTCODES', 'Shortcodes');

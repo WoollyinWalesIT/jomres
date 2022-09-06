@@ -1265,7 +1265,7 @@ jr_define('_JOMRES_LICENSESERVER_USERNAME_DESC', 'Jomresのライセンス サ�
 jr_define('_JOMRES_VERSIONCHECK_THISJOMRESVERSION', '現在のJomresバージョン：');
 jr_define('_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION', '最新のJomres バージョン：');
 jr_define('_JOMRES_VERSIONCHECK_VERSIONWARNING', '注意：Jomresのより新しいバージョンがあります。早めに更新することを進めします。');
-jr_define('_JOMRES_PRODUCT_INFORMATION', 'Jomresへようこそ。Joomlaの最も愛されている予約システムを利用いただき,ありがとうございます。JomresのSolo,Silver,又は Goldのライセンスを購入したい場合, <a href="http://www.jomres.net/prices" target="_blank"> Jomresの開発者サイト</a> に参照して下さい。');
+jr_define('_JOMRES_PRODUCT_INFORMATION', 'Jomresへようこそ。Joomlaの最も愛されている予約システムを利用いただき,ありがとうございます。JomresのSolo,Silver,又は Goldのライセンスを購入したい場合, <a href="https://www.jomres.net/prices" target="_blank"> Jomresの開発者サイト</a> に参照して下さい。');
 jr_define('_JOMRES_PRODUCT_INFORMATION2', '本システムは,１件の簡易予約サイトから,複数の国やある複数のプロパティを所持している複数のプロパティ管理者が複数の言語で利用できる予約サイトまで,どの予約に関するニーズがあっても,柔軟に対応できるシステムです。「Getting started」のツアからはじめ,初の事業やプロパティを登録しながら,本システムの利用が楽になれることができます。分からなくなってしまった場合には,いつでも「HELP」ボタンを押すだけで,追加説明があり,参考になります。');
 jr_define('_JOMRES_ROBBED_PORTALUI_CURRENT_PROPERTY', '対象プロパティ');
 jr_define('_JOMRES_CONFIG_ALTERNATE_SMTP_TITLE', '代替えの SMTP設定');
@@ -1633,7 +1633,7 @@ jr_define('_JOMRES_EMAIL_TEMPLATES_TEXT', 'Emailテキスト');
 jr_define('_JOMRES_EMAIL_TEMPLATES_TYPE', 'Emailタイプ');
 jr_define('_JOMRES_EMAIL_TEMPLATES_NAME', 'Email名');
 jr_define('_JOMRES_EMAIL_TEMPLATES_DESC', 'Email説明');
-jr_define('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS', 'メールのカスタム テンプレート作成は,<a href="http://www.jomres.net/manual/property-managers-guide/48-your-toolbar/settings/254-email-templates" target="_blank">Email Templates Help</a>に参照ください');
+jr_define('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS', 'メールのカスタム テンプレート作成は,<a href="https://www.jomres.net/manual/property-managers-guide/48-your-toolbar/settings/254-email-templates" target="_blank">Email Templates Help</a>に参照ください');
 jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILNAME', 'サイト アドミンへの新規予約メール');
 jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILDESC', 'グローバルpaypalゲートウエーが有効の場合,新規予約が入った際にサイトのアドミニストレーターへ送信されるメールです。');
 jr_define('_JOMRES_HOTEL_NEWBOOKING_EMAILNAME', 'ホテルへの新規予約メール');

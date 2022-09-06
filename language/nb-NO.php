@@ -1254,7 +1254,7 @@ jr_define('_JOMRES_LICENSESERVER_USERNAME_DESC', "Hvis du har brukernavn og pass
 jr_define('_JOMRES_VERSIONCHECK_THISJOMRESVERSION', "Systemversjon installert : ");
 jr_define('_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION', "Nyeste systemversjon");
 jr_define('_JOMRES_VERSIONCHECK_VERSIONWARNING', "Advarsel: Det finnes en oppdatering til systemet, og du bør oppgradere så raskt du kan.");
-jr_define('_JOMRES_PRODUCT_INFORMATION', 'Velkommen til Jomres, vi håper du vil like Joomla\'s best likte bestillingssystem. Hvis du vil kjøpe Jomres Silver eller Jomres Gold, <a href="http://www.jomres.net/prices" target="_blank"> vennligst besøk vår side</a> for informasjon om hvordan du kan oppgradere.');
+jr_define('_JOMRES_PRODUCT_INFORMATION', 'Velkommen til Jomres, vi håper du vil like Joomla\'s best likte bestillingssystem. Hvis du vil kjøpe Jomres Silver eller Jomres Gold, <a href="https://www.jomres.net/prices" target="_blank"> vennligst besøk vår side</a> for informasjon om hvordan du kan oppgradere.');
 jr_define('_JOMRES_PRODUCT_INFORMATION2', 'Dette systemet er ideelt for et hvilket som helst scenario, om det så er et bestillingskjema for en enkelt eiendom eller en side som har flere brukere med forskjellige språk og mange utleieenheter. Vennligst se "Hjelp"-seksjonen til venstre, inkludert "Getting Started"-siden som vil guide deg gjennom de første stegene.');
 jr_define('_JOMRES_ROBBED_PORTALUI_CURRENT_PROPERTY', "Aktivt utleiested");
 jr_define('_JOMRES_CONFIG_ALTERNATE_SMTP_TITLE', "Alternative SMTP-innstillinger");
@@ -1606,7 +1606,7 @@ jr_define('_JOMRES_EMAIL_TEMPLATES_TEXT', "Epost-tekst");
 jr_define('_JOMRES_EMAIL_TEMPLATES_TYPE', "Epost-type");
 jr_define('_JOMRES_EMAIL_TEMPLATES_NAME', "Epost-navn");
 jr_define('_JOMRES_EMAIL_TEMPLATES_DESC', "Epost-beskrivelse");
-jr_define('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS', "Vennligst se denne siden for hjelp til å endre eposter og for en liste over tilgjengelige funksjoner: <a href=\"http://www.jomres.net/manual/property-managers-guide/48-your-toolbar/settings/254-email-templates\" target=\"_blank\">Hjelp for epost-maler</a>");
+jr_define('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS', "Vennligst se denne siden for hjelp til å endre eposter og for en liste over tilgjengelige funksjoner: <a href=\"https://www.jomres.net/manual/property-managers-guide/48-your-toolbar/settings/254-email-templates\" target=\"_blank\">Hjelp for epost-maler</a>");
 jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILNAME', "Epost til admin ved ny bestilling");
 jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILDESC', "Epost sendt til administrator når ny bestilling gjøres, hvis global paypal-betaling er aktivert");
 jr_define('_JOMRES_HOTEL_NEWBOOKING_EMAILNAME', "Epost til utleier ved ny bestilling");

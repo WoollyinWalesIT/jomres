@@ -955,7 +955,7 @@ jr_define("_JOMRES_APIKEY_REMAKE", "สร้างคีย์ API ใหม่
 jr_define("_JOMRES_SINGLEPROPERTYINSTALLATION_TITLE", "นี่เป็นการติดตั้งแบบธุรกิจเดียวใช่หรือไม่");
 jr_define("_JOMRES_SINGLEPROPERTYINSTALLATION_DESC", "หากตั้งค่าตัวเลือกนี้เป็นใช่ มุมมองฟรอนต์เอนด์ของ Jomres สำหรับผู้ใช้ที่ไม่ได้รับอนุญาตจะง่ายขึ้นอย่างมาก การเรียกใช้เริ่มต้นไปยัง Jomres จากตัวเลือกเมนู แทนที่จะได้รับรายชื่อธุรกิจ แขกไปยังแบบฟอร์มการจองสำหรับธุรกิจแรกในระบบ ผู้จัดการธุรกิจจะไม่เห็นปุ่มแสดงตัวอย่างรายละเอียดธุรกิจหรือปุ่มเพิ่มธุรกิจใหม่ เหมาะอย่างยิ่งหากคุณต้องการแสดงรายการธุรกิจเดียวและทำการจอง<br />");
 jr_define("_JOMRES_AJAXFORM_BILLING_BALANCE_PAYMENT", "การชำระยอดคงเหลือ");
-jr_define("_JOMRES_WARNINGS_GLOBALEDITINGMODE", "หมายเหตุ คุณกำลังใช้โหมดแก้ไขโดยเปิดใช้งานโหมดแก้ไขส่วนกลาง วิธีนี้ใช้ได้หากคุณเข้าใจความหมายของโหมดแก้ไขสากล อย่างไรก็ตาม หากคุณไม่ทำเช่นนั้น คุณอาจสร้างปัญหาให้ตัวเองได้ หากคุณไม่แน่ใจว่า คุณควรใช้ Jomres ในลักษณะนี้ โปรดดู <a href=\"http://www.jomres.net/manual/developers-guide/53-customising-jomres/editing-labels-languages/268-editing-mode \" target=\"_blank\">หน้าคู่มือโหมดแก้ไข</a> สำหรับข้อมูลเพิ่มเติมเกี่ยวกับเรื่องนี้");
+jr_define("_JOMRES_WARNINGS_GLOBALEDITINGMODE", "หมายเหตุ คุณกำลังใช้โหมดแก้ไขโดยเปิดใช้งานโหมดแก้ไขส่วนกลาง วิธีนี้ใช้ได้หากคุณเข้าใจความหมายของโหมดแก้ไขสากล อย่างไรก็ตาม หากคุณไม่ทำเช่นนั้น คุณอาจสร้างปัญหาให้ตัวเองได้ หากคุณไม่แน่ใจว่า คุณควรใช้ Jomres ในลักษณะนี้ โปรดดู <a href=\"https://www.jomres.net/manual/developers-guide/53-customising-jomres/editing-labels-languages/268-editing-mode \" target=\"_blank\">หน้าคู่มือโหมดแก้ไข</a> สำหรับข้อมูลเพิ่มเติมเกี่ยวกับเรื่องนี้");
 jr_define("_JOMRES_SUPPORTKEY", "คีย์สนับสนุน");
 jr_define("_JOMRES_SUPPORTKEY_DESC", "หมายเลขคีย์ใบอนุญาตการสนับสนุนของคุณ (หรือที่เรียกว่าหมายเลขใบอนุญาตของคุณ) คุณจะต้องมีใบอนุญาตที่เป็นปัจจุบันจึงจะสามารถดาวน์โหลดปลั๊กอินสำหรับ Jomres ได้");
 jr_define("_JOMRES_PERSONAL_DISCOUNT", "ส่วนลดส่วนตัว");
@@ -1611,7 +1611,7 @@ jr_define('_JOMRES_EMAIL_TEMPLATES_TEXT', "ข้อความอีเมล"
 jr_define('_JOMRES_EMAIL_TEMPLATES_TYPE', "ประเภทอีเมล");
 jr_define('_JOMRES_EMAIL_TEMPLATES_NAME', "ชื่ออีเมล");
 jr_define('_JOMRES_EMAIL_TEMPLATES_DESC', "คำอธิบายอีเมล");
-jr_define('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS', "โปรดดูหน้านี้สำหรับความช่วยเหลือในการปรับแต่งอีเมลและรายการของเอาต์พุตที่มี: <a href=\"http://www.jomres.net/manual/property-managers-guide/48- your-toolbar/settings/254-email-templates\" target=\"_blank\">ความช่วยเหลือเกี่ยวกับเทมเพลตอีเมล</a>");
+jr_define('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS', "โปรดดูหน้านี้สำหรับความช่วยเหลือในการปรับแต่งอีเมลและรายการของเอาต์พุตที่มี: <a href=\"https://www.jomres.net/manual/property-managers-guide/48- your-toolbar/settings/254-email-templates\" target=\"_blank\">ความช่วยเหลือเกี่ยวกับเทมเพลตอีเมล</a>");
 jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILNAME', "ผู้ดูแลเว็บไซต์ อีเมลการจองใหม่");
 jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILDESC', "อีเมลที่ส่งไปยังผู้ดูแลเว็บไซต์เมื่อมีการจองใหม่ หากเปิดใช้งานเกตเวย์ Paypal ทั่วโลก");
 jr_define('_JOMRES_HOTEL_NEWBOOKING_EMAILNAME', "อีเมลการจองโรงแรมใหม่");
@@ -1796,7 +1796,7 @@ jr_define("_JOMRES_SEND_ERROR_EMAIL_DESC", "ปัญหาในอดีตท
 
 jr_define("_JOMRES_MANAGE_PROPERTIES", "จัดการคุณสมบัติ");
 jr_define("_JOMRES_CONFIG_IPINFODB_KEY_WARNING", "คุณไม่มีชุดคีย์ API การตรวจจับ IP ซึ่งจำเป็นเพื่อให้ระบบตรวจหาตำแหน่งของผู้ใช้โดยอัตโนมัติและตั้งค่าสกุลเงินและประเทศโดยอัตโนมัติ โปรด <a href='http://www .jomres.net/manual/site-managers-guide/35-control-panel/main/site-configuration/128-site-configuration-currency-conversion-currency-codes-tab' target='_blank'>ดูคู่มือของเรา หน้าเกี่ยวกับวิธีการสร้างคีย์ API การตรวจจับ IP</a> และบันทึกคีย์ใน Jomres > การกำหนดค่าไซต์ > การแปลงสกุลเงิน / รหัสสกุลเงิน");
-jr_define("_JOMRES_CONFIG_OPENEXCHANGERATES_KEY_WARNING", "คุณไม่มีชุดคีย์ API อัตราแลกเปลี่ยนแบบเปิด ซึ่งจำเป็นเพื่อให้ระบบดาวน์โหลดและใช้อัตราแลกเปลี่ยนเงินตราโดยอัตโนมัติ โปรด <a href='http://www.jomres.net /manual/site-managers-guide/35-control-panel/main/site-configuration/128-site-configuration-currency-conversion-currency-codes-tab' target='_blank'>ดูหน้าคู่มือของเราเกี่ยวกับวิธีการ สร้างคีย์ API การตรวจจับ IP</a> และบันทึกคีย์ใน Jomres > การกำหนดค่าไซต์ > การแปลงสกุลเงิน / รหัสสกุลเงิน");
+jr_define("_JOMRES_CONFIG_OPENEXCHANGERATES_KEY_WARNING", "คุณไม่มีชุดคีย์ API อัตราแลกเปลี่ยนแบบเปิด ซึ่งจำเป็นเพื่อให้ระบบดาวน์โหลดและใช้อัตราแลกเปลี่ยนเงินตราโดยอัตโนมัติ โปรด <a href='https://www.jomres.net /manual/site-managers-guide/35-control-panel/main/site-configuration/128-site-configuration-currency-conversion-currency-codes-tab' target='_blank'>ดูหน้าคู่มือของเราเกี่ยวกับวิธีการ สร้างคีย์ API การตรวจจับ IP</a> และบันทึกคีย์ใน Jomres > การกำหนดค่าไซต์ > การแปลงสกุลเงิน / รหัสสกุลเงิน");
 jr_define("_JOMRES_PERMIT_NUMBER_TITLE", "หมายเลขใบอนุญาต");
 jr_define("_JOMRES_PERMIT_NUMBER_DESCRIPTION", "บางประเทศออกกฎหมายว่าคุณต้องแสดงหมายเลขใบอนุญาตสำหรับพร็อพเพอร์ตี้ของคุณ หากคุณมีหมายเลขดังกล่าว ให้ป้อนที่นี่ และจะถูกเพิ่มลงในส่วนหัวของคุณสมบัติ");
 jr_define('_JOMRES_SHORTCODES', "รหัสย่อ");
