@@ -21,9 +21,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jrportal_coupons
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -34,7 +35,7 @@ class jrportal_coupons
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -55,7 +56,7 @@ class jrportal_coupons
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -111,7 +112,7 @@ class jrportal_coupons
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -129,10 +130,10 @@ class jrportal_coupons
 			throw new Exception('Error: Property uid not set.');
 		}
 		
-		$valid_from = str_replace('/','-',$this->valid_from);
-		$valid_to = str_replace('/','-',$this->valid_to);
-		$booking_valid_from = str_replace('/','-',$this->booking_valid_from);
-		$booking_valid_to = str_replace('/','-',$this->booking_valid_to);
+		$valid_from = str_replace('/', '-', $this->valid_from);
+		$valid_to = str_replace('/', '-', $this->valid_to);
+		$booking_valid_from = str_replace('/', '-', $this->booking_valid_from);
+		$booking_valid_to = str_replace('/', '-', $this->booking_valid_to);
 
 		$query = "INSERT INTO #__jomres_coupons
 							(
@@ -181,7 +182,7 @@ class jrportal_coupons
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -199,10 +200,10 @@ class jrportal_coupons
 			throw new Exception('Error: Property uid not set.');
 		}
 		
-		$valid_from = str_replace('/','-',$this->valid_from);
-		$valid_to = str_replace('/','-',$this->valid_to);
-		$booking_valid_from = str_replace('/','-',$this->booking_valid_from);
-		$booking_valid_to = str_replace('/','-',$this->booking_valid_to);
+		$valid_from = str_replace('/', '-', $this->valid_from);
+		$valid_to = str_replace('/', '-', $this->valid_to);
+		$booking_valid_from = str_replace('/', '-', $this->booking_valid_from);
+		$booking_valid_to = str_replace('/', '-', $this->booking_valid_to);
 
 		$query = "UPDATE #__jomres_coupons 
 					SET 
@@ -237,7 +238,7 @@ class jrportal_coupons
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */

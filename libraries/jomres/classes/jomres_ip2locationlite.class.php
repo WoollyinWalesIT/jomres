@@ -30,7 +30,7 @@ final class jomres_ip2location_lite
 	protected $apiKey = '';
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -40,7 +40,7 @@ final class jomres_ip2location_lite
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -50,7 +50,7 @@ final class jomres_ip2location_lite
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -63,7 +63,7 @@ final class jomres_ip2location_lite
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -74,7 +74,7 @@ final class jomres_ip2location_lite
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -85,7 +85,7 @@ final class jomres_ip2location_lite
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -96,7 +96,7 @@ final class jomres_ip2location_lite
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */

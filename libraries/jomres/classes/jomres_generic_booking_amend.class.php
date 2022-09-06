@@ -21,9 +21,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jomres_generic_booking_amend
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -36,7 +37,7 @@ class jomres_generic_booking_amend
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -61,7 +62,7 @@ class jomres_generic_booking_amend
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -80,7 +81,7 @@ class jomres_generic_booking_amend
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -149,7 +150,7 @@ class jomres_generic_booking_amend
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -164,7 +165,7 @@ class jomres_generic_booking_amend
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -205,7 +206,7 @@ class jomres_generic_booking_amend
 					$new_room_and_tariff_info[] = $k.'^'.$v;
 				}
 			}
-			$rooms_tariffs = implode(',',$new_room_and_tariff_info);
+			$rooms_tariffs = implode(',', $new_room_and_tariff_info);
 
 			if ($clause != '') {
 				$clause .= ', ';
@@ -293,7 +294,7 @@ class jomres_generic_booking_amend
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -323,7 +324,7 @@ class jomres_generic_booking_amend
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */

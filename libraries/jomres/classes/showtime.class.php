@@ -27,7 +27,7 @@ class showtime
 	private static $internal_debugging;
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -39,7 +39,7 @@ class showtime
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -55,7 +55,7 @@ class showtime
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -73,7 +73,7 @@ class showtime
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */

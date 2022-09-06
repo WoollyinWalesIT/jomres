@@ -21,9 +21,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jrportal_taxrate
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -50,7 +51,7 @@ class jrportal_taxrate
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -80,7 +81,7 @@ class jrportal_taxrate
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -107,7 +108,7 @@ class jrportal_taxrate
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -147,7 +148,7 @@ class jrportal_taxrate
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -177,7 +178,7 @@ class jrportal_taxrate
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -206,7 +207,7 @@ class jrportal_taxrate
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -228,7 +229,7 @@ class jrportal_taxrate
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */

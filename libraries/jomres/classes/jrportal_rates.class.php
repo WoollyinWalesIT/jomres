@@ -21,9 +21,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jrportal_rates
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -34,7 +35,7 @@ class jrportal_rates
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -102,7 +103,7 @@ class jrportal_rates
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -189,8 +190,8 @@ class jrportal_rates
 		} else {
 			if (!empty($result)) {
 				foreach ($result as $r) {
-					if (!isset($r->modifiers) ) {
-						$r->modifiers = base64_encode(json_encode( [] ));
+					if (!isset($r->modifiers)) {
+						$r->modifiers = base64_encode(json_encode([]));
 					}
 
 					$this->rates[$this->tarifftype_id][$r->rates_uid]['rates_uid'] 					= (int)$r->rates_uid;
@@ -218,14 +219,14 @@ class jrportal_rates
 					$this->rates[$this->tarifftype_id][$r->rates_uid]['property_uid'] 				= (int)$r->property_uid;
 				}
 			}
-		return true;
+			return true;
 		}
 	
-	return false;
+		return false;
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -263,7 +264,7 @@ class jrportal_rates
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -288,7 +289,7 @@ class jrportal_rates
 								'".$this->rate_description."',
 								".(int)$this->property_uid."
 								)";
-			$this->tarifftype_id = doInsertSql($query,'');
+			$this->tarifftype_id = doInsertSql($query, '');
 			
 			if (!$this->tarifftype_id) {
 				throw new Exception('Error: Unable to insert new tarifftype details.');
@@ -303,7 +304,7 @@ class jrportal_rates
 						AND 
 							`property_uid` = ".(int)$this->property_uid;
 			
-			if (!doInsertSql($query,'')) {
+			if (!doInsertSql($query, '')) {
 				throw new Exception('Error: Unable to update tarifftype details.');
 			}
 		}
@@ -312,7 +313,7 @@ class jrportal_rates
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -356,14 +357,14 @@ class jrportal_rates
 
 			$epoch = (int)$epoch;
 			
-			$date = date("Y/m/d",$epoch);
+			$date = date("Y/m/d", $epoch);
 			
-			$daybefore = date("Y/m/d",strtotime("-1 day", $epoch));
+			$daybefore = date("Y/m/d", strtotime("-1 day", $epoch));
 
 			// Jomres core will ensure that this index is set, but a remote system might not
 			if (!isset($this->dates_mindays[$epoch])) {
-                $this->dates_mindays[$epoch] = $lastmindays;
-            }
+				$this->dates_mindays[$epoch] = $lastmindays;
+			}
 
 			$mindays_value = (int)$this->dates_mindays[$epoch];
 
@@ -387,14 +388,15 @@ class jrportal_rates
 			$counter++;
 		}
 
-	if (empty($this->new_rates))
-		return false;
+		if (empty($this->new_rates)) {
+			return false;
+		}
 	
-	return true;
+		return true;
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -416,10 +418,10 @@ class jrportal_rates
 		
 		//we`ll do one query for each rate, because we`ll need the rate uids for each to update the tariftype rate xref table
 		foreach ($this->new_rates as $r) {
-			$this->validfrom_ts = str_replace("/","-",$r['start']);
-			$this->validto_ts = str_replace("/","-",$r['end']);
+			$this->validfrom_ts = str_replace("/", "-", $r['start']);
+			$this->validto_ts = str_replace("/", "-", $r['end']);
 
-			if (!isset($this->modifiers) || $this->modifiers == '' ) {
+			if (!isset($this->modifiers) || $this->modifiers == '') {
 				$this->modifiers = array();
 			}
 
@@ -474,7 +476,7 @@ class jrportal_rates
 						".(int)$this->property_uid."
 						)";
 
-			$new_rate_uid = doInsertSql($query,'');
+			$new_rate_uid = doInsertSql($query, '');
 			
 			if (!$new_rate_uid) {
 				throw new Exception('Error: Inserting new tariff failed.');
@@ -485,7 +487,6 @@ class jrportal_rates
 
 		//update the tarifftype rates xref
 		if ($this->update_tarifftype_rate_xref()) {
-
 			return true;
 		}
 
@@ -493,7 +494,7 @@ class jrportal_rates
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -515,15 +516,14 @@ class jrportal_rates
 		
 		$values = '';
 		
-		foreach ($this->new_rates_uids as $r)
-			{
+		foreach ($this->new_rates_uids as $r) {
 			$values .= "(
 						".(int)$this->tarifftype_id.",
 						".(int)$r.",
 						".(int)$this->roomclass_uid.",
 						".(int)$this->property_uid."
 						),";
-			}
+		}
 		
 		$values = rtrim($values, ',');
 		
@@ -537,7 +537,7 @@ class jrportal_rates
 					VALUES ".
 						$values;
 		
-		if (!doInsertSql($query,'')) {
+		if (!doInsertSql($query, '')) {
 			throw new Exception('Error: Unable to update tarifftype rates xref.');
 		}
 		
@@ -545,7 +545,7 @@ class jrportal_rates
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -571,14 +571,14 @@ class jrportal_rates
 		//delete all rates for this tarifftype id
 		$query = "DELETE FROM #__jomres_rates WHERE `rates_uid` IN (".jomres_implode(array_keys($this->rates[$this->tarifftype_id])).") ";
 
-		if (!doInsertSql($query,'')) {
+		if (!doInsertSql($query, '')) {
 			throw new Exception('Error: Delete rates failed.');
 		}
 		
 		//delete tarifftype id rates xref
 		$query = "DELETE FROM #__jomcomp_tarifftype_rate_xref WHERE tariff_id IN (".jomres_implode(array_keys($this->rates[$this->tarifftype_id])).") ";
 		
-		if (!doInsertSql($query,'')) {
+		if (!doInsertSql($query, '')) {
 			throw new Exception('Error: Delete tarifftype rates xref failed.');
 		}
 		
@@ -589,7 +589,7 @@ class jrportal_rates
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -615,28 +615,28 @@ class jrportal_rates
 		//delete all rates for this tarifftype id
 		$query = "DELETE FROM #__jomres_rates WHERE `rates_uid` IN (".jomres_implode(array_keys($this->rates[$this->tarifftype_id])).") ";
 		
-		if (!doInsertSql($query,'')) {
+		if (!doInsertSql($query, '')) {
 			throw new Exception('Error: Delete rates failed.');
 		}
 		
 		//delete tarifftype id rates xref
 		$query = "DELETE FROM #__jomcomp_tarifftype_rate_xref WHERE `tariff_id` IN (".jomres_implode(array_keys($this->rates[$this->tarifftype_id])).") ";
 		
-		if (!doInsertSql($query,'')) {
+		if (!doInsertSql($query, '')) {
 			throw new Exception('Error: Delete tarifftype rates xref failed.');
 		}
 		
 		//delete tarifftype
 		$query = "DELETE FROM #__jomcomp_tarifftypes WHERE `id` = ".(int)$this->tarifftype_id;
 		
-		if (!doInsertSql($query,'')) {
+		if (!doInsertSql($query, '')) {
 			throw new Exception('Error: Delete tarifftype failed.');
 		}
 		
 		//delete custom text for this tarifftype for all languages
 		$query = "DELETE FROM #__jomres_custom_text WHERE `constant` = '_JOMRES_CUSTOMTEXT_TARIFF_TITLE_TARIFFTYPE_ID".(int)$this->tarifftype_id."' AND `property_uid` = ".(int)$this->property_uid;
 		
-		if (!doInsertSql($query,'')) {
+		if (!doInsertSql($query, '')) {
 			throw new Exception('Error: Delete custom text for this tarifftype failed.');
 		}
 		
@@ -656,7 +656,7 @@ class jrportal_rates
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -675,7 +675,7 @@ class jrportal_rates
 
 		//get tarifftype id TODO: remove this, we already have this data in _jomres_rates table..
 		$query = "SELECT `tarifftype_id` FROM #__jomcomp_tarifftype_rate_xref WHERE `tariff_id` = ".(int)$rates_uid." AND `property_uid` = ".(int)$this->property_uid;
-		$tarifftype_id = (int)doSelectSql($query,1);
+		$tarifftype_id = (int)doSelectSql($query, 1);
 
 		if ($tarifftype_id == 0) {
 			$tarifftype_id = $this->create_tarifftype($rates_uid);
@@ -685,7 +685,7 @@ class jrportal_rates
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -705,7 +705,7 @@ class jrportal_rates
 		
 		//get tariff name and description
 		$query = "SELECT `rate_title`, `rate_description`, `roomclass_uid` FROM #__jomres_rates WHERE `rates_uid` = ".(int)$rates_uid." AND `property_uid` = ".(int)$this->property_uid;
-		$result = doSelectSql($query,2);
+		$result = doSelectSql($query, 2);
 		
 		if (empty($result)) {
 			throw new Exception('Error: Could not get tariff details for rate uid.');
@@ -724,7 +724,7 @@ class jrportal_rates
 							'".$result['rate_description']."',
 							".(int)$this->property_uid."
 							)";
-		$id = doInsertSql($query,'');
+		$id = doInsertSql($query, '');
 		
 		if (!$id) {
 			throw new Exception('Error: Could not insert automatically generated tarifftype.');
@@ -745,7 +745,7 @@ class jrportal_rates
 						".(int)$result['roomclass_uid'].",
 						".(int)$this->property_uid."
 						)";
-		if (!doInsertSql($query,'')) {
+		if (!doInsertSql($query, '')) {
 			throw new Exception('Error: Could not insert automatically generated tarifftype rate xref.');
 		}
 		
@@ -784,7 +784,7 @@ class jrportal_rates
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -804,8 +804,8 @@ class jrportal_rates
 			throw new Exception('Error: Are you sure you`re creating a new tariff?');
 		}
 		
-		$this->validfrom_ts = str_replace("/","-",$this->validfrom);
-		$this->validto_ts = str_replace("/","-",$this->validto);
+		$this->validfrom_ts = str_replace("/", "-", $this->validfrom);
+		$this->validto_ts = str_replace("/", "-", $this->validto);
 		
 		$query = "INSERT INTO #__jomres_rates 
 						(
@@ -859,7 +859,7 @@ class jrportal_rates
 						".(int)$this->property_uid."
 						)";
 		
-		$new_rate_uid = doInsertSql($query,'');
+		$new_rate_uid = doInsertSql($query, '');
 		
 		if (!$new_rate_uid) {
 			throw new Exception('Error: Inserting new tariff failed.');
@@ -876,7 +876,7 @@ class jrportal_rates
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -896,8 +896,8 @@ class jrportal_rates
 			throw new Exception('Error: Are you sure you`re updatring an existing tariff?');
 		}
 		
-		$this->validfrom_ts = str_replace("/","-",$this->validfrom);
-		$this->validto_ts = str_replace("/","-",$this->validto);
+		$this->validfrom_ts = str_replace("/", "-", $this->validfrom);
+		$this->validto_ts = str_replace("/", "-", $this->validto);
 		
 		$query = "UPDATE #__jomres_rates SET
 						`rate_title` = '".$this->rate_title."',
@@ -926,7 +926,7 @@ class jrportal_rates
 					AND
 						`property_uid` = ".(int)$this->property_uid;
 		
-		if (!doInsertSql($query,'')) {
+		if (!doInsertSql($query, '')) {
 			throw new Exception('Error: Unable to update tariff details in legacy mode.');
 		}
 
@@ -939,9 +939,9 @@ class jrportal_rates
 	 *
 	 *
 	 */
-	public function get_unpopulated_room_type_ids( $property_uid = 0 )
+	public function get_unpopulated_room_type_ids($property_uid = 0)
 	{
-		if ( $property_uid == 0 ) {
+		if ($property_uid == 0) {
 			throw new Exception('Property uid not set ');
 		}
 
@@ -971,9 +971,9 @@ class jrportal_rates
 
 
 
-		foreach ($property_room_type_ids as $key=>$room_type_id) {
-			foreach ( $tariffs as $tariff ) {
-				if ( $tariff->roomclass_uid == $room_type_id ) {
+		foreach ($property_room_type_ids as $key => $room_type_id) {
+			foreach ($tariffs as $tariff) {
+				if ($tariff->roomclass_uid == $room_type_id) {
 					unset($property_room_type_ids[$key]);
 				}
 			}

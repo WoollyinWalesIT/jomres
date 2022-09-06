@@ -47,13 +47,13 @@ class jomres_configpanel extends jomres_content_tabs
 				<td>' .$this->right.'</td>
 			</tr>
 			';
-		} else { 
+		} else {
 			if ($this->counter % 2) {
 				$rowclass = 'row-even';
 			} else {
 				$rowclass = 'row-odd';
 			}
-			if ( jomres_bootstrap_version() == '4' ) {
+			if (jomres_bootstrap_version() == '4') {
 				$this->panes[ ] = '
 				<div class="row ' .$rowclass.'">
 					<div class="col">' .$this->left.'</div>
@@ -61,15 +61,15 @@ class jomres_configpanel extends jomres_content_tabs
 					<div class="col	">' .$this->right.'</div>
 				</div>
 				';
-			} elseif ( jomres_bootstrap_version() == '5' ) {
-                $this->panes[ ] = '
+			} elseif (jomres_bootstrap_version() == '5') {
+				$this->panes[ ] = '
 				<div class="row ' .$rowclass.'">
 					<div class="col">' .$this->left.'</div>
 					<div class="col">' .$this->middle.'</div>
 					<div class="col	">' .$this->right.'</div>
 				</div>
 				';
-            } else {
+			} else {
 				$this->panes[ ] = '
 				<div class="row-fluid ' .$rowclass.'">
 					<div class="span3">' .$this->left.'</div>
@@ -78,7 +78,6 @@ class jomres_configpanel extends jomres_content_tabs
 				</div>
 				';
 			}
-
 		}
 		$this->left = '&nbsp;';
 		$this->middle = '&nbsp;';
@@ -87,7 +86,7 @@ class jomres_configpanel extends jomres_content_tabs
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -98,7 +97,7 @@ class jomres_configpanel extends jomres_content_tabs
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */

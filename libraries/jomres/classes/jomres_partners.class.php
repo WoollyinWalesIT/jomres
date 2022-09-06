@@ -21,9 +21,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jomres_partners
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -49,7 +50,7 @@ class jomres_partners
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -71,7 +72,7 @@ class jomres_partners
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -97,7 +98,7 @@ class jomres_partners
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -132,8 +133,7 @@ class jomres_partners
 						LIMIT 1 ';
 		$userProfile = doSelectSql($query, 2);
 
-		if (
-			$userProfile['enc_firstname'] == '' ||
+		if ($userProfile['enc_firstname'] == '' ||
 			$userProfile['enc_surname'] == '' ||
 			$userProfile['enc_house'] == '' ||
 			$userProfile['enc_street'] == '' ||

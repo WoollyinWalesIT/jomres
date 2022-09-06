@@ -14,7 +14,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-// 
+//
 	
 	/**
 	 *
@@ -23,25 +23,26 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jomres_syndicate_guests
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
 	public function __construct()
 	{
-
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
-	public function get_booking_stats_for_guest( $email ) {
+	public function get_booking_stats_for_guest($email)
+	{
 		$response = '';
 
 		$reply = new stdClass();
@@ -82,16 +83,15 @@ class jomres_syndicate_guests
 						return array();
 					}
 				} catch (GuzzleHttp\Exception\RequestException $e) {
-					logging::log_message('Failed to get guest stats, received response '.$e->getMessage(), 'API', 'WARNING' )  ;
-					}
+					logging::log_message('Failed to get guest stats, received response '.$e->getMessage(), 'API', 'WARNING')  ;
+				}
 			}
 		}
 		
-	$reply = new stdClass();
-	$reply->stats = new stdClass();
-	$reply->stats->bookings = jr_gettext('BOOKING_NOSHOW_UNKNOWN', 'BOOKING_NOSHOW_UNKNOWN', false);
-	$reply->stats->noshows = jr_gettext('BOOKING_NOSHOW_UNKNOWN', 'BOOKING_NOSHOW_UNKNOWN', false);
-	return $reply;
+		$reply = new stdClass();
+		$reply->stats = new stdClass();
+		$reply->stats->bookings = jr_gettext('BOOKING_NOSHOW_UNKNOWN', 'BOOKING_NOSHOW_UNKNOWN', false);
+		$reply->stats->noshows = jr_gettext('BOOKING_NOSHOW_UNKNOWN', 'BOOKING_NOSHOW_UNKNOWN', false);
+		return $reply;
 	}
-	
 }

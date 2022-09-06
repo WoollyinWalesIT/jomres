@@ -21,9 +21,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jomres_knowledgebase
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -39,7 +40,7 @@ class jomres_knowledgebase
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -59,7 +60,7 @@ class jomres_knowledgebase
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -79,7 +80,7 @@ class jomres_knowledgebase
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -99,7 +100,7 @@ class jomres_knowledgebase
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */

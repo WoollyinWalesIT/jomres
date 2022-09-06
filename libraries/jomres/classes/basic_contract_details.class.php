@@ -15,16 +15,17 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
-	 * 
+	 *
 	 * @package Jomres\Core\Classes
 	 *
 	 *          A utility class for getting information about a booking
 	 */
 
 class basic_contract_details
-{	
+{
+
 	/**
-	 * 
+	 *
 	 * Constructor. Sets up the encryption class which is used later to decrypt guest PII
 	 *
 	 */
@@ -38,7 +39,7 @@ class basic_contract_details
 	}
 	
 	/**
-	 * 
+	 *
 	 * Pull booking information from the db
 	 *
 	 */
@@ -309,7 +310,7 @@ class basic_contract_details
 				$vDeets = explode('_', $v);
 				if ($vDeets[0] == 'guesttype') {
 					$this->contract[$contract_uid]['guesttype'][$vDeets[1]]['id'] = $vDeets[1];
-					if ( !isset( $guesttypeNames[$vDeets[1]])) {
+					if (!isset($guesttypeNames[$vDeets[1]])) {
 						 $guesttypeNames[$vDeets[1]] = 'Unknown';
 					}
 					$this->contract[$contract_uid]['guesttype'][$vDeets[1]]['title'] = $guesttypeNames[$vDeets[1]];
@@ -345,7 +346,7 @@ class basic_contract_details
 
 				foreach ($extrasList as $e) {
 					$this->contract[$contract_uid]['extradeets'][$e->uid]['uid'] = $e->uid;
-					$this->contract[$contract_uid]['extradeets'][$e->uid]['name'] = jr_gettext('_JOMRES_CUSTOMTEXT_EXTRANAME'.$e->uid, jomres_decode($e->name) );
+					$this->contract[$contract_uid]['extradeets'][$e->uid]['name'] = jr_gettext('_JOMRES_CUSTOMTEXT_EXTRANAME'.$e->uid, jomres_decode($e->name));
 					$this->contract[$contract_uid]['extradeets'][$e->uid]['price'] = $e->price;
 					$this->contract[$contract_uid]['extradeets'][$e->uid]['tax_rate'] = $e->tax_rate;
 					$this->contract[$contract_uid]['extradeets'][$e->uid]['qty'] = $this->contract[$contract_uid]['contractdeets']['extrasquantities'][$e->uid];

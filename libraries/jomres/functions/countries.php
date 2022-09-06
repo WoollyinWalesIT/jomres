@@ -20,7 +20,7 @@ defined('_JOMRES_INITCHECK') or die('');
  * @package Jomres\Core\Functions
 *
 * Uses the jomres_countries singleton to get country names
-* 
+*
 * Returns translated country names when passed a country code (e.g. GB or ES )
 *
 */
@@ -57,7 +57,7 @@ function getSimpleCountry($selectedCountry = '')
  * @package Jomres\Core\Functions
 *
 * Used in property configuration - booking form tab to create a dropdown of countries
-* 
+*
 * This property configuration dropdown allows the property manager to choose the default country to be shown in the booking form. If not already set, the system will attempt to use the geo-located country of the user as the default
 *
 */
@@ -92,8 +92,8 @@ function configCountries()
  * @package Jomres\Core\Functions
 *
 * Creates a countries dropdown
-* 
-* Used in numerous places, pass it the country code and an optional input name for the form element. The jomres_countries singleton creates a list of countries (including translation of the country names ). 
+*
+* Used in numerous places, pass it the country code and an optional input name for the form element. The jomres_countries singleton creates a list of countries (including translation of the country names ).
 *
 */
 function createSimpleCountriesDropdown($selectedCountry = '', $input_name = 'guest_country')
@@ -124,7 +124,7 @@ function createSimpleCountriesDropdown($selectedCountry = '', $input_name = 'gue
  * @package Jomres\Core\Functions
 *
 * Creates a countries dropdown
-* 
+*
 * Used in Site Configuration. Allows the site manager to configure a single country that all properties must existing in when they are created or modified.
 *
 */
@@ -150,7 +150,7 @@ function limitCountriesDropdown()
  *
  * @package Jomres\Core\Functions
 *
-* Creates a countries dropdown that adds onChange javascript so that an associated region dropdown will be updated 
+* Creates a countries dropdown that adds onChange javascript so that an associated region dropdown will be updated
 *
 */
 function createCountriesDropdown($selectedCountry, $input_name = 'country', $include_onchange = true)
@@ -187,7 +187,7 @@ function createCountriesDropdown($selectedCountry, $input_name = 'country', $inc
  * @package Jomres\Core\Functions
 *
 * Builds a region name dropdown
-* 
+*
 * Pass country code and the current region. First blank allows you to have the first region to be blank, and an optional input name
 *
 */
@@ -235,7 +235,7 @@ function setupRegions($countryCode = 'GB', $currentRegion = 'Pembrokeshire', $fi
  * @package Jomres\Core\Functions
 *
 * Returns region names grouped by country codes
-* 
+*
 * Used by the installer when creating a new installation of Jomres.
 *
 */
@@ -251,7 +251,7 @@ function regionNamesArray()
  * @package Jomres\Core\Functions
 *
 * Returns an array of country names
-* 
+*
 * Not currently used. Was used when building dropdowns but has now been superceeded by the jomres_countries singleton
 *
 * @depreciated
@@ -276,7 +276,7 @@ function countryNameArray()
  * @package Jomres\Core\Functions
 *
 * Replaces the older countryCodes array, which is now only used for importing into the #__jomres_countries table
-* 
+*
 */
 function countryCodesArray()
 {
@@ -296,7 +296,7 @@ function countryCodesArray()
  * @package Jomres\Core\Functions
 *
 * Used by the installer when initially populating the countries table
-* 
+*
 */
 function old_countryCodesArray($translate = true)
 {
@@ -321,8 +321,8 @@ function old_countryCodesArray($translate = true)
  *
  * @package Jomres\Core\Functions
 *
-* During installation/update, if the countries table is empty, then populate it. 
-* 
+* During installation/update, if the countries table is empty, then populate it.
+*
 */
 function import_countries()
 {
@@ -355,8 +355,8 @@ function import_countries()
  *
  * @package Jomres\Core\Functions
 *
-* During installation/update, if the regions table is empty, then populate it. 
-* 
+* During installation/update, if the regions table is empty, then populate it.
+*
 */
 function import_regions()
 {

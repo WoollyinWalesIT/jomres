@@ -21,9 +21,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jomres_shortcode_parser
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -35,7 +36,7 @@ class jomres_shortcode_parser
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -52,7 +53,7 @@ class jomres_shortcode_parser
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -77,7 +78,7 @@ class jomres_shortcode_parser
 							$event = 'j'.$eventPoint.$eventName;
 
 							if (!class_exists($event)) {
-								if (file_exists($eventDetails[ 'filepath' ].$filename)){
+								if (file_exists($eventDetails[ 'filepath' ].$filename)) {
 									include_once $eventDetails[ 'filepath' ].$filename;
 									$e = new $event($eventArgs);
 									if (isset($e->shortcode_data)) {
@@ -91,14 +92,16 @@ class jomres_shortcode_parser
 				}
 			}
 
-			if (!file_put_contents($this->shortcodes_file,
-'<?php
+			if (!file_put_contents(
+				$this->shortcodes_file,
+				'<?php
 ##################################################################
 defined( \'_JOMRES_INITCHECK\' ) or die( \'\' );
 ##################################################################
 
 $this->shortcodes = ' .var_export($this->shortcodes, true).';
-')) {
+'
+			)) {
 				trigger_error('ERROR: '.$this->shortcodes_file.' can`t be saved. Please solve the permission problem and try again.', E_USER_ERROR);
 				exit;
 			}

@@ -23,9 +23,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jomres_currency_exchange_rates
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -66,14 +67,14 @@ class jomres_currency_exchange_rates
 		}
 
 		if ($this->update_now) {
-			if  ($this->update_exchange_rates()) {
+			if ($this->update_exchange_rates()) {
 				$this->save_rates();
 			}
 		}
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -92,7 +93,7 @@ class jomres_currency_exchange_rates
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -116,7 +117,7 @@ class jomres_currency_exchange_rates
 
 		$json = $this->get_openexchangerates_rates();
 
-		if (is_null($json) || !$json ) {
+		if (is_null($json) || !$json) {
 			$message = "After reading exchange rate file, the json variable is found to be NULL. The most likely cause is either CURL not working/firewalled, or the API isn't set/is wrong.";
 
 			logging::log_message($message, 'Core', 'ERROR');
@@ -145,7 +146,7 @@ class jomres_currency_exchange_rates
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -161,21 +162,23 @@ class jomres_currency_exchange_rates
 			return false;
 		}
 
-		if (!file_put_contents($this->exchange_rate_classfile,
-'<?php
+		if (!file_put_contents(
+			$this->exchange_rate_classfile,
+			'<?php
 ##################################################################
 defined( \'_JOMRES_INITCHECK\' ) or die( \'\' );
 ##################################################################
 
 $this->rates = ' .var_export($this->rates, true).';
-')) {
+'
+		)) {
 			trigger_error('ERROR: '.$this->exchange_rate_classfile.' can`t be saved. Please solve the permission problem and try again.', E_USER_ERROR);
 			exit;
 		}
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -197,8 +200,7 @@ $this->rates = ' .var_export($this->rates, true).';
 			logging::log_message('Starting guzzle call to '.$this->base_uri.$this->query_string, 'Guzzle', 'DEBUG');
 
 			$json = $client->request('GET', $this->query_string)->getBody()->getContents();
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			$jomres_user_feedback = jomres_singleton_abstract::getInstance('jomres_user_feedback');
 			$jomres_user_feedback->construct_message(array('message'=>'Could not get currency exchange rates', 'css_class'=>'alert-danger alert-error'));
 		}

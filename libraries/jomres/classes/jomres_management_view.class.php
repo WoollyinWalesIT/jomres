@@ -21,9 +21,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jomres_management_view
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -50,7 +51,7 @@ class jomres_management_view
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -71,7 +72,7 @@ class jomres_management_view
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -98,7 +99,7 @@ class jomres_management_view
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */

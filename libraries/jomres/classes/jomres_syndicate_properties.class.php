@@ -23,9 +23,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jomres_syndicate_properties
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -45,12 +46,13 @@ class jomres_syndicate_properties
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
-	public function get_all_properties() {
+	public function get_all_properties()
+	{
 		$query = "SELECT id , domain FROM #__jomres_syndication_domains ";
 		$result = doSelectSql($query);
 		
@@ -72,40 +74,38 @@ class jomres_syndicate_properties
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
-	public function get_approved_properties ()
+	public function get_approved_properties()
 	{
 		if (empty($this->all_properties)) {
 			$this->get_all_properties();
 		}
 
 		foreach ($this->all_properties as $property) {
-
-			if ($property->approved == "1" && strstr($property->thumbnail_location , "https://") ) {
+			if ($property->approved == "1" && strstr($property->thumbnail_location, "https://")) {
 				if ($property->multi_room_property == "1") {
 					$this->all_approved_properties['mrps'][$property->id] = $property;
-				}
-				else {
+				} else {
 					$this->all_approved_properties['srps'][$property->id] = $property;
-				} 
+				}
 			}
 		}
 		return $this->all_approved_properties;
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
-	public function get_random_properties( $limit = 5 , $multi_room_property = 1)
+	public function get_random_properties($limit = 5, $multi_room_property = 1)
 	{
-		if ($multi_room_property == 1 ) {
+		if ($multi_room_property == 1) {
 			$type = "mrps";
 		} else {
 			$type = "srps";
@@ -116,7 +116,7 @@ class jomres_syndicate_properties
 		}
 
 		/*if ( !empty($this->base_lat_long ) && $this->base_property_id > 0 )  {
-			
+
 			$distances = array();
 			if ( $this->base_property_id > 0 ) {
 				$query = "SELECT distance , syndication_id FROM #__jomres_syndication_distances WHERE property_id = ".(int)$this->base_property_id. " ORDER BY distance ASC LIMIT 200" ;
@@ -137,11 +137,11 @@ class jomres_syndicate_properties
 						$latitudeTo = $val->lat;
 						$longitudeTo = $val->long;
 						$distance = $this->codexworldGetDistanceOpt($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo);
-						
+
 						$row_str .= "( ".(int)$this->base_property_id." , ".(int)$key. " , ".(int)$distance." ),";
 					}
-					
-					
+
+
 					if ( $distance > $this->max_distance_allowed || $distance < $this->min_distance_allowed ) {
 						$this->fallback_approved_properties[] = $this->all_approved_properties[$type][$key];
 						unset($this->all_approved_properties[$type][$key]);
@@ -152,17 +152,17 @@ class jomres_syndicate_properties
 				}
 			}
 
-			
+
 			if ($row_str != '' ) {
 				$row_str = substr($row_str, 0, -1);
-			
+
 			$query = "INSERT INTO #__jomres_syndication_distances  ( `property_id` , `syndication_id` , `distance` ) VALUES ".$row_str;
 			doInsertSql($query);
 			}
 		}*/
 		
 		$result = array();
-		if (isset($this->all_approved_properties[$type])) { 
+		if (isset($this->all_approved_properties[$type])) {
 			$count = count($this->all_approved_properties[$type]);
 			
 			if ($count == 0 && !empty($this->fallback_approved_properties)) {
@@ -172,11 +172,11 @@ class jomres_syndicate_properties
 				return array();
 			}
 			
-			if ( $count <= $limit ) {
+			if ($count <= $limit) {
 				$limit = $count;
 			}
 			
-			$ids = array_rand( $this->all_approved_properties[$type] , $limit );
+			$ids = array_rand($this->all_approved_properties[$type], $limit);
 			
 			
 			foreach ($ids as $id) {
@@ -187,12 +187,12 @@ class jomres_syndicate_properties
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
-	public function report_properties_display( $properties )
+	public function report_properties_display($properties)
 	{
 		$report = new stdClass();
 		$report->properties = array();
@@ -216,7 +216,7 @@ class jomres_syndicate_properties
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -227,7 +227,7 @@ class jomres_syndicate_properties
 		$rad = M_PI / 180;
 		//Calculate distance from latitude and longitude
 		$theta = (float)$longitudeFrom - (float)$longitudeTo;
-		$dist = sin($latitudeFrom * $rad) 
+		$dist = sin($latitudeFrom * $rad)
 			* sin($latitudeTo * $rad) +  cos($latitudeFrom * $rad)
 			* cos($latitudeTo * $rad) * cos($theta * $rad);
 

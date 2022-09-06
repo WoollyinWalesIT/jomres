@@ -27,7 +27,7 @@ class jomres_media_centre_images_optimizer
 	protected $optimizer;
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -39,7 +39,7 @@ class jomres_media_centre_images_optimizer
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -54,7 +54,7 @@ class jomres_media_centre_images_optimizer
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */

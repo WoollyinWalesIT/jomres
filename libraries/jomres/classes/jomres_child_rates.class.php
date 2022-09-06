@@ -21,51 +21,50 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jomres_child_rates
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
-	public function __construct( $property_uid = 0 )
+	public function __construct($property_uid = 0)
 	{
-		if ( $property_uid == 0 ) {
+		if ($property_uid == 0) {
 			throw new Exception('Error: Property uid not set ');
 		}
 
 		$this->property_uid = $property_uid;
 
-		$this->mrConfig = getPropertySpecificSettings( $this->property_uid );
+		$this->mrConfig = getPropertySpecificSettings($this->property_uid);
 
 		$this->default_model = 'per_night';
 
-		if ( isset($this->mrConfig['child_rates']) ) {
+		if (isset($this->mrConfig['child_rates'])) {
 			$this->child_rates = unserialize(base64_decode($this->mrConfig['child_rates']));
 		} else {
 			$this->child_rates = array ( );
 		}
 
-		uasort($this->child_rates, function($a, $b) {
+		uasort($this->child_rates, function ($a, $b) {
 			return $a['age_from'] <=> $b['age_from'];
 		});
 	}
 
-	public function set_child_rate ( $id = 0 , $age_from = 0 , $age_to = 0 , $price = 0.00 , $model = 'per_night')
+	public function set_child_rate($id = 0, $age_from = 0, $age_to = 0, $price = 0.00, $model = 'per_night')
 	{
 
-		if ( $age_to == 0 ) {
+		if ($age_to == 0) {
 			throw new Exception('Age to must be greater than 0 ');
 		}
 
-		if ($id == 0 ) {
-			$last_key = array_key_last ($this->child_rates);
+		if ($id == 0) {
+			$last_key = array_key_last($this->child_rates);
 			$id = $last_key + 1;
 		}
 
 		$this->child_rates[$id] = array ( "id" => $id , "age_from" => (int)$age_from , "age_to" => (int)$age_to , "price" => (float)$price , "model" => (string)$model );
-
-
 	}
 
 	public function save_child_rates()
@@ -90,14 +89,13 @@ class jomres_child_rates
 
 	public function check_for_overlapping_ages()
 	{
-		if (!empty($this->child_rates) ) {
-
+		if (!empty($this->child_rates)) {
 		}
 	}
 
-	public function build_rate_model_dropdown( $rate_id = 0 )
+	public function build_rate_model_dropdown($rate_id = 0)
 	{
-		if ( $rate_id == 0 ) {
+		if ($rate_id == 0) {
 			$current_model = $this->default_model ;
 		} else {
 			$current_model = $this->child_rates[$rate_id]['model'];
@@ -111,7 +109,6 @@ class jomres_child_rates
 		$options = array();
 		$options[] = jomresHTML::makeOption('per_night', jr_gettext('JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_NIGHT', 'JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_NIGHT', false));
 		$options[] = jomresHTML::makeOption('per_stay', jr_gettext('JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_STAY', 'JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_STAY', false));
-		return jomresHTML::selectList($options, 'model', 'class="inputbox" size="1"', 'value', 'text', $current_model , true );
-
+		return jomresHTML::selectList($options, 'model', 'class="inputbox" size="1"', 'value', 'text', $current_model, true);
 	}
 }

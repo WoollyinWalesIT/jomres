@@ -39,14 +39,14 @@ class data_source_keywords extends jomres_data_source_base
 				if (!isset($custom_descriptions[$custom->language])) {
 					$custom_descriptions[$custom->language] = array();
 				}
-				$keywords = $this->extract_key_words(  $custom->customtext );
-				$custom_descriptions[$custom->language] = array_merge ( $keywords , $custom_descriptions[$custom->language] );
+				$keywords = $this->extract_key_words($custom->customtext);
+				$custom_descriptions[$custom->language] = array_merge($keywords, $custom_descriptions[$custom->language]);
 			}
 		}
 
 		if (!empty($custom_descriptions)) {
 			foreach ($custom_descriptions as $language => $keywords) {
-				foreach ( $keywords as $keyword ) {
+				foreach ($keywords as $keyword) {
 					$data[$language][] = $keyword;
 				}
 			}
@@ -55,14 +55,16 @@ class data_source_keywords extends jomres_data_source_base
 		}
 	}
 
-	function extract_key_words($string) {
+	function extract_key_words($string)
+	{
 		mb_internal_encoding('UTF-8');
 		$stopwords = array();
 		$string = preg_replace('/[\pP]/u', '', trim(preg_replace('/\s\s+/iu', '', mb_strtolower($string))));
-		$matchWords = array_filter(explode(' ',$string) , function ($item) use ($stopwords) { return !($item == '' || in_array($item, $stopwords) || mb_strlen($item) <= 2 || is_numeric($item));});
+		$matchWords = array_filter(explode(' ', $string), function ($item) use ($stopwords) {
+			return !($item == '' || in_array($item, $stopwords) || mb_strlen($item) <= 2 || is_numeric($item));
+		});
 		$wordCountArr = array_count_values($matchWords);
 		arsort($wordCountArr);
 		return array_keys(array_slice($wordCountArr, 0, 10));
 	}
-
 }

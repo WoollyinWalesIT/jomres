@@ -21,9 +21,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jomres_timezones
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -41,7 +42,7 @@ class jomres_timezones
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -61,7 +62,7 @@ class jomres_timezones
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -84,7 +85,7 @@ class jomres_timezones
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -100,7 +101,7 @@ class jomres_timezones
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */

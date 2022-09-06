@@ -21,9 +21,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jrportal_invoice
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -35,11 +36,10 @@ class jrportal_invoice
 		
 		jr_import('jomres_encryption');
 		$this->jomres_encryption = new jomres_encryption();
-	
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -65,7 +65,7 @@ class jrportal_invoice
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -89,11 +89,10 @@ class jrportal_invoice
 		$this->lineitem['payment_method'] = '';
 		$this->lineitem['transaction_id'] = '';
 		$this->lineitem['management_url'] = '';
-		
-  }
+	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -152,43 +151,42 @@ class jrportal_invoice
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
 	// Intended for use by the update script of 9.11, it converts an invoice user's PII from open data to encrypted once handed an invoice id
-	public function convert_pii_data( $alternative_data )
+	public function convert_pii_data($alternative_data)
 	{
-		if ($this->id == 0 ) {
+		if ($this->id == 0) {
 			throw new Exception("Cannot convert invoice, invoice id not set.");
 		}
 		
-		$buyer_result = $this->create_pii_buyer($alternative_data );
+		$buyer_result = $this->create_pii_buyer($alternative_data);
 		$seller_result = $this->create_pii_seller();
 
-		if (!$buyer_result || !$seller_result ) {
-			if ( !$buyer_result ) {
-				error_logging('Could not convert invoice id '.$this->id.' buyer PII data' );
+		if (!$buyer_result || !$seller_result) {
+			if (!$buyer_result) {
+				error_logging('Could not convert invoice id '.$this->id.' buyer PII data');
 			}
-			if ( !$seller_result ) {
-				error_logging('Could not convert invoice id '.$this->id.' seller PII data' );
+			if (!$seller_result) {
+				error_logging('Could not convert invoice id '.$this->id.' seller PII data');
 			}
 		}
-		
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
 	// Personally Identifable information will be stored in the buyer table
-	private function create_pii_buyer( $alternative_data = false )
+	private function create_pii_buyer($alternative_data = false)
 	{
 
-		if (! $alternative_data ) {
+		if (! $alternative_data) {
 			$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 			$user_details['enc_firstname']			= $this->jomres_encryption->encrypt($tmpBookingHandler->tmpguest['firstname']);
 			$user_details['enc_surname']			= $this->jomres_encryption->encrypt($tmpBookingHandler->tmpguest['surname']);
@@ -244,7 +242,7 @@ class jrportal_invoice
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -255,7 +253,7 @@ class jrportal_invoice
 		
 		
 		$invoice_id = $this->id;
-		 if ((int) $this->contract_id > 0) { // It's a booking invoice, therefore the seller is the property manager
+		if ((int) $this->contract_id > 0) { // It's a booking invoice, therefore the seller is the property manager
 			$mrConfig = getPropertySpecificSettings($this->property_uid);
 			$manager_id = find_manager_id_for_property_uid($this->property_uid);
 			
@@ -264,8 +262,8 @@ class jrportal_invoice
 						`enc_surname`
 					FROM `#__jomres_guest_profile` WHERE cms_user_id = ".(int)$manager_id."
 					";
-			$manager_details = doSelectSql($query , 2 );
-			if (!$manager_details === false ) {
+			$manager_details = doSelectSql($query, 2);
+			if (!$manager_details === false) {
 				$manager_details = $this->jomres_encryption->decrypt($manager_details['enc_firstname'])." ".$this->jomres_encryption->decrypt($manager_details['enc_surname']);
 			} else {
 				$manager_details = "";
@@ -316,25 +314,24 @@ class jrportal_invoice
 			$user_details['enc_tel_mobile']	='';
 			$user_details['enc_email']		=$this->jomres_encryption->encrypt($mrConfig['property_business_email']);
 			$user_details['enc_vat_number']	=$this->jomres_encryption->encrypt($mrConfig['property_vat_number']);
-			
 		} else { //this is a commission/subscription invoice, therefore the seller is the "site" owner
 			$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 			$jrConfig = $siteConfig->get();
 			
 			$user_details = array();
 			
-			$user_details['enc_firstname']	=$this->jomres_encryption->encrypt( $jrConfig[ 'business_name' ] );
+			$user_details['enc_firstname']	=$this->jomres_encryption->encrypt($jrConfig[ 'business_name' ]);
 			$user_details['enc_surname']	= '';
-			$user_details['enc_house']		=$this->jomres_encryption->encrypt( $jrConfig[ 'business_address' ] );
-			$user_details['enc_street']		=$this->jomres_encryption->encrypt( $jrConfig[ 'business_street' ] );
-			$user_details['enc_town']		=$this->jomres_encryption->encrypt( $jrConfig[ 'business_town' ] );
-			$user_details['enc_county']		=$this->jomres_encryption->encrypt( $jrConfig[ 'business_region' ] );
-			$user_details['enc_country']	=$this->jomres_encryption->encrypt( $jrConfig[ 'business_country' ] );
-			$user_details['enc_postcode']	=$this->jomres_encryption->encrypt( $jrConfig[ 'business_postcode' ] );
-			$user_details['enc_tel_landline']=$this->jomres_encryption->encrypt( $jrConfig[ 'business_telephone' ] );
+			$user_details['enc_house']		=$this->jomres_encryption->encrypt($jrConfig[ 'business_address' ]);
+			$user_details['enc_street']		=$this->jomres_encryption->encrypt($jrConfig[ 'business_street' ]);
+			$user_details['enc_town']		=$this->jomres_encryption->encrypt($jrConfig[ 'business_town' ]);
+			$user_details['enc_county']		=$this->jomres_encryption->encrypt($jrConfig[ 'business_region' ]);
+			$user_details['enc_country']	=$this->jomres_encryption->encrypt($jrConfig[ 'business_country' ]);
+			$user_details['enc_postcode']	=$this->jomres_encryption->encrypt($jrConfig[ 'business_postcode' ]);
+			$user_details['enc_tel_landline']=$this->jomres_encryption->encrypt($jrConfig[ 'business_telephone' ]);
 			$user_details['enc_tel_mobile']	='';
-			$user_details['enc_email']		=$this->jomres_encryption->encrypt( $jrConfig[ 'business_email' ] );
-			$user_details['enc_vat_number']	=$this->jomres_encryption->encrypt( $jrConfig[ 'business_vat_number' ] );
+			$user_details['enc_email']		=$this->jomres_encryption->encrypt($jrConfig[ 'business_email' ]);
+			$user_details['enc_vat_number']	=$this->jomres_encryption->encrypt($jrConfig[ 'business_vat_number' ]);
 		}
 		
 		$query = "INSERT INTO #__jomres_invoice_pii_sellers
@@ -376,7 +373,7 @@ class jrportal_invoice
 	
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -447,7 +444,7 @@ class jrportal_invoice
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -494,7 +491,7 @@ class jrportal_invoice
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -511,7 +508,7 @@ class jrportal_invoice
 
 		$jrportal_taxrate = jomres_singleton_abstract::getInstance('jrportal_taxrate');
 
-		if ( isset($line_item_data[ 'tax_code_id' ]) && $jrportal_taxrate->gather_data($line_item_data[ 'tax_code_id' ])) {
+		if (isset($line_item_data[ 'tax_code_id' ]) && $jrportal_taxrate->gather_data($line_item_data[ 'tax_code_id' ])) {
 			$this->lineitem['tax_rate'] = (float) $jrportal_taxrate->rate;
 			$this->lineitem['tax_code'] = $jrportal_taxrate->code;
 			$this->lineitem['tax_description'] = $jrportal_taxrate->description;
@@ -550,7 +547,7 @@ class jrportal_invoice
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -568,7 +565,7 @@ class jrportal_invoice
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -637,7 +634,7 @@ class jrportal_invoice
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -698,7 +695,6 @@ class jrportal_invoice
 				$this->lineitem['payment_method'] = $r->payment_method;
 				$this->lineitem['transaction_id'] = $r->transaction_id;
 				$this->lineitem['management_url'] = $r->management_url;
-				
 			}
 
 			return true;
@@ -719,7 +715,7 @@ class jrportal_invoice
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -794,23 +790,24 @@ class jrportal_invoice
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
-	private function generate_invoice_number() {
+	private function generate_invoice_number()
+	{
 		
 		$mrConfig = getPropertySpecificSettings($this->property_uid);
 		
-		if ($mrConfig['use_custom_invoice_numbers'] == "0" || $this->property_uid == 0 ) {
+		if ($mrConfig['use_custom_invoice_numbers'] == "0" || $this->property_uid == 0) {
 			$query = "SELECT MAX(id) FROM #__jomresportal_invoices";
 			$this->invoice_number = doSelectSql($query, 1)+1;
 		} else {
 			if (isset($mrConfig['last_invoice_number'])) {
 				$last_invoice_number	= (int)$mrConfig['last_invoice_number'];
 				$new_invoice_seq		= $last_invoice_number+1;
-			} elseif ( isset($mrConfig['custom_invoice_start_number']) ) {
+			} elseif (isset($mrConfig['custom_invoice_start_number'])) {
 				$last_invoice_number	= (int)$mrConfig['custom_invoice_start_number'];
 				$new_invoice_seq		= $last_invoice_number;
 			} else {
@@ -819,21 +816,21 @@ class jrportal_invoice
 			
 			if ($this->property_uid > 0) {
 				$_POST[ 'cfg_last_invoice_number' ] = $new_invoice_seq;
-				savePropertyConfiguration( $this->property_uid );
+				savePropertyConfiguration($this->property_uid);
 			}
 
 			$pattern = $mrConfig['custom_invoice_pattern'];
 			
-			$pattern = str_replace( "{N}" , $new_invoice_seq ,		$pattern );
-			$pattern = str_replace( "{D}" , date("Y") ,		$pattern );
-			$pattern = str_replace( "{Y}" , date("Ymd") ,		$pattern );
+			$pattern = str_replace("{N}", $new_invoice_seq, $pattern);
+			$pattern = str_replace("{D}", date("Y"), $pattern);
+			$pattern = str_replace("{Y}", date("Ymd"), $pattern);
 			
 			$this->invoice_number = $pattern;
 		}
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -904,7 +901,7 @@ class jrportal_invoice
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -949,7 +946,7 @@ class jrportal_invoice
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -989,7 +986,7 @@ class jrportal_invoice
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -1009,7 +1006,7 @@ class jrportal_invoice
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -1029,7 +1026,7 @@ class jrportal_invoice
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -1124,8 +1121,7 @@ class jrportal_invoice
 		////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		// They're both in the EU, but in different countries, and the buyer is not using a registered VAT number, VAT will be charged
-		if (
-			array_key_exists($buyer_validation->country, $euro_countries) &&
+		if (array_key_exists($buyer_validation->country, $euro_countries) &&
 			$this->charging_business_is_in_eu &&
 			$buyer_validation->country != $seller_validation->country &&
 			$buyer_validation->vat_number_validated == '0'
@@ -1136,8 +1132,7 @@ class jrportal_invoice
 		}
 
 		// They're both in the EU, and in different countries. The buyer's VAT number has been Validated. The seller's VAT number has been Validated. VAT will not be charged.
-		if (
-			array_key_exists($buyer_validation->country, $euro_countries) &&
+		if (array_key_exists($buyer_validation->country, $euro_countries) &&
 			$this->charging_business_is_in_eu &&
 			$buyer_validation->country != $seller_validation->country &&
 			$buyer_validation->vat_number_validated == '1'
@@ -1149,7 +1144,7 @@ class jrportal_invoice
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -1188,7 +1183,7 @@ class jrportal_invoice
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -1219,12 +1214,15 @@ class jrportal_invoice
 		$management_url = get_showtime("gateway_management_url");
 		$transaction_id = get_showtime("gateway_transaction_id");
 				
-		if (is_null($payment_method))
+		if (is_null($payment_method)) {
 			$payment_method = '';
-		if (is_null($management_url))
+		}
+		if (is_null($management_url)) {
 			$management_url = '';
-		if (is_null($transaction_id))
+		}
+		if (is_null($transaction_id)) {
 			$transaction_id = '';
+		}
 		
 		$line_items = array();
 		if (number_format($balance, 2, '.', '') > 0.00) {
@@ -1249,7 +1247,7 @@ class jrportal_invoice
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -1272,7 +1270,7 @@ class jrportal_invoice
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -1299,7 +1297,7 @@ class jrportal_invoice
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -1328,7 +1326,7 @@ class jrportal_invoice
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -1352,7 +1350,7 @@ class jrportal_invoice
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -1377,7 +1375,7 @@ class jrportal_invoice
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */

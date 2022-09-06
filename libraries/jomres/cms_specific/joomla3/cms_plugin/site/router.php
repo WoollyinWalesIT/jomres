@@ -33,7 +33,7 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 if (!class_exists('JomresRouter')) {
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -70,7 +70,7 @@ if (!class_exists('JomresRouter')) {
 
 			
 		/**
-		 * 
+		 *
 		 *
 		 *
 		 */
@@ -213,7 +213,7 @@ if (!class_exists('JomresRouter')) {
 				}
 				if (isset($route_query[ 'feature_uids' ])) {
 					if ((int)$route_query[ 'feature_uids' ] > 0 && isset($basic_property_details->all_property_features[(int)$route_query[ 'feature_uids' ]]['abbv'])) {
-						$feature_name = $basic_property_details->all_property_features[(int)$route_query[ 'feature_uids' ]]['abbv']; 
+						$feature_name = $basic_property_details->all_property_features[(int)$route_query[ 'feature_uids' ]]['abbv'];
 						$segments[ ] = jomres_cmsspecific_stringURLSafe(jr_gettext('_JOMRES_ROUTER_FEATURES', '_JOMRES_ROUTER_FEATURES', false));
 						$segments[ ] = jomres_cmsspecific_stringURLSafe($feature_name).'-'.(int)$route_query[ 'feature_uids' ];
 						unset($route_query[ 'feature_uids' ]);
@@ -244,7 +244,7 @@ if (!class_exists('JomresRouter')) {
 		// ******************************************************************************************************************************
 	
 		/**
-		 * 
+		 *
 		 *
 		 *
 		 */
@@ -312,7 +312,7 @@ if (!class_exists('JomresRouter')) {
 					$vars[ 'calledByModule' ] = 'mod_jomsearch_m0';
 					$vars[ 'room_type' ] = substr($segments[ 2 ], strrpos($segments[ 2 ], '-') + 1);
 					break;
-				}
+			}
 
 			//set the request vars back to jinput for later use
 			$jinput = JFactory::getApplication()->input;

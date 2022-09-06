@@ -68,7 +68,7 @@ function doSelectSql($query, $mode = false)
 		default:
 			return $jomres_db->result;
 			break;
-		}
+	}
 }
 
 /**
@@ -114,7 +114,7 @@ function doInsertSql($query, $op = '', $ignoreErrors = false)
 /**
  *
  * @package Jomres\Core\Functions
- * 
+ *
  * Closes the database connection
  *
  */

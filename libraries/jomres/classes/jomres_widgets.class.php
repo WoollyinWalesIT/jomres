@@ -21,9 +21,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jomres_widgets
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -36,7 +37,7 @@ class jomres_widgets
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -65,7 +66,7 @@ class jomres_widgets
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -85,7 +86,7 @@ class jomres_widgets
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -105,7 +106,7 @@ class jomres_widgets
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -138,11 +139,11 @@ class jomres_widgets
 			foreach ($this->default_widgets as $widget => $w) {
 				if (isset($this->widgets[$widget])) {
 					$this->this_page_widgets[$widget] = array(
-													'column' => $i, 
+													'column' => $i,
 													'position' => 0
 													);
 				
-				$i++;
+					$i++;
 				}
 			}
 			
@@ -155,7 +156,7 @@ class jomres_widgets
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -207,13 +208,13 @@ class jomres_widgets
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
 	//toggle widget
-	public function toggle_widget($widget = '', $enabled = 0, $column = 1, $order = array() )
+	public function toggle_widget($widget = '', $enabled = 0, $column = 1, $order = array())
 	{
 		if ($widget == '') {
 			return false;
@@ -232,12 +233,12 @@ class jomres_widgets
 			}
 		} else {
 			$position = 0;
-			foreach ($thisJRUser->params['widgets'] as $key=>$current_widget ) {
+			foreach ($thisJRUser->params['widgets'] as $key => $current_widget) {
 				if ($current_widget['column'] == $column) {
 					$new_pos = (int)array_search("jr_widget_".$key, $order);
 					$thisJRUser->params['widgets'][$key]['position'] = $new_pos;
 					$thisJRUser->params['widgets'][$key]['column'] = $column;
-					if ($widget == $key ) {
+					if ($widget == $key) {
 						$position = $new_pos;
 					}
 				}
@@ -247,7 +248,6 @@ class jomres_widgets
 				'column' => $column,
 				'position' => $position
 			);
-			
 		}
 
 		//save user profile params

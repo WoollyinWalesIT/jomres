@@ -14,7 +14,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-// 
+//
 
 /**
  * @package Jomres\Core\Functions
@@ -27,13 +27,13 @@ function set_booking_number()
 	$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 	if (!isset($tmpBookingHandler->tmpbooking[ 'booking_number' ]) || trim($tmpBookingHandler->tmpbooking[ 'booking_number' ]) == '' || $tmpBookingHandler->tmpbooking[ 'booking_number' ] == 0) {
 		$keeplooking = true;
-		while ($keeplooking):
+		while ($keeplooking) :
 			$cartnumber = mt_rand(10000000, 99999999);
-		$query = "SELECT `contract_uid` FROM #__jomres_contracts WHERE `tag` = '".$cartnumber."' LIMIT 1";
-		$bklist = doSelectSql($query);
-		if (empty($bklist)) {
-			$keeplooking = false;
-		}
+			$query = "SELECT `contract_uid` FROM #__jomres_contracts WHERE `tag` = '".$cartnumber."' LIMIT 1";
+			$bklist = doSelectSql($query);
+			if (empty($bklist)) {
+				$keeplooking = false;
+			}
 		endwhile;
 		$tmpBookingHandler->tmpbooking[ 'booking_number' ] = $cartnumber;
 	} else {

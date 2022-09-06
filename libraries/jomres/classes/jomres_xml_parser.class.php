@@ -21,9 +21,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jomres_xml_parser
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -37,7 +38,7 @@ class jomres_xml_parser
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -97,7 +98,7 @@ class jomres_xml_parser
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -125,7 +126,7 @@ class jomres_xml_parser
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -143,7 +144,7 @@ class jomres_xml_parser
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -154,7 +155,7 @@ class jomres_xml_parser
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */

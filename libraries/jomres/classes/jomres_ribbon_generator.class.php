@@ -21,14 +21,15 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jomres_ribbon_generator
-{	
+{
+
 	/**
-	 * 
+	 *
 	 * Class determines what ribbon text to apply and builds ribbon (if appropriate)
 	 *
 	 */
 
-	public function __construct( $property_uid = 0 )
+	public function __construct($property_uid = 0)
 	{
 		$this->ribbon_text			= '';
 		$this->ribbon_html			= '';
@@ -54,13 +55,13 @@ class jomres_ribbon_generator
 		$discounted_properties = array();
 		if (!empty($propys)) {
 			foreach ($propys as $p) {
-				if ( in_array( (int) $p->property_uid , $published_properties ) ) {
+				if (in_array((int) $p->property_uid, $published_properties)) {
 					$this->discounted_properties[] = (int) $p->property_uid;
 				}
 			}
 		}
 	}
-	public function set_review_score( $average_rating = 0 , $rating_ribbon_text = '' )
+	public function set_review_score($average_rating = 0, $rating_ribbon_text = '')
 	{
 		$this->review_score = $average_rating;
 		$this->review_score_text = $rating_ribbon_text;
@@ -72,9 +73,9 @@ class jomres_ribbon_generator
 	 */
 	private function find_text()
 	{
-		if ( $this->review_score > 5 ) {
+		if ($this->review_score > 5) {
 			$this->ribbon_text = $this->review_score_text;
-		} elseif ( in_array($this->property_uid , $this->discounted_properties )) {
+		} elseif (in_array($this->property_uid, $this->discounted_properties)) {
 			$this->ribbon_text = jr_gettext('JOMRES_RIBBON_TEXT_DISCOUNTED', 'JOMRES_RIBBON_TEXT_DISCOUNTED', false);
 			$this->background_colour = 'EC0D0D';
 			$this->text_colour = 'ffffff';
@@ -85,7 +86,7 @@ class jomres_ribbon_generator
 
 	public function generate_html($text = '')
 	{
-		if ( $text == '' ) {
+		if ($text == '') {
 			$this->ribbon_text = $this->find_text();
 		} else {
 			$this->ribbon_text = $text;

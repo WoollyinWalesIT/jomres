@@ -22,9 +22,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class basic_coupon_details
-{	
+{
+
 	/**
-	 * 
+	 *
 	 * Constructor
 	 *
 	 */
@@ -47,7 +48,7 @@ class basic_coupon_details
 	}
 	
 	/**
-	 * 
+	 *
 	 * Get all coupons details for one or more property uids
 	 *
 	 */

@@ -21,9 +21,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jomres_editing_mode
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -62,7 +63,7 @@ class jomres_editing_mode
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -79,7 +80,7 @@ class jomres_editing_mode
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -96,7 +97,7 @@ class jomres_editing_mode
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */

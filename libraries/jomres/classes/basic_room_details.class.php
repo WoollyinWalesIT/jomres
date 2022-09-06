@@ -21,9 +21,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class basic_room_details
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -37,7 +38,7 @@ class basic_room_details
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -90,12 +91,12 @@ class basic_room_details
 			$this->rooms[$r->room_uid]['room_classes_uid']			= (int) $r->room_classes_uid;
 			$this->rooms[$r->room_uid]['propertys_uid']				= (int) $r->propertys_uid;
 			$this->rooms[$r->room_uid]['room_features_uid']			= stripslashes($r->room_features_uid);
-			$this->rooms[$r->room_uid]['room_name']					= jr_gettext('_JOMRES_CUSTOMTEXT_ROOMNAME_TITLE'.$r->room_uid, stripslashes($r->room_name) , false);
+			$this->rooms[$r->room_uid]['room_name']					= jr_gettext('_JOMRES_CUSTOMTEXT_ROOMNAME_TITLE'.$r->room_uid, stripslashes($r->room_name), false);
 			$this->rooms[$r->room_uid]['room_number']				= stripslashes($r->room_number);
 			$this->rooms[$r->room_uid]['room_floor']				= stripslashes($r->room_floor);
 			$this->rooms[$r->room_uid]['max_people']				= (int) $r->max_people;
 			$this->rooms[$r->room_uid]['singleperson_suppliment']	= (float) $r->singleperson_suppliment;
-			$this->rooms[$r->room_uid]['tagline']		 			= jr_gettext('_JOMRES_CUSTOMTEXT_ROOM_TAGLINE'.$r->room_uid, stripslashes($r->tagline) , false);
+			$this->rooms[$r->room_uid]['tagline']		 			= jr_gettext('_JOMRES_CUSTOMTEXT_ROOM_TAGLINE'.$r->room_uid, stripslashes($r->tagline), false);
 			$this->rooms[$r->room_uid]['description']				= jomres_decode(jr_gettext('_JOMRES_CUSTOMTEXT_ROOM_DESCRIPTION_'.$r->room_uid, stripslashes($r->description), false));
 			$this->rooms[$r->room_uid]['surcharge']					= (float) $r->surcharge;
 
@@ -118,7 +119,7 @@ class basic_room_details
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -198,7 +199,7 @@ class basic_room_details
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -258,7 +259,7 @@ class basic_room_details
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */

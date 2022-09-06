@@ -23,7 +23,7 @@ defined('_JOMRES_INITCHECK') or die('');
 class basic_subscription_package_details
 {
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -35,7 +35,7 @@ class basic_subscription_package_details
 	}
 
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -66,7 +66,7 @@ class basic_subscription_package_details
 
 	//Get all subscription packages
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */

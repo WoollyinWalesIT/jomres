@@ -21,24 +21,25 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jomres_child_policies
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
-	public function __construct( $property_uid = 0 )
+	public function __construct($property_uid = 0)
 	{
-		if ( $property_uid == 0 ) {
+		if ($property_uid == 0) {
 			throw new Exception('Error: Property uid not set ');
 		}
 
 		$this->property_uid = $property_uid;
 
-		$this->mrConfig = getPropertySpecificSettings( $this->property_uid );
+		$this->mrConfig = getPropertySpecificSettings($this->property_uid);
 
-		if ( isset($this->mrConfig['child_policies']) ) {
+		if (isset($this->mrConfig['child_policies'])) {
 			$this->child_policies = unserialize(base64_decode($this->mrConfig['child_policies']));
 		} else {
 			$this->child_policies = array ( "child_min_age" => 0  );
@@ -59,5 +60,4 @@ class jomres_child_policies
 		}
 		doInsertSql($query);
 	}
-
 }

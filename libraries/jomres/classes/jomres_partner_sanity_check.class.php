@@ -21,9 +21,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jomres_partner_sanity_check
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -38,7 +39,7 @@ class jomres_partner_sanity_check
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -51,7 +52,7 @@ class jomres_partner_sanity_check
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -81,7 +82,7 @@ class jomres_partner_sanity_check
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */

@@ -25,12 +25,12 @@ jr_import('jomres_content_tabs_bootstrap5');
  */
 class jomres_configpanel_bootstrap5_wordpress extends jomres_content_tabs_bootstrap5_wordpress
 {
-    /**
-     * Inserts the settings into the panes array.
-     */
-    public function insertSetting()
-    {
-        $this->content .= '
+	/**
+	 * Inserts the settings into the panes array.
+	 */
+	public function insertSetting()
+	{
+		$this->content .= '
 			<div class="col-12 pt-4">
 				<div class="row">
 					<div class="col-3">' .$this->left.'</div>
@@ -40,53 +40,53 @@ class jomres_configpanel_bootstrap5_wordpress extends jomres_content_tabs_bootst
 			</div>
 			';
 
-        $this->insertContent ($this->content);
+		$this->insertContent($this->content);
 
-        $this->left = '&nbsp;';
-        $this->middle = '&nbsp;';
-        $this->right = '&nbsp;';
-    }
+		$this->left = '&nbsp;';
+		$this->middle = '&nbsp;';
+		$this->right = '&nbsp;';
+	}
 
-    /**
-     * Inserts a description row.
-     */
-    public function insertDescription($description = '', $class = 'alert alert-info')
-    {
-        $this->content .= '<div class="row"><div class="col-12"><p class="'.$class.'">'.$description.'</p></div></div>';
-    }
+	/**
+	 * Inserts a description row.
+	 */
+	public function insertDescription($description = '', $class = 'alert alert-info')
+	{
+		$this->content .= '<div class="row"><div class="col-12"><p class="'.$class.'">'.$description.'</p></div></div>';
+	}
 
-    /**
-     * Inserts a heading.
-     */
-    public function insertHeading($text = '', $type = 'h3')
-    {
-        $this->content .= '<div class="row"><div class="col-12"><'.$type.'>'.$text.'</'.$type.'><hr/></div></div>';
-    }
+	/**
+	 * Inserts a heading.
+	 */
+	public function insertHeading($text = '', $type = 'h3')
+	{
+		$this->content .= '<div class="row"><div class="col-12"><'.$type.'>'.$text.'</'.$type.'><hr/></div></div>';
+	}
 
-    /**
-     * setleft panel.
-     */
-    public function setleft($val = '&nbsp;')
-    {
-        $this->left = $val;
-    }
+	/**
+	 * setleft panel.
+	 */
+	public function setleft($val = '&nbsp;')
+	{
+		$this->left = $val;
+	}
 
-    /**
-     * setmiddle panel.
-     */
-    public function setmiddle($val = '&nbsp;')
-    {
-        $this->middle = $val;
-    }
+	/**
+	 * setmiddle panel.
+	 */
+	public function setmiddle($val = '&nbsp;')
+	{
+		$this->middle = $val;
+	}
 
-    /**
-     * setright panel.
-     */
-    public function setright($val = '&nbsp;')
-    {
-        $this->right = $val;
-        if (trim($val) != '' && $val != '&nbsp;' ) {
-            $this->right .= '<hr/>';
-        }
-    }
+	/**
+	 * setright panel.
+	 */
+	public function setright($val = '&nbsp;')
+	{
+		$this->right = $val;
+		if (trim($val) != '' && $val != '&nbsp;') {
+			$this->right .= '<hr/>';
+		}
+	}
 }

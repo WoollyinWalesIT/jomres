@@ -28,7 +28,7 @@ class jomres_property_payment_methods
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -59,13 +59,13 @@ class jomres_property_payment_methods
 
 			foreach ($propertyData as $data) {
 				$result = $MiniComponents->specificEvent('03108', $data->plugin, null);
-                if (!is_null($result)) {
-                    $tmpgatewaydir = $result[ 'filepath' ];
-                    $gatewaydir = str_replace(JOMRESCONFIG_ABSOLUTE_PATH, get_showtime('live_site').'/', $tmpgatewaydir);
-                    $gatewaydir = str_replace('\\', '/', $gatewaydir);
+				if (!is_null($result)) {
+					$tmpgatewaydir = $result[ 'filepath' ];
+					$gatewaydir = str_replace(JOMRESCONFIG_ABSOLUTE_PATH, get_showtime('live_site').'/', $tmpgatewaydir);
+					$gatewaydir = str_replace('\\', '/', $gatewaydir);
 
-                    $this->multi_query_result[ $data->prid ][$data->plugin]['gateway'] = $data->plugin;
-                    $this->multi_query_result[ $data->prid ][$data->plugin]['gateway_name'] = $result[ 'gatewayname' ];
+					$this->multi_query_result[ $data->prid ][$data->plugin]['gateway'] = $data->plugin;
+					$this->multi_query_result[ $data->prid ][$data->plugin]['gateway_name'] = $result[ 'gatewayname' ];
 
 					$image = $noimage;
 					if (file_exists($tmpgatewaydir.'j00510'.$data->plugin.'.gif')) {
@@ -75,9 +75,8 @@ class jomres_property_payment_methods
 					} elseif (file_exists($tmpgatewaydir.'j00510'.$data->plugin.'.jpg')) {
 						$image = $gatewaydir.'j00510'.$data->plugin.'.jpg';
 					}
-                    $this->multi_query_result[ $data->prid ][$data->plugin]['gateway_image'] = $image;
-                }
-
+					$this->multi_query_result[ $data->prid ][$data->plugin]['gateway_image'] = $image;
+				}
 			}
 
 			//some properties don`t have gateways enabled, so we`ll set $this->multi_query_result to '' for them, otherwise the mysql query will be executed again
@@ -93,7 +92,7 @@ class jomres_property_payment_methods
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */

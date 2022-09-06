@@ -27,7 +27,7 @@ class jomres_media_centre_images
 	protected $optimizer;
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -50,10 +50,9 @@ class jomres_media_centre_images
 		}
 
 		//if images details are stored in db, we may want to use Amazon S3
-		if (
-			$this->use_db && 
-			$this->jrConfig['amazon_s3_active'] == '1' && 
-			$this->jrConfig['amazon_s3_bucket'] != '' && 
+		if ($this->use_db &&
+			$this->jrConfig['amazon_s3_active'] == '1' &&
+			$this->jrConfig['amazon_s3_bucket'] != '' &&
 			$this->jrConfig['amazon_s3_key'] != '' &&
 			$this->jrConfig['amazon_s3_secret'] != ''
 			) {
@@ -72,7 +71,7 @@ class jomres_media_centre_images
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -133,8 +132,8 @@ class jomres_media_centre_images
 		//extras images
 		$this->images['extras'] = array();
 
-        //property type images
-        $this->images['property_type'] = array();
+		//property type images
+		$this->images['property_type'] = array();
 
 		//populate the images array
 		foreach ($this->multi_query_images[$property_id] as $k => $v) {
@@ -159,7 +158,7 @@ class jomres_media_centre_images
 
 		if (isset($jomres_room_types->property_specific_room_type[$property_id])) {
 			//add default images for each room if no other images are set
-			foreach ($jomres_room_types->property_specific_room_type[$property_id] as $room_class_uid=>$val) {
+			foreach ($jomres_room_types->property_specific_room_type[$property_id] as $room_class_uid => $val) {
 				if (isset($this->images[ 'room_types' ])) {
 					if (!array_key_exists($room_class_uid, $this->images[ 'room_types' ])) {
 						if (!defined("JOMRES_API_CMS_ROOT")) {
@@ -179,13 +178,13 @@ class jomres_media_centre_images
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
 	//get images uploaded by admins (pfeatures, rmtypes, rmfeatures, markers, towns and other 3rd party resource types)
-	public function get_site_images( $type = '' )
+	public function get_site_images($type = '')
 	{
 		if ($type == '') {
 			return;
@@ -200,7 +199,7 @@ class jomres_media_centre_images
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -236,7 +235,7 @@ class jomres_media_centre_images
 
 			// This section will find all images uploaded by the new media centre's functionality
 			if (empty($resource_types)) {
-			   return false;
+				return false;
 			}
 
 			foreach ($property_uids as $property_id) {
@@ -282,7 +281,7 @@ class jomres_media_centre_images
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -300,7 +299,7 @@ class jomres_media_centre_images
 
 		// This section will find all images uploaded by the new media centre's functionality
 		if (empty($resource_types)) {
-		   return false;
+			return false;
 		}
 
 		$query = "SELECT 
@@ -318,13 +317,13 @@ class jomres_media_centre_images
 		foreach ($result as $r) {
 			if (isset($resource_types[$r->resource_type])) {
 				if ($r->version == 'large') {
-					$this->multi_query_images [ $r->property_uid ] [ $r->resource_type ] [ $r->resource_id ] [$r->filename] ['large'] = 
+					$this->multi_query_images [ $r->property_uid ] [ $r->resource_type ] [ $r->resource_id ] [$r->filename] ['large'] =
 						JOMRES_IMAGELOCATION_RELPATH.$r->property_uid.'/'.$r->resource_type.'/'.$r->resource_id.'/'.$r->filename;
 				} elseif ($r->version == 'small') {
-					$this->multi_query_images [ $r->property_uid ] [ $r->resource_type ] [ $r->resource_id ] [$r->filename] ['small'] = 
+					$this->multi_query_images [ $r->property_uid ] [ $r->resource_type ] [ $r->resource_id ] [$r->filename] ['small'] =
 						JOMRES_IMAGELOCATION_RELPATH.$r->property_uid.'/'.$r->resource_type.'/'.$r->resource_id.'/thumbnail/'.$r->filename;
 				} else {
-					$this->multi_query_images [ $r->property_uid ] [ $r->resource_type ] [ $r->resource_id ] [$r->filename] ['medium'] = 
+					$this->multi_query_images [ $r->property_uid ] [ $r->resource_type ] [ $r->resource_id ] [$r->filename] ['medium'] =
 						JOMRES_IMAGELOCATION_RELPATH.$r->property_uid.'/'.$r->resource_type.'/'.$r->resource_id.'/'.$r->version.'/'.$r->filename;
 				}
 			}
@@ -332,7 +331,7 @@ class jomres_media_centre_images
 		
 		//we have to reset the key file names in the array, because other code uses 0 as key for first image
 		//ugly solution, but has to be done to avoid changing the code in lots of places
-		//also, set $this->multi_query_images[$property_id] to make sure we won`t execute this again if the property has no images 
+		//also, set $this->multi_query_images[$property_id] to make sure we won`t execute this again if the property has no images
 		foreach ($property_uids as $property_id) {
 			if (!isset($this->multi_query_images[$property_id])) {
 				$this->multi_query_images[$property_id] = array();
@@ -349,7 +348,7 @@ class jomres_media_centre_images
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -373,8 +372,9 @@ class jomres_media_centre_images
 			$MiniComponents->triggerEvent('11010');
 			$resource_types = $MiniComponents->miniComponentData['11010'];
 
-			if (empty($resource_types))
+			if (empty($resource_types)) {
 				return false;
+			}
 
 			//security check
 			if (!isset($resource_types[$type])) {
@@ -436,7 +436,7 @@ class jomres_media_centre_images
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -452,8 +452,9 @@ class jomres_media_centre_images
 		$MiniComponents->triggerEvent('11010');
 		$resource_types = $MiniComponents->miniComponentData['11010'];
 		
-		if (empty($resource_types))
+		if (empty($resource_types)) {
 			return false;
+		}
 
 		//security check
 		if (!isset($resource_types[$type])) {
@@ -480,24 +481,24 @@ class jomres_media_centre_images
 		foreach ($result as $r) {
 			if ($resource_types[$type]['resource_id_required']) {
 				if ($r->version == 'large') {
-					$this->site_images [ $type ] [ $r->resource_id ] [$r->filename] ['large'] = 
+					$this->site_images [ $type ] [ $r->resource_id ] [$r->filename] ['large'] =
 						$rel_path.$r->resource_id.'/'.$r->filename;
 				} elseif ($r->version == 'small') {
-					$this->site_images [ $type ] [ $r->resource_id ] [$r->filename] ['small'] = 
+					$this->site_images [ $type ] [ $r->resource_id ] [$r->filename] ['small'] =
 						$rel_path.$r->resource_id.'/thumbnail/'.$r->filename;
 				} else {
-					$this->site_images [ $type ] [ $r->resource_id ] [$r->filename] ['medium'] = 
+					$this->site_images [ $type ] [ $r->resource_id ] [$r->filename] ['medium'] =
 						$rel_path.$r->resource_id.'/'.$r->version.'/'.$r->filename;
 				}
 			} else {
 				if ($r->version == 'large') {
-					$this->site_images [ $type ] [$r->filename] ['large'] = 
+					$this->site_images [ $type ] [$r->filename] ['large'] =
 						$rel_path.$r->filename;
 				} elseif ($r->version == 'small') {
-					$this->site_images [ $type ] [$r->filename] ['small'] = 
+					$this->site_images [ $type ] [$r->filename] ['small'] =
 						$rel_path.'thumbnail/'.$r->filename;
 				} else {
-					$this->site_images [ $type ] [$r->filename] ['medium'] = 
+					$this->site_images [ $type ] [$r->filename] ['medium'] =
 						$rel_path.$r->version.'/'.$r->filename;
 				}
 			}
@@ -517,7 +518,7 @@ class jomres_media_centre_images
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -560,7 +561,7 @@ class jomres_media_centre_images
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -591,7 +592,7 @@ class jomres_media_centre_images
 												'".$version."'
 												)";
 		
-		if (!doInsertSql($query,'')) {
+		if (!doInsertSql($query, '')) {
 			throw new Exception('Error: Could not insert images in db');
 		}
 		
@@ -599,7 +600,7 @@ class jomres_media_centre_images
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -654,7 +655,7 @@ class jomres_media_centre_images
 									AND `resource_id` = '".$resource_id."' 
 									AND `filename` = '".$file_name."'";
 				
-				if (!doInsertSql($query,'')) {
+				if (!doInsertSql($query, '')) {
 					throw new Exception('Error: Delete image from db failed.');
 				}
 			}
@@ -681,7 +682,7 @@ class jomres_media_centre_images
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -698,7 +699,7 @@ class jomres_media_centre_images
 		if ($this->use_db) {
 			$query = "DELETE FROM #__jomres_images WHERE `property_uid` = ".(int)$property_uid;
 			
-			if (!doInsertSql($query,'')) {
+			if (!doInsertSql($query, '')) {
 				throw new Exception('Error: Deleting all property images from db failed.');
 			}
 		}
@@ -717,7 +718,7 @@ class jomres_media_centre_images
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -747,7 +748,7 @@ class jomres_media_centre_images
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -768,12 +769,12 @@ class jomres_media_centre_images
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
-	private function build_image_path($property_uid = 0, $resource_type = '', $resource_id = '', $file_name = '', $version = '', $resource_id_required = true) 
+	private function build_image_path($property_uid = 0, $resource_type = '', $resource_id = '', $file_name = '', $version = '', $resource_id_required = true)
 	{
 		$image = '';
 		

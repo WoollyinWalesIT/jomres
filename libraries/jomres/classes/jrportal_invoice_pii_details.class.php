@@ -21,9 +21,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jrportal_invoice_pii_details
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -33,11 +34,10 @@ class jrportal_invoice_pii_details
 		$this->invoice_id = 0;
 		jr_import('jomres_encryption');
 		$this->jomres_encryption = new jomres_encryption();
-	
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -64,8 +64,8 @@ class jrportal_invoice_pii_details
 					`enc_vat_number`
 				FROM `#__jomres_invoice_pii_buyers` WHERE invoice_id = ".(int)$this->invoice_id."
 				";
-		$user_details = doSelectSql($query , 2 );
-		if (empty($user_details)){
+		$user_details = doSelectSql($query, 2);
+		if (empty($user_details)) {
 			throw new Exception('Error: Buyer details could not be found');
 		}
 		
@@ -86,7 +86,7 @@ class jrportal_invoice_pii_details
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -114,9 +114,9 @@ class jrportal_invoice_pii_details
 				FROM `#__jomres_invoice_pii_sellers` WHERE invoice_id = ".(int)$this->invoice_id."
 				";
 
-		$user_details = doSelectSql($query , 2 );
+		$user_details = doSelectSql($query, 2);
 
-		if (empty($user_details)){
+		if (empty($user_details)) {
 			throw new Exception('Error: Seller details could not be found');
 		}
 
@@ -135,6 +135,5 @@ class jrportal_invoice_pii_details
 			'vat_number'	=> $this->jomres_encryption->decrypt($user_details['enc_vat_number'])
 		);
 		return $response;
-		
 	}
 }

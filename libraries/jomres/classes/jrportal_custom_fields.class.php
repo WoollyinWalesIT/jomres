@@ -21,9 +21,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jrportal_custom_fields
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -34,7 +35,7 @@ class jrportal_custom_fields
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -50,7 +51,7 @@ class jrportal_custom_fields
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -97,7 +98,7 @@ class jrportal_custom_fields
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -133,7 +134,7 @@ class jrportal_custom_fields
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */

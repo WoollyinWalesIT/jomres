@@ -21,9 +21,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jomresItemToolbar
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -35,7 +36,7 @@ class jomresItemToolbar
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -48,7 +49,7 @@ class jomresItemToolbar
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -70,7 +71,7 @@ class jomresItemToolbar
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -80,7 +81,7 @@ class jomresItemToolbar
 		$title = str_replace("'", "\'", $title);
 		$title = str_replace('&#39;', "\'", $title);
 		
-		if ( $this->bs_version == '5' ) {
+		if ($this->bs_version == '5') {
 			$item = '<a class="dropdown-item" href="'.$link.'"><i class="'.$icon.'"></i> '.$title.'</a> ';
 		} else {
 			$item = '<a tabindex="-1" href="'.$link.'"><i class="'.$icon.'"></i> '.$title.'</a> ';
@@ -93,7 +94,7 @@ class jomresItemToolbar
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -102,7 +103,7 @@ class jomresItemToolbar
 	{
 		
 		
-		if ($this->bs_version == '3' || $this->bs_version == '2' ) {
+		if ($this->bs_version == '3' || $this->bs_version == '2') {
 			$this->toolbar = '
 						<div id="jomres-item-toolbar" class="btn-group">
 			';
@@ -124,7 +125,7 @@ class jomresItemToolbar
 				<a class="btn btn-sm btn-default btn-secondary dropdown-toggle" data-toggle="dropdown" href="#"> <span class="caret"></span></a>
 					<ul class="dropdown-menu">
 				';
-			}elseif ($this->bs_version == '5') {
+			} elseif ($this->bs_version == '5') {
 				$this->toolbar .= '
 				<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"> <span class="caret"></span></a>
 				';
@@ -134,25 +135,23 @@ class jomresItemToolbar
 			}
 			
 			
-			if ( $this->bs_version == '5' ) {
+			if ($this->bs_version == '5') {
 				$this->toolbar .= '<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 				';
 			}
 
 			 
 			foreach ($this->secondaryItems as $secondaryItem) {
-				if ( $this->bs_version == '5' ) {
+				if ($this->bs_version == '5') {
 					$this->toolbar .= $secondaryItem.'
 					';
-				}
-				else {
+				} else {
 					$this->toolbar .= '<li>'.$secondaryItem.'</li>
 					';
-				} 
-					
+				}
 			}
 			
-			if ( $this->bs_version == '5' ) {
+			if ($this->bs_version == '5') {
 				$this->toolbar .= '</div>
 				';
 			} else {
@@ -161,7 +160,7 @@ class jomresItemToolbar
 			}
 		}
 
-		if ($this->bs_version == '3' || $this->bs_version == '2' ) {
+		if ($this->bs_version == '3' || $this->bs_version == '2') {
 			$this->toolbar .= '</div>
 			';
 		} else { // Bootstrap 5

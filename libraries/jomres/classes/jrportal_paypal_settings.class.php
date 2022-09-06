@@ -21,9 +21,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jrportal_paypal_settings
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -44,7 +45,7 @@ class jrportal_paypal_settings
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -68,7 +69,7 @@ class jrportal_paypal_settings
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */

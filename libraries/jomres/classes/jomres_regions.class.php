@@ -21,9 +21,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jomres_regions
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -46,7 +47,7 @@ class jomres_regions
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -79,7 +80,7 @@ class jomres_regions
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -114,7 +115,7 @@ class jomres_regions
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -151,7 +152,7 @@ class jomres_regions
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -187,7 +188,7 @@ class jomres_regions
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -215,7 +216,7 @@ class jomres_regions
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -232,7 +233,7 @@ class jomres_regions
 		$this->get_all_regions();
 
 		foreach ($this->regions as $r) {
-            if (strcasecmp( jomres_cmsspecific_stringURLSafe($r[ 'regionname' ]), $region_name) == 0) {
+			if (strcasecmp(jomres_cmsspecific_stringURLSafe($r[ 'regionname' ]), $region_name) == 0) {
 				return (int) $r[ 'id' ];
 			}
 		}

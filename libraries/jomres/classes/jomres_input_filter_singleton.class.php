@@ -21,9 +21,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jomres_input_filter_singleton
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -37,7 +38,7 @@ class jomres_input_filter_singleton
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -67,7 +68,7 @@ class jomres_input_filter_singleton
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */

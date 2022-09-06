@@ -21,9 +21,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jrportal_subscriptions
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -83,7 +84,7 @@ class jrportal_subscriptions
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -143,7 +144,7 @@ class jrportal_subscriptions
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -194,7 +195,7 @@ class jrportal_subscriptions
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -229,7 +230,7 @@ class jrportal_subscriptions
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -255,7 +256,7 @@ class jrportal_subscriptions
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -309,7 +310,7 @@ class jrportal_subscriptions
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -354,7 +355,7 @@ class jrportal_subscriptions
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -387,7 +388,7 @@ class jrportal_subscriptions
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -413,7 +414,7 @@ class jrportal_subscriptions
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -437,7 +438,7 @@ class jrportal_subscriptions
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */

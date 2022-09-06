@@ -24,9 +24,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jrportal_payment_reference
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -36,7 +37,7 @@ class jrportal_payment_reference
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -44,10 +45,10 @@ class jrportal_payment_reference
 	public function set_payment_refence()
 	{
 		$query ="SELECT id FROM #__jomres_invoice_payment_ref WHERE invoice_id =".$this->invoice_id." LIMIT 1";
-		$payment_reference = doSelectSql($query,1);   
-		if (!$payment_reference){
+		$payment_reference = doSelectSql($query, 1);
+		if (!$payment_reference) {
 			$query = "INSERT INTO #__jomres_invoice_payment_ref ( `invoice_id` , `gateway` ) VALUES ( '".$this->invoice_id."' , '".$this->gateway."' ) ";
-		}else{
+		} else {
 			$query ="UPDATE #__jomres_invoice_payment_ref SET gateway = '".$this->gateway."' WHERE id=".(int)$payment_reference;
 		}
 		try {
@@ -60,7 +61,7 @@ class jrportal_payment_reference
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -78,7 +79,7 @@ class jrportal_payment_reference
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -177,7 +178,7 @@ class jrportal_payment_reference
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */

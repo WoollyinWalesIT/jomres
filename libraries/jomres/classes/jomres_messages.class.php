@@ -21,9 +21,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jomres_messages
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -42,7 +43,7 @@ class jomres_messages
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -58,7 +59,7 @@ class jomres_messages
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */

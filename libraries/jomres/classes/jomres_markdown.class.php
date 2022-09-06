@@ -22,31 +22,33 @@
 	 *
 	 */
 
-	class jomres_markdown {
+class jomres_markdown
+{
 
-		/**
-		 *
-		 *
-		 *
-		 */
+	/**
+	 *
+	 *
+	 *
+	 */
 
-		public function __construct() {
-			//require_once (JOMRES_LIBRARIES_ABSPATH.'Parsedown'.JRDS.'Parsedown.php');
-			$this->Parsedown = new Parsedown();
-			$this->Parsedown->setBreaksEnabled(true);
-		}
-
-		/**
-		 *
-		 *
-		 *
-		 */
-
-		public function get_markdown($string) {
-			$string = str_replace ( "&#10;" , "\n" , $string);
-			$string = str_replace ( "&#38;" , "&" , $string);
-
-			return $this->Parsedown->text($string);
-		}
-
+	public function __construct()
+	{
+		//require_once (JOMRES_LIBRARIES_ABSPATH.'Parsedown'.JRDS.'Parsedown.php');
+		$this->Parsedown = new Parsedown();
+		$this->Parsedown->setBreaksEnabled(true);
 	}
+
+	/**
+	 *
+	 *
+	 *
+	 */
+
+	public function get_markdown($string)
+	{
+		$string = str_replace("&#10;", "\n", $string);
+		$string = str_replace("&#38;", "&", $string);
+
+		return $this->Parsedown->text($string);
+	}
+}

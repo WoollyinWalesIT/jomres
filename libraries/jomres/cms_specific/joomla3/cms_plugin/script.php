@@ -11,14 +11,15 @@ use Joomla\Archive\Archive;
 	 */
 
 class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687/script-not-running-on-plugin-installation
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
-	function preflight($type, $parent) 
+	function preflight($type, $parent)
 	{
 		@ignore_user_abort(true);
 		@set_time_limit(0);
@@ -39,7 +40,7 @@ class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687
 		}
 		
 		if (!defined('_JOMRES_INITCHECK')) {
-			define('_JOMRES_INITCHECK',1);
+			define('_JOMRES_INITCHECK', 1);
 		}
 		
 		//define Jomres root dir
@@ -54,8 +55,7 @@ class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687
 		// Let's get on with the business of downloading Jomres. If we can`t get the latest version info (maybe becuase of a firewall preventing communication with updates.jomres4.net), we`ll abort by returning false
 		try {
 			$http = Joomla\CMS\Http\HttpFactory::getHttp();
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			JError::raiseWarning(null, 'Jomres requires minimum Joomla version 3.8 to run. Please update Joomla first.');
 
 			return false;
@@ -66,7 +66,7 @@ class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687
 
 		if ( $disk_free_space < 300 ) {
 			JError::raiseWarning(null, 'There is not enough disk space available to download and extract Jomres.');
-			
+
 			return false;
 		} */
 		
@@ -77,12 +77,12 @@ class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687
 		$debugging = JFactory::getConfig()->get('debug');
 		$nightly = false;
 		
-		if ( $debugging == '1' ) {
+		if ($debugging == '1') {
 			$nightly = true;
-		} elseif ( file_exists(JPATH_ROOT . DIRECTORY_SEPARATOR . JOMRES_ROOT_DIRECTORY . DIRECTORY_SEPARATOR . 'configuration.php') ) {
+		} elseif (file_exists(JPATH_ROOT . DIRECTORY_SEPARATOR . JOMRES_ROOT_DIRECTORY . DIRECTORY_SEPARATOR . 'configuration.php')) {
 			include JPATH_ROOT . DIRECTORY_SEPARATOR . JOMRES_ROOT_DIRECTORY . DIRECTORY_SEPARATOR . 'configuration.php';
 			
-			if ( $jrConfig['development_production'] == 'development' ) {
+			if ($jrConfig['development_production'] == 'development') {
 				$nightly = true;
 			}
 		}
@@ -102,8 +102,7 @@ class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687
 		}
 		
 		//was the package downloaded?
-		if (!$archivename)
-		{
+		if (!$archivename) {
 			JError::raiseWarning(null, 'Something went wrong downloading Jomres. Quitting');
 
 			return false;
@@ -123,85 +122,69 @@ class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687
 		$extraction_path = $tmp_path . DIRECTORY_SEPARATOR . JOMRES_ROOT_DIRECTORY;
 		
 		//create /tmp/jomres dir
-		try 
-		{
-			JFolder::create( $extraction_path );
-		} 
-		catch (Exception $e)
-		{
+		try {
+			JFolder::create($extraction_path);
+		} catch (Exception $e) {
 			JError::raiseWarning(null, 'Something went wrong when trying to create dir ' . $extraction_path);
 
 			return false;
 		}
 		
 		//create /jomres dir
-		try 
-		{
-			JFolder::create( $jomres_path );
-		} 
-		catch (Exception $e)
-		{
+		try {
+			JFolder::create($jomres_path);
+		} catch (Exception $e) {
 			JError::raiseWarning(null, 'Something went wrong when trying to create dir ' . $jomres_path . '. Using FTP, create the directory manually then re-run the installer, many times this will solve the problem.');
 
 			return false;
 		}
 
 		//Unzip Jomres
-		try
-		{
+		try {
 			$archive = new Archive;
 
 			$extract = $archive->extract($tmp_path . DIRECTORY_SEPARATOR . $archivename, $extraction_path);
-		}
-		catch (Exception $e)
-		{
+		} catch (Exception $e) {
 			JError::raiseWarning(null, 'Something went wrong when trying to unzip the archive.');
 
 			return false;
 		}
 
-		if (!$extract)
-		{
+		if (!$extract) {
 			JError::raiseWarning(null, 'Something went wrong when unzipping the archive.');
 
 			return false;
 		}
 		
 		//move the extracted files to /jomres dir
-		try 
-		{
+		try {
 			JFolder::copy($extraction_path, $jomres_path, '', $force = true);
-		} 
-		catch (Exception $e)
-		{
+		} catch (Exception $e) {
 			JError::raiseWarning(null, 'Something went wrong when trying to move the extracted Jomres files.');
 
 			return false;
 		}
 		
 		//cleanup the extracted files
-		try
-		{
+		try {
 			JInstallerHelper::cleanupInstall($archivename, $extraction_path);
-		}
-		catch (Exception $e)
-		{
+		} catch (Exception $e) {
 			JError::raiseWarning(null, 'Something went wrong when trying to cleanup jomres tmp files.');
 
 			return false;
 		}
 	}
-	 	
+		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
-	function install($parent) 
+	function install($parent)
 	{
 		if (!defined('_JOMRES_INITCHECK')) {
-			define('_JOMRES_INITCHECK',1);
+			define('_JOMRES_INITCHECK', 1);
 		}
 
 		//define Jomres root dir
@@ -223,24 +206,23 @@ class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687
 			foreach ($messages as $m) {
 				JError::raiseWarning(null, $m);
 			}
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			JError::raiseWarning(null, 'Something went wrong when running the Jomres installation script.');
 
 			return false;
 		}
 	}
- 	
+	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
-	function update($parent) 
+	function update($parent)
 	{
 		if (!defined('_JOMRES_INITCHECK')) {
-			define('_JOMRES_INITCHECK',1);
+			define('_JOMRES_INITCHECK', 1);
 		}
 
 		//define Jomres root dir
@@ -262,24 +244,23 @@ class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687
 			foreach ($messages as $m) {
 				JError::raiseWarning(null, $m);
 			}
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			JError::raiseWarning(null, 'Something went wrong when running the Jomres installation script.');
 
 			return false;
 		}
 	}
- 	
+	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
-	function uninstall($parent) 
+	function uninstall($parent)
 	{
 		if (!defined('_JOMRES_INITCHECK')) {
-			define('_JOMRES_INITCHECK',1);
+			define('_JOMRES_INITCHECK', 1);
 		}
 
 		//define Jomres root dir
@@ -301,41 +282,40 @@ class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687
 			foreach ($messages as $m) {
 				JError::raiseWarning(null, $m);
 			}
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			JError::raiseWarning(null, 'Something went wrong when running the Jomres installation script.');
 
 			return false;
 		}
 	}
- 	
+	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
-	function postflight($type, $parent) 
+	function postflight($type, $parent)
 	{
 		//
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
-	function free_space( $path = JPATH_ROOT ) 
+	function free_space($path = JPATH_ROOT)
 	{
-		$space = @disk_free_space( $path );
+		$space = @disk_free_space($path);
 		
-		if ( $space === false || is_null( $space ) ) {
+		if ($space === false || is_null($space)) {
 			return 0;
 		}
 		
 		//convert to MB
-		$space = round( $space / 1024 / 1024 );
+		$space = round($space / 1024 / 1024);
 		
 		return $space;
 	}

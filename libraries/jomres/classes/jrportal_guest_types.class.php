@@ -21,9 +21,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jrportal_guest_types
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -34,7 +35,7 @@ class jrportal_guest_types
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -56,7 +57,7 @@ class jrportal_guest_types
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -110,7 +111,7 @@ class jrportal_guest_types
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -173,7 +174,7 @@ class jrportal_guest_types
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -218,7 +219,7 @@ class jrportal_guest_types
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -252,7 +253,7 @@ class jrportal_guest_types
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -293,7 +294,7 @@ class jrportal_guest_types
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */

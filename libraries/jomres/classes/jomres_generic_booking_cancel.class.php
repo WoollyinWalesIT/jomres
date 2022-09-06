@@ -21,9 +21,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jomres_generic_booking_cancel
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -36,7 +37,7 @@ class jomres_generic_booking_cancel
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -55,7 +56,7 @@ class jomres_generic_booking_cancel
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -87,7 +88,7 @@ class jomres_generic_booking_cancel
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -104,7 +105,7 @@ class jomres_generic_booking_cancel
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */

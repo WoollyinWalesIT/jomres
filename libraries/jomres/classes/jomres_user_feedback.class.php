@@ -22,9 +22,10 @@ defined('_JOMRES_INITCHECK') or die('');
 
 // A class for providing feedback to all users
 class jomres_user_feedback
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -36,7 +37,7 @@ class jomres_user_feedback
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -55,7 +56,7 @@ class jomres_user_feedback
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */

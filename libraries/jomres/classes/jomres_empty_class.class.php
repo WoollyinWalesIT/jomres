@@ -15,7 +15,8 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 class jomres_empty_class
-{	
+{
+
 	/**
 	 *
 	 * @package Jomres\Core\Classes
@@ -24,27 +25,26 @@ class jomres_empty_class
 
 	public function __construct()
 	{
-		
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
-	public function __call($name, $arguments) 
+	public function __call($name, $arguments)
 	{
 		//throw new Exception("failed to call method ".$name);
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
-	public static function __callStatic($name, $arguments) 
+	public static function __callStatic($name, $arguments)
 	{
 		//throw new Exception("failed to call static method ".$name);
 	}

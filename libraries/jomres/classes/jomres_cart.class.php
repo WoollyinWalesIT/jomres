@@ -24,7 +24,7 @@ class jomres_cart
 {
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -49,7 +49,7 @@ class jomres_cart
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -85,7 +85,7 @@ class jomres_cart
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -108,7 +108,7 @@ class jomres_cart
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -124,7 +124,7 @@ class jomres_cart
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */

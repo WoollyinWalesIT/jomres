@@ -22,9 +22,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class basic_guest_type_details
-{	
+{
+
 	/**
-	 * 
+	 *
 	 * Constructor
 	 *
 	 */
@@ -36,7 +37,7 @@ class basic_guest_type_details
 	}
 	
 	/**
-	 * 
+	 *
 	 * Get all guest types for a property
 	 *
 	 */

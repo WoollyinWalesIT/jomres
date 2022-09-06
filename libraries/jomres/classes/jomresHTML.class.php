@@ -111,7 +111,7 @@ class jomresHTML
 				$txt = $v->$text;
 
 				$checked = '';
-				 if ($val == $default) {
+				if ($val == $default) {
 					$checked = 'checked="checked" ';
 				}
 

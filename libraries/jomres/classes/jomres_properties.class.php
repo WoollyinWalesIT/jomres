@@ -24,9 +24,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jomres_properties
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -39,7 +40,7 @@ class jomres_properties
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -83,7 +84,7 @@ class jomres_properties
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -91,7 +92,7 @@ class jomres_properties
 	//Get all properties in the system
 	public function get_all_properties()
 	{
-		if ( isset($this->all_property_uids) && is_array($this->all_property_uids)) {
+		if (isset($this->all_property_uids) && is_array($this->all_property_uids)) {
 			return true;
 		}
 
@@ -133,7 +134,7 @@ class jomres_properties
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -223,7 +224,7 @@ class jomres_properties
 
 		$this->propertys_uid = doInsertSql($query, jr_gettext('_JOMRES_MR_AUDIT_INSERT_PROPERTY', '_JOMRES_MR_AUDIT_INSERT_PROPERTY', false));
 
-		if (!$this->propertys_uid || $this->propertys_uid == 0 ) {
+		if (!$this->propertys_uid || $this->propertys_uid == 0) {
 			throw new Exception('Error: New property insert failed.');
 		}
 
@@ -232,8 +233,7 @@ class jomres_properties
 
 		//insert settings
 		if (!$realestate) {
-
-			if ( $jrConfig[ 'compatability_property_configuration' ] == 1 ) {
+			if ($jrConfig[ 'compatability_property_configuration' ] == 1) {
 				$compatability_property_configuration = 1;
 			} else {
 				$compatability_property_configuration = 0;
@@ -354,18 +354,16 @@ class jomres_properties
 			if (!doInsertSql($query, jr_gettext('_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS', '_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS', false))) {
 				throw new Exception('Error: is_real_estate_listing setting insert failed.');
 			}
-
-
 		}
 
-        $webhook_notification							  	= new stdClass();
-        $webhook_notification->webhook_event				= 'property_created';
-        $webhook_notification->webhook_event_description	= 'Logs when a new property is created.';
-        $webhook_notification->webhook_event_plugin		 	= 'core';
-        $webhook_notification->data						 	= new stdClass();
-        $webhook_notification->data->property_uid		   	= $this->propertys_uid;
+		$webhook_notification							  	= new stdClass();
+		$webhook_notification->webhook_event				= 'property_created';
+		$webhook_notification->webhook_event_description	= 'Logs when a new property is created.';
+		$webhook_notification->webhook_event_plugin		 	= 'core';
+		$webhook_notification->data						 	= new stdClass();
+		$webhook_notification->data->property_uid		   	= $this->propertys_uid;
 
-        add_webhook_notification($webhook_notification);
+		add_webhook_notification($webhook_notification);
 
 		//insert new manager
 		if (!$thisJRUser->userIsManager) {
@@ -387,7 +385,7 @@ class jomres_properties
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -456,8 +454,8 @@ class jomres_properties
 						`property_airports` = '".$this->property_airports."',
 						`property_othertransport` = '".$this->property_othertransport."',
 						`property_policies_disclaimers` = '".$this->property_policies_disclaimers."',
-						`lat` = '".str_replace("&#45;","-",$this->lat)."',
-						`long` = '".str_replace("&#45;","-",$this->long)."',
+						`lat` = '".str_replace("&#45;", "-", $this->lat)."',
+						`long` = '".str_replace("&#45;", "-", $this->long)."',
 						`metatitle` = '".$this->metatitle."',
 						`metadescription` = '".$this->metadescription."',
 						`metakeywords` = '".$this->metakeywords."',
@@ -526,7 +524,7 @@ class jomres_properties
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -565,7 +563,7 @@ class jomres_properties
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -616,7 +614,7 @@ class jomres_properties
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -658,7 +656,7 @@ class jomres_properties
 				$singleRoomProperty = 0;
 				$is_real_estate_listing = 0;
 				break;
-			}
+		}
 
 		$query = 'INSERT INTO #__jomres_settings 
 							(
@@ -685,7 +683,7 @@ class jomres_properties
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -706,12 +704,12 @@ class jomres_properties
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
-	public function approve_property() 
+	public function approve_property()
 	{
 		if ($this->propertys_uid == 0) {
 			throw new Exception('Error: Property uid not set.');
@@ -737,12 +735,12 @@ class jomres_properties
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
-	public function unapprove_property() 
+	public function unapprove_property()
 	{
 		if ($this->propertys_uid == 0) {
 			throw new Exception('Error: Property uid not set.');
@@ -768,7 +766,7 @@ class jomres_properties
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -789,12 +787,12 @@ class jomres_properties
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
-	public function publish_property() 
+	public function publish_property()
 	{
 		if ($this->propertys_uid == 0) {
 			throw new Exception('Error: Property uid not set.');
@@ -820,12 +818,12 @@ class jomres_properties
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
-	public function unpublish_property() 
+	public function unpublish_property()
 	{
 		if ($this->propertys_uid == 0) {
 			throw new Exception('Error: Property uid not set.');
@@ -851,7 +849,7 @@ class jomres_properties
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -872,12 +870,12 @@ class jomres_properties
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
-	private function complete_property() 
+	private function complete_property()
 	{
 		if ($this->propertys_uid == 0) {
 			throw new Exception('Error: Property uid not set.');
@@ -903,7 +901,7 @@ class jomres_properties
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */

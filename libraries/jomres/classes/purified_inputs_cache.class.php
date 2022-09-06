@@ -42,7 +42,7 @@ class purified_inputs_cache
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -55,7 +55,7 @@ class purified_inputs_cache
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -67,7 +67,7 @@ class purified_inputs_cache
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */

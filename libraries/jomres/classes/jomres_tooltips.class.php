@@ -21,9 +21,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jomres_tooltips
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -34,7 +35,7 @@ class jomres_tooltips
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -47,7 +48,7 @@ class jomres_tooltips
 		// Just in the off-chance that we supply the same div name twice
 		//$div="jrTooltip".preg_replace('/[^A-Za-z0-9_-]+/', "", $div);
 		$div = generateJomresRandomString(10);
-		while ($keeplooking):
+		while ($keeplooking) :
 			if (!array_key_exists($div, $this->divs)) {
 				$keeplooking = false;
 			} else {
@@ -134,7 +135,7 @@ class jomres_tooltips
 					$output = array();
 					$pageoutput = array();
 
-					$output[ 'URL' ] = $url;	
+					$output[ 'URL' ] = $url;
 					$output[ 'TITLE' ] = $hover_title;
 					$output[ 'DESCRIPTION' ] = $hover_content;
 					$output[ 'IMAGE' ] = $div_content;
@@ -156,7 +157,6 @@ class jomres_tooltips
 				}
 				break;
 			case 'property_feature':
-				
 				if (!isset($type_arguments[ 'use_javascript' ])) {
 					$type_arguments[ 'use_javascript' ] = true;
 				}
@@ -165,7 +165,7 @@ class jomres_tooltips
 					$output = array();
 					$pageoutput = array();
 
-					$output[ 'URL' ] = $url;	
+					$output[ 'URL' ] = $url;
 					$output[ 'TITLE' ] = $hover_title;
 					$output[ 'DESCRIPTION' ] = $hover_content;
 					$output[ 'IMAGE' ] = $div_content;

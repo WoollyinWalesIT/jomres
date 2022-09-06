@@ -21,9 +21,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jomres_gateway_handler
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -37,7 +38,7 @@ class jomres_gateway_handler
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -293,7 +294,7 @@ class jomres_gateway_handler
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -355,7 +356,7 @@ class jomres_gateway_handler
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */

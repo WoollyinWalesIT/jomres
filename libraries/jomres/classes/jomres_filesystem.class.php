@@ -33,7 +33,7 @@ class jomres_filesystem
 	protected $jrConfig;
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -51,9 +51,8 @@ class jomres_filesystem
 		$this->mount_local_filesystem($local_root_dir);
 		
 		//mount s3 filesystem if enabled
-		if (
-			$this->jrConfig['amazon_s3_active'] == '1' && 
-			$this->jrConfig['amazon_s3_bucket'] != '' && 
+		if ($this->jrConfig['amazon_s3_active'] == '1' &&
+			$this->jrConfig['amazon_s3_bucket'] != '' &&
 			$this->jrConfig['amazon_s3_key'] != '' &&
 			$this->jrConfig['amazon_s3_secret'] != ''
 			) {
@@ -62,7 +61,7 @@ class jomres_filesystem
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -73,7 +72,7 @@ class jomres_filesystem
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -100,7 +99,7 @@ class jomres_filesystem
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -129,9 +128,9 @@ class jomres_filesystem
 		]);
 
 		$s3Adapter = new AwsS3Adapter(
-			$s3client, 
-			$this->jrConfig['amazon_s3_bucket'], 
-			null, 
+			$s3client,
+			$this->jrConfig['amazon_s3_bucket'],
+			null,
 			array('ACL' => 'public-read') //if not set, files uploaded to S3 will be private
 		);
 		

@@ -35,7 +35,7 @@ if (!defined('AUTO_UPGRADE')) {
 			$path_info = $_SERVER[ 'PATH_INFO' ];
 			$_URI = explode('/', $path_info);
 		} else {
-			if (!strpos("/",$_SERVER[ 'REQUEST_URI' ])){
+			if (!strpos("/", $_SERVER[ 'REQUEST_URI' ])) {
 				list($path, $args) = $_SERVER[ 'REQUEST_URI' ];
 			} else {
 				list($path, $args) = explode('?', $_SERVER[ 'REQUEST_URI' ]);

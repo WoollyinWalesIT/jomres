@@ -21,9 +21,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jomres_language_definitions
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -52,7 +53,7 @@ class jomres_language_definitions
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -67,7 +68,7 @@ class jomres_language_definitions
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -82,7 +83,7 @@ class jomres_language_definitions
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -93,12 +94,12 @@ class jomres_language_definitions
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
-	public function get_defined( $constant , $default )
+	public function get_defined($constant, $default)
 	{
 		$jomres_machine_translations = jomres_singleton_abstract::getInstance('jomres_machine_translations');
 		
@@ -110,7 +111,7 @@ class jomres_language_definitions
 		}
  
 		if (!isset($this->definitions[ $this->default_ptype ][ $constant ])) {
-			$translation = $jomres_machine_translations->get_translation ( $default , $constant , get_showtime('lang') );
+			$translation = $jomres_machine_translations->get_translation($default, $constant, get_showtime('lang'));
 			//var_dump($translation);exit;
 		}
 		
@@ -124,7 +125,7 @@ class jomres_language_definitions
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */

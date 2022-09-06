@@ -21,9 +21,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jomres_video_tutorials
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -36,16 +37,16 @@ class jomres_video_tutorials
 		
 		$jomres_language = jomres_singleton_abstract::getInstance('jomres_language');
 		$jomres_language->get_language('video_tutorials');
-		
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
-	public function build_modal() {
+	public function build_modal()
+	{
 		$this->task = $this->get_current_task();
 		$output = array();
 		$output[ 'VIDEO_TUTORALS_TITLE' ] = jr_gettext('VIDEO_TUTORALS_TITLE', 'VIDEO_TUTORALS_TITLE', false);
@@ -58,10 +59,10 @@ class jomres_video_tutorials
 				$r = array();
 				$title = $video['title'];
 				$description = $video['description'];
-				$r['TITLE'] = jr_gettext($title, $title , false );
-				$r['DESCRIPTION'] = nl2br(jr_gettext($description, $description , false ));
+				$r['TITLE'] = jr_gettext($title, $title, false);
+				$r['DESCRIPTION'] = nl2br(jr_gettext($description, $description, false));
 				$r['VIDEO_ID'] = $video['video_id'];
-				$r['VIDEO_ID_SANITISED'] = str_replace("-","", $video['video_id']);
+				$r['VIDEO_ID_SANITISED'] = str_replace("-", "", $video['video_id']);
 				
 				$rows[]=$r;
 			}
@@ -69,15 +70,14 @@ class jomres_video_tutorials
 
 			$tmpl = new patTemplate();
 			if ($this->show_all) {
-				if (!jomres_cmsspecific_areweinadminarea() ) {
-				$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
-				$tmpl->readTemplatesFromInput('all_video_tutorials.html');
+				if (!jomres_cmsspecific_areweinadminarea()) {
+					$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+					$tmpl->readTemplatesFromInput('all_video_tutorials.html');
 				} else {
-				$tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
-				$tmpl->readTemplatesFromInput('all_video_tutorials.html');
+					$tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
+					$tmpl->readTemplatesFromInput('all_video_tutorials.html');
 				}
-			}
-			elseif (!jomres_cmsspecific_areweinadminarea() ) {
+			} elseif (!jomres_cmsspecific_areweinadminarea()) {
 				$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
 				$tmpl->readTemplatesFromInput('video_tutorials.html');
 			} else {
@@ -91,14 +91,15 @@ class jomres_video_tutorials
 			$tmpl->addRows('rows3', $rows);
 			$tmpl->addRows('rows4', $rows);
 			return $tmpl->getParsedTemplate();
-		} else return '';
-
+		} else {
+			return '';
+		}
 	}
 	
 	
-	//Get room details	
+	//Get room details
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -109,19 +110,19 @@ class jomres_video_tutorials
 		
 		$videos_array = $this->get_videos_array();
 		
-		if ( jomres_cmsspecific_areweinadminarea() ) {
+		if (jomres_cmsspecific_areweinadminarea()) {
 			$videos = $videos_array['ADMIN'];
-			if(isset($videos_array['MRP'])) {
-				$videos = array_merge($videos ,  $videos_array['MRP']);
+			if (isset($videos_array['MRP'])) {
+				$videos = array_merge($videos, $videos_array['MRP']);
 			}
-			if(isset($videos_array['SRP'])) {
-				$videos = array_merge($videos ,  $videos_array['SRP']);
+			if (isset($videos_array['SRP'])) {
+				$videos = array_merge($videos, $videos_array['SRP']);
 			}
-			if(isset($videos_array['TOUR'])) {
-				$videos = array_merge($videos ,  $videos_array['TOUR']);
+			if (isset($videos_array['TOUR'])) {
+				$videos = array_merge($videos, $videos_array['TOUR']);
 			}
-			if(isset($videos_array['REALESTATE'])) {
-				$videos = array_merge($videos ,  $videos_array['REALESTATE']);
+			if (isset($videos_array['REALESTATE'])) {
+				$videos = array_merge($videos, $videos_array['REALESTATE']);
 			}
 		} elseif ($mrConfig[ 'is_real_estate_listing' ] == '1') {
 			$videos = $videos_array['REALESTATE'];
@@ -133,48 +134,48 @@ class jomres_video_tutorials
 			$videos = $videos_array['MRP'];
 		}
 
-	if ($this->task == '' ) {
-		$this->task = 'cpanel';
-	}
-	
-	if ($this->show_all) {
-		$all_videos = array();
-		// There will be duplicates because videos can be shown on more than one page, so we'll put them into an array using the title as the key, which will give us a unique array
-		foreach ($videos as $video_arr) {
-			foreach ($video_arr as $video) {
-				$title = $video['title'];
-				$all_videos[$title] = $video;
-			}
+		if ($this->task == '') {
+			$this->task = 'cpanel';
 		}
-		return $all_videos;
-	} elseif (isset($videos[$this->task])) {
-		return $videos[$this->task];
-	} else {
-		return '';
+	
+		if ($this->show_all) {
+			$all_videos = array();
+			// There will be duplicates because videos can be shown on more than one page, so we'll put them into an array using the title as the key, which will give us a unique array
+			foreach ($videos as $video_arr) {
+				foreach ($video_arr as $video) {
+					$title = $video['title'];
+					$all_videos[$title] = $video;
+				}
+			}
+			return $all_videos;
+		} elseif (isset($videos[$this->task])) {
+			return $videos[$this->task];
+		} else {
+			return '';
 		}
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
-	private function get_current_task() 
+	private function get_current_task()
 	{
 		return get_showtime('task');
 	}
 	
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
-	private function get_videos_array() 
+	private function get_videos_array()
 	{
-		$videos_array = array( 
+		$videos_array = array(
 			'SRP' => array(),
 			'MRP' => array(),
 			'TOUR' => array(),
@@ -188,23 +189,23 @@ class jomres_video_tutorials
 		
 		if ($thisJRUser->userIsManager) {
 			$arr = array ("title" => "_JOMRES_TUTORIAL_CPANEL" , "description" => "_JOMRES_TUTORIAL_CPANEL_DESC" , "video_id" => "pIlliA6uJrU" );
-			$videos_array['SRP']['cpanel'][] = $arr; 
+			$videos_array['SRP']['cpanel'][] = $arr;
 			$videos_array['MRP']['cpanel'][] = $arr;
 			
 			$arr = array ("title" => "_JOMRES_TUTORIAL_TIMELINE" , "description" => "_JOMRES_TUTORIAL_TIMELINE_DESC" , "video_id" => "0RuJCedh0CQ" );
-			$videos_array['SRP']['dashboard'][] = $arr; 
+			$videos_array['SRP']['dashboard'][] = $arr;
 			$videos_array['MRP']['dashboard'][] = $arr;
-			$videos_array['SRP']['cpanel'][] = $arr; 
+			$videos_array['SRP']['cpanel'][] = $arr;
 			$videos_array['MRP']['cpanel'][] = $arr;
 			
 			$arr = array ("title" => "_JOMRES_TUTORIAL_LISTPROPERTIES" , "description" => "_JOMRES_TUTORIAL_LISTPROPERTIES_DESC" , "video_id" => "6VL-iSS2go0" );
-			$videos_array['SRP']['listyourproperties'][] = $arr; 
+			$videos_array['SRP']['listyourproperties'][] = $arr;
 			$videos_array['MRP']['listyourproperties'][] = $arr;
 			$videos_array['TOUR']['listyourproperties'][] = $arr;
 			$videos_array['REALESTATE']['listyourproperties'][] = $arr;
 			
 			$arr = array ("title" => "_JOMRES_TUTORIAL_EDIT_PROPERTY_MRP" , "description" => "_JOMRES_TUTORIAL_EDIT_PROPERTY_MRP_DESC" , "video_id" => "oCtqbQyLdmU" );
-			$videos_array['SRP']['edit_property'][] = $arr; 
+			$videos_array['SRP']['edit_property'][] = $arr;
 			$videos_array['MRP']['edit_property'][] = $arr;
 			$videos_array['TOUR']['listyourproperties'][] = $arr;
 			$videos_array['REALESTATE']['listyourproperties'][] = $arr;
@@ -214,8 +215,8 @@ class jomres_video_tutorials
 			$videos_array['MRP']['business_settings'][] = $arr;
 			
 			$arr = array ("title" => "_JOMRES_TUTORIAL_NORMAL_TARIFF_EDITING_MODE_SRP" , "description" => "_JOMRES_TUTORIAL_NORMAL_TARIFF_EDITING_MODE_SRP_DESC" , "video_id" => "3_WWa7fD8-A" );
-			$videos_array['SRP']['edit_tariffs_normal'][] = $arr; 
-			$videos_array['SRP']['business_settings'][] = $arr; 
+			$videos_array['SRP']['edit_tariffs_normal'][] = $arr;
+			$videos_array['SRP']['business_settings'][] = $arr;
 			
 			$arr = array ("title" => "_JOMRES_TUTORIAL_MICROMANAGE_TARIFF_EDITING_MODE_MRP" , "description" => "_JOMRES_TUTORIAL_MICROMANAGE_TARIFF_EDITING_MODE_MRP_DESC" , "video_id" => "F8vfL3Ph96U" );
 			$videos_array['MRP']['list_tariffs_micromanage'][] = $arr;
@@ -241,18 +242,18 @@ class jomres_video_tutorials
 			$arr = array ("title" => "_JOMRES_TUTORIAL_MEDIA_CENTRE_MRP" , "description" => "_JOMRES_TUTORIAL_MEDIA_CENTRE_MRP_DESC" , "video_id" => "azlhJ28mrdU" );
 			$videos_array['MRP']['cpanel'][] = $arr;
 			$videos_array['MRP']['show_property_room'][] = $arr;
-			$videos_array['MRP']['media_centre'][] = $arr; 
-			$videos_array['MRP']['list_resources'][] = $arr; 
-			$videos_array['MRP']['edit_resource'][] = $arr; 
-			$videos_array['MRP']['viewproperty'][] = $arr; 
+			$videos_array['MRP']['media_centre'][] = $arr;
+			$videos_array['MRP']['list_resources'][] = $arr;
+			$videos_array['MRP']['edit_resource'][] = $arr;
+			$videos_array['MRP']['viewproperty'][] = $arr;
 			
 			$arr = array ("title" => "_JOMRES_TUTORIAL_MEDIA_CENTRE_SRP" , "description" => "_JOMRES_TUTORIAL_MEDIA_CENTRE_SRP_DESC" , "video_id" => "pNnPCxQT3YM" );
 			$videos_array['SRP']['cpanel'][] = $arr;
-			$videos_array['SRP']['media_centre'][] = $arr; 
-			$videos_array['SRP']['viewproperty'][] = $arr; 
-			}
+			$videos_array['SRP']['media_centre'][] = $arr;
+			$videos_array['SRP']['viewproperty'][] = $arr;
+		}
 		
-		if (jomres_cmsspecific_areweinadminarea() ) {
+		if (jomres_cmsspecific_areweinadminarea()) {
 			$arr = array ("title" => "_JOMRES_TUTORIAL_ADMIN_CPANEL" , "description" => "_JOMRES_TUTORIAL_ADMIN_CPANEL_DESC" , "video_id" => "19_Nx_xSVl0" );
 			$videos_array['ADMIN']['cpanel'][] = $arr;
 			
@@ -309,7 +310,7 @@ class jomres_video_tutorials
 		}
 
 		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-		set_showtime("videos_array" , $videos_array );
+		set_showtime("videos_array", $videos_array);
 		$MiniComponents->triggerEvent('07150');
 		$videos_array = get_showtime("videos_array");
 		

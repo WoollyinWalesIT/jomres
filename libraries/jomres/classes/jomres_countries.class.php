@@ -21,9 +21,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jomres_countries
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -37,7 +38,7 @@ class jomres_countries
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -66,7 +67,7 @@ class jomres_countries
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -93,7 +94,7 @@ class jomres_countries
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -106,7 +107,7 @@ class jomres_countries
 		}
 		
 		$query = "SELECT `id`,`countrycode`,`countryname` FROM #__jomres_countries WHERE `id` = " . (int)$id;
-		$result = doSelectSql($query,2);
+		$result = doSelectSql($query, 2);
 		
 		if (!empty($result)) {
 			return $result;

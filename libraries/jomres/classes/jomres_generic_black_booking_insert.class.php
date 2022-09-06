@@ -21,9 +21,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jomres_generic_black_booking_insert
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -36,7 +37,7 @@ class jomres_generic_black_booking_insert
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -55,7 +56,7 @@ class jomres_generic_black_booking_insert
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -80,7 +81,7 @@ class jomres_generic_black_booking_insert
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -111,7 +112,7 @@ class jomres_generic_black_booking_insert
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -129,7 +130,7 @@ class jomres_generic_black_booking_insert
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -155,7 +156,7 @@ class jomres_generic_black_booking_insert
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -179,7 +180,7 @@ class jomres_generic_black_booking_insert
 							'".$this->booking_number."'
 							)";
 		
-		$this->contract_uid = doInsertSql($query,'');
+		$this->contract_uid = doInsertSql($query, '');
 		
 		if (!$this->contract_uid) {
 			throw new Exception('Error: New contract insert failed.');
@@ -189,7 +190,7 @@ class jomres_generic_black_booking_insert
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -223,7 +224,7 @@ class jomres_generic_black_booking_insert
 		
 		$query = rtrim($query, ',');
 		
-		if (!doInsertSql($query,'')) {
+		if (!doInsertSql($query, '')) {
 			throw new Exception('Error: Room bookings insert failed.');
 		}
 		

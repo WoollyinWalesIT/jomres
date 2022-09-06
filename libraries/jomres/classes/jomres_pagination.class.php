@@ -50,7 +50,7 @@ class jomres_pagination
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -166,7 +166,7 @@ class jomres_pagination
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -181,7 +181,7 @@ class jomres_pagination
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -196,7 +196,7 @@ class jomres_pagination
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -251,7 +251,6 @@ class jomres_pagination
 				$pages[] = $this->createPage($i, $i == $this->currentPage);
 			}
 		} else {
-
 			// Determine the sliding range, centered around the current page.
 			$numAdjacents = (int) floor(($this->maxPagesToShow - 3) / 2);
 
@@ -348,7 +347,7 @@ class jomres_pagination
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -359,7 +358,7 @@ class jomres_pagination
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -376,7 +375,7 @@ class jomres_pagination
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -397,7 +396,7 @@ class jomres_pagination
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -410,7 +409,7 @@ class jomres_pagination
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */

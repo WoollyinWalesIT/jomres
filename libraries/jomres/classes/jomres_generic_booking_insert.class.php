@@ -21,9 +21,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jomres_generic_booking_insert
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -36,7 +37,7 @@ class jomres_generic_booking_insert
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -58,7 +59,7 @@ class jomres_generic_booking_insert
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -112,7 +113,7 @@ class jomres_generic_booking_insert
 
 		$query = "SELECT contract_uid FROM #__jomres_contracts WHERE tag LIKE '".$this->booking_details['booking_number']."' LIMIT 1";
 		$bklist = doSelectSql($query);
-		if (!empty($bklist) && $this->booking_details['channel_manager_booking'] =! "1" ) { // Channels can create multiple bookings with the same booking number
+		if (!empty($bklist) && $this->booking_details['channel_manager_booking'] =! "1") { // Channels can create multiple bookings with the same booking number
 			throw new Exception(' Error booking_number '.$this->booking_details['booking_number'].' already exists in the database.');
 		}
 
@@ -122,7 +123,7 @@ class jomres_generic_booking_insert
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -189,7 +190,7 @@ class jomres_generic_booking_insert
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -230,7 +231,7 @@ class jomres_generic_booking_insert
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */

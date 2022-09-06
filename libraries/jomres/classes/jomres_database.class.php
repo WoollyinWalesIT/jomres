@@ -45,7 +45,7 @@ set_showtime('port', $port);
 set_showtime('socket', $socket);
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -59,7 +59,7 @@ class jomres_database
 	private $stmt;
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -87,7 +87,7 @@ class jomres_database
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -102,16 +102,18 @@ class jomres_database
 					$this->link = mysqli_connect(get_showtime('host'), get_showtime('user'), get_showtime('password'), null, get_showtime('port')) or die('Could not connect. Port '.get_showtime('port'));
 				}
 
-				mysqli_select_db($this->link, get_showtime('db')) or die('Could not select database');
+				mysqli_select_db($this->link, get_showtime('db')) or
+				die('Could not select database');
 				mysqli_query($this->link, 'SET CHARACTER SET utf8');
 				mysqli_query($this->link, 'SET NAMES utf8');
-                mysqli_query($this->link, 'SET SESSION wait_timeout=300');
+				mysqli_query($this->link, 'SET SESSION wait_timeout=300');
 
 				$this->error = mysqli_error($this->link);
 				break;
 
 			case 'mysql':
-				$this->link = mysql_connect(get_showtime('host'), get_showtime('user'), get_showtime('password')) or die('Could not connect '.mysql_error());
+				$this->link = mysql_connect(get_showtime('host'), get_showtime('user'), get_showtime('password')) or
+				die('Could not connect '.mysql_error());
 				mysql_select_db(get_showtime('db')) or die('Could not select database');
 				mysql_query('SET CHARACTER SET utf8');
 				mysql_query('SET NAMES utf8');
@@ -128,18 +130,18 @@ class jomres_database
 				}
 				$this->PDO->exec('SET CHARACTER SET utf8');
 				$this->PDO->exec('SET NAMES utf8');
-                $this->PDO->exec('SET SESSION wait_timeout=300');
+				$this->PDO->exec('SET SESSION wait_timeout=300');
 
 				$this->error = $this->PDO->errorInfo();
 				break;
 
 			default:
 				break;
-			}
+		}
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -156,14 +158,14 @@ class jomres_database
 					break;
 				default:
 					break;
-				}
+			}
 		}
 
 		return true;
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -206,12 +208,12 @@ class jomres_database
 					try {
 						$this->result = $this->PDO->exec($this->query);
 					} catch (PDOException $e) {
-						output_fatal_error($e , $this->query );
+						output_fatal_error($e, $this->query);
 					}
 					break;
 				default:
 					break;
-				}
+			}
 
 			if ($this->result !== false) {
 				$this->last_id = false;
@@ -228,7 +230,7 @@ class jomres_database
 						break;
 					default:
 						break;
-					}
+				}
 
 				if ($last_id > 0) {
 					$this->last_id = $last_id;
@@ -252,7 +254,7 @@ class jomres_database
 						break;
 					default:
 						break;
-					}
+				}
 
 				return false;
 			}
@@ -260,7 +262,7 @@ class jomres_database
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -279,7 +281,7 @@ class jomres_database
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -295,57 +297,56 @@ class jomres_database
 
 		if (this_cms_is_wordpress() && !defined('AUTO_UPGRADE')) {
 			global $wpdb;
-            if (strpos($this->query,";"  ) > 0 ) { // To allow multiple queries to be run (specifically, the ajax query that grumbles about GROUP BY mode)
-                $bang = explode(";" , $this->query);
-                foreach ($bang as $query ) {
-                  $this->result = $wpdb->get_results($query, OBJECT);
-                }
-            } else {
-                $this->result = $wpdb->get_results($this->query, OBJECT);
-            }
+			if (strpos($this->query, ";") > 0) { // To allow multiple queries to be run (specifically, the ajax query that grumbles about GROUP BY mode)
+				$bang = explode(";", $this->query);
+				foreach ($bang as $query) {
+					$this->result = $wpdb->get_results($query, OBJECT);
+				}
+			} else {
+				$this->result = $wpdb->get_results($this->query, OBJECT);
+			}
 		} else {
 			switch ($this->dbtype) {
 				case 'mysqli':
-				    if (strpos($this->query,";"  ) > 0 ) { // To allow multiple queries to be run (specifically, the ajax query that grumbles about GROUP BY mode)
-				        $bang = explode(";" , $this->query);
-				        foreach ($bang as $query ) {
-                            $this->stmt = mysqli_query($this->link, $query);
-                        }
-                    } else {
-                        $this->stmt = mysqli_query($this->link, $this->query);
-                    }
+					if (strpos($this->query, ";") > 0) { // To allow multiple queries to be run (specifically, the ajax query that grumbles about GROUP BY mode)
+						$bang = explode(";", $this->query);
+						foreach ($bang as $query) {
+							$this->stmt = mysqli_query($this->link, $query);
+						}
+					} else {
+						$this->stmt = mysqli_query($this->link, $this->query);
+					}
 
 					break;
 				case 'mysql': // Should be depreciated, however will leave it in on the offchance that somebody is still using mysql
 					$this->stmt = mysql_query($this->query);
 					break;
 				case 'pdomysql':
-                    if (strpos($this->query,";"  ) > 0 ) { // To allow multiple queries to be run (specifically, the ajax query that grumbles about GROUP BY mode)
-                        $bang = explode(";" , $this->query);
-                        foreach ($bang as $query ) {
-                            try {
-                                $this->stmt = $this->PDO->query($query, PDO::FETCH_OBJ);
-                            } catch (PDOException $e) {
-                                output_fatal_error($e);
-                            }
-                        }
-                    } else {
-                        try {
-                            $this->stmt = $this->PDO->query($this->query, PDO::FETCH_OBJ);
-                        } catch (PDOException $e) {
-                            output_fatal_error($e);
-                        }
-                    }
+					if (strpos($this->query, ";") > 0) { // To allow multiple queries to be run (specifically, the ajax query that grumbles about GROUP BY mode)
+						$bang = explode(";", $this->query);
+						foreach ($bang as $query) {
+							try {
+								$this->stmt = $this->PDO->query($query, PDO::FETCH_OBJ);
+							} catch (PDOException $e) {
+								output_fatal_error($e);
+							}
+						}
+					} else {
+						try {
+							$this->stmt = $this->PDO->query($this->query, PDO::FETCH_OBJ);
+						} catch (PDOException $e) {
+							output_fatal_error($e);
+						}
+					}
 
 					break;
 				default:
 					break;
-				}
+			}
 
 			if ($this->stmt) {
 				switch ($this->dbtype) {
 					case 'mysqli':
-
 						while ($row = mysqli_fetch_object($this->stmt)) {
 							$this->result[] = $row;
 						}
@@ -363,7 +364,7 @@ class jomres_database
 						break;
 					default:
 						break;
-					}
+				}
 			}
 		}
 
@@ -371,7 +372,7 @@ class jomres_database
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -384,7 +385,7 @@ class jomres_database
 }
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */

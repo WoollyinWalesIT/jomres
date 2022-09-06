@@ -18,9 +18,9 @@ function get_search_form_element_autocomplete()
 {
 	jr_import('jomres_data_sources');
 	$jomres_data_sources = new jomres_data_sources();
-	$countries = $jomres_data_sources->get_data( get_showtime('lang') , 'countries');
-	$regions = $jomres_data_sources->get_data(  get_showtime('lang') ,'regions');
-	$towns = $jomres_data_sources->get_data(  get_showtime('lang') ,'towns');
+	$countries = $jomres_data_sources->get_data(get_showtime('lang'), 'countries');
+	$regions = $jomres_data_sources->get_data(get_showtime('lang'), 'regions');
+	$towns = $jomres_data_sources->get_data(get_showtime('lang'), 'towns');
 
 	$place_names = array();
 	foreach ($countries as $country) {
@@ -35,7 +35,7 @@ function get_search_form_element_autocomplete()
 
 	$pageoutput[ ] = array();
 	$tmpl = new patTemplate();
-	$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+	$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
 	$tmpl->addRows('pageoutput', $pageoutput);
 	$tmpl->addRows('place_names', $place_names);
 

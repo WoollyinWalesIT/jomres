@@ -31,7 +31,7 @@ class jrportal_availability
 	protected $room_uids;
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -48,7 +48,7 @@ class jrportal_availability
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -69,7 +69,7 @@ class jrportal_availability
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */

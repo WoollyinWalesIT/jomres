@@ -26,7 +26,7 @@ function jomres_cmsspecific_error_logging_cms_files_to_not_backtrace()
 }
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -49,7 +49,7 @@ function jomres_cmsspecific_getsessionid()
 }
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -67,7 +67,7 @@ function jomres_cmsspecific_output_date($date, $format = false)
 }
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -78,7 +78,7 @@ function jomres_cmsspecific_getregistrationlink()
 }
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -89,7 +89,7 @@ function jomres_cmsspecific_getlogout_task()
 }
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -98,12 +98,12 @@ function jomres_cmsspecific_getlogin_task()
 {
 	if (function_exists('custom_jomres_wordpress_login_link')) {
 		return custom_jomres_wordpress_login_link();
-	} 
+	}
 	return 'wp-login.php?action=login';
 }
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -120,14 +120,14 @@ function jomres_cmsspecific_areweinadminarea()
 }
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
-function jomres_cmsspecific_createNewUser( $email_address = '' )
+function jomres_cmsspecific_createNewUser($email_address = '')
 {
-	if ($email_address == '' ) {
+	if ($email_address == '') {
 		throw new Exception('Cannot create a new cms user without an email address');
 	}
 	
@@ -143,9 +143,9 @@ function jomres_cmsspecific_createNewUser( $email_address = '' )
 		//If the email address already exists in the system, we'll not bother carrying on, just return this user's "mos_id"
 		$query = "SELECT id FROM #__users WHERE user_email = '".$guestDeets[ 'email' ]."' LIMIT 1";
 		$existing = doSelectSql($query, 1);
-		if ($existing) {
-			return $existing;
-		}
+	if ($existing) {
+		return $existing;
+	}
 
 /* 		$valid = false;
 		while ( !$valid )
@@ -175,19 +175,18 @@ function jomres_cmsspecific_createNewUser( $email_address = '' )
 
 		//On success
 		if (!is_wp_error($id)) {
+			$webhook_notification							  	= new stdClass();
+			$webhook_notification->webhook_event				= 'user_created';
+			$webhook_notification->webhook_event_description	= 'Logs when a new user is created.';
+			$webhook_notification->webhook_event_plugin		 	= 'core';
+			$webhook_notification->data						 	= new stdClass();
+			$webhook_notification->data->cms_user_id		   	= $id;
+			$webhook_notification->data->name          		   	= $name;
+			$webhook_notification->data->password   		   	= $password;
+			$webhook_notification->data->username		      	= $guestDeets[ 'email' ];
+			$webhook_notification->data->email      		   	= $guestDeets[ 'email' ];
 
-            $webhook_notification							  	= new stdClass();
-            $webhook_notification->webhook_event				= 'user_created';
-            $webhook_notification->webhook_event_description	= 'Logs when a new user is created.';
-            $webhook_notification->webhook_event_plugin		 	= 'core';
-            $webhook_notification->data						 	= new stdClass();
-            $webhook_notification->data->cms_user_id		   	= $id;
-            $webhook_notification->data->name          		   	= $name;
-            $webhook_notification->data->password   		   	= $password;
-            $webhook_notification->data->username		      	= $guestDeets[ 'email' ];
-            $webhook_notification->data->email      		   	= $guestDeets[ 'email' ];
-
-            add_webhook_notification($webhook_notification);
+			add_webhook_notification($webhook_notification);
 
 			//$thisJRUser->userIsRegistered=true; // Disabled as this setting would be incorrect during the booking phase. We want newly created users to have their details recorded by the insertGuestDeets function in insertbookings
 			$thisJRUser->id = $id;
@@ -213,15 +212,14 @@ function jomres_cmsspecific_createNewUser( $email_address = '' )
 				wp_set_current_user($id); // set the current wp user
 				wp_set_auth_cookie($id); // start the cookie for the current registered user
 			}
-
 		}
 
 
-	return $id;
+		return $id;
 }
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -231,7 +229,7 @@ function jomres_cmsspecific_getRegistrationURL()
 }
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -247,7 +245,7 @@ function jomres_cmsspecific_getTextEditor($name, $content, $hiddenField, $width,
 }
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -265,7 +263,7 @@ function jomres_cmsspecific_getcurrentusers_id()
 }
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -280,7 +278,7 @@ function jomres_cmsspecific_getcurrentusers_username()
 }
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -301,10 +299,10 @@ function jomres_cmsspecific_addheaddata($type, $path = '', $filename = '', $incl
 	$includeVersion ? $version = $jrConfig['update_time'] : $version = '';
 
 	if (strpos($path, 'http') === false) {
-        	$url = get_showtime('live_site').'/'.$path.$filename;
+			$url = get_showtime('live_site').'/'.$path.$filename;
 	} else {
-        	$url = $path.$filename;
-   	 }
+			$url = $path.$filename;
+	}
 
 	switch ($type) {
 		case 'javascript':
@@ -314,13 +312,12 @@ function jomres_cmsspecific_addheaddata($type, $path = '', $filename = '', $incl
 			$wp_jomres->add_css($filename, $url, $version);
 			break;
 		default:
-
 			break;
-		}
+	}
 }
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -345,11 +342,11 @@ function jomres_cmsspecific_setmetadata($meta, $data)
 		default:
 			//$document->setMetaData( $meta, $data );
 			break;
-		}
+	}
 }
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -370,7 +367,7 @@ function jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id($id)
 }
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -391,7 +388,7 @@ function jomres_cmsspecific_getCMS_users_frontend_userdetails_by_username($usern
 }
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -412,7 +409,7 @@ function jomres_cmsspecific_getCMS_users_admin_userdetails_by_id($id)
 }
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -433,7 +430,7 @@ function jomres_cmsspecific_getCMS_users_admin_getalladmins_ids()
 }
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -462,7 +459,7 @@ function jomres_cmsspecific_getSearchModuleParameters($moduleName = '')
 }
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -489,7 +486,7 @@ function jomres_cmsspecific_getCMSUsers($cms_user_id = 0)
 }
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -501,21 +498,21 @@ function jomres_cmsspecific_makeSEF_URL($link)
 }
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
 function jomres_cmsspecific_parseByBots($str)
 {
-	$str = str_replace( "&#61;", "=", $str );
-	$str = str_replace( "&#34;", '"', $str );
-	$str = str_replace( "&quot;", '"', $str );
+	$str = str_replace("&#61;", "=", $str);
+	$str = str_replace("&#34;", '"', $str);
+	$str = str_replace("&quot;", '"', $str);
 	return $str;
 }
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -526,7 +523,7 @@ function jomres_cmsspecific_stringURLSafe($str)
 }
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -549,7 +546,7 @@ function jomres_cmsspecific_addcustomtag($data)
 }
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -560,7 +557,7 @@ function jomres_cmsspecific_currenturl()
 }
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -572,7 +569,7 @@ function jomres_cmsspecific_patchJoomlaTemplate($force = false)
 }
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -584,7 +581,7 @@ function jomres_cmsspecific_getcmslang()
 }
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -612,29 +609,31 @@ function jomres_cmsspecific_find_cms_users($search_term = '')
 }
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
-function jomres_cmsspecific_getUsername($user_id = 0) {
+function jomres_cmsspecific_getUsername($user_id = 0)
+{
 	if ($user_id == 0) {
 		return;
 	}
 	
 	$query = 'SELECT `user_login` FROM #__users WHERE `id` = '.(int)$user_id.' LIMIT 1';
-	$result = doSelectSql($query,1);
+	$result = doSelectSql($query, 1);
 	
 	return $result;
 }
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
-function jomres_cmsspecific_getCmsUserProfileLink($cms_user_id = 0) {
+function jomres_cmsspecific_getCmsUserProfileLink($cms_user_id = 0)
+{
 	if ($cms_user_id == 0) {
 		return '#';
 	}
@@ -645,25 +644,27 @@ function jomres_cmsspecific_getCmsUserProfileLink($cms_user_id = 0) {
 }
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
-function jomres_cmsspecific_isRtl($cms_user_id = 0) {
+function jomres_cmsspecific_isRtl($cms_user_id = 0)
+{
 	$isRtl = is_rtl();
 	
 	return $isRtl;
 }
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
-function jomres_cmsspecific_user_is_admin() {
-	if ( current_user_can( 'manage_options' ) ) {
+function jomres_cmsspecific_user_is_admin()
+{
+	if (current_user_can('manage_options')) {
 		return true;
 	}
 	

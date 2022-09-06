@@ -22,9 +22,10 @@ defined('_JOMRES_INITCHECK') or die('');
  * @since 2.6
  */
 class jomres_content_tabs_bootstrap
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */

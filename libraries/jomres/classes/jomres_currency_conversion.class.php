@@ -21,9 +21,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jomres_currency_conversion
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -41,7 +42,7 @@ class jomres_currency_conversion
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -59,7 +60,7 @@ class jomres_currency_conversion
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -75,7 +76,7 @@ class jomres_currency_conversion
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -133,7 +134,7 @@ class jomres_currency_conversion
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */

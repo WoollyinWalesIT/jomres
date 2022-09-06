@@ -60,7 +60,7 @@ function jr_ucwords($str)
 }
 
 /**
- * 
+ *
  * @package Jomres\Core\Functions
  *
  *          A roll-your-own implementation of mb_ucwords

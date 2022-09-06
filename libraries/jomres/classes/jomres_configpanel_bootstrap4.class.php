@@ -21,7 +21,7 @@ jr_import('jomres_content_tabs');
  * @package Jomres\Core\Classes
  *
  * Creates the Jomres config panel object.
- * 
+ *
  */
 class jomres_configpanel_bootstrap4 extends jomres_content_tabs
 {

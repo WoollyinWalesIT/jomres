@@ -17,7 +17,8 @@
  * @since	  9.9.19
  * @author	 Vince Wooll <support@jomres.net>
  */
-class Jomres_Deactivator {
+class Jomres_Deactivator
+{
 
 	/**
 	 * Currently not used.
@@ -26,8 +27,8 @@ class Jomres_Deactivator {
 	 *
 	 * @since	9.9.19
 	 */
-	public static function deactivate() {
+	public static function deactivate()
+	{
 		//
 	}
-
 }

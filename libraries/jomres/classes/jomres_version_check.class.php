@@ -21,9 +21,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jomres_version_check
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -44,33 +45,32 @@ class jomres_version_check
 		if (!file_exists($this->check_file)) {
 			$this->check_version();
 		}
-		
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
-	public function check_version() // We'll get the current version, 
+	public function check_version() // We'll get the current version,
 	{
 		$current_version_is_uptodate = check_jomres_version(false);
 		if (!$current_version_is_uptodate) {
-			$subject = jr_gettext('_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION', '_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION', false , false ).' '.$this->latest_jomres_version;
-			$message = jr_gettext('_JOMRES_VERSIONCHECK_VERSIONWARNING', '_JOMRES_VERSIONCHECK_VERSIONWARNING', false , false )." \n\r <a href='".JOMRES_SITEPAGE_URL_ADMIN."'>".JOMRES_SITEPAGE_URL_ADMIN."</a>";
-			sendAdminEmail($subject, $message );
+			$subject = jr_gettext('_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION', '_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION', false, false).' '.$this->latest_jomres_version;
+			$message = jr_gettext('_JOMRES_VERSIONCHECK_VERSIONWARNING', '_JOMRES_VERSIONCHECK_VERSIONWARNING', false, false)." \n\r <a href='".JOMRES_SITEPAGE_URL_ADMIN."'>".JOMRES_SITEPAGE_URL_ADMIN."</a>";
+			sendAdminEmail($subject, $message);
 		}
 		$this->write_checkfile();
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
-	private function write_checkfile() 
+	private function write_checkfile()
 	{
 		touch($this->check_file);
 		return;

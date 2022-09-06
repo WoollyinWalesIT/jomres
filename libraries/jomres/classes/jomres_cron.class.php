@@ -24,9 +24,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jomres_cron
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -51,7 +52,7 @@ class jomres_cron
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -103,7 +104,7 @@ class jomres_cron
 								$jobDue = true;
 							}
 							break;
-						}
+					}
 					if ($jobDue) {
 						$lockedJobs[] = $job->id;
 					}
@@ -116,7 +117,7 @@ class jomres_cron
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -134,7 +135,7 @@ class jomres_cron
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -176,7 +177,7 @@ class jomres_cron
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -244,7 +245,7 @@ class jomres_cron
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -266,7 +267,7 @@ class jomres_cron
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -288,7 +289,7 @@ class jomres_cron
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -337,7 +338,7 @@ class jomres_cron
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -363,7 +364,7 @@ class jomres_cron
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -392,7 +393,7 @@ class jomres_cron
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -422,7 +423,7 @@ class jomres_cron
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -455,7 +456,7 @@ class jomres_cron
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -485,7 +486,7 @@ class jomres_cron
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -515,7 +516,7 @@ class jomres_cron
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -530,7 +531,7 @@ class jomres_cron
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */

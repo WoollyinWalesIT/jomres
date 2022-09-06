@@ -21,9 +21,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jrportal_booking_manager
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -34,7 +35,7 @@ class jrportal_booking_manager
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -46,7 +47,7 @@ class jrportal_booking_manager
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -74,7 +75,7 @@ class jrportal_booking_manager
 			throw new Exception('Error: Guest checkin insert failed.');
 		}
 		
-		addBookingNote($this->contract_uid,$this->property_uid,jr_gettext('_JOMRES_MR_AUDIT_BOOKEDGUESTIN','_JOMRES_MR_AUDIT_BOOKEDGUESTIN',FALSE));
+		addBookingNote($this->contract_uid, $this->property_uid, jr_gettext('_JOMRES_MR_AUDIT_BOOKEDGUESTIN', '_JOMRES_MR_AUDIT_BOOKEDGUESTIN', false));
 		
 		$webhook_notification							   = new stdClass();
 		$webhook_notification->webhook_event				= 'guest_checkedin';
@@ -89,7 +90,7 @@ class jrportal_booking_manager
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -117,7 +118,7 @@ class jrportal_booking_manager
 			throw new Exception('Error: Undo guest checkin insert failed.');
 		}
 		
-		addBookingNote($this->contract_uid,$this->property_uid,"Undone guest checkin");
+		addBookingNote($this->contract_uid, $this->property_uid, "Undone guest checkin");
 		
 		$webhook_notification							   = new stdClass();
 		$webhook_notification->webhook_event				= 'guest_checkedin_undone';
@@ -132,7 +133,7 @@ class jrportal_booking_manager
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -160,7 +161,7 @@ class jrportal_booking_manager
 			throw new Exception('Error: Guest checkout insert failed.');
 		}
 		
-		addBookingNote($this->contract_uid,$this->property_uid,jr_gettext('_JOMRES_FRONT_MR_BOOKOUT_GUESTBOOKEDOUT','_JOMRES_FRONT_MR_BOOKOUT_GUESTBOOKEDOUT',FALSE));
+		addBookingNote($this->contract_uid, $this->property_uid, jr_gettext('_JOMRES_FRONT_MR_BOOKOUT_GUESTBOOKEDOUT', '_JOMRES_FRONT_MR_BOOKOUT_GUESTBOOKEDOUT', false));
 		
 		$webhook_notification							   = new stdClass();
 		$webhook_notification->webhook_event				= 'guest_checkedout';
@@ -175,7 +176,7 @@ class jrportal_booking_manager
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -203,7 +204,7 @@ class jrportal_booking_manager
 			throw new Exception('Error: Undo guest checkout insert failed.');
 		}
 		
-		addBookingNote($this->contract_uid,$this->property_uid,"Undone guest checkout");
+		addBookingNote($this->contract_uid, $this->property_uid, "Undone guest checkout");
 		
 		$webhook_notification							   = new stdClass();
 		$webhook_notification->webhook_event				= 'guest_checkedout_undone';

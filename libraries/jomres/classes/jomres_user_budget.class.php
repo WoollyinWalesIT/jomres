@@ -34,7 +34,7 @@ class jomres_user_budget
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -46,7 +46,7 @@ class jomres_user_budget
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -66,7 +66,7 @@ class jomres_user_budget
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -86,66 +86,62 @@ class jomres_user_budget
 
 		$prices = $this->get_price_ranges();
 		if (!empty($prices)) {
-			
+			$highest_price = max($prices);
+			$range = $highest_price / 10;
 
-		$highest_price = max($prices);
-		$range = $highest_price / 10;
-
-		$ranges = range(min($prices), max($prices) + $range, $range);
+			$ranges = range(min($prices), max($prices) + $range, $range);
 
 		// This can be called via either the "search" task, or more complicatedly through ajax search. If it is, instead of having a simple js function to call we need to call a different one, using the form name variable. Incidently, this is the same onclick function that's used to return to search results. If we didn't do this, clicking on the dropdown after doing an ajax search would reload the current page, e.g. "viewproperty" or somesuch.
-		$onclick = false;
-		if (isset($_REQUEST['ajax_search_form_name'])) {
-			$onclick = true;
-		}
-
-	   
-		if (((defined('JOMRES_NOHTML') && JOMRES_NOHTML == 0) || get_showtime('task') == 'ajax_search_filter')) {
-			if ($this->get_budget(true) != '') {
-				$r = array();
-				$r[ 'TITLE' ] = jr_gettext('_JOMRES_COM_A_RESET', '_JOMRES_COM_A_RESET', false, false);
-				if (!isset($_REQUEST['ajax_search_form_name'])) {
-					$r[ 'ONCLICK' ] = 'onclick="set_budget( 0 , true , \'\')"';
-				} else {
-					$formname = jomresGetParam($_REQUEST, 'ajax_search_form_name', '');
-					$r[ 'ONCLICK' ] = 'onclick="set_budget( 0 , false , \''.$formname.'\'); "';
-				}
-				$rows[ ] = $r;
+			$onclick = false;
+			if (isset($_REQUEST['ajax_search_form_name'])) {
+				$onclick = true;
 			}
 
-			foreach ($ranges as $range) {
-				if ($range > 0) {
+	   
+			if (((defined('JOMRES_NOHTML') && JOMRES_NOHTML == 0) || get_showtime('task') == 'ajax_search_filter')) {
+				if ($this->get_budget(true) != '') {
 					$r = array();
-					$r[ 'TITLE' ] = output_price($range, '', false);
-					$r[ 'FIGURE' ] = $range;
+					$r[ 'TITLE' ] = jr_gettext('_JOMRES_COM_A_RESET', '_JOMRES_COM_A_RESET', false, false);
 					if (!isset($_REQUEST['ajax_search_form_name'])) {
-						$r[ 'ONCLICK' ] = 'onclick="set_budget('.$range.', true , \'\')"';
+						$r[ 'ONCLICK' ] = 'onclick="set_budget( 0 , true , \'\')"';
 					} else {
 						$formname = jomresGetParam($_REQUEST, 'ajax_search_form_name', '');
-						$r[ 'ONCLICK' ] = 'onclick="set_budget('.$range.' , false , \''.$formname.'\'); "';
+						$r[ 'ONCLICK' ] = 'onclick="set_budget( 0 , false , \''.$formname.'\'); "';
 					}
 					$rows[ ] = $r;
 				}
+
+				foreach ($ranges as $range) {
+					if ($range > 0) {
+						$r = array();
+						$r[ 'TITLE' ] = output_price($range, '', false);
+						$r[ 'FIGURE' ] = $range;
+						if (!isset($_REQUEST['ajax_search_form_name'])) {
+							$r[ 'ONCLICK' ] = 'onclick="set_budget('.$range.', true , \'\')"';
+						} else {
+							$formname = jomresGetParam($_REQUEST, 'ajax_search_form_name', '');
+							$r[ 'ONCLICK' ] = 'onclick="set_budget('.$range.' , false , \''.$formname.'\'); "';
+						}
+						$rows[ ] = $r;
+					}
+				}
 			}
-		}
 
-		$pageoutput[] = $output;
-		$tmpl = new patTemplate();
-		$tmpl->addRows('pageoutput', $pageoutput);
-		$tmpl->addRows('rows', $rows);
-		$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
-		$tmpl->readTemplatesFromInput('list_properties_budget_dropdown.html');
+			$pageoutput[] = $output;
+			$tmpl = new patTemplate();
+			$tmpl->addRows('pageoutput', $pageoutput);
+			$tmpl->addRows('rows', $rows);
+			$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+			$tmpl->readTemplatesFromInput('list_properties_budget_dropdown.html');
 
-		return $tmpl->getParsedTemplate();
-		} 
-		else 
-		{
+			return $tmpl->getParsedTemplate();
+		} else {
 			return '';
 		}
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */

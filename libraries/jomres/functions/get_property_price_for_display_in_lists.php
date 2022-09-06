@@ -15,7 +15,7 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 /**
- * 
+ *
  * @package Jomres\Core\Functions
  *
  */
@@ -47,7 +47,7 @@ function get_property_price_for_display_in_lists($property_uid)
 
 	$multiplier = 1;
 	if (!isset($mrConfig[ 'booking_form_daily_weekly_monthly' ])) { // This shouldn't be needed, as the setting is automatically pulled from jomres_config.php, but there's always one weird server...
-	$mrConfig[ 'booking_form_daily_weekly_monthly' ] = 'D';
+		$mrConfig[ 'booking_form_daily_weekly_monthly' ] = 'D';
 	}
 
 	switch ($mrConfig[ 'booking_form_daily_weekly_monthly' ]) {

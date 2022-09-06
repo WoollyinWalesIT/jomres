@@ -21,9 +21,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jomres_custom_field_handler
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -35,7 +36,7 @@ class jomres_custom_field_handler
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -73,7 +74,7 @@ class jomres_custom_field_handler
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */

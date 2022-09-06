@@ -25,7 +25,7 @@ class jomres_media_centre_images_s3import
 	protected $filesystem;
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -36,7 +36,7 @@ class jomres_media_centre_images_s3import
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -47,14 +47,14 @@ class jomres_media_centre_images_s3import
 		$contents = $this->filesystem->listContents('local://uploadedimages/', true);
 		
 		foreach ($contents as $fileNode) {
-			if($fileNode['type'] == 'dir') {
-			   $this->filesystem->createDir('s3://'.$fileNode['path']);
-			   continue;
+			if ($fileNode['type'] == 'dir') {
+				$this->filesystem->createDir('s3://'.$fileNode['path']);
+				continue;
 			}
 
 			$this->filesystem->put(
-			   's3://'.$fileNode['path'],
-			   $this->filesystem->read('local://'.$fileNode['path'])
+				's3://'.$fileNode['path'],
+				$this->filesystem->read('local://'.$fileNode['path'])
 			);
 		}
 		
