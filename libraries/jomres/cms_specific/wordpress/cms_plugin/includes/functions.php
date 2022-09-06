@@ -178,3 +178,26 @@ function jomres_notice($notice)
 		esc_html($notice)
 	);
 }
+	/**
+	 * Create a shortcode for the WP login form that can be used (ultimately) by Jomres function jomres_parse_modules()
+	 *
+	 * This is a fallback for the Jomres messaging system's call to generate the WP login form. If no other shortcode has been configured then Jomres can fall back to this form. It's not beautiful, but it is functional. Ideally the site manager would set their own shortcode for their preferred login form.
+	 *
+	 * @since	10.5.4
+	 */
+	function jomres_login_form_shortcode( $atts, $content = null ) {
+		extract( shortcode_atts( array(
+			'redirect' => ''
+		), $atts ) );
+
+		if (!is_user_logged_in()) {
+			if($redirect) {
+				$redirect_url = $redirect;
+			} else {
+				$redirect_url = get_permalink();
+			}
+			$form = wp_login_form(array('echo' => false, 'redirect' => $redirect_url ));
+		}
+		return $form;
+	}
+	add_shortcode('default_wordpress_loginform', 'jomres_login_form_shortcode');
