@@ -32,13 +32,18 @@ class jomres_gdpr_optin_consent
 
 	public function __construct()
 	{
-		$MiniComponents = jomres_getSingleton('mcHandler');
+
 		
 		$this->date_time = date('Y-m-d H-i-s');
 		$this->ip = get_remote_ip_number();
 		$this->user_id = 0;
-		$consent_form = $MiniComponents->specificEvent('06000', 'show_consent_form', array ('output_now' => false));
-		$this->optin_content =  filter_var($consent_form, FILTER_SANITIZE_SPECIAL_CHARS, FILTER_FLAG_STRIP_HIGH) ;
+		$this->optin_content = '';
+		if ( !defined('API_STARTED') ) {
+			$MiniComponents = jomres_getSingleton('mcHandler');
+			$consent_form = $MiniComponents->specificEvent('06000', 'show_consent_form', array ('output_now' => false));
+			$this->optin_content =  filter_var($consent_form, FILTER_SANITIZE_SPECIAL_CHARS, FILTER_FLAG_STRIP_HIGH) ;
+		}
+
 		$this->optedin = false;
 	}
 		

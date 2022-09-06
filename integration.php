@@ -285,7 +285,8 @@ set_showtime('tmplcomponent_source', JOMRES_LIBRARIES_ABSPATH.'fullscreen_view'.
 * copy fullscreen_view/jomres.php to the joomla template dir to help with fullscreen mode
 *
 */
-if (!defined('AUTO_UPGRADE')) {
+
+if (!defined('AUTO_UPGRADE') && !defined('API_STARTED') ) {
 	jomres_cmsspecific_patchJoomlaTemplate();
 }
 
@@ -305,7 +306,6 @@ if ($jrConfig[ 'development_production' ] == 'production') {
 
 //TODO find a better place, maybe jomres.php and framework.php
 $jomresHTML = jomres_singleton_abstract::getInstance('jomresHTML');
-
 
 // CSRF handling
 require_once JOMRES_LIBRARIES_ABSPATH.JRDS.'crsfhandler'.JRDS.'csrfhandler.lib.php';
