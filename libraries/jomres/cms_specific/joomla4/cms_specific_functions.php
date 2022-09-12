@@ -22,6 +22,8 @@ defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.'
 use Joomla\CMS\Factory;
 use Joomla\CMS\User\UserFactoryInterface;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Editor\Editor;
+
 
 function jomres_cmsspecific_error_logging_cms_files_to_not_backtrace()
 {
@@ -258,10 +260,11 @@ function jomres_cmsspecific_getRegistrationURL()
 
 function jomres_cmsspecific_getTextEditor($name, $content, $hiddenField, $width, $height, $col, $row)
 {
-
-		$editor = Joomla\CMS\Editor\Editor::getInstance();
-		$ret = $editor->display($name, $content, $width, $height, $col, $row, true, null, null, null, ["readmore","pagebreak"]);
-
+	$CONFIG = new JConfig();
+	$editor_name = $CONFIG->editor;
+	$user = Factory::getUser();
+	$editor = Editor::getInstance($user->getParam('editor', $editor_name ));
+	$ret = $editor->display($name, $content, '', '', '', '', []);
 	return $ret;
 }
 
