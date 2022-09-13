@@ -2670,3 +2670,13 @@ jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Якщо ви збереже
 	jr_define('CLIENT_TOKEN', 'Маркер доступу');
 	jr_define('CLIENT_TOKEN_INFO', "Маркети доступу можна запитувати за допомогою ідентифікатора клієнта та секрету. Деякі клієнти можуть уже мати маркер доступу, створений для них, у такому випадку ви можете використовувати цей маркер доступу. Якщо ви вважаєте, що маркер міг бути скомпрометовано, або ви просто хочете змінити це, ви можете закінчити термін дії маркерів клієнта. Термін дії всіх маркерів, пов’язаних із парою клієнт/секрет, закінчиться.");
 	jr_define('DELETE_TOKEN', 'Термін дії токенів закінчився');
+
+	jr_define( 'JOMRES_BS5_TOP_PANEL_CHOOSE_CURRENCY', "Виберіть свою валюту" );
+	jr_define( 'JOMRES_BS5_TOP_PANEL_CHOOSE_LANGUAGE', "Виберіть свою мову" );
+	jr_define( 'JOMRES_BS5_TOP_PANEL_REGISTER',"Реєстрація");
+	jr_define( 'JOMRES_BS5_TOP_PANEL_SIGN_IN', "Увійти");
+	jr_define( 'JOMRES_BS5_TOP_PANEL_LIST_YOUR_PROPERTY', "Укажіть свою власність");
+	jr_define( 'JOMRES_BS5_TOP_PANEL_REGISTER_FIRST', "Ви повинні спочатку зареєструватися та увійти");
+
+	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_SHOWFILTERS',"Показати фільтри");
+	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_HIDEFILTERS',"Приховати фільтри");

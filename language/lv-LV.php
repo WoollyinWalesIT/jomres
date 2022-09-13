@@ -2714,3 +2714,13 @@ Varat atstāt mērķa valodu iestatītu uz savu pašreizējo valodu un izmantot 
 	jr_define('CLIENT_TOKEN', 'Piekļuves pilnvara');
 	jr_define('CLIENT_TOKEN_INFO', "Piekļuves pilnvaras var pieprasīt, izmantojot klienta ID un noslēpumu. Dažiem klientiem jau var būt izveidots piekļuves marķieris, un tādā gadījumā varat izmantot šo piekļuves pilnvaru. Ja uzskatāt, ka marķieris varētu būt kompromitēts, vai arī vēlaties to vienkārši mainīt, varat beigt klienta marķieru derīguma termiņu. Visi ar klientu/slepeno pāri saistītie marķieri tiks beigušies.");
 	jr_define('DELETE_TOKEN', 'Tiek izbeigties');
+
+	jr_define('JOMRES_BS5_TOP_PANEL_CHOOSE_CURRENCY', "Izvēlieties valūtu");
+	jr_define('JOMRES_BS5_TOP_PANEL_CHOOSE_LANGUAGE', "Izvēlieties valodu");
+	jr_define('JOMRES_BS5_TOP_PANEL_REGISTER',"Reģistrēties");
+	jr_define('JOMRES_BS5_TOP_PANEL_SIGN_IN', "Pierakstīties");
+	jr_define('JOMRES_BS5_TOP_PANEL_LIST_YOUR_PROPERTY', "Ierakstiet savu īpašumu");
+	jr_define('JOMRES_BS5_TOP_PANEL_REGISTER_FIRST', "Vispirms ir jāreģistrējas un jāpiesakās");
+
+	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_SHOWFILTERS',"Rādīt filtrus");
+	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_HIDEFILTERS',"Slēpt filtrus");

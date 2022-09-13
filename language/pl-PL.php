@@ -2732,3 +2732,13 @@ Możesz pozostawić język docelowy ustawiony na swój bieżący język i użyć
 	jr_define('CLIENT_TOKEN', 'Token dostępu');
 	jr_define('CLIENT_TOKEN_INFO', "Tokeny dostępu można zażądać przy użyciu identyfikatora klienta i klucza tajnego. Niektórzy klienci mogą już mieć utworzony dla niego token dostępu, w takim przypadku możesz użyć tego tokena dostępu. Jeśli uważasz, że token mógł zostać zagrożone lub po prostu chcesz to zmienić, możesz wygasnąć tokeny klienta. Wszystkie tokeny powiązane z parą klient/klucz tajny wygasną.");
 	jr_define('DELETE_TOKEN', 'Wygasa tokeny');
+
+	jr_define( 'JOMRES_BS5_TOP_PANEL_CHOOSE_CURRENCY', "Wybierz walutę" );
+	jr_define( 'JOMRES_BS5_TOP_PANEL_CHOOSE_LANGUAGE', "Wybierz swój język" );
+	jr_define( 'JOMRES_BS5_TOP_PANEL_REGISTER',"Zarejestruj się" );
+	jr_define( 'JOMRES_BS5_TOP_PANEL_SIGN_IN', "Zaloguj się");
+	jr_define( 'JOMRES_BS5_TOP_PANEL_LIST_YOUR_PROPERTY', "Wyświetl swoją nieruchomość");
+	jr_define( 'JOMRES_BS5_TOP_PANEL_REGISTER_FIRST', "Najpierw musisz się zarejestrować i zalogować");
+
+	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_SHOWFILTERS',"Pokaż filtry");
+	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_HIDEFILTERS',"Ukryj filtry");

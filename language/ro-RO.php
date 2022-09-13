@@ -2741,3 +2741,13 @@ Puteți lăsa limba țintă setată la limba dvs. curentă și puteți utiliza a
 	jr_define('CLIENT_TOKEN', 'Access Token');
 	jr_define('CLIENT_TOKEN_INFO', "Jetonele de acces pot fi solicitate folosind ID-ul clientului și Secretul. Este posibil ca unii clienți să aibă deja un jeton de acces creat pentru acesta, caz în care puteți utiliza acest jeton de acces. Dacă credeți că jetonul ar fi fost compromis, sau vrei doar să-l schimbi, poți expira jetoanele clientului. Toate jetoanele asociate cu perechea client/secretă vor fi expirate.");
 	jr_define('DELETE_TOKEN', 'Expirare Tokens');
+
+	jr_define( 'JOMRES_BS5_TOP_PANEL_CHOOSE_CURRENCY', "Alege-ți moneda");
+	jr_define( 'JOMRES_BS5_TOP_PANEL_CHOOSE_LANGUAGE', "Alegeți limba dvs.");
+	jr_define('JOMRES_BS5_TOP_PANEL_REGISTER',"Înregistrare");
+	jr_define( 'JOMRES_BS5_TOP_PANEL_SIGN_IN', "Conectează-te");
+	jr_define( 'JOMRES_BS5_TOP_PANEL_LIST_YOUR_PROPERTY', "Enumerați proprietatea dvs.");
+	jr_define( 'JOMRES_BS5_TOP_PANEL_REGISTER_FIRST', "Trebuie să vă înregistrați și să vă autentificați mai întâi");
+
+	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_SHOWFILTERS',"Afișați filtrele");
+	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_HIDEFILTERS',"Ascunde filtrele");

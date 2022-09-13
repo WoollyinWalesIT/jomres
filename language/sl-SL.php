@@ -2725,3 +2725,13 @@ Ciljni jezik lahko pustite nastavljen na vaš trenutni jezik in uporabite to str
 	jr_define('CLIENT_TOKEN', 'Žeton za dostop');
 	jr_define('CLIENT_TOKEN_INFO', "Žetone za dostop lahko zahtevate z uporabo ID-ja odjemalca in skrivnosti. Nekateri odjemalci imajo morda že ustvarjen žeton za dostop, v tem primeru lahko uporabite ta žeton za dostop. Če menite, da je žeton morda bil ogrožen ali pa ga želite samo spremeniti, lahko potečete žetoni odjemalca. Vsi žetoni, povezani s parom odjemalec/skrivnost, bodo potekli.");
 	jr_define('DELETE_TOKEN', 'Potečeni žetoni');
+
+	jr_define( 'JOMRES_BS5_TOP_PANEL_CHOOSE_CURRENCY', "Izberite svojo valuto" );
+	jr_define( 'JOMRES_BS5_TOP_PANEL_CHOOSE_LANGUAGE', "Izberite svoj jezik" );
+	jr_define( 'JOMRES_BS5_TOP_PANEL_REGISTER',"Registracija");
+	jr_define( 'JOMRES_BS5_TOP_PANEL_SIGN_IN', "Prijava");
+	jr_define( 'JOMRES_BS5_TOP_PANEL_LIST_YOUR_PROPERTY', "Navedite svojo nepremičnino");
+	jr_define( 'JOMRES_BS5_TOP_PANEL_REGISTER_FIRST', "Najprej se morate registrirati in prijaviti");
+
+	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_SHOWFILTERS',"Prikaži filtre");
+	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_HIDEFILTERS',"Skrij filtre");

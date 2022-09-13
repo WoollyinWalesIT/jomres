@@ -2723,3 +2723,13 @@ jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', '保存更改后，页面中�
 	jr_define('CLIENT_TOKEN', '访问令牌');
 	jr_define('CLIENT_TOKEN_INFO', "可以使用客户端 ID 和 Secret 请求访问令牌。某些客户端可能已经为其创建了访问令牌，在这种情况下，您可以使用此访问令牌。如果您认为该令牌可能已经 妥协，或者你只是想改变它，你可以使客户端的令牌过期。与客户端/秘密对关联的所有令牌都将过期。");
 	jr_define('DELETE_TOKEN', '过期令牌');
+
+	jr_define('JOMRES_BS5_TOP_PANEL_CHOOSE_CURRENCY', "选择您的货币");
+	jr_define('JOMRES_BS5_TOP_PANEL_CHOOSE_LANGUAGE', "选择你的语言");
+	jr_define('JOMRES_BS5_TOP_PANEL_REGISTER',"注册");
+	jr_define('JOMRES_BS5_TOP_PANEL_SIGN_IN', "登录");
+	jr_define('JOMRES_BS5_TOP_PANEL_LIST_YOUR_PROPERTY', "列出你的财产");
+	jr_define( 'JOMRES_BS5_TOP_PANEL_REGISTER_FIRST', "您必须先注册并登录");
+
+	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_SHOWFILTERS',"显示过滤器");
+	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_HIDEFILTERS',"隐藏过滤器");

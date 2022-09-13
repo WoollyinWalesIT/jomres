@@ -2682,3 +2682,13 @@ Du kan la målspråket settes til ditt nåværende språk og bruke denne siden t
 	jr_define('CLIENT_TOKEN', 'Tilgangstoken');
 	jr_define('CLIENT_TOKEN_INFO', "Tilgangstokener kan bes ved hjelp av klient-ID og hemmelig. Noen klienter kan allerede ha opprettet et tilgangstoken for det, i så fall kan du bruke dette tilgangstokenet. Hvis du tror at tokenet kan ha blitt kompromittert, eller du bare vil endre det, kan du utløpe klientens tokens. Alle tokens knyttet til klienten/hemmelige paret vil bli utløpt.");
 	jr_define('DELETE_TOKEN', 'Utløpssymboler');
+
+	jr_define( 'JOMRES_BS5_TOP_PANEL_CHOOSE_CURRENCY', "Velg valutaen din" );
+	jr_define( 'JOMRES_BS5_TOP_PANEL_CHOOSE_LANGUAGE', "Velg ditt språk" );
+	jr_define( 'JOMRES_BS5_TOP_PANEL_REGISTER',"Registrer deg" );
+	jr_define( 'JOMRES_BS5_TOP_PANEL_SIGN_IN', "Logg på");
+	jr_define( 'JOMRES_BS5_TOP_PANEL_LIST_YOUR_PROPERTY', "List opp eiendommen din");
+	jr_define( 'JOMRES_BS5_TOP_PANEL_REGISTER_FIRST', "Du må registrere deg og logge på først");
+
+	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_SHOWFILTERS',"Vis filtre");
+	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_HIDEFILTERS',"Skjul filtre");

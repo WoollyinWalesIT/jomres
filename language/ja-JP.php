@@ -2712,3 +2712,13 @@ jr_define('JOMRES_TARGET_LANGUAGE', 'ターゲット言語');
 	jr_define('CLIENT_TOKEN', 'アクセストークン');
 	jr_define('CLIENT_TOKEN_INFO', "クライアント ID とシークレットを使用してアクセス トークンを要求できます。クライアントによっては、そのアクセス トークンが既に作成されている場合があります。その場合は、このアクセス トークンを使用できます。 侵害された場合、または単に変更したい場合は、クライアントのトークンを期限切れにすることができます。クライアント/シークレット ペアに関連付けられているすべてのトークンが期限切れになります。");
 	jr_define('DELETE_TOKEN', '期限切れトークン');
+
+	jr_define( 'JOMRES_BS5_TOP_PANEL_CHOOSE_CURRENCY', "通貨を選択してください" );
+	jr_define( 'JOMRES_BS5_TOP_PANEL_CHOOSE_LANGUAGE', "言語を選択してください" );
+	jr_define( 'JOMRES_BS5_TOP_PANEL_REGISTER',"登録" );
+	jr_define( 'JOMRES_BS5_TOP_PANEL_SIGN_IN', "サインイン");
+	jr_define( 'JOMRES_BS5_TOP_PANEL_LIST_YOUR_PROPERTY', "あなたの物件をリストする");
+	jr_define( 'JOMRES_BS5_TOP_PANEL_REGISTER_FIRST', "最初に登録してログインする必要があります");
+
+	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_SHOWFILTERS',"フィルターを表示");
+	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_HIDEFILTERS',"フィルターを非表示");

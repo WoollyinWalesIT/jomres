@@ -2511,3 +2511,13 @@ Vous pouvez laisser la langue cible définie sur votre langue actuelle et utilis
 	jr_define('CLIENT_TOKEN', 'Jeton d\'accès');
 	jr_define('CLIENT_TOKEN_INFO', "Les jetons d'accès peuvent être demandés à l'aide de l'ID client et du secret. Certains clients peuvent déjà avoir un jeton d'accès créé pour eux, auquel cas vous pouvez utiliser ce jeton d'accès. Si vous pensez que le jeton peut avoir été compromis, ou vous voulez simplement le changer, vous pouvez faire expirer les jetons du client. Tous les jetons associés à la paire client/secret seront expirés.");
 	jr_define('DELETE_TOKEN', 'Expire les jetons');
+
+	jr_define( 'JOMRES_BS5_TOP_PANEL_CHOOSE_CURRENCY', "Choisissez votre devise" );
+	jr_define( 'JOMRES_BS5_TOP_PANEL_CHOOSE_LANGUAGE', "Choisissez votre langue" );
+	jr_define( 'JOMRES_BS5_TOP_PANEL_REGISTER',"S'inscrire" );
+	jr_define( 'JOMRES_BS5_TOP_PANEL_SIGN_IN', "Connexion");
+	jr_define( 'JOMRES_BS5_TOP_PANEL_LIST_YOUR_PROPERTY', "Listez votre propriété");
+	jr_define( 'JOMRES_BS5_TOP_PANEL_REGISTER_FIRST', "Vous devez d'abord vous inscrire et vous connecter");
+
+	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_SHOWFILTERS',"Afficher les filtres");
+	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_HIDEFILTERS',"Masquer les filtres");

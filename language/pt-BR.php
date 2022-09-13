@@ -2750,3 +2750,13 @@ Você pode deixar o idioma de destino definido para seu idioma atual e usar esta
 	jr_define('CLIENT_TOKEN', 'Token de Acesso');
 	jr_define('CLIENT_TOKEN_INFO', "Tokens de acesso podem ser solicitados usando o ID e o Segredo do Cliente. Alguns Clientes já podem ter um token de acesso criado para ele, nesse caso você pode usar este token de acesso. Se você acredita que o token pode ter sido comprometido, ou apenas deseja alterá-lo, você pode expirar os tokens do cliente. Todos os tokens associados ao par cliente/segredo serão expirados.");
 	jr_define('DELETE_TOKEN', 'Expirar Tokens');
+
+	jr_define( 'JOMRES_BS5_TOP_PANEL_CHOOSE_CURRENCY', "Escolha sua moeda" );
+	jr_define( 'JOMRES_BS5_TOP_PANEL_CHOOSE_LANGUAGE', "Escolha seu idioma" );
+	jr_define( 'JOMRES_BS5_TOP_PANEL_REGISTER',"Registrar");
+	jr_define( 'JOMRES_BS5_TOP_PANEL_SIGN_IN', "Entrar");
+	jr_define( 'JOMRES_BS5_TOP_PANEL_LIST_YOUR_PROPERTY', "Listar sua propriedade");
+	jr_define( 'JOMRES_BS5_TOP_PANEL_REGISTER_FIRST', "Você deve se registrar e logar primeiro");
+
+	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_SHOWFILTERS',"Mostrar filtros");
+	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_HIDEFILTERS',"Ocultar filtros");

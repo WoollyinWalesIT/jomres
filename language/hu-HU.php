@@ -2710,3 +2710,13 @@ Meghagyhatja a célnyelvet az aktuális nyelven, és ezen az oldalon átnevezhet
 	jr_define('CLIENT_TOKEN', 'Hozzáférési token');
 	jr_define('CLIENT_TOKEN_INFO', "Hozzáférési token kérhető a kliens azonosítóval és titkos kóddal. Előfordulhat, hogy egyes kliensek már rendelkeztek hozzá létrehozott hozzáférési tokennel, ebben az esetben használhatja ezt a hozzáférési tokent. Ha úgy gondolja, hogy a token kompromittálódott, vagy csak módosítani szeretné, lejárathatja a kliens tokenjeit. Az ügyfél/titkos párhoz tartozó összes token lejár.");
 	jr_define('DELETE_TOKEN', 'Tokenek lejárta');
+
+	jr_define( 'JOMRES_BS5_TOP_PANEL_CHOOSE_CURRENCY', "Válassza ki a pénznemet" );
+	jr_define( 'JOMRES_BS5_TOP_PANEL_CHOOSE_LANGUAGE', "Válaszd ki a nyelved" );
+	jr_define( 'JOMRES_BS5_TOP_PANEL_REGISTER',"Regisztráció" );
+	jr_define('JOMRES_BS5_TOP_PANEL_SIGN_IN', "Bejelentkezés");
+	jr_define( 'JOMRES_BS5_TOP_PANEL_LIST_YOUR_PROPERTY', "Tulajdon listája");
+	jr_define( 'JOMRES_BS5_TOP_PANEL_REGISTER_FIRST', "Először regisztrálnia kell és be kell jelentkeznie");
+
+	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_SHOWFILTERS',"Szűrők megjelenítése");
+	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_HIDEFILTERS',"Szűrők elrejtése");

@@ -2734,3 +2734,13 @@ Podeu deixar l\'idioma d\'arribada configurat en el vostre idioma actual i utili
 	jr_define('CLIENT_TOKEN', 'Fitxa d\'accés');
 	jr_define('CLIENT_TOKEN_INFO', "Els testimonis d'accés es poden sol·licitar mitjançant l'identificador i el secret del client. És possible que alguns clients ja tinguin creat un testimoni d'accés, en aquest cas podeu utilitzar aquest testimoni d'accés. Si creieu que el testimoni pot haver estat compromesa, o simplement voleu canviar-la, podeu caducar les fitxes del client. Tots els testimonis associats al parell client/secret caducaran.");
 	jr_define('DELETE_TOKEN', 'Fitxas de caducitat');
+
+	jr_define( 'JOMRES_BS5_TOP_PANEL_CHOOSE_CURRENCY', "Tria la teva moneda");
+	jr_define( 'JOMRES_BS5_TOP_PANEL_CHOOSE_LANGUAGE', "Trieu el vostre idioma");
+	jr_define('JOMRES_BS5_TOP_PANEL_REGISTER',"Registrar");
+	jr_define('JOMRES_BS5_TOP_PANEL_SIGN_IN', "Iniciar sessió");
+	jr_define( 'JOMRES_BS5_TOP_PANEL_LIST_YOUR_PROPERTY', "Llista la teva propietat");
+	jr_define( 'JOMRES_BS5_TOP_PANEL_REGISTER_FIRST', "Primer us heu de registrar i iniciar sessió");
+
+	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_SHOWFILTERS',"Mostra els filtres");
+	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_HIDEFILTERS',"Amaga els filtres");

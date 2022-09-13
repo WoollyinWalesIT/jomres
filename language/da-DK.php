@@ -2741,3 +2741,13 @@ Du kan lade målsproget være indstillet til dit nuværende sprog og bruge denne
 	jr_define('CLIENT_TOKEN', 'Adgangstoken');
 	jr_define('CLIENT_TOKEN_INFO', "Adgangstokens kan anmodes om ved hjælp af klient-id'et og hemmeligheden. Nogle klienter har muligvis allerede oprettet et adgangstoken til det, i hvilket tilfælde du kan bruge dette adgangstoken. Hvis du mener, at tokenet kan have været kompromitteret, eller du bare vil ændre det, kan du udløbe klientens tokens. Alle tokens forbundet med klienten/hemmelige parret vil blive udløbet.");
 	jr_define('DELETE_TOKEN', 'Udløbs-tokens');
+
+	jr_define( 'JOMRES_BS5_TOP_PANEL_CHOOSE_CURRENCY', "Vælg din valuta" );
+	jr_define( 'JOMRES_BS5_TOP_PANEL_CHOOSE_LANGUAGE', "Vælg dit sprog" );
+	jr_define( 'JOMRES_BS5_TOP_PANEL_REGISTER',"Registrer" );
+	jr_define( 'JOMRES_BS5_TOP_PANEL_SIGN_IN', "Log ind");
+	jr_define( 'JOMRES_BS5_TOP_PANEL_LIST_YOUR_PROPERTY', "Angiv din ejendom");
+	jr_define( 'JOMRES_BS5_TOP_PANEL_REGISTER_FIRST', "Du skal registrere og logge ind først");
+
+	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_SHOWFILTERS',"Vis filtre");
+	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_HIDEFILTERS',"Skjul filtre");

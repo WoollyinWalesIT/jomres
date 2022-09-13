@@ -2749,3 +2749,13 @@ jr_define('JOMRES_UPDATES_INFO', "דף זה יכול להוריד ולהתקין
 	jr_define('CLIENT_TOKEN', 'אסימון גישה');
 	jr_define('CLIENT_TOKEN_INFO', "ניתן לבקש אסימוני גישה באמצעות מזהה הלקוח והסוד. ייתכן שלחלק מהלקוחות כבר נוצר אסימון גישה עבורו, ובמקרה זה תוכל להשתמש באסימון גישה זה. אם אתה מאמין שייתכן שהאסימון היה נפרץ, או שאתה רק רוצה לשנות את זה, אתה יכול לפוג את האסימונים של הלקוח. כל האסימונים המשויכים לזוג הלקוח/הסודי יפוג.");
 	jr_define('DELETE_TOKEN', 'Tokens expire');
+
+	jr_define( 'JOMRES_BS5_TOP_PANEL_CHOOSE_CURRENCY', "בחר את המטבע שלך" );
+	jr_define( 'JOMRES_BS5_TOP_PANEL_CHOOSE_LANGUAGE', "בחר את השפה שלך" );
+	jr_define( 'JOMRES_BS5_TOP_PANEL_REGISTER',"הרשמה" );
+	jr_define( 'JOMRES_BS5_TOP_PANEL_SIGN_IN', "כניסה");
+	jr_define( 'JOMRES_BS5_TOP_PANEL_LIST_YOUR_PROPERTY', "רשום את הנכס שלך");
+	jr_define( 'JOMRES_BS5_TOP_PANEL_REGISTER_FIRST', "עליך להירשם ולהיכנס תחילה");
+
+	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_SHOWFILTERS',"הצג מסננים");
+	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_HIDEFILTERS',"הסתר מסננים");

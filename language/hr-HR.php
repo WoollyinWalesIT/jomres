@@ -2754,3 +2754,13 @@ Možete ostaviti ciljni jezik postavljen na vaš trenutni jezik i koristiti ovu 
 	jr_define('CLIENT_TOKEN', 'Pristupni token');
 	jr_define('CLIENT_TOKEN_INFO', "Pristupni tokeni mogu se zatražiti pomoću ID-a klijenta i tajne. Neki klijenti možda već imaju kreiran pristupni token, u kojem slučaju možete koristiti ovaj pristupni token. Ako vjerujete da je token možda kompromitirano ili ga samo želite promijeniti, možete isteći klijentovim tokenima. Svi tokeni povezani s parom klijent/tajna bit će istekli.");
 	jr_define('DELETE_TOKEN', 'Tokeni isteka');
+
+	jr_define( 'JOMRES_BS5_TOP_PANEL_CHOOSE_CURRENCY', "Odaberite svoju valutu" );
+	jr_define( 'JOMRES_BS5_TOP_PANEL_CHOOSE_LANGUAGE', "Odaberite svoj jezik" );
+	jr_define( 'JOMRES_BS5_TOP_PANEL_REGISTER',"Registracija" );
+	jr_define( 'JOMRES_BS5_TOP_PANEL_SIGN_IN', "Prijava");
+	jr_define( 'JOMRES_BS5_TOP_PANEL_LIST_YOUR_PROPERTY', "Navedite svoju nekretninu");
+	jr_define( 'JOMRES_BS5_TOP_PANEL_REGISTER_FIRST', "Prvo se morate registrirati i prijaviti");
+
+	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_SHOWFILTERS',"Prikaži filtere");
+	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_HIDEFILTERS',"Sakrij filtere");

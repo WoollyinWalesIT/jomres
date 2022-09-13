@@ -2818,3 +2818,15 @@ jr_define('JOMRES_TARGET_LANGUAGE', 'زبان مقصد');
 	jr_define('CLIENT_TOKEN', 'Access Token');
 	jr_define('CLIENT_TOKEN_INFO', "Access tokens can be requested using the Client ID and Secret. Some Clients may already have an access token created for it, in which case you can use this access token. If you believe that the token may have been compromised, or you just want to change it, you can expire the client's tokens. All tokens associated with the client/secret pair will be expired.");
 	jr_define('DELETE_TOKEN', 'Expire Tokens');
+
+
+	jr_define ('JOMRES_BS5_TOP_PANEL_CHOOSE_CURRENCY' , "اختر عملتك") ;
+	jr_define ('JOMRES_BS5_TOP_PANEL_CHOOSE_LANGUAGE' , "اختر لغتك") ;
+	jr_define ('JOMRES_BS5_TOP_PANEL_REGISTER', "تسجيل") ;
+	jr_define ('JOMRES_BS5_TOP_PANEL_SIGN_IN', "تسجيل الدخول") ;
+	jr_define ('JOMRES_BS5_TOP_PANEL_LIST_YOUR_PROPERTY' , "قائمة الممتلكات الخاصة بك") ;
+	jr_define ('JOMRES_BS5_TOP_PANEL_REGISTER_FIRST' , "يجب عليك التسجيل وتسجيل الدخول أولاً") ;
+
+	jr_define ('_ JOMRES_AJAX_SEARCH_COMPOSITE_SHOWFILTERS', "إظهار عوامل التصفية") ;
+	jr_define ('_ JOMRES_AJAX_SEARCH_COMPOSITE_HIDEFILTERS', "إخفاء المرشحات") ;
+

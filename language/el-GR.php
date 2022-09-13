@@ -2750,3 +2750,13 @@ jr_define('DATA_SOURCES_TITLE_INFO', "Οι πηγές δεδομένων ανα�
 	jr_define('CLIENT_TOKEN', 'Access Token');
 	jr_define('CLIENT_TOKEN_INFO', "Τα διακριτικά πρόσβασης μπορούν να ζητηθούν χρησιμοποιώντας το Client ID και Secret. Ορισμένοι πελάτες μπορεί να έχουν ήδη δημιουργηθεί ένα διακριτικό πρόσβασης, οπότε μπορείτε να χρησιμοποιήσετε αυτό το διακριτικό πρόσβασης. Εάν πιστεύετε ότι το διακριτικό μπορεί να έχει έχει παραβιαστεί ή απλά θέλετε να το αλλάξετε, μπορείτε να λήξετε τα διακριτικά του πελάτη. Όλα τα διακριτικά που σχετίζονται με το ζεύγος πελάτη/μυστικού θα λήξουν.");
 	jr_define('DELETE_TOKEN', 'Expire Tokens');
+
+	jr_define( 'JOMRES_BS5_TOP_PANEL_CHOOSE_CURRENCY', "Επιλέξτε το νόμισμά σας" );
+	jr_define( 'JOMRES_BS5_TOP_PANEL_CHOOSE_LANGUAGE', "Επιλέξτε τη γλώσσα σας" );
+	jr_define( 'JOMRES_BS5_TOP_PANEL_REGISTER',"Εγγραφή" );
+	jr_define( 'JOMRES_BS5_TOP_PANEL_SIGN_IN', "Σύνδεση");
+	jr_define( 'JOMRES_BS5_TOP_PANEL_LIST_YOUR_PROPERTY', "Καταχώριση της ιδιοκτησίας σας");
+	jr_define( 'JOMRES_BS5_TOP_PANEL_REGISTER_FIRST', "Πρέπει πρώτα να εγγραφείτε και να συνδεθείτε");
+
+	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_SHOWFILTERS' , "Εμφάνιση φίλτρων");
+jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_HIDEFILTERS' , "Απόκρυψη φίλτρων");

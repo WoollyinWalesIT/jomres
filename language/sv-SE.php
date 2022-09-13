@@ -2713,3 +2713,13 @@ Du kan lämna målspråket inställt på ditt nuvarande språk och använda denn
 	jr_define('CLIENT_TOKEN', 'Åtkomsttoken');
 	jr_define('CLIENT_TOKEN_INFO', "Åtkomsttoken kan begäras med hjälp av klient-ID och hemlighet. Vissa klienter kanske redan har skapat en åtkomsttoken för den, i vilket fall du kan använda denna åtkomsttoken. Om du tror att token kan ha varit äventyras, eller om du bara vill ändra det, kan du förfalla klientens tokens. Alla tokens associerade med klienten/hemliga paret kommer att förfalla.");
 	jr_define('DELETE_TOKEN', 'Expirate tokens');
+
+	jr_define( 'JOMRES_BS5_TOP_PANEL_CHOOSE_CURRENCY', "Välj din valuta" );
+	jr_define( 'JOMRES_BS5_TOP_PANEL_CHOOSE_LANGUAGE', "Välj ditt språk" );
+	jr_define( 'JOMRES_BS5_TOP_PANEL_REGISTER',"Registrera" );
+	jr_define( 'JOMRES_BS5_TOP_PANEL_SIGN_IN', "Logga in");
+	jr_define( 'JOMRES_BS5_TOP_PANEL_LIST_YOUR_PROPERTY', "Lista din egendom");
+	jr_define( 'JOMRES_BS5_TOP_PANEL_REGISTER_FIRST', "Du måste registrera dig och logga in först");
+
+	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_SHOWFILTERS',"Visa filter");
+	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_HIDEFILTERS',"Dölj filter");

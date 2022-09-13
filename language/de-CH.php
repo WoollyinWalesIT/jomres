@@ -2773,3 +2773,13 @@ Sie können die Zielsprache auf Ihrer aktuellen Sprache belassen und diese Seite
 	jr_define('CLIENT_TOKEN', 'Zugriffstoken');
 	jr_define('CLIENT_TOKEN_INFO', "Zugriffstoken können unter Verwendung der Client-ID und des Geheimnisses angefordert werden. Einige Clients haben möglicherweise bereits ein Zugriffstoken dafür erstellt, in diesem Fall können Sie dieses Zugriffstoken verwenden. Wenn Sie glauben, dass das Token gewesen sein könnte kompromittiert ist oder Sie es einfach ändern möchten, können Sie die Tokens des Clients verfallen lassen. Alle Tokens, die mit dem Client/Secret-Paar verknüpft sind, werden verfallen.");
 	jr_define('DELETE_TOKEN', 'Tokens ablaufen');
+
+	jr_define( 'JOMRES_BS5_TOP_PANEL_CHOOSE_CURRENCY', "Wählen Sie Ihre Währung" );
+	jr_define( 'JOMRES_BS5_TOP_PANEL_CHOOSE_LANGUAGE', "Wählen Sie Ihre Sprache" );
+	jr_define( 'JOMRES_BS5_TOP_PANEL_REGISTER',"Registrieren" );
+	jr_define( 'JOMRES_BS5_TOP_PANEL_SIGN_IN', "Anmelden");
+	jr_define( 'JOMRES_BS5_TOP_PANEL_LIST_YOUR_PROPERTY', "Listen Sie Ihr Eigentum auf");
+	jr_define( 'JOMRES_BS5_TOP_PANEL_REGISTER_FIRST', "Sie müssen sich zuerst registrieren und anmelden");
+
+	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_SHOWFILTERS',"Filter anzeigen");
+	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_HIDEFILTERS',"Filter ausblenden");

@@ -2687,3 +2687,13 @@ Můžete ponechat cílový jazyk nastavený na váš aktuální jazyk a použít
 	jr_define('CLIENT_TOKEN', 'Přístupový token');
 	jr_define('CLIENT_TOKEN_INFO', "Přístupové tokeny lze vyžádat pomocí ID klienta a tajného klíče. Někteří klienti již pro něj mohou mít vytvořený přístupový token, v takovém případě můžete použít tento přístupový token. Pokud se domníváte, že token mohl být kompromitovat, nebo to jen chcete změnit, můžete vypršet platnost tokenů klienta. Platnost všech tokenů spojených s párem klient/tajný vyprší.");
 	jr_define('DELETE_TOKEN', 'Vypršení platnosti tokenů');
+
+	jr_define( 'JOMRES_BS5_TOP_PANEL_CHOOSE_CURRENCY', "Vyberte si měnu" );
+	jr_define( 'JOMRES_BS5_TOP_PANEL_CHOOSE_LANGUAGE', "Vyberte si jazyk" );
+	jr_define( 'JOMRES_BS5_TOP_PANEL_REGISTER',"Registrace" );
+	jr_define( 'JOMRES_BS5_TOP_PANEL_SIGN_IN', "Přihlásit se");
+	jr_define( 'JOMRES_BS5_TOP_PANEL_LIST_YOUR_PROPERTY', "Seznam vaší nemovitosti");
+	jr_define( 'JOMRES_BS5_TOP_PANEL_REGISTER_FIRST', "Nejprve se musíte zaregistrovat a přihlásit");
+
+	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_SHOWFILTERS',"Zobrazit filtry");
+	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_HIDEFILTERS',"Skrýt filtry");

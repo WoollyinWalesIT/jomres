@@ -2683,3 +2683,13 @@ U kunt de doeltaal op uw huidige taal laten staan en deze pagina gebruiken om it
 	jr_define('CLIENT_TOKEN', 'Toegangstoken');
 	jr_define('CLIENT_TOKEN_INFO', "Toegangstokens kunnen worden aangevraagd met behulp van de Client-ID en Secret. Sommige Clients hebben mogelijk al een toegangstoken ervoor gemaakt, in welk geval u deze toegangstoken kunt gebruiken. Als u denkt dat de token mogelijk is gecompromitteerd, of als u het gewoon wilt wijzigen, kunt u de tokens van de client laten verlopen. Alle tokens die zijn gekoppeld aan het client/geheim-paar zullen verlopen zijn.");
 	jr_define('DELETE_TOKEN', 'Verlopen tokens');
+
+	jr_define( 'JOMRES_BS5_TOP_PANEL_CHOOSE_CURRENCY', "Kies uw valuta");
+	jr_define( 'JOMRES_BS5_TOP_PANEL_CHOOSE_LANGUAGE', "Kies je taal" );
+	jr_define( 'JOMRES_BS5_TOP_PANEL_REGISTER',"Registreren" );
+	jr_define( 'JOMRES_BS5_TOP_PANEL_SIGN_IN', "Aanmelden");
+	jr_define( 'JOMRES_BS5_TOP_PANEL_LIST_YOUR_PROPERTY', "Laat uw eigendom zien");
+	jr_define( 'JOMRES_BS5_TOP_PANEL_REGISTER_FIRST', "U moet zich eerst registreren en inloggen");
+
+	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_SHOWFILTERS',"Toon filters");
+	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_HIDEFILTERS',"Verberg filters");

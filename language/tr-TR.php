@@ -2715,3 +2715,13 @@ Hedef dili mevcut dilinize ayarlı bırakabilir ve bu sayfayı, öğeleri tek te
 	jr_define('CLIENT_TOKEN', 'Erişim Simgesi');
 	jr_define('CLIENT_TOKEN_INFO', "Erişim belirteçleri İstemci Kimliği ve Sır kullanılarak talep edilebilir. Bazı İstemcilerin bunun için zaten bir erişim belirteci oluşturulmuş olabilir, bu durumda bu erişim belirtecini kullanabilirsiniz. veya sadece değiştirmek istiyorsanız, müşterinin belirteçlerinin süresi dolabilir. İstemci/gizli çifti ile ilişkili tüm belirteçlerin süresi dolacaktır.");
 	jr_define('DELETE_TOKEN', 'Sona Erme Belirteçleri');
+
+	jr_define('JOMRES_BS5_TOP_PANEL_CHOOSE_CURRENCY', "Para biriminizi seçin");
+	jr_define('JOMRES_BS5_TOP_PANEL_CHOOSE_LANGUAGE', "Dilinizi seçin");
+	jr_define('JOMRES_BS5_TOP_PANEL_REGISTER',"Kayıt Ol");
+	jr_define('JOMRES_BS5_TOP_PANEL_SIGN_IN', "Oturum Aç");
+	jr_define('JOMRES_BS5_TOP_PANEL_LIST_YOUR_PROPERTY', "Mülkünüzü listeleyin");
+	jr_define('JOMRES_BS5_TOP_PANEL_REGISTER_FIRST', "Önce kayıt olmanız ve giriş yapmanız gerekmektedir");
+
+	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_SHOWFILTERS',"Filtreleri göster");
+	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_HIDEFILTERS',"Filtreleri gizle");

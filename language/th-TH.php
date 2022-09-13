@@ -2690,3 +2690,13 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES', "รูป
 	jr_define('CLIENT_TOKEN', 'Access Token');
 	jr_define('CLIENT_TOKEN_INFO', "สามารถขอโทเค็นการเข้าถึงได้โดยใช้ ID ไคลเอ็นต์และข้อมูลลับ ลูกค้าบางรายอาจมีโทเค็นการเข้าถึงที่สร้างขึ้นแล้ว ในกรณีนี้ คุณสามารถใช้โทเค็นการเข้าถึงนี้ได้ หากคุณเชื่อว่าโทเค็นนั้นอาจเป็น ถูกบุกรุก หรือคุณเพียงแค่ต้องการเปลี่ยน คุณสามารถทำให้โทเค็นของลูกค้าหมดอายุได้ โทเค็นทั้งหมดที่เกี่ยวข้องกับคู่ไคลเอนต์/ความลับจะหมดอายุ");
 	jr_define('DELETE_TOKEN', 'หมดอายุโทเค็น');
+
+	jr_define( 'JOMRES_BS5_TOP_PANEL_CHOOSE_CURRENCY', "เลือกสกุลเงินของคุณ" );
+	jr_define( 'JOMRES_BS5_TOP_PANEL_CHOOSE_LANGUAGE', "เลือกภาษาของคุณ" );
+	jr_define( 'JOMRES_BS5_TOP_PANEL_REGISTER', "ลงทะเบียน" );
+	jr_define( 'JOMRES_BS5_TOP_PANEL_SIGN_IN', "ลงชื่อเข้าใช้");
+	jr_define( 'JOMRES_BS5_TOP_PANEL_LIST_YOUR_PROPERTY', "ลงรายการทรัพย์สินของคุณ");
+	jr_define( 'JOMRES_BS5_TOP_PANEL_REGISTER_FIRST', "คุณต้องลงทะเบียนและเข้าสู่ระบบก่อน");
+
+	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_SHOWFILTERS',"แสดงตัวกรอง");
+	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_HIDEFILTERS',"ซ่อนตัวกรอง");

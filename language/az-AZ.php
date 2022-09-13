@@ -2723,3 +2723,13 @@ Siz hədəf dili təyin edilmiş cari dilinizə buraxa və onların fərdi səhi
 	jr_define('CLIENT_TOKEN', 'Giriş Token');
 	jr_define('CLIENT_TOKEN_INFO', "Giriş nişanları Müştəri ID-si və Sirri ilə tələb oluna bilər. Bəzi Müştərilərin artıq onun üçün yaradılmış giriş nişanı ola bilər, bu halda siz bu giriş nişanından istifadə edə bilərsiniz. Əgər işarənin istifadə olunduğuna inanırsınızsa güzəştə gedərsə və ya sadəcə onu dəyişmək istəsəniz, müştərinin tokenlərinin müddətini başa vura bilərsiniz. Müştəri/gizli cütlüklə əlaqəli bütün tokenlərin vaxtı bitəcək.");
 	jr_define('DELETE_TOKEN', 'Müddəti bitən Tokenlər');
+
+	jr_define( 'JOMRES_BS5_TOP_PANEL_CHOOSE_CURRENCY', "Valyutanızı seçin" );
+	jr_define( 'JOMRES_BS5_TOP_PANEL_CHOOSE_LANGUAGE', "Dilinizi seçin" );
+	jr_define('JOMRES_BS5_TOP_PANEL_REGISTER',"Qeydiyyatdan keç");
+	jr_define( 'JOMRES_BS5_TOP_PANEL_SIGN_IN', "Daxil ol");
+	jr_define( 'JOMRES_BS5_TOP_PANEL_LIST_YOUR_PROPERTY', "Əmlakınızı siyahıya salın");
+	jr_define( 'JOMRES_BS5_TOP_PANEL_REGISTER_FIRST', "Əvvəlcə qeydiyyatdan keçməli və daxil olmalısınız");
+
+	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_SHOWFILTERS',"Filtrləri göstər");
+	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_HIDEFILTERS',"Filtrləri gizlət");
