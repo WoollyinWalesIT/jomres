@@ -2733,3 +2733,5 @@ jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', '保存更改后，页面中�
 
 	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_SHOWFILTERS',"显示过滤器");
 	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_HIDEFILTERS',"隐藏过滤器");
+
+	jr_define('_JOMRES_COM_TRANSLATE_LANGUAGEFILES_INFO', "页面上显示的文本存储在语言文件中。Jomres 系统在页面上显示语言字符串意味着您不需要直接编辑这些语言文件。相反，您可以在此编辑这些字符串 单击突出显示的文本并将要显示的新文本放入打开的输入表单中。当您单击复选标记时，该更改将保存到数据库中。这意味着您的所有更改都已存储并 更新 Jomres 时不会被覆盖。如果要更改不同语言的文本，请使用右上角的语言选择下拉菜单来更改当前语言。文本字符串有时会在语言文件中的不同位置重复，因为它们在不同的地方使用 因此不要忘记使用浏览器的搜索功能来确保您编辑了正确的字符串。");

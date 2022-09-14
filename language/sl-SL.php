@@ -2735,3 +2735,5 @@ Ciljni jezik lahko pustite nastavljen na vaš trenutni jezik in uporabite to str
 
 	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_SHOWFILTERS',"Prikaži filtre");
 	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_HIDEFILTERS',"Skrij filtre");
+
+	jr_define('_JOMRES_COM_TRANSLATE_LANGUAGEFILES_INFO', "Besedilo, prikazano na straneh, je shranjeno v jezikovnih datotekah. Sistem Jomres za prikazovanje jezikovnih nizov na strani pomeni, da vam teh jezikovnih datotek ni treba neposredno urejati. Namesto tega lahko te nize urejate na tem strani, tako da kliknete na označeno besedilo in vnesete novo besedilo, ki ga želite prikazati, v vnosni obrazec, ki se odpre. Ko kliknete kljukico, se ta sprememba shrani v bazo podatkov. To pomeni, da so vse vaše spremembe shranjene in niso prepisani, ko posodobite Jomres. Če želite spremeniti besedilo za različne jezike, uporabite spustni meni za izbiro jezika zgoraj desno, da spremenite trenutni jezik. Besedilni nizi se včasih ponavljajo na različnih mestih v jezikovnih datotekah, ker se uporabljajo v različnih kontekstih, zato ne pozabite uporabiti iskalne funkcije brskalnika, da se prepričate, ali ste uredili pravilen niz. ");

@@ -2742,3 +2742,5 @@ Możesz pozostawić język docelowy ustawiony na swój bieżący język i użyć
 
 	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_SHOWFILTERS',"Pokaż filtry");
 	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_HIDEFILTERS',"Ukryj filtry");
+
+	jr_define('_JOMRES_COM_TRANSLATE_LANGUAGEFILES_INFO', "Tekst wyświetlany na stronach jest przechowywany w plikach językowych. System Jomres pokazujący ciągi językowe na stronie oznacza, że nie musisz bezpośrednio edytować tych plików językowych. Zamiast tego możesz edytować te ciągi na tym strony, klikając podświetlony tekst i umieszczając nowy tekst, który chcesz wyświetlić w otwartym formularzu wejściowym. Po kliknięciu znacznika wyboru ta zmiana zostanie zapisana w bazie danych. Oznacza to, że wszystkie zmiany są przechowywane i nie są zastępowane podczas aktualizacji Jomres. Jeśli chcesz zmienić tekst dla różnych języków, użyj menu wyboru języka w prawym górnym rogu, aby zmienić bieżący język. Ciągi tekstowe są czasami powtarzane w różnych miejscach w plikach językowych, ponieważ są używane w różnych konteksty, więc nie zapomnij użyć funkcji wyszukiwania przeglądarki, aby upewnić się, że edytowałeś poprawny ciąg.");

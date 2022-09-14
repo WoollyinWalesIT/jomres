@@ -2725,3 +2725,5 @@ Hedef dili mevcut dilinize ayarlı bırakabilir ve bu sayfayı, öğeleri tek te
 
 	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_SHOWFILTERS',"Filtreleri göster");
 	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_HIDEFILTERS',"Filtreleri gizle");
+
+	jr_define('_JOMRES_COM_TRANSLATE_LANGUAGEFILES_INFO', "Sayfalarda gösterilen metin dil dosyalarında saklanır. Jomres'in sayfada dil dizelerini gösteren sistemi, bu dil dosyalarını doğrudan düzenlemenize gerek olmadığı anlamına gelir. Bunun yerine, bu dizeleri bu sayfada düzenleyebilirsiniz. sayfadaki vurgulanan metne tıklayarak ve görüntülenmesini istediğiniz yeni metni açılan giriş formuna koyarak onay işaretine tıkladığınızda, o değişiklik veritabanına kaydedilir.Bu, tüm değişikliklerinizin saklandığı ve Jomres'i güncellediğinizde üzerine yazılmaz.Farklı diller için metni değiştirmek istiyorsanız, mevcut dili değiştirmek için sağ üstteki dil seçimi açılır menüsünü kullanın.Metin dizeleri bazen farklı dil dosyalarında kullanıldıkları için dil dosyalarında farklı yerlerde tekrarlanır. bağlamlar bu nedenle, doğru dizeyi düzenlediğinizden emin olmak için tarayıcının arama özelliğini kullanmayı unutmayın. ");

@@ -2697,3 +2697,5 @@ Můžete ponechat cílový jazyk nastavený na váš aktuální jazyk a použít
 
 	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_SHOWFILTERS',"Zobrazit filtry");
 	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_HIDEFILTERS',"Skrýt filtry");
+
+	jr_define('_JOMRES_COM_TRANSLATE_LANGUAGEFILES_INFO', "Text zobrazený na stránkách je uložen v jazykových souborech. Systém Jomres zobrazující jazykové řetězce na stránce znamená, že nemusíte přímo upravovat tyto jazykové soubory. Místo toho můžete tyto řetězce upravovat na tomto kliknutím na zvýrazněný text a vložením nového textu, který chcete zobrazit, do vstupního formuláře, který se otevře. Když kliknete na značku zaškrtnutí, změna se uloží do databáze. To znamená, že všechny vaše změny budou uloženy a nejsou při aktualizaci Jomres přepsány. Pokud chcete změnit text pro různé jazyky, použijte rozbalovací nabídku pro výběr jazyka vpravo nahoře a změňte aktuální jazyk. Textové řetězce se někdy opakují na různých místech v jazykových souborech, protože se používají v různých kontexty, takže nezapomeňte použít vyhledávací funkci prohlížeče, abyste se ujistili, že jste upravili správný řetězec. ");

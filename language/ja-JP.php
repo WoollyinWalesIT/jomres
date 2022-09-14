@@ -2722,3 +2722,5 @@ jr_define('JOMRES_TARGET_LANGUAGE', 'ターゲット言語');
 
 	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_SHOWFILTERS',"フィルターを表示");
 	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_HIDEFILTERS',"フィルターを非表示");
+
+	jr_define('_JOMRES_COM_TRANSLATE_LANGUAGEFILES_INFO', "ページに表示されるテキストは言語ファイルに保存されます。ページに言語文字列を表示する Jomres システムは、これらの言語ファイルを直接編集する必要がないことを意味します。代わりに、この上でこれらの文字列を編集できます。 強調表示されたテキストをクリックし、表示する新しいテキストを入力フォームに入力します. チェックマークをクリックすると、その変更がデータベースに保存されます. これは、すべての変更が保存され、 Jomres を更新しても上書きされません. If you want to change text for different languages use the language selection dropdown on the right, to change the current language. テキスト文字列は、異なる場所で使用されるため、言語ファイルの異なる場所で繰り返されることがあります そのため、ブラウザーの検索機能を使用して、正しい文字列を編集したことを確認することを忘れないでください。");

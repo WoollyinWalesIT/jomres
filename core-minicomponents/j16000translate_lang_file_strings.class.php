@@ -64,16 +64,22 @@ class j16000translate_lang_file_strings
 		$jomres_language->get_language('shotcodes');
 		$jomres_language->get_language('video_tutorials');
 
-		$javascript = 'onchange="switch_language_context(this.value);"';
+/*		$javascript = 'onchange="switch_language_context(this.value);"';
 
 		echo '<h2 class="page-header">'.jr_gettext('_JOMRES_TOUCHTEMPLATES', '_JOMRES_TOUCHTEMPLATES', false).' - '.get_showtime('lang').'</h2>';
 		
-		echo '<p>'.jr_gettext('_JOMRES_COM_LANGUAGE_CONTEXT', '_JOMRES_COM_LANGUAGE_CONTEXT', false) . ' ' . $jomres_property_types->getPropertyTypeDescDropdown($language_context, 'language_context', $javascript).'</p>';
+		echo '<p>'.jr_gettext('_JOMRES_COM_LANGUAGE_CONTEXT', '_JOMRES_COM_LANGUAGE_CONTEXT', false) . ' ' . $jomres_property_types->getPropertyTypeDescDropdown($language_context, 'language_context', $javascript).'</p>';*/
+
+		echo simple_template_output(JOMRES_TEMPLATEPATH_ADMINISTRATOR, $template = 'translate_lang_file_strings_header.html', jr_gettext( '_JOMRES_COM_TRANSLATE_LANGUAGEFILES_INFO', '_JOMRES_COM_TRANSLATE_LANGUAGEFILES_INFO' , false ));
+
 
 		$output = array();
 
 		foreach ($jomres_language_definitions->definitions[$jrConfig['language_context']] as $const => $def) {
-			$output[] = $const." ".jr_gettext($const, $def);
+			if ( $const != '_JOMRES_COM_MR_YES ' && $const != '_JOMRES_COM_MR_NO ' && $const != '_JOMRES_COM_TRANSLATE_LANGUAGEFILES_INFO ') {
+				$output[] = $const." <br/><br/>".jr_gettext($const, $def)."<br/>";
+			}
+
 		}
 
 		foreach ($output as $o) {

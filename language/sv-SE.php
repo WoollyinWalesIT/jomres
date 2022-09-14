@@ -2723,3 +2723,5 @@ Du kan lämna målspråket inställt på ditt nuvarande språk och använda denn
 
 	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_SHOWFILTERS',"Visa filter");
 	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_HIDEFILTERS',"Dölj filter");
+
+	jr_define('_JOMRES_COM_TRANSLATE_LANGUAGEFILES_INFO', "Text som visas på sidor lagras i språkfiler. Jomres-systemet för att visa språksträngar på sidan innebär att du inte behöver redigera dessa språkfiler direkt. Istället kan du redigera dessa strängar på denna sida sida genom att klicka på den markerade texten och sätta den nya texten du vill visa i inmatningsformuläret som öppnas. När du klickar på bockmarkeringen sparas den ändringen i databasen. Det betyder att alla dina ändringar lagras och skrivs inte över när du uppdaterar Jomres. Om du vill ändra text för olika språk använd rullgardinsmenyn för val av språk uppe till höger för att ändra aktuellt språk. Textsträngar upprepas ibland på olika ställen i språkfiler eftersom de används på olika sammanhang så glöm inte att använda webbläsarens sökfunktion för att se till att du har redigerat rätt sträng. ");
