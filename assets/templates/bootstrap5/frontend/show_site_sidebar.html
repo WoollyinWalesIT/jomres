@@ -3,7 +3,7 @@
 	<style>
 		/* Bootstrap's shadow doesn't go all around (that I could figure out, and I want the sidebar to pop a bit more than the BS shadows allow */
 
-		.shadow-all-sides
+		.shadow
 		{
 			border: solid .75px #EAEAEA;
 			box-shadow:  0 0 10px  rgba(0,0,0,0.4);
@@ -12,9 +12,9 @@
 			-o-box-shadow: 0 0 10px  rgba(0,0,0,0.4);
 		}
 	</style>
-<div  id="jomres_property_details_sidebar" class="border  border-info rounded-1 bg-success">
+<div  id="jomres_property_details_sidebar" class="">
 	<pattemplate:comment>
-	<div class="col shadow-all-sides p-1 m-2 bg-body ">
+	<div class="col p-1 m-2">
 		<div class="row">
 			<div class="col-9">
 				<h1>{PROPERTY_NAME}</h1>
@@ -29,7 +29,7 @@
 	</div>
 	</pattemplate:comment>
 
-	<div class="col shadow-all-sides p-1 m-2 bg-body rounded-1">
+	<div class="col shadow p-1 m-2 bg-body rounded-1">
 		<h4>{JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA}</h4>
 		<p class="lead">{JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD}</p>
 
@@ -61,7 +61,7 @@
 		</p>
 	</div>
 
-	<div class="col shadow-all-sides p-1 m-2 rounded-1 text-white bg-secondary">
+	<div class="col shadow p-1 m-2 rounded-1 text-white bg-secondary">
 		<h5>
 			{JOMRES_SITE_SIDEBAR_WHY_TITLE}
 		</h5>
@@ -82,7 +82,7 @@
 		</ul>
 	</div>
 
-	<div class="col shadow-all-sides p-1 m-2 bg-body rounded-1">
+	<div class="col shadow p-1 m-2 bg-body rounded-1">
 		<h4>
 			{JOMRES_SITE_SIDEBAR_HELP_TITLE}
 		</h4>
@@ -95,7 +95,7 @@
 
 
 
-	<div class="col shadow-all-sides p-1 m-2 bg-body rounded-1 ">
+	<div class="col shadow p-1 m-2 bg-body rounded-1 ">
 		<h4>
 			{JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE}
 		</h4>
@@ -107,11 +107,11 @@
 		<p class="fw-bolder">{BUSINESS_TELEPHONE}</p>
 	</div>
 
-	<div class="col shadow-all-sides p-1 m-2 bg-body rounded-1">
+	<div class="col shadow p-1 m-2 bg-body rounded-1">
 		{CONTACT_FORM}
 	</div>
 
-	<div class="col shadow-all-sides p-1 m-2 bg-body rounded-1">
+	<div class="col shadow p-1 m-2 bg-body rounded-1">
 		<h4>{BUSINESS_NAME}</h4>
 		VAT: {BUSINESS_VAT_NUMBER}
 		<p class="fst-italic">{BUSINESS_ADDRESS}, {BUSINESS_STREET}, {BUSINESS_TOWN}, {BUSINESS_REGION},{BUSINESS_POSTCODE}, {BUSINESS_COUNTRY} </p>
