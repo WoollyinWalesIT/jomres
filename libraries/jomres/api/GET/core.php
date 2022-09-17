@@ -87,7 +87,7 @@ Flight::route('GET /core/get_properties', function () {
 				if (isset($jomres_media_centre_images->images['property'][0][0]['large'])) {
 					$thumbnail = $jomres_media_centre_images->images['property'][0][0]['small'];
 
-					if (count($property['rooms']) > 1) {
+					if (isset($property['rooms']) && count($property['rooms']) > 1) {
 						$mrp = true;
 					} else {
 						$mrp = false;
