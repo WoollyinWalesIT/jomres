@@ -19,7 +19,6 @@ jomresJquery(document).ready(function () {
 			postcode: "required",
 			town: "required",
 			region: "required",
-			email: "required",
 		},
 		messages: {
 			firstname: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_FIRSTNAME}",
@@ -29,7 +28,6 @@ jomresJquery(document).ready(function () {
 			postcode: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_POSTCODE}",
 			town: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_TOWN}",
 			region: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_REGION}",
-			email: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_EMAIL}",
 		},
 		errorLabelContainer: "#messageBox",
 		wrapper: "p",
@@ -145,13 +143,6 @@ jomresJquery(document).ready(function () {
 					<input id="mobile" name="mobile" type="tel" value="{MOBILE}" class="required form-control" placeholder="{COMMON_PLACEHOLDER_MOBILE}"/>
 				</div>
 			</div>
-			<div class="form-group">
-				<label class="col-md-2 control-label" for="email">{HEMAIL}</label>
-				<div class="col-md-10">
-					<input id="email" name="email" type="email" value="{EMAIL}" class="required form-control" placeholder="{COMMON_PLACEHOLDER_EMAIL}"/>
-				</div>
-			</div>
-			
 			<div class="form-group">
 				<label class="col-md-2 control-label" for="vat_number">{_JOMRES_COM_YOURBUSINESS_VATNO}</label>
 				<div class="col-md-10">

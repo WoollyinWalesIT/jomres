@@ -56,7 +56,9 @@ class j06005save_my_account
 		if ($thisJRUser->id == 0) {
 			return false;
 		}
-		
+
+		$user_details = jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id($thisJRUser->id);
+
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
 
@@ -71,7 +73,7 @@ class j06005save_my_account
 		$landline = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'landline', ''));
 		$mobile = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'mobile', ''));
 		$fax = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'fax', ''));
-		$email = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'email', ''));
+		$email = $this->jomres_encryption->encrypt( (string)$user_details[ $thisJRUser->id ][ 'email' ] );
 		$preferences = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'preferences', ''));
 		
 		$drivers_license = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'drivers_license', ''));

@@ -71,7 +71,7 @@ class j06005edit_my_account
 		$output[ 'POSTCODE' ] = '';
 		$output[ 'LANDLINE' ] = '';
 		$output[ 'MOBILE' ] = '';
-		$output[ 'EMAIL' ] = restore_task_specific_email_address($user_details[ $thisJRUser->id ][ 'email' ]);
+		//$output[ 'EMAIL' ] = restore_task_specific_email_address($user_details[ $thisJRUser->id ][ 'email' ]);
 		$output[ 'IMAGE' ] = JOMRES_IMAGES_RELPATH.'noimage.gif';
 
 		if (isset($componentArgs['return_url']) && $componentArgs['return_url'] != '') {
@@ -106,7 +106,7 @@ class j06005edit_my_account
 				$output[ 'LANDLINE' ]			= $thisJRUser->tel_landline;
 				$output[ 'MOBILE' ]				= $thisJRUser->tel_mobile;
 				$output[ 'FAX' ]				= $thisJRUser->tel_fax;
-				$output[ 'EMAIL' ]				= restore_task_specific_email_address($thisJRUser->email);
+				//$output[ 'EMAIL' ]				= restore_task_specific_email_address($thisJRUser->email);
 
 				$output[ 'DRIVERS_LICENSE' ]	= $thisJRUser->drivers_license;
 				$output[ 'PASSPORT_NUMBER' ]	= $thisJRUser->passport_number;
