@@ -849,6 +849,11 @@ class patTemplate
 			$common_strings[ '_JOMRES_MENU_HIDE' ] = jr_gettext('_JOMRES_MENU_HIDE', '_JOMRES_MENU_HIDE', false);
 			}
 
+		$common_strings[ 'COMMON_LOGIN_TEXT' ] = jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGIN', '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGIN', false);
+		$common_strings[ 'COMMON_LOGIN_URL' ] = get_showtime('live_site').'/'.jomres_cmsspecific_getlogin_task();
+
+		$common_strings[ 'COMMON_LOGOUT_TEXT' ] = jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGOUT', '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGOUT', false);
+		$common_strings[ 'COMMON_LOGOUT_URL' ] = get_showtime('live_site').'/'.jomres_cmsspecific_getlogout_task();
 
 		return $common_strings;
 		}
