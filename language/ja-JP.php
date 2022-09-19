@@ -2724,3 +2724,7 @@ jr_define('JOMRES_TARGET_LANGUAGE', 'ターゲット言語');
 	jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_HIDEFILTERS',"フィルターを非表示");
 
 	jr_define('_JOMRES_COM_TRANSLATE_LANGUAGEFILES_INFO', "ページに表示されるテキストは言語ファイルに保存されます。ページに言語文字列を表示する Jomres システムは、これらの言語ファイルを直接編集する必要がないことを意味します。代わりに、この上でこれらの文字列を編集できます。 強調表示されたテキストをクリックし、表示する新しいテキストを入力フォームに入力します. チェックマークをクリックすると、その変更がデータベースに保存されます. これは、すべての変更が保存され、 Jomres を更新しても上書きされません. If you want to change text for different languages use the language selection dropdown on the right, to change the current language. テキスト文字列は、異なる場所で使用されるため、言語ファイルの異なる場所で繰り返されることがあります そのため、ブラウザーの検索機能を使用して、正しい文字列を編集したことを確認することを忘れないでください。");
+
+	jr_define('JOMRES_COM_TRANSITION_FROM_ADMIN_TO_BACKEND_NOT_LOGGED_IN', "すべてのプロパティ管理は、サイトのフロントエンドで実行されます。現在、プロパティ マネージャーとしてログインしていません。最初にログインしてから、プロパティを管理できるようになります。");
+
+	jr_define('JOMRES_COM_TRANSITION_FROM_ADMIN_TO_BACKEND_NOT_LOGGED_IN_EXPOSITION_FOR_NEW_USERS_JOOMLA', "Jomres を最初にインストールすると、管理者ユーザー用のスーパー プロパティ マネージャーが作成され、予約というメイン メニューに新しいオプションが追加されます。このメニュー項目を削除しないでください。提供されたボタンを使用してログインし、 プロパティの管理を開始するには、[予約] ページを開きます。");

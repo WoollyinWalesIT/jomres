@@ -2673,3 +2673,8 @@ jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_SHOWFILTERS',"Show filters");
 jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_HIDEFILTERS',"Hide filters");
 
 jr_define('_JOMRES_COM_TRANSLATE_LANGUAGEFILES_INFO', "Text shown on pages is stored in language files. The Jomres system of showing language strings on the page means that you don't need to directly edit these language files. Instead, you can edit those strings on this page by clicking on the highlighted text and putting the new text you want to show in the input form that opens up. When you click the Check mark, then that change is saved to the database. This means that all of your changes are stored and are not overwritten when you update Jomres. If you want to change text for different languages use the language selection dropdown on the top right, to change the current language. Text strings are sometimes repeated in different places in language files because they are used in different contexts so don't forget to use the browser's search feature to make sure you've edited the correct string. ");
+
+jr_define('JOMRES_COM_TRANSITION_FROM_ADMIN_TO_BACKEND_NOT_LOGGED_IN', "All property management is performed in the frontend of your site. You are not currently logged in as a property manager, so please login first and then you will be able to administer your properties.");
+
+jr_define('JOMRES_COM_TRANSITION_FROM_ADMIN_TO_BACKEND_NOT_LOGGED_IN_EXPOSITION_FOR_NEW_USERS_JOOMLA', "When Jomres is first installed it will create a Super Property Manager for the administrator user, and add a new option to the Main Menu called Bookings. Do not delete this menu item. Login using the button provided and visit the Bookings page to start administering properties. ");
+
