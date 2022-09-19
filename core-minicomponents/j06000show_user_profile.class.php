@@ -50,15 +50,19 @@ class j06000show_user_profile
 		$this->retVals = '';
 		
 		$cms_user_id = (int)jomresGetParam($_REQUEST, 'cms_user_id', 0);
-		
+		if (!isset($_REQUEST['cms_user_id']) && isset($_REQUEST['id'])) {
+			$cms_user_id = (int)jomresGetParam($_REQUEST, 'id', 0);
+		}
+
 		if (isset($componentArgs['cms_user_id']) && $cms_user_id == 0) {
 			$cms_user_id = $componentArgs['cms_user_id'];
 		}
 		
-		if ($thisJRUser->userIsRegistered && $cms_user_id == 0) {
+		if ($thisJRUser->userIsRegistered && $thisJRUser->userIsManager && $cms_user_id == 0) {
 			$cms_user_id = (int)$thisJRUser->id;
 		}
-		
+
+
 		if ($cms_user_id == 0) {
 			return;
 		}
