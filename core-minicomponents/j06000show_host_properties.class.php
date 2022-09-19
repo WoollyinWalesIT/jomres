@@ -96,10 +96,14 @@ class j06000show_host_properties
 		}
 
 
+		$all_published_properties = get_showtime('published_properties_in_system');
 		$property_uids = array();
 		foreach ($property_manager_xref as $property_id => $m_id) {
 			if ($m_id == $manager_id) {
-				$property_uids[ ] = $property_id;
+				if (in_array($property_id,$all_published_properties)) {
+					$property_uids[ ] = $property_id;
+				}
+
 			}
 		}
 
@@ -127,7 +131,7 @@ class j06000show_host_properties
 		foreach ($property_uids as $property_uid) {
 			if (array_key_exists($property_uid, $current_property_details->multi_query_result)) {
 				$property = $current_property_details->multi_query_result[$property_uid];
-				if ($property['published'] == 1) {
+				if ( isset($property['published']) && $property['published'] == 1) {
 					$r = array();
 					if (isset($images[$property_uid]["property"][0][0]["small"])) {
 						$r['IMAGE'] =$images[$property_uid]["property"][0][0]["small"];
