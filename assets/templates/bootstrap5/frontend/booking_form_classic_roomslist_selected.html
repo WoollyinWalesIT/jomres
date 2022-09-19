@@ -6,7 +6,7 @@
 				<div class="col-lg-4">	<a href="#roomdetails{ROOMUID}_{TARIFFUID}" role="button" data-bs-toggle="modal"><img src="{ROOM_IMAGE_LARGE}" alt="room image" class="img-fluid"></a>
 				</div>
 				<div class="col-lg-4">
-					<h4 class=""><a href="#roomdetails{ROOMUID}_{TARIFFUID}" role="button" data-bs-toggle="modal">{ROOMTYPE}</a></h4>
+					<div class="fs-5"><a href="#roomdetails{ROOMUID}_{TARIFFUID}" role="button" data-bs-toggle="modal">{ROOMTYPE}</a></div>
 					<strong>{TAGLINE}</strong>
 					<div class="row">
 						<div class="col-6">
@@ -18,7 +18,7 @@
 					</div>
 					<div class="row">
 						<div class="col-6">
-							<a href="#roomdetails{ROOMUID}_{TARIFFUID}" role="button" data-bs-toggle="modal" class="hidden-phone hidden-tablet">{HMOREINFO}...</a>
+							<a href="#roomdetails{ROOMUID}_{TARIFFUID}" role="button" data-bs-toggle="modal" class="d-none d-lg-block">{HMOREINFO}...</a>
 						</div>
 						<div class="col-6">
 
@@ -28,9 +28,9 @@
 				<div class="col-lg-2">
 					<p><span class="big-price">{FORMATTED_PRICE}</span>{HRATEPERNIGHT}</p>
 				</div>
-				<div class="col-lg-2 text-center">
+				<div class="col-lg-2 text-center p-1">
 					<div id="{ROOMTARIFFOUTPUTID}"><a href="javascript:void(0);" onclick="getResponse_rooms(&apos;requestedRoom&apos;,&apos;{ROOMTARIFFOUTPUTID}&apos; );"
-					                                  class="btn {BUTTON_CLASS}"><i class="fa fa-times"></i> </a>
+					                                  class="btn {BUTTON_CLASS}"><i class="icon-minus-2 icon-white"></i> </a>
 					</div>
 				</div>
 			</div>

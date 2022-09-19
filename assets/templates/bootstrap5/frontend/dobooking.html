@@ -234,31 +234,54 @@
 					<pattemplate:comment>---------------------------------------- Classic rooms list ----------------------------------------</pattemplate:comment>
 					<pattemplate:tmpl
 							name="classic_rooms_list" type="simpleCondition" requiredvars="ajaxform_available_desc">
+						
 						<div class="card">
 							<div class="card-header">
 								<div class="card-title"><strong>{AJAXFORM_AVAILABLE_DESC}</strong></div>
 							</div>
 							<div class="card-body">
-								<p>{LOOKRIGHT}</p>
-								<p class="alert alert-warning">{ESTIMATEWARNING}</p>
+
+								<pattemplate:comment>
+									<p>{LOOKRIGHT}</p>
+									<p class="alert alert-warning">{ESTIMATEWARNING}</p>
+								</pattemplate:comment>
 								<pattemplate:tmpl name="roomfeaturesrowheader" type="simpleCondition"
 								                  requiredvars="_jomres_bookingorm_roomfeature_filter">
-									<h6>{_JOMRES_BOOKINGORM_ROOMFEATURE_FILTER}</h6>
-
-								</pattemplate:tmpl>
-								<div class="row">
-									<pattemplate:tmpl name="roomfeaturesrow" type="simpleCondition" requiredvars="inputbox">
-										<div class="col-2">
-											<div class="form-group">
-												<label class="col-form-label">{INPUTBOX} <img src="{IMAGE_RELATIVE}" class="img-fluid card-img-top" style="max-height: 100px" /> {DESCRIPTION}</label>
+									<div class="pb-2">
+										<div class="accordion" id="accordionRoomFeatureFilter">
+											<div class="accordion-item">
+												<h2 class="accordion-header" id="headingTwo">
+													<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+														<h6 class="text-muted">{_JOMRES_BOOKINGORM_ROOMFEATURE_FILTER}</h6>
+													</button>
+												</h2>
+												<div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionRoomFeatureFilter">
+													<div class="accordion-body">
+														<div class="row">
+															<pattemplate:tmpl name="roomfeaturesrow" type="simpleCondition" requiredvars="inputbox">
+																<div class="col-2">
+																	<div class="form-group">
+																		<label class="col-form-label">{INPUTBOX} <img src="{IMAGE_RELATIVE}" class="img-fluid card-img-top" style="max-height: 100px" /> {DESCRIPTION}</label>
+																	</div>
+																</div>
+															</pattemplate:tmpl>
+														</div>
+													</div>
+												</div>
 											</div>
 										</div>
-									</pattemplate:tmpl>
-								</div>
+									</div>
+
+								</pattemplate:tmpl>
+
 								<div class="clearfix"></div>
-								<div>
-									<div id="availRooms">{AVAILABLEROOMS}</div>
-									<div id="selectedRooms">{SELECTEDROOM}</div>
+								<div class="row gx-5">
+									<div class="col-6">
+										<div id="availRooms">{AVAILABLEROOMS}</div>
+									</div>
+									<div class="col-6">
+										<div id="selectedRooms">{SELECTEDROOM}</div>
+									</div>
 								</div>
 							</div>
 						</div>
