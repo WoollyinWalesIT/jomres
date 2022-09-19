@@ -494,7 +494,6 @@ class jr_user
 							`enc_postcode`,
 							`enc_tel_landline`,
 							`enc_tel_mobile`,
-							`enc_email`
 						FROM #__jomres_guest_profile 
 						WHERE `cms_user_id` = ' .(int) $cms_user_id.' 
 						LIMIT 1 ';
@@ -508,7 +507,6 @@ class jr_user
 			$userProfile['enc_county'] == '' ||
 			$userProfile['enc_postcode'] == '' ||
 			$userProfile['enc_country'] == '' ||
-			$userProfile['enc_email'] == '' ||
 			$userProfile['enc_tel_landline'] == '' ||
 			$userProfile['enc_tel_mobile'] == ''
 		) {
