@@ -74,6 +74,7 @@ class basic_contract_details
 						a.date_range_string,
 						a.booked_in,
 						a.true_arrival,
+						a.property_uid,
 						a.single_person_suppliment,
 						a.extras,
 						a.extrasquantities,
@@ -146,6 +147,7 @@ class basic_contract_details
 			$this->contract[$contract_uid]['contractdeets']['date_range_string'] = $contract->date_range_string;
 			$this->contract[$contract_uid]['contractdeets']['booked_in'] = $contract->booked_in;
 			$this->contract[$contract_uid]['contractdeets']['true_arrival'] = $contract->true_arrival;
+			$this->contract[$contract_uid]['contractdeets']['property_uid'] = $contract->property_uid;
 			$this->contract[$contract_uid]['contractdeets']['single_person_suppliment'] = $contract->single_person_suppliment;
 			$this->contract[$contract_uid]['contractdeets']['extras'] = $contract->extras;
 			$this->contract[$contract_uid]['contractdeets']['extrasquantities'] = unserialize($contract->extrasquantities);
