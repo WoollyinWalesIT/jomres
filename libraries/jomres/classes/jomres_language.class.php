@@ -124,7 +124,10 @@ class jomres_language
 			}
 		} else {
 			// Calling this here ensures that the complete up-to-date set of definitions are available to the run, this allows really old sites to update when they no longer have access to the language_context dropdown (removed in 20220-ish).
-			require_once JOMRESPATH_BASE.'language'.JRDS.$this->lang.'.php';
+			if ( file_exists(JOMRESPATH_BASE.'language'.JRDS.$this->lang.'.php')) {
+				require_once JOMRESPATH_BASE.'language'.JRDS.$this->lang.'.php';
+			}
+
 
 			//load language context language file if no property type specific language file found above
 			if ($jrConfig[ 'language_context' ] != '' && file_exists(JOMRESPATH_BASE.'language'.JRDS.$jrConfig[ 'language_context' ].JRDS.$this->lang.'.php')) {
