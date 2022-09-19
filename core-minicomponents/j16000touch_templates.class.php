@@ -147,7 +147,7 @@ class j16000touch_templates
 				echo jr_gettext('_JOMRES_CUSTOM_PROPERTY_FIELDS_TITLE', '_JOMRES_CUSTOM_PROPERTY_FIELDS_TITLE', false).'<br/>';
 				$shown_fields = array();
 				foreach ($jomres_property_types->property_types as $p) {
-					$fields = $custom_fields->getAllCustomFields($p->id);
+					$fields = $custom_fields->getAllCustomFields($p['id']);
 					if (!is_null($fields) && !empty($fields)) {
 						foreach ($fields as $t) {
 							if (!in_array($t['uid'], $shown_fields)) {
