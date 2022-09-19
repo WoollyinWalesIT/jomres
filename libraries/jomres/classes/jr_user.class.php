@@ -473,4 +473,48 @@ class jr_user
 
 		return false;
 	}
+
+	public function user_details_are_complete($cms_user_id)
+	{
+		$cms_user_id = (int) $cms_user_id;
+		if ($cms_user_id == 0) {
+			return false;
+		}
+
+		$query = 'SELECT
+							`id`,
+							`cms_user_id`,
+							`enc_firstname`,
+							`enc_surname`,
+							`enc_house`,
+							`enc_street`,
+							`enc_town`,
+							`enc_county`,
+							`enc_country`,
+							`enc_postcode`,
+							`enc_tel_landline`,
+							`enc_tel_mobile`,
+							`enc_email`
+						FROM #__jomres_guest_profile 
+						WHERE `cms_user_id` = ' .(int) $cms_user_id.' 
+						LIMIT 1 ';
+		$userProfile = doSelectSql($query, 2);
+
+		if ($userProfile['enc_firstname'] == '' ||
+			$userProfile['enc_surname'] == '' ||
+			$userProfile['enc_house'] == '' ||
+			$userProfile['enc_street'] == '' ||
+			$userProfile['enc_town'] == '' ||
+			$userProfile['enc_county'] == '' ||
+			$userProfile['enc_postcode'] == '' ||
+			$userProfile['enc_country'] == '' ||
+			$userProfile['enc_email'] == '' ||
+			$userProfile['enc_tel_landline'] == '' ||
+			$userProfile['enc_tel_mobile'] == ''
+		) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 }
