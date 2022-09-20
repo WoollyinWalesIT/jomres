@@ -80,7 +80,7 @@ class j06000show_site_sidebar
 		$output['BUSINESS_COUNTRY']     = $jrConfig['business_country'];
 		$output['BUSINESS_POSTCODE']    = $jrConfig['business_postcode'];
 		$output['BUSINESS_TELEPHONE']   = jomres_decode($jrConfig['business_telephone']);
-		$output['BUSINESS_EMAIL']       = $jrConfig['business_email'];
+		$output['BUSINESS_EMAIL']       = jomres_hide_email($jrConfig['business_email']);
 
 		
 		$output['_JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES']	= jr_gettext('_JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES', '_JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES', false);
