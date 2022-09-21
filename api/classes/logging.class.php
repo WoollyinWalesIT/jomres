@@ -120,8 +120,8 @@ class logging
             $url = filter_var($url, FILTER_VALIDATE_URL, FILTER_FLAG_PATH_REQUIRED);
         }
 
-
-		$now = DateTime::createFromFormat('U.u', microtime(true));
+		$micro_time = @microtime(true); // PHP bug, suppress microtime sometimes returning invalid responses
+		$now = DateTime::createFromFormat('U.u',$micro_time);
 		$formatter = new LineFormatter($now->format("Y-m-d H:i:s")." ~~ %channel%.%level_name%: ~~ %message% ~~ %context% ~~ %extra% ::::: \n");
 
         $stream_handler = new StreamHandler($jrConfig['log_path'].$log_file, Logger::DEBUG);
