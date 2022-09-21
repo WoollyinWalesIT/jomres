@@ -52,7 +52,6 @@ class j06000show_consent_form
 			$output_now = (bool) $componentArgs[ 'output_now' ];
 		}
 
-
 		$output[ '_JOMRES_GDPR_CONSENT_FORM_INTRO' ] = jr_gettext('_JOMRES_GDPR_CONSENT_FORM_INTRO', '_JOMRES_GDPR_CONSENT_FORM_INTRO', false);
 		$output[ '_JOMRES_COM_MR_YES' ] = jr_gettext('_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES', false);
 		$output[ '_JOMRES_COM_MR_NO' ] = jr_gettext('_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false, false);

@@ -85,6 +85,8 @@ class j06000show_property_map
 
 		$mrConfig = getPropertySpecificSettings($property_uid);
 
+		jomres_set_page_title( $property_uid ,  jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK', false) );
+
 		$mw = 300;
 		$mh = $jrConfig['map_height'];
 		if ((int)jomresGetParam($_REQUEST, 'property_uid', 0) > 0) {

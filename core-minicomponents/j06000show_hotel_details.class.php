@@ -73,6 +73,8 @@ class j06000show_hotel_details
 
 		$mrConfig = getPropertySpecificSettings($property_uid);
 
+		jomres_set_page_title( $property_uid ,  jr_gettext('_JOMRES_PATHWAY_PROPERTYDETAILS', '_JOMRES_PATHWAY_PROPERTYDETAILS', false) );
+
 		if (isset($mrConfig['property_business_name']) && $mrConfig['property_business_name'] == '') {
 			$basic_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
 			$basic_property_details->gather_data($property_uid);

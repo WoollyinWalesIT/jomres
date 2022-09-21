@@ -89,6 +89,8 @@ class j06000show_property_calendar
 			$_REQUEST['show_just_month'] = false;
 		}
 
+		jomres_set_page_title( $property_uid ,  jr_gettext('_JOMRES_FRONT_AVAILABILITY', '_JOMRES_FRONT_AVAILABILITY', false) );
+
 		if ($mrConfig[ 'is_real_estate_listing' ] == 0) {
 			if ($mrConfig[ 'singleRoomProperty' ] == 1) {
 				$result = $MiniComponents->specificEvent('06000', 'srp_calendar', array('output_now' => $componentArgs['output_now'], 'property_uid' => $property_uid));

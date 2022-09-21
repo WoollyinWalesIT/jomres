@@ -73,6 +73,8 @@ class j06000show_property_qr_code_directions
 			$output_now = true;
 		}
 
+		jomres_set_page_title( $property_uid ,  jr_gettext('_JOMRES_SCAN_FOR_DIRECTIONS', '_JOMRES_SCAN_FOR_DIRECTIONS', false) );
+
 		$output = array();
 		$url = make_gmap_url_for_property_uid($property_uid);
 		$qr_code_map = jomres_make_qr_code(str_replace(' ', '+', $url));

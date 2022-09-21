@@ -152,6 +152,9 @@ class j06000show_user_profile
 		
 		$output[ 'FIRSTNAME' ]		= $jrportal_guest_profile->firstname;
 		$output[ 'SURNAME' ]		= $jrportal_guest_profile->surname;
+
+		jomres_set_page_title( 0 ,  jr_gettext('GUEST_PROFILE_MY_NAME', 'GUEST_PROFILE_MY_NAME', false).' '.$output[ 'FIRSTNAME' ].' '. $output[ 'SURNAME' ] );
+
 		$output[ 'REGION' ]			= find_region_name($jrportal_guest_profile->region);
 		$output[ 'COUNTRY' ]		= getSimpleCountry($jrportal_guest_profile->country);
 		$output[ 'ABOUT_ME' ]		= $jomres_markdown->get_markdown($jrportal_guest_profile->about_me);

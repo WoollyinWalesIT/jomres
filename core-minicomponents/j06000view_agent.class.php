@@ -122,7 +122,7 @@ class j06000view_agent
 				$output[ 'FIRSTNAME' ] = $jomres_encryption->decrypt($data->enc_firstname);
 				$output[ 'SURNAME' ] = $jomres_encryption->decrypt($data->enc_surname);
 				if (get_showtime("task") == "view_agent") {
-					jomres_cmsspecific_setmetadata('title', jomres_purify_html($jomres_encryption->decrypt($data->enc_firstname)." ".$jomres_encryption->decrypt($data->enc_surname)));
+					jomres_set_page_title( 0 , jomres_purify_html($jomres_encryption->decrypt($data->enc_firstname)." ".$jomres_encryption->decrypt($data->enc_surname)) );
 				}
 				
 				$output[ 'HOUSE' ] = $jomres_encryption->decrypt($data->enc_house);

@@ -118,12 +118,12 @@ class j06000show_property_header
 		$output['ROOMTYPES'] = $MiniComponents->specificEvent('06000', 'show_property_room_types', array('output_now' => false, 'property_uid' => $property_uid));
 
 		//meta data
-		if (strlen($current_property_details->metatitle) > 0) {
+		/*if (strlen($current_property_details->metatitle) > 0) {
 			jomres_cmsspecific_setmetadata('title', jomres_purify_html($current_property_details->metatitle));
 		} else {
 			$property_name = getPropertyName($property_uid);
 			jomres_cmsspecific_setmetadata('title', jomres_purify_html($property_name));
-		}
+		}*/
 
 		if (strlen($current_property_details->metadescription) > 0) {
 			jomres_cmsspecific_setmetadata('description', jomres_purify_html($current_property_details->metadescription));

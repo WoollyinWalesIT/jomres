@@ -18,6 +18,69 @@
 
 use Joomla\CMS\Helper\ModuleHelper;
 
+	function jomres_set_page_title( $property_uid = 0 , $title = '' )
+	{
+		// We don't need to process this function if it's a part of a different template
+		$run_as_jomres_script = get_showtime('run_as_jomres_script');
+		if ($run_as_jomres_script === true) {
+			return;
+		}
+
+		if ($property_uid == 0) {
+			$pageoutput = array(
+				array(
+					'PAGE_TITLE' => $title
+				)
+			);
+
+			$tmpl = new patTemplate();
+			$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+			$tmpl->readTemplatesFromInput('meta_page_title_no_property_info.html');
+			$tmpl->addRows('pageoutput', $pageoutput);
+			$page_title = $tmpl->getParsedTemplate();
+
+			$page_title =trim(str_replace("\r", '', $page_title ));
+
+			jomres_cmsspecific_setmetadata('title', $page_title);
+		} else {
+			$current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
+			$current_property_details->gather_data_multi([$property_uid]);
+
+			jr_import('jomres_property_categories');
+			$jomres_property_categories = new jomres_property_categories();
+			$jomres_property_categories->get_property_category($current_property_details->multi_query_result[$property_uid]['cat_id']);
+
+			$pageoutput = array(
+				array(
+					'PAGE_TITLE' => $title,
+					'PROPERTY_NAME' => $current_property_details->multi_query_result[$property_uid]['property_name'],
+					'PROPERTY_STREET' => $current_property_details->multi_query_result[$property_uid]['property_street'],
+					'PROPERTY_TOWN' => $current_property_details->multi_query_result[$property_uid]['property_town'],
+					'PROPERTY_REGION' => $current_property_details->multi_query_result[$property_uid]['property_region'],
+					'PROPERTY_COUNTRY' => $current_property_details->multi_query_result[$property_uid]['property_country'],
+					'PROPERTY_CATEGORY' => $jomres_property_categories->title,
+					'PROPERTY_TYPE_TITLE' => $current_property_details->multi_query_result[$property_uid]['property_type_title'],
+					'METATITLE' => $current_property_details->multi_query_result[$property_uid]['metatitle'],
+					'METADESCRIPTION' => $current_property_details->multi_query_result[$property_uid]['metadescription'],
+					'METAKEYWORDS' => $current_property_details->multi_query_result[$property_uid]['metakeywords']
+				)
+			);
+
+			$tmpl = new patTemplate();
+			$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+			$tmpl->readTemplatesFromInput('meta_page_title.html');
+			$tmpl->addRows('pageoutput', $pageoutput);
+			$page_title = $tmpl->getParsedTemplate();
+
+			$page_title =trim(str_replace("\r", '', $page_title ));
+
+			jomres_cmsspecific_setmetadata('title', $page_title);
+		}
+
+
+	}
+
+
 	/*
 	 * This allows us to call a module in a Jomres template file using the pattern {module id=N} where N is the module id, and return a rendered Joomla module
 	 *
@@ -40,6 +103,7 @@ use Joomla\CMS\Helper\ModuleHelper;
 			} else {
 				$app = JFactory::getApplication();
 				$document = $app->getDocument();
+
 				foreach ($matches as $match)
 				{
 					$matcheslist = explode(',', $match[1]);
@@ -103,7 +167,10 @@ function run_jomres_shortcode($shortcode_string = '')
 		foreach ($matches[0] as $m) {
 			$old_REQUEST = $_REQUEST;
 			$old_GET = $_GET;
-
+			$original_run_as_jomres_script = get_showtime('run_as_jomres_script');
+			if (is_null($original_run_as_jomres_script) || $original_run_as_jomres_script == false ) {
+				set_showtime('run_as_jomres_script' , true );
+			}
 			ob_start();
 
 			$match = str_replace(array("{","}"), "", $m);
@@ -176,6 +243,7 @@ function run_jomres_shortcode($shortcode_string = '')
 
 			ob_end_clean();
 
+			set_showtime('run_as_jomres_script' , $original_run_as_jomres_script );
 			$_REQUEST = $old_REQUEST;
 			$_GET = $old_GET;
 

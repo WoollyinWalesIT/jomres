@@ -87,6 +87,8 @@ class j06000viewproperty
 		jr_import('jomres_markdown');
 		$jomres_markdown = new jomres_markdown();
 
+		set_showtime('run_as_jomres_script' , true ); // Prevent other scripts from setting the page title
+
 		$mrConfig = getPropertySpecificSettings($property_uid);
 		if ($mrConfig['showOnlyAvailabilityCalendar'] == '1') {
 			if (isset($mrConfig[ 'CalendarMonthsToShow' ])) {
@@ -514,6 +516,9 @@ class j06000viewproperty
 
 		$output['SIDEBAR'] = $MiniComponents->specificEvent('06000', 'show_site_sidebar', array('output_now' => false, 'property_uid' => $property_uid, 'property_details_object' => $current_property_details ));
 
+		set_showtime('run_as_jomres_script' , false ); // Ok, scripts can set the page title now
+
+		jomres_set_page_title( $property_uid ,  '' );
 
 		//all output is built by now, so let`s display the page
 		$pageoutput[] = $output;

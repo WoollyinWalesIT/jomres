@@ -47,9 +47,11 @@ class j06000api_documentation
 			return;
 		}
 
-		$ePointFilepath=get_showtime('ePointFilepath');
 		$ePointLiveSite=get_showtime('eLiveSite')."/templates/".find_plugin_template_directory()."/";
 		$path = JOMRES_TEMPLATEPATH_FRONTEND;
+
+		jomres_set_page_title( 0 ,  jr_gettext('API_DOCUMENTATION_TITLE', 'API_DOCUMENTATION_TITLE', false) );
+
 		$output = array();
 		$pageoutput = array();
 		

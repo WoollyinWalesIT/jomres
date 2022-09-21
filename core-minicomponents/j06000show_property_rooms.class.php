@@ -97,6 +97,8 @@ class j06000show_property_rooms
 		$basic_room_details = jomres_singleton_abstract::getInstance('basic_room_details');
 		$basic_room_details->get_all_rooms($property_uid);
 
+		jomres_set_page_title( $property_uid ,  jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP2_TITLE', '_JOMRES_COM_MR_QUICKRES_STEP2_TITLE', false) );
+
 		$mrConfig = getPropertySpecificSettings($property_uid);
 
 		$output = array();

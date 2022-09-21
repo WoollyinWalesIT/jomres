@@ -126,7 +126,9 @@ class j06000compare
 			}
 
 			$rows = array();
+			$property_names_str = '';
 			foreach ($current_property_details->multi_query_result as $property_uid => $property) {
+				$property_names_str .= $property['property_name'].' - ';
 				$r = $property;
 				$r[ 'PROPERTY_UID' ] = $property_uid;
 				$Args = array('property_uid' => $property_uid, 'width' => '119', 'height' => '95', 'disable_ui' => true);
@@ -155,11 +157,7 @@ class j06000compare
 					foreach ($featuresArray as $k => $v) {
 						if (in_array($k, $all_used_features)) {
 							if (in_array($k, $propertyFeaturesArray)) {
-								if (!using_bootstrap()) {
-									$fs[ ] = array('IMAGE' => '<div class="ui-icon ui-icon-check" style="height:20px;"></div>', 'CLASS' => $class);
-								} else {
-									$fs[ ] = array('IMAGE' => '<i class="fa fa-check"></i>');
-								}
+								$fs[ ] = array('IMAGE' => '<i class="fa fa-check"></i>');
 							} else {
 								$fs[ ] = array('IMAGE' => '');
 							}
@@ -206,6 +204,8 @@ class j06000compare
 					++$i;
 				}
 			}
+
+			jomres_set_page_title( 0 ,  jr_gettext('_JOMRES_COMPARE', '_JOMRES_COMPARE', false).' : '.substr($property_names_str, 0, -3) );
 
 			$pageoutput[ ] = $output;
 			$tmpl = new patTemplate();

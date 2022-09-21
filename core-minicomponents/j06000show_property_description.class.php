@@ -75,6 +75,8 @@ class j06000show_property_description
 			$output_now = true;
 		}
 
+		jomres_set_page_title( $property_uid ,  jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPDESCRIPTION', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPDESCRIPTION', false) );
+
 		$current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
 		$current_property_details->gather_data($property_uid);
 		

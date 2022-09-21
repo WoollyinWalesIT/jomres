@@ -2739,6 +2739,7 @@ class patTemplate
 
 				if ( $our_task != $original_task ) // Can you say recurururururing?
 					{
+					set_showtime('run_as_jomres_script' , true );
 					ob_start();
 					
 					$MiniComponents =jomres_getSingleton('mcHandler');
@@ -2764,6 +2765,7 @@ class patTemplate
 					
 					unset($contents);
 					ob_end_clean();
+					set_showtime('run_as_jomres_script' , false );
 					}
 				}
 			}

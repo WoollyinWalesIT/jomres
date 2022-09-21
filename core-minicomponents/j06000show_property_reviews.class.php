@@ -102,6 +102,8 @@ class j06000show_property_reviews
 		$current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
 		$current_property_details->gather_data($property_uid);
 
+		jomres_set_page_title( $property_uid ,  jr_gettext('_JOMRES_REVIEWS', '_JOMRES_REVIEWS', false) );
+
 		$output = array();
 		$pageoutput = array();
 		$rows = array();

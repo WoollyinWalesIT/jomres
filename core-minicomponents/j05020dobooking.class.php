@@ -54,6 +54,10 @@ class j05020dobooking
 			}
 		}
 		set_showtime('booking_form_calendar', $calendar);
+
+
+		jomres_set_page_title( $property_uid ,  jr_gettext('_JOMRES_COM_MR_QUICKRESDESC', '_JOMRES_COM_MR_QUICKRESDESC', false) );
+
 		require_once JOMRES_FUNCTIONS_ABSPATH.'dobooking.php';
 
 		if (!defined('DOBOOKING_IN_DETAILS')) {

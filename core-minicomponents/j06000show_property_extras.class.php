@@ -172,6 +172,8 @@ class j06000show_property_extras
 					$extra_details[ ] = $extra_deets;
 				}
 
+				jomres_set_page_title( $property_uid ,  jr_gettext('_JOMRES_COM_MR_EXTRA_TITLE', '_JOMRES_COM_MR_EXTRA_TITLE', false) );
+
 				$output = array();
 				$output ['_JOMRES_EXTRAS_TEMPLATE'] = jr_gettext('_JOMRES_EXTRAS_TEMPLATE', '_JOMRES_EXTRAS_TEMPLATE');
 
