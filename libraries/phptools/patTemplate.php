@@ -855,6 +855,8 @@ class patTemplate
 		$common_strings[ 'COMMON_LOGOUT_TEXT' ] = jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGOUT', '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGOUT', false);
 		$common_strings[ 'COMMON_LOGOUT_URL' ] = get_showtime('live_site').'/'.jomres_cmsspecific_getlogout_task();
 
+		$common_strings[ 'COMMON_CANCEL' ] = jr_gettext('_JOMRES_COM_A_CANCEL', '_JOMRES_COM_A_CANCEL', false);
+
 		return $common_strings;
 		}
 
