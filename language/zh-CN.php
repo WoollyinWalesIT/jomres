@@ -2739,3 +2739,7 @@ jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', '保存更改后，页面中�
 	jr_define('JOMRES_COM_TRANSITION_FROM_ADMIN_TO_BACKEND_NOT_LOGGED_IN', "所有物业管理都在您网站的前端进行。您目前没有作为物业经理登录，所以请先登录，然后才能管理您的物业。");
 
 	jr_define('JOMRES_COM_TRANSITION_FROM_ADMIN_TO_BACKEND_NOT_LOGGED_IN_EXPOSITION_FOR_NEW_USERS_JOOMLA', "首次安装 Jomres 时，它将为管理员用户创建一个超级物业管理器，并在主菜单中添加一个名为 Bookings 的新选项。不要删除此菜单项。使用提供的按钮登录并访问 预订页面开始管理物业。");
+
+	jr_define('_JOMRES_COM_A_GATEWAYLIST_INFO', '在此页面上，您可以配置要通过哪些支付网关接收存款付款。您将需要支付网关上的帐户。设置页面将为您提供有关如何配置网关的说明。' );
+
+	jr_define('_JOMRES_COM_A_GATEWAYLIST_TESTINGINFO', "您以超级物业经理的身份登录。通常物业经理不能使用支付网关，但是如果您在管理 > Jomres > 设置 > 调试选项卡中将站点设置为开发模式，那么您将能够处理 通过预订并以访客身份访问支付网关。如果您不想将站点设置为开发模式，则需要注销或以普通注册用户身份登录以测试访客身份。任何 各个支付网关中的测试模式设置不受站点的生产或开发设置的影响。");

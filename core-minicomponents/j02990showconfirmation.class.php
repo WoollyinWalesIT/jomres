@@ -630,15 +630,22 @@ class j02990showconfirmation
 								$gatewaydir = str_replace(JOMRESCONFIG_ABSOLUTE_PATH, get_showtime('live_site').'/', $tmpgatewaydir);
 								$gatewaydir = str_replace('\\', '/', $gatewaydir);
 
-								if (file_exists($result[ 'filepath' ].'j00510'.$gateway_name.'.gif')) {
-									$gw[ 'GWIMAGE' ] = '<img src="'.$gatewaydir.'j00510'.$gateway_name.'.gif" border="0"  width="200" alt="'.$gateway_name.' logo" >';
-								} elseif (file_exists($result[ 'filepath' ].'j00510'.$gateway_name.'.png')) {
-									$gw[ 'GWIMAGE' ] = '<img src="'.$gatewaydir.'j00510'.$gateway_name.'.png" border="0"  width="200" alt="'.$gateway_name.' logo">';
-								} elseif (file_exists($result[ 'filepath' ].'j00510'.$gateway_name.'.jpg')) {
-									$gw[ 'GWIMAGE' ] = '<img src="'.$gatewaydir.'j00510'.$gateway_name.'.jpg" border="0"  width="200" alt="'.$gateway_name.' logo">';
+
+								if ($gateway_name != 'stripe_standard') {
+									if (file_exists($result[ 'filepath' ].'j00510'.$gateway_name.'.gif')) {
+										$gw[ 'GWIMAGE' ] = '<img src="'.$gatewaydir.'j00510'.$gateway_name.'.gif" border="0"  width="200" alt="'.$gateway_name.' logo" >';
+									} elseif (file_exists($result[ 'filepath' ].'j00510'.$gateway_name.'.png')) {
+										$gw[ 'GWIMAGE' ] = '<img src="'.$gatewaydir.'j00510'.$gateway_name.'.png" border="0"  width="200" alt="'.$gateway_name.' logo">';
+									} elseif (file_exists($result[ 'filepath' ].'j00510'.$gateway_name.'.jpg')) {
+										$gw[ 'GWIMAGE' ] = '<img src="'.$gatewaydir.'j00510'.$gateway_name.'.jpg" border="0"  width="200" alt="'.$gateway_name.' logo">';
+									} else {
+										$gw[ 'GWIMAGE' ] = '<img src="'.JOMRES_IMAGES_RELPATH.'noimage.gif" border="0"  width="200" alt="No logo found">';
+									}
 								} else {
-									$gw[ 'GWIMAGE' ] = '<img src="'.JOMRES_IMAGES_RELPATH.'noimage.gif" border="0"  width="200" alt="No logo found">';
+									$gw[ 'GWIMAGE' ] = '<img src="'.JOMRES_IMAGES_RELPATH.'j00510'.$gateway_name.'.png" border="0"  width="200" alt="'.$gateway_name.' logo">';
 								}
+
+
 
 
 								if (isset($MiniComponents->registeredClasses['00509'][$gateway_name])) { // Let's check that the site manager hasn't uninstalled the plugin. If count == 0, then they have, we don't want to attempt to show this gateway

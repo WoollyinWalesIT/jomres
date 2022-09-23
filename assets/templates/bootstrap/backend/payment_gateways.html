@@ -4,20 +4,26 @@
 
 <p class="alert alert-info">{_JOMRES_COM_A_GATEWAYLIST_INFO}</p>
 
+{PAYMENT_GATEWAYS_SUPER_MANAGER_NOTE}
+
+<hr/>
+
 <patTemplate:tmpl name="rows" unusedvars="strip">
-	<div class="row p-5">
+	<div class="row p-5 border-bottom">
 		<div class="col-sm-2">
 			<img src="{IMAGE}" class="img-fluid"/>
 		</div>
-		<div class="col-sm-2">
-			{GATEWAY_NAME}
+		<div class="col-sm-4">
+			<h4>{GATEWAY_NAME}</h4>
 		</div>
 		<div class="col-sm-2">
 			<a href="{URL}" class="btn btn-primary">{_ADMIN_MENU_SECTIONS_SETTINGS}</a>
 		</div>
-		<div class="col-sm-2">
-			{_JOMRES_COM_A_GATEWAY_ENABLED} <strong>{ACTIVE}</strong>
+		<div class="col-sm-4">
+			{_JOMRES_COM_A_GATEWAY_ENABLED} <strong class="fs-4">{ACTIVE}</strong>
 		</div>
+
 	</div>
 </patTemplate:tmpl>
+
 </patTemplate:tmpl>

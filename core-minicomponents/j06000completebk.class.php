@@ -48,7 +48,7 @@ class j06000completebk
 		$bookingdata = gettempBookingdata();
 		
 		$MiniComponents->triggerEvent('00609', array('bookingdata' => $bookingdata)); // Optional
-		
+
 		$MiniComponents->specificEvent('00610', $plugin); //Incoming
 	}
 
