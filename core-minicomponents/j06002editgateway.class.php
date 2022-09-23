@@ -44,6 +44,7 @@ class j06002editgateway
 		}
 		$plugin = jomresGetParam($_REQUEST, 'plugin', '');
 		$MiniComponents->specificEvent('00510', $plugin);
+		$MiniComponents->specificEvent('06001', 'payment_gateway_cancel_button', array ('output_now' => false));
 	}
 
 

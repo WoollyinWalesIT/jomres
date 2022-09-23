@@ -4683,10 +4683,13 @@ function savePlugin($plugin)
 			doInsertSql($query, jr_gettext('_JOMRES_MR_AUDIT_PLUGINS_INSERT', '_JOMRES_MR_AUDIT_PLUGINS_INSERT', false));
 		}
 	}
+	/*
+	Disabled as we want to redirect to the new payment_gateways page instead
+
 	$tmpl = new patTemplate();
 	$tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
 	$tmpl->readTemplatesFromInput('plugin_save.html');
-	$tmpl->displayParsedTemplate();
+	$tmpl->displayParsedTemplate();*/
 
 	$webhook_notification							    = new stdClass();
 	$webhook_notification->webhook_event				= 'plugin_settings_saved';
@@ -4696,6 +4699,9 @@ function savePlugin($plugin)
 	$webhook_notification->data->property_uid		    = $defaultProperty;
 	$webhook_notification->data->plugin 				= $plugin;
 	add_webhook_notification($webhook_notification);
+
+	jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=payment_gateways'), '');
+
 }
 
 	/**

@@ -1347,6 +1347,10 @@ class jomres_obsolete_file_handling
 
 		$this->add_file($this->dir_minicomponents.'j00501tourist_tax.class.php');
 		$this->add_file($this->dir_minicomponents.'j02990add_tourist_tax.class.php');
+
+		$this->add_file($this->dir_minicomponents.'j00501gateways.class.php'); // Gateway configuration has been moved to it's own page, we no longer need this tab
+
+
 	}
 
 	/**

@@ -1,0 +1,25 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+
+<h2 class="page-header">{_JOMRES_COM_A_GATEWAYLIST}</h2>
+
+<p class="alert alert-info">{_JOMRES_COM_A_GATEWAYLIST_INFO}</p>
+
+<patTemplate:tmpl name="rows" unusedvars="strip">
+	<div class="row p-5">
+
+		<div class="col-sm-2">
+			<h3>{GATEWAY_NAME}</h3>
+		</div>
+		<div class="col-sm-2">
+			<a href="{URL}" class="btn btn-primary">{_ADMIN_MENU_SECTIONS_SETTINGS}</a>
+		</div>
+		<div class="col-sm-2">
+			{_JOMRES_COM_A_GATEWAY_ENABLED} <strong>{ACTIVE}</strong>
+		</div>
+		<div class="col-sm-2">
+			<img src="{IMAGE}" class="img-fluid"/>
+		</div>
+	</div>
+</patTemplate:tmpl>
+
+</patTemplate:tmpl>

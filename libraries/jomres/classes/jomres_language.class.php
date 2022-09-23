@@ -93,6 +93,9 @@ class jomres_language
 		} else {
 			$this->selected_languages = array_keys($langfile_crossref);
 		}
+
+		$this->get_language('stripe_standard');
+
 	}
 
 	/**
