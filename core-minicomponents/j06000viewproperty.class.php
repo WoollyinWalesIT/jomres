@@ -301,6 +301,8 @@ class j06000viewproperty
 		}
 		$contactuslink[ ] = $link;
 
+		$output['CONTACT_US_TEXT'] = $link[ 'TEXT' ];
+
 		//print link
 		$output[ 'PRINT_ICON' ] = JOMRES_IMAGES_RELPATH.'jomresimages/small/Printer.png';
 		$output[ 'PRINT_LINK' ] = jomresURL(get_property_details_url($property_uid, 'sefsafe', '&jr_printable=1&popup=1&tmpl='.get_showtime('tmplcomponent')));
