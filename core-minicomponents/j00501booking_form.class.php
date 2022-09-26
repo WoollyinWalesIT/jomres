@@ -124,16 +124,6 @@ class j00501booking_form
 		if ($jrConfig[ 'compatability_property_configuration' ] != 1) {
 			$configurationPanel->insertHeading(jr_gettext('_JOMRES_HREQUIRED_FIELDS', '_JOMRES_HREQUIRED_FIELDS', false));
 
-			$configurationPanel->setleft(jr_gettext('_JOMRES_FRONT_MR_DISPGUEST_FIRSTNAME', '_JOMRES_FRONT_MR_DISPGUEST_FIRSTNAME'));
-			$configurationPanel->setmiddle($lists[ 'bookingform_requiredfields_name' ]);
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
-
-			$configurationPanel->setleft(jr_gettext('_JOMRES_FRONT_MR_DISPGUEST_SURNAME', '_JOMRES_FRONT_MR_DISPGUEST_SURNAME'));
-			$configurationPanel->setmiddle($lists[ 'bookingform_requiredfields_surname' ]);
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
-
 			$configurationPanel->setleft(jr_gettext('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_HOUSE_EXPL', '_JOMRES_FRONT_MR_EB_GUEST_JOMRES_HOUSE_EXPL'));
 			$configurationPanel->setmiddle($lists[ 'bookingform_requiredfields_houseno' ]);
 			$configurationPanel->setright();
@@ -153,7 +143,7 @@ class j00501booking_form
 			$configurationPanel->setmiddle($lists[ 'bookingform_requiredfields_postcode' ]);
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
-			
+
 			$configurationPanel->setleft(jr_gettext('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_LANDLINE_EXPL', '_JOMRES_FRONT_MR_EB_GUEST_JOMRES_LANDLINE_EXPL'));
 			$configurationPanel->setmiddle($lists[ 'bookingform_requiredfields_tel' ]);
 			$configurationPanel->setright();
