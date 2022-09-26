@@ -153,12 +153,7 @@ class j00501booking_form
 			$configurationPanel->setmiddle($lists[ 'bookingform_requiredfields_postcode' ]);
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
-
-			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY'));
-			$configurationPanel->setmiddle($lists[ 'bookingform_requiredfields_country' ]);
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
-
+			
 			$configurationPanel->setleft(jr_gettext('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_LANDLINE_EXPL', '_JOMRES_FRONT_MR_EB_GUEST_JOMRES_LANDLINE_EXPL'));
 			$configurationPanel->setmiddle($lists[ 'bookingform_requiredfields_tel' ]);
 			$configurationPanel->setright();
