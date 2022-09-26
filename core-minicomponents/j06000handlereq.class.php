@@ -564,25 +564,28 @@ class j06000handlereq
 
 			if ($bkg->getOkToBook()) {
 				echo $oktobookClass;
-				echo '; populateDiv("messages","'.$bkg->sanitiseOutput(jr_gettext('_JOMRES_FRONT_MR_REVIEWBOOKING', '_JOMRES_FRONT_MR_REVIEWBOOKING', false, false)).'"); checkSelectRoomMessage(true,"'.$disable_address.'");  jomresJquery.notify({ 
+/*				echo '; populateDiv("messages","'.$bkg->sanitiseOutput(jr_gettext('_JOMRES_FRONT_MR_REVIEWBOOKING', '_JOMRES_FRONT_MR_REVIEWBOOKING', false, false)).'"); checkSelectRoomMessage(true,"'.$disable_address.'");  jomresJquery.notify({
 				message: "'.$bkg->sanitiseOutput(jr_gettext('_JOMRES_FRONT_MR_REVIEWBOOKING', '_JOMRES_FRONT_MR_REVIEWBOOKING', false, false)).'" 
 									 
 				},{ 
 				type: "info" ,
 				template: \'<div data-notify="container" class="col-xs-11 col-sm-4 alert alert-{0}" role="alert"><span data-notify="icon"></span> <span data-notify="title">{1}</span> <span data-notify="message">{2}</span><div class="progress" data-notify="progressbar"><div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div></div><a href="{3}" target="{4}" data-notify="url"></a></div>\' 
-				});';
+				});';*/
+				echo '; populateDiv("messages","'.$bkg->sanitiseOutput(jr_gettext('_JOMRES_FRONT_MR_REVIEWBOOKING', '_JOMRES_FRONT_MR_REVIEWBOOKING', false, false)).'"); checkSelectRoomMessage(true,"'.$disable_address.'");';
 				echo $bkg->setGuestPopupMessage(jr_gettext('_JOMRES_FRONT_MR_REVIEWBOOKING', '_JOMRES_FRONT_MR_REVIEWBOOKING', false, false));
 				echo '; enableSubmitButton(document.ajaxform.confirmbooking); '; // Added timeout because if a user clicks on this button too soon they'll get taken to the review booking before oktobook has been saved, therefore getting themselves redirected back to here
 			} else {
 				$messagesClass = $errorClass;
 				echo $messagesClass;
-				echo '; populateDiv("messages","'.$bkg->sanitiseOutput($bkg->monitorGetFirstMessage()).'"); checkSelectRoomMessage(false,"'.$disable_address.'"); jomresJquery.notify({ 
+/*				echo '; populateDiv("messages","'.$bkg->sanitiseOutput($bkg->monitorGetFirstMessage()).'"); checkSelectRoomMessage(false,"'.$disable_address.'"); jomresJquery.notify({
 					message: "'.$bkg->sanitiseOutput($bkg->monitorGetFirstMessage()).'" 
 				},
 				{ 
 					type: "danger" ,
 					template: \'<div data-notify="container" class="col-xs-11 col-sm-4 alert alert-{0}" role="alert"><span data-notify="icon"></span> <span data-notify="title">{1}</span> <span data-notify="message">{2}</span><div class="progress" data-notify="progressbar"><div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div></div><a href="{3}" target="{4}" data-notify="url"></a></div>\' 
-				});';
+				});';*/
+				echo '; populateDiv("messages","'.$bkg->sanitiseOutput($bkg->monitorGetFirstMessage()).'"); checkSelectRoomMessage(false,"'.$disable_address.'");';
+
 				if ($firstrun != '1') {
 					echo $bkg->setGuestPopupMessage($bkg->monitorGetFirstMessage());
 				}
