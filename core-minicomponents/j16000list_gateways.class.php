@@ -108,7 +108,7 @@ class j16000list_gateways
 			$tmpl->addRows('rows', $rows);
 			$tmpl->displayParsedTemplate();
 		} else {
-			echo '<p class="alert alert-warning"> No administrator area gateways installed. Most payment gateways are configured by property managers in the <a href="'.JOMRES_SITEPAGE_URL.'&task=payment_gateway" target="_blank">Payment gateway page</a>, therefore they will not show up on this page. Only gateways that have specific administrator area settings will appear here.</p>';
+			echo '<p class="alert alert-warning"> No administrator area gateways installed. Most payment gateways are configured by property managers in the <a href="'.JOMRES_SITEPAGE_URL_NOSEF.'&task=payment_gateways&from_admin=1" target="_blank">Payment gateway page</a>, therefore they will not show up on this page. Only gateways that have specific administrator area settings will appear here.</p>';
 		}
 	}
 
