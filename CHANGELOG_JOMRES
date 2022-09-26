@@ -5,6 +5,7 @@
 <span class="label label-success">Feature</span> Added a new feature to copy API keys to clipboard.
 <span class="label label-success">Feature</span> Payment gateways moved out of their tab in property config into a page of their own.
 
+<span class="label label-warning">Change</span> BS5 Booking form layout reworked. Room feature selection initially hidden in accordion, rooms lists moved around.
 <span class="label label-warning">Change</span> Two new currency codes added for Venezuelan Bolivar, including the black market currency code (really? Wow.)
 <span class="label label-warning">Change</span> Changed how old style language files are detected and used, so that new lang definitions are automatically parsed in despite them not being in the older language files.
 <span class="label label-warning">Change</span> Changed how Oauth clients are stored in the database. This means that, for non-manager users, they will need to create new clients and request new tokens.
@@ -40,6 +41,10 @@
 <span class="label label-warning">Change</span> Introduce new functionality for setting page titles.
 <span class="label label-warning">Change</span> New common string COMMON_CANCEL added to patTemplate class.
 <span class="label label-warning">Change</span> Added contact us text to property details default $output variable.
+<span class="label label-warning">Change</span> Both BS3 & BS5 : Fields not marked as Required are now hidden in the booking form.
+<span class="label label-warning">Change</span> BS5 Checkboxes replaced with BS5 switches (https://getbootstrap.com/docs/5.0/forms/checks-radios/#switches) in booking form.
+<span class="label label-warning">Change</span> BS5 Layout of Booking form's Rooms lists updated. Available and Selected rooms lists tweaked. Feedback messages moved above totals.
+
 
 <span class="label label-important label-danger">Fix</span> Fixed links to jomres.net to use https protocol (lang files)
 <span class="label label-important label-danger">Fix</span> Added some changes to resolve issues in API since Joomla 4.2.2 released

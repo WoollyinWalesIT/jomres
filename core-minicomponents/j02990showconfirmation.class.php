@@ -595,7 +595,7 @@ class j02990showconfirmation
 		$gateways = array();
 		
 		if ((int)$mrConfig['requireApproval'] == 0 || $secret_key_payment) {
-			if (!$thisJRUser->userIsManager || $jrConfig[ 'development_production' ] != 'production') { // If we are in Production mode, managers cannot pay themselves, but we will allow it in Development
+			//if (!$thisJRUser->userIsManager || $jrConfig[ 'development_production' ] != 'production') { // If we are in Production mode, managers cannot pay themselves, but we will allow it in Development
 				$gateway_output = array();
 				$gwo = array();
 
@@ -626,7 +626,7 @@ class j02990showconfirmation
 									$tmpgatewaydir = $result;
 								}
 								$gw[ 'GWNAME_INTERNAL' ] = $gateway_name;
-								$gw[ 'GWINPUT' ] = '<input type="radio" id="'.$gateway_name.'" name="plugin" value="'.$gateway_name.'" '.$checked.' /> '.$gw[ 'GWNAME' ];
+								$gw[ 'GWINPUT' ] = '<input type="radio" id="'.$gateway_name.'" name="plugin" value="'.$gateway_name.'" '.$checked.' /> ';
 								$gatewaydir = str_replace(JOMRESCONFIG_ABSOLUTE_PATH, get_showtime('live_site').'/', $tmpgatewaydir);
 								$gatewaydir = str_replace('\\', '/', $gatewaydir);
 
@@ -647,9 +647,10 @@ class j02990showconfirmation
 
 
 
-
 								if (isset($MiniComponents->registeredClasses['00509'][$gateway_name])) { // Let's check that the site manager hasn't uninstalled the plugin. If count == 0, then they have, we don't want to attempt to show this gateway
-									$gateways[ ] = $gw;
+									if ( !$thisJRUser->userIsManager || $jrConfig[ 'development_production' ] != 'production' || $gateway['test_mode'] == "1" ) {
+										$gateways[ ] = $gw;
+									}
 								}
 								++$counter;
 							}
@@ -661,7 +662,7 @@ class j02990showconfirmation
 					$gwo[ 'GATEWAYCHOICEINTRO' ] = jr_gettext('_JOMRES_COM_A_GATEWAY_BOOKING_CHOOSE', '_JOMRES_COM_A_GATEWAY_BOOKING_CHOOSE');
 					$gateway_output[] = $gwo;
 				}
-			}
+			//}
 		}
 
 		$booking_parts[ 'PROCESSURL' ] = 'processpayment';

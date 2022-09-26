@@ -2418,27 +2418,8 @@ function jomres_validate_gateway_plugin()
 	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig = $siteConfig->get();
 
-	if ($thisJRUser->userIsManager  && $jrConfig[ 'development_production' ] == 'production') {
-		return 'NA';
-	}
-
-	$installed_gateway_plugins = array();
-	foreach ($MiniComponents->registeredClasses['00509'] as $eventName => $e) {
-		$installed_gateway_plugins[] = $eventName;
-	}
-	// No gateways are installed
-	if (empty($installed_gateway_plugins)) {
-		return 'NA';
-	}
-
 	$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 	$property_uid = get_showtime('property_uid');
-
-	$mrConfig = getPropertySpecificSettings($property_uid);
-
-	if ($mrConfig[ 'requireApproval' ] == '1' && !$tmpBookingHandler->tmpbooking[ 'secret_key_payment' ]) {
-		return "NA";
-	}
 
 	if (!isset($_REQUEST[ 'plugin' ]) && isset($tmpBookingHandler->tmpbooking[ 'gateway' ])) {
 		$plugin = $tmpBookingHandler->tmpbooking[ 'gateway' ];
@@ -2447,12 +2428,37 @@ function jomres_validate_gateway_plugin()
 		$tmpBookingHandler->tmpbooking[ 'gateway' ] = $plugin;
 	}
 
+	$installed_gateway_plugins = array();
+	foreach ($MiniComponents->registeredClasses['00509'] as $eventName => $e) {
+		$installed_gateway_plugins[] = $eventName;
+	}
+	// No gateways are installed
+	if (empty($installed_gateway_plugins)) {
+		return $plugin;
+	}
+
+
+
+	$mrConfig = getPropertySpecificSettings($property_uid);
+
+	if ($mrConfig[ 'requireApproval' ] == '1' && !$tmpBookingHandler->tmpbooking[ 'secret_key_payment' ]) {
+		return $plugin;
+	}
+
 	jr_import("gateway_plugin_settings");
 	$plugin_settings = new gateway_plugin_settings();
 	$plugin_settings->get_settings_for_property_uid($property_uid);
 
+	if ($plugin_settings->gateway_settings[$plugin]['test_mode'] == "1" ) { // Gateway is in test mode
+		return $plugin;
+	}
+
+	if ($thisJRUser->userIsManager  && $jrConfig[ 'development_production' ] == 'production') {
+		return $plugin;
+	}
+
 	if (!isset($plugin_settings->gateway_settings[$plugin])) { // Gateway has no settings
-		return 'NA';
+		return $plugin;
 	}
 
 	if (!$plugin_settings->gateway_settings[$plugin]['active']) {

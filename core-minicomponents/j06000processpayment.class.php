@@ -61,11 +61,13 @@ class j06000processpayment
 		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 		$siteConfig		= jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig		  = $siteConfig->get();
+
 		if ($thisJRUser->userIsManager && $jrConfig['development_production'] != 'development') {
 			$plugin = jomres_validate_gateway_plugin();
 		} else { // Site is set to Development mode and we are allowing the manager to make payments. There's no need to validate the gateway
 			$plugin = jomresGetParam($_REQUEST, 'plugin', '');
 		}
+
 
 		$query = "SELECT `id` FROM #__jomres_booking_data_archive WHERE `tag` = '".$tag."'";
 		$result = doSelectSql($query);
@@ -84,32 +86,40 @@ class j06000processpayment
 			$plugin = 'NA';
 		}
 
-		if ($plugin != 'NA') {
-			$query = 'SELECT id,plugin FROM #__jomres_pluginsettings WHERE (prid = '.(int) $property_uid." OR prid = 0)  AND `plugin` = '".(string) $plugin."' AND setting = 'active' AND value = '1'";
+			$query = 'SELECT * FROM #__jomres_pluginsettings WHERE (prid = '.(int) $property_uid." OR prid = 0)  AND `plugin` = '".(string) $plugin."' ";
 			$gatewayDeets = doSelectSql($query);
 
-			if (!empty($gatewayDeets)) {
-				$interrupted = intval(jomresGetParam($_POST, 'interrupted', 0));
-				$interruptOutgoingFile = false;
 
-				if ($MiniComponents->eventFileLocate('00600', $plugin)) {
-					$interruptOutgoingFile = 'j00600'.$plugin.'.class.php';
+			if (!empty($gatewayDeets)) {
+				$test_mode = false;
+				foreach ($gatewayDeets as $gw ) {
+					if ($gw->setting == "test_mode" ) {
+						$test_mode = (bool)$gw->value;
+					}
 				}
 
-				$outgoingFile = 'j00605'.$plugin.'.class.php';
+				if ( $test_mode != true && $thisJRUser->userIsManager ) {
+					insertInternetBooking(get_showtime('jomressession'), $depositPaid = false, $confirmationPageRequired = true, $customTextForConfirmationForm = '');
+				} else {
+					$interrupted = intval(jomresGetParam($_POST, 'interrupted', 0));
+					$interruptOutgoingFile = false;
 
-				if ($interruptOutgoingFile && $interrupted == 0) {
-					$MiniComponents->specificEvent('00600', $plugin, array('bookingdata' => $bookingdata, 'property_uid' => $property_uid));
-				} //Interrupt outgoing
-				else {
-					$MiniComponents->specificEvent('00605', $plugin, array('bookingdata' => $bookingdata, 'property_uid' => $property_uid));
-				} //outgoing
+					if ($MiniComponents->eventFileLocate('00600', $plugin)) {
+						$interruptOutgoingFile = 'j00600'.$plugin.'.class.php';
+					}
+
+					$outgoingFile = 'j00605'.$plugin.'.class.php';
+
+					if ($interruptOutgoingFile && $interrupted == 0) {
+						$MiniComponents->specificEvent('00600', $plugin, array('bookingdata' => $bookingdata, 'property_uid' => $property_uid));
+					} //Interrupt outgoing
+					else {
+						$MiniComponents->specificEvent('00605', $plugin, array('bookingdata' => $bookingdata, 'property_uid' => $property_uid));
+					} //outgoing
+				}
 			} else {
 				insertInternetBooking(get_showtime('jomressession'), $depositPaid = false, $confirmationPageRequired = true, $customTextForConfirmationForm = '');
 			}
-		} else {
-			insertInternetBooking(get_showtime('jomressession'), $depositPaid = false, $confirmationPageRequired = true, $customTextForConfirmationForm = '');
-		}
 	}
 
 
