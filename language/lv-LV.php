@@ -2734,3 +2734,5 @@ Varat atstāt mērķa valodu iestatītu uz savu pašreizējo valodu un izmantot 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_INFO', 'Šajā lapā varat konfigurēt, caur kuriem maksājumu vārtiem vēlaties saņemt depozīta maksājumus. Maksājumu vārtejā būs nepieciešams konts. Iestatījumu lapa sniegs norādījumus, kā konfigurēt vārteju.' );
 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TESTINGINFO', "Jūs esat pieteicies kā Super Property Manager. Parasti īpašumu pārvaldnieki nevar izmantot maksājumu vārtejas, taču, ja cilnē Administrēšana > Jomres > Iestatījumi > Atkļūdošana iestatāt vietni izstrādes režīmā, jūs varēsit apstrādāt izmantojot rezervāciju un piekļūt maksājumu vārtejām, kā to dara viesis. Ja nevēlaties vietni iestatīt izstrādes režīmā, jums būs vai nu jāizrakstās, vai jāpiesakās kā parastam reģistrētam lietotājam, lai pārbaudītu rezervācijas kā viesis. Jebkurš Pārbaudes režīma iestatījumus atsevišķos maksājumu vārtos neietekmē vietnes ražošanas vai izstrādes iestatījums. ");
+
+	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Pārbaudes režīms");

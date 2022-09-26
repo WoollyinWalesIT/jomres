@@ -2707,3 +2707,5 @@ Můžete ponechat cílový jazyk nastavený na váš aktuální jazyk a použít
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_INFO', 'Na této stránce můžete nakonfigurovat, přes které platební brány chcete přijímat zálohové platby. Budete potřebovat účet na platební bráně. Stránka nastavení vám poskytne pokyny, jak bránu nakonfigurovat.' );
 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TESTINGINFO', "Jste přihlášeni jako Super Property Manager. Normálně správci nemovitostí nemohou používat platební brány, ale pokud web nastavíte do režimu Vývoj v Admin > Jomres > Nastavení > karta Ladění, budete moci zpracovat přes rezervaci a přistupovat k platebním bránám jako host. Pokud nechcete web nastavit do režimu vývoje, budete muset být buď odhlášeni, nebo přihlášeni jako běžný registrovaný uživatel, abyste mohli testovat rezervace jako host. Nastavení testovacího režimu v jednotlivých platebních branách není ovlivněno nastavením Produkce nebo Vývoj webu. ");
+
+	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Testovací režim");

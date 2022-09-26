@@ -2702,3 +2702,5 @@ Du kan la målspråket settes til ditt nåværende språk og bruke denne siden t
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_INFO', 'På denne siden kan du konfigurere hvilke betalingsgatewayer du ønsker å motta innskuddsbetalinger gjennom. Du trenger en konto på betalingsgatewayen. Innstillingssiden vil gi deg instruksjoner om hvordan du konfigurerer gatewayen.' );
 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TESTINGINFO', "Du er logget på som Super Property Manager. Normalt kan ikke eiendomsforvaltere bruke betalingsgatewayer, men hvis du setter nettstedet til utviklingsmodus i Admin > Jomres > Innstillinger > Feilsøking-fanen, vil du kunne behandle gjennom en bestilling og få tilgang til betalingsgatewayer som en gjest gjør. Hvis du ikke vil sette nettstedet til utviklingsmodus, må du enten være logget ut eller logget på som en vanlig registrert bruker for å teste bestillinger som gjest. Eventuelle Testmodusinnstillinger i individuelle betalingsgatewayer påvirkes ikke av nettstedets produksjons- eller utviklingsinnstilling. ");
+
+	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Testmodus");

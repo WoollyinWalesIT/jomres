@@ -2730,3 +2730,5 @@ Meghagyhatja a célnyelvet az aktuális nyelven, és ezen az oldalon átnevezhet
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_INFO', 'Ezen az oldalon konfigurálhatja, hogy mely fizetési átjárókon keresztül szeretne betéti kifizetéseket fogadni. Szüksége lesz egy fiókra a fizetési átjárón. A beállítások oldalon található utasítások az átjáró konfigurálására vonatkozóan.' );
 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TESTINGINFO', "Ön kiemelt ingatlankezelőként van bejelentkezve. Az ingatlankezelők általában nem használhatnak fizetési átjárókat, de ha az Adminisztrálás > Jomres > Beállítások > Hibakeresés lapon Fejlesztési módra állítja a webhelyet, akkor képes lesz feldolgozni foglaláson keresztül, és hozzáférhet a fizetési átjárókhoz, mint a vendég. Ha nem szeretné az oldalt Fejlesztési módba állítani, akkor vagy ki kell jelentkeznie, vagy be kell jelentkeznie normál regisztrált felhasználóként a foglalások vendégként történő teszteléséhez. Az egyes fizetési átjárók Tesztmód-beállításait nem befolyásolja a webhely gyártási vagy fejlesztési beállítása. ");
+
+	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Tesztmód");

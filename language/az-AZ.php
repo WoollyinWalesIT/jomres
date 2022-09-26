@@ -2743,3 +2743,5 @@ Siz hədəf dili təyin edilmiş cari dilinizə buraxa və onların fərdi səhi
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_INFO', 'Bu səhifədə siz depozit ödənişlərini almaq istədiyiniz ödəniş şlüzlərini konfiqurasiya edə bilərsiniz. Ödəniş şluzunda hesabınıza ehtiyacınız olacaq. Parametrlər səhifəsində şlüzün konfiqurasiyasına dair təlimatlar sizə təqdim olunacaq.' );
 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TESTINGINFO', "Siz Super Əmlak Meneceri kimi daxil olmusunuz. Normalda əmlak menecerləri ödəniş şlüzlərindən istifadə edə bilməz, lakin saytı Admin > Jomres > Parametrlər > Sazlama sekmesinde İnkişaf rejiminə təyin etsəniz, o zaman emal edə biləcəksiniz. qonağın etdiyi kimi rezervasiya və ödəniş şlüzlərinə daxil olmaq. Saytı İnkişaf rejiminə qoymaq istəmirsinizsə, qonaq kimi rezervasiyaları sınamaq üçün ya sistemdən çıxmalı, ya da normal qeydiyyatdan keçmiş istifadəçi kimi daxil olmalısınız. Fərdi ödəniş şlüzlərindəki Test Rejimi parametrlərinə saytın İstehsal və İnkişaf parametrləri təsir etmir. ");
+
+	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Sınaq rejimi");

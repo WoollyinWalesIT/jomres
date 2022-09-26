@@ -2743,3 +2743,5 @@ jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', '保存更改后，页面中�
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_INFO', '在此页面上，您可以配置要通过哪些支付网关接收存款付款。您将需要支付网关上的帐户。设置页面将为您提供有关如何配置网关的说明。' );
 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TESTINGINFO', "您以超级物业经理的身份登录。通常物业经理不能使用支付网关，但是如果您在管理 > Jomres > 设置 > 调试选项卡中将站点设置为开发模式，那么您将能够处理 通过预订并以访客身份访问支付网关。如果您不想将站点设置为开发模式，则需要注销或以普通注册用户身份登录以测试访客身份。任何 各个支付网关中的测试模式设置不受站点的生产或开发设置的影响。");
+
+	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "测试模式");

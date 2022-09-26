@@ -2790,3 +2790,5 @@ Sie können die Zielsprache auf Ihrer aktuellen Sprache belassen und diese Seite
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_INFO', 'Auf dieser Seite können Sie konfigurieren, über welche Zahlungs-Gateways Sie Einzahlungen erhalten möchten. Sie benötigen ein Konto auf dem Zahlungs-Gateway. Die Einstellungsseite enthält Anweisungen zur Konfiguration des Gateways.' );
 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TESTINGINFO', "Sie sind als Super-Property-Manager angemeldet. Normalerweise können Property-Manager Zahlungs-Gateways nicht verwenden, aber wenn Sie die Seite in den Entwicklungsmodus unter Admin > Jomres > Einstellungen > Debugging-Registerkarte setzen, können Sie sie verarbeiten über eine Buchung und als Gast auf Zahlungsgateways zugreifen. Wenn Sie die Website nicht in den Entwicklungsmodus versetzen möchten, müssen Sie entweder abgemeldet oder als normal registrierter Benutzer angemeldet sein, um Buchungen als Gast zu testen Die Einstellungen für den Testmodus in einzelnen Zahlungs-Gateways werden von der Produktions- oder Entwicklungseinstellung der Website nicht beeinflusst. ");
+
+	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Testmodus");

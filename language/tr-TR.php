@@ -2735,3 +2735,5 @@ Hedef dili mevcut dilinize ayarlı bırakabilir ve bu sayfayı, öğeleri tek te
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_INFO', 'Bu sayfada, depozito ödemelerini almak istediğiniz ödeme ağ geçitlerini yapılandırabilirsiniz. Ödeme ağ geçidinde bir hesaba ihtiyacınız olacak. Ayarlar sayfası, ağ geçidini nasıl yapılandıracağınıza ilişkin talimatlar sağlayacaktır.' );
 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TESTINGINFO', "Süper Mülk Yöneticisi olarak giriş yaptınız. Normalde mülk yöneticileri ödeme ağ geçitlerini kullanamaz, ancak siteyi Yönetici > Jomres > Ayarlar > Hata Ayıklama sekmesinde Geliştirme moduna ayarlarsanız, işlem yapabilirsiniz. bir rezervasyon aracılığıyla ve bir misafirin yaptığı gibi ödeme ağ geçitlerine erişin.Siteyi Geliştirme moduna ayarlamak istemiyorsanız, rezervasyonları misafir olarak test etmek için ya oturumu kapatmanız ya da normal bir kayıtlı kullanıcı olarak oturum açmanız gerekir. Bireysel ödeme ağ geçitlerindeki Test Modu ayarları, sitenin Üretim veya Geliştirme ayarından etkilenmez. ");
+
+	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Test modu");

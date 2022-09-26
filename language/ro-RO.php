@@ -2761,3 +2761,5 @@ Puteți lăsa limba țintă setată la limba dvs. curentă și puteți utiliza a
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_INFO', 'Pe această pagină puteți configura prin ce gateway-uri de plată doriți să primiți plăți prin depozit. Veți avea nevoie de un cont pe gateway-ul de plată. Pagina de setări vă va oferi instrucțiuni despre cum să configurați gateway-ul.' );
 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TESTINGINFO', "Sunteți conectat ca Super Property Manager. În mod normal, administratorii de proprietăți nu pot folosi gateway-uri de plată, dar dacă setați site-ul în modul Dezvoltare în Admin > Jomres > Setări > fila Depanare, atunci veți putea procesa printr-o rezervare și accesați gateway-uri de plată așa cum o face un oaspete. Dacă nu doriți să setați site-ul în modul Dezvoltare, va trebui fie să fiți deconectat, fie să vă conectați ca utilizator normal înregistrat pentru a testa rezervările ca oaspete. Setările Modului de testare din gateway-urile de plată individuale nu sunt afectate de setarea Producție sau Dezvoltare a site-ului.");
+
+	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Modul de testare");

@@ -2703,3 +2703,5 @@ U kunt de doeltaal op uw huidige taal laten staan en deze pagina gebruiken om it
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_INFO', 'Op deze pagina kunt u configureren via welke betalingsgateways u aanbetalingen wilt ontvangen. U heeft een account nodig op de betalingsgateway. Op de instellingenpagina vindt u instructies voor het configureren van de gateway.' );
 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TESTINGINFO', "Je bent ingelogd als Super Property Manager. Normaal gesproken kunnen vastgoedbeheerders geen betalingsgateways gebruiken, maar als je de site instelt op Ontwikkelingsmodus in Beheer > Jomres > Instellingen > tabblad Foutopsporing, dan kun je de via een boeking en toegang tot betalingsgateways als een gast.Als u de site niet in de ontwikkelingsmodus wilt zetten, moet u ofwel zijn uitgelogd of ingelogd als een normale geregistreerde gebruiker om boekingen als gast te testen. De instellingen van de testmodus in afzonderlijke betalingsgateways worden niet beïnvloed door de productie- of ontwikkelingsinstellingen van de site. ");
+
+	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Testmodus");

@@ -2745,3 +2745,5 @@ Ciljni jezik lahko pustite nastavljen na vaš trenutni jezik in uporabite to str
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_INFO', 'Na tej strani lahko konfigurirate, prek katerih plačilnih prehodov želite prejemati plačila pologov. Potrebovali boste račun na plačilnem prehodu. Na strani z nastavitvami boste našli navodila, kako konfigurirati prehod.' );
 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TESTINGINFO', "Prijavljeni ste kot Super Property Manager. Običajno upravitelji nepremičnin ne morejo uporabljati plačilnih prehodov, vendar če spletno mesto nastavite na razvojni način v Skrbnik > Jomres > Nastavitve > zavihek Odpravljanje napak, boste lahko obdelali prek rezervacije in dostopajte do plačilnih prehodov kot gost. Če spletnega mesta ne želite nastaviti v razvojni način, boste morali biti bodisi odjavljeni ali prijavljeni kot običajni registrirani uporabnik, da preizkusite rezervacije kot gost. Nastavitev za proizvodnjo ali razvoj spletnega mesta ne vpliva na nastavitve testnega načina v posameznih plačilnih prehodih. ");
+
+	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Testni način");

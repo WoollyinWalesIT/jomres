@@ -2733,3 +2733,5 @@ Du kan lämna målspråket inställt på ditt nuvarande språk och använda denn
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_INFO', 'På den här sidan kan du konfigurera vilka betalningsgateways du vill ta emot insättningsbetalningar genom. Du behöver ett konto på betalningsgatewayen. Inställningssidan ger dig instruktioner om hur du konfigurerar gatewayen.' );
 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TESTINGINFO', "Du är inloggad som Super Property Manager. Normalt kan fastighetsskötare inte använda betalningsgateways, men om du ställer in webbplatsen till utvecklingsläge i Admin > Jomres > Inställningar > Felsökningsfliken kommer du att kunna bearbeta genom en bokning och få tillgång till betalningsgateways som en gäst gör. Om du inte vill ställa in webbplatsen i utvecklingsläge måste du antingen vara utloggad eller inloggad som en vanlig registrerad användare för att testa bokningar som gäst. Testlägesinställningar i individuella betalningsgateways påverkas inte av webbplatsens produktions- eller utvecklingsinställning. ");
+
+	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Testläge");

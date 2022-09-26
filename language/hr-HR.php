@@ -2774,3 +2774,5 @@ Možete ostaviti ciljni jezik postavljen na vaš trenutni jezik i koristiti ovu 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_INFO', 'Na ovoj stranici možete konfigurirati pristupnike plaćanja preko kojih želite primati uplate depozita. Trebat će vam račun na pristupniku plaćanja. Stranica s postavkama pružit će vam upute o tome kako konfigurirati pristupnik.' );
 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TESTINGINFO', "Prijavljeni ste kao Super Property Manager. Obično upravitelji imovine ne mogu koristiti pristupnike za plaćanje, ali ako postavite stranicu na razvojni način rada u Administrator > Jomres > Postavke > kartica Debugging tada ćete moći obraditi putem rezervacije i pristupite pristupnicima za plaćanje kao gost. Ako ne želite postaviti stranicu u razvojni način rada, morat ćete se ili odjaviti ili prijaviti kao uobičajeni registrirani korisnik da biste testirali rezervacije kao gost. Bilo koji Postavke testnog načina rada u pojedinačnim pristupnicima plaćanja ne utječu na postavke proizvodnje ili razvoja stranice. ");
+
+	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Testni način");

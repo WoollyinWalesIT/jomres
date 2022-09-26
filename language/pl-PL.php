@@ -2752,3 +2752,5 @@ Możesz pozostawić język docelowy ustawiony na swój bieżący język i użyć
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_INFO', 'Na tej stronie możesz skonfigurować, przez które bramki płatności chcesz otrzymywać wpłaty. Będziesz potrzebować konta na bramce płatności. Strona ustawień zawiera instrukcje dotyczące konfiguracji bramki.' );
 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TESTINGINFO', "Jesteś zalogowany jako Super Property Manager. Zwykle zarządcy nieruchomości nie mogą korzystać z bramek płatności, jednak jeśli ustawisz witrynę w trybie deweloperskim w zakładce Admin > Jomres > Ustawienia > Debugowanie, będziesz mógł przetwarzać poprzez rezerwację i dostęp do bramek płatności jak gość. Jeśli nie chcesz ustawiać witryny w trybie deweloperskim, musisz się wylogować lub zalogować jako zwykły zarejestrowany użytkownik, aby przetestować rezerwacje jako gość. Ustawienia trybu testowego w poszczególnych bramkach płatności nie mają wpływu na ustawienia produkcyjne lub programistyczne witryny. ");
+
+	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Tryb testowy");

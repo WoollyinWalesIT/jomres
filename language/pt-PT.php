@@ -2770,3 +2770,5 @@ Você pode deixar o idioma de destino definido para seu idioma atual e usar esta
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_INFO', 'Nesta página você pode configurar por quais gateways de pagamento deseja receber pagamentos de depósitos. Você precisará de uma conta no gateway de pagamento. A página de configurações fornecerá instruções sobre como configurar o gateway.' );
 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TESTINGINFO', "Você está logado como Super Gerente de Propriedade. Normalmente, os gerentes de propriedade não podem usar gateways de pagamento, no entanto, se você definir o site para o modo Desenvolvimento em Admin > Jomres > Configurações > guia Depuração, você poderá processar através de uma reserva e acessar os gateways de pagamento como um convidado. Se você não quiser definir o site para o modo de desenvolvimento, precisará estar desconectado ou conectado como um usuário registrado normal para testar as reservas como convidado. As configurações do Modo de teste em gateways de pagamento individuais não são afetadas pela configuração de Produção ou Desenvolvimento do site.");
+
+	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Modo de teste");

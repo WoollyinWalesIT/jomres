@@ -2774,3 +2774,7 @@ You can leave the target language set to your current language and use this page
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_INFO', 'On this page you can configure which payment gateways you want to receive deposit payments through. You will need an account on the payment gateway. The settings page will provide you with instructions on how to configure the gateway.');
 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TESTINGINFO', "You are logged in as a Super Property Manager. Normally property managers cannot use payment gateways, however if you set the site to Development mode in Admin > Jomres > Settings > Debugging tab then you will be able to process through a booking and access payment gateways as a guest does. If you do not want to set the site to Development mode then you will need to be either logged out, or logged in as a normal registered user to test bookings as a guest. Any Test Mode settings in individual payment gateways are unaffected by the site's Production or Development setting. ");
+
+
+	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Test mode");
+
