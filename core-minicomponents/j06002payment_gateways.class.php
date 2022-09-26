@@ -73,9 +73,15 @@ class j06002payment_gateways
 				$plugin_settings->gateway_settings[$gateway_name]['override'] = 0;
 			}
 
-
 			if ($plugin_settings->gateway_settings[$gateway_name]['override'] != '1') {
 				$r=array();
+
+				$r['TEST_MODE'] = jomres_badge( jr_gettext('_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false) , 'success');
+				if (isset($plugin_settings->gateway_settings[$gateway_name]['test_mode']) && $plugin_settings->gateway_settings[$gateway_name]['test_mode'] == "1" ) {
+					$r['TEST_MODE'] = jomres_badge( jr_gettext('_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES', false) , 'warning');
+				}
+
+				$r['_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR'] = jr_gettext('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', '_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', false);
 
 				$r['URL'] =jomresURL(JOMRES_SITEPAGE_URL.'&task=editGateway&plugin='.$gateway_name);
 				$r['GATEWAY_NAME'] = ucfirst( str_replace("_" , " " , $gateway_name));
@@ -88,6 +94,7 @@ class j06002payment_gateways
 					$r['ACTIVE'] = jomres_badge(jr_gettext('_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false) , 'danger');
 				}
 				$r['_JOMRES_COM_A_GATEWAY_ENABLED'] = jr_gettext('_JOMRES_COM_A_GATEWAY_ENABLED', '_JOMRES_COM_A_GATEWAY_ENABLED', false);
+
 
 				$rows[] = $r;
 			}
