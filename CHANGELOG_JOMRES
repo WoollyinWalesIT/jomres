@@ -1,7 +1,9 @@
-<h3>Jomres 10.5.3 02/09/2022</h3>
+<h3>Jomres 10.5.4 26/09/2022</h3>
 
+<span class="label label-success">Feature</span> Stripe Standard payment gateway added to Jomres Core.
 <span class="label label-success">Feature</span> Added the ability for the Jomres template parser to call code that introduces Joomla modules into Jomres template files.
 <span class="label label-success">Feature</span> Added a new feature to copy API keys to clipboard.
+<span class="label label-success">Feature</span> Payment gateways moved out of their tab in property config into a page of their own.
 
 <span class="label label-warning">Change</span> Two new currency codes added for Venezuelan Bolivar, including the black market currency code (really? Wow.)
 <span class="label label-warning">Change</span> Changed how old style language files are detected and used, so that new lang definitions are automatically parsed in despite them not being in the older language files.
@@ -19,7 +21,36 @@
 <span class="label label-warning">Change</span> Modified contact owner to ensure that component args is used.
 <span class="label label-warning">Change</span> Improved BS5 admin cpanel layout.
 <span class="label label-warning">Change</span> Tweaked how an error is reported to keep it up-to-date with the current system.
+<span class="label label-warning">Change</span> Added new guidance for users when they click on the New Property or Manager Properties button in the admin area. If they're not logged in then they'll see a message asking them to login. This will help new users who are not familiar with the need to login to the frontend to administer properties.
+<span class="label label-warning">Change</span> Moved contact form out of tabs in property details. This allows us to override the contact form in various ways without messing up the general layout.
+<span class="label label-warning">Change</span> Added a new WP function for generating the default WP login form, in case one hasn't been configured in Site Config > Messaging System tab
+<span class="label label-warning">Change</span> Setting the default setting of the group by fix to off on new installations.
+<span class="label label-warning">Change</span> FAQ items in BS5 updated to remove accordion and simplify output. Comments added to other templates
+<span class="label label-warning">Change</span> Changed how reviews button stacks in basic module output template
+<span class="label label-warning">Change</span> Removed thanks output from show property reviews template
+<span class="label label-warning">Change</span> Added new Common strings for login/logout and related urls
+<span class="label label-warning">Change</span> Modified edit account details page, guests can no longer save a different email address from that stored against their CMS account.
+<span class="label label-warning">Change</span> Property uid now available to basic contract details class contract result
+<span class="label label-warning">Change</span> Added a new (as yet unused but available) method to jr_user class to check if their details are complete.
+<span class="label label-warning">Change</span> BS5 Booking form classic rooms list received some love.
+<span class="label label-warning">Change</span> Reworked property header, book now button is sticky and moved some buttons around.
+<span class="label label-warning">Change</span> Made host link smaller so that it matches the rest of the buttons in property header
+<span class="label label-warning">Change</span> Bot encrypted email address added to site sitebar
+<span class="label label-warning">Change</span> Property details reorganised. Got rid of tabs, layout adjusted.
+<span class="label label-warning">Change</span> Introduce new functionality for setting page titles.
+<span class="label label-warning">Change</span> New common string COMMON_CANCEL added to patTemplate class.
+<span class="label label-warning">Change</span> Added contact us text to property details default $output variable.
 
+<span class="label label-important label-danger">Fix</span> Fixed links to jomres.net to use https protocol (lang files)
+<span class="label label-important label-danger">Fix</span> Added some changes to resolve issues in API since Joomla 4.2.2 released
+<span class="label label-important label-danger">Fix</span> Basic room details tweak : Since Joomla 4.2.2 calling this function triggers an error in the api. Given that the api doesn't benefit from having the tooltips, we won't return them.
+<span class="label label-important label-danger">Fix</span> Make roomrateperday on new installations longer so that countries like Columbia who have prices in the millions of pesos can still list prices.
+<span class="label label-important label-danger">Fix</span> Updated CMS Specific code for calling CMS's editor in Joomla 4.
+<span class="label label-important label-danger">Fix</span> Added some definitions to core language file that should be in plugins, however because of where those plugins are called in some templates, they're not always called correctly. This resolves that.
+<span class="label label-important label-danger">Fix</span> API : Fixed an error in PHP8
+<span class="label label-important label-danger">Fix</span> Change how image root is found so that og:image paths render correctly.
+<span class="label label-important label-danger">Fix</span> Fixed a notice in touch templates.
+<span class="label label-important label-danger">Fix</span> Fix a bug where unpublished properties could be included in host property list on BS5 templated sites
 
 <h3>Jomres 10.5.3 03/08/2022</h3>
 
