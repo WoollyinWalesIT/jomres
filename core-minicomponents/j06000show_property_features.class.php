@@ -74,8 +74,10 @@ class j06000show_property_features
 
 		$mrConfig = getPropertySpecificSettings($property_uid);
 
-		jomres_set_page_title( $property_uid ,  jr_gettext('_JOMRES_SEARCH_FEATURE_INFO', '_JOMRES_SEARCH_FEATURE_INFO', false) );
-
+		if (get_showtime('task') != 'dobooking') {
+			jomres_set_page_title( $property_uid ,  jr_gettext('_JOMRES_SEARCH_FEATURE_INFO', '_JOMRES_SEARCH_FEATURE_INFO', false) );
+		}
+		
 		$basic_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
 		$basic_property_details->gather_data($property_uid);
 
