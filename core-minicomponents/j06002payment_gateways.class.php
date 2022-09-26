@@ -83,9 +83,9 @@ class j06002payment_gateways
 				$r['LINK'] = $gw['config_links'][ 'link' ];
 				$r['_ADMIN_MENU_SECTIONS_SETTINGS'] = jr_gettext('_ADMIN_MENU_SECTIONS_SETTINGS', '_ADMIN_MENU_SECTIONS_SETTINGS', false);
 				if ($gw[ 'active' ] == "1") {
-					$r['ACTIVE'] = jr_gettext('_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES', false);
+					$r['ACTIVE'] = jomres_badge( jr_gettext('_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES', false) , 'success');
 				} else {
-					$r['ACTIVE'] = jr_gettext('_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false);
+					$r['ACTIVE'] = jomres_badge(jr_gettext('_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false) , 'danger');
 				}
 				$r['_JOMRES_COM_A_GATEWAY_ENABLED'] = jr_gettext('_JOMRES_COM_A_GATEWAY_ENABLED', '_JOMRES_COM_A_GATEWAY_ENABLED', false);
 
