@@ -1321,11 +1321,11 @@ class dobooking
 
 					$clickUnlock = '';
 					if ($model[ 'force' ] != '1' || $thisJRUser->userIsManager) {
-						$extra_deets[ 'INPUTBOX' ] = '<input id="extras_'.$ex->uid.'" type="checkbox" name="extras['.$ex->uid.']" value="'.$ex->uid.'" '.$checked.' autocomplete="off"  onClick="'.$clickUnlock.'getResponse_extras(\'extras\',this.value,'.$ex->uid.');" />';
+						$extra_deets[ 'INPUTBOX' ] = '<input id="extras_'.$ex->uid.'" type="checkbox" class="form-check-input" name="extras['.$ex->uid.']" value="'.$ex->uid.'" '.$checked.' autocomplete="off"  onClick="'.$clickUnlock.'getResponse_extras(\'extras\',this.value,'.$ex->uid.');" />';
 					} else {
 						$this->forcedExtras[ ] = $ex->uid;
 						$this->setExtras($ex->uid);
-						$extra_deets[ 'INPUTBOX' ] = '<input id="extras_'.$ex->uid.'" type="checkbox" checked disabled=" " onclick="return false;" name="extras['.$ex->uid.']" value="'.$ex->uid.'" />';
+						$extra_deets[ 'INPUTBOX' ] = '<input id="extras_'.$ex->uid.'" type="checkbox" class="form-check-input" checked disabled=" " onclick="return false;" name="extras['.$ex->uid.']" value="'.$ex->uid.'" />';
 					}
 					$extra_deets[ 'FIELDNAME' ] = 'extras['.$ex->uid.']';
 
@@ -1773,7 +1773,7 @@ class dobooking
 			foreach ($this->allRoomFeatures as $feature_id => $feature) {
 				$arr = array();
 				$arr[ 'ID' ] = $feature_id;
-				$arr[ 'INPUTBOX' ] = '<input id="'.$feature_id.'" type="checkbox" name="room_features['.$feature_id.']" value="'.$feature_id.'" autocomplete="off"  onClick="getResponse_room_features(\'room_features\',this.value,'.$feature_id.');" />';
+				$arr[ 'INPUTBOX' ] = '<input id="'.$feature_id.'" type="checkbox"  class="form-check-input" name="room_features['.$feature_id.']" value="'.$feature_id.'" autocomplete="off"  onClick="getResponse_room_features(\'room_features\',this.value,'.$feature_id.');" />';
 				$arr[ 'DESCRIPTION' ] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION'.(int) $feature_id, $feature);
 				$this->room_feature_checkboxes[ ] = $arr;
 			}
@@ -3384,6 +3384,13 @@ class dobooking
 		$output[ 'BOOTSTRAP_CELLMOBILE_WARNING' ] = '';
 		$output[ 'BOOTSTRAP_EMAIL_WARNING' ] = '';
 
+		$output[ 'INPUT_FORM_REQUIRED_FIELD_HIDDEN_FIELD_HOUSENO' ]		= 'style="display:none;"';
+		$output[ 'INPUT_FORM_REQUIRED_FIELD_HIDDEN_FIELD_STREET' ]		= 'style="display:none;"';
+		$output[ 'INPUT_FORM_REQUIRED_FIELD_HIDDEN_FIELD_TOWN' ]		= 'style="display:none;"';
+		$output[ 'INPUT_FORM_REQUIRED_FIELD_HIDDEN_FIELD_POSTCODE' ]	= 'style="display:none;"';
+		$output[ 'INPUT_FORM_REQUIRED_FIELD_HIDDEN_FIELD_TEL' ]			= 'style="display:none;"';
+		$output[ 'INPUT_FORM_REQUIRED_FIELD_HIDDEN_FIELD_MOBILE' ]		= 'style="display:none;"';
+
 		if ($mrConfig[ 'bookingform_requiredfields_name' ] == '1') {
 			$output[ 'REQUIRED_FIRSTNAME' ] = '<font color="red">'.$icon.'</font>';
 			$output[ 'VALIDATION_FIRSTNAME' ] = 'true';
@@ -3398,21 +3405,25 @@ class dobooking
 			$output[ 'REQUIRED_HOUSENO' ] = '<font color="red">'.$icon.'</font>';
 			$output[ 'VALIDATION_HOUSENO' ] = 'true';
 			$output[ 'BOOTSTRAP_HOUSENO_WARNING' ] = ' warning';
+			$output[ 'INPUT_FORM_REQUIRED_FIELD_HIDDEN_FIELD_HOUSENO' ]		= '';
 		}
 		if ($mrConfig[ 'bookingform_requiredfields_street' ] == '1') {
 			$output[ 'REQUIRED_STREET' ] = '<font color="red">'.$icon.'</font>';
 			$output[ 'VALIDATION_STREET' ] = 'true';
 			$output[ 'BOOTSTRAP_STREET_WARNING' ] = ' warning';
+			$output[ 'INPUT_FORM_REQUIRED_FIELD_HIDDEN_FIELD_STREET' ]		= '';
 		}
 		if ($mrConfig[ 'bookingform_requiredfields_town' ] == '1') {
 			$output[ 'REQUIRED_TOWN' ] = '<font color="red">'.$icon.'</font>';
 			$output[ 'VALIDATION_TOWN' ] = 'true';
 			$output[ 'BOOTSTRAP_TOWN_WARNING' ] = ' warning';
+			$output[ 'INPUT_FORM_REQUIRED_FIELD_HIDDEN_FIELD_TOWN' ]		= '';
 		}
 		if ($mrConfig[ 'bookingform_requiredfields_postcode' ] == '1') {
 			$output[ 'REQUIRED_POSTCODE' ] = '<font color="red">'.$icon.'</font>';
 			$output[ 'VALIDATION_POSTCODE' ] = 'true';
 			$output[ 'BOOTSTRAP_POSTCODE_WARNING' ] = ' warning';
+			$output[ 'INPUT_FORM_REQUIRED_FIELD_HIDDEN_FIELD_POSTCODE' ]	= '';
 		}
 		if ($mrConfig[ 'bookingform_requiredfields_region' ] == '1') {
 			$output[ 'REQUIRED_REGION' ] = '<font color="red">'.$icon.'</font>';
@@ -3428,11 +3439,13 @@ class dobooking
 			$output[ 'REQUIRED_LANDLINE' ] = '<font color="red">'.$icon.'</font>';
 			$output[ 'VALIDATION_LANDLINE' ] = 'true';
 			$output[ 'BOOTSTRAP_LANDLINE_WARNING' ] = ' warning';
+			$output[ 'INPUT_FORM_REQUIRED_FIELD_HIDDEN_FIELD_TEL' ]			= '';
 		}
 		if ($mrConfig[ 'bookingform_requiredfields_mobile' ] == '1') {
 			$output[ 'REQUIRED_CELLMOBILE' ] = '<font color="red">'.$icon.'</font>';
 			$output[ 'VALIDATION_CELLMOBILE' ] = 'true';
 			$output[ 'BOOTSTRAP_CELLMOBILE_WARNING' ] = ' warning';
+			$output[ 'INPUT_FORM_REQUIRED_FIELD_HIDDEN_FIELD_MOBILE' ]		= '';
 		}
 		if ($mrConfig[ 'bookingform_requiredfields_email' ] == '1') {
 			$output[ 'REQUIRED_EMAIL' ] = '<font color="red">'.$icon.'</font>';

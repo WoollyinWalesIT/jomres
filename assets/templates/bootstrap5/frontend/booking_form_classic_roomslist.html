@@ -3,12 +3,15 @@
 	                  requiredvars="roomtype">
 		<div class="card bg-light card-body mb-3 card bg-faded p-1 mb-3all">
 			<div class="row">
-				<div class="col-lg-4">	<a href="#roomdetails{ROOMUID}_{TARIFFUID}" role="button" data-bs-toggle="modal"><img src="{ROOM_IMAGE_LARGE}" alt="room image" class="img-fluid"></a>
+				<div class="col-lg-2">	<a href="#roomdetails{ROOMUID}_{TARIFFUID}" role="button" data-bs-toggle="modal"><img src="{ROOM_IMAGE_LARGE}" alt="room image" class="img-fluid"></a>
 				</div>
-				<div class="col-lg-4">
+				<div class="col-lg-4 d-none d-sm-block">
 					<div class="fs-5"><a href="#roomdetails{ROOMUID}_{TARIFFUID}" role="button" data-bs-toggle="modal">{ROOMTYPE}</a></div>
 					<strong>{TAGLINE}</strong>
-					<div class="row">
+				</div>
+				<div class="col-2">
+					<a href="#roomdetails{ROOMUID}_{TARIFFUID}" role="button" data-bs-toggle="modal" class="d-none d-lg-block">{HMOREINFO}...</a>
+					<div class="row d-none d-sm-block">
 						<div class="col-6">
 							<em>{HEADER_MAXPEOPLE}</em>
 						</div>
@@ -16,18 +19,16 @@
 							{MAXPEOPLE_INROOM}
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-6">
-							<a href="#roomdetails{ROOMUID}_{TARIFFUID}" role="button" data-bs-toggle="modal" class="d-none d-lg-block">{HMOREINFO}...</a>
-						</div>
-						<div class="col-6">
+				</div>
+				<div class="col-lg-2 d-none d-sm-block">
+					<p class="big-price"><span>{FORMATTED_PRICE} </span>{HRATEPERNIGHT}</p>
+				</div>
 
-						</div>
-					</div>
+				<div class="mt-3 d-block d-sm-block d-md-block d-lg-none d-xl-none d-xxl-none text-center">
+					<p class="big-price"><span>{FORMATTED_PRICE} </span>{HRATEPERNIGHT}</p>
 				</div>
-				<div class="col-lg-2">
-					<p><span class="big-price">{FORMATTED_PRICE}</span>{HRATEPERNIGHT}</p>
-				</div>
+
+				
 				<div class="col-lg-2 text-center p-1">
 					<div id="{ROOMTARIFFOUTPUTID}"><a href="javascript:void(0);" onclick="getResponse_rooms(&apos;requestedRoom&apos;,&apos;{ROOMTARIFFOUTPUTID}&apos; );"
 					                                  class="btn {BUTTON_CLASS}"><i class="icon-plus-2 icon-white"></i> </a>
