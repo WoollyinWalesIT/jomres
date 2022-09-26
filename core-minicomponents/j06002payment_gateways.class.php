@@ -48,15 +48,6 @@ class j06002payment_gateways
 		$output['_JOMRES_COM_A_GATEWAYLIST'] = jr_gettext('_JOMRES_COM_A_GATEWAYLIST', '_JOMRES_COM_A_GATEWAYLIST', false);
 		$output['_JOMRES_COM_A_GATEWAYLIST_INFO'] = jr_gettext('_JOMRES_COM_A_GATEWAYLIST_INFO', '_JOMRES_COM_A_GATEWAYLIST_INFO', false);
 
-
-		$output['PAYMENT_GATEWAYS_SUPER_MANAGER_NOTE'] = '';
-		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
-		if ($thisJRUser->superPropertyManager) {
-			$output['PAYMENT_GATEWAYS_SUPER_MANAGER_NOTE'] = simple_template_output(JOMRES_TEMPLATEPATH_BACKEND, 'payment_gateways_super_manager_note.html', jr_gettext('_JOMRES_COM_A_GATEWAYLIST_TESTINGINFO', '_JOMRES_COM_A_GATEWAYLIST_TESTINGINFO', false));
-		}
-
-
-
 		jomres_set_page_title( 0 ,  jr_gettext('_JOMRES_COM_A_GATEWAYLIST', '_JOMRES_COM_A_GATEWAYLIST', false) );
 
 		jr_import("gateway_plugin_settings");

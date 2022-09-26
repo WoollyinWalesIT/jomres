@@ -2704,8 +2704,6 @@ Můžete ponechat cílový jazyk nastavený na váš aktuální jazyk a použít
 
 	jr_define('JOMRES_COM_TRANSITION_FROM_ADMIN_TO_BACKEND_NOT_LOGGED_IN_EXPOSITION_FOR_NEW_USERS_JOOMLA', "Když je Jomres poprvé nainstalován, vytvoří Super Property Manager pro administrátora a přidá novou možnost do hlavní nabídky nazvanou Rezervace. Neodstraňujte tuto položku nabídky a nenavštěvujte ji. stránku Rezervace, abyste mohli začít spravovat vlastnosti. ");
 
-	jr_define('_JOMRES_COM_A_GATEWAYLIST_INFO', 'Na této stránce můžete nakonfigurovat, přes které platební brány chcete přijímat zálohové platby. Budete potřebovat účet na platební bráně. Stránka nastavení vám poskytne pokyny, jak bránu nakonfigurovat.' );
-
-	jr_define('_JOMRES_COM_A_GATEWAYLIST_TESTINGINFO', "Jste přihlášeni jako Super Property Manager. Normálně správci nemovitostí nemohou používat platební brány, ale pokud web nastavíte do režimu Vývoj v Admin > Jomres > Nastavení > karta Ladění, budete moci zpracovat přes rezervaci a přistupovat k platebním bránám jako host. Pokud nechcete web nastavit do režimu vývoje, budete muset být buď odhlášeni, nebo přihlášeni jako běžný registrovaný uživatel, abyste mohli testovat rezervace jako host. Nastavení testovacího režimu v jednotlivých platebních branách není ovlivněno nastavením Produkce nebo Vývoj webu. ");
+	jr_define('_JOMRES_COM_A_GATEWAYLIST_INFO', 'Na této stránce můžete nakonfigurovat, přes které platební brány chcete přijímat zálohové platby. Budete potřebovat účet na platební bráně. Stránka nastavení vám poskytne pokyny, jak bránu nakonfigurovat. Pokud brána má testovací režim, a pokud je povolen testovací režim, jako správce nemovitosti budete moci použít platební bránu k testování své konfigurace. Když je testovací režim deaktivován, během procesu rezervace uvidí platební brány pouze uživatelé, kteří nejsou správcem .');
 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Testovací režim");
