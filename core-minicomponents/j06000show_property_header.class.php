@@ -117,6 +117,11 @@ class j06000show_property_header
 		//property room types
 		$output['ROOMTYPES'] = $MiniComponents->specificEvent('06000', 'show_property_room_types', array('output_now' => false, 'property_uid' => $property_uid));
 
+		$output['STICKY_BOOKING_BUTTON_ENABLED'] = "true";
+		if (get_showtime('task') == 'dobooking' ){
+			$output['STICKY_BOOKING_BUTTON_ENABLED'] = "false";
+		}
+
 		//meta data
 		/*if (strlen($current_property_details->metatitle) > 0) {
 			jomres_cmsspecific_setmetadata('title', jomres_purify_html($current_property_details->metatitle));

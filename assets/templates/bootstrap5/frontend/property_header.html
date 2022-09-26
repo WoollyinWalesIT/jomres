@@ -116,9 +116,14 @@
 	<hr/>
 	<script>
         function moveScroller() {
+            var enabled = {STICKY_BOOKING_BUTTON_ENABLED};
             var $anchor = jomresJquery("#scroller-anchor");
             var $scroller = jomresJquery('#scroller');
 
+            if ( enabled === false ) {
+                return;
+            }
+            
             var move = function() {
                 var st = jomresJquery(window).scrollTop();
                 var ot = $anchor.offset().top;
