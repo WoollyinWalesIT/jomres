@@ -55,10 +55,10 @@ class j16000showplugins
 		$key_validation = jomres_singleton_abstract::getInstance('jomres_check_support_key');
 		$key_validation->check_license_key(true);
 		$this->key_valid = $key_validation->key_valid;
-		if (!$this->key_valid) {
+/*		if (!$this->key_valid) {
 			echo '<span class="alert alert-danger">'.jr_gettext('_JOMRES_SUPPORTKEY_DESC_INVALID', '_JOMRES_SUPPORTKEY_DESC_INVALID', false).'</span>';
 			return;
-		}
+		}*/
 
 		if ((!file_exists(JOMRES_COREPLUGINS_ABSPATH.'plugin_manager'.JRDS.'plugin_info.php'))) { // We will need to install the plugin manager, plugin force a registry rebuild, then redirect to this page again.
 			if (!isset($_REQUEST['install'])) {
