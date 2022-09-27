@@ -57,6 +57,8 @@ class j06005save_my_account
 			return false;
 		}
 
+		$MiniComponents->triggerEvent('03160', [] ); // Optional
+
 		$user_details = jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id($thisJRUser->id);
 
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');

@@ -40,7 +40,7 @@ class j99994webhook_watcher
 			$this->template_touchable=false;
 			return;
 		}
-		
+
 		if (get_showtime('task') == 'background_process') {
 			return;
 		}
