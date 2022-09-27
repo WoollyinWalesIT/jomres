@@ -59,6 +59,10 @@ class j06005edit_my_account
 		$pageoutput = array();
 		$vat_validation = array();
 
+
+		jomres_cmsspecific_addheaddata('javascript', JOMRES_JS_RELPATH, 'intlTelInput.js' );
+		jomres_cmsspecific_addheaddata('css', JOMRES_CSS_RELPATH, 'intlTelInput.css');
+
 		$user_details = jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id($thisJRUser->id);
 
 		$output[ 'FIRSTNAME' ] = '';
@@ -68,11 +72,14 @@ class j06005edit_my_account
 		$output[ 'TOWN' ] = '';
 		$output[ 'REGION' ] = setupRegions($jrConfig[ 'limit_property_country_country' ]);
 		$output[ 'COUNTRY' ] = createSimpleCountriesDropdown($jrConfig[ 'limit_property_country_country' ]);
+		$output[ 'COUNTRY_CODE' ] = $jrConfig[ 'limit_property_country_country' ];
 		$output[ 'POSTCODE' ] = '';
 		$output[ 'LANDLINE' ] = '';
 		$output[ 'MOBILE' ] = '';
 		//$output[ 'EMAIL' ] = restore_task_specific_email_address($user_details[ $thisJRUser->id ][ 'email' ]);
 		$output[ 'IMAGE' ] = JOMRES_IMAGES_RELPATH.'noimage.gif';
+
+		$output['JOMRES_JS_RELPATH'] = JOMRES_JS_RELPATH;
 
 		if (isset($componentArgs['return_url']) && $componentArgs['return_url'] != '') {
 			$output[ 'RETURN_URL' ] = $componentArgs['return_url'];
@@ -102,6 +109,7 @@ class j06005edit_my_account
 				$output[ 'TOWN' ]				= $thisJRUser->town;
 				$output[ 'REGION' ]				= setupRegions($thisJRUser->country, $thisJRUser->region);
 				$output[ 'COUNTRY' ]			= createSimpleCountriesDropdown($thisJRUser->country);
+				$output[ 'COUNTRY_CODE' ]		= $thisJRUser->country;
 				$output[ 'POSTCODE' ]			= $thisJRUser->postcode;
 				$output[ 'LANDLINE' ]			= $thisJRUser->tel_landline;
 				$output[ 'MOBILE' ]				= $thisJRUser->tel_mobile;
@@ -195,8 +203,7 @@ class j06005edit_my_account
 			$output[ 'MARKDOWN_BUTTON' ] = $MiniComponents->specificEvent('06000', 'show_markdown_modal', array('output_now' => false));
 			
 			$output[ 'ABOUT_ME' ] = '<textarea class="inputbox form-control" cols="70" rows="15" id="about_me" name="about_me">'.jomres_remove_HTML($thisJRUser->about_me, '').'</textarea>';
-			
-			
+
 			$pageoutput[ ] = $output;
 			$tmpl = new patTemplate();
 			$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);

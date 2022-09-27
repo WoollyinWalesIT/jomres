@@ -54,6 +54,7 @@ function jomresCopyToClipboard(input_id) {
 
 function jomresClearConsole()
 {
+	return;
 	console.API;
 
 	if (typeof console._commandLineAPI !== 'undefined') {

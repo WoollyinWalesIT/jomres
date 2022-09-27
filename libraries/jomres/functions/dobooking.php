@@ -176,6 +176,9 @@ function dobooking($selectedProperty, $thisdate, $remus)
 	$tmpBookingHandler->tmpbooking[ 'override_room_total' ] = null;
 	$tmpBookingHandler->tmpbooking[ 'override_deposit' ] = null;
 
+	jomres_cmsspecific_addheaddata('javascript', JOMRES_JS_RELPATH, 'intlTelInput.js' );
+	jomres_cmsspecific_addheaddata('css', JOMRES_CSS_RELPATH, 'intlTelInput.css');
+
 	$today = date('Y/m/d');
 	$date_elements = explode('/', $today);
 	$unixTomorrowsDate = mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ] + 1, $date_elements[ 0 ]);
