@@ -1,6 +1,6 @@
 === Jomres Hotel Booking Engine for WordPress ===
 Contributors: jomres
-Tags: Booking portal, Hotel Booking, Hotel, Apartment booking, api, json, REST, rest-api, webhooks
+Tags: iCal, Channel Manager, Hotel Booking, Apartment booking, Booking portal, Hotel,  Booking, hotels,  motel, motels,  calendar, room booking, reservation plugin, holiday apartments, holiday rentals, apartment rentals, cottage rental, b&b, tool hire, ecommerce, tours, api, json, REST, rest-api, webhooks
 Donate link: https://www.jomres.net
 Requires at least: 4.3.1
 Tested up to: 6.0
@@ -40,8 +40,6 @@ Jomres can now be run on non-Bootstrap themes. Woot!
 License holders can download the "QuickStart" zip file that enables you to deploy a full installation of WordPress with everything already set up to exactly match the Demo. You can be up-and-running, with a fully-featured booking website that looks terrific, within minutes.
 
 == Installation ==
-
-Jomres is big, a basic installation can be up to 200mb before images are uploaded so please ensure that you have sufficient disk space in your hosting account before installing the plugin.
 
 1. In your WordPress dashboard, go to Plugins > Add New
 
