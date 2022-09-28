@@ -3768,7 +3768,11 @@ class dobooking
 			$guests = $this->getVariantsOfType('guesttype');
 		}
 
-
+		if ($mrConfig[ 'tariffmode' ] == '3') { // dobooking has evolved to use a default number of guests of 2 (standard tariff mode). If an old micromanage tariff set has been created but guest types not created then micromanage bookings will not work now, so we'll set the default number of guests to 2
+			if (empty($guests)) {
+				$guests = array(array('qty' => $this->standard_guest_numbers ));
+			}
+		}
 
 		$this->setErrorLog('checkAllGuestsAllocatedToRooms::Starting ');
 		if (!empty($guests) || $mrConfig[ 'tariffmode' ] == '5') {
@@ -3802,6 +3806,7 @@ class dobooking
 					$room_spread_array[ $key ] = 0;
 				}
 			}
+
 			ksort($room_spread_array);
 			$numberOfSelectedRooms = count($allSelectedRoomsMaxPeople);
 			// if $numberOfSelectedRooms == $totalNumberOfGuests then we can put one person in each room and return
@@ -7052,6 +7057,9 @@ class dobooking
 		$total_number_of_guests = 0;
 
 		foreach ($this->room_allocations as $room) {
+			if (!isset($room[ 'number_allocated' ])) {
+				$room[ 'number_allocated' ] = $this->standard_guest_numbers;
+			}
 			$total_number_of_guests += $room[ 'number_allocated' ];
 			if ($this->cfg_perPersonPerNight == '0') {
 				$total += $room[ 'price_per_night' ];
