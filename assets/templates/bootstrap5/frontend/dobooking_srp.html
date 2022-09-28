@@ -373,6 +373,27 @@
 									<div class="col-3">	<span id="extrastotal_totals_panel"></span>
 									</div>
 								</div>
+								<div class="row">
+									<div class="col-9">{ROOM_TOTAL_ACCOM_TAX}</div>
+									<div class="col-3">	<span id="taxtotal"></span>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-9">{JOMRES_CITY_TAX_HEADING}</div>
+									<div class="col-3">	<span id="city_tax"></span>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-9">{JOMRES_CLEANING_FEE_HEADING}</div>
+									<div class="col-3">	<span id="cleaning_fee"></span>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-9">{EXTRAS_TAX}</div>
+									<div class="col-3">	<span id="extra_tax"></span>
+									</div>
+								</div>
+								<hr class="separator">
 								<pattemplate:tmpl name="coupons_totals" type="simpleCondition" requiredvars="coupon_discount_value">
 									<div class="row">
 										<div class="col-9">{COUPON_DISCOUNT_VALUE}</div>
@@ -406,27 +427,7 @@
 									<div class="col-3">	<span id="balance"></span>
 									</div>
 								</div>
-								<hr class="separator">
-								<div class="row">
-									<div class="col-9">{ROOM_TOTAL_ACCOM_TAX}</div>
-									<div class="col-3">	<span id="taxtotal"></span>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-9">{JOMRES_CITY_TAX_HEADING}</div>
-									<div class="col-3">	<span id="city_tax"></span>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-9">{JOMRES_CLEANING_FEE_HEADING}</div>
-									<div class="col-3">	<span id="cleaning_fee"></span>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-9">{EXTRAS_TAX}</div>
-									<div class="col-3">	<span id="extra_tax"></span>
-									</div>
-								</div>
+
 							</div>
 						</div>
 						<pattemplate:tmpl name="coupons" type="simpleCondition" requiredvars="coupon_title">
