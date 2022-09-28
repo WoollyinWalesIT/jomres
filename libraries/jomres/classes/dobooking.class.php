@@ -2156,17 +2156,27 @@ class dobooking
 	 */
 	public function setStandardGuests($value)
 	{
+		$value = (int)$value;
 		$default_number_of_guests = 2;
 
 		if (!isset($this->standard_guest_numbers)) {
 			$this->standard_guest_numbers = 2;
+			$this->extra_guest_numbers = 0;
 		}
 
-		if ($value > $default_number_of_guests) {
-			$this->extra_guest_numbers =  $value - $default_number_of_guests;
+		if ($value < $default_number_of_guests ) {
+			$this->standard_guest_numbers = $value;
+			$this->extra_guest_numbers = 0;
 		}
 
-		$this->standard_guest_numbers = (int)$value;
+		if ($value == $default_number_of_guests ) {
+			$this->standard_guest_numbers =  $default_number_of_guests;
+			$this->extra_guest_numbers = 0;
+		}
+
+		if ($value > $default_number_of_guests ) {
+			$this->extra_guest_numbers =  $value - $this->standard_guest_numbers;
+		}
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5896,8 +5906,8 @@ class dobooking
 		if ($this->cfg_tariffmode == '5' && count($this->requestedRoom) > 0) {
 			if ($this->extra_guest_numbers > 0) {
 				$this->extra_guest_price = ($this->extra_guest_numbers * $extra_guest_price) * $this->stayDays;
-				$this->extra_guest_price = $this->get_nett_price($this->extra_guest_price, $this->accommodation_tax_rate);
-				$this->room_total = $this->room_total + $this->extra_guest_price;
+				//$this->extra_guest_price = $this->get_nett_price($this->extra_guest_price, $this->accommodation_tax_rate);
+				//$this->room_total = $this->room_total;
 
 				// Not sure about this yet, commented for now
 				/*$this->add_additiional_line_item(
@@ -6062,7 +6072,8 @@ class dobooking
 		if (isset($this->child_prices['total_price'])) {
 			$child_price = $this->child_prices['total_price'];
 		}
-		$this->billing_grandtotal = ($this->room_total + $this->extrasvalue + $this->tax + $this->single_person_suppliment + $this->city_tax + $this->cleaning_fee + $child_price );
+
+		$this->billing_grandtotal = ($this->room_total + $this->extrasvalue + $this->tax + $this->single_person_suppliment + $this->city_tax + $this->cleaning_fee + $child_price + $this->extra_guest_price );
 		$this->room_total_ex_tax = $this->room_total + $this->single_person_suppliment;
 		$this->room_total_inc_tax = $this->room_total + $this->single_person_suppliment + $this->tax;
 		$this->setErrorLog('calcTotals::Total: '.$this->billing_grandtotal);
