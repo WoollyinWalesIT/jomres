@@ -66,6 +66,9 @@ class j09995menu
 		$viewproperty_url = get_property_details_url($property_uid);
 		$dobooking_url = get_booking_url($property_uid);
 
+		jr_import('jomres_occupancy_levels');
+		$jomres_occupancy_levels = new jomres_occupancy_levels($property_uid);
+
 		// There are some differences between J3 & J4 and the font awesome icons
 		$font_awesome_envelope = 'fa-envelope-o';
 		$font_awesome_picture = 'fa-picture-o';
@@ -241,7 +244,12 @@ class j09995menu
 
 			if ($mrConfig[ 'is_real_estate_listing' ] != '1') {
 				if ($mrConfig[ 'tariffmode' ] != 5) {
-					$jomres_menu->add_item(80, jr_gettext('_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES', '_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES', false), 'listcustomertypes', 'fa-users');
+					if (!empty($jomres_occupancy_levels->occupancy_levels)) {
+						$jomres_menu->add_item(80, jr_gettext('JOMRES_OCCUPANCY_LEVELS_TITLE', 'JOMRES_OCCUPANCY_LEVELS_TITLE', false), 'list_occupancy_levels', 'fa-users');
+						$jomres_menu->add_item(80, jr_gettext('JOMRES_POLICIES_CHILDREN', 'JOMRES_POLICIES_CHILDREN', false), 'child_policies', $font_awesome_childpolicies);
+					} else {
+						$jomres_menu->add_item(80, jr_gettext('_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES', '_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES', false), 'listcustomertypes', 'fa-users');
+					}
 				} else {
 					$jomres_menu->add_item(80, jr_gettext('JOMRES_OCCUPANCY_LEVELS_TITLE', 'JOMRES_OCCUPANCY_LEVELS_TITLE', false), 'list_occupancy_levels', 'fa-users');
 					$jomres_menu->add_item(80, jr_gettext('JOMRES_POLICIES_CHILDREN', 'JOMRES_POLICIES_CHILDREN', false), 'child_policies', $font_awesome_childpolicies);
