@@ -341,6 +341,9 @@ class dobooking
 
 		$mrConfig = getPropertySpecificSettings($this->property_uid);
 
+		jr_import('jomres_occupancy_levels');
+		$this->jomres_occupancy_levels = new jomres_occupancy_levels($this->property_uid);
+
 		$this->mrConfig = $mrConfig;
 		if (isset($mrConfig[ 'margin' ]) && !empty($mrConfig[ 'margin' ])) {
 			$this->margin = $mrConfig[ 'margin' ];
@@ -3771,7 +3774,7 @@ class dobooking
 		$this->room_allocations = array();
 		$guests = $this->getVariantsOfType('guesttype');
 
-		if ($mrConfig[ 'tariffmode' ] == '5') {
+		if ($mrConfig[ 'tariffmode' ] == '5' || count($this->jomres_occupancy_levels->occupancy_levels) > 0 ) {
 			$totalNumberOfGuests = $this->standard_guest_numbers + $this->extra_guest_numbers;
 		} else {
 			$totalNumberOfGuests = 0;
@@ -3785,7 +3788,7 @@ class dobooking
 		}
 
 		$this->setErrorLog('checkAllGuestsAllocatedToRooms::Starting ');
-		if (!empty($guests) || $mrConfig[ 'tariffmode' ] == '5') {
+		if (!empty($guests) || $mrConfig[ 'tariffmode' ] == '5' || count($this->jomres_occupancy_levels->occupancy_levels) > 0) {
 			$this->setErrorLog('checkAllGuestsAllocatedToRooms:: count($guests) > 0 ');
 
 			if (empty($this->requestedRoom)) {
@@ -5903,7 +5906,7 @@ class dobooking
 		}
 
 		$this->extra_guest_price = 0.00;
-		if ($this->cfg_tariffmode == '5' && count($this->requestedRoom) > 0) {
+		if ( count($this->requestedRoom) > 0) {
 			if ($this->extra_guest_numbers > 0) {
 				$this->extra_guest_price = ($this->extra_guest_numbers * $extra_guest_price) * $this->stayDays;
 				//$this->extra_guest_price = $this->get_nett_price($this->extra_guest_price, $this->accommodation_tax_rate);

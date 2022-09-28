@@ -697,14 +697,14 @@ function dobooking($selectedProperty, $thisdate, $remus)
 	}
 
 	$output['BOOKING_FORM_CHILD_SELECTORS'] = '';
-	if ($mrConfig[ 'tariffmode' ] == '5') {
+
+	if ($mrConfig[ 'tariffmode' ] == '5' || count($bkg->jomres_occupancy_levels->occupancy_levels) > 0 ) {
 		$adults_dropdown = $bkg->build_adults_dropdown();
 
 		if ($mrConfig[ 'allow_children' ] == '1') {
 			$output['BOOKING_FORM_CHILD_SELECTORS'] = $bkg->build_children_selectors();
 		}
 	}
-
 
 	$manager_pricing = array();
 	if ($thisJRUser->userIsManager) {
