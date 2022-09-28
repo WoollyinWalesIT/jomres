@@ -125,7 +125,6 @@ class j06002list_resources
 
 			$roomRowInfo[] = $r;
 		}
-var_dump($roomRowInfo);exit;
 
 		$output[ 'HROOM_TYPE' ] = jr_gettext('_JOMRES_HRESOURCE_TYPE', '_JOMRES_HRESOURCE_TYPE', false);
 		$output[ 'HROOM_NAME' ] = jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME', '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME', false);
