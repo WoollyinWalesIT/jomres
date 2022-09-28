@@ -33,24 +33,21 @@ class j07310watcher_authmethod_process_data_sources
 		
 
 
-		if (
-			!empty($webhook_messages) ) {
-			$webhook_messages = array_unique( $webhook_messages, SORT_REGULAR ); // Remove duplicate objects
+		if (!empty($webhook_messages)) {
+			$webhook_messages = array_unique($webhook_messages, SORT_REGULAR); // Remove duplicate objects
 
 			// The Save normal mode tariffs features will add two webhooks, rooms_multiple_added & tariffs_updated. We don´t need to run them both as this script does both at the same time, so we´ll check to see if both of these webhooks are set, and if they are we´ll discard one.
 			$messages = array();
-			foreach ( $webhook_messages as $webhook_notification ) {
+			foreach ($webhook_messages as $webhook_notification) {
 				$messages[] = $webhook_notification->webhook_event;
 			}
 
-			foreach ( $webhook_messages as $webhook_notification ) {
-
+			foreach ($webhook_messages as $webhook_notification) {
 				$data = $webhook_notification->data;
 
-				if (isset($data) && $data !== false && isset($webhook_notification->webhook_event) ) { // The data, whatever it is, has been collected, let's process it
+				if (isset($data) && $data !== false && isset($webhook_notification->webhook_event)) { // The data, whatever it is, has been collected, let's process it
 					$data->task = $webhook_notification->webhook_event;
-					switch ( $data->task )
-					{
+					switch ($data->task) {
 						case 'property_deleted':
 						case 'property_published':
 						case 'property_unpublished':
@@ -73,4 +70,3 @@ class j07310watcher_authmethod_process_data_sources
 		return null;
 	}
 }
-	

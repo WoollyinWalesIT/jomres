@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06005show_invoice_seller
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -48,7 +49,7 @@ class j06005show_invoice_seller
 		$this->retVals = '';
 		
 		$invoice_id = (int)$componentArgs[ 'invoice_id' ]; // We will not allow setting of the invoice id thru the url, only thru the componentArgs value. If it's not set then this page wasn't called thru the view_invoice page therefore it should not be shown
-		if ($invoice_id == 0 ) {
+		if ($invoice_id == 0) {
 			throw new Exception('Error: Invoice id not set.');
 		}
 		

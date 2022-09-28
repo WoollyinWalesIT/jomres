@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j16000list_gateways
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -59,19 +60,19 @@ class j16000list_gateways
 			$rows = array();
 			
 			$gateway_names = array();
-			foreach ($gateway_plugins as $gw ) {
+			foreach ($gateway_plugins as $gw) {
 				$gateway_names[] = $gw['name'];
-				}
+			}
 			$global_gateway_settings = array();
 				
 			$query = "SELECT `plugin`,`setting`,`value` FROM #__jomres_pluginsettings WHERE `plugin` IN ( ".jomres_implode($gateway_names, false).' ) AND prid = 0';
 			$plugin_settings = doSelectSql($query);
 
 			if (!empty($plugin_settings)) {
-				foreach ($plugin_settings as $setting ) {
+				foreach ($plugin_settings as $setting) {
 					$global_gateway_settings[$setting->plugin][$setting->setting] = $setting->value;
-					}
 				}
+			}
  
 			foreach ($gateway_plugins as $gateway) {
 				$r = array();
@@ -107,7 +108,7 @@ class j16000list_gateways
 			$tmpl->addRows('rows', $rows);
 			$tmpl->displayParsedTemplate();
 		} else {
-			echo '<p class="alert alert-warning"> No administrator area gateways installed. Most payment gateways are configured by property managers in their <a href="'.JOMRES_SITEPAGE_URL.'&task=business_settings" target="_blank">Property Configuration page</a>, therefore they will not show up on this page. Only gateways that have specific administrator area settings will appear here.</p>';
+			echo '<p class="alert alert-warning"> No administrator area gateways installed. Most payment gateways are configured by property managers in the <a href="'.JOMRES_SITEPAGE_URL_NOSEF.'&task=payment_gateways&from_admin=1" target="_blank">Payment gateway page</a>, therefore they will not show up on this page. Only gateways that have specific administrator area settings will appear here.</p>';
 		}
 	}
 

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -18,19 +18,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	 * @package Jomres\Core\Minicomponents
 	 *
 	 * This script will build language definition scripts for javascript files that need to be called AFTER all of the other language files have been read in.
-	 * 
+	 *
 	 */
 
 class j00005x_build_javascript_lang_definitions
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -54,7 +55,7 @@ class j00005x_build_javascript_lang_definitions
 
 		$live_scrolling_enabled = 'true';
 		if (!jomres_cmsspecific_areweinadminarea()) {
-			if ($jrConfig['live_scrolling_enabled'] == '0' ) {
+			if ($jrConfig['live_scrolling_enabled'] == '0') {
 				$live_scrolling_enabled = 'false';
 			}
 		}

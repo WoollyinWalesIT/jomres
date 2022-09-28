@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -23,7 +23,7 @@ defined('_JOMRES_INITCHECK') or die('');
 class jomres_data_source_maintainer
 {
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -37,11 +37,11 @@ class jomres_data_source_maintainer
 
 		if (!is_dir($this->data_cache_directory)) {
 			if (!mkdir($this->data_cache_directory)) {
-				throw new Exception("Error, could not make data_cache_directory directory ".$this->data_cache_directory );
+				throw new Exception("Error, could not make data_cache_directory directory ".$this->data_cache_directory);
 			}
 		}
 
-		if ( $this->is_libraries_dir_empty() ) {
+		if ($this->is_libraries_dir_empty()) {
 			$this->build_all_libraries();
 		}
 	}
@@ -64,13 +64,12 @@ class jomres_data_source_maintainer
 			if (file_exists($this->cwd.JRDS.$filename)) {
 				$class_name = 'data_source_'.$type;
 				require_once($this->cwd.JRDS.$filename);
-				$temp_class = new $class_name($this->data_cache_directory , $type );
+				$temp_class = new $class_name($this->data_cache_directory, $type);
 				$temp_class->build_data_cache_file();
 			} else {
-				throw new Exception("Error, data source parser script ".$this->cwd.JRDS.$filename . " does not exist " );
+				throw new Exception("Error, data source parser script ".$this->cwd.JRDS.$filename . " does not exist ");
 			}
 		}
-
 	}
 
 	public function build_library($type)
@@ -80,9 +79,9 @@ class jomres_data_source_maintainer
 			$class_name = 'data_source_'.$type;
 			require_once($this->cwd.JRDS.$filename);
 			$temp_class = new $class_name($this->data_cache_directory, $type);
-			$temp_class->build_data_cache_file( );
-		}	else {
-			throw new Exception("Error, data source parser script ".$this->cwd.JRDS.$filename . " does not exist " );
+			$temp_class->build_data_cache_file();
+		} else {
+			throw new Exception("Error, data source parser script ".$this->cwd.JRDS.$filename . " does not exist ");
 		}
 	}
 
@@ -94,7 +93,7 @@ class jomres_data_source_maintainer
 	private function is_libraries_dir_empty()
 	{
 		$contents = get_directory_contents($this->data_cache_directory);
-		if (count($contents) == 2 ) { // it's empty
+		if (count($contents) == 2) { // it's empty
 			return true;
 		}
 		return false;
@@ -132,19 +131,19 @@ class jomres_data_source_maintainer
 			foreach ( $jomres_countries->countries as $vanilla_country ) {
 				if (!in_array($vanilla_country['id'],$existing_countries)) {
 					$theConstant = '_JOMRES_CUSTOMTEXT_COUNTRIES_'.$vanilla_country['id'];
-					$query = "INSERT INTO #__jomres_custom_text 
+					$query = "INSERT INTO #__jomres_custom_text
 									(
 									`constant`,
 									`customtext`,
 									`property_uid`,
 									`language`,
 									`language_context`
-									) 
+									)
 								VALUES (
 									'".$theConstant."',
 									'".$vanilla_country['countryname']."',
 									'0',
-									'".$lang."', 
+									'".$lang."',
 									'0'
 									)";
 					doInsertSql($query);
@@ -166,19 +165,19 @@ class jomres_data_source_maintainer
 			foreach ( $jomres_regions->regions as $vanilla_region ) {
 				if (!in_array($vanilla_region['id'],$existing_regions)) {
 					$theConstant = '_JOMRES_CUSTOMTEXT_REGIONS_'.$vanilla_region['id'];
-					$query = "INSERT INTO #__jomres_custom_text 
+					$query = "INSERT INTO #__jomres_custom_text
 									(
 									`constant`,
 									`customtext`,
 									`property_uid`,
 									`language`,
 									`language_context`
-									) 
+									)
 								VALUES (
 									'".$theConstant."',
 									'".$vanilla_region['regionname']."',
 									'0',
-									'".$lang."', 
+									'".$lang."',
 									'0'
 									)";
 					doInsertSql($query);

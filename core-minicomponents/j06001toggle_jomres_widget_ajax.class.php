@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06001toggle_jomres_widget_ajax
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -59,10 +60,10 @@ class j06001toggle_jomres_widget_ajax
 
 		$order = array();
 		$jr_widget_order = jomresGetParam($_GET, 'jr_widget_order', '');
-		$bang = explode (",",$jr_widget_order);
+		$bang = explode(",", $jr_widget_order);
 		if (!empty($bang)) {
-			for ($i=0;$i<=count($bang);$i++) {
-				if (isset($bang[$i]) && trim($bang[$i]) != '' ) {
+			for ($i=0; $i<=count($bang); $i++) {
+				if (isset($bang[$i]) && trim($bang[$i]) != '') {
 					$order[] = jomresGetParam($bang, $i, '');
 				}
 			}
@@ -81,7 +82,7 @@ class j06001toggle_jomres_widget_ajax
 		}
 		
 		//save user widgets params
-		if (!$jomres_widgets->toggle_widget($jr_widget, $jr_widget_enabled, $jr_widget_column, $order )) {
+		if (!$jomres_widgets->toggle_widget($jr_widget, $jr_widget_enabled, $jr_widget_column, $order)) {
 			return;
 		}
 

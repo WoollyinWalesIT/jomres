@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -48,7 +48,7 @@ jr_define('_JOMRES_TUTORIAL_MICROMANAGE_TARIFF_EDITING_MODE_MORE_GUESTS_MRP', 'F
 jr_define('_JOMRES_TUTORIAL_MICROMANAGE_TARIFF_EDITING_MODE_MORE_GUESTS_MRP_DESC', 'Aynı oda tipi için birden fazla tarife oluşturabilirsiniz, yani farklı misafir sayıları için farklı fiyatlar isterseniz bunu yapabilirsiniz.');
 
 jr_define('_JOMRES_TUTORIAL_MICROMANAGE_GUEST_TYPES', 'Kişi başı gecelik - Misafir tipleri');
-jr_define('_JOMRES_TUTORIAL_MICROMANAGE_GUEST_TYPES_DESC', 'Kişi başı gecelik ücretlendirme yapmak için misafir tipleri oluşturmanız gerekecektir. Farklı misafir tiplerinin bir odanın taban fiyatından farklı farklılıkları olabilir, bu nedenle farklı yaşlardaki çocukların yaşlarına göre değişen indirimleri olabilir. Misafir Türlerini kullanmak için kişi başı gecelik ücret almanıza gerek yoktur, sabit bir ücret alıyorsanız ancak yine de konuk sayısını yakalamak istiyorsanız veya bir rezervasyondaki konuk sayısını sınırlamak istiyorsanız bunları da kullanabilirsiniz.' );
+jr_define('_JOMRES_TUTORIAL_MICROMANAGE_GUEST_TYPES_DESC', 'Kişi başı gecelik ücretlendirme yapmak için misafir tipleri oluşturmanız gerekecektir. Farklı misafir tiplerinin bir odanın taban fiyatından farklı farklılıkları olabilir, bu nedenle farklı yaşlardaki çocukların yaşlarına göre değişen indirimleri olabilir. Misafir Türlerini kullanmak için kişi başı gecelik ücret almanıza gerek yoktur, sabit bir ücret alıyorsanız ancak yine de konuk sayısını yakalamak istiyorsanız veya bir rezervasyondaki konuk sayısını sınırlamak istiyorsanız bunları da kullanabilirsiniz.');
 
 jr_define('_JOMRES_TUTORIAL_MEDIA_CENTRE_MRP', 'Medya merkezi - Resim yükleme');
 jr_define('_JOMRES_TUTORIAL_MEDIA_CENTRE_MRP_DESC', 'Tüm resimler medya merkezi aracılığıyla yüklenir. Bu videoda Ana özellik resmini, bazı slayt gösterisi resimlerini, arama sonuçları sayfasında gösterilecek küçük bir resim seçimini ve bunlardan biri için resimleri yükleyeceğiz. Odalar.');
@@ -81,9 +81,9 @@ jr_define('_JOMRES_TUTORIAL_PROPERTY_FEATURES_DESC', 'Bu videoda size özellik �
 
 jr_define('_JOMRES_TUTORIAL_SHORTCODES', 'Kısa kodlar');
 jr_define('_JOMRES_TUTORIAL_SHORTCODES_DESC', 'Kısa kodlar Jomres\'in olağanüstü güçlü bir özelliğidir. Prensip hem Joomla hem de Wordpress için aynıdır. Bu videoda size kısa kodları nerede görüntüleyeceğinizi göstereceğiz (bu liste hangi eklentilerin bulunduğuna bağlı olarak değişecektir). yüklü) ve bunların nasıl kullanılacağı.Kodları makalelerde veya modüllerde kullanabilirsiniz.');
-    
+	
 jr_define('_JOMRES_TUTORIAL_LOGFILES', 'Günlük dosyaları');
-jr_define('_JOMRES_TUTORIAL_LOGFILES_DESC', 'Bu video size günlük dosyalarını nasıl görüntüleyeceğinizi gösterecek. Sistem çalıştırıldığında kapsamlı günlük kaydı gerçekleşir. Üretim modundayken (Site Yapılandırması > Hata Ayıklama) daha az günlük oluşturulur, bu nedenle yeni bir özelliği test ediyorsanız o zaman sitenizi Geliştirme olarak ayarlamalısınız. Jomres komut dosyalarınıza kendi günlük kaydınızı eklemek istiyorsanız, <a href="http://www.jomres.net/manual/developers-guide/56-other-discussions/339-logging-in-jomres" target ="_blank">nasıl yapılacağına ilişkin kılavuz sayfamız.</a> Burada sahte bir hata atacağız, ardından günlük dosyasını görüntüleyeceğiz. Site Geliştirme olarak ayarlandığından çok fazla bilgi var, normalde sadece bir hata olduğunu ve bunun rapor edildiğini söyleyen bir mesaj görürsünüz.');
+jr_define('_JOMRES_TUTORIAL_LOGFILES_DESC', 'Bu video size günlük dosyalarını nasıl görüntüleyeceğinizi gösterecek. Sistem çalıştırıldığında kapsamlı günlük kaydı gerçekleşir. Üretim modundayken (Site Yapılandırması > Hata Ayıklama) daha az günlük oluşturulur, bu nedenle yeni bir özelliği test ediyorsanız o zaman sitenizi Geliştirme olarak ayarlamalısınız. Jomres komut dosyalarınıza kendi günlük kaydınızı eklemek istiyorsanız, <a href="https://www.jomres.net/manual/developers-guide/56-other-discussions/339-logging-in-jomres" target ="_blank">nasıl yapılacağına ilişkin kılavuz sayfamız.</a> Burada sahte bir hata atacağız, ardından günlük dosyasını görüntüleyeceğiz. Site Geliştirme olarak ayarlandığından çok fazla bilgi var, normalde sadece bir hata olduğunu ve bunun rapor edildiğini söyleyen bir mesaj görürsünüz.');
 
 jr_define('_JOMRES_TUTORIAL_TRANSLATIONS', 'Etiketleri ve diğer dizeleri çevirme');
 jr_define('_JOMRES_TUTORIAL_TRANSLATIONS_DESC', 'Jomres\'te dil dizelerini çevirmenin birkaç yolu vardır, dil dosyalarını düzenleyebilirsiniz ancak yükseltme yaptığınızda bunların üzerine yazılabilir. Bunun yerine bizim için benzersiz olan yerleşik çeviri araçlarını kullanmanızı öneririz. Dize, bir oda tipinin adı gibi bir forma girilmiş bir şeyse, Etiket Düzenleme sayfasını kullanabilirsiniz.Dize dil dosyasından ise, Dil dosyaları düzenleme aracını kullanabilirsiniz. Değiştirmek istediğiniz dizeyi bulmak için tarayıcı arama aracını kullanın ve ardından değiştirmek için bağlantıya tıklayın. Bu değişiklikler veritabanına kaydedilir ve bu nedenle güncelleme güvenlidir. Farklı özellik türleri için farklı etiketlere sahip olabilirsiniz, böylece şunları yapabilirsiniz: Örneğin, etiketi değiştirmeden önce sayfanın üst kısmındaki Dil Bağlamı açılır menüsünü değiştirerek Yeni Mülkü Yeni Kamp Alanı olarak değiştirin.');
@@ -99,4 +99,3 @@ jr_define('_JOMRES_TUTORIAL_ADMIN_PROPERTY_CATEGORIES_DESC', 'Emlak kategorileri
 
 jr_define('_JOMRES_TUTORIAL_ADMIN_COMPLETING_PROPERTY', 'Site yöneticisi özellikleri görüntüleme');
 jr_define('_JOMRES_TUTORIAL_ADMIN_COMPLETING_PROPERTY_DESC', '<p>Özellikleri buradan yönetemezsiniz, mülkleri yalnızca ön uçtan yönetebilirsiniz, ancak bu listede onay bekleyen mülkleri (özellik etkinse) ve onay bekleyen mülkleri görebilirsiniz. eksik (örn. hala resim yüklemeniz gerekiyor, fiyatları ayarlamanız vb.) O mülkün gösterge tablosuna götürülmek için mülk adına tıklayın. Ardından, sayfanın üst kısmındaki kılavuz bölümlerini kullanarak hangi adımları görebileceğinizi görebilirsiniz. bir mülkü tamamlamak ve yayınlamak için almanız gerekir.</p> ');
-

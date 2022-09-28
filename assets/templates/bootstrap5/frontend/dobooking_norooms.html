@@ -229,56 +229,77 @@
 						<label class="col-form-label" for="existingCustomers"></label>{GUESTDROPDOWN}
 					</div>
 					<div class="row">
-						<div class="col-sm-6">
-
-							<div class="form-group {BOOTSTRAP_FIRSTNAME_WARNING}">
-								<label class="col-form-label" for="firstname">{HFIRSTNAME}</label>
-								<input type="text" name="firstname" id="firstname"
-									   value="{FIRSTNAME}" class="form-control" placeholder="{COMMON_PLACEHOLDER_FIRSTNAME}">
+						<div class="col-sm-12">
+							<div class="row">
+								<div class="col">
+									<div class="form-group {BOOTSTRAP_FIRSTNAME_WARNING}">
+										<label class="col-form-label" for="firstname">{HFIRSTNAME}</label>
+										<input type="text" name="firstname" id="firstname"
+											   value="{FIRSTNAME}" class="form-control" placeholder="{COMMON_PLACEHOLDER_FIRSTNAME}">
+									</div>
+								</div>
+								<div class="col">
+									<div class="form-group {BOOTSTRAP_SURNAME_WARNING}">
+										<label class="col-form-label" for="surname">{HSURNAME}</label>
+										<input type="text" name="surname" id="surname" value="{SURNAME}"
+											   class="form-control" placeholder="{COMMON_PLACEHOLDER_SURNAME}">
+									</div>
+								</div>
 							</div>
-							<div class="form-group {BOOTSTRAP_SURNAME_WARNING}">
-								<label class="col-form-label" for="surname">{HSURNAME}</label>
-								<input type="text" name="surname" id="surname" value="{SURNAME}"
-									   class="form-control" placeholder="{COMMON_PLACEHOLDER_SURNAME}">
-							</div>
-							<div class="form-group  {BOOTSTRAP_HOUSENO_WARNING}">
+							
+							<div class="form-group  {BOOTSTRAP_HOUSENO_WARNING}" {INPUT_FORM_REQUIRED_FIELD_HIDDEN_FIELD_HOUSENO}>
 								<label class="col-form-label" for="house">{HHOUSENO}</label>
 								<input type="text" name="house" id="house" value="{HOUSENO}"
 									   class="form-control" placeholder="{COMMON_PLACEHOLDER_HOUSENUMBER}">
 							</div>
-							<div class="form-group {BOOTSTRAP_STREET_WARNING}">
+							<div class="form-group {BOOTSTRAP_STREET_WARNING}" {INPUT_FORM_REQUIRED_FIELD_HIDDEN_FIELD_STREET}>
 								<label class="col-form-label" for="street">{HSTREET}</label>
 								<input type="text" name="street" id="street" value="{STREET}"
 									   class="form-control" placeholder="{COMMON_PLACEHOLDER_STREET}">
 							</div>
-							<div class="form-group {BOOTSTRAP_TOWN_WARNING}">
+							<div class="form-group {BOOTSTRAP_TOWN_WARNING} " {INPUT_FORM_REQUIRED_FIELD_HIDDEN_FIELD_TOWN}>
 								<label class="col-form-label" for="town">{HTOWN}</label>
 								<input type="text" name="town" id="town" value="{TOWN}"
 									   class="form-control" placeholder="{COMMON_PLACEHOLDER_TOWN}">
 							</div>
-							<div class="form-group {BOOTSTRAP_POSTCODE_WARNING}">
+							<div class="form-group {BOOTSTRAP_POSTCODE_WARNING} "{INPUT_FORM_REQUIRED_FIELD_HIDDEN_FIELD_POSTCODE}>
 								<label class="col-form-label" for="postcode">{HPOSTCODE}</label>
 								<input type="text" name="postcode" id="postcode" value="{POSTCODE}"
 									   class="form-control" placeholder="{COMMON_PLACEHOLDER_POSTCODE}">
 							</div>
-						</div>
-						<div class="col-sm-6">
-							<div class="form-group {BOOTSTRAP_COUNTRY_WARNING}">
-								<label class="col-form-label" for="country">{HCOUNTRY}</label>{COUNTRY}</div>
-							<div class="form-group {BOOTSTRAP_REGION_WARNING}">
-								<label class="col-form-label" for="region">{HREGION}</label>
-								<div id="guest_region_div">{REGION_DROPDOWN}</div>
+							<div class="row">
+								<div class="col">
+									<div class="form-group {BOOTSTRAP_COUNTRY_WARNING}">
+										<label class="col-form-label" for="country">{HCOUNTRY}</label>{COUNTRY}
+									</div>
+								</div>
+								<div class="col">
+									<div class="form-group {BOOTSTRAP_REGION_WARNING}">
+										<label class="col-form-label" for="region">{HREGION}</label>
+										<div id="guest_region_div">{REGION_DROPDOWN}</div>
+									</div>
+								</div>
 							</div>
-							<div class="form-group {BOOTSTRAP_LANDLINE_WARNING}">
-								<label class="col-form-label" for="tel_landline">{HTEL}</label>
-								<input type="tel" name="tel_landline" id="tel_landline"
-									   value="{TEL}" class="form-control" placeholder="{COMMON_PLACEHOLDER_LANDLINE}">
+							
+							
+							<div class="row">
+								<div class="col">
+									<div class="form-group {BOOTSTRAP_CELLMOBILE_WARNING} " {INPUT_FORM_REQUIRED_FIELD_HIDDEN_FIELD_MOBILE}>
+										<label class="col-form-label" for="tel_mobile">{HMOBILE}</label>
+										<input type="tel" name="tel_mobile" id="tel_mobile" value="{MOBILE}"
+											   class="form-control" placeholder="{COMMON_PLACEHOLDER_MOBILE}">
+									</div>
+								
+								</div>
+								<div class="col">
+									<div class="form-group {BOOTSTRAP_LANDLINE_WARNING} " {INPUT_FORM_REQUIRED_FIELD_HIDDEN_FIELD_TEL}>
+										<label class="col-form-label" for="tel_landline">{HTEL}</label>
+										<input type="tel" name="tel_landline" id="tel_landline"
+											   value="{TEL}" class="form-control" placeholder="{COMMON_PLACEHOLDER_LANDLINE}">
+									</div>
+								</div>
 							</div>
-							<div class="form-group {BOOTSTRAP_CELLMOBILE_WARNING}">
-								<label class="col-form-label" for="tel_mobile">{HMOBILE}</label>
-								<input type="tel" name="tel_mobile" id="tel_mobile" value="{MOBILE}"
-									   class="form-control" placeholder="{COMMON_PLACEHOLDER_MOBILE}">
-							</div>
+							
 							<div class="form-group {BOOTSTRAP_EMAIL_WARNING}">
 								<label class="col-form-label" for="eemail">{HEMAIL}</label>
 								<input type="email" name="eemail" id="eemail" value="{EMAIL}"

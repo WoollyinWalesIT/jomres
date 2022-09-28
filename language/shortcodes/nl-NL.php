@@ -4,13 +4,13 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 ##################################################################
-defined( '_JOMRES_INITCHECK' ) or die( '' );
+defined('_JOMRES_INITCHECK') or die('');
 ##################################################################
 
 jr_define('_JOMRES_SHORTCODES_06001CPANEL', 'Dit is de eigenschap cpanel frontpage.');
@@ -159,7 +159,7 @@ jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_SPECIFIC', "Specifieke bron");
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_ALREADY_UPLOADED', "Afbeeldingen zijn al geüpload voor deze bron");
 
 jr_define('_JOMRES_MARKDOWN_TITLE', 'Tekstopmaak');
-jr_define('_JOMRES_MARKDOWN_DESC', 'Je kunt hier tekst invoeren met behulp van eenvoudige Markdown-opmaak. Je hoeft geen HTML te kennen, gebruik gewoon de knoppen om de informatie eruit te laten zien zoals je wilt, of maak tekst op volgens deze voorbeelden.' );
+jr_define('_JOMRES_MARKDOWN_DESC', 'Je kunt hier tekst invoeren met behulp van eenvoudige Markdown-opmaak. Je hoeft geen HTML te kennen, gebruik gewoon de knoppen om de informatie eruit te laten zien zoals je wilt, of maak tekst op volgens deze voorbeelden.');
 jr_define('_JOMRES_MARKDOWN_EMPHASIS', 'Nadruk');
 jr_define('_JOMRES_MARKDOWN_BOLD', 'vet');
 jr_define('_JOMRES_MARKDOWN_ITALICS', 'cursief');
@@ -202,20 +202,20 @@ jr_define('_JOMRES_GUEST_BLACKLISTED', 'Gast op de zwarte lijst');
 jr_define('_JOMRES_GUEST_BLACKLISTED_DESC', 'Als deze gast op de zwarte lijst staat, kunnen ze geen boekingen meer maken in deze accommodatie.');
 jr_define('_JOMRES_SESSION_HANDLER', 'Sessie-afhandeling');
 jr_define('_JOMRES_SESSION_HANDLER_DESC', 'Bewaar jomres-sessiebestanden op schijf of in database. Aanbevolen: database');
-jr_define('_JOMRES_MAP_HEIGHT',"Kaarthoogte (px) ");
-jr_define('_JOMRES_MAP_ZOOMLEVEL',"Zoomniveau kaart ");
-jr_define('_JOMRES_MAP_MAPTYPE',"Kaarttype");
+jr_define('_JOMRES_MAP_HEIGHT', "Kaarthoogte (px) ");
+jr_define('_JOMRES_MAP_ZOOMLEVEL', "Zoomniveau kaart ");
+jr_define('_JOMRES_MAP_MAPTYPE', "Kaarttype");
 
-jr_define('_JOMRES_TEMPLATE_PACKAGES',"Template Override Manager");
-jr_define('_JOMRES_TEMPLATE_PACKAGES_LEAD',"Sjabloonpakketten zijn plug-ins die sjablonen kunnen overschrijven voor verschillende core Jomres-sjabloonbestanden.");
-jr_define('_JOMRES_TEMPLATE_PACKAGES_INFO',"Deze pagina vermeldt alle sjabloonbestanden die kunnen worden overschreven door de sjabloonbestanden van een sjabloonpakket. Als u een bepaald sjabloonbestand wilt overschrijven, klikt u op de bewerkknop voor dat bestand, op de volgende pagina wordt u in staat om te kiezen met welke versie u wilt overschrijven. Let op, deze overschrijvingen hebben voorrang op zowel Jomres Core als eventuele Wordpress of Joomla thema-/sjabloonoverschrijvingen. U kunt een overschrijving uitschakelen door deze te verwijderen op de pagina Lijstsjabloonoverschrijvingen.");
-jr_define('_JOMRES_TEMPLATE_PACKAGE_NAME',"Sjabloonnaam");
-jr_define('_JOMRES_TEMPLATE_PACKAGE_PATH',"Huidig ​​pad");
-jr_define('_JOMRES_TEMPLATE_PACKAGE_NOT_OVERRIDDEN',"Niet overschreven");
-jr_define('_JOMRES_TEMPLATE_PACKAGES_EDIT_INFO',"U kunt kiezen welk sjabloonbestand u wilt overschrijven van de Core-sjabloonbestanden door de vervolgkeuzelijst te wijzigen");
+jr_define('_JOMRES_TEMPLATE_PACKAGES', "Template Override Manager");
+jr_define('_JOMRES_TEMPLATE_PACKAGES_LEAD', "Sjabloonpakketten zijn plug-ins die sjablonen kunnen overschrijven voor verschillende core Jomres-sjabloonbestanden.");
+jr_define('_JOMRES_TEMPLATE_PACKAGES_INFO', "Deze pagina vermeldt alle sjabloonbestanden die kunnen worden overschreven door de sjabloonbestanden van een sjabloonpakket. Als u een bepaald sjabloonbestand wilt overschrijven, klikt u op de bewerkknop voor dat bestand, op de volgende pagina wordt u in staat om te kiezen met welke versie u wilt overschrijven. Let op, deze overschrijvingen hebben voorrang op zowel Jomres Core als eventuele Wordpress of Joomla thema-/sjabloonoverschrijvingen. U kunt een overschrijving uitschakelen door deze te verwijderen op de pagina Lijstsjabloonoverschrijvingen.");
+jr_define('_JOMRES_TEMPLATE_PACKAGE_NAME', "Sjabloonnaam");
+jr_define('_JOMRES_TEMPLATE_PACKAGE_PATH', "Huidig ​​pad");
+jr_define('_JOMRES_TEMPLATE_PACKAGE_NOT_OVERRIDDEN', "Niet overschreven");
+jr_define('_JOMRES_TEMPLATE_PACKAGES_EDIT_INFO', "U kunt kiezen welk sjabloonbestand u wilt overschrijven van de Core-sjabloonbestanden door de vervolgkeuzelijst te wijzigen");
 
 
-jr_define('_JOMRES_OVERALL_ROOMS_BOOKED',"Percentage geboekte kamers");
+jr_define('_JOMRES_OVERALL_ROOMS_BOOKED', "Percentage geboekte kamers");
 
 jr_define('_JOMRES_SHORTCODES_06005NEW_PROPERTY', 'Toont het formulier voor het maken van een nieuwe eigenschap.');
 
@@ -225,19 +225,19 @@ jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_REVIEWS_LIMIT', 'Aantal te tone
 
 jr_define('_JOMRES_SHORTCODES_06000SHORTLIST', 'Toont de eigenschappen op de shortlist van de gebruiker. Als de gebruiker is geregistreerd, zijn dit hun favorieten, als ze niet zijn ingelogd, dan alleen die items die tijdens het bezoek zijn toegevoegd via het pictogram Favoriet.');
 
-jr_define( '_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE', 'Minimale stortingswaarde');
+jr_define('_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE', 'Minimale stortingswaarde');
 
-jr_define( '_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE_DESC', "Als de berekende storting lager is dan dit cijfer, stelt u de storting in plaats daarvan in op deze waarde. Dit cijfer kan zelf worden overschreven als het niet voldoet aan de minimale stortingsinstelling van de site. Laat het ingesteld op 0 om gebruik de instelling niet." );
+jr_define('_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE_DESC', "Als de berekende storting lager is dan dit cijfer, stelt u de storting in plaats daarvan in op deze waarde. Dit cijfer kan zelf worden overschreven als het niet voldoet aan de minimale stortingsinstelling van de site. Laat het ingesteld op 0 om gebruik de instelling niet.");
 
 jr_define('_JOMRES_SHORTCODES_06000SHOW_CONSENT_FORM', 'Toont het AVG-conforme toestemmingsformulier.');
 
-jr_define( '_JOMRES_SHORTCODE_PROPERTY_ROOM_TYPE_LIST', 'Lijst met kamertypes onroerend goed');
-jr_define( '_JOMRES_SHORTCODE_PROPERTY_ROOM_TYPE', 'Toon een kamertype van een accommodatie');
+jr_define('_JOMRES_SHORTCODE_PROPERTY_ROOM_TYPE_LIST', 'Lijst met kamertypes onroerend goed');
+jr_define('_JOMRES_SHORTCODE_PROPERTY_ROOM_TYPE', 'Toon een kamertype van een accommodatie');
 
-jr_define( '_JOMRES_SHORTCODE_LOGIN_FORM', 'Toon het inlogformulier');
+jr_define('_JOMRES_SHORTCODE_LOGIN_FORM', 'Toon het inlogformulier');
 
 jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_ROOM_TYPE', 'Toon een lijst met kamers van een bepaald kamertype');
-jr_define( '_JOMRES_SHORTCODES_06000SHOW_PROPERTY_ROOM_TYPE_ARG_ROOM_TYPE_ID', 'Kamertype-ID');
+jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_ROOM_TYPE_ARG_ROOM_TYPE_ID', 'Kamertype-ID');
 
 jr_define('_JOMRES_SHORTCODES_06001DASHBOARD', 'Dashboard');
 

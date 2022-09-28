@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06005save_review
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -65,7 +66,7 @@ class j06005save_review
 
 		// We won't pass a message back, the only way the user will have got this far is if they've bypassed the javascript or don't have javascript enabled.
 		// Either way, they've bypassed the methods we've built to guide them through the submission process. We can still take a valid submission, but we won't take invalid ones.
-		if (($rating_1 < 1 || $rating_1 > 10) || ($rating_2 < 1 || $rating_2 > 10) || ($rating_3 < 1 || $rating_3 > 10) || ($rating_4 < 1 || $rating_4 > 10) || ($rating_5 < 1 || $rating_5 > 10) || ($rating_6 < 1 || $rating_6 > 10) || $review_title == '' || $review_description == '' || $pros == '' ) {
+		if (($rating_1 < 1 || $rating_1 > 10) || ($rating_2 < 1 || $rating_2 > 10) || ($rating_3 < 1 || $rating_3 > 10) || ($rating_4 < 1 || $rating_4 > 10) || ($rating_5 < 1 || $rating_5 > 10) || ($rating_6 < 1 || $rating_6 > 10) || $review_title == '' || $review_description == '' || $pros == '') {
 			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=add_review&property_uid='.$property_uid), '');
 		}
 
@@ -77,12 +78,12 @@ class j06005save_review
 		jr_import('jomres_encryption');
 		$this->jomres_encryption = new jomres_encryption();
 		if (!empty($guest_details)) {
-			foreach ($guest_details as $guest ) {
+			foreach ($guest_details as $guest) {
 				$guest_names = $this->jomres_encryption->decrypt($guest->enc_firstname)." ".$this->jomres_encryption->decrypt($guest->enc_surname);
 			}
 		}
 		
-		if ($anonymise && trim($guest_names) != '' ) {  // Guest wants their name anonymised? If yes, and if the guest name isn't blank, we will do that, so for example Vince Wooll becomes VW
+		if ($anonymise && trim($guest_names) != '') {  // Guest wants their name anonymised? If yes, and if the guest name isn't blank, we will do that, so for example Vince Wooll becomes VW
 			$words = preg_split("/\s+/", $guest_names);
 			$acronym = "";
 
@@ -94,7 +95,6 @@ class j06005save_review
 			$user_name = $guest_names;
 		} else { // The guest name is not stored in the profiles table, we will fall back to the ANONYMOUS definition.
 			$user_name = jr_gettext('ANONYMOUS', 'ANONYMOUS', false, false);
-			
 		}
 
 		if ($jrConfig[ 'use_reviews' ] == '1' && $property_uid > 0) {
@@ -109,9 +109,9 @@ class j06005save_review
 			$this_user_can_review_this_property = $Reviews->this_user_can_review_this_property();
 
 			if ($this_user_can_review_this_property) {
-				$overall_rating = number_format ( ($rating_1 + $rating_2 + $rating_3 + $rating_4 + $rating_5 + $rating_6) / 6 , 2 );
+				$overall_rating = number_format(($rating_1 + $rating_2 + $rating_3 + $rating_4 + $rating_5 + $rating_6) / 6, 2);
 
-				$rating_id = $Reviews->save_review($overall_rating, $review_title, $review_description, $pros, $cons , $user_name );
+				$rating_id = $Reviews->save_review($overall_rating, $review_title, $review_description, $pros, $cons, $user_name);
 				$Reviews->save_rating_detail($property_uid, $rating_id, $rating_1, $rating_2, $rating_3, $rating_4, $rating_5, $rating_6);
 
 				if ($jrConfig[ 'autopublish_reviews' ] == '1') {

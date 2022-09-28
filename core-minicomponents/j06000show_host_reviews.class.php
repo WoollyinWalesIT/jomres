@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06000show_host_reviews
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -50,13 +51,13 @@ class j06000show_host_reviews
 		
 		$cms_user_id = (int)jomresGetParam($_REQUEST, 'cms_user_id', 0);
 		
-		if (isset($componentArgs['cms_user_id']) && $cms_user_id == 0 ) {
+		if (isset($componentArgs['cms_user_id']) && $cms_user_id == 0) {
 			$cms_user_id = $componentArgs['cms_user_id'];
 		} elseif ($thisJRUser->userIsRegistered && $cms_user_id == 0) {
 			$cms_user_id = (int)$thisJRUser->id;
 		}
 		
-		if ($cms_user_id == 0 ) {
+		if ($cms_user_id == 0) {
 			return;
 		}
 
@@ -91,12 +92,11 @@ class j06000show_host_reviews
 
 		$rows = array();
 		
-		foreach ($jrportal_guest_profile->guest_reviews as $property_uid => $review ) {
-			
-			if (array_key_exists ($property_uid , $current_property_details->multi_query_result)  ) {
+		foreach ($jrportal_guest_profile->guest_reviews as $property_uid => $review) {
+			if (array_key_exists($property_uid, $current_property_details->multi_query_result)) {
 				$property = $current_property_details->multi_query_result[$property_uid];
 				
-				if (  $property['published'] == 1 ) {
+				if ($property['published'] == 1) {
 					$r = array();
 
 					if (isset($images[$property_uid]["property"][0][0]["small"])) {
@@ -117,7 +117,7 @@ class j06000show_host_reviews
 
 		$output = array();
 
-		$output[ 'GUEST_PROFILE_OF_ME' ] = jr_gettext('GUEST_PROFILE_OF_ME', 'GUEST_PROFILE_OF_ME' , false );
+		$output[ 'GUEST_PROFILE_OF_ME' ] = jr_gettext('GUEST_PROFILE_OF_ME', 'GUEST_PROFILE_OF_ME', false);
 
 		$pageoutput[ ] = $output;
 

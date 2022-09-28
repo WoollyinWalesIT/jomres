@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -29,19 +29,18 @@ class jomres_config_site_singleton
 
 		$this->config_last_modified = 0;
 		$this->config_file = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'configuration.php';
-		if ( file_exists($this->config_file)) {
+		if (file_exists($this->config_file)) {
 			clearstatcache();
 			$this->config_last_modified = filemtime($this->config_file);
-
 		}
 
-        $this->site_settings_table_exists = false;
+		$this->site_settings_table_exists = false;
 
 		$this->init();
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -52,7 +51,7 @@ class jomres_config_site_singleton
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -63,7 +62,7 @@ class jomres_config_site_singleton
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -74,7 +73,7 @@ class jomres_config_site_singleton
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -87,29 +86,31 @@ class jomres_config_site_singleton
 		if (isset($config_to_save['version'])) {
 			unset($config_to_save['version']);
 		}
-		$result = file_put_contents($this->config_file,
+		$result = file_put_contents(
+			$this->config_file,
 			'<?php
 ##################################################################
 defined( \'_JOMRES_INITCHECK\' ) or die( \'\' );
 ##################################################################
 
 $jrConfig = ' .var_export($config_to_save, true).';
-');
+'
+		);
 
 		// On my Ubuntu box, and on some client boxes, there's a delay in saving the config file so we will wait, then wait a bit more after the file mod time has been updated
 		// Might need to add a clause to not do this during api calls?
 		do {
-            if (!defined('AUTO_UPGRADE')) {
-                sleep(1); // Writing the file could take a moment
-            }
+			if (!defined('AUTO_UPGRADE')) {
+				sleep(1); // Writing the file could take a moment
+			}
 
 			clearstatcache();
 			$config_last_modified = filemtime($this->config_file);
-		} while ( $config_last_modified <= $this->config_last_modified);
+		} while ($config_last_modified <= $this->config_last_modified);
 
-        if (!defined('AUTO_UPGRADE')) {
-            sleep(2);
-        }
+		if (!defined('AUTO_UPGRADE')) {
+			sleep(2);
+		}
 
 		if (!$result) {
 			trigger_error('ERROR: '.$this->config_file.' can`t be saved. Please solve the permission problem and try again.', E_USER_ERROR);
@@ -118,7 +119,7 @@ $jrConfig = ' .var_export($config_to_save, true).';
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -132,41 +133,43 @@ $jrConfig = ' .var_export($config_to_save, true).';
 			return true;
 		}
 
-        if ($k == '' ) {
-            return;
-        }
+		if ($k == '') {
+			return;
+		}
 
-		if (file_exists($this->config_file) || !$this->site_settings_table_exists ) {
-            if (!file_exists($this->config_file) ) {
-                touch($this->config_file);
-            }
+		if (file_exists($this->config_file) || !$this->site_settings_table_exists) {
+			if (!file_exists($this->config_file)) {
+				touch($this->config_file);
+			}
 			include $this->config_file;
 			if (!array_key_exists($k, $this->config)) {
-                $this->config[ $k ] = $v;
+				$this->config[ $k ] = $v;
 
-				$result = file_put_contents($this->config_file,
+				$result = file_put_contents(
+					$this->config_file,
 					'<?php
 ##################################################################
 defined( \'_JOMRES_INITCHECK\' ) or die( \'\' );
 ##################################################################
 
 $jrConfig = ' .var_export($this->config, true).';
-');
+'
+				);
 
 				// On my Ubuntu box, and on some client boxes, there's a delay in saving the config file so we will wait, then wait a bit more after the file mod time has been updated
 				// Might need to add a clause to not do this during api calls?
 				do {
-                    if (!defined('AUTO_UPGRADE')) {
-                        sleep(1); // Writing the file could take a moment
-                    }
+					if (!defined('AUTO_UPGRADE')) {
+						sleep(1); // Writing the file could take a moment
+					}
 
 					clearstatcache();
 					$config_last_modified = filemtime($this->config_file);
-				} while ( $config_last_modified <= $this->config_last_modified);
+				} while ($config_last_modified <= $this->config_last_modified);
 
-                if (!defined('AUTO_UPGRADE')) {
-                    sleep(2);
-                }
+				if (!defined('AUTO_UPGRADE')) {
+					sleep(2);
+				}
 
 				if (!$result) {
 					trigger_error('ERROR: '.$this->config_file.' can`t be saved. Please solve the permission problem and try again.', E_USER_ERROR);
@@ -188,7 +191,7 @@ $jrConfig = ' .var_export($this->config, true).';
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -202,38 +205,40 @@ $jrConfig = ' .var_export($this->config, true).';
 			return true;
 		}
 
-        if ($k == '' ) {
-            return;
-        }
+		if ($k == '') {
+			return;
+		}
 
-		if (file_exists($this->config_file) || !$this->site_settings_table_exists ) {
+		if (file_exists($this->config_file) || !$this->site_settings_table_exists) {
 			include $this->config_file;
 
 			$jrConfig[ $k ] = $v;
 
-			$result = file_put_contents($this->config_file,
+			$result = file_put_contents(
+				$this->config_file,
 				'<?php
 ##################################################################
 defined( \'_JOMRES_INITCHECK\' ) or die( \'\' );
 ##################################################################
 
 $jrConfig = ' .var_export($jrConfig, true).';
-');
+'
+			);
 
 			// On my Ubuntu box, and on some client boxes, there's a delay in saving the config file so we will wait, then wait a bit more after the file mod time has been updated
 			// Might need to add a clause to not do this during api calls?
 			do {
-                if (!defined('AUTO_UPGRADE')) {
-                    sleep(1); // Writing the file could take a moment
-                }
+				if (!defined('AUTO_UPGRADE')) {
+					sleep(1); // Writing the file could take a moment
+				}
 
 				clearstatcache();
 				$config_last_modified = filemtime($this->config_file);
-			} while ( $config_last_modified <= $this->config_last_modified);
+			} while ($config_last_modified <= $this->config_last_modified);
 
-            if (!defined('AUTO_UPGRADE')) {
-                sleep(2);
-            }
+			if (!defined('AUTO_UPGRADE')) {
+				sleep(2);
+			}
 
 			if (!$result) {
 				trigger_error('ERROR: '.$this->config_file.' can`t be saved. Please solve the permission problem and try again.', E_USER_ERROR);
@@ -253,7 +258,7 @@ $jrConfig = ' .var_export($jrConfig, true).';
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -268,7 +273,7 @@ $jrConfig = ' .var_export($jrConfig, true).';
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -293,35 +298,35 @@ $jrConfig = ' .var_export($jrConfig, true).';
 
 			// We need to bypass doSelectSql here because doSelectSql does $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton'); too, and that'll cause a fatal error.
 			$jomres_db = jomres_singleton_abstract::getInstance('jomres_database');
-            $jomresConfig_dbprefix = get_showtime('dbprefix');
-            $jomresConfig_db = get_showtime('db');
+			$jomresConfig_dbprefix = get_showtime('dbprefix');
+			$jomresConfig_db = get_showtime('db');
 
-            // Jomres probably hasn't been installed yet, does the site settings table exist yet?
-            $tablesFound = false;
-            $query = 'SHOW TABLES';
-            $jomres_db->setQuery($query);
-            $result = $jomres_db->loadObjectList();
-            $string = 'Tables_in_'.$jomresConfig_db;
-            if (!empty($result)) {
-                foreach ($result as $r) {
-                    if (strstr($r->$string, $jomresConfig_dbprefix.'jomres_site_settings')) {
-                        $this->site_settings_table_exists = true;
-                    }
-                }
-            }
+			// Jomres probably hasn't been installed yet, does the site settings table exist yet?
+			$tablesFound = false;
+			$query = 'SHOW TABLES';
+			$jomres_db->setQuery($query);
+			$result = $jomres_db->loadObjectList();
+			$string = 'Tables_in_'.$jomresConfig_db;
+			if (!empty($result)) {
+				foreach ($result as $r) {
+					if (strstr($r->$string, $jomresConfig_dbprefix.'jomres_site_settings')) {
+						$this->site_settings_table_exists = true;
+					}
+				}
+			}
 
-            if ($this->site_settings_table_exists) {
-                $query = 'SELECT akey,value FROM #__jomres_site_settings';
-                $jomres_db->setQuery($query);
-                $jomres_db->loadObjectList();
-                if (!empty($jomres_db->result)) {
-                    foreach ($jomres_db->result as $setting) {
-                        $akey = $setting->akey;
-                        $value = $setting->value;
-                        $this->config[ $akey ] = $value;
-                    }
-                }
-            }
+			if ($this->site_settings_table_exists) {
+				$query = 'SELECT akey,value FROM #__jomres_site_settings';
+				$jomres_db->setQuery($query);
+				$jomres_db->loadObjectList();
+				if (!empty($jomres_db->result)) {
+					foreach ($jomres_db->result as $setting) {
+						$akey = $setting->akey;
+						$value = $setting->value;
+						$this->config[ $akey ] = $value;
+					}
+				}
+			}
 
 
 			// Now we'll check to see if any new settings have been added to the jrConfig file. If they have they'll be added to the site settings table.
@@ -338,7 +343,7 @@ $jrConfig = ' .var_export($jrConfig, true).';
 				if (!empty($result)) {
 					foreach ($result as $r) {
 						if (strstr($r->$string, $jomresConfig_dbprefix.'jomres_site_settings')) {
-                            $this->site_settings_table_exists = true;
+							$this->site_settings_table_exists = true;
 						}
 					}
 				}
@@ -361,4 +366,3 @@ $jrConfig = ' .var_export($jrConfig, true).';
 		return true;
 	}
 }
-

@@ -1,19 +1,19 @@
 <?php
-/**
- * Core file.
- *
- * @author Vince Wooll <sales@jomres.net>
- *
- *  @version Jomres 10.5.3
- *
- * @copyright	2005-2022 Vince Wooll
- * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
- **/
+	/**
+	 * Core file.
+	 *
+	 * @author Vince Wooll <sales@jomres.net>
+	 *
+	 *  @version Jomres 10.5.4
+	 *
+	 * @copyright	2005-2022 Vince Wooll
+	 * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
+	 **/
 
 // ################################################################
-defined('_JOMRES_INITCHECK') or die('');
+	defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-	
+
 	/**
 	 *
 	 * @package Jomres\Core\Classes
@@ -21,82 +21,85 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jomres_language
-{	
+{
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
 	public function __construct()
-    {
-        $this->init();
+	{
+		$this->init();
 	}
 
-    public function init()
-    {
-        $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-        $jrConfig = $siteConfig->get();
+	public function init()
+	{
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
 
-        $tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
+		$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 
-        $this->third_party_languages = get_showtime('third_party_languages');
+		$this->third_party_languages = get_showtime('third_party_languages');
 
 		$jomresConfig_lang = jomres_cmsspecific_getcmslang();
 
-        if (isset($_POST['jomreslang'])) {
-            $jomresConfig_lang = (string)RemoveXSS(jomresGetParam($_POST, 'jomreslang', ''));
-        } elseif (isset($_GET['jomreslang'])) {
-            $jomresConfig_lang = (string)RemoveXSS(jomresGetParam($_GET, 'jomreslang', ''));
-        } elseif (isset($_REQUEST['jomreslang'])) {
-            $jomresConfig_lang = (string)RemoveXSS(jomresGetParam($_REQUEST, 'jomreslang', ''));
-        } elseif (isset($_REQUEST['lang'])){
-            $jomresConfig_lang = (string)RemoveXSS(jomresGetParam($_REQUEST, 'lang', ''));
-        } elseif (!defined('AUTO_UPGRADE')) {
-            $jomresConfig_lang = (string) RemoveXSS(jomres_cmsspecific_getcmslang());
-        } else {
-            $jomresConfig_lang = 'en-GB';
-        }
+		if (isset($_POST['jomreslang'])) {
+			$jomresConfig_lang = (string)RemoveXSS(jomresGetParam($_POST, 'jomreslang', ''));
+		} elseif (isset($_GET['jomreslang'])) {
+			$jomresConfig_lang = (string)RemoveXSS(jomresGetParam($_GET, 'jomreslang', ''));
+		} elseif (isset($_REQUEST['jomreslang'])) {
+			$jomresConfig_lang = (string)RemoveXSS(jomresGetParam($_REQUEST, 'jomreslang', ''));
+		} elseif (isset($_REQUEST['lang'])) {
+			$jomresConfig_lang = (string)RemoveXSS(jomresGetParam($_REQUEST, 'lang', ''));
+		} elseif (!defined('AUTO_UPGRADE')) {
+			$jomresConfig_lang = (string) RemoveXSS(jomres_cmsspecific_getcmslang());
+		} else {
+			$jomresConfig_lang = 'en-GB';
+		}
 
-        $langfile_crossref = $this->define_langfile_to_languages_array();
-        $this->datepicker_crossref = $this->define_langfile_to_datepicker_files_array();
+		$langfile_crossref = $this->define_langfile_to_languages_array();
+		$this->datepicker_crossref = $this->define_langfile_to_datepicker_files_array();
 
-        //set lang shortcode showtime, eg: en
-        $this->shortcodes = $this->get_shortcodes();
+		//set lang shortcode showtime, eg: en
+		$this->shortcodes = $this->get_shortcodes();
 
-        if (!array_key_exists($jomresConfig_lang, $langfile_crossref)) {
-            $jomresConfig_lang = $this->get_shortcode_to_longcode($jomresConfig_lang);
-        }
+		if (!array_key_exists($jomresConfig_lang, $langfile_crossref)) {
+			$jomresConfig_lang = $this->get_shortcode_to_longcode($jomresConfig_lang);
+		}
 
-        $tmpBookingHandler->tmplang[ 'jomreslang' ] = $jomresConfig_lang;
+		$tmpBookingHandler->tmplang[ 'jomreslang' ] = $jomresConfig_lang;
 
-        $this->lang = $jomresConfig_lang;
+		$this->lang = $jomresConfig_lang;
 
-        $this->datepicker_lang = 'en';
-        if ( isset($this->datepicker_crossref[ $jomresConfig_lang ])) {
-            $this->datepicker_lang = $this->datepicker_crossref[ $jomresConfig_lang ];
-        }
+		$this->datepicker_lang = 'en';
+		if (isset($this->datepicker_crossref[ $jomresConfig_lang ])) {
+			$this->datepicker_lang = $this->datepicker_crossref[ $jomresConfig_lang ];
+		}
 
 
-        //set lang showtime, eg: en-GB
-        set_showtime('lang', $this->lang);
-        set_showtime('datepicker_lang', $this->datepicker_lang);
+		//set lang showtime, eg: en-GB
+		set_showtime('lang', $this->lang);
+		set_showtime('datepicker_lang', $this->datepicker_lang);
 
-        $key = array_search($jomresConfig_lang, $this->shortcodes);
-        set_showtime('lang_shortcode', $key);
+		$key = array_search($jomresConfig_lang, $this->shortcodes);
+		set_showtime('lang_shortcode', $key);
 
-        //selected languages
-        $this->selected_languages = array();
+		//selected languages
+		$this->selected_languages = array();
 
-        if ($jrConfig['selected_languages'] != '') {
-            $this->selected_languages = explode(',',$jrConfig['selected_languages']);
-        } else {
-            $this->selected_languages = array_keys($langfile_crossref);
-        }
-    }
+		if ($jrConfig['selected_languages'] != '') {
+			$this->selected_languages = explode(',', $jrConfig['selected_languages']);
+		} else {
+			$this->selected_languages = array_keys($langfile_crossref);
+		}
+
+		$this->get_language('stripe_standard');
+
+	}
 
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -104,13 +107,13 @@ class jomres_language
 	public function get_language($property_type = '')
 	{
 
-        $this->third_party_languages = get_showtime('third_party_languages');
+		$this->third_party_languages = get_showtime('third_party_languages');
 
 		//load the property type specific language file. If it doesn`t exist, do nothing, so the default language strings will be used
-
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
 
 		if ($property_type != '') {
-
 			if (file_exists(JOMRESPATH_BASE.JRDS.'language'.JRDS.strtolower($property_type).JRDS.$this->lang.'.php')) {
 				require_once JOMRESPATH_BASE.JRDS.'language'.JRDS.strtolower($property_type).JRDS.$this->lang.'.php';
 
@@ -123,18 +126,16 @@ class jomres_language
 				return false;
 			}
 		} else {
-			$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-			$jrConfig = $siteConfig->get();
+			// Calling this here ensures that the complete up-to-date set of definitions are available to the run, this allows really old sites to update when they no longer have access to the language_context dropdown (removed in 20220-ish).
+			if ( file_exists(JOMRESPATH_BASE.'language'.JRDS.$this->lang.'.php')) {
+				require_once JOMRESPATH_BASE.'language'.JRDS.$this->lang.'.php';
+			}
+
 
 			//load language context language file if no property type specific language file found above
-			if ($jrConfig[ 'language_context' ] != '') {
+			if ($jrConfig[ 'language_context' ] != '' && file_exists(JOMRESPATH_BASE.'language'.JRDS.$jrConfig[ 'language_context' ].JRDS.$this->lang.'.php')) {
 				if (file_exists(JOMRESPATH_BASE.'language'.JRDS.$jrConfig[ 'language_context' ].JRDS.$this->lang.'.php')) {
 					require_once JOMRESPATH_BASE.'language'.JRDS.$jrConfig[ 'language_context' ].JRDS.$this->lang.'.php';
-
-					return true;
-				} elseif (file_exists(JOMRESPATH_BASE.JRDS.'language'.JRDS.$jrConfig[ 'language_context' ].JRDS.'en-GB.php')) {
-					require_once JOMRESPATH_BASE.JRDS.'language'.JRDS.$jrConfig[ 'language_context' ].JRDS.'en-GB.php';
-
 					return true;
 				}
 			}
@@ -154,14 +155,14 @@ class jomres_language
 
 		return false;
 	}
-	
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
-	public function get_languageselection_dropdown($config_option = false, $default_lang = '' , $custom_input_name = '' )
+	public function get_languageselection_dropdown($config_option = false, $default_lang = '', $custom_input_name = '')
 	{
 		$langfile_options = array();
 
@@ -177,21 +178,21 @@ class jomres_language
 			}
 		}
 
-        $options = array();
-        foreach ($langfile_options as $opt ) {
-            $options[] = (array)$opt;
-        }
+		$options = array();
+		foreach ($langfile_options as $opt) {
+			$options[] = (array)$opt;
+		}
 
-        uasort($options,function($a,$b){
-            return strcmp($a["text"],$b["text"]);
-        });
+		uasort($options, function ($a, $b) {
+			return strcmp($a["text"], $b["text"]);
+		});
 
-        $langfile_options = array();
-        foreach ($options as $opt) {
-            $langfile_options[] = (object)$opt;
-        }
+		$langfile_options = array();
+		foreach ($options as $opt) {
+			$langfile_options[] = (object)$opt;
+		}
 
-		if ($custom_input_name == '' ) {
+		if ($custom_input_name == '') {
 			if (!$config_option) {
 				$javascript = 'onchange="this.form.submit();"';
 				$input_name = 'jomreslang';
@@ -204,9 +205,9 @@ class jomres_language
 			$javascript = '';
 		}
 
-		
+
 		$langfile_crossref = $this->define_langfile_to_languages_array();
-		
+
 		if ($default_lang != '' && array_key_exists($default_lang, $langfile_crossref)) {
 			$lang = $default_lang;
 		} else {
@@ -216,7 +217,7 @@ class jomres_language
 		$dropdown = jomresHTML::selectList($langfile_options, $input_name, 'class="inputbox" size="1" '.$javascript.'', 'value', 'text', $lang);
 
 		$selecthtml = '';
-		if ($custom_input_name == '' ) {
+		if ($custom_input_name == '') {
 			if (!$config_option) {
 				$selecthtml = '<form action="" method="post" name="jomreslang">';
 			}
@@ -227,12 +228,12 @@ class jomres_language
 		} else {
 			$selecthtml = $dropdown;
 		}
-		
+
 		return $selecthtml;
 	}
-	
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -240,22 +241,28 @@ class jomres_language
 	public function define_langfile_to_languages_array()
 	{
 		$langs = array();
+		$langs[ 'ar-AA' ] = 'العربية الموحدة';
 		$langs[ 'ar-AR' ] = 'Argentino';
+		$langs[ 'az-AZ' ] = 'Azərbaycan dili';
 		$langs[ 'bg-BG' ] = 'Bulgarian';
-		$langs[ 'en-GB' ] = 'English';
+		$langs[ 'ca-ES' ] = 'Catalan';
 		$langs[ 'cs-CZ' ] = 'Czech';
 		$langs[ 'da-DK' ] = 'Dansk';
-		$langs[ 'de-DE' ] = 'Deutsch';
 		$langs[ 'de-CH' ] = 'Deutsch Schweiz';
+		$langs[ 'de-DE' ] = 'Deutsch';
 		$langs[ 'el-GR' ] = 'Ελληνικά';
 		$langs[ 'en-CA' ] = 'Canadian';
+		$langs[ 'en-GB' ] = 'English';
 		$langs[ 'en-US' ] = 'American';
 		$langs[ 'es-ES' ] = 'Español';
+		$langs[ 'fa-IR' ] = 'فارسی';
 		$langs[ 'fr-FR' ] = 'Français';
 		$langs[ 'he-IL' ] = 'עברית';
 		$langs[ 'hr-HR' ] = 'Croatian';
 		$langs[ 'hu-HU' ] = 'Hungarian';
+		$langs[ 'hy-AM' ] = 'հայերեն';
 		$langs[ 'it-IT' ] = 'Italiano';
+		$langs[ 'ja-JP' ] = '日本語';
 		$langs[ 'lv-LV' ] = 'Latvian';
 		$langs[ 'nb-NO' ] = 'Norsk';
 		$langs[ 'nl-NL' ] = 'Nederlands';
@@ -267,46 +274,40 @@ class jomres_language
 		$langs[ 'sk-SK' ] = 'Slovak';
 		$langs[ 'sl-SI' ] = 'Slovenian';
 		$langs[ 'sr-YU' ] = 'Srpski';
-		$langs[ 'zh-CN' ] = 'Chinese';
-		$langs[ 'th-TH' ] = 'Thai';
 		$langs[ 'sv-SE' ] = 'Svenska';
-		$langs[ 'ar-AA' ] = 'العربية الموحدة';
-		$langs[ 'ca-ES' ] = 'Catalan';
-		$langs[ 'ja-JP' ] = '日本語';
-		$langs[ 'uk-UA' ] = 'Український';
-		$langs[ 'fa-IR' ] = 'فارسی';
-		$langs[ 'az-AZ' ] = 'Azərbaycan dili';
+		$langs[ 'th-TH' ] = 'Thai';
 		$langs[ 'tr-TR' ] = 'Türkçe';
-		$langs[ 'hy-AM' ] = 'հայերեն';
+		$langs[ 'uk-UA' ] = 'Український';
+		$langs[ 'zh-CN' ] = 'Chinese';
 
-        if (!empty($this->third_party_languages) ) {
-            foreach ($this->third_party_languages as $lang ) {
-                $friendly_name = $lang['friendly_name'];
-                $long_code = $lang['long_code'];
-                $langs[$long_code] = $friendly_name;
-            }
-        }
+		if (!empty($this->third_party_languages)) {
+			foreach ($this->third_party_languages as $lang) {
+				$friendly_name = $lang['friendly_name'];
+				$long_code = $lang['long_code'];
+				$langs[$long_code] = $friendly_name;
+			}
+		}
 
 		return $langs;
 	}
-	
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
 	public function get_shortcode_to_longcode($lang)
 	{
-		if ( isset($this->shortcodes[ $lang ] )) {
+		if (isset($this->shortcodes[ $lang ])) {
 			return $this->shortcodes[ $lang ];
 		}
 
 		//return 'en-GB';
 	}
-	
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -352,18 +353,18 @@ class jomres_language
 		$langs[ 'tr' ] = 'tr-TR';
 		$langs[ 'hy' ] = 'hy-AM';
 
-        if (!empty($this->third_party_languages) ) {
-            foreach ($this->third_party_languages as $lang ) {
-                $short_code = $lang['short_code'];
-                $long_code = $lang['long_code'];
-                $langs[$short_code] = $long_code;
-            }
-        }
+		if (!empty($this->third_party_languages)) {
+			foreach ($this->third_party_languages as $lang) {
+				$short_code = $lang['short_code'];
+				$long_code = $lang['long_code'];
+				$langs[$short_code] = $long_code;
+			}
+		}
 		return $langs;
 	}
-	
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -410,13 +411,13 @@ class jomres_language
 		$langs[ 'tr-TR' ] = 'tr';
 		$langs[ 'hy-AM' ] = 'hy';
 
-        if (!empty($this->third_party_languages) ) {
-            foreach ($this->third_party_languages as $lang ) {
-                $jquery_ui_localisation_file = $lang['jquery_ui_localisation_file'];
-                $long_code = $lang['long_code'];
-                $langs[$long_code] = $jquery_ui_localisation_file;
-            }
-        }
+		if (!empty($this->third_party_languages)) {
+			foreach ($this->third_party_languages as $lang) {
+				$jquery_ui_localisation_file = $lang['jquery_ui_localisation_file'];
+				$long_code = $lang['long_code'];
+				$langs[$long_code] = $jquery_ui_localisation_file;
+			}
+		}
 
 		return $langs;
 	}

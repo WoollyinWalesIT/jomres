@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06005view_invoice
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -67,7 +68,7 @@ class j06005view_invoice
 		
 		if (isset($componentArgs['as_pdf'])) {
 			$as_pdf = (bool)$componentArgs['as_pdf'];
-		} elseif ( isset($_REQUEST['as_pdf']) ) {
+		} elseif (isset($_REQUEST['as_pdf'])) {
 			$as_pdf = (bool)jomresGetParam($_REQUEST, 'as_pdf', false);
 		} else {
 			$as_pdf = false;
@@ -119,7 +120,7 @@ class j06005view_invoice
 		//end security checks. If everything is fine so far, let`s move forward.
 
 
-		set_showtime('property_uid',$invoice->property_uid);	// Allows jr_gettext to find property specific strings. Mainly to ensure that extras are translated
+		set_showtime('property_uid', $invoice->property_uid);	// Allows jr_gettext to find property specific strings. Mainly to ensure that extras are translated
 
 		if ($invoice->invoice[$invoice_id]['subscription'] != "1" && $invoice->invoice[$invoice_id]['is_commission'] != "1") {
 			//get the contract details
@@ -144,7 +145,7 @@ class j06005view_invoice
 		$output['CHILDREN'] = $current_contract_details->contract[$invoice->contract_id]['contractdeets']['children'];
 
 		$output[ 'BUSINESS_DETAILS_TEMPLATE' ]	= $MiniComponents->specificEvent('06005', 'show_invoice_seller', array('invoice_id' => $invoice_id));
-		$output[ 'CLIENT_DETAILS_TEMPLATE' ]	= $MiniComponents->specificEvent('06005', 'show_invoice_buyer', array('invoice_id' => $invoice_id)); 
+		$output[ 'CLIENT_DETAILS_TEMPLATE' ]	= $MiniComponents->specificEvent('06005', 'show_invoice_buyer', array('invoice_id' => $invoice_id));
 
 		if ($popup != 1) {
 			$output[ 'PRINTLINK' ] = JOMRES_SITEPAGE_URL_NOSEF.'&tmpl='.get_showtime('tmplcomponent').'&popup=1&task=view_invoice&id='.$invoice->id;
@@ -176,23 +177,23 @@ class j06005view_invoice
 
 		$markaspaid_link = array();
 		if ($thisJRUser->userIsManager && (int) $invoice->property_uid > 0 && (int) $invoice->status != 1 && $contractData['approved'] == 1) {
-			$markaspaid = jr_gettext('_JOMRES_INVOICE_MARKASPAID', '_JOMRES_INVOICE_MARKASPAID',false);
+			$markaspaid = jr_gettext('_JOMRES_INVOICE_MARKASPAID', '_JOMRES_INVOICE_MARKASPAID', false);
 			$markaspaid_link[] = array('MARKASPAID_LINK' => JOMRES_SITEPAGE_URL_NOSEF.'&task=mark_booking_invoice_paid&no_html=1&id='.$invoice->id, 'MARKASPAID_TEXT' => $markaspaid);
 		}
 
 		$markaspending_link = array();
 		if ($thisJRUser->userIsManager && (int) $invoice->property_uid > 0 && (int) $invoice->status == 1) {
-			$markaspending = jr_gettext('_JOMRES_INVOICE_MARKASPENDING', '_JOMRES_INVOICE_MARKASPENDING',false);
+			$markaspending = jr_gettext('_JOMRES_INVOICE_MARKASPENDING', '_JOMRES_INVOICE_MARKASPENDING', false);
 			$markaspending_link[] = array('MARKASPENDING_LINK' => JOMRES_SITEPAGE_URL_NOSEF.'&task=mark_booking_invoice_pending&no_html=1&id='.$invoice->id, 'MARKASPENDING_TEXT' => $markaspending);
 		}
 
 		$viewbooking_link = array();
 		if ($thisJRUser->userIsManager && (int) $invoice->contract_id > 0) {
-			$viewbooking = jr_gettext('_JOMCOMP_MYUSER_VIEWBOOKING', '_JOMCOMP_MYUSER_VIEWBOOKING',false);
+			$viewbooking = jr_gettext('_JOMCOMP_MYUSER_VIEWBOOKING', '_JOMCOMP_MYUSER_VIEWBOOKING', false);
 			$viewbooking_link[] = array('VIEWBOOKING_LINK' => JOMRES_SITEPAGE_URL.'&task=edit_booking&contract_uid='.$invoice->contract_id, 'VIEWBOOKING_TEXT' => $viewbooking);
 		}
 
-		if ( trim($invoice->invoice_number) == '' ) {
+		if (trim($invoice->invoice_number) == '') {
 			$output[ 'ID' ] = $invoice->id;
 		} else {
 			$output[ 'ID' ] = $invoice->invoice_number;
@@ -224,15 +225,17 @@ class j06005view_invoice
 
 		$output[ 'USER' ] = jr_gettext('_JRPORTAL_INVOICES_USER', '_JRPORTAL_INVOICES_USER', false);
 		
-		if ($invoice->raised_date != '1970-01-01 00:00:01')
+		if ($invoice->raised_date != '1970-01-01 00:00:01') {
 			$output[ 'RAISED' ] = $invoice->raised_date;
-		else
+		} else {
 			$output[ 'RAISED' ] = '';
+		}
 		
-		if ($invoice->due_date != '1970-01-01 00:00:01')
+		if ($invoice->due_date != '1970-01-01 00:00:01') {
 			$output[ 'DUE' ] = $invoice->due_date;
-		else
+		} else {
 			$output[ 'DUE' ] = '';
+		}
 
 		// See note at the end of this line!
 		$output[ 'INITTOTAL' ] = output_price($invoice->init_total, $invoice->currencycode, true, true); // This is now wrong. The init total is calculated when the invoice is generated, but recent VAT related changes mean that on older invoices which were created before the VAT changes were added, it's possible that this sum is incorrect. The newer GRAND_TOTAL_INC_TAX output variable is correct, as it's adjusted according to the VAT rules, so we'll replace INITTOTAL with GRAND_TOTAL_INC_TAX in invoice template files.
@@ -255,8 +258,7 @@ class j06005view_invoice
 
 		$immediate_pay = array();
 		if ((int) $invoice->status == 3) {
-			if (
-				(!$thisJRUser->userIsManager && !$thisJRUser->superPropertyManager && $invoice->contract_id > 0 && $invoice->is_commission == 0 && $invoice->subscription == 0 && $contractData['approved'] == 1) || //booking invoice viewed by guest
+			if ((!$thisJRUser->userIsManager && !$thisJRUser->superPropertyManager && $invoice->contract_id > 0 && $invoice->is_commission == 0 && $invoice->subscription == 0 && $contractData['approved'] == 1) || //booking invoice viewed by guest
 				($invoice->contract_id == 0 && ($invoice->is_commission > 0 || $invoice->subscription > 0)) //subscription or commission invoice viewed by a manager
 				) {
 				//TODO clean this up and display gateway images or something
@@ -297,8 +299,9 @@ class j06005view_invoice
 				$r[ 'PAYMENT_METHOD' ] = $li[ 'payment_method' ];
 				
 				$r[ 'MANAGEMENT_URL' ] = '';
-				if ($thisJRUser->userIsManager)
+				if ($thisJRUser->userIsManager) {
 					$r[ 'MANAGEMENT_URL' ] = $li[ 'management_url' ];
+				}
 				
 				if ((int) $li[ 'is_payment' ] == 0) {
 					$rows[] = $r;
@@ -325,12 +328,11 @@ class j06005view_invoice
 		//booking invoices
 		if ((int) $invoice->contract_id > 0) {
 			$jomres_media_centre_images->get_images($invoice->property_uid, array('property_logo'));
-			if ( isset($jomres_media_centre_images->images ['property_logo'] [0])){
+			if (isset($jomres_media_centre_images->images ['property_logo'] [0])) {
 				foreach ($jomres_media_centre_images->images ['property_logo'] [0] as $image) {
 					$output[ 'LOGO' ] = $image['small'];
 				}
 			}
-
 		} else { //commission and subscription invoices
 			$jomres_media_centre_images->get_site_images('logo');
 
@@ -343,13 +345,13 @@ class j06005view_invoice
 		$tmpl = new patTemplate();
 		$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
 
-		if ($popup == 1 && !$as_pdf ) {
+		if ($popup == 1 && !$as_pdf) {
 			$tmpl->readTemplatesFromInput('printable_invoice.html');
-		} elseif($line_items_only) {
+		} elseif ($line_items_only) {
 			$tmpl->readTemplatesFromInput('frontend_view_invoice_lineitems.html');
 		} elseif ($as_pdf) {
-            $tmpl->readTemplatesFromInput('frontend_view_invoice_pdf.html');
-        } else {
+			$tmpl->readTemplatesFromInput('frontend_view_invoice_pdf.html');
+		} else {
 			$tmpl->readTemplatesFromInput('frontend_view_invoice.html');
 		}
 
@@ -365,7 +367,7 @@ class j06005view_invoice
 		}
 
 		if ($as_pdf) {
-			output_pdf($tmpl->getParsedTemplate() , $output[ 'HINVOICENO' ].' '.$output[ 'ID' ] );
+			output_pdf($tmpl->getParsedTemplate(), $output[ 'HINVOICENO' ].' '.$output[ 'ID' ]);
 		}
 		
 		

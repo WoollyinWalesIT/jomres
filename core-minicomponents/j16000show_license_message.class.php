@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j16000show_license_message
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -55,7 +56,7 @@ class j16000show_license_message
 		//license key status check
 		$message = '';
 		
-		if (get_showtime("task") != "connect" ) {
+		if (get_showtime("task") != "connect") {
 			if ($jomres_check_support_key->key_status == "Expired") {
 				$message = '
 	<div class="alert alert-error">
@@ -70,7 +71,7 @@ class j16000show_license_message
 	</div>';
 			}
 
-			if ($jomres_check_support_key->key_status == "Unknown"  || $jomres_check_support_key->key_status == "Disabled" ) {
+			if ($jomres_check_support_key->key_status == "Unknown"  || $jomres_check_support_key->key_status == "Disabled") {
 				$message = '
 	<div class="alert alert-error">
 	<h3>'.jr_gettext('_LICENCE_INVALID_KEY', '_LICENCE_INVALID_KEY', false, false).'</h3>
@@ -83,8 +84,9 @@ class j16000show_license_message
 	<a href="'.jomresUrl(JOMRES_SITEPAGE_URL_ADMIN.'&task=connect').'" class="btn btn-large btn-success">'.jr_gettext('_LICENCE_INVALID_START', '_LICENCE_INVALID_START', false, false).'</a>
 	</div>';
 			}
+		} else {
+			$message = "";
 		}
-		else $message = "";
 		
 		if ($output_now) {
 			echo $message;

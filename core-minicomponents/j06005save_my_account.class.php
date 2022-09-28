@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06005save_my_account
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -43,7 +44,7 @@ class j06005save_my_account
 		}
 		
 		$jomres_gdpr_optin_consent = new jomres_gdpr_optin_consent();
-		if ( !$jomres_gdpr_optin_consent->user_consents_to_storage() ) {
+		if (!$jomres_gdpr_optin_consent->user_consents_to_storage()) {
 			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=opted_out&jr_redirect_url='.getCurrentUrl()), '');
 		}
 
@@ -55,7 +56,11 @@ class j06005save_my_account
 		if ($thisJRUser->id == 0) {
 			return false;
 		}
-		
+
+		$MiniComponents->triggerEvent('03160', [] ); // Optional
+
+		$user_details = jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id($thisJRUser->id);
+
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
 
@@ -70,7 +75,7 @@ class j06005save_my_account
 		$landline = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'landline', ''));
 		$mobile = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'mobile', ''));
 		$fax = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'fax', ''));
-		$email = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'email', ''));
+		$email = $this->jomres_encryption->encrypt( (string)$user_details[ $thisJRUser->id ][ 'email' ] );
 		$preferences = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'preferences', ''));
 		
 		$drivers_license = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'drivers_license', ''));
@@ -87,14 +92,13 @@ class j06005save_my_account
 		$original_vat_number = $thisJRUser->vat_number;
 		$original_vat_number_validated = (int) $thisJRUser->vat_number_validated;
 
-		if (
-			!$delete_image &&
+		if (!$delete_image &&
 				(
-				$firstname == '' || 
-				$surname == '' || 
-				$street == '' || 
-				$town == '' || 
-				$country == '' || 
+				$firstname == '' ||
+				$surname == '' ||
+				$street == '' ||
+				$town == '' ||
+				$country == '' ||
 				$email == ''
 				)
 			) { // Not going to mess about. If they've bypassed the javascript to get this far we're not going to waste time telling them they've missed something out. Just return.
@@ -222,12 +226,12 @@ class j06005save_my_account
 			}
 		}
 		
-		if (!is_dir( JOMRES_IMAGELOCATION_ABSPATH.'userimages')) {
-			mkdir( JOMRES_IMAGELOCATION_ABSPATH.'userimages');
+		if (!is_dir(JOMRES_IMAGELOCATION_ABSPATH.'userimages')) {
+			mkdir(JOMRES_IMAGELOCATION_ABSPATH.'userimages');
 		}
 
-		if (!is_dir( JOMRES_IMAGELOCATION_ABSPATH.'userimages'.JRDS.$thisJRUser->id)) {
-			mkdir( JOMRES_IMAGELOCATION_ABSPATH.'userimages'.JRDS.$thisJRUser->id);
+		if (!is_dir(JOMRES_IMAGELOCATION_ABSPATH.'userimages'.JRDS.$thisJRUser->id)) {
+			mkdir(JOMRES_IMAGELOCATION_ABSPATH.'userimages'.JRDS.$thisJRUser->id);
 		}
 
 		//profile image
@@ -250,7 +254,6 @@ class j06005save_my_account
 				jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_my_account'), "Yay, we'll deleted this sukka");
 			}
 		} else {
-
 			if (!empty($_FILES) && count($_FILES) == 1) { //we won`t allow more than one file to be uploaded
 				jr_import('jomres_media_centre_uploader');
 
@@ -287,7 +290,7 @@ class j06005save_my_account
 			}
 		}
 
-		// Session update 
+		// Session update
 		$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 		
 		$tmpBookingHandler->updateGuestField('firstname', $this->jomres_encryption->decrypt($firstname));

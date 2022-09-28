@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -21,13 +21,14 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jomres_media_centre_images_dbimport
-{	
+{
+
 	protected $propertys_uids;
 	
 	protected $jomres_media_centre_images;
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -44,7 +45,7 @@ class jomres_media_centre_images_dbimport
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -84,7 +85,7 @@ class jomres_media_centre_images_dbimport
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -95,8 +96,9 @@ class jomres_media_centre_images_dbimport
 		$MiniComponents->triggerEvent('11010');
 		$resource_types = $MiniComponents->miniComponentData['11010'];
 		
-		if (empty($resource_types))
+		if (empty($resource_types)) {
 			return false;
+		}
 		
 		foreach ($resource_types as $k => $v) {
 			$this->jomres_media_centre_images->get_site_images($k);
@@ -106,7 +108,7 @@ class jomres_media_centre_images_dbimport
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -123,7 +125,7 @@ class jomres_media_centre_images_dbimport
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -193,7 +195,7 @@ class jomres_media_centre_images_dbimport
 				$query = rtrim($query, ',');
 
 				if ($at_least_one_image_exists) {
-					if (!doInsertSql($query,'')) {
+					if (!doInsertSql($query, '')) {
 						throw new Exception('Could not insert site images for resource type '.$k);
 					}
 				}
@@ -207,7 +209,7 @@ class jomres_media_centre_images_dbimport
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -260,7 +262,7 @@ class jomres_media_centre_images_dbimport
 		$query = rtrim($query, ',');
 
 		if ($at_least_one_image_exists) {
-			if (!doInsertSql($query,'')) {
+			if (!doInsertSql($query, '')) {
 				throw new Exception('Could not insert site images for resource type '.$k);
 			}
 		}

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -23,7 +23,7 @@ defined('_JOMRES_INITCHECK') or die('');
 class jomres_data_sources
 {
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -36,11 +36,9 @@ class jomres_data_sources
 
 		if (!is_dir($this->data_cache_directory)) {
 			if (!mkdir($this->data_cache_directory)) {
-				throw new Exception("Error, could not make data_cache directory ".$this->data_cache_directory );
+				throw new Exception("Error, could not make data_cache directory ".$this->data_cache_directory);
 			}
 		}
-
-
 	}
 
 
@@ -63,23 +61,22 @@ class jomres_data_sources
 		$sources[] = 'guestnumbers';
 		$sources[] = 'priceranges';
 		return $sources;
-
 	}
 
 
-	public function get_data( $language ='' , $type = '' )
+	public function get_data($language = '', $type = '')
 	{
-		if ($language == '' ) {
-			throw new Exception("Error, language not sent " );
+		if ($language == '') {
+			throw new Exception("Error, language not sent ");
 		}
 
-		if ($type == '' ) {
-			throw new Exception("Error, data source type not sent " );
+		if ($type == '') {
+			throw new Exception("Error, data source type not sent ");
 		}
 
 		$available_data_sources = $this->get_data_source_types();
-		if ( !in_array( $type , $available_data_sources ) ) {
-			throw new Exception("Error, invalid data source type requested " );
+		if (!in_array($type, $available_data_sources)) {
+			throw new Exception("Error, invalid data source type requested ");
 		}
 
 		$requested_file = $this->data_cache_directory.'data_source_'.$type.'.json';

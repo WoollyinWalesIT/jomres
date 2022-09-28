@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -18,19 +18,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	 * @package Jomres\Core\Minicomponents
 	 *
 	 * Sends the new booking email to administrators
-     *
+	 *
 	 */
 
 class j03100send_email_admin_newbooking
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -81,13 +82,15 @@ class j03100send_email_admin_newbooking
 		$booking_email_details->parse_email($email_type, $contract_uid);
 
 		if ($email_when_done) {
-			if (!jomresMailer($booking_email_details->data[$contract_uid]['EMAIL'],
-								$booking_email_details->data[$contract_uid]['FIRSTNAME'].' '.$booking_email_details->data[$contract_uid]['SURNAME'],
-								$site_paypal_settings['paypalemail'],
-								$booking_email_details->parsed_email['subject'],
-								$booking_email_details->parsed_email['text'],
-								$mode = 1,
-								$booking_email_details->parsed_email['attachments'])
+			if (!jomresMailer(
+				$booking_email_details->data[$contract_uid]['EMAIL'],
+				$booking_email_details->data[$contract_uid]['FIRSTNAME'].' '.$booking_email_details->data[$contract_uid]['SURNAME'],
+				$site_paypal_settings['paypalemail'],
+				$booking_email_details->parsed_email['subject'],
+				$booking_email_details->parsed_email['text'],
+				$mode = 1,
+				$booking_email_details->parsed_email['attachments']
+			)
 				) {
 				error_logging('Failure in sending new booking email to admin. Target address: '.$site_paypal_settings['paypalemail'].' Subject'.$booking_email_details->parsed_email['subject'].$booking_email_details->parsed_email['text']);
 			}
@@ -97,10 +100,10 @@ class j03100send_email_admin_newbooking
 	}
 
 
-    /**
-     * @return null
-     */
-    public function getRetVals()
+	/**
+	 * @return null
+	 */
+	public function getRetVals()
 	{
 		return null;
 	}

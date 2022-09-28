@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -70,9 +70,9 @@ function jomres_cmsspecific_areweinadminarea()
 	return $administrator_area;
 }
 
-function jomres_cmsspecific_createNewUser( $email_address = '' )
+function jomres_cmsspecific_createNewUser($email_address = '')
 {
-	if ($email_address == '' ) {
+	if ($email_address == '') {
 		throw new Exception('Cannot create a new cms user without an email address');
 	}
 
@@ -122,19 +122,18 @@ function jomres_cmsspecific_createNewUser( $email_address = '' )
 		trigger_error('Failed insert new user '.$query, E_USER_ERROR);
 		$insertSuccessful = false;
 	} else {
+		$webhook_notification							  	= new stdClass();
+		$webhook_notification->webhook_event				= 'user_created';
+		$webhook_notification->webhook_event_description	= 'Logs when a new user is created.';
+		$webhook_notification->webhook_event_plugin		 	= 'core';
+		$webhook_notification->data						 	= new stdClass();
+		$webhook_notification->data->cms_user_id		   	= $id;
+		$webhook_notification->data->name          		   	= $name;
+		$webhook_notification->data->password   		   	= $password;
+		$webhook_notification->data->username		      	= $guestDeets[ 'email' ];
+		$webhook_notification->data->email      		   	= $guestDeets[ 'email' ];
 
-        $webhook_notification							  	= new stdClass();
-        $webhook_notification->webhook_event				= 'user_created';
-        $webhook_notification->webhook_event_description	= 'Logs when a new user is created.';
-        $webhook_notification->webhook_event_plugin		 	= 'core';
-        $webhook_notification->data						 	= new stdClass();
-        $webhook_notification->data->cms_user_id		   	= $id;
-        $webhook_notification->data->name          		   	= $name;
-        $webhook_notification->data->password   		   	= $password;
-        $webhook_notification->data->username		      	= $guestDeets[ 'email' ];
-        $webhook_notification->data->email      		   	= $guestDeets[ 'email' ];
-
-        add_webhook_notification($webhook_notification);
+		add_webhook_notification($webhook_notification);
 
 		$query = "INSERT INTO #__user_usergroup_map  (
 				`user_id`,
@@ -174,7 +173,6 @@ function jomres_cmsspecific_createNewUser( $email_address = '' )
 			]);
 			$user = JFactory::getUser();
 		}
-
 	}
 
 	return $id;
@@ -251,19 +249,19 @@ function jomres_cmsspecific_addheaddata($type, $path = '', $filename = '', $incl
 	switch ($type) {
 		case 'javascript':
 			//JHTML::script( $path . $filename, false ); // If we want to include version numbers in script filenames, we can't use this. Instead we need to directly access JFactory as below
-			if ($async)
-				$doc->addScript($data,"text/javascript",false,true);
-			else
+			if ($async) {
+				$doc->addScript($data, "text/javascript", false, true);
+			} else {
 				$doc->addScript($data);
+			}
 			break;
 		case 'css':
 			//JHTML::stylesheet( $path . $filename, array (), false, false ); // If we want to include version numbers in script filenames, we can't use this. Instead we need to directly access JFactory as below
 			$doc->addStyleSheet($data);
 			break;
 		default:
-
 			break;
-		}
+	}
 }
 
 // set our meta data
@@ -459,7 +457,7 @@ function jomres_cmsspecific_stringURLSafe($str)
 function jomres_cmsspecific_addcustomtag($data)
 {
 	$document = JFactory::getDocument();
-	if($document->getType() === 'html') { 
+	if ($document->getType() === 'html') {
 		$document->addCustomTag($data);
 	}
 }
@@ -541,18 +539,20 @@ function jomres_cmsspecific_find_cms_users($search_term = '')
 	return $users;
 }
 
-function jomres_cmsspecific_getUsername($user_id = 0) {
+function jomres_cmsspecific_getUsername($user_id = 0)
+{
 	if ($user_id == 0) {
 		return;
 	}
 	
 	$query = 'SELECT `username` FROM #__users WHERE `id` = '.(int)$user_id.' LIMIT 1';
-	$result = doSelectSql($query,1);
+	$result = doSelectSql($query, 1);
 	
 	return $result;
 }
 
-function jomres_cmsspecific_getCmsUserProfileLink($cms_user_id = 0) {
+function jomres_cmsspecific_getCmsUserProfileLink($cms_user_id = 0)
+{
 	if ($cms_user_id == 0) {
 		return '#';
 	}
@@ -562,17 +562,19 @@ function jomres_cmsspecific_getCmsUserProfileLink($cms_user_id = 0) {
 	return $url;
 }
 
-function jomres_cmsspecific_isRtl($cms_user_id = 0) {
+function jomres_cmsspecific_isRtl($cms_user_id = 0)
+{
 	$language = JFactory::getLanguage();
 	$isRtl = $language->isRtl();
 	
 	return $isRtl;
 }
 
-function jomres_cmsspecific_user_is_admin() {
+function jomres_cmsspecific_user_is_admin()
+{
 	$user = JFactory::getUser();
 	
-	if ( $user->authorise('core.admin') ) {
+	if ($user->authorise('core.admin')) {
 		return true;
 	}
 	

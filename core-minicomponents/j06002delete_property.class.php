@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.'
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06002delete_property
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -49,7 +50,6 @@ class j06002delete_property
 		}
 		
 		if ($sure) {
-			
 			if (!isset($componentArgs['property_uid'])) {
 				$property_uid = (int) getDefaultProperty();
 			} else {
@@ -129,17 +129,16 @@ class j06002delete_property
 				$webhook_notification->data->property_uid		   = $property_uid;
 				add_webhook_notification($webhook_notification);
 		
-				if (!isset($componentArgs['property_uid'])) {  
+				if (!isset($componentArgs['property_uid'])) {
 					jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=listyourproperties&thisProperty='.$resetProperty, ''));
 				} else {
 					$this->retVals = true;
 				}
-				
 			} else {
 				trigger_error(jr_gettext('_JOMRES_COM_MR_PROPERTY_DELETE_NORIGHTS', '_JOMRES_COM_MR_PROPERTY_DELETE_NORIGHTS', false), E_USER_ERROR);
 				if (!isset($componentArgs['property_uid'])) {
 					echo "<script> alert('".jr_gettext('_JOMRES_COM_MR_PROPERTY_DELETE_NORIGHTS', '_JOMRES_COM_MR_PROPERTY_DELETE_NORIGHTS', false)."'); ; </script>\n";
-					}
+				}
 			}
 		} else {
 			$property_uid = (int) getDefaultProperty();
@@ -156,7 +155,6 @@ class j06002delete_property
 				// -->
 				</script>
 				<?php
-
 			} else {
 				echo 'Sorry, you must have at least one property on the system for Jomres to work. Please create a new property before attempting to delete this one.';
 			}

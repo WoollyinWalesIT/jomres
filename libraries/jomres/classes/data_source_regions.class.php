@@ -4,7 +4,7 @@
 	 *
 	 * @author Vince Wooll <sales@jomres.net>
 	 *
-	  *  @version Jomres 10.5.3
+	  *  @version Jomres 10.5.4
 	 *
 	 * @copyright	2005-2022 Vince Wooll
 	 * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -40,10 +40,9 @@ class data_source_regions extends jomres_data_source_base
 		if (!empty($result)) {
 			foreach ($result as $region) {
 				foreach ($this->cms_languages as $lang) {
-
 					if (isset($custom_region_names[$lang])) {
 						$const = "_JOMRES_CUSTOMTEXT_REGIONS_".$region->id;
-						if (isset($custom_region_names[$lang][$const] )) {
+						if (isset($custom_region_names[$lang][$const])) {
 							$region_name = $custom_region_names[$lang][$const];
 						} else {
 							$region_name = $region->regionname;
@@ -53,7 +52,6 @@ class data_source_regions extends jomres_data_source_base
 					}
 
 					$data[$lang][] = array( 'countrycode' => strtoupper($region->countrycode), 'regionname' => $region_name);
-
 				}
 			}
 
@@ -68,54 +66,54 @@ class data_source_regions extends jomres_data_source_base
  * array(3) {
   ["en-GB"]=>
   array(2) {
-    [0]=>
-    array(2) {
-      ["countrycode"]=>
-      string(2) "TH"
-      ["countryname"]=>
-      string(8) "Thailand"
-    }
-    [1]=>
-    array(2) {
-      ["countrycode"]=>
-      string(2) "GB"
-      ["countryname"]=>
-      string(22) "United Kingdom ENGLISH"
-    }
+	[0]=>
+	array(2) {
+	  ["countrycode"]=>
+	  string(2) "TH"
+	  ["countryname"]=>
+	  string(8) "Thailand"
+	}
+	[1]=>
+	array(2) {
+	  ["countrycode"]=>
+	  string(2) "GB"
+	  ["countryname"]=>
+	  string(22) "United Kingdom ENGLISH"
+	}
   }
   ["es-ES"]=>
   array(2) {
-    [0]=>
-    array(2) {
-      ["countrycode"]=>
-      string(2) "TH"
-      ["countryname"]=>
-      string(8) "Thailand"
-    }
-    [1]=>
-    array(2) {
-      ["countrycode"]=>
-      string(2) "GB"
-      ["countryname"]=>
-      string(22) "United Kingdom SPANISH"
-    }
+	[0]=>
+	array(2) {
+	  ["countrycode"]=>
+	  string(2) "TH"
+	  ["countryname"]=>
+	  string(8) "Thailand"
+	}
+	[1]=>
+	array(2) {
+	  ["countrycode"]=>
+	  string(2) "GB"
+	  ["countryname"]=>
+	  string(22) "United Kingdom SPANISH"
+	}
   }
   ["fr-FR"]=>
   array(2) {
-    [0]=>
-    array(2) {
-      ["countrycode"]=>
-      string(2) "TH"
-      ["countryname"]=>
-      string(8) "Thailand"
-    }
-    [1]=>
-    array(2) {
-      ["countrycode"]=>
-      string(2) "GB"
-      ["countryname"]=>
-      string(21) "United Kingdom FRENCH"
-    }
+	[0]=>
+	array(2) {
+	  ["countrycode"]=>
+	  string(2) "TH"
+	  ["countryname"]=>
+	  string(8) "Thailand"
+	}
+	[1]=>
+	array(2) {
+	  ["countrycode"]=>
+	  string(2) "GB"
+	  ["countryname"]=>
+	  string(21) "United Kingdom FRENCH"
+	}
   }
 }
 

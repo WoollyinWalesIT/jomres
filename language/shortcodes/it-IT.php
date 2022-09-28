@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -73,7 +73,7 @@ jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_ROOMS_ARG_PROPERTY_UID', 'ID de
 
 jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_ROOMS_SLIDESHOW', "Mostra le immagini delle stanze di una proprietà come una presentazione.");
 jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_ROOMS_SLIDESHOW_ARG_PROPERTY_UID', 'ID della proprietà.');
-    
+	
 jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_SLIDESHOW', 'Mostra la presentazione della proprietà.');
 jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_SLIDESHOW_ARG_PROPERTY_UID', 'ID della proprietà.');
 
@@ -160,7 +160,7 @@ jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_SPECIFIC', "Risorsa specifica");
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_ALREADY_UPLOADED', "Immagini già caricate per questa risorsa");
 
 jr_define('_JOMRES_MARKDOWN_TITLE', 'Formattazione del testo');
-jr_define('_JOMRES_MARKDOWN_DESC', 'Puoi inserire il testo qui usando la semplice formattazione Markdown. Non hai bisogno di conoscere alcun HTML, usa semplicemente i pulsanti per dare l\'aspetto che desideri, o formatta il testo secondo questi esempi.' );
+jr_define('_JOMRES_MARKDOWN_DESC', 'Puoi inserire il testo qui usando la semplice formattazione Markdown. Non hai bisogno di conoscere alcun HTML, usa semplicemente i pulsanti per dare l\'aspetto che desideri, o formatta il testo secondo questi esempi.');
 jr_define('_JOMRES_MARKDOWN_EMPHASIS', 'Enfasi');
 jr_define('_JOMRES_MARKDOWN_BOLD', 'grassetto');
 jr_define('_JOMRES_MARKDOWN_ITALICS', 'corsivo');
@@ -203,20 +203,20 @@ jr_define('_JOMRES_GUEST_BLACKLISTED', 'Ospite nella lista nera');
 jr_define('_JOMRES_GUEST_BLACKLISTED_DESC', 'Se questo ospite è nella lista nera, non potrà più effettuare prenotazioni in questa proprietà.');
 jr_define('_JOMRES_SESSION_HANDLER', 'Gestore di sessione');
 jr_define('_JOMRES_SESSION_HANDLER_DESC', 'Salva i file di sessione di jomres su disco o database. Consigliato: database');
-jr_define('_JOMRES_MAP_HEIGHT',"Altezza mappa (px)");
-jr_define('_JOMRES_MAP_ZOOMLEVEL',"Livello di zoom della mappa ");
-jr_define('_JOMRES_MAP_MAPTYPE',"Tipo mappa");
+jr_define('_JOMRES_MAP_HEIGHT', "Altezza mappa (px)");
+jr_define('_JOMRES_MAP_ZOOMLEVEL', "Livello di zoom della mappa ");
+jr_define('_JOMRES_MAP_MAPTYPE', "Tipo mappa");
 
-jr_define('_JOMRES_TEMPLATE_PACKAGES',"Gestione sostituzione modelli");
-jr_define('_JOMRES_TEMPLATE_PACKAGES_LEAD',"I pacchetti di modelli sono plugin che possono fornire modelli di sostituzione per vari file modello di Jomres principali.");
-jr_define('_JOMRES_TEMPLATE_PACKAGES_INFO',"Questa pagina elenca tutti i file modello che possono essere sovrascritti dai file modello di un pacchetto modello. Se vuoi sovrascrivere un determinato file modello, fai clic sul pulsante di modifica per quel file, nella pagina successiva verrai in grado di scegliere con quale versione si desidera eseguire l\'override. Nota, queste sostituzioni hanno la priorità sia su Jomres Core che su qualsiasi sostituzione di temi/modelli di Wordpress o Joomla. Puoi disabilitare una sostituzione eliminandola nella pagina Elenca le sostituzioni dei modelli.");
-jr_define('_JOMRES_TEMPLATE_PACKAGE_NAME',"Nome modello");
-jr_define('_JOMRES_TEMPLATE_PACKAGE_PATH',"Percorso corrente");
-jr_define('_JOMRES_TEMPLATE_PACKAGE_NOT_OVERRIDDEN',"Non sovrascritto");
-jr_define('_JOMRES_TEMPLATE_PACKAGES_EDIT_INFO',"Puoi scegliere quale file modello sovrascrivere i file modello Core modificando il menu a discesa");
+jr_define('_JOMRES_TEMPLATE_PACKAGES', "Gestione sostituzione modelli");
+jr_define('_JOMRES_TEMPLATE_PACKAGES_LEAD', "I pacchetti di modelli sono plugin che possono fornire modelli di sostituzione per vari file modello di Jomres principali.");
+jr_define('_JOMRES_TEMPLATE_PACKAGES_INFO', "Questa pagina elenca tutti i file modello che possono essere sovrascritti dai file modello di un pacchetto modello. Se vuoi sovrascrivere un determinato file modello, fai clic sul pulsante di modifica per quel file, nella pagina successiva verrai in grado di scegliere con quale versione si desidera eseguire l\'override. Nota, queste sostituzioni hanno la priorità sia su Jomres Core che su qualsiasi sostituzione di temi/modelli di Wordpress o Joomla. Puoi disabilitare una sostituzione eliminandola nella pagina Elenca le sostituzioni dei modelli.");
+jr_define('_JOMRES_TEMPLATE_PACKAGE_NAME', "Nome modello");
+jr_define('_JOMRES_TEMPLATE_PACKAGE_PATH', "Percorso corrente");
+jr_define('_JOMRES_TEMPLATE_PACKAGE_NOT_OVERRIDDEN', "Non sovrascritto");
+jr_define('_JOMRES_TEMPLATE_PACKAGES_EDIT_INFO', "Puoi scegliere quale file modello sovrascrivere i file modello Core modificando il menu a discesa");
 
 
-jr_define('_JOMRES_OVERALL_ROOMS_BOOKED',"Percentuale Camere Prenotate");
+jr_define('_JOMRES_OVERALL_ROOMS_BOOKED', "Percentuale Camere Prenotate");
 
 jr_define('_JOMRES_SHORTCODES_06005NEW_PROPERTY', 'Mostra il form di creazione nuova proprietà.');
 
@@ -226,19 +226,19 @@ jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_REVIEWS_LIMIT', 'Numero di rece
 
 jr_define('_JOMRES_SHORTCODES_06000SHORTLIST', 'Mostra le proprietà selezionate dagli utenti. Se l\'utente è registrato questi sono i suoi preferiti, se non è loggato allora solo gli elementi aggiunti tramite l\'icona Preferiti durante la visita.');
 
-jr_define( '_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE', 'Valore minimo di deposito' );
+jr_define('_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE', 'Valore minimo di deposito');
 
-jr_define( '_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE_DESC', "Se il deposito calcolato è inferiore a questa cifra, imposta invece il deposito su questo valore. Questa cifra potrebbe essere sovrascritta se non soddisfa l\'impostazione di deposito minimo del sito. Lascialo impostato su 0 per non utilizzare l\'impostazione." );
+jr_define('_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE_DESC', "Se il deposito calcolato è inferiore a questa cifra, imposta invece il deposito su questo valore. Questa cifra potrebbe essere sovrascritta se non soddisfa l\'impostazione di deposito minimo del sito. Lascialo impostato su 0 per non utilizzare l\'impostazione.");
 
 jr_define('_JOMRES_SHORTCODES_06000SHOW_CONSENT_FORM', 'Mostra il modulo di consenso conforme al GDPR.');
 
-jr_define( '_JOMRES_SHORTCODE_PROPERTY_ROOM_TYPE_LIST', 'Elenco dei tipi di camere della struttura' );
-jr_define( '_JOMRES_SHORTCODE_PROPERTY_ROOM_TYPE', 'Mostra un tipo di camera di proprietà' );
+jr_define('_JOMRES_SHORTCODE_PROPERTY_ROOM_TYPE_LIST', 'Elenco dei tipi di camere della struttura');
+jr_define('_JOMRES_SHORTCODE_PROPERTY_ROOM_TYPE', 'Mostra un tipo di camera di proprietà');
 
-jr_define( '_JOMRES_SHORTCODE_LOGIN_FORM', 'Mostra il modulo di accesso' );
+jr_define('_JOMRES_SHORTCODE_LOGIN_FORM', 'Mostra il modulo di accesso');
 
 jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_ROOM_TYPE', 'Mostra un elenco di stanze di un certo tipo di stanza');
-jr_define( '_JOMRES_SHORTCODES_06000SHOW_PROPERTY_ROOM_TYPE_ARG_ROOM_TYPE_ID', 'ID tipo di camera' );
+jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_ROOM_TYPE_ARG_ROOM_TYPE_ID', 'ID tipo di camera');
 
 jr_define('_JOMRES_SHORTCODES_06001DASHBOARD', 'Dashboard');
 

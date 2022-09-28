@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j10531amazon_s3
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -48,29 +49,29 @@ class j10531amazon_s3
 		$configurationPanel = $componentArgs[ 'configurationPanel' ];
 		
 		$options = array();
-		$options[] = jomresHTML::makeOption( 'us-east-1', 'US East (N. Virginia)' );
-		$options[] = jomresHTML::makeOption( 'us-east-2', 'US East (Ohio)' );
-		$options[] = jomresHTML::makeOption( 'us-west-1', 'US West (N. California)' );
-		$options[] = jomresHTML::makeOption( 'us-west-2', 'US West (Oregon)' );
-		$options[] = jomresHTML::makeOption( 'ca-central-1', 'Canada (Central)' );
-		$options[] = jomresHTML::makeOption( 'ap-south-1', 'Asia Pacific (Mumbai)' );
-		$options[] = jomresHTML::makeOption( 'ap-northeast-2', 'Asia Pacific (Seoul)' );
-		$options[] = jomresHTML::makeOption( 'ap-southeast-1', 'Asia Pacific (Singapore)' );
-		$options[] = jomresHTML::makeOption( 'ap-southeast-2', 'Asia Pacific (Sydney)' );
-		$options[] = jomresHTML::makeOption( 'ap-northeast-1', 'Asia Pacific (Tokyo)' );
-		$options[] = jomresHTML::makeOption( 'eu-central-1', 'EU (Frankfurt)' );
-		$options[] = jomresHTML::makeOption( 'eu-west-1', 'EU (Ireland)' );
-		$options[] = jomresHTML::makeOption( 'eu-west-2', 'EU (London)' );
-		$options[] = jomresHTML::makeOption( 'sa-east-1', 'South America (São Paulo)' );
-		$s3_region = jomresHTML::selectList( $options, 'cfg_amazon_s3_region','class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'amazon_s3_region' ]);
+		$options[] = jomresHTML::makeOption('us-east-1', 'US East (N. Virginia)');
+		$options[] = jomresHTML::makeOption('us-east-2', 'US East (Ohio)');
+		$options[] = jomresHTML::makeOption('us-west-1', 'US West (N. California)');
+		$options[] = jomresHTML::makeOption('us-west-2', 'US West (Oregon)');
+		$options[] = jomresHTML::makeOption('ca-central-1', 'Canada (Central)');
+		$options[] = jomresHTML::makeOption('ap-south-1', 'Asia Pacific (Mumbai)');
+		$options[] = jomresHTML::makeOption('ap-northeast-2', 'Asia Pacific (Seoul)');
+		$options[] = jomresHTML::makeOption('ap-southeast-1', 'Asia Pacific (Singapore)');
+		$options[] = jomresHTML::makeOption('ap-southeast-2', 'Asia Pacific (Sydney)');
+		$options[] = jomresHTML::makeOption('ap-northeast-1', 'Asia Pacific (Tokyo)');
+		$options[] = jomresHTML::makeOption('eu-central-1', 'EU (Frankfurt)');
+		$options[] = jomresHTML::makeOption('eu-west-1', 'EU (Ireland)');
+		$options[] = jomresHTML::makeOption('eu-west-2', 'EU (London)');
+		$options[] = jomresHTML::makeOption('sa-east-1', 'South America (São Paulo)');
+		$s3_region = jomresHTML::selectList($options, 'cfg_amazon_s3_region', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'amazon_s3_region' ]);
 		
 		$yesno = array();
-		$yesno[] = jomresHTML::makeOption( '0', jr_gettext("_JOMRES_COM_MR_NO",'_JOMRES_COM_MR_NO',false) );
-		$yesno[] = jomresHTML::makeOption( '1', jr_gettext("_JOMRES_COM_MR_YES",'_JOMRES_COM_MR_YES',false) );
+		$yesno[] = jomresHTML::makeOption('0', jr_gettext("_JOMRES_COM_MR_NO", '_JOMRES_COM_MR_NO', false));
+		$yesno[] = jomresHTML::makeOption('1', jr_gettext("_JOMRES_COM_MR_YES", '_JOMRES_COM_MR_YES', false));
 		
-		$active = jomresHTML::selectList( $yesno, 'cfg_amazon_s3_active','class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'amazon_s3_active' ]);
-		$remove_local_copies = jomresHTML::selectList( $yesno, 'cfg_amazon_s3_remove_local_copies','class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'amazon_s3_remove_local_copies' ]);
-		$use_tls = jomresHTML::selectList( $yesno, 'cfg_amazon_s3_use_tls','class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'amazon_s3_use_tls' ]);
+		$active = jomresHTML::selectList($yesno, 'cfg_amazon_s3_active', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'amazon_s3_active' ]);
+		$remove_local_copies = jomresHTML::selectList($yesno, 'cfg_amazon_s3_remove_local_copies', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'amazon_s3_remove_local_copies' ]);
+		$use_tls = jomresHTML::selectList($yesno, 'cfg_amazon_s3_use_tls', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'amazon_s3_use_tls' ]);
 
 		$configurationPanel->insertHeading('Amazon S3');
 		

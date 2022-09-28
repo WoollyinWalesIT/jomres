@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j09997menu
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -66,9 +67,9 @@ class j09997menu
 		//now let`s generate the menu output
 		
 		foreach ($jomres_menu->menu as $section_id => $tasks) {
-			foreach ($tasks as $key=>$task ) {
-				if ( !is_channel_safe_task ($task) ) {
-					unset ($jomres_menu->menu[$section_id] [$key] ) ;
+			foreach ($tasks as $key => $task) {
+				if (!is_channel_safe_task($task)) {
+					unset($jomres_menu->menu[$section_id] [$key]) ;
 				}
 			}
 		}
@@ -85,7 +86,7 @@ class j09997menu
 				$r = array();
 				
 				//menu item name
-				$r['MENU_NAME'] = str_replace( "&Amp;" , "&" , jr_ucwords($jomres_menu->items[$task]['title']));
+				$r['MENU_NAME'] = str_replace("&Amp;", "&", jr_ucwords($jomres_menu->items[$task]['title']));
 
 				//menu item url
 				if ($jomres_menu->items[$task]['is_url']) {
@@ -117,7 +118,7 @@ class j09997menu
 				
 				/* if (!$jomres_menu->items[$task]['is_url']) {
 					$items_requiring_attention = get_number_of_items_requiring_attention_for_menu_option($task);
-					
+
 					if (!empty($items_requiring_attention)) {
 						foreach ($items_requiring_attention as $colour => $number) {
 							if ($number > 0) {
@@ -159,7 +160,6 @@ class j09997menu
 				$tmpl->addRows('pageoutput', $pageoutput);
 				$tmpl->addRows('rows', $rows);
 				$menu_sections[][ 'SECTION' ] = $tmpl->getParsedTemplate();
-
 			}
 		}
 
@@ -186,8 +186,8 @@ class j09997menu
 		//user feedback
 		$output['USER_FEEDBACK'] = get_showtime('user_feedback');
 
-        $siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-        $jrConfig   = $siteConfig->get();
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig   = $siteConfig->get();
 
 		//navbar location
 		if (!isset($jrConfig[ 'navbar_location' ])) {

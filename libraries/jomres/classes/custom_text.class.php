@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -23,7 +23,7 @@ defined('_JOMRES_INITCHECK') or die('');
 class custom_text
 {
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -41,7 +41,7 @@ class custom_text
 		$jrConfig = $siteConfig->get();
 		$selected_languages = array();
 		if ($jrConfig['selected_languages'] != '') {
-			$selected_languages = explode(',',$jrConfig['selected_languages']);
+			$selected_languages = explode(',', $jrConfig['selected_languages']);
 		}
 		$this->selected_languages = $selected_languages;
 
@@ -50,7 +50,7 @@ class custom_text
 	}
 
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -71,7 +71,7 @@ class custom_text
 	}
 
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -123,36 +123,38 @@ class custom_text
 
 	//Legacy function: we`ll keep it here because it`s used in various places
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
 	public function get_custom_text_for_property($property_uid = 0)
 	{
-		if ($property_uid == 0)
+		if ($property_uid == 0) {
 			return true;
+		}
 		
-		if (isset($this->properties_custom_text[ $property_uid ]))
+		if (isset($this->properties_custom_text[ $property_uid ])) {
 			return true;
-		else
+		} else {
 			$this->gather_data(array($property_uid));
+		}
 		
 		return true;
 	}
 	
 	//update custom text
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
-	function updateCustomText($theConstant, $theValue, $audit = true, $property_uid = null, $language_context = '0' , $target_language = '' )
+	function updateCustomText($theConstant, $theValue, $audit = true, $property_uid = null, $language_context = '0', $target_language = '')
 	{
 
 		// A fallback. If the language requested isn't in the all_languages array we'll fall back to whatever showtime says we are working in. This allows us to have the new Translating functionality in the frontend, and we can continue to support older translation methods that didn't send the current language
-		if ($target_language == '' || !array_key_exists($target_language , $this->all_languages )) {
+		if ($target_language == '' || !array_key_exists($target_language, $this->all_languages)) {
 			$target_language = get_showtime('lang');
 		}
 
@@ -165,8 +167,7 @@ class custom_text
 		$crsEtc = array("\t", "\n", "\r");
 		$testStr = str_replace($crsEtc, '', $testStr);
 		
-		if (
-			strlen($testStr) == 0 &&
+		if (strlen($testStr) == 0 &&
 			$theConstant != '_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION_'.$property_uid &&
 			$theConstant != '_JOMRES_CUSTOMTEXT_ROOMTYPE_CHECKINTIMES_'.$property_uid &&
 			$theConstant != '_JOMRES_CUSTOMTEXT_ROOMTYPE_AREAACTIVITIES_'.$property_uid &&
@@ -199,7 +200,7 @@ class custom_text
 						AND `language_context` = '".$language_context."'";
 		$result = doSelectSql($query);
 
-		if (strlen($theValue) == 0 || $theValue == "" ) {
+		if (strlen($theValue) == 0 || $theValue == "") {
 			$query = "DELETE FROM #__jomres_custom_text 
 							WHERE `constant` = '".$theConstant."' 
 							AND `property_uid` = ".(int) $property_uid." 

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j16000media_centre_dbimport
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -59,7 +60,7 @@ class j16000media_centre_dbimport
 				throw new Exception('Could not truncate images table');
 			}
 			
-			$siteConfig->update_setting('images_imported_to_db','0');
+			$siteConfig->update_setting('images_imported_to_db', '0');
 		} elseif ($jrConfig['images_imported_to_db'] == '0') {
 			//check if table is empty
 			$query = "SELECT `id` FROM #__jomres_images LIMIT 1";
@@ -67,7 +68,7 @@ class j16000media_centre_dbimport
 			
 			if (!empty($result)) {
 				//table is not empty, so mark as imported
-				$siteConfig->update_setting('images_imported_to_db','1');
+				$siteConfig->update_setting('images_imported_to_db', '1');
 				
 				//redirect back
 				jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN), '');
@@ -96,7 +97,7 @@ class j16000media_centre_dbimport
 				';
 			} else {
 				//mark as imported
-				$siteConfig->update_setting('images_imported_to_db','1');
+				$siteConfig->update_setting('images_imported_to_db', '1');
 
 				echo '
 				<div class="alert alert-success">

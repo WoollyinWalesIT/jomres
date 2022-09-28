@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -21,9 +21,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jomres_partners
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -49,7 +50,7 @@ class jomres_partners
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -71,7 +72,7 @@ class jomres_partners
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -97,7 +98,7 @@ class jomres_partners
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -132,8 +133,7 @@ class jomres_partners
 						LIMIT 1 ';
 		$userProfile = doSelectSql($query, 2);
 
-		if (
-			$userProfile['enc_firstname'] == '' ||
+		if ($userProfile['enc_firstname'] == '' ||
 			$userProfile['enc_surname'] == '' ||
 			$userProfile['enc_house'] == '' ||
 			$userProfile['enc_street'] == '' ||

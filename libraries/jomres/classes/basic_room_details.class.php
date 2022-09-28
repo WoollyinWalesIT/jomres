@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -21,9 +21,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class basic_room_details
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -37,7 +38,7 @@ class basic_room_details
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -90,12 +91,12 @@ class basic_room_details
 			$this->rooms[$r->room_uid]['room_classes_uid']			= (int) $r->room_classes_uid;
 			$this->rooms[$r->room_uid]['propertys_uid']				= (int) $r->propertys_uid;
 			$this->rooms[$r->room_uid]['room_features_uid']			= stripslashes($r->room_features_uid);
-			$this->rooms[$r->room_uid]['room_name']					= jr_gettext('_JOMRES_CUSTOMTEXT_ROOMNAME_TITLE'.$r->room_uid, stripslashes($r->room_name) , false);
+			$this->rooms[$r->room_uid]['room_name']					= jr_gettext('_JOMRES_CUSTOMTEXT_ROOMNAME_TITLE'.$r->room_uid, stripslashes($r->room_name), false);
 			$this->rooms[$r->room_uid]['room_number']				= stripslashes($r->room_number);
 			$this->rooms[$r->room_uid]['room_floor']				= stripslashes($r->room_floor);
 			$this->rooms[$r->room_uid]['max_people']				= (int) $r->max_people;
 			$this->rooms[$r->room_uid]['singleperson_suppliment']	= (float) $r->singleperson_suppliment;
-			$this->rooms[$r->room_uid]['tagline']		 			= jr_gettext('_JOMRES_CUSTOMTEXT_ROOM_TAGLINE'.$r->room_uid, stripslashes($r->tagline) , false);
+			$this->rooms[$r->room_uid]['tagline']		 			= jr_gettext('_JOMRES_CUSTOMTEXT_ROOM_TAGLINE'.$r->room_uid, stripslashes($r->tagline), false);
 			$this->rooms[$r->room_uid]['description']				= jomres_decode(jr_gettext('_JOMRES_CUSTOMTEXT_ROOM_DESCRIPTION_'.$r->room_uid, stripslashes($r->description), false));
 			$this->rooms[$r->room_uid]['surcharge']					= (float) $r->surcharge;
 
@@ -118,7 +119,7 @@ class basic_room_details
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -198,7 +199,7 @@ class basic_room_details
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -246,11 +247,15 @@ class basic_room_details
 				
 				$this->all_room_features[ $r->room_features_uid ][ 'image' ] = $feature_image;
 
-				$this->all_room_features[ $r->room_features_uid ][ 'small' ] =$jomres_media_centre_images->images['room_features'][ $r->room_features_uid ][0]['small'];
-				$this->all_room_features[ $r->room_features_uid ][ 'medium' ] =$jomres_media_centre_images->images['room_features'][ $r->room_features_uid ][0]['medium'];
-				$this->all_room_features[ $r->room_features_uid ][ 'large' ] =$jomres_media_centre_images->images['room_features'][ $r->room_features_uid ][0]['large'];
+				if (isset($jomres_media_centre_images->images['room_features'][ $r->room_features_uid ][0]['small'])) {
+					$this->all_room_features[ $r->room_features_uid ][ 'small' ] = $jomres_media_centre_images->images['room_features'][ $r->room_features_uid ][0]['small'];
+					$this->all_room_features[ $r->room_features_uid ][ 'medium' ] =$jomres_media_centre_images->images['room_features'][ $r->room_features_uid ][0]['medium'];
+					$this->all_room_features[ $r->room_features_uid ][ 'large' ] =$jomres_media_centre_images->images['room_features'][ $r->room_features_uid ][0]['large'];
+				}
 
-				$this->all_room_features[ $r->room_features_uid ][ 'tooltip' ] = jomres_makeTooltip(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION'.(int) $r->room_features_uid, stripslashes($r->feature_description), false, false), jr_gettext('_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION'.(int) $r->room_features_uid, stripslashes($r->feature_description), false, false), '', $feature_image, '', 'property_feature', array());
+				if ( !defined('API_STARTED') ) {
+					$this->all_room_features[$r->room_features_uid]['tooltip'] = jomres_makeTooltip(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION' . (int)$r->room_features_uid, stripslashes($r->feature_description), false, false), jr_gettext('_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION' . (int)$r->room_features_uid, stripslashes($r->feature_description), false, false), '', $feature_image, '', 'property_feature', array());
+				}
 			}
 		}
 
@@ -258,7 +263,7 @@ class basic_room_details
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */

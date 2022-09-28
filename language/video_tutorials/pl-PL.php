@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -77,7 +77,7 @@ jr_define('_JOMRES_TUTORIAL_PROPERTY_FEATURES_DESC', 'W tym filmie pokażemy, ja
 jr_define('_JOMRES_TUTORIAL_SHORTCODES', 'Skróty');
 
 jr_define('_JOMRES_TUTORIAL_LOGFILES', 'Pliki dziennika');
-jr_define('_JOMRES_TUTORIAL_LOGFILES_DESC', 'W tym filmie dowiesz się, jak przeglądać pliki dziennika. Po uruchomieniu systemu następuje obszerne rejestrowanie. W trybie produkcyjnym (Konfiguracja witryny > Debugowanie) generowanych jest mniej dzienników, więc jeśli testujesz nową funkcję, wówczas powinieneś ustawić swoją witrynę na Development.Jeśli chcesz dodać własne logowanie do swoich skryptów Jomres, spójrz na <a href="http://www.jomres.net/manual/developers-guide/56-other-discussions/339-logging-in-jomres" target ="_blank">nasza strona podręcznika, jak to zrobić.</a> Tutaj zgłosimy fałszywy błąd, a następnie wyświetlimy plik dziennika. Ponieważ witryna jest tam ustawiona na Programowanie to dużo informacji, normalnie zobaczysz tylko komunikat informujący, że wystąpił błąd i został on zgłoszony.');
+jr_define('_JOMRES_TUTORIAL_LOGFILES_DESC', 'W tym filmie dowiesz się, jak przeglądać pliki dziennika. Po uruchomieniu systemu następuje obszerne rejestrowanie. W trybie produkcyjnym (Konfiguracja witryny > Debugowanie) generowanych jest mniej dzienników, więc jeśli testujesz nową funkcję, wówczas powinieneś ustawić swoją witrynę na Development.Jeśli chcesz dodać własne logowanie do swoich skryptów Jomres, spójrz na <a href="https://www.jomres.net/manual/developers-guide/56-other-discussions/339-logging-in-jomres" target ="_blank">nasza strona podręcznika, jak to zrobić.</a> Tutaj zgłosimy fałszywy błąd, a następnie wyświetlimy plik dziennika. Ponieważ witryna jest tam ustawiona na Programowanie to dużo informacji, normalnie zobaczysz tylko komunikat informujący, że wystąpił błąd i został on zgłoszony.');
 
 jr_define('_JOMRES_TUTORIAL_TRANSLATIONS', 'Tłumaczenie etykiet i innych ciągów');
 jr_define('_JOMRES_TUTORIAL_TRANSLATIONS_DESC', 'Istnieje wiele sposobów tłumaczenia ciągów językowych w Jomres, możesz edytować pliki językowe, ale mogą one zostać nadpisane podczas aktualizacji. Jeśli ciąg jest czymś, co zostało wprowadzone do formularza, na przykład nazwa typu pokoju, możesz użyć strony Edycja Etykiet.Jeśli ciąg pochodzi z pliku językowego, możesz użyć narzędzia do edycji plików językowych. Po prostu użyj narzędzia wyszukiwania przeglądarki, aby znaleźć ciąg, który chcesz zmienić, a następnie kliknij link, aby go zmienić. Zmiany te są zapisywane w bazie danych i dlatego są bezpieczne dla aktualizacji. Możesz mieć różne etykiety dla różnych typów właściwości, dzięki czemu możesz zmień New Property na New Campsite, na przykład zmieniając menu rozwijane Language Context na górze strony przed zmianą etykiety.');
@@ -93,5 +93,3 @@ jr_define('_JOMRES_TUTORIAL_ADMIN_PROPERTY_CATEGORIES_DESC', 'Kategorie właści
 
 jr_define('_JOMRES_TUTORIAL_ADMIN_COMPLETING_PROPERTY', 'Administrator witryny wyświetla właściwości');
 jr_define('_JOMRES_TUTORIAL_ADMIN_COMPLETING_PROPERTY_DESC', '<p>Nie zarządzasz właściwościami z tego miejsca, możesz zarządzać tylko właściwościami z interfejsu użytkownika, jednak na tej liście możesz zobaczyć właściwości, które oczekują na zatwierdzenie (jeśli funkcja jest włączona) i wszystkie, które są niekompletne (np. nadal trzeba przesłać obrazy, ustawić ceny itp.). Kliknij nazwę obiektu, aby przejść do pulpitu nawigacyjnego dla tej usługi. Będziesz wtedy mógł skorzystać z sekcji przewodnika u góry strony, aby zobaczyć kroki, które musisz wziąć, aby ukończyć i opublikować właściwość.</p> ');
-
-

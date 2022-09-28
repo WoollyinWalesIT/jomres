@@ -4,14 +4,14 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 // ################################################################
-defined( '_JOMRES_INITCHECK' ) or die( '' );
+defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 //Access levels
@@ -26,26 +26,27 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 	 */
 
 class jomres_users
-	{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
 	public function __construct()
-		{
+	{
 		$this->_init();
-		}
+	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
 	public function _init()
-		{
+	{
 		$this->id						= 0;						//(int) manager id
 		$this->cms_user_id				= 0;						//(int) cms user id
 		$this->username					= '';						//(string) cms user username
@@ -62,37 +63,33 @@ class jomres_users
 		$this->properties_users_xref	= array();					//(array) properties users xref
 		
 		$this->all_cms_users			= false;					//(array) all cms users - TODO: find a better way
-		}
+	}
 
-	//get all jomres users	
+	//get all jomres users
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
 	function get_users()
-		{
-		if ( is_array($this->users) )
-			{
+	{
+		if (is_array($this->users)) {
 			return true;
-			}
+		}
 		
 		$this->users = array();
 		
 		//Get all cms users TODO: find a better way so we won`t need to get all, there could be thousands
-		if ( !is_array($this->all_cms_users) )
-			{
+		if (!is_array($this->all_cms_users)) {
 			$this->all_cms_users = jomres_cmsspecific_getCMSUsers();
-			}
+		}
 		
 		$query	= "SELECT `manager_uid`, `userid`, `access_level`, `currentproperty`, `apikey`, `suspended`, `last_active` FROM #__jomres_managers";
-		$result = doSelectSql( $query );
+		$result = doSelectSql($query);
 		
-		if ( $result )
-			{
-			foreach ( $result as $r )
-				{
+		if ($result) {
+			foreach ($result as $r) {
 				$this->users[(int)$r->userid]['id'] 					= (int)$r->manager_uid;
 				$this->users[(int)$r->userid]['cms_user_id'] 			= (int)$r->userid;
 				$this->users[(int)$r->userid]['access_level'] 			= (int)$r->access_level;
@@ -101,67 +98,59 @@ class jomres_users
 				$this->users[(int)$r->userid]['suspended'] 				= (int)$r->suspended;
 				$this->users[(int)$r->userid]['last_active'] 			= $r->last_active;
 
-				if (isset($this->all_cms_users[ $r->userid ][ 'username' ]))
+				if (isset($this->all_cms_users[ $r->userid ][ 'username' ])) {
 					$this->users[(int)$r->userid]['username'] 			= $this->all_cms_users[ $r->userid ][ 'username' ];
-				else
+				} else {
 					$this->users[(int)$r->userid]['username'] 			= '';
+				}
 				
 				$this->users[(int)$r->userid]['authorised_properties'] 	= array(); //we`ll later get the authorised properties for each manager to save doing a query for each
-				}
 			}
+		}
 		
-		if ( !empty($this->users) )
-			{
-			$query = "SELECT `manager_id`, `property_uid` FROM #__jomres_managers_propertys_xref WHERE `manager_id` IN (" . jomres_implode( array_keys($this->users) ) . ")";
-			$result = doSelectSql( $query );
+		if (!empty($this->users)) {
+			$query = "SELECT `manager_id`, `property_uid` FROM #__jomres_managers_propertys_xref WHERE `manager_id` IN (" . jomres_implode(array_keys($this->users)) . ")";
+			$result = doSelectSql($query);
 
-			if ( $result )
-				{
-				foreach ( $result as $r )
-					{
+			if ($result) {
+				foreach ($result as $r) {
 					$this->users[(int)$r->manager_id]['authorised_properties'][] = (int)$r->property_uid;
 					$this->properties_users_xref[$r->property_uid][] = (int)$r->manager_id;
-					}
 				}
 			}
+		}
 		
 		return true;
-		}
+	}
 	
-	//get jomres user by id	
+	//get jomres user by id
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
-	function get_user( $cms_user_id = 0 )
-		{
-		if ( (int)$cms_user_id == 0 )
-			{
-			throw new Exception( "Error: User id not set.");
-			}
+	function get_user($cms_user_id = 0)
+	{
+		if ((int)$cms_user_id == 0) {
+			throw new Exception("Error: User id not set.");
+		}
 		
-		if ( (int)$cms_user_id == $this->cms_user_id ) //we already have the data loaded
-			{
+		if ((int)$cms_user_id == $this->cms_user_id) { //we already have the data loaded
 			return true;
-			}
+		}
 		
-		if ( !isset( $this->users[$cms_user_id] ) )
-			{
+		if (!isset($this->users[$cms_user_id])) {
 			//Get all cms users TODO: find a better way so we won`t need to get all, there could be thousands
-			if ( !is_array($this->all_cms_users) )
-				{
+			if (!is_array($this->all_cms_users)) {
 				$this->all_cms_users = jomres_cmsspecific_getCMSUsers();
-				}
+			}
 			
 			$query	= "SELECT `manager_uid`, `userid`, `access_level`, `currentproperty`, `apikey`, `suspended`, `last_active` FROM #__jomres_managers WHERE `userid` = " . (int)$cms_user_id;
-			$result = doSelectSql( $query );
+			$result = doSelectSql($query);
 			
-			if ( $result )
-				{
-				foreach ( $result as $r )
-					{
+			if ($result) {
+				foreach ($result as $r) {
 					$this->id 						= (int)$r->manager_uid;
 					$this->cms_user_id 				= (int)$r->userid;
 					$this->access_level 			= (int)$r->access_level;
@@ -170,34 +159,29 @@ class jomres_users
 					$this->suspended				= (int)$r->suspended;
 					$this->last_active				= $r->last_active;
 
-					if (isset($this->all_cms_users[ $r->userid ][ 'username' ]))
+					if (isset($this->all_cms_users[ $r->userid ][ 'username' ])) {
 						$this->username 			= $this->all_cms_users[ $r->userid ][ 'username' ];
-					else
+					} else {
 						$this->username 			= '';
+					}
 					
 					$this->authorised_properties 	= array(); //we`ll later get the authorised properties for each manager to save doing a query for each
-					}
+				}
 				
 				$query = "SELECT `manager_id`, `property_uid` FROM #__jomres_managers_propertys_xref WHERE `manager_id` = " . (int)$cms_user_id;
-				$result = doSelectSql( $query );
+				$result = doSelectSql($query);
 
-				if ( $result )
-					{
-					foreach ( $result as $r )
-						{
+				if ($result) {
+					foreach ($result as $r) {
 						$this->authorised_properties[] = (int)$r->property_uid;
-						}
 					}
+				}
 				
 				return true;
-				}
-			else
-				{
+			} else {
 				return false;
-				}
 			}
-		else
-			{
+		} else {
 			$this->id						= $this->users[$cms_user_id]['id'];
 			$this->cms_user_id				= $this->users[$cms_user_id]['cms_user_id'];
 			$this->access_level				= $this->users[$cms_user_id]['access_level'];
@@ -209,35 +193,32 @@ class jomres_users
 			$this->authorised_properties	= $this->users[$cms_user_id]['authorised_properties'];
 			
 			return true;
-			}
+		}
 		
 		return false;
-		}
+	}
 
-	//save new user	
+	//save new user
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
 	function commit_new_user()
-		{
-		if ( $this->id > 0 )
-			{
-			throw new Exception( "Error: User id is set, are you sure you`re creating a new user?");
-			}
+	{
+		if ($this->id > 0) {
+			throw new Exception("Error: User id is set, are you sure you`re creating a new user?");
+		}
 		
-		if ( $this->cms_user_id == 0 )
-			{
-			throw new Exception( "Error: Cms user id not set");
-			}
+		if ($this->cms_user_id == 0) {
+			throw new Exception("Error: Cms user id not set");
+		}
 		
 		//if super property manager, then don`t save any assigned properties, because this user level has access to all
-		if ( $this->access_level >= 90 )
-			{
+		if ($this->access_level >= 90) {
 			$this->authorised_properties = array();
-			}
+		}
 		
 		//assign the jomres user role to this new user
 		$query = "INSERT INTO #__jomres_managers 
@@ -255,121 +236,111 @@ class jomres_users
 						'" . $this->apikey . "'
 						)";
 		
-		if ( !doInsertSql( $query, '' ) )
-			{
-			throw new Exception( "Error: User insert failed.");
-			}
+		if (!doInsertSql($query, '')) {
+			throw new Exception("Error: User insert failed.");
+		}
 		
 		//update user`s assigned properties
-		updateManagerIdToPropertyXrefTable( $this->cms_user_id, $this->authorised_properties );
+		updateManagerIdToPropertyXrefTable($this->cms_user_id, $this->authorised_properties);
 		
 		return true;
-		}
+	}
 	
-	//update existing user	
+	//update existing user
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
 	function commit_update_user()
-		{
-		if ( $this->id == 0 )
-			{
-			throw new Exception( "Error: User id not set");
-			}
+	{
+		if ($this->id == 0) {
+			throw new Exception("Error: User id not set");
+		}
 		
-		if ( $this->cms_user_id == 0 )
-			{
-			throw new Exception( "Error: Cms user id not set");
-			}
+		if ($this->cms_user_id == 0) {
+			throw new Exception("Error: Cms user id not set");
+		}
 		
 		//if super property manager, then don`t save any assigned properties, because this user level has access to all
-		if ( $this->access_level >= 90 )
-			{
+		if ($this->access_level >= 90) {
 			$this->authorised_properties = array();
-			}
+		}
 		
 		//update user role details
 		$query = "UPDATE #__jomres_managers SET `access_level` = " . (int)$this->access_level . " WHERE `userid` = " . (int)$this->cms_user_id;
 		
-		if ( !doInsertSql( $query, '' ) )
-			{
-			throw new Exception( "Error: User update failed");
-			}
+		if (!doInsertSql($query, '')) {
+			throw new Exception("Error: User update failed");
+		}
 		
-		updateManagerIdToPropertyXrefTable( $this->cms_user_id, $this->authorised_properties );
+		updateManagerIdToPropertyXrefTable($this->cms_user_id, $this->authorised_properties);
 		
 		return true;
-		}
+	}
 	
-	//delete user	
+	//delete user
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
-	function delete_user( $cms_user_id = 0 )
-		{
-		if ( $cms_user_id == 0 )
-			{
-			throw new Exception( "Error: cms user id not set");
-			}
+	function delete_user($cms_user_id = 0)
+	{
+		if ($cms_user_id == 0) {
+			throw new Exception("Error: cms user id not set");
+		}
 
 		$query = "DELETE FROM #__jomres_managers WHERE `userid` = " . $cms_user_id;
 		
-		if ( !doInsertSql( $query, '' ) )
-			{
-			throw new Exception( "Error: User delete failed");
-			}
+		if (!doInsertSql($query, '')) {
+			throw new Exception("Error: User delete failed");
+		}
 		
 		//this will remove all user`s assigned properties
-		updateManagerIdToPropertyXrefTable( $cms_user_id, array() );
+		updateManagerIdToPropertyXrefTable($cms_user_id, array());
 		
 		return true;
-		}
+	}
 	
-	//this function generates a new user api key for an existing user by cms_user_id	
+	//this function generates a new user api key for an existing user by cms_user_id
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
 	function generate_user_api_key()
-		{
-		if ( $this->cms_user_id == 0 )
-			{
-			throw new Exception( "Error: cms user id not set");
-			}
+	{
+		if ($this->cms_user_id == 0) {
+			throw new Exception("Error: cms user id not set");
+		}
 		
 		$apikey = createNewAPIKey();
 			
 		$query  = "UPDATE #__jomres_managers SET `apikey`= '" . $apikey . "' WHERE `userid` = " . $this->cms_user_id;
 		
-		if ( !doInsertSql( $query, '' ) )
-			{
-			throw new Exception( "Error: Inserting new user`s api key failed");
-			}
+		if (!doInsertSql($query, '')) {
+			throw new Exception("Error: Inserting new user`s api key failed");
+		}
 		
 		return true;
-		}
+	}
 	
-	// Will find all manager ids for a property id. Note, only returns managers who are not Super Property Managers	
+	// Will find all manager ids for a property id. Note, only returns managers who are not Super Property Managers
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
 	public function getManagerIdsForProperty($property_uid = 0, $notIncludingSuperManagers = false)
 	{
-		if ( $property_uid == 0 )
-			{
-			throw new Exception( "Error: Property uid not set");
-			}
+		if ($property_uid == 0) {
+			throw new Exception("Error: Property uid not set");
+		}
 
 		$usersArray = array();
 		

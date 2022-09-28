@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -52,7 +52,7 @@ jr_define('_JOMRES_FAQ_GUEST_CATEGORY_SOMETHING', 'Qualcosa relativo agli ospiti
 jr_define('_JOMRES_FAQ_GUEST_QUESTION_SOMEQUESTION', 'Come faccio a bla bla bla?');
 jr_define('_JOMRES_FAQ_GUEST_ANSWER_SOMEANSWER', 'Tu blablabla ');
 jr_define('_JOMRES_FAQ_MANAGER_QUESTION_LANGUAGES', 'Come faccio a salvare le descrizioni in più lingue?');
-    
+	
 jr_define('_JOMRES_FAQ_MANAGER_ANSWER_LANGUAGES', "Per salvare le descrizioni in più lingue, visita prima la pagina Impostazioni > Dettagli proprietà. Salva lì la descrizione della tua proprietà. Successivamente, cambia la lingua in cui stai visualizzando il sito. Ora vai alle Impostazioni Di nuovo la pagina Dettagli proprietà e salva nuovamente i dettagli. Quindi, se il sito è in grado di mostrare sia l'inglese che lo spagnolo (o qualsiasi altra lingua), dovresti selezionare Inglese, inserire la descrizione in inglese, quindi fare clic su Salva. Quindi, cambia il tuo attuale lingua in spagnolo, quindi salva la nuova descrizione spagnola. Funziona per tutti gli input in quella pagina.");
 jr_define('_JOMRES_FAQ_MANAGER_QUESTION_OTHERPROPERTIES', 'Posso modificare altre proprietà su questo sito?');
 jr_define('_JOMRES_FAQ_MANAGER_ANSWER_OTHERPROPERTIES', 'No, non puoi. Puoi solo amministrare le proprietà che hai creato o a cui sei stato assegnato come gestore di proprietà.');
@@ -66,4 +66,3 @@ jr_define('_JOMRES_FAQ_MANAGER_ANSWER_ROOMFEATURES', "Le caratteristiche della s
 jr_define('_JOMRES_FAQ_ADMIN_CATEGORY_PAYMENTS', 'Pagamenti');
 jr_define('_JOMRES_FAQ_ADMIN_QUESTION_TROUBLESHOOTING_NOGATEWAY', "Non puoi vedere il gateway di pagamento dopo aver effettuato una prenotazione.");
 jr_define('_JOMRES_FAQ_ADMIN_ANSWER_TROUBLESHOOTING_NOGATEWAY', "Se sei loggato come Property Manager, non vedrai il gateway di pagamento, perché non paghi te stesso. Solo gli utenti non manager vedranno il gateway quando effettuano le prenotazioni.");
-    

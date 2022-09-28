@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -158,9 +158,9 @@ jr_define('_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_FILESIZE_POST', " w rozmiarze.");
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE', "Wybierz zasób, dla którego chcesz przesłać obrazy");
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_SPECIFIC', "Określony zasób");
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_ALREADY_UPLOADED', "Obrazy już przesłane dla tego zasobu");
-    
+	
 jr_define('_JOMRES_MARKDOWN_TITLE', 'Formatowanie tekstu');
-jr_define('_JOMRES_MARKDOWN_DESC', 'Tu możesz wpisać tekst używając prostego formatowania Markdown. Nie musisz znać żadnego kodu HTML, po prostu użyj przycisków, aby informacje wyglądały tak, jak chcesz, lub sformatuj tekst zgodnie z tymi przykładami.' );
+jr_define('_JOMRES_MARKDOWN_DESC', 'Tu możesz wpisać tekst używając prostego formatowania Markdown. Nie musisz znać żadnego kodu HTML, po prostu użyj przycisków, aby informacje wyglądały tak, jak chcesz, lub sformatuj tekst zgodnie z tymi przykładami.');
 jr_define('_JOMRES_MARKDOWN_EMPHASIS', 'Nacisk');
 jr_define('_JOMRES_MARKDOWN_BOLD', 'pogrubienie');
 jr_define('_JOMRES_MARKDOWN_ITALICS', 'kursywa');
@@ -203,20 +203,20 @@ jr_define('_JOMRES_GUEST_BLACKLISTED', 'Goście na czarnej liście');
 jr_define('_JOMRES_GUEST_BLACKLISTED_DESC', 'Jeśli ten gość znajduje się na czarnej liście, nie będzie już mógł dokonywać rezerwacji w tym obiekcie.');
 jr_define('_JOMRES_SESSION_HANDLER', 'Obsługa sesji');
 jr_define('_JOMRES_SESSION_HANDLER_DESC', 'Zapisz pliki sesji jomres na dysku lub w bazie danych. Zalecane: baza danych');
-jr_define('_JOMRES_MAP_HEIGHT',"Wysokość mapy (px)");
-jr_define('_JOMRES_MAP_ZOOMLEVEL',"Poziom powiększenia mapy ");
-jr_define('_JOMRES_MAP_MAPTYPE',"Typ mapy ");
+jr_define('_JOMRES_MAP_HEIGHT', "Wysokość mapy (px)");
+jr_define('_JOMRES_MAP_ZOOMLEVEL', "Poziom powiększenia mapy ");
+jr_define('_JOMRES_MAP_MAPTYPE', "Typ mapy ");
 
-jr_define('_JOMRES_TEMPLATE_PACKAGES',"Menedżer zastępowania szablonów");
-jr_define('_JOMRES_TEMPLATE_PACKAGES_LEAD',"Pakiety szablonów to wtyczki, które mogą zapewnić zastępowanie szablonów dla różnych podstawowych plików szablonów Jomres.");
-jr_define('_JOMRES_TEMPLATE_PACKAGES_INFO',"Ta strona zawiera listę wszystkich plików szablonów, które mogą być nadpisane przez pliki szablonów pakietu szablonów. Jeśli chcesz nadpisać określony plik szablonu, kliknij przycisk edycji dla tego pliku, na następnej stronie będziesz w stanie wybrać wersję, którą chcesz zastąpić. Uwaga, te zastąpienia mają pierwszeństwo przed zarówno Jomres Core, jak i dowolnymi zastąpieniami motywu/szablonu Wordpress lub Joomla. Możesz wyłączyć zastąpienie, usuwając je na stronie Zastąpienia szablonu listy.");
-jr_define('_JOMRES_TEMPLATE_PACKAGE_NAME',"Nazwa szablonu");
-jr_define('_JOMRES_TEMPLATE_PACKAGE_PATH',"Aktualna ścieżka");
-jr_define('_JOMRES_TEMPLATE_PACKAGE_NOT_OVERRIDDEN',"Nie zastąpiony");
-jr_define('_JOMRES_TEMPLATE_PACKAGES_EDIT_INFO',"Możesz wybrać, który plik szablonu ma zastąpić podstawowe pliki szablonów, zmieniając listę rozwijaną");
+jr_define('_JOMRES_TEMPLATE_PACKAGES', "Menedżer zastępowania szablonów");
+jr_define('_JOMRES_TEMPLATE_PACKAGES_LEAD', "Pakiety szablonów to wtyczki, które mogą zapewnić zastępowanie szablonów dla różnych podstawowych plików szablonów Jomres.");
+jr_define('_JOMRES_TEMPLATE_PACKAGES_INFO', "Ta strona zawiera listę wszystkich plików szablonów, które mogą być nadpisane przez pliki szablonów pakietu szablonów. Jeśli chcesz nadpisać określony plik szablonu, kliknij przycisk edycji dla tego pliku, na następnej stronie będziesz w stanie wybrać wersję, którą chcesz zastąpić. Uwaga, te zastąpienia mają pierwszeństwo przed zarówno Jomres Core, jak i dowolnymi zastąpieniami motywu/szablonu Wordpress lub Joomla. Możesz wyłączyć zastąpienie, usuwając je na stronie Zastąpienia szablonu listy.");
+jr_define('_JOMRES_TEMPLATE_PACKAGE_NAME', "Nazwa szablonu");
+jr_define('_JOMRES_TEMPLATE_PACKAGE_PATH', "Aktualna ścieżka");
+jr_define('_JOMRES_TEMPLATE_PACKAGE_NOT_OVERRIDDEN', "Nie zastąpiony");
+jr_define('_JOMRES_TEMPLATE_PACKAGES_EDIT_INFO', "Możesz wybrać, który plik szablonu ma zastąpić podstawowe pliki szablonów, zmieniając listę rozwijaną");
 
 
-jr_define('_JOMRES_OVERALL_ROOMS_BOOKED',"Odsetek zarezerwowanych pokoi");
+jr_define('_JOMRES_OVERALL_ROOMS_BOOKED', "Odsetek zarezerwowanych pokoi");
 
 jr_define('_JOMRES_SHORTCODES_06005NEW_PROPERTY', 'Wyświetla formularz tworzenia nowej właściwości.');
 
@@ -226,19 +226,19 @@ jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_REVIEWS_LIMIT', 'Liczba recenzj
 
 jr_define('_JOMRES_SHORTCODES_06000SHORTLIST', 'Wyświetla krótką listę użytkowników. Jeśli użytkownik jest zarejestrowany, są to jego ulubione, jeśli nie jest zalogowany, to tylko te elementy, które zostały dodane przez ikonę Ulubione podczas wizyty.');
 
-jr_define( '_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE', 'Minimalna wartość depozytu' );
-    
-jr_define( '_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE_DESC', "Jeżeli obliczona wpłata jest mniejsza niż ta kwota, zamiast tego ustaw wpłatę na tę wartość. Ta kwota może sama zostać zastąpiona, jeśli nie spełnia minimalnych ustawień wpłat w witrynie. Pozostaw ją na 0, aby nie używaj tego ustawienia." );
+jr_define('_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE', 'Minimalna wartość depozytu');
+	
+jr_define('_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE_DESC', "Jeżeli obliczona wpłata jest mniejsza niż ta kwota, zamiast tego ustaw wpłatę na tę wartość. Ta kwota może sama zostać zastąpiona, jeśli nie spełnia minimalnych ustawień wpłat w witrynie. Pozostaw ją na 0, aby nie używaj tego ustawienia.");
 
 jr_define('_JOMRES_SHORTCODES_06000SHOW_CONSENT_FORM', 'Pokazuje formularz zgody zgodny z RODO');
 
-jr_define( '_JOMRES_SHORTCODE_PROPERTY_ROOM_TYPE_LIST', 'Lista typów pokoi w obiekcie' );
-jr_define( '_JOMRES_SHORTCODE_PROPERTY_ROOM_TYPE', 'Pokaż typ pokoju własności' );
+jr_define('_JOMRES_SHORTCODE_PROPERTY_ROOM_TYPE_LIST', 'Lista typów pokoi w obiekcie');
+jr_define('_JOMRES_SHORTCODE_PROPERTY_ROOM_TYPE', 'Pokaż typ pokoju własności');
 
-jr_define( '_JOMRES_SHORTCODE_LOGIN_FORM', 'Pokaż formularz logowania' );
+jr_define('_JOMRES_SHORTCODE_LOGIN_FORM', 'Pokaż formularz logowania');
 
 jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_ROOM_TYPE', 'Pokaż listę pokoi określonego typu');
-jr_define( '_JOMRES_SHORTCODES_06000SHOW_PROPERTY_ROOM_TYPE_ARG_ROOM_TYPE_ID', 'Identyfikator typu pokoju' );
+jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_ROOM_TYPE_ARG_ROOM_TYPE_ID', 'Identyfikator typu pokoju');
 
 jr_define('_JOMRES_SHORTCODES_06001DASHBOARD', 'Pulpit');
 

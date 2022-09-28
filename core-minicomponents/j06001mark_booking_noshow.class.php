@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06001mark_booking_noshow
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -55,9 +56,9 @@ class j06001mark_booking_noshow
 
 		$property_uid = getDefaultProperty();
 
-		$query = 'UPDATE  #__jomres_contracts  SET noshow_flag = 1 WHERE contract_uid = '.$contract_uid.' AND property_uid = '.(int) $property_uid; 
+		$query = 'UPDATE  #__jomres_contracts  SET noshow_flag = 1 WHERE contract_uid = '.$contract_uid.' AND property_uid = '.(int) $property_uid;
 
-		$result = doInsertSql($query, jr_gettext('BOOKING_NOSHOW_AUDIT_LOG', 'BOOKING_NOSHOW_AUDIT_LOG', false, false)  );
+		$result = doInsertSql($query, jr_gettext('BOOKING_NOSHOW_AUDIT_LOG', 'BOOKING_NOSHOW_AUDIT_LOG', false, false));
 
 		$MiniComponents->specificEvent('06001', 'save_cancellation', array( 'contract_uid' => $contract_uid , 'reason' => jr_gettext('BOOKING_NOSHOW_AUDIT_LOG', 'BOOKING_NOSHOW_AUDIT_LOG', false, false) , 'property_uid' => $property_uid ));
 		

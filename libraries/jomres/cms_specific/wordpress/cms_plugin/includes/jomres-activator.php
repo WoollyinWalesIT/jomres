@@ -18,7 +18,8 @@
  *
  * @author	 Vince Wooll <support@jomres.net>
  */
-class Jomres_Activator {
+class Jomres_Activator
+{
 
 	/**
 	 * Performs Jomres installation/update.
@@ -27,21 +28,20 @@ class Jomres_Activator {
 	 *
 	 * @since	9.9.19
 	 */
-	public static function activate() {
-		if ( version_compare( PHP_VERSION, '7.4', '<' ) )
-		{
-			exit( sprintf( 'Jomres requires PHP 7.4 or higher. You’re still on %s.', PHP_VERSION ) );
+	public static function activate()
+	{
+		if (version_compare(PHP_VERSION, '7.4', '<')) {
+			exit(sprintf('Jomres requires PHP 7.4 or higher. You’re still on %s.', PHP_VERSION));
 		}
 
-		if ( !is_dir(ABSPATH.'jomres') ) {
-			if (!mkdir(ABSPATH.'jomres' )) {
-				exit( sprintf( 'Unable to create the directory '.ABSPATH.'jomres'.' automatically. <br/> 
-					Please FTP into your site and create it, then activate the plugin.') );
+		if (!is_dir(ABSPATH.'jomres')) {
+			if (!mkdir(ABSPATH.'jomres')) {
+				exit(sprintf('Unable to create the directory '.ABSPATH.'jomres'.' automatically. <br/> 
+					Please FTP into your site and create it, then activate the plugin.'));
 			}
 		}
 		self::maybe_install_or_update_jomres();
 		self::maybe_add_default_jomres_page();
-	
 	}
 	
 	/**
@@ -51,10 +51,10 @@ class Jomres_Activator {
 	 *
 	 * @since	9.9.19
 	 */
-	private static function maybe_install_or_update_jomres() {
+	private static function maybe_install_or_update_jomres()
+	{
 		
 		return jomres_is_installed_and_updated();
-		
 	}
 	
 	/**
@@ -65,16 +65,17 @@ class Jomres_Activator {
 	 *
 	 * @since	9.9.19
 	 */
-	private static function maybe_add_default_jomres_page() {
+	private static function maybe_add_default_jomres_page()
+	{
 		
 		global $wpdb;
 
-		$currentBlogLang = str_replace( '_', '-', get_locale() );
+		$currentBlogLang = str_replace('_', '-', get_locale());
 		$keyword = '[jomres:' . $currentBlogLang . ']';
 
-		$result = $wpdb->get_results( "SELECT `ID` FROM {$wpdb->posts} WHERE LOWER( `post_content` ) LIKE '%" . strtolower( $keyword ) . "%' AND `post_status` = 'publish' AND `post_type` = 'page' LIMIT 1", OBJECT );
+		$result = $wpdb->get_results("SELECT `ID` FROM {$wpdb->posts} WHERE LOWER( `post_content` ) LIKE '%" . strtolower($keyword) . "%' AND `post_status` = 'publish' AND `post_type` = 'page' LIMIT 1", OBJECT);
 
-		if ( empty( $result ) ) {
+		if (empty($result)) {
 			$postarr = array(
 				'comment_status' => 'closed',
 				'ping_status' => 'closed',
@@ -84,11 +85,9 @@ class Jomres_Activator {
 				'post_type' => 'page',
 				);
 
-			wp_insert_post( $postarr );
+			wp_insert_post($postarr);
 		}
 		
 		return true;
-	
 	}
-
 }

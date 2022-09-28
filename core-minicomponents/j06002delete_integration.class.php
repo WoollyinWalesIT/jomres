@@ -4,51 +4,55 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 // ################################################################
-defined( '_JOMRES_INITCHECK' ) or die( '' );
+defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06002delete_integration
-	{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
-	function __construct( $componentArgs )
-		{
+	function __construct($componentArgs)
+	{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-		if ( $MiniComponents->template_touch ) { $this->template_touchable = false; return; }
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
+			return;
+		}
 
 		$ePointFilepath=get_showtime('ePointFilepath');
-		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
+		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 
-		$integration_id = jomresGetParam( $_REQUEST, 'id', "" );
+		$integration_id = jomresGetParam($_REQUEST, 'id', "");
 		
 		jr_import("webhooks");
 		$webhooks = new webhooks($thisJRUser->id);
 		$all_webhooks = $webhooks->get_all_webhooks();
 		$webhooks->delete_integration($integration_id);
-		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=webhooks_core" ), "" ); 
-		}
+		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL . "&task=webhooks_core"), "");
+	}
 
 	/**
 	#
@@ -59,8 +63,7 @@ class j06002delete_integration
 	 */
 
 	function getRetVals()
-		{
+	{
 		return null;
-		}
 	}
-
+}

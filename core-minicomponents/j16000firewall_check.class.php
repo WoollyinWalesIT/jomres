@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -20,19 +20,20 @@ use GuzzleHttp\Exception\ClientException;
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j16000firewall_check
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -58,7 +59,7 @@ class j16000firewall_check
 			'https://openexchangerates.org/api/latest.json'
 		);
 
-		foreach ( $remote_services as $service ) {
+		foreach ($remote_services as $service) {
 			$r=array();
 			
 			$response_code = "XXX";
@@ -73,12 +74,11 @@ class j16000firewall_check
 				]);
 				$response = $client->request('GET');
 				$response_code = $response->getStatusCode();
-			}
-			catch (Exception $e) {
+			} catch (Exception $e) {
 				//var_dump($e);exit;
 			}
 
-			if ($response_code == "200" || $response_code == "403" || $response_code == "404" ) {
+			if ($response_code == "200" || $response_code == "403" || $response_code == "404") {
 				$r['COLOUR'] = "success";
 			}
 			
@@ -98,14 +98,14 @@ class j16000firewall_check
 
 		$pageoutput[ ] = $output;
 		$tmpl = new patTemplate();
-		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
+		$tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
 		$tmpl->readTemplatesFromInput('firewall_check.html');
 		$tmpl->addRows('pageoutput', $pageoutput);
 		$tmpl->addRows('rows', $rows);
 		$tmpl->displayParsedTemplate();
 	}
 
-	function get_ip_number($service) 
+	function get_ip_number($service)
 	{
 		$wrapper = fopen('php://temp', 'r+');
 		$ch = curl_init($service);
@@ -123,10 +123,9 @@ class j16000firewall_check
 		} else {
 			return 'XXX';
 		}
-		
 	}
 	
-	function get_curl_remote_ips($fp) 
+	function get_curl_remote_ips($fp)
 	{
 		rewind($fp);
 		$str = fread($fp, 8192);
@@ -136,7 +135,7 @@ class j16000firewall_check
 		} else {
 			return false;
 		}
-	}	
+	}
 	
 
 	public function getRetVals()

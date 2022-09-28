@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j16000list_invoices_ajax
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -129,7 +130,7 @@ class j16000list_invoices_ajax
 			default:
 				$clause .= 'AND ( a.subscription = 1 OR a.is_commission = 1 ) ';
 				break;
-			}
+		}
 
 		//status
 		if ($invoice_status != 4) {
@@ -219,13 +220,13 @@ class j16000list_invoices_ajax
 				default:
 					$label_class = 'label-grey';
 					break;
-				}
+			}
 
 			// There are some differences between J3 & J4 and the font awesome icons
 			$font_awesome_tariffs = 'fa-usd';
 			$font_awesome_edit = 'fa-pencil-square-o';
 
-			if (jomres_bootstrap_version() == '5' ) {
+			if (jomres_bootstrap_version() == '5') {
 				$font_awesome_tariffs = 'fa-dollar-sign';
 				$font_awesome_edit = 'fa-edit';
 			}
@@ -262,20 +263,23 @@ class j16000list_invoices_ajax
 			}
 			$r[] = substr($translated_line_items, 0, -4);
 
-			if ($p->raised_date != '1970-01-01 00:00:01')
+			if ($p->raised_date != '1970-01-01 00:00:01') {
 				$r[] = $p->raised_date;
-			else
+			} else {
 				$r[] = '';
+			}
 			
-			if ($p->due_date != '1970-01-01 00:00:01')
+			if ($p->due_date != '1970-01-01 00:00:01') {
 				$r[] = $p->due_date;
-			else
+			} else {
 				$r[] = '';
+			}
 			
-			if ($p->paid != '1970-01-01 00:00:01')
+			if ($p->paid != '1970-01-01 00:00:01') {
 				$r[] = $p->paid;
-			else
+			} else {
 				$r[] = '';
+			}
 			
 			$r[] = output_price($p->grand_total, $p->currencycode);
 			$r[] = output_price($p->init_total, $p->currencycode);

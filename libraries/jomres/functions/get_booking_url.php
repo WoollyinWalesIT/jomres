@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -27,7 +27,8 @@ defined('_JOMRES_INITCHECK') or die('');
 * sefsafe: sef url not passed through jomresURL function
 * ajax: ajax safe url
  */
-function get_booking_url($property_uid = 0, $type = 'sef', $params = '') {
+function get_booking_url($property_uid = 0, $type = 'sef', $params = '')
+{
 	$jomres_access_control = jomres_singleton_abstract::getInstance('jomres_access_control');
 	
 	if (!$jomres_access_control->this_user_can('dobooking')) {
@@ -38,9 +39,9 @@ function get_booking_url($property_uid = 0, $type = 'sef', $params = '') {
 	
 	if (isset($mrConfig[ 'externalBookingFormUrl' ]) && $mrConfig[ 'externalBookingFormUrl' ] != '') {
 		$url = filter_var($mrConfig[ 'externalBookingFormUrl' ], FILTER_SANITIZE_URL);
-		$url = str_replace( "&#38;#61;" , "=" , $url );
+		$url = str_replace("&#38;#61;", "=", $url);
 	} else {
-		switch($type) {
+		switch ($type) {
 			case 'sef':
 				$url = jomresURL(JOMRES_SITEPAGE_URL.'&task=dobooking&selectedProperty='.$property_uid.$params);
 				break;

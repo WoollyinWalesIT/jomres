@@ -1,40 +1,62 @@
 <pattemplate:tmpl name="pageoutput" unusedvars="strip">
 	<pattemplate:tmpl name="rows" unusedvars="strip" type="simpleCondition"
 					  requiredvars="roomtype">
-		<div class="card bg-light card-body mb-3 card bg-faded p-1 mb-3all">
+		<div class="card bg-light card-body mb-3 card bg-faded">
 			<div class="row">
-				<div class="col-lg-4">	<a href="#roomdetails{ROOMUID}_{TARIFFUID}" role="button" data-bs-toggle="modal"><img src="{ROOM_IMAGE_LARGE}" alt="room image" class="img-fluid"></a>
+				<div class="col-sm-4">	<a href="#roomdetails{ROOMUID}_{TARIFFUID}" role="button" data-bs-toggle="modal"><img src="{ROOM_IMAGE_LARGE}" alt="room image" class="img-fluid"></a>
 				</div>
-				<div class="col-lg-4">
-					<h4 class=""><a href="#roomdetails{ROOMUID}_{TARIFFUID}" role="button" data-bs-toggle="modal">{ROOMTYPE}</a></h4>
-					<strong>{TAGLINE}</strong>
-					<div class="row">
-						<div class="col-6">
-							<em>{HEADER_MAXPEOPLE}</em>
-						</div>
-						<div class="col-6">
-							{MAXPEOPLE_INROOM}
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-6">
-							<a href="#roomdetails{ROOMUID}_{TARIFFUID}" role="button" data-bs-toggle="modal" class="hidden-phone hidden-tablet">{HMOREINFO}...</a>
-						</div>
-						<div class="col-6">
-
-						</div>
-					</div>
+				<div class="col-sm-6">
+					<div class="fs-5"><a href="#roomdetails{ROOMUID}_{TARIFFUID}" role="button" data-bs-toggle="modal">{ROOMTYPE}</a></div>
 				</div>
-				<div class="col-lg-2">
-					<p><span class="big-price">{FORMATTED_PRICE}</span>{HRATEPERNIGHT}</p>
-				</div>
-				<div class="col-lg-2 text-center">
-					<div id="{ROOMTARIFFOUTPUTID}"><a href="javascript:void(0);" onclick="getResponse_rooms(&apos;requestedRoom&apos;,&apos;{ROOMTARIFFOUTPUTID}&apos; );"
-					                                  class="btn {BUTTON_CLASS}"><i class="fa fa-times"></i> </a>
-					</div>
+				<div class="col-sm-2">
+					<span id="{ROOMTARIFFOUTPUTID}"><a href="javascript:void(0);" onclick="getResponse_rooms(&apos;requestedRoom&apos;,&apos;{ROOMTARIFFOUTPUTID}&apos; );"
+													  class="btn {BUTTON_CLASS}"><i class="icon-minus-2 icon-white"></i> </a>
+					</span>
 				</div>
 			</div>
 		</div>
+		
+		<patTemplate:comment>
+		Old layout, in case somebody wants it
+			<div class="card bg-light card-body mb-3 card bg-faded p-1 mb-3all">
+				<div class="row">
+					<div class="col-lg-4">	<a href="#roomdetails{ROOMUID}_{TARIFFUID}" role="button" data-bs-toggle="modal"><img src="{ROOM_IMAGE_LARGE}" alt="room image" class="img-fluid"></a>
+					</div>
+					<div class="col-lg-4">
+						<div class="fs-5"><a href="#roomdetails{ROOMUID}_{TARIFFUID}" role="button" data-bs-toggle="modal">{ROOMTYPE}</a></div>
+						<strong>{TAGLINE}</strong>
+						<div class="row ">
+							<div class="col-6">
+								<em>{HEADER_MAXPEOPLE}</em>
+							</div>
+							<div class="col-6">
+								{MAXPEOPLE_INROOM}
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-6">
+								<a href="#roomdetails{ROOMUID}_{TARIFFUID}" role="button" data-bs-toggle="modal" class="d-none d-lg-block">{HMOREINFO}...</a>
+							</div>
+							<div class="col-6">
+							
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-2">
+						<p><span class="big-price">{FORMATTED_PRICE}</span>{HRATEPERNIGHT}</p>
+					</div>
+					<div class="col-lg-2 text-center p-1">
+						<div id="{ROOMTARIFFOUTPUTID}"><a href="javascript:void(0);" onclick="getResponse_rooms(&apos;requestedRoom&apos;,&apos;{ROOMTARIFFOUTPUTID}&apos; );"
+														  class="btn {BUTTON_CLASS}"><i class="icon-minus-2 icon-white"></i> </a>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+			
+		</patTemplate:comment>
+		
 		<div id="roomdetails{ROOMUID}_{TARIFFUID}" class="modal fade" tabindex="-1"
 			 role="dialog" aria-labelledby="myModalLabel{ROOMUID}_{TARIFFUID}" aria-hidden="true">
 			<div class="modal-dialog modal-xl" role="document">

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06002list_room_types
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -43,7 +44,7 @@ class j06002list_room_types
 
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
-		if ( $jrConfig[ 'frontend_room_type_editing_allowed' ] == 0 ) {
+		if ($jrConfig[ 'frontend_room_type_editing_allowed' ] == 0) {
 			return;
 		}
 		
@@ -63,7 +64,7 @@ class j06002list_room_types
 
 		if (!empty($jomres_room_types->property_specific_room_types[$property_uid])) {
 			foreach ($jomres_room_types->property_specific_room_types[$property_uid] as $r) {
-				$r[ 'RTTITLE' ] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.$r['room_classes_uid'], stripslashes($r['room_class_abbv']), true ) ;
+				$r[ 'RTTITLE' ] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.$r['room_classes_uid'], stripslashes($r['room_class_abbv']), true) ;
 				$r[ 'RTDESCRIPTION' ] = $r['room_class_full_desc'];
 				$r[ 'IMAGE' ] = JOMRES_IMAGELOCATION_RELPATH.'rmtypes/'.$r['image'];
 

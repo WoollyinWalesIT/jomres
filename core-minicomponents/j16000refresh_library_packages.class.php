@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j16000refresh_library_packages
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -41,7 +42,7 @@ class j16000refresh_library_packages
 			return;
 		}
 
-		if (isset($_REQUEST['go'])){
+		if (isset($_REQUEST['go'])) {
 			if (isset($_REQUEST['package_manager_install'])) {
 				jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=dashboard'), '');
 			} else {
@@ -56,7 +57,7 @@ class j16000refresh_library_packages
 			$output['_JOMRES_LIBRARY_PACKAGES_DESC'] = jr_gettext('_JOMRES_LIBRARY_PACKAGES_DESC', '_JOMRES_LIBRARY_PACKAGES_DESC', false);
 			$output['_JOMRES_LIBRARY_PACKAGES_REFRESH'] = jr_gettext('_JOMRES_LIBRARY_PACKAGES_REFRESH', '_JOMRES_LIBRARY_PACKAGES_REFRESH', false);
 			
-			$output['URL'] = JOMRES_SITEPAGE_URL_ADMIN_AJAX.'&task=refresh_library_packages&go=1'; 
+			$output['URL'] = JOMRES_SITEPAGE_URL_ADMIN_AJAX.'&task=refresh_library_packages&go=1';
 			
 
 			$pageoutput[ ] = $output;
@@ -67,7 +68,6 @@ class j16000refresh_library_packages
 
 			$tmpl->displayParsedTemplate();
 		}
-		
 	}
 
 

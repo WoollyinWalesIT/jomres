@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -18,20 +18,21 @@ defined('_JOMRES_INITCHECK') or die('');
 	 * @package Jomres\Core\Minicomponents
 	 *
 	 * Property Configuration page tabs. Offers various tariff and charging related settings.
-	 * 
+	 *
 	 */
 
 
 class j00501tariffs
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -79,7 +80,7 @@ class j00501tariffs
 
 		if ($jrConfig[ 'useGlobalCurrency' ] != '1') {
 			if (!isset($mrConfig[ 'property_currencycode' ])) { // for v4.5 converting the old currencyCode value to property_currencycode
-			$mrConfig[ 'property_currencycode' ] = $mrConfig[ 'currencyCode' ];
+				$mrConfig[ 'property_currencycode' ] = $mrConfig[ 'currencyCode' ];
 			}
 			$currency_codes = jomres_singleton_abstract::getInstance('currency_codes');
 			$currency_codes_dropdown = $currency_codes->makeCodesDropdown($mrConfig[ 'property_currencycode' ]);
@@ -100,10 +101,10 @@ class j00501tariffs
 		$configurationPanel->setright();
 		$configurationPanel->insertSetting();
 
-        $configurationPanel->setleft(jr_gettext('_JOMRES_CURRENCYFORMAT_STRIP_DECIMALS', '_JOMRES_CURRENCYFORMAT_STRIP_DECIMALS', false));
-        $configurationPanel->setmiddle($lists[ 'cformat_strip_decimals' ]);
-        $configurationPanel->setright();
-        $configurationPanel->insertSetting();
+		$configurationPanel->setleft(jr_gettext('_JOMRES_CURRENCYFORMAT_STRIP_DECIMALS', '_JOMRES_CURRENCYFORMAT_STRIP_DECIMALS', false));
+		$configurationPanel->setmiddle($lists[ 'cformat_strip_decimals' ]);
+		$configurationPanel->setright();
+		$configurationPanel->insertSetting();
 
 		if ($mrConfig[ 'is_real_estate_listing' ] == 0) {
 			if (!get_showtime('is_jintour_property')) {
@@ -126,24 +127,23 @@ class j00501tariffs
 
 		if ($mrConfig[ 'is_real_estate_listing' ] == '0') {
 			//if (isset($MiniComponents->registeredClasses['00005']['guest_types' ])) {
-				if ($mrConfig[ 'wholeday_booking' ] == '1') {
-					$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_TARIFFS_PER_WHOLEDAY', '_JOMRES_COM_A_TARIFFS_PER_WHOLEDAY', false));
-					$configurationPanel->setmiddle($lists[ 'perPersonPerNight' ]);
-					$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_TARIFFS_PER_DESC_WHOLEDAY', '_JOMRES_COM_A_TARIFFS_PER_DESC_WHOLEDAY', false));
-					$configurationPanel->insertSetting();
-				} else {
-					$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_TARIFFS_PER', '_JOMRES_COM_A_TARIFFS_PER', false));
-					$configurationPanel->setmiddle($lists[ 'perPersonPerNight' ]);
-					$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_TARIFFS_PER_DESC', '_JOMRES_COM_A_TARIFFS_PER_DESC', false));
-					$configurationPanel->insertSetting();
-				}
+			if ($mrConfig[ 'wholeday_booking' ] == '1') {
+				$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_TARIFFS_PER_WHOLEDAY', '_JOMRES_COM_A_TARIFFS_PER_WHOLEDAY', false));
+				$configurationPanel->setmiddle($lists[ 'perPersonPerNight' ]);
+				$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_TARIFFS_PER_DESC_WHOLEDAY', '_JOMRES_COM_A_TARIFFS_PER_DESC_WHOLEDAY', false));
+				$configurationPanel->insertSetting();
+			} else {
+				$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_TARIFFS_PER', '_JOMRES_COM_A_TARIFFS_PER', false));
+				$configurationPanel->setmiddle($lists[ 'perPersonPerNight' ]);
+				$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_TARIFFS_PER_DESC', '_JOMRES_COM_A_TARIFFS_PER_DESC', false));
+				$configurationPanel->insertSetting();
+			}
 			//}
 			
-		$configurationPanel->setleft(jr_gettext('POA_DISPLAY_PRICE', 'POA_DISPLAY_PRICE', false));
-		$configurationPanel->setmiddle( '<input type="text" class="inputbox form-control"  size="5" name="cfg_poa_price" value="'.$mrConfig[ 'poa_price' ].'" />' );
-		$configurationPanel->setright(jr_gettext('POA_DISPLAY_PRICE_DESC', 'POA_DISPLAY_PRICE_DESC', false));
-		$configurationPanel->insertSetting();
-			
+			$configurationPanel->setleft(jr_gettext('POA_DISPLAY_PRICE', 'POA_DISPLAY_PRICE', false));
+			$configurationPanel->setmiddle('<input type="text" class="inputbox form-control"  size="5" name="cfg_poa_price" value="'.$mrConfig[ 'poa_price' ].'" />');
+			$configurationPanel->setright(jr_gettext('POA_DISPLAY_PRICE_DESC', 'POA_DISPLAY_PRICE_DESC', false));
+			$configurationPanel->insertSetting();
 		}
 
 		$configurationPanel->endPanel();
@@ -214,7 +214,6 @@ class j00501tariffs
 				}
 			</script>
 		<?php
-
 	}
 
 

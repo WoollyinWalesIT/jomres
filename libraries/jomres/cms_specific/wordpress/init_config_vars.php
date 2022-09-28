@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -39,21 +39,21 @@ if (!defined('AUTO_UPGRADE')) {
 
 include(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'configuration.php');
 
-if ($jrConfig['bootstrap_version'] == 0 && AJAXCALL === false && !is_admin() ) {
-    // If theme is not bootstrap based, we can still include BS and hope that everything works (highly dependant on the theme)
-    // JS
-    wp_enqueue_script('prefix_bootstrap' , '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', array('jquery') );
+if ($jrConfig['bootstrap_version'] == 0 && AJAXCALL === false && !is_admin()) {
+	// If theme is not bootstrap based, we can still include BS and hope that everything works (highly dependant on the theme)
+	// JS
+	wp_enqueue_script('prefix_bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', array('jquery'));
 
-    // CSS
-    wp_register_style('prefix_bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
-    wp_enqueue_style('prefix_bootstrap');
-    wp_register_style('prefix_bootstrap_theme', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css');
-    wp_enqueue_style('prefix_bootstrap_theme');
+	// CSS
+	wp_register_style('prefix_bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
+	wp_enqueue_style('prefix_bootstrap');
+	wp_register_style('prefix_bootstrap_theme', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css');
+	wp_enqueue_style('prefix_bootstrap_theme');
 }
 
-add_filter( 'wp_editor_settings', function($settings) {
-    $settings['media_buttons']=FALSE;
-    return $settings;
+add_filter('wp_editor_settings', function ($settings) {
+	$settings['media_buttons']=false;
+	return $settings;
 });
 
 $showtime = jomres_getSingleton('showtime');

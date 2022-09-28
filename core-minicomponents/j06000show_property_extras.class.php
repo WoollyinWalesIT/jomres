@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06000show_property_extras
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -134,7 +135,7 @@ class j06000show_property_extras
 						case '100': // Commission
 							$model_text = jr_gettext('_JOMRES_COMMISSION', '_JOMRES_COMMISSION');
 							break;
-						}
+					}
 					$tax_output = '';
 					if ($rate > 0) {
 						$tax_output = ' ('.$rate.'%)';
@@ -170,6 +171,8 @@ class j06000show_property_extras
 
 					$extra_details[ ] = $extra_deets;
 				}
+
+				jomres_set_page_title( $property_uid ,  jr_gettext('_JOMRES_COM_MR_EXTRA_TITLE', '_JOMRES_COM_MR_EXTRA_TITLE', false) );
 
 				$output = array();
 				$output ['_JOMRES_EXTRAS_TEMPLATE'] = jr_gettext('_JOMRES_EXTRAS_TEMPLATE', '_JOMRES_EXTRAS_TEMPLATE');

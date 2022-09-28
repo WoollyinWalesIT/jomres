@@ -33,6 +33,33 @@
 	//-->
 </script>
 
+<style>
+    input[type=checkbox] {
+        display: none;
+    }
+
+    input:checked + label {
+    }
+
+    input:checked + label:before {
+        content: "✓ ";
+    }
+
+
+    /* new stuff */
+    .check {
+        visibility: hidden;
+    }
+
+    input:checked + label .check {
+        visibility: visible;
+    }
+
+    input.checkbox:checked + label:before {
+        content: "";
+    }
+</style>
+
 <div class="alert alert-info">{HEADER}</div>
 
 <form action="" method="post" name="bookingForm" role="form" onsubmit="send.disabled = true; return true;">
@@ -316,8 +343,9 @@
 <div class="row">
 	<div class="col-md-9 h-100">
 		<div id="agreealert" class="alert alert-warning">
-			<input name="agreecheck" type="checkbox" onchange="agreeAlert();"/>
-			<span> {TERMSPRETEXT}&nbsp;
+			<input name="agreecheck"  id="agreecheck" type="checkbox" onchange="agreeAlert();" style="display: none"/>
+			<label for="agreecheck" class="btn btn-success"><span class="check">✓</span> {TERMSPRETEXT}</label>
+			<span>
 				<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#terms_modal">
 					{TERMS_NO_POPUP}
 				</button>

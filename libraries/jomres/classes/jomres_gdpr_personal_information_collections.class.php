@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -33,13 +33,13 @@ class jomres_gdpr_personal_information_collections
 	* Set the CMS user id. Without it most other methods will throw an error
 	*
 	*/
-	public function set_id($cms_id = 0 )
+	public function set_id($cms_id = 0)
 	{
-		if ((int)$cms_id == 0 ) {
+		if ((int)$cms_id == 0) {
 			throw new Exception('CMS id not set ');
 		}
 		
-		$users = jomres_cmsspecific_getCMSUsers( (int) $cms_id );
+		$users = jomres_cmsspecific_getCMSUsers((int) $cms_id);
 		if (empty($users)) {
 			throw new Exception('CMS user does not exist ');
 		}
@@ -48,14 +48,14 @@ class jomres_gdpr_personal_information_collections
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
 	public function can_redact_this_cms_user()
 	{
-		if ((int)$this->cms_id == 0 ) {
+		if ((int)$this->cms_id == 0) {
 			throw new Exception('CMS id not set ');
 		}
 		
@@ -95,9 +95,9 @@ class jomres_gdpr_personal_information_collections
 	* Collect PII for each and every property & the user's profile table
 	*
 	*/
-	public function collect_pii() 
+	public function collect_pii()
 	{
-		if ((int)$this->cms_id == 0 ) {
+		if ((int)$this->cms_id == 0) {
 			throw new Exception('CMS id not set ');
 		}
 		
@@ -119,7 +119,7 @@ class jomres_gdpr_personal_information_collections
 			$jrportal_guests = new jrportal_guests();
 			
 			$propertysToShow = array();
-			foreach ($result as $r ) {
+			foreach ($result as $r) {
 				$propertysToShow[] = (int)$r->property_uid;
 			}
 			
@@ -127,7 +127,7 @@ class jomres_gdpr_personal_information_collections
 			$current_property_details->gather_data_multi($propertysToShow);
 			
 			
-			foreach ($result as $r ) {
+			foreach ($result as $r) {
 				$jrportal_guests->init_guest();
 				$jrportal_guests->id = $r->guests_uid;
 				$jrportal_guests->property_uid = $r->property_uid;
@@ -200,7 +200,6 @@ class jomres_gdpr_personal_information_collections
 							)
 					),
 				);
-				
 			}
 		}
 
@@ -221,7 +220,7 @@ class jomres_gdpr_personal_information_collections
 					FROM #__jomres_guest_profile 
 					WHERE `cms_user_id` = ' .(int) $this->cms_id.' 
 					LIMIT 1 ';
-		$result = doSelectSql($query );
+		$result = doSelectSql($query);
 
 		
 		if (!empty($result)) {
@@ -295,7 +294,7 @@ class jomres_gdpr_personal_information_collections
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -308,7 +307,7 @@ class jomres_gdpr_personal_information_collections
 		$encrypted_redacted_string = $this->jomres_encryption->encrypt(jr_gettext('_JOMRES_GDPR_REDACTION_STRING', '_JOMRES_GDPR_REDACTION_STRING', false));
 		unset($this->jomres_encryption);
 		
-		if ((int)$this->cms_id == 0 ) {
+		if ((int)$this->cms_id == 0) {
 			throw new Exception('CMS id not set ');
 		}
 		
@@ -320,9 +319,9 @@ class jomres_gdpr_personal_information_collections
 		$jomres_media_centre_images->get_site_images('userimages');
 
 		if (isset($jomres_media_centre_images->site_images['userimages'] [$this->cms_id])) {
-			foreach ($jomres_media_centre_images->site_images['userimages'][$this->cms_id] as $file ) {
+			foreach ($jomres_media_centre_images->site_images['userimages'][$this->cms_id] as $file) {
 				$path = $file['large'];
-				$arr = explode ( "/" , $path );
+				$arr = explode("/", $path);
 				$file_name = end($arr);
 
 				//delete image from disk and db
@@ -354,7 +353,7 @@ class jomres_gdpr_personal_information_collections
 			$jrportal_guests = new jrportal_guests();
 			
 			$propertysToShow = array();
-			foreach ($result as $r ) {
+			foreach ($result as $r) {
 				$propertysToShow[] = (int)$r->property_uid;
 			}
 			
@@ -362,7 +361,7 @@ class jomres_gdpr_personal_information_collections
 			$current_property_details->gather_data_multi($propertysToShow);
 			
 			
-			foreach ($result as $r ) {
+			foreach ($result as $r) {
 				$jrportal_guests->init_guest();
 				$jrportal_guests->id = $r->guests_uid;
 				$jrportal_guests->property_uid = $r->property_uid;
@@ -395,10 +394,10 @@ class jomres_gdpr_personal_information_collections
 	* Allows admins to redact guests who were not logged in/registered when their booking was made
 	*
 	*/
-	public function redact_non_registered_guest_pii($guest_id = 0 , $property_uid = 0 ) 
+	public function redact_non_registered_guest_pii($guest_id = 0, $property_uid = 0)
 	{
 		
-		if ((int)$guest_id == 0 ) {
+		if ((int)$guest_id == 0) {
 			throw new Exception('guest_id not set ');
 		}
 		
@@ -430,7 +429,5 @@ class jomres_gdpr_personal_information_collections
 		$jrportal_guests->blacklisted	= $redacted_string;
 		
 		$jrportal_guests->commit_update_guest();
-		
 	}
-	
 }

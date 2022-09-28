@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06001confirmation_letter
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -60,13 +61,15 @@ class j06001confirmation_letter
 		$booking_email_details->parse_email($email_type, $contract_uid);
 
 		if ($sendemail == 1) {
-			if (!jomresMailer($booking_email_details->data[$contract_uid]['PROPERTY_EMAIL'],
-								$booking_email_details->data[$contract_uid]['PROPERTY_NAME'],
-								$booking_email_details->data[$contract_uid]['EMAIL'],
-								$booking_email_details->parsed_email['subject'],
-								$booking_email_details->parsed_email['text'],
-								$mode = 1,
-								$booking_email_details->parsed_email['attachments'])
+			if (!jomresMailer(
+				$booking_email_details->data[$contract_uid]['PROPERTY_EMAIL'],
+				$booking_email_details->data[$contract_uid]['PROPERTY_NAME'],
+				$booking_email_details->data[$contract_uid]['EMAIL'],
+				$booking_email_details->parsed_email['subject'],
+				$booking_email_details->parsed_email['text'],
+				$mode = 1,
+				$booking_email_details->parsed_email['attachments']
+			)
 				) {
 				error_logging('Failure in sending confirmation letter to guest. Target address: '.$booking_email_details->data[$contract_uid]['EMAIL'].' Subject '.$booking_email_details->parsed_email['subject'].$booking_email_details->parsed_email['text']);
 			} else {

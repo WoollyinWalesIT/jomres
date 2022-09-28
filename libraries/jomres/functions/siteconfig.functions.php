@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -169,10 +169,10 @@ function showSiteConfig()
 	}
 
 	$bootstrap_ver_opt = array();
-    $bootstrap_ver_opt[ ] = jomresHTML::makeOption('0', 'No bootstrap in theme');
+	$bootstrap_ver_opt[ ] = jomresHTML::makeOption('0', 'No bootstrap in theme');
 	$bootstrap_ver_opt[ ] = jomresHTML::makeOption('', 'Bootstrap 2');
 	$bootstrap_ver_opt[ ] = jomresHTML::makeOption('3', 'Bootstrap 3');
-    $bootstrap_ver_opt[ ] = jomresHTML::makeOption('5', 'Bootstrap 5');
+	$bootstrap_ver_opt[ ] = jomresHTML::makeOption('5', 'Bootstrap 5');
 	$bootstrap_ver_dropdown = jomresHTML::selectList($bootstrap_ver_opt, 'cfg_bootstrap_version', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'bootstrap_version' ], false);
 
 	$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
@@ -344,10 +344,10 @@ function showSiteConfig()
 	$lists[ 'session_handler' ] = jomresHTML::selectList($options, 'cfg_session_handler', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'session_handler' ]);
 	
 	$options = array();
-	$options[] = jomresHTML::makeOption( 'ROADMAP', 'Roadmap' );
-	$options[] = jomresHTML::makeOption( 'SATELLITE', 'Satellite' );
-	$options[] = jomresHTML::makeOption( 'HYBRID', 'Hybrid' );
-	$options[] = jomresHTML::makeOption( 'TERRAIN', 'Terrain' );
+	$options[] = jomresHTML::makeOption('ROADMAP', 'Roadmap');
+	$options[] = jomresHTML::makeOption('SATELLITE', 'Satellite');
+	$options[] = jomresHTML::makeOption('HYBRID', 'Hybrid');
+	$options[] = jomresHTML::makeOption('TERRAIN', 'Terrain');
 	$lists[ 'map_type' ] = jomresHTML::selectList($options, 'cfg_map_type', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'map_type' ]);
 	
 	//frontend cpanel home page grid options
@@ -359,10 +359,9 @@ function showSiteConfig()
 	$lists[ 'front_cpanel_home_grid' ] = jomresHTML::selectList($options, 'cfg_front_cpanel_home_grid', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'front_cpanel_home_grid' ]);
 	
 	$options = array();
-	for ($i=1;$i<=23;$i++)
-		{
-		$options[] = jomresHTML::makeOption( $i, $i );
-		}
+	for ($i=1; $i<=23; $i++) {
+		$options[] = jomresHTML::makeOption($i, $i);
+	}
 	$lists[ 'map_zoom' ] = jomresHTML::selectList($options, 'cfg_map_zoom', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'map_zoom' ]);
 	
 	$lists[ 'send_email_copies_to_site_admins' ] = jomresHTML::selectList($yesno, 'cfg_send_email_copies_to_site_admins', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'send_email_copies_to_site_admins' ]);
@@ -374,7 +373,7 @@ function showSiteConfig()
 	
 	$lists[ 'generate_random_emails' ] = jomresHTML::selectList($yesno, 'cfg_generate_random_emails', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'generate_random_emails' ]);
 
-  	$lists[ 'use_groupby_fix' ] = jomresHTML::selectList($yesno, 'cfg_use_groupby_fix', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'use_groupby_fix' ]);
+	$lists[ 'use_groupby_fix' ] = jomresHTML::selectList($yesno, 'cfg_use_groupby_fix', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'use_groupby_fix' ]);
 
 	$componentArgs = array();
 	$componentArgs[ 'lists' ] = $lists;
@@ -411,12 +410,12 @@ function showSiteConfig()
 	<?php
 	echo $jrtb;
 
-    $bs_version = jomres_bootstrap_version();
-        if ($bs_version == '2' || $bs_version == '' || $bs_version == '0' || $bs_version == '3' ) {
-        $configurationPanel = jomres_singleton_abstract::getInstance('jomres_configpanel');
-    } elseif ($bs_version == '5') {
-        $configurationPanel = jomres_singleton_abstract::getInstance('jomres_configpanel_bootstrap5');
-    }
+	$bs_version = jomres_bootstrap_version();
+	if ($bs_version == '2' || $bs_version == '' || $bs_version == '0' || $bs_version == '3') {
+		$configurationPanel = jomres_singleton_abstract::getInstance('jomres_configpanel');
+	} elseif ($bs_version == '5') {
+		$configurationPanel = jomres_singleton_abstract::getInstance('jomres_configpanel_bootstrap5');
+	}
 
 	$componentArgs[ 'configurationPanel' ] = $configurationPanel;
 
@@ -459,7 +458,7 @@ function saveSiteConfig($overrides = array())
 	}
 
 	foreach ($_POST as $k => $v) {
-		if (strpos($k, 'cfg_') !== false && !is_array($v) ) {
+		if (strpos($k, 'cfg_') !== false && !is_array($v)) {
 			$v = jomresGetParam($_POST, $k, '');
 			
 			$dirty = (string) $k;
@@ -469,7 +468,7 @@ function saveSiteConfig($overrides = array())
 			$tmpConfig[ $k ] = $v;
 		} elseif (strpos($k, 'cfgArr_') !== false) {
 			$v = jomresGetParam($_POST, $k, array());
-			$v = implode(',',$v);
+			$v = implode(',', $v);
 			
 			$dirty = (string) $k;
 			$k = substr(addslashes($dirty), 7);
@@ -480,10 +479,9 @@ function saveSiteConfig($overrides = array())
 			$dirty = (string) $k;
 			$k = substr(addslashes($dirty), 4);
 			if (is_array($v)) {
-				foreach ( $v as $a=>$b) {
+				foreach ($v as $a => $b) {
 					if (is_array($b)) {
-						foreach ($b as $c=>$d) {
-							
+						foreach ($b as $c => $d) {
 							$a = (string)filter_var($a, FILTER_SANITIZE_SPECIAL_CHARS);
 							$c = (string)filter_var($c, FILTER_SANITIZE_SPECIAL_CHARS);
 							$d = (string)filter_var($d, FILTER_SANITIZE_SPECIAL_CHARS);
@@ -499,14 +497,16 @@ function saveSiteConfig($overrides = array())
 	//save config to file
 	$config_last_modified = filemtime(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'configuration.php');
 
-	$result = file_put_contents(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'configuration.php',
+	$result = file_put_contents(
+		JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'configuration.php',
 		'<?php
 ##################################################################
 defined( \'_JOMRES_INITCHECK\' ) or die( \'\' );
 ##################################################################
 
 $jrConfig = ' .var_export($tmpConfig, true).';
-');
+'
+	);
 
 	// On my Ubuntu box, and on some client boxes, there's a delay in saving the config file so we will wait, then wait a bit more after the file mod time has been updated
 
@@ -514,7 +514,7 @@ $jrConfig = ' .var_export($tmpConfig, true).';
 		sleep(1); // Writing the file could take a moment
 		clearstatcache();
 		$newest_last_modified_check = filemtime(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'configuration.php');
-	} while ( $newest_last_modified_check <= $config_last_modified);
+	} while ($newest_last_modified_check <= $config_last_modified);
 
 	sleep(2);
 
@@ -528,7 +528,7 @@ $jrConfig = ' .var_export($tmpConfig, true).';
 	$registry->regenerate_registry();
 
 	
-	if (file_exists(JOMRES_TEMP_ABSPATH.'latest_version.php')) { 
+	if (file_exists(JOMRES_TEMP_ABSPATH.'latest_version.php')) {
 		unlink(JOMRES_TEMP_ABSPATH.'latest_version.php');
 	}
 	

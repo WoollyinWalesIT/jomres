@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06002list_resources
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -37,7 +38,7 @@ class j06002list_resources
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch) {
-			$this->template_touchable = true;
+			$this->template_touchable = false;
 
 			return;
 		}
@@ -157,44 +158,6 @@ class j06002list_resources
 			$tmpl->displayParsedTemplate();
 		}
 	}
-
-	public function touch_template_language()
-	{
-		$output = array();
-
-		$output[ ] = jr_gettext('_JOMRES_COM_MR_VIEWROOMSPROPERTYCONFIG_TITLE', '_JOMRES_COM_MR_VIEWROOMSPROPERTYCONFIG_TITLE');
-		$output[ ] = jr_gettext('_JOMRES_COM_MR_VRCT_TAB_ROOM', '_JOMRES_COM_MR_VRCT_TAB_ROOM');
-		$output[ ] = jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_LINK', '_JOMRES_COM_MR_VRCT_ROOM_HEADER_LINK');
-		$output[ ] = jr_gettext('_JOMRES_COM_MR_LISTTARIFF_ROOMCLASS', '_JOMRES_COM_MR_LISTTARIFF_ROOMCLASS');
-		$output[ ] = jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME', '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME');
-		$output[ ] = jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER', '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER');
-		$output[ ] = jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR', '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR');
-		$output[ ] = jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE', '_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE');
-		$output[ ] = jr_gettext('_JOMRES_COM_MR_VRCT_TAB_ROOMFEATURES', '_JOMRES_COM_MR_VRCT_TAB_ROOMFEATURES');
-		$output[ ] = jr_gettext('_JOMRES_COM_MR_VRCT_TAB_ROOMTYPES', '_JOMRES_COM_MR_VRCT_TAB_ROOMTYPES');
-		$output[ ] = jr_gettext('_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK', '_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK');
-		$output[ ] = jr_gettext('_JOMRES_COM_MR_LISTTARIFF_ROOMCLASS', '_JOMRES_COM_MR_LISTTARIFF_ROOMCLASS');
-		$output[ ] = jr_gettext('_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_DESC', '_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_DESC');
-		$output[ ] = jr_gettext('_JOMRES_COM_MR_LISTTARIFF_TITLE', '_JOMRES_COM_MR_LISTTARIFF_TITLE');
-		$output[ ] = jr_gettext('_JOMRES_COM_MR_VRCT_ROOMFEATURES_HEADER_LINK', '_JOMRES_COM_MR_VRCT_ROOMFEATURES_HEADER_LINK');
-		$output[ ] = jr_gettext('_JOMRES_COM_MR_VRCT_ROOMFEATURES_HEADER_INPUT', '_JOMRES_COM_MR_VRCT_ROOMFEATURES_HEADER_INPUT');
-		$output[ ] = jr_gettext('_JOMRES_COM_MR_VRCT_TAB_PROPERTYS', '_JOMRES_COM_MR_VRCT_TAB_PROPERTYS');
-		$output[ ] = jr_gettext('_JOMRES_COM_MR_VRCT_TAB_PROPERTYFEATURES', '_JOMRES_COM_MR_VRCT_TAB_PROPERTYFEATURES');
-		$output[ ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK', '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK');
-		$output[ ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV', '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV');
-		$output[ ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_DESC', '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_DESC');
-		$output[ ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STREET', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STREET');
-		$output[ ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN');
-		$output[ ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION');
-		$output[ ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY');
-		$output[ ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POSTCODE', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POSTCODE');
-
-		foreach ($output as $o) {
-			echo $o;
-			echo '<br/>';
-		}
-	}
-
 
 	public function getRetVals()
 	{

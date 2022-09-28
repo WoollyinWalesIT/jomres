@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j16000media_centre_s3import
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -48,10 +49,9 @@ class j16000media_centre_s3import
 		$force = (int)jomresGetParam($_REQUEST, 'force', 0);
 		
 		//preliminary checks
-		if (
-			$jrConfig['images_imported_to_db'] == '0' ||
-			$jrConfig['amazon_s3_active'] != '1' || 
-			$jrConfig['amazon_s3_bucket'] == '' || 
+		if ($jrConfig['images_imported_to_db'] == '0' ||
+			$jrConfig['amazon_s3_active'] != '1' ||
+			$jrConfig['amazon_s3_bucket'] == '' ||
 			$jrConfig['amazon_s3_key'] == '' ||
 			$jrConfig['amazon_s3_secret'] == ''
 			) {
@@ -65,8 +65,7 @@ class j16000media_centre_s3import
 		//set max execution time. If not possible, don`t run the import because most probably it will time out
 		try {
 			ini_set('max_execution_time', '0');
-		} 
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			echo '
 			<div class="alert alert-error alert-danger">
 				<h4 class="alert-heading">ERROR</h4>
@@ -95,7 +94,7 @@ class j16000media_centre_s3import
 				';
 			} else {
 				//mark as imported
-				$siteConfig->update_setting('images_imported_to_s3','1');
+				$siteConfig->update_setting('images_imported_to_s3', '1');
 
 				echo '
 				<div class="alert alert-success">

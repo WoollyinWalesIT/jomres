@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -24,15 +24,16 @@ if (!using_bootstrap()) {
 	jr_import('jomres_toolbar_normal');
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
 	class jomres_toolbar extends jomres_toolbar_normal
-	{	
+	{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -62,22 +63,23 @@ if (!using_bootstrap()) {
 	} elseif ($bs_version == '4') {
 		$the_toolbar_class_filename = 'jomres_toolbar_bootstrap4';
 	} elseif ($bs_version == '5') {
-        $the_toolbar_class_filename = 'jomres_toolbar_bootstrap5';
-    }
+		$the_toolbar_class_filename = 'jomres_toolbar_bootstrap5';
+	}
 
 	jr_import($the_toolbar_class_filename);
 	jr_import('jomresItemToolbar');
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
 	class jomres_toolbar extends jomres_toolbar_bootstrap
-	{	
+	{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */

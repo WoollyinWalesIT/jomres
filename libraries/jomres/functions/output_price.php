@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -22,7 +22,7 @@ defined('_JOMRES_INITCHECK') or die('');
  *          Uses currency conversion settings to automatically convert prices to the selected price, determines the correct symbols to use for the selected currency.
  *
  */
-function output_price($value, $currencycode = '', $do_conversion = true, $zeroOK = true , $just_code = false )
+function output_price($value, $currencycode = '', $do_conversion = true, $zeroOK = true, $just_code = false)
 {
 	$price = (float) number_format($value, 2, '.', '');
 
@@ -105,7 +105,7 @@ function output_price($value, $currencycode = '', $do_conversion = true, $zeroOK
 		$price = $currfmt->get_formatted($price);
 		$price = $symbols[ 'pre' ].$price.$symbols[ 'post' ];
 
-		$original_price_template = simple_template_output(JOMRES_TEMPLATEPATH_FRONTEND , 'output_price_native_price.html' , $price );
+		$original_price_template = simple_template_output(JOMRES_TEMPLATEPATH_FRONTEND, 'output_price_native_price.html', $price);
 		
 		$price = ''.$converted_output_price.$original_price_template;
 		//$price = $converted_output_price;
@@ -130,13 +130,13 @@ function output_price($value, $currencycode = '', $do_conversion = true, $zeroOK
 			if ($mrConfig['poa_price'] != '') {
 				$poa_price = (float)$mrConfig['poa_price'];
 				$price = $symbols[ 'pre' ].$poa_price.$symbols[ 'post' ];
-			}
-			else
+			} else {
 				$price = ' '.$symbols[ 'pre' ].jr_gettext('_JOMRES_PRICE_ON_APPLICATION', '_JOMRES_PRICE_ON_APPLICATION', false, false).$symbols[ 'post' ];
+			}
 		}
 	}
 	
-	if ($just_code == true ) {
+	if ($just_code == true) {
 		return $currencycode;
 	} else {
 		return $price;

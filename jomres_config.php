@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -115,17 +115,12 @@ $mrConfig = array(
   'bookingform_overlib_room_floor_show' => '0',
   'bookingform_overlib_room_maxpeople_show' => '1',
   'bookingform_overlib_room_features_show' => '1',
-  'bookingform_requiredfields_name' => '1',
-  'bookingform_requiredfields_surname' => '1',
-  'bookingform_requiredfields_houseno' => '1',
-  'bookingform_requiredfields_street' => '1',
-  'bookingform_requiredfields_town' => '1',
-  'bookingform_requiredfields_postcode' => '1',
-  'bookingform_requiredfields_region' => '1',
-  'bookingform_requiredfields_country' => '1',
-  'bookingform_requiredfields_tel' => '1',
+  'bookingform_requiredfields_houseno' => '0',
+  'bookingform_requiredfields_street' => '0',
+  'bookingform_requiredfields_town' => '0',
+  'bookingform_requiredfields_postcode' => '0',
+  'bookingform_requiredfields_tel' => '0',
   'bookingform_requiredfields_mobile' => '1',
-  'bookingform_requiredfields_email' => '1',
   'bookingform_roomlist_showdisabled' => '1',
   'bookingform_roomlist_showmaxpeople' => '1',
   'accommodation_tax_code' => '1',

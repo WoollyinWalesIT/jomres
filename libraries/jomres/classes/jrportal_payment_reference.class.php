@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -24,9 +24,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jrportal_payment_reference
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -36,7 +37,7 @@ class jrportal_payment_reference
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -44,10 +45,10 @@ class jrportal_payment_reference
 	public function set_payment_refence()
 	{
 		$query ="SELECT id FROM #__jomres_invoice_payment_ref WHERE invoice_id =".$this->invoice_id." LIMIT 1";
-		$payment_reference = doSelectSql($query,1);   
-		if (!$payment_reference){
+		$payment_reference = doSelectSql($query, 1);
+		if (!$payment_reference) {
 			$query = "INSERT INTO #__jomres_invoice_payment_ref ( `invoice_id` , `gateway` ) VALUES ( '".$this->invoice_id."' , '".$this->gateway."' ) ";
-		}else{
+		} else {
 			$query ="UPDATE #__jomres_invoice_payment_ref SET gateway = '".$this->gateway."' WHERE id=".(int)$payment_reference;
 		}
 		try {
@@ -60,7 +61,7 @@ class jrportal_payment_reference
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -78,7 +79,7 @@ class jrportal_payment_reference
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -177,7 +178,7 @@ class jrportal_payment_reference
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */

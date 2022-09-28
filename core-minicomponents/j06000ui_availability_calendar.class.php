@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06000ui_availability_calendar
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -61,8 +62,7 @@ class j06000ui_availability_calendar
 		$jrConfig = $siteConfig->get();
 
 		$show_legend = true;
-		if (
-			(isset($componentArgs[ 'noshowlegend' ]) && $componentArgs[ 'noshowlegend' ] == '1') ||
+		if ((isset($componentArgs[ 'noshowlegend' ]) && $componentArgs[ 'noshowlegend' ] == '1') ||
 			(isset($_REQUEST[ 'noshowlegend' ]) && $_REQUEST[ 'noshowlegend' ] == '1')
 			) {
 			$show_legend = false;
@@ -199,7 +199,7 @@ class j06000ui_availability_calendar
 		}
 		
 		$fixed_arrival_day_js = '';
-		if ((int)$mrConfig[ 'fixedArrivalDateYesNo' ] == 1 && $mrConfig[ 'fixedArrivalDay' ] != '' ) {
+		if ((int)$mrConfig[ 'fixedArrivalDateYesNo' ] == 1 && $mrConfig[ 'fixedArrivalDay' ] != '') {
 			$fixed_arrival_day_js = '
 				if ( day_of_week != '.(int)$mrConfig[ 'fixedArrivalDay' ].' ) {
 					day_is_clickable = false;
@@ -207,10 +207,9 @@ class j06000ui_availability_calendar
 			';
 		}
 		
-		$defaultDate = date ( "Y/m/d");
+		$defaultDate = date("Y/m/d");
 		
-		if ( 
-			isset($componentArgs['start_year']) &&
+		if (isset($componentArgs['start_year']) &&
 			isset($componentArgs['start_month']) &&
 			isset($componentArgs['start_day']) &&
 			$componentArgs['start_year'] != '' &&
@@ -221,9 +220,9 @@ class j06000ui_availability_calendar
 			$cal_default_month = (int)$componentArgs['start_month'];
 			$cal_default_day = (int)$componentArgs['start_day'];
 			$defaultDate = $cal_default_year."/".$cal_default_month."/".$cal_default_day;
-			}
+		}
 
-		$url = get_booking_url($property_uid,'','&pdetails_cal=1');
+		$url = get_booking_url($property_uid, '', '&pdetails_cal=1');
 		$inline_calendar = '
 <style>
 .ui-datepicker table {

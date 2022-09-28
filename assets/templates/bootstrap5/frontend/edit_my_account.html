@@ -21,7 +21,6 @@ document.addEventListener('DOMContentLoaded', function(){
 			postcode: "required",
 			town: "required",
 			region: "required",
-			email: "required",
 		},
 		messages: {
 			firstname: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_FIRSTNAME}",
@@ -31,7 +30,6 @@ document.addEventListener('DOMContentLoaded', function(){
 			postcode: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_POSTCODE}",
 			town: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_TOWN}",
 			region: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_REGION}",
-			email: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_EMAIL}",
 		},
 		errorLabelContainer: "#messageBox",
 		wrapper: "p",
@@ -51,7 +49,17 @@ document.addEventListener('DOMContentLoaded', function(){
 	
 	jomresJquery("#messageBox").hide();
 }, false);
+
+
 </script>
+
+<style>
+    .iti__flag {background-image: url("{JOMRES_IMAGES_RELPATH}flags.png");}
+
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+        .iti__flag {background-image: url("{JOMRES_IMAGES_RELPATH}flags@2x.png");}
+    }
+</style>
 
 <div id="messageBox" class="alert alert-error"></div>
 <h2 class="page-header">{PAGETITLE}</h2>
@@ -133,26 +141,13 @@ document.addEventListener('DOMContentLoaded', function(){
 					<input id="town" name="town" type="text" value="{TOWN}" class="required form-control" placeholder="{COMMON_PLACEHOLDER_TOWN}"/>
 				</div>
 			</div>
-
-			<div class="form-group">
-				<label class="col-md-2 control-label" for="landline">{HLANDLINE}</label>
-				<div class="col-md-10">
-					<input id="landline" name="landline" type="tel" value="{LANDLINE}" class="required form-control" placeholder="{COMMON_PLACEHOLDER_LANDLINE}"/>
-				</div>
-			</div>
+			
 			<div class="form-group">
 				<label class="col-md-2 control-label" for="mobile">{HMOBILE}</label>
 				<div class="col-md-10">
 					<input id="mobile" name="mobile" type="tel" value="{MOBILE}" class="required form-control" placeholder="{COMMON_PLACEHOLDER_MOBILE}"/>
 				</div>
 			</div>
-			<div class="form-group">
-				<label class="col-md-2 control-label" for="email">{HEMAIL}</label>
-				<div class="col-md-10">
-					<input id="email" name="email" type="email" value="{EMAIL}" class="required form-control" placeholder="{COMMON_PLACEHOLDER_EMAIL}"/>
-				</div>
-			</div>
-			
 			<div class="form-group">
 				<label class="col-md-2 control-label" for="vat_number">{_JOMRES_COM_YOURBUSINESS_VATNO}</label>
 				<div class="col-md-10">
@@ -171,21 +166,21 @@ document.addEventListener('DOMContentLoaded', function(){
 			<div class="form-group">
 				<label class="col-md-2 control-label" for="drivers_license">{GUEST_PROFILE_DRIVING_LICENSE}</label>
 				<div class="col-md-10">
-					<input id="text" name="drivers_license" type="drivers_license" value="{DRIVERS_LICENSE}" class=" form-control" placeholder=""/>
+					<input id="drivers_license" name="drivers_license" type="drivers_license" value="{DRIVERS_LICENSE}" class=" form-control" placeholder=""/>
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label class="col-md-2 control-label" for="passport_number">{GUEST_PROFILE_PASSPORT_NUMBER}</label>
 				<div class="col-md-10">
-					<input id="text" name="passport_number" type="passport_number" value="{PASSPORT_NUMBER}" class=" form-control" placeholder=""/>
+					<input id="passport_number" name="passport_number" type="passport_number" value="{PASSPORT_NUMBER}" class=" form-control" placeholder=""/>
 				</div>
 			</div>
 			
 			<div class="form-group">
 				<label class="col-md-2 control-label" for="iban">{GUEST_PROFILE_IBAN}</label>
 				<div class="col-md-10">
-					<input id="text" name="iban" type="iban" value="{IBAN}" class=" form-control" placeholder=""/>
+					<input id="iban" name="iban" type="iban" value="{IBAN}" class=" form-control" placeholder=""/>
 				</div>
 			</div>
 
@@ -200,7 +195,7 @@ document.addEventListener('DOMContentLoaded', function(){
 	
 	<div class="form-actions fixed-bottom bg-light text-center pt-1 border-top border-success">
 		<div class="col-md-10 col-md-offset-2">
-			<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> {COMMON_SUBMIT}</button>
+			<button type="submit" class="btn btn-primary" id="submit_button"><i class="fa fa-check"></i> {COMMON_SUBMIT}</button>
 			<a href="{JOMRES_SITEPAGE_URL}" class="btn btn-secondary"><i class="fa fa-times"></i> {COMMON_CANCEL}</a>
 		</div>
 	</div>
@@ -209,4 +204,40 @@ document.addEventListener('DOMContentLoaded', function(){
 	<input type="hidden" name="task" value="save_my_account"/>
 	{CSRF_TOKEN}
 </form>
+	
+	<script>
+        var input = document.querySelector("#mobile");
+
+		const phoneInput = window.intlTelInput(input, {
+            // allowDropdown: false,
+            // autoHideDialCode: false,
+            // autoPlaceholder: "off",
+            // dropdownContainer: document.body,
+            // excludeCountries: ["us"],
+            // formatOnDisplay: false,
+            // geoIpLookup: function(callback) {
+            //   $.get("http://ipinfo.io", function() {}, "jsonp").always(function(resp) {
+            //     var countryCode = (resp && resp.country) ? resp.country : "";
+            //     callback(countryCode);
+            //   });
+            // },
+            // hiddenInput: "full_number",
+            // initialCountry: "auto",
+            // localizedCountries: { 'de': 'Deutschland' },
+            nationalMode: false,
+            // onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
+            // placeholderNumberType: "MOBILE",
+            // preferredCountries: ['cn', 'jp'],
+            // separateDialCode: true,
+            initialCountry: '{COUNTRY_CODE}',
+            placeholderNumberType: 'MOBILE',
+            utilsScript: "{LIVE_SITE}/{JOMRES_ROOT_DIRECTORY}/assets/js/intlTelInputUtils.js?{MOBILE}",
+        });
+		
+		// on blur: convert
+		input.addEventListener('blur', function() {
+            var phoneNumber = phoneInput.getNumber();
+            document.getElementById(event.target.name).value = phoneNumber;
+		});
+	</script>
 </patTemplate:tmpl>

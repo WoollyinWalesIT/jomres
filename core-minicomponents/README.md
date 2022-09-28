@@ -44,14 +44,18 @@ The next trigger numbers are used when building the property list/search results
 03030 Shows the booking completed message.  
 03100 Sends emails to managers, guests and admin to update each on the new booking.  
 03150 Various email scripts.
+03160 Called when saving account details. Gives plugins the option to parse saved data before it's saved to the database. Reason created : Twilio cannot send messages to invalid numbers, therefore parsing the $_REQUEST['mobile'] value, checking it and if necessary resetting it to empty if it cannot be validated will prevent Twilio throwing errors. From Jomres 10.5.4
 
 03200 Triggers 07005 & 07010  
+
 07005 Optional minicomponent trigger, eg for system cleanups or other pre-booking activity  
 07010 Allows us to run post insertion functionality for importing into foreign systems. Currently used for inserting commission line items
 
 03379 These scripts are used by the media centre to configure media uploading options.  
 03381 Media centre uses these to determine individual ids for uploading of resource specific images.  
 03383 Media centre uses these to determine images that already exist for specific resources.
+
+03500 Triggers scripts that can be used to add buttons to the reservation details/edit booking page
 
 04901 This trigger is used when a new property is created, typically for sending welcome emails
 
@@ -77,6 +81,19 @@ Jomres includes Access Control functionality, however we find that a more simpli
 07300 Used to tell Webhook functionality that a given webhook exists, and some language strings and parameters  
 07310 Webhook trigger processing scripts. When a Webhook is called, these are the scripts that will actually authenticate with the remote site and pass the information of the action performed on this server. For tasks that *have* to be carried out now
 07320 Webhook tasks that can be deferred slightly. The huge majority of webhook tasks should be of this number because these tasks are deferred, meaning that they are run in an independent process that does not run the risk of slowing down the site user's experience.
+
+08000 Reserved for REST API functionality
+
+
+
+08100 Parsers for Jomres Messaging System, allows for parsing of messages before they're saved. Performed before encryption. A 08100 script would need to import subject and message_body by doing  get_showtime('jms_message_subject') or get_showtime('jms_message_message_body') and after parsing set the same by doing set_showtime('jms_message_subject' , $parsed_result ); or set_showtime('jms_message_message_body' , $parsed_result );
+
+08200 Parsers for Jomres Messaging System, allows for parsing of messages before they're returned to the calling script. Performed after decryption. Same showtime variables and processes as used in the 08100 parsing method.
+
+08300 Parsers for Jomres Messaging System, allows for parsing of messages before they're returned to the calling script. Parsed before saving group name.
+
+08400 Parsers for Jomres Messaging System, allows for parsing of messages before they're returned to the calling script. Parsed before returning group name.
+
 
 09995 Creates the core menu items  
 09997 Builds the frontend control panel menu

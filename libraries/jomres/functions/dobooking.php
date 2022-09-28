@@ -5,7 +5,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -35,8 +35,7 @@ $MiniComponents->triggerEvent('00100'); // Pre-dobooking. Optional
 /**
  * If the user is a manager then we will ensure that they are booking one of their own properties. They cannot book a property that's not theirs, while logged in as a manager.
  */
-if (
-	$selectedProperty > 0 &&
+if ($selectedProperty > 0 &&
 	$thisJRUser->userIsManager &&
 	in_array($selectedProperty, $thisJRUser->authorisedProperties) &&
 	$thisJRUser->currentproperty != $selectedProperty
@@ -62,10 +61,10 @@ if (!isset($tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ])) {
 
 
 
-if (isset($_REQUEST['arrivalDate']) ) {
-	$is_hyphen = substr ($_REQUEST['arrivalDate'] , 4 , 1 );
-	if ($is_hyphen == "-" ) {
-		$_REQUEST['arrivalDate'] = str_replace ("-" , "/" , $_REQUEST['arrivalDate'] );
+if (isset($_REQUEST['arrivalDate'])) {
+	$is_hyphen = substr($_REQUEST['arrivalDate'], 4, 1);
+	if ($is_hyphen == "-") {
+		$_REQUEST['arrivalDate'] = str_replace("-", "/", $_REQUEST['arrivalDate']);
 	}
 }
 
@@ -131,15 +130,15 @@ function dobooking($selectedProperty, $thisdate, $remus)
 	$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
 	$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 
-	if ( $thisJRUser->id > 0 ) {
-		jr_import( 'jrportal_guests' );
+	if ($thisJRUser->id > 0) {
+		jr_import('jrportal_guests');
 		$jrportal_guests = new jrportal_guests();
 		$jrportal_guests->property_uid = $selectedProperty;
 		$previous_guest_uid = $jrportal_guests->get_guest_id_by_cms_id($thisJRUser->id); // Let´s see if this user has been a guest of this property before
 		if ($previous_guest_uid) {
 			$jrportal_guests->id = $previous_guest_uid;
 			$jrportal_guests->get_guest();
-			if ($jrportal_guests->blacklisted == 1 ) {
+			if ($jrportal_guests->blacklisted == 1) {
 				jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=contactowner&amp;selectedProperty='.$selectedProperty.'&amp;arrivalDate='.$thisdate));
 			}
 		}
@@ -148,7 +147,7 @@ function dobooking($selectedProperty, $thisdate, $remus)
 	$room_type_filter = (int)jomresGetParam($_REQUEST, 'room_type_filter', 0);
 		
 	$backWasClicked = false;
-	if ( isset($tmpBookingHandler->tmpbooking[ 'confirmationSeen' ]) && $tmpBookingHandler->tmpbooking[ 'confirmationSeen' ] == true) {
+	if (isset($tmpBookingHandler->tmpbooking[ 'confirmationSeen' ]) && $tmpBookingHandler->tmpbooking[ 'confirmationSeen' ] == true) {
 		$backWasClicked = true;
 	} elseif ($thisJRUser->userIsManager == true) {
 		$tmpBookingHandler->resetTempGuestData();
@@ -261,14 +260,13 @@ function dobooking($selectedProperty, $thisdate, $remus)
 	
 	// Previous outputs for Availability calendar left in-situ for older copies of the dobooking template.
 	$calendar_modal = array();
-	 if ($mrConfig[ 'showAvailabilityCalendar' ] == '1') {
-		
-		$calendar_modal = array( 0 => 
-			array ( 
-				'BOOKING_FORM_CALENDAR' => $output[ 'BOOKING_FORM_CALENDAR' ],
-				'_JOMRES_COM_A_AVLCAL' => $output[ '_JOMRES_COM_A_AVLCAL' ],
-				'_JOMRES_FRONT_MR_SUBMITBUTTON_CHECKAVAILABILITY' => $output[ '_JOMRES_FRONT_MR_SUBMITBUTTON_CHECKAVAILABILITY' ]
-			)
+	if ($mrConfig[ 'showAvailabilityCalendar' ] == '1') {
+		$calendar_modal = array( 0 =>
+		   array (
+			   'BOOKING_FORM_CALENDAR' => $output[ 'BOOKING_FORM_CALENDAR' ],
+			   '_JOMRES_COM_A_AVLCAL' => $output[ '_JOMRES_COM_A_AVLCAL' ],
+			   '_JOMRES_FRONT_MR_SUBMITBUTTON_CHECKAVAILABILITY' => $output[ '_JOMRES_FRONT_MR_SUBMITBUTTON_CHECKAVAILABILITY' ]
+		   )
 		);
 	}
 	 
@@ -613,8 +611,8 @@ function dobooking($selectedProperty, $thisdate, $remus)
 
 	$output[ 'PANELPOSITION' ] = (int) $jrConfig[ 'booking_form_totalspanel_position' ];
 	$output[ 'BOOKINGFORMWIDTH' ] = (int) $jrConfig[ 'booking_form_width' ];
-	$output[ 'EMAIL_ALREADY_INUSE' ] = jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_EMAIL_ALREADY_IN_USE', '_JOMRES_BOOKINGFORM_MONITORING_EMAIL_ALREADY_IN_USE', false, false)." <button type='button' id='login_modal_trigger' class='btn btn-primary'>".jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGIN', '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGIN', false, false)."</button>"; 
-     echo "<script>
+	$output[ 'EMAIL_ALREADY_INUSE' ] = jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_EMAIL_ALREADY_IN_USE', '_JOMRES_BOOKINGFORM_MONITORING_EMAIL_ALREADY_IN_USE', false, false)." <button type='button' id='login_modal_trigger' class='btn btn-primary'>".jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGIN', '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGIN', false, false)."</button>";
+	 echo "<script>
         jomresJquery(function(){
             jomresJquery('[name=jomres_loginform_email]').val( jomresJquery('#eemail').val() );  
             jomresJquery('body').on('click','#login_modal_trigger',function(){
@@ -655,7 +653,7 @@ function dobooking($selectedProperty, $thisdate, $remus)
 			$roomtype_dropdown_list = array();
 			$roomtype_dropdown_list[ 'LIVESITE' ] = get_showtime('live_site');
 			if ($amend_contract) { // If we're amending a booking, we will automatically switch back to the 'classic' rooms list selection so that the manager can assign a user to a new room. As that's the case, we'll need the 'selectedRooms' div back in the template.
-			$roomtype_dropdown_list[ 'AMENDBOOKING_SELECTEDROOMSDIV' ] = '<div id="selectedRooms"></div>';
+				$roomtype_dropdown_list[ 'AMENDBOOKING_SELECTEDROOMSDIV' ] = '<div id="selectedRooms"></div>';
 			}
 
 			$roomtype_dropdown_list_output = array();
@@ -699,16 +697,16 @@ function dobooking($selectedProperty, $thisdate, $remus)
 	}
 
 	$output['BOOKING_FORM_CHILD_SELECTORS'] = '';
-	if ($mrConfig[ 'tariffmode' ] == '5' ) {
+
+	if ($mrConfig[ 'tariffmode' ] == '5' || count($bkg->jomres_occupancy_levels->occupancy_levels) > 0 ) {
 		$adults_dropdown = $bkg->build_adults_dropdown();
 
-		if ( $mrConfig[ 'allow_children' ] == '1') {
+		if ($mrConfig[ 'allow_children' ] == '1') {
 			$output['BOOKING_FORM_CHILD_SELECTORS'] = $bkg->build_children_selectors();
 		}
 	}
 
-
-$manager_pricing = array();
+	$manager_pricing = array();
 	if ($thisJRUser->userIsManager) {
 		$manager_pricing[ ] = array('_JOMCOMP_AMEND_OVERRIDE_ACCOMMODATION_TOTAL' => jr_gettext('_JOMCOMP_AMEND_OVERRIDE_ACCOMMODATION_TOTAL', '_JOMCOMP_AMEND_OVERRIDE_ACCOMMODATION_TOTAL', false, false), '_JOMCOMP_AMEND_OVERRIDE_DEPOSIT' => jr_gettext('_JOMCOMP_AMEND_OVERRIDE_DEPOSIT', '_JOMCOMP_AMEND_OVERRIDE_DEPOSIT', false, false), '_JOMCOMP_AMEND_OVERRIDE_SAVE' => jr_gettext('_JOMCOMP_AMEND_OVERRIDE_SAVE', '_JOMCOMP_AMEND_OVERRIDE_SAVE', false, false));
 	}
@@ -731,11 +729,11 @@ $manager_pricing = array();
 	}
 
 	$jomres_gdpr_optin_consent = new jomres_gdpr_optin_consent();
-	if(!isset($_COOKIE['jomres_gdpr_consent_form_processed']) || $_COOKIE['jomres_gdpr_consent_form_processed'] == "0" ){
-		if ($jrConfig[ 'enable_gdpr_compliant_fucntionality' ] == "1" && !isset($_REQUEST['skip_consent_form']) ) {
-			$consent_form = $MiniComponents->specificEvent('06000', 'show_consent_form' , array ('output_now' => false) );
+	if (!isset($_COOKIE['jomres_gdpr_consent_form_processed']) || $_COOKIE['jomres_gdpr_consent_form_processed'] == "0") {
+		if ($jrConfig[ 'enable_gdpr_compliant_fucntionality' ] == "1" && !isset($_REQUEST['skip_consent_form'])) {
+			$consent_form = $MiniComponents->specificEvent('06000', 'show_consent_form', array ('output_now' => false));
 			$consent_output = array ("CONSENT_FORM" => $consent_form );
-			$consent_output['_JOMRES_GDPR_CONSENT_TRIGGER_FORM'] = jr_gettext('_JOMRES_GDPR_CONSENT_TRIGGER_FORM', '_JOMRES_GDPR_CONSENT_TRIGGER_FORM' , false );
+			$consent_output['_JOMRES_GDPR_CONSENT_TRIGGER_FORM'] = jr_gettext('_JOMRES_GDPR_CONSENT_TRIGGER_FORM', '_JOMRES_GDPR_CONSENT_TRIGGER_FORM', false);
 
 			$consent_pageoutput[] = $consent_output;
 			$tmpl = new patTemplate();
@@ -743,12 +741,11 @@ $manager_pricing = array();
 			$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
 			$tmpl->readTemplatesFromInput('consent_form_wrapper.html');
 			echo $tmpl->getParsedTemplate();
-			if ( jomres_bootstrap_version() != "5" ) {
-                echo "<script>window.onload = function() {jomresJquery('#consentForm').modal('show');}</script>";
-            } else {
-                echo "<script>window.onload = function() {var myModal = new bootstrap.Modal(document.getElementById('consentForm') , {} );}</script>";
-            }
-
+			if (jomres_bootstrap_version() != "5") {
+				echo "<script>window.onload = function() {jomresJquery('#consentForm').modal('show');}</script>";
+			} else {
+				echo "<script>window.onload = function() {var myModal = new bootstrap.Modal(document.getElementById('consentForm') , {} );}</script>";
+			}
 		} else {
 			$jomres_gdpr_optin_consent->optedin = true;
 			$jomres_gdpr_optin_consent->set_user_id($thisJRUser->id);
@@ -761,7 +758,7 @@ $manager_pricing = array();
 		if ( !isset($_COOKIE['jomres_gdpr_consent_form_processed']) || !$_COOKIE['jomres_gdpr_consent_form_processed'] == "1" ) {
 			echo '<script>
 			jomresJquery(document).ready(function () {
-				jomresJquery(\'#booking_form\').block({ message: null }); 
+				jomresJquery(\'#booking_form\').block({ message: null });
 			});
 			</script>
 		';
@@ -769,7 +766,7 @@ $manager_pricing = array();
 	}*/
 
 	// To show the login modal without forcing umpteen users to update their dobooking template files, we will attach the login form modal contents to the end of the current dobooking template output.
-	$login_form = $MiniComponents->specificEvent('06000', 'show_login_form' , array ('output_now' => false , 'login_reason' => jr_gettext('_JOMRES_LOGIN_REASON_EMAIL_ALREADY_USED', '_JOMRES_LOGIN_REASON_EMAIL_ALREADY_USED', false)  ) );
+	$login_form = $MiniComponents->specificEvent('06000', 'show_login_form', array ('output_now' => false , 'login_reason' => jr_gettext('_JOMRES_LOGIN_REASON_EMAIL_ALREADY_USED', '_JOMRES_LOGIN_REASON_EMAIL_ALREADY_USED', false)  ));
 	$loginoutput[0] = array ( "login_form" => $login_form );
 
 	$tmpl = new patTemplate();
@@ -782,14 +779,14 @@ $manager_pricing = array();
 
 		$tmpl = new patTemplate();
 
-		if (get_showtime('include_room_booking_functionality')) {
-			if ($mrConfig[ 'booking_form_rooms_list_style' ] == '1') {
-				$tmpl->addRows('classic_rooms_list', $classic_rooms_list_output);
-			}
-			if ($mrConfig[ 'booking_form_rooms_list_style' ] == '2') {
-				$tmpl->addRows('roomtype_dropdown_list', $roomtype_dropdown_list_output);
-			}
+	if (get_showtime('include_room_booking_functionality')) {
+		if ($mrConfig[ 'booking_form_rooms_list_style' ] == '1') {
+			$tmpl->addRows('classic_rooms_list', $classic_rooms_list_output);
 		}
+		if ($mrConfig[ 'booking_form_rooms_list_style' ] == '2') {
+			$tmpl->addRows('roomtype_dropdown_list', $roomtype_dropdown_list_output);
+		}
+	}
 
 		$tmpl->addRows('calendar_modal', $calendar_modal);
 		$tmpl->addRows('rooms_list_accommodation_panel_output', $rooms_list_accommodation_panel_output);
@@ -798,13 +795,13 @@ $manager_pricing = array();
 		$tmpl->addRows('customfields', $customFields);
 		$tmpl->addRows('pageoutput', $pageoutput);
 		$tmpl->addRows('guesttypes', $guestTypes);
-		if ( isset($adults_dropdown) && !empty($adults_dropdown)) {
-			$tmpl->addRows('standard_guests', $adults_dropdown);
-		}
+	if (isset($adults_dropdown) && !empty($adults_dropdown)) {
+		$tmpl->addRows('standard_guests', $adults_dropdown);
+	}
 
-		if (isset($child_dropdowns)) {
-			$tmpl->addRows('child_dropdowns', $child_dropdowns);
-		}
+	if (isset($child_dropdowns)) {
+		$tmpl->addRows('child_dropdowns', $child_dropdowns);
+	}
 
 		$tmpl->addRows('extrasrow', $extrasHeader);
 		$tmpl->addRows('roomfeaturesrowheader', $roomfeaturesHeader);
@@ -814,39 +811,39 @@ $manager_pricing = array();
 		$tmpl->addRows('onload', $toload);
 		$MiniComponents->triggerEvent('05019');
 		$mcOutput = $MiniComponents->getAllEventPointsData('05019');
-		if (!empty($mcOutput)) {
-			foreach ($mcOutput as $key => $val) {
-				$tmpl->addRows('customOutput_'.$key, array($val));
-			}
+	if (!empty($mcOutput)) {
+		foreach ($mcOutput as $key => $val) {
+			$tmpl->addRows('customOutput_'.$key, array($val));
 		}
+	}
 
-		if (!empty($third_party_extras)) {
-			$tmpl->addRows('third_party_extras', $third_party_extras);
-		}
-		if ($mrConfig[ 'showExtras' ] == '1') {
-			$extra_details = array(array('EXTRAS_TEMPLATE' => $extra_details));
-			$tmpl->addRows('extras', $extra_details);
-		}
+	if (!empty($third_party_extras)) {
+		$tmpl->addRows('third_party_extras', $third_party_extras);
+	}
+	if ($mrConfig[ 'showExtras' ] == '1') {
+		$extra_details = array(array('EXTRAS_TEMPLATE' => $extra_details));
+		$tmpl->addRows('extras', $extra_details);
+	}
 		$componentArgs = array('tmpl' => $tmpl);
 
 		$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
-		if (!get_showtime('include_room_booking_functionality')) {
-			$tmpl->readTemplatesFromInput('dobooking_norooms.html');
+	if (!get_showtime('include_room_booking_functionality')) {
+		$tmpl->readTemplatesFromInput('dobooking_norooms.html');
+	} else {
+		if (($mrConfig[ 'singleRoomProperty' ] == '1')) {
+			$tmpl->readTemplatesFromInput('dobooking_srp.html');
 		} else {
-			if (($mrConfig[ 'singleRoomProperty' ] == '1')) {
-				$tmpl->readTemplatesFromInput('dobooking_srp.html');
-			} else {
-				$tmpl->readTemplatesFromInput('dobooking.html');
-			}
+			$tmpl->readTemplatesFromInput('dobooking.html');
 		}
+	}
 
-		if (!defined('DOBOOKING_IN_DETAILS')) {
-			$tmpl->displayParsedTemplate();
-			echo $login_modal;
-		} else {
-			$booking_form = $tmpl->getParsedTemplate().$login_modal;
-			define('BOOKING_FORM_FOR_PROPERTY_DETAILS', $booking_form);
-		}
+	if (!defined('DOBOOKING_IN_DETAILS')) {
+		$tmpl->displayParsedTemplate();
+		echo $login_modal;
+	} else {
+		$booking_form = $tmpl->getParsedTemplate().$login_modal;
+		define('BOOKING_FORM_FOR_PROPERTY_DETAILS', $booking_form);
+	}
 }
 
 /**

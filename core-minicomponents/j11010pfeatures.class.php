@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j11010pfeatures
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -43,8 +44,8 @@ class j11010pfeatures
 		}
 
 		$this->ret_vals = array(
-								'resource_type' => 'pfeatures', 
-								'resource_id_required' => false, 
+								'resource_type' => 'pfeatures',
+								'resource_id_required' => false,
 								'name' => jr_gettext('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_PROPERTY_FEATURES', '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_PROPERTY_FEATURES', false),
 								'upload_root_abs_path' => JOMRES_IMAGELOCATION_ABSPATH,
 								'upload_root_rel_path' => JOMRES_IMAGELOCATION_RELPATH,

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,20 +17,21 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-     * Ajax script. dds properties to the shortlist, if the user is logged in, instead adds the property to the user's favourites list.
-	 * 
+	 * Ajax script. dds properties to the shortlist, if the user is logged in, instead adds the property to the user's favourites list.
+	 *
 	 */
 
 class j06000ajax_shortlist
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -87,7 +88,7 @@ class j06000ajax_shortlist
 			$count = count($shortlist_items);
 			if ($count > 0) {
 				for ($i = 0; $i < $count; ++$i) {
-					if ( isset($shortlist_items[ $i ]) && $shortlist_items[ $i ] == $property_uid) {
+					if (isset($shortlist_items[ $i ]) && $shortlist_items[ $i ] == $property_uid) {
 						array_splice($shortlist_items, $i, 1);
 					}
 				}

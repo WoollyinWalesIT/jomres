@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,20 +17,21 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-     * Creates the booking's invoice
-	 * 
+	 * Creates the booking's invoice
+	 *
 	 */
 
 class j03025insertbooking_invoice
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -49,7 +50,7 @@ class j03025insertbooking_invoice
 		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 
 		$property_uid = (int)$tmpBookingHandler->getBookingFieldVal('property_uid');
-		$mrConfig = getPropertySpecificSettings( $property_uid ) ;
+		$mrConfig = getPropertySpecificSettings($property_uid) ;
 
 		$this->results = array();
 		if (isset($componentArgs[ 'contract_uid' ])) {
@@ -85,12 +86,12 @@ class j03025insertbooking_invoice
 		$total_in_party             = $tmpBookingHandler->getBookingFieldVal('total_in_party');
 
 
-        $city_tax                   = convert_entered_price_into_safe_float($tmpBookingHandler->getBookingFieldVal('city_tax'));
-        $cleaning_fee               = convert_entered_price_into_safe_float($tmpBookingHandler->getBookingFieldVal('cleaning_fee'));
-        $extra_guest_price          = (int)$tmpBookingHandler->getBookingFieldVal('extra_guest_price');
+		$city_tax                   = convert_entered_price_into_safe_float($tmpBookingHandler->getBookingFieldVal('city_tax'));
+		$cleaning_fee               = convert_entered_price_into_safe_float($tmpBookingHandler->getBookingFieldVal('cleaning_fee'));
+		$extra_guest_price          = (int)$tmpBookingHandler->getBookingFieldVal('extra_guest_price');
 
 
-        if ($jrConfig['session_handler'] == 'database') {
+		if ($jrConfig['session_handler'] == 'database') {
 			$extrasvalues_items = $tmpBookingHandler->getBookingFieldVal('extrasvalues_items');
 			$third_party_extras = $tmpBookingHandler->getBookingFieldVal('third_party_extras');
 			$room_allocations = $tmpBookingHandler->getBookingFieldVal('room_allocations');
@@ -196,12 +197,15 @@ class j03025insertbooking_invoice
 				$management_url = get_showtime("gateway_management_url");
 				$transaction_id = get_showtime("gateway_transaction_id");
 
-				if (is_null($payment_method))
+				if (is_null($payment_method)) {
 					$payment_method = '';
-				if (is_null($management_url))
+				}
+				if (is_null($management_url)) {
 					$management_url = '';
-				if (is_null($transaction_id))
+				}
+				if (is_null($transaction_id)) {
 					$transaction_id = '';
+				}
 				
 				$line_items[] = array('tax_code_id' => 0,
 									   'name' => '_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED',
@@ -273,7 +277,7 @@ class j03025insertbooking_invoice
 					}
 
 					$line_items[] = array('tax_code_id' => $theExtras->tax_rate,
-						'name' =>  jr_gettext('_JOMRES_CUSTOMTEXT_EXTRANAME'.(string)$extraUid, '_JOMRES_CUSTOMTEXT_EXTRANAME'.(string)$extraUid , false ,false),
+						'name' =>  jr_gettext('_JOMRES_CUSTOMTEXT_EXTRANAME'.(string)$extraUid, '_JOMRES_CUSTOMTEXT_EXTRANAME'.(string)$extraUid, false, false),
 						'description' => '',
 						'init_price' => $extra_price,
 						'init_qty' => $quantities,
@@ -282,37 +286,37 @@ class j03025insertbooking_invoice
 				}
 			}
 
-            if (  $city_tax > 0 ) {
-                $line_items[] = array('tax_code_id' => 0,
-                    'name' =>  jr_gettext('JOMRES_CITY_TAX_VALUE', 'JOMRES_CITY_TAX_VALUE' , false ,false),
-                    'description' => '',
-                    'init_price' => $city_tax,
-                    'init_qty' => 1,
-                    'init_discount' => 0,
-                );
-            }
+			if ($city_tax > 0) {
+				$line_items[] = array('tax_code_id' => 0,
+					'name' =>  jr_gettext('JOMRES_CITY_TAX_VALUE', 'JOMRES_CITY_TAX_VALUE', false, false),
+					'description' => '',
+					'init_price' => $city_tax,
+					'init_qty' => 1,
+					'init_discount' => 0,
+				);
+			}
 
-            if (  $cleaning_fee > 0 ) {
-                $line_items[] = array('tax_code_id' => 0,
-                    'name' =>   jr_gettext('JOMRES_CLEANING_FEE_HEADING', 'JOMRES_CLEANING_FEE_HEADING' , false ,false),
-                    'description' => '',
-                    'init_price' => $cleaning_fee,
-                    'init_qty' => 1,
-                    'init_discount' => 0,
-                );
-            }
+			if ($cleaning_fee > 0) {
+				$line_items[] = array('tax_code_id' => 0,
+					'name' =>   jr_gettext('JOMRES_CLEANING_FEE_HEADING', 'JOMRES_CLEANING_FEE_HEADING', false, false),
+					'description' => '',
+					'init_price' => $cleaning_fee,
+					'init_qty' => 1,
+					'init_discount' => 0,
+				);
+			}
 
-            if (  $extra_guest_price > 0 ) {
-                $line_items[] = array('tax_code_id' => 0,
-                    'name' =>   jr_gettext('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE', 'JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE' , false ,false),
-                    'description' => '',
-                    'init_price' => $extra_guest_price,
-                    'init_qty' => 1,
-                    'init_discount' => 0,
-                );
-            }
+			if ($extra_guest_price > 0) {
+				$line_items[] = array('tax_code_id' => 0,
+					'name' =>   jr_gettext('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE', 'JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE', false, false),
+					'description' => '',
+					'init_price' => $extra_guest_price,
+					'init_qty' => 1,
+					'init_discount' => 0,
+				);
+			}
 
-            //3rd party extras like Jintour tours
+			//3rd party extras like Jintour tours
 			if (!empty($third_party_extras) && $third_party_extras !== false) {
 				foreach ($third_party_extras as $plugin) {
 					foreach ($plugin as $tpe) {
@@ -346,7 +350,7 @@ class j03025insertbooking_invoice
 			}
 
 
-            //Additional line items created by other plugins
+			//Additional line items created by other plugins
 			if (!empty($additional_line_items) && $additional_line_items !== false) {
 				foreach ($additional_line_items as $plugin) {
 					foreach ($plugin as $tpe) {
@@ -407,10 +411,11 @@ class j03025insertbooking_invoice
 			
 			$new_booking_user_id = get_showtime("new_booking_user_id");
 			
-			if ( $new_booking_user_id > 0 )
+			if ($new_booking_user_id > 0) {
 				$invoice_data[ 'cms_user_id' ] = $new_booking_user_id;
-			else 
+			} else {
 				$invoice_data[ 'cms_user_id' ] = $tmpBookingHandler->tmpguest[ 'mos_userid' ];
+			}
 
 			$invoice_data[ 'subscription' ] = false;
 
@@ -435,12 +440,15 @@ class j03025insertbooking_invoice
 				$management_url = get_showtime("gateway_management_url");
 				$transaction_id = get_showtime("gateway_transaction_id");
 				
-				if (is_null($payment_method))
+				if (is_null($payment_method)) {
 					$payment_method = '';
-				if (is_null($management_url))
+				}
+				if (is_null($management_url)) {
 					$management_url = '';
-				if (is_null($transaction_id))
+				}
+				if (is_null($transaction_id)) {
 					$transaction_id = '';
+				}
 				
 				$deposit_paid_line_item_data = array('tax_code_id' => 0,
 														'name' => '_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED',

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -21,9 +21,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jomres_room_types
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -48,7 +49,7 @@ class jomres_room_types
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -75,7 +76,7 @@ class jomres_room_types
 
 
 		foreach ($result as $r) {
-			if ($r->property_uid  > 0 ) {
+			if ($r->property_uid  > 0) {
 				$this->property_specific_room_types[$r->property_uid][$r->room_classes_uid]['room_classes_uid'] = (int) $r->room_classes_uid;
 				$this->property_specific_room_types[$r->property_uid][$r->room_classes_uid]['room_class_abbv'] = $r->room_class_abbv;
 				$this->property_specific_room_types[$r->property_uid][$r->room_classes_uid]['room_class_full_desc'] = $r->room_class_full_desc;
@@ -100,7 +101,6 @@ class jomres_room_types
 				}
 				$this->room_types[$r->room_classes_uid]['property_uid'] = (int) $r->property_uid;
 			}
-
 		}
 
 		return true;
@@ -108,7 +108,7 @@ class jomres_room_types
 
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -141,7 +141,7 @@ class jomres_room_types
 		}
 
 		foreach ($result as $r) {
-			if ($r->property_uid == 0 ) {
+			if ($r->property_uid == 0) {
 				$this->room_type['room_classes_uid'] = (int) $r->room_classes_uid;
 				$this->room_type['room_class_abbv'] = $r->room_class_abbv;
 				$this->room_type['room_class_full_desc'] = $r->room_class_full_desc;
@@ -165,14 +165,13 @@ class jomres_room_types
 				}
 				$this->property_specific_room_type[$r->property_uid][$r->room_classes_uid]['property_uid'] = (int) $r->property_uid;
 			}
-
 		}
 
 		return true;
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -213,11 +212,11 @@ class jomres_room_types
 			$roomtype_id = doInsertSql($query, false);
 		}
 
-		updateCustomText('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int) $roomtype_id, $this->room_type['room_class_abbv'], true, $this->room_type['property_uid'] );
-		updateCustomText('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.(int) $roomtype_id, $this->room_type['room_class_full_desc'], true, $this->room_type['property_uid'] );
+		updateCustomText('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int) $roomtype_id, $this->room_type['room_class_abbv'], true, $this->room_type['property_uid']);
+		updateCustomText('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.(int) $roomtype_id, $this->room_type['room_class_full_desc'], true, $this->room_type['property_uid']);
 		
 		if ((int) $roomtype_id > 0) {
-			if ($this->update_roomtype_propertytype_xref_table($roomtype_id, array($this->room_type['ptype_xref']) )) {
+			if ($this->update_roomtype_propertytype_xref_table($roomtype_id, array($this->room_type['ptype_xref']))) {
 				return true;
 			} else {
 				return false;
@@ -228,7 +227,7 @@ class jomres_room_types
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -257,7 +256,7 @@ class jomres_room_types
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -289,7 +288,7 @@ class jomres_room_types
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -333,7 +332,7 @@ class jomres_room_types
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -345,31 +344,30 @@ class jomres_room_types
 		$jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
 		$jomres_media_centre_images->get_site_images('rmtypes');
 
-		foreach ($jomres_media_centre_images->site_images['rmtypes'] as $image)
-			{
+		foreach ($jomres_media_centre_images->site_images['rmtypes'] as $image) {
 			$r = array();
 
 			$r[ 'IMAGE_FILENAME' ] = substr($image['large'], strrpos($image['large'], '/') + 1);
 			$r[ 'IMAGE_SRC' ]  = $image['large'];
 
 			$images[] = $r;
-			}
+		}
 
 		return $images;
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
 	// To be used by any backend calling script that edits room types. Not required by admin area scripts
-	function validate_manager_access_to_room_type($room_class_uid = 0 )
+	function validate_manager_access_to_room_type($room_class_uid = 0)
 	{
 		$property_uid = getDefaultProperty();
 
-		if ( $room_class_uid == 0 ) {
+		if ($room_class_uid == 0) {
 			return true;
 		}
 
@@ -377,8 +375,8 @@ class jomres_room_types
 			return true;
 		}
 
-		if (is_array($this->property_specific_room_types[$property_uid])){
-			if (isset($this->property_specific_room_types[$property_uid][$room_class_uid])){
+		if (is_array($this->property_specific_room_types[$property_uid])) {
+			if (isset($this->property_specific_room_types[$property_uid][$room_class_uid])) {
 				return true;
 			}
 			throw new Exception('Manager attempted to access a room type that does not belong to them');

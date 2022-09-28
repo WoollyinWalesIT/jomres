@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06001list_bookings_ajax
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -108,7 +109,7 @@ class j06001list_bookings_ajax
 		 */
 		$sWhere = '';
 		$search = jomresGetParam($_GET, 'jr_search', array());
- 		if (isset($search['value']) && $search['value'] != '') {
+		if (isset($search['value']) && $search['value'] != '') {
 			$sWhere = 'AND (';
 			for ($i = 0; $i < $n; ++$i) {
 				$sWhere .= ''.$aColumns[$i]." LIKE '%".$search['value']."%' OR ";
@@ -116,18 +117,17 @@ class j06001list_bookings_ajax
 			$sWhere = rtrim($sWhere, ' OR ');
 		}
 		
-		$guest_matches = search_property_guests_by_string( $search['value'] , $defaultProperty , $thisJRUser->id , $show_all );
-		if ( isset($guest_matches['guest_uids']) && !empty($guest_matches['guest_uids'])) {
+		$guest_matches = search_property_guests_by_string($search['value'], $defaultProperty, $thisJRUser->id, $show_all);
+		if (isset($guest_matches['guest_uids']) && !empty($guest_matches['guest_uids'])) {
 			$sWhere .= ' OR ';
 			$count = count($guest_matches['guest_uids']);
 			for ($i = 0; $i < $count; ++$i) {
 				$sWhere .= "b.guests_uid = '".$guest_matches['guest_uids'][$i]."' OR ";
 			}
 			$sWhere = rtrim($sWhere, ' OR ');
-			
 		}
 
-		if ($sWhere != '' ) {
+		if ($sWhere != '') {
 			$sWhere .= ')';
 		}
 
@@ -297,7 +297,7 @@ class j06001list_bookings_ajax
 				$jrtb .= $jrtbar->toolbarItem('edit', jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_booking'.'&contract_uid='.$p->contract_uid.$thisProperty), jr_gettext('COMMON_EDIT', 'COMMON_EDIT', false));
 				if ($p->cancelled == 0) {
 					if ($p->booked_in == 0 && isset($MiniComponents->registeredClasses['06001']['checkin'])) {
-						if ($p->approved == 1 ) {
+						if ($p->approved == 1) {
 							$jrtb .= $jrtbar->toolbarItem('bookGuestIn', jomresURL(JOMRES_SITEPAGE_URL.'&task=checkin'.'&contract_uid='.$p->contract_uid.$thisProperty), jr_gettext('_JOMRES_FRONT_MR_BOOKIN_TITLE', '_JOMRES_FRONT_MR_BOOKIN_TITLE', false));
 						}
 					} elseif ($p->bookedout == 0) {
@@ -316,7 +316,7 @@ class j06001list_bookings_ajax
 				$toolbar->addSecondaryItem('fa fa-pencil-square-o', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_booking&contract_uid='.$p->contract_uid.$thisProperty), jr_gettext('_JOMRES_COM_CONFIRMATION_RESERVATION_DETAILS', '_JOMRES_COM_CONFIRMATION_RESERVATION_DETAILS', false));
 				if ($p->cancelled == 0) {
 					if ($p->booked_in == 0 && isset($MiniComponents->registeredClasses['06001']['checkin'])) {
-						if ($p->approved == 1 ) {
+						if ($p->approved == 1) {
 							$toolbar->addItem('fa fa-sign-in', 'btn btn-default ', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=checkin&contract_uid='.$p->contract_uid.$thisProperty), jr_gettext('_JOMRES_ACTION_CHECKIN', '_JOMRES_ACTION_CHECKIN', false));
 						} else {
 							$toolbar->addItem('fa fa-sign-in', 'btn btn-default disabled', '', 'javascript:void();', jr_gettext('_JOMRES_ACTION_CHECKIN', '_JOMRES_ACTION_CHECKIN', false));
@@ -368,8 +368,8 @@ class j06001list_bookings_ajax
 			$r[] = jomres_decode($jomres_encryption->decrypt($p->enc_tel_landline));
 			$r[] = jomres_decode($jomres_encryption->decrypt($p->enc_tel_mobile));
 			$r[] = jomres_decode($jomres_encryption->decrypt($p->enc_email));
-			$r[] = output_price($p->contract_total, $p->currency_code , false );
-			$r[] = output_price($p->deposit_required, $p->currency_code , false );
+			$r[] = output_price($p->contract_total, $p->currency_code, false);
+			$r[] = output_price($p->deposit_required, $p->currency_code, false);
 
 			if ((int) $p->deposit_paid == 1) {
 				$r[] = jr_gettext('_JOMRES_STATUS_PAID', '_JOMRES_STATUS_PAID', false);
@@ -378,7 +378,7 @@ class j06001list_bookings_ajax
 			}
 
 			$r[] = jomres_decode($p->special_reqs);
-			if ($p->invoice_number != '' ) {
+			if ($p->invoice_number != '') {
 				$r[] = $p->invoice_number;
 			} else {
 				$r[] = $p->invoice_uid;

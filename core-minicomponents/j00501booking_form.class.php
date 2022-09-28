@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -18,19 +18,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	 * @package Jomres\Core\Minicomponents
 	 *
 	 * Property Configuration page tabs. Offers booking form related configuration options.
-	 * 
+	 *
 	 */
 
 class j00501booking_form
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -66,8 +67,8 @@ class j00501booking_form
 
 		$configurationPanel->startPanel(jr_gettext('_JOMRES_HBOOKING_FORM', '_JOMRES_HBOOKING_FORM', false));
 
-		if ($mrConfig['tariffmode'] != '5'){
-			if ( $jrConfig[ 'compatability_property_configuration' ] != 1 ) {
+		if ($mrConfig['tariffmode'] != '5') {
+			if ($jrConfig[ 'compatability_property_configuration' ] != 1) {
 				$configurationPanel->setleft(jr_gettext('_JOMRES_BOOKING_FORM_EXTERNAL_URL', '_JOMRES_BOOKING_FORM_EXTERNAL_URL', false));
 				$configurationPanel->setmiddle('<input type="url" class="inputbox form-control"  size="50" name="cfg_externalBookingFormUrl" value="' . $mrConfig['externalBookingFormUrl'] . '" />');
 				$configurationPanel->setright(jr_gettext('_JOMRES_BOOKING_FORM_EXTERNAL_URL_DESC', '_JOMRES_BOOKING_FORM_EXTERNAL_URL_DESC', false));
@@ -76,19 +77,19 @@ class j00501booking_form
 		}
 
 
-			if ($mrConfig[ 'singleRoomProperty' ] != '1') {
-				$configurationPanel->setleft(jr_gettext('_JOMRES_ROOMMSLIST_STYLE', '_JOMRES_ROOMMSLIST_STYLE', false));
-				$configurationPanel->setmiddle($booking_form_rooms_list_style);
-				$configurationPanel->setright(jr_gettext('_JOMRES_ROOMMSLIST_STYLE_DESC', '_JOMRES_ROOMMSLIST_STYLE_DESC', false));
-				$configurationPanel->insertSetting();
+		if ($mrConfig[ 'singleRoomProperty' ] != '1') {
+			$configurationPanel->setleft(jr_gettext('_JOMRES_ROOMMSLIST_STYLE', '_JOMRES_ROOMMSLIST_STYLE', false));
+			$configurationPanel->setmiddle($booking_form_rooms_list_style);
+			$configurationPanel->setright(jr_gettext('_JOMRES_ROOMMSLIST_STYLE_DESC', '_JOMRES_ROOMMSLIST_STYLE_DESC', false));
+			$configurationPanel->insertSetting();
 
-				$configurationPanel->setleft(jr_gettext('_JOMRES_COM_LIMITROOMSLIST', '_JOMRES_COM_LIMITROOMSLIST', false));
-				$configurationPanel->setmiddle('<input type="number" class="inputbox form-control" size="5" name="cfg_returnRoomsLimit" value="'.$mrConfig[ 'returnRoomsLimit' ].'">');
-				$configurationPanel->setright(jr_gettext('_JOMRES_COM_LIMITROOMSLIST_DESC', '_JOMRES_COM_LIMITROOMSLIST_DESC', false));
-				$configurationPanel->insertSetting();
-			}
+			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_LIMITROOMSLIST', '_JOMRES_COM_LIMITROOMSLIST', false));
+			$configurationPanel->setmiddle('<input type="number" class="inputbox form-control" size="5" name="cfg_returnRoomsLimit" value="'.$mrConfig[ 'returnRoomsLimit' ].'">');
+			$configurationPanel->setright(jr_gettext('_JOMRES_COM_LIMITROOMSLIST_DESC', '_JOMRES_COM_LIMITROOMSLIST_DESC', false));
+			$configurationPanel->insertSetting();
+		}
 
-		if ($mrConfig['tariffmode'] != '5'){
+		if ($mrConfig['tariffmode'] != '5') {
 			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT', '_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT', false));
 			$configurationPanel->setmiddle($lists['auto_detect_country_for_booking_form']);
 			$configurationPanel->setright(jr_gettext('_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT_DESC', '_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT_DESC', false));
@@ -106,7 +107,7 @@ class j00501booking_form
 				$configurationPanel->insertSetting();
 			}
 		}
-		if ($mrConfig['tariffmode'] != '5'){
+		if ($mrConfig['tariffmode'] != '5') {
 			if ($mrConfig[ 'wholeday_booking' ] == '1') {
 				$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_SHOWDEPARTUREINPUT_WHOLEDAY', '_JOMRES_COM_A_SHOWDEPARTUREINPUT_WHOLEDAY', false));
 				$configurationPanel->setmiddle($lists[ 'showdepartureinput' ]);
@@ -120,18 +121,8 @@ class j00501booking_form
 			}
 		}
 
-		if ( $jrConfig[ 'compatability_property_configuration' ] != 1 ) {
+		if ($jrConfig[ 'compatability_property_configuration' ] != 1) {
 			$configurationPanel->insertHeading(jr_gettext('_JOMRES_HREQUIRED_FIELDS', '_JOMRES_HREQUIRED_FIELDS', false));
-
-			$configurationPanel->setleft(jr_gettext('_JOMRES_FRONT_MR_DISPGUEST_FIRSTNAME', '_JOMRES_FRONT_MR_DISPGUEST_FIRSTNAME'));
-			$configurationPanel->setmiddle($lists[ 'bookingform_requiredfields_name' ]);
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
-
-			$configurationPanel->setleft(jr_gettext('_JOMRES_FRONT_MR_DISPGUEST_SURNAME', '_JOMRES_FRONT_MR_DISPGUEST_SURNAME'));
-			$configurationPanel->setmiddle($lists[ 'bookingform_requiredfields_surname' ]);
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
 
 			$configurationPanel->setleft(jr_gettext('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_HOUSE_EXPL', '_JOMRES_FRONT_MR_EB_GUEST_JOMRES_HOUSE_EXPL'));
 			$configurationPanel->setmiddle($lists[ 'bookingform_requiredfields_houseno' ]);
@@ -153,11 +144,6 @@ class j00501booking_form
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 
-			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY'));
-			$configurationPanel->setmiddle($lists[ 'bookingform_requiredfields_country' ]);
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
-
 			$configurationPanel->setleft(jr_gettext('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_LANDLINE_EXPL', '_JOMRES_FRONT_MR_EB_GUEST_JOMRES_LANDLINE_EXPL'));
 			$configurationPanel->setmiddle($lists[ 'bookingform_requiredfields_tel' ]);
 			$configurationPanel->setright();
@@ -167,7 +153,6 @@ class j00501booking_form
 			$configurationPanel->setmiddle($lists[ 'bookingform_requiredfields_mobile' ]);
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
-
 		}
 
 		$mrConfig[ 'bookingform_requiredfields_email' ] = "1"; // For GDPR compliance, bookings will always require an email address and the property manager will not be allowed to change this setting

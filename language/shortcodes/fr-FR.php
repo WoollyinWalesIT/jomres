@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Translation to fr-FR by Stéphane Bernard, Valtari NumAgency, France - 03/07/2019 - https://www.valtari.fr
@@ -200,19 +200,19 @@ jr_define('_JOMRES_GUEST_BLACKLISTED', 'Cleint blacklisté');
 jr_define('_JOMRES_GUEST_BLACKLISTED_DESC', 'Si ce client figure dans la liste noire, il ne pourra plus faire de réservation dans cet établissement.');
 jr_define('_JOMRES_SESSION_HANDLER', 'Gestionnaire de session');
 jr_define('_JOMRES_SESSION_HANDLER_DESC', 'Enregistrez les fichiers de session Jomres sur le disque ou dans la base de données. Recommandé : base de données');
-jr_define('_JOMRES_MAP_HEIGHT',"Hauteur de la carte (px) ");
-jr_define('_JOMRES_MAP_ZOOMLEVEL',"Niveau de zoom de la carte ");
-jr_define('_JOMRES_MAP_MAPTYPE',"Type de carte ");
+jr_define('_JOMRES_MAP_HEIGHT', "Hauteur de la carte (px) ");
+jr_define('_JOMRES_MAP_ZOOMLEVEL', "Niveau de zoom de la carte ");
+jr_define('_JOMRES_MAP_MAPTYPE', "Type de carte ");
 
-jr_define('_JOMRES_TEMPLATE_PACKAGES',"Gestionnaire de remplacement de template");
-jr_define('_JOMRES_TEMPLATE_PACKAGES_LEAD',"Les packages de templates sont des plugins pouvant fournir des templates de substitution pour divers fichiers de template principal de Jomres.");
-jr_define('_JOMRES_TEMPLATE_PACKAGES_INFO',"Cette page répertorie tous les fichiers de templates pouvant être remplacés par d'autres fichiers de templates. Si vous souhaitez remplacer un fichier de template, cliquez sur le bouton d’édition de ce fichier. Sur la page suivante, vous pourrez choisir la version à remplacer. Notez que ces remplacements ont priorité sur les remplacements du coeur (core) de Jomres, et tout thème/template Wordpress ou Joomla. Vous pouvez désactiver un remplacement en le supprimant dans la page Liste des remplacements de templates.");
-jr_define('_JOMRES_TEMPLATE_PACKAGE_NAME',"Nom du template");
-jr_define('_JOMRES_TEMPLATE_PACKAGE_PATH',"Chemin actuel");
-jr_define('_JOMRES_TEMPLATE_PACKAGE_NOT_OVERRIDDEN',"Non remplacé");
-jr_define('_JOMRES_TEMPLATE_PACKAGES_EDIT_INFO',"Vous pouvez choisir le fichier de template pour remplacer par les fichiers de template du coeur (core) de Jomres de base en utilisant la liste déroulante.");
+jr_define('_JOMRES_TEMPLATE_PACKAGES', "Gestionnaire de remplacement de template");
+jr_define('_JOMRES_TEMPLATE_PACKAGES_LEAD', "Les packages de templates sont des plugins pouvant fournir des templates de substitution pour divers fichiers de template principal de Jomres.");
+jr_define('_JOMRES_TEMPLATE_PACKAGES_INFO', "Cette page répertorie tous les fichiers de templates pouvant être remplacés par d'autres fichiers de templates. Si vous souhaitez remplacer un fichier de template, cliquez sur le bouton d’édition de ce fichier. Sur la page suivante, vous pourrez choisir la version à remplacer. Notez que ces remplacements ont priorité sur les remplacements du coeur (core) de Jomres, et tout thème/template Wordpress ou Joomla. Vous pouvez désactiver un remplacement en le supprimant dans la page Liste des remplacements de templates.");
+jr_define('_JOMRES_TEMPLATE_PACKAGE_NAME', "Nom du template");
+jr_define('_JOMRES_TEMPLATE_PACKAGE_PATH', "Chemin actuel");
+jr_define('_JOMRES_TEMPLATE_PACKAGE_NOT_OVERRIDDEN', "Non remplacé");
+jr_define('_JOMRES_TEMPLATE_PACKAGES_EDIT_INFO', "Vous pouvez choisir le fichier de template pour remplacer par les fichiers de template du coeur (core) de Jomres de base en utilisant la liste déroulante.");
 
-jr_define('_JOMRES_OVERALL_ROOMS_BOOKED',"Pourcentage de chambres réservées");
+jr_define('_JOMRES_OVERALL_ROOMS_BOOKED', "Pourcentage de chambres réservées");
 
 jr_define('_JOMRES_SHORTCODES_06005NEW_PROPERTY', 'Affiche le formulaire de création d\'un nouvel établissement.');
 
@@ -222,18 +222,18 @@ jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_REVIEWS_LIMIT', 'Nombre d\'avis
 
 jr_define('_JOMRES_SHORTCODES_06000SHORTLIST', 'Affiche les établissements des utilisateurs sélectionnés. Si l\'utilisateur est enregistré, ce sont ses favoris. S\'il ne l\'est pas, seuls sont pris en compte les établissements ajoutés via l\'icône Favoris lors de la consultation du site.');
 
-jr_define( '_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE', 'Valeur minimum de l\'acompte' );
-jr_define( '_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE_DESC', "Si l'acompte calculé est inférieur à ce chiffre, définissez l'acompte sur cette valeur. Ce chiffre peut lui-même être dépassé, s'il ne satisfait pas le paramètre d'acompte minimum du site. Laissez-le défini sur 0 pour ne pas utiliser ce paramètre." );
+jr_define('_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE', 'Valeur minimum de l\'acompte');
+jr_define('_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE_DESC', "Si l'acompte calculé est inférieur à ce chiffre, définissez l'acompte sur cette valeur. Ce chiffre peut lui-même être dépassé, s'il ne satisfait pas le paramètre d'acompte minimum du site. Laissez-le défini sur 0 pour ne pas utiliser ce paramètre.");
 
 jr_define('_JOMRES_SHORTCODES_06000SHOW_CONSENT_FORM', 'Affiche le formulaire de consentement conforme au RGPD.');
 
-jr_define( '_JOMRES_SHORTCODE_PROPERTY_ROOM_TYPE_LIST', 'Liste des types de chambres de l\'établissement' );
-jr_define( '_JOMRES_SHORTCODE_PROPERTY_ROOM_TYPE', 'Afficher un type de chambre de l\'établissement' );
+jr_define('_JOMRES_SHORTCODE_PROPERTY_ROOM_TYPE_LIST', 'Liste des types de chambres de l\'établissement');
+jr_define('_JOMRES_SHORTCODE_PROPERTY_ROOM_TYPE', 'Afficher un type de chambre de l\'établissement');
 
-jr_define( '_JOMRES_SHORTCODE_LOGIN_FORM', 'Afficher le formulaire de connexion' );
+jr_define('_JOMRES_SHORTCODE_LOGIN_FORM', 'Afficher le formulaire de connexion');
 
 jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_ROOM_TYPE', 'Afficher une liste de chambres d\'un certain type de chambres');
-jr_define( '_JOMRES_SHORTCODES_06000SHOW_PROPERTY_ROOM_TYPE_ARG_ROOM_TYPE_ID', 'ID du type de chambres' );
+jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_ROOM_TYPE_ARG_ROOM_TYPE_ID', 'ID du type de chambres');
 
 jr_define('_JOMRES_SHORTCODES_06001DASHBOARD', 'Tableau de bord général');
 

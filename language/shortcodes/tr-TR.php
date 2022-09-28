@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -158,7 +158,7 @@ jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_SPECIFIC', "Belirli kaynak");
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_ALREADY_UPLOADED', "Bu kaynak için resimler zaten yüklendi");
 
 jr_define('_JOMRES_MARKDOWN_TITLE', 'Metin biçimlendirme');
-jr_define('_JOMRES_MARKDOWN_DESC', 'Buraya basit Markdown biçimlendirmesini kullanarak metin girebilirsiniz. Herhangi bir HTML bilmenize gerek yok, bilgileri istediğiniz gibi göstermek için düğmeleri kullanın veya metni bu örneklere göre biçimlendirin.' );
+jr_define('_JOMRES_MARKDOWN_DESC', 'Buraya basit Markdown biçimlendirmesini kullanarak metin girebilirsiniz. Herhangi bir HTML bilmenize gerek yok, bilgileri istediğiniz gibi göstermek için düğmeleri kullanın veya metni bu örneklere göre biçimlendirin.');
 jr_define('_JOMRES_MARKDOWN_EMPHASIS', 'Vurgu');
 jr_define('_JOMRES_MARKDOWN_BOLD', 'kalın');
 jr_define('_JOMRES_MARKDOWN_ITALICS', 'italik');
@@ -201,20 +201,20 @@ jr_define('_JOMRES_GUEST_BLACKLISTED', 'Misafir kara listeye alındı');
 jr_define('_JOMRES_GUEST_BLACKLISTED_DESC', 'Bu misafir kara listedeyse, artık bu tesiste rezervasyon yapamayacak.');
 jr_define('_JOMRES_SESSION_HANDLER', 'Oturum işleyici');
 jr_define('_JOMRES_SESSION_HANDLER_DESC', 'jomres oturum dosyalarını diske veya veritabanına kaydedin. Önerilen: veritabanı');
-jr_define('_JOMRES_MAP_HEIGHT',"Harita yüksekliği (px) ");
-jr_define('_JOMRES_MAP_ZOOMLEVEL',"Harita yakınlaştırma düzeyi ");
-jr_define('_JOMRES_MAP_MAPTYPE',"Harita türü");
+jr_define('_JOMRES_MAP_HEIGHT', "Harita yüksekliği (px) ");
+jr_define('_JOMRES_MAP_ZOOMLEVEL', "Harita yakınlaştırma düzeyi ");
+jr_define('_JOMRES_MAP_MAPTYPE', "Harita türü");
 
-jr_define('_JOMRES_TEMPLATE_PACKAGES',"Şablon Geçersiz Kılma Yöneticisi");
-jr_define('_JOMRES_TEMPLATE_PACKAGES_LEAD',"Şablon paketleri, çeşitli temel Jomres şablon dosyaları için geçersiz kılma şablonları sağlayabilen eklentilerdir.");
-jr_define('_JOMRES_TEMPLATE_PACKAGES_INFO',"Bu sayfa, bir şablon paketinin şablon dosyaları tarafından geçersiz kılınabilecek tüm şablon dosyalarını listeler. Belirli bir şablon dosyasını geçersiz kılmak istiyorsanız, o dosyanın düzenle düğmesine tıklayın, sonraki sayfada hangi sürümle geçersiz kılmak istediğinizi seçebilirsiniz.Not, bu geçersiz kılmalar hem Jomres Core hem de herhangi bir Wordpress veya Joomla tema/şablon geçersiz kılmalarına göre önceliklidir. Bir geçersiz kılmayı Liste Şablonu Geçersiz Kılmaları sayfasından silerek devre dışı bırakabilirsiniz.");
-jr_define('_JOMRES_TEMPLATE_PACKAGE_NAME',"Şablon adı");
-jr_define('_JOMRES_TEMPLATE_PACKAGE_PATH',"Geçerli yol");
-jr_define('_JOMRES_TEMPLATE_PACKAGE_NOT_OVERRIDDEN',"Geçersiz kılınmadı");
-jr_define('_JOMRES_TEMPLATE_PACKAGES_EDIT_INFO',"Açılır menüyü değiştirerek Çekirdek şablon dosyalarını geçersiz kılmak için hangi şablon dosyasını seçebilirsiniz");
+jr_define('_JOMRES_TEMPLATE_PACKAGES', "Şablon Geçersiz Kılma Yöneticisi");
+jr_define('_JOMRES_TEMPLATE_PACKAGES_LEAD', "Şablon paketleri, çeşitli temel Jomres şablon dosyaları için geçersiz kılma şablonları sağlayabilen eklentilerdir.");
+jr_define('_JOMRES_TEMPLATE_PACKAGES_INFO', "Bu sayfa, bir şablon paketinin şablon dosyaları tarafından geçersiz kılınabilecek tüm şablon dosyalarını listeler. Belirli bir şablon dosyasını geçersiz kılmak istiyorsanız, o dosyanın düzenle düğmesine tıklayın, sonraki sayfada hangi sürümle geçersiz kılmak istediğinizi seçebilirsiniz.Not, bu geçersiz kılmalar hem Jomres Core hem de herhangi bir Wordpress veya Joomla tema/şablon geçersiz kılmalarına göre önceliklidir. Bir geçersiz kılmayı Liste Şablonu Geçersiz Kılmaları sayfasından silerek devre dışı bırakabilirsiniz.");
+jr_define('_JOMRES_TEMPLATE_PACKAGE_NAME', "Şablon adı");
+jr_define('_JOMRES_TEMPLATE_PACKAGE_PATH', "Geçerli yol");
+jr_define('_JOMRES_TEMPLATE_PACKAGE_NOT_OVERRIDDEN', "Geçersiz kılınmadı");
+jr_define('_JOMRES_TEMPLATE_PACKAGES_EDIT_INFO', "Açılır menüyü değiştirerek Çekirdek şablon dosyalarını geçersiz kılmak için hangi şablon dosyasını seçebilirsiniz");
 
 
-jr_define('_JOMRES_OVERALL_ROOMS_BOOKED',"Rezerve Edilen Oda Yüzdesi");
+jr_define('_JOMRES_OVERALL_ROOMS_BOOKED', "Rezerve Edilen Oda Yüzdesi");
 
 jr_define('_JOMRES_SHORTCODES_06005NEW_PROPERTY', 'Yeni mülk oluşturma formunu görüntüler.');
 
@@ -224,14 +224,14 @@ jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_REVIEWS_LIMIT', 'Gösterilecek 
 
 jr_define('_JOMRES_SHORTCODES_06000SHORTLIST', 'Kullanıcıların kısa listedeki özelliklerini görüntüler. Kullanıcı kayıtlıysa, bunlar favorileridir, oturum açmadıysa, ziyaret sırasında Favori simgesi aracılığıyla eklenen öğeler.');
 
-jr_define( '_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE', 'Minimum para yatırma değeri');
+jr_define('_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE', 'Minimum para yatırma değeri');
 
-jr_define( '_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE_DESC', "Hesaplanan depozito bu rakamın altındaysa, bunun yerine depozitoyu bu değere ayarlayın. Sitenin minimum depozito ayarını karşılamıyorsa bu rakamın kendisi geçersiz olabilir. ayarı kullanmayın." );
+jr_define('_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE_DESC', "Hesaplanan depozito bu rakamın altındaysa, bunun yerine depozitoyu bu değere ayarlayın. Sitenin minimum depozito ayarını karşılamıyorsa bu rakamın kendisi geçersiz olabilir. ayarı kullanmayın.");
 
 jr_define('_JOMRES_SHORTCODES_06000SHOW_CONSENT_FORM', 'GDPR uyumlu izin formunu gösterir.');
 
 jr_define('_JOMRES_SHORTCODE_PROPERTY_ROOM_TYPE_LIST', 'Tesis oda tipi listesi');
-jr_define( '_JOMRES_SHORTCODE_PROPERTY_ROOM_TYPE', 'Tesis oda tipini göster');
+jr_define('_JOMRES_SHORTCODE_PROPERTY_ROOM_TYPE', 'Tesis oda tipini göster');
 
 jr_define('_JOMRES_SHORTCODE_LOGIN_FORM', 'Giriş formunu göster');
 

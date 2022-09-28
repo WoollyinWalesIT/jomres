@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j16000plugin_manager_check
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -43,11 +44,11 @@ class j16000plugin_manager_check
 		}
 		
 		$ioncube_found = false;
-		if (extension_loaded('ionCube Loader') == true ) {
+		if (extension_loaded('ionCube Loader') == true) {
 			$ioncube_found = true;
 		} else {
-			foreach ( get_loaded_extensions() as $number => $extension_name ) {
-				if ( (strpos( strtolower($extension_name) , "ioncube" )) === false)  {
+			foreach (get_loaded_extensions() as $number => $extension_name) {
+				if ((strpos(strtolower($extension_name), "ioncube")) === false) {
 					// do nothing
 				} else {
 					$ioncube_found = true;
@@ -58,7 +59,7 @@ class j16000plugin_manager_check
 		
 		$this->retVals = '';
 
-		if ( !file_exists(JOMRES_COREPLUGINS_ABSPATH.'plugin_manager'.JRDS.'plugin_info.php') ) {
+		if (!file_exists(JOMRES_COREPLUGINS_ABSPATH.'plugin_manager'.JRDS.'plugin_info.php')) {
 			if (isset($componentArgs[ 'output_now' ])) {
 				$output_now = $componentArgs[ 'output_now' ];
 			} else {
@@ -70,7 +71,7 @@ class j16000plugin_manager_check
 			
 			if ($ioncube_found) {
 				/*$output['INTRO'] = 'The Plugin Manager is required to install and use Jomres plugins. If you do not intend to install any plugins then do not install the manager.';
-				
+
 				$output['MESSAGE'] = 'The Plugin Manager is not installed, you must install it through the Plugin Manager page to use Jomres Core plugins or install third party plugins. You do not need a Jomres license to install third party plugins.';
 
 				$pageoutput[ ] = $output;
@@ -80,7 +81,6 @@ class j16000plugin_manager_check
 				$tmpl->readTemplatesFromInput('plugin_manager_warning.html');*/
 
 				return '';
-
 			} else {
 				$output['INTRO'] = 'Ioncube loaders are not installed on this system.';
 				
@@ -100,10 +100,7 @@ class j16000plugin_manager_check
 			} else {
 				$this->retVals = $tmpl->getParsedTemplate();
 			}
-		
 		}
-
-
 	}
 
 	

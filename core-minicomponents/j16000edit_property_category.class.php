@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j16000edit_property_category
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -59,16 +60,15 @@ class j16000edit_property_category
 		$output[ 'ID' ] = $jomres_property_categories->id;
 		$output[ 'TITLE' ] = $jomres_property_categories->title;
 		
-		if ($jrConfig['allowHTMLeditor'] == "1")
-			{
+		if ($jrConfig['allowHTMLeditor'] == "1") {
 			$width="95%";
 			$height="350";
 			$col="20";
 			$row="10";
-			$output['DESCRIPTION']=editorAreaText( 'description', $jomres_property_categories->description, 'description', $width, $height, $col, $row );
-			}
-		else
+			$output['DESCRIPTION']=editorAreaText('description', $jomres_property_categories->description, 'description', $width, $height, $col, $row);
+		} else {
 			$output['DESCRIPTION']='<textarea class="inputbox" cols="60" rows="6" name="description">'.$jomres_property_categories->description.'</textarea>';
+		}
 
 		$output[ 'PAGETITLE' ] = jr_gettext('_JOMRES_PROPERTY_HCATEGORIES_HEDIT', '_JOMRES_PROPERTY_HCATEGORIES_HEDIT', false);
 		$output[ 'HTITLE' ] = jr_gettext('_JRPORTAL_CRATE_TITLE', '_JRPORTAL_CRATE_TITLE', false);

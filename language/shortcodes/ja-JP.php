@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -72,7 +72,7 @@ jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_ROOMS_ARG_PROPERTY_UID', 'プ�
 
 jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_ROOMS_SLIDESHOW', "プロパティの部屋の画像をスライドショーとして表示します。");
 jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_ROOMS_SLIDESHOW_ARG_PROPERTY_UID', 'プロパティのID。');
-    
+	
 jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_SLIDESHOW', 'プロパティのスライドショーを表示します。');
 jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_SLIDESHOW_ARG_PROPERTY_UID', 'プロパティのID。');
 
@@ -159,7 +159,7 @@ jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_SPECIFIC', "特定のリソース");
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_ALREADY_UPLOADED', "このリソース用に既にアップロードされている画像");
 
 jr_define('_JOMRES_MARKDOWN_TITLE', 'テキストフォーマット');
-jr_define('_JOMRES_MARKDOWN_DESC', '単純なMarkdownフォーマットを使用してここにテキストを入力できます。HTMLを知っている必要はありません。ボタンを使用して情報を希望どおりに表示するか,これらの例に従ってテキストをフォーマットしてください。' );
+jr_define('_JOMRES_MARKDOWN_DESC', '単純なMarkdownフォーマットを使用してここにテキストを入力できます。HTMLを知っている必要はありません。ボタンを使用して情報を希望どおりに表示するか,これらの例に従ってテキストをフォーマットしてください。');
 jr_define('_JOMRES_MARKDOWN_EMPHASIS', 'エンファシス');
 jr_define('_JOMRES_MARKDOWN_BOLD', '太字');
 jr_define('_JOMRES_MARKDOWN_ITALICS', 'イタリック');
@@ -226,7 +226,7 @@ jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_REVIEWS_LIMIT', '表示する�
 jr_define('_JOMRES_SHORTCODES_06000SHORTLIST', 'ユーザーの候補リストのプロパティを表示します。ユーザーが登録されている場合,これらはお気に入りです。ログインしていない場合は,訪問中にお気に入りアイコンから追加されたアイテムのみです。');
 
 jr_define('_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE', '最低入金額');
-    
+	
 jr_define('_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE_DESC', "計算されたデポジットがこの数値よりも少ない場合は,代わりにデポジットをこの値に設定します。サイトの最小デポジット設定を満たさない場合,この数値自体が上書きされる可能性があります。0に設定したままにします。設定を使用しないでください。 ");
 
 jr_define('_JOMRES_SHORTCODES_06000SHOW_CONSENT_FORM', 'GDPR準拠の同意フォームを表示します。');
@@ -246,7 +246,7 @@ jr_define('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_LIMIT', '表�
 jr_define('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_MRPSRP', 'MRP(ホテル/ベッド＆ブレックファースト)またはSRP(コテージ/アパート/ヴィラ)を表示するかどうか。デフォルトは,現在のプロパティのプロパティuidから決定されます(使用できない場合)。特定のタイプを選択するには,この値をsrpsの場合は0に,mrpsの場合は1に設定します。');
 
 jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS', "プロパティのスターを表示します。プロパティがMRPの場合,これらはプロパティ構成で設定されます。");
-jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_PROPERTY_UID','プロパティのID。');
-jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER','オプション。プロパティIDが設定されていない場合は,代わりに数値を渡すことができます。');
-jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH','オプション。代替テンプレートパス。URL経由で渡すことはできません。絶対でなければなりません。');
-jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME','オプション。代替テンプレート名。');
+jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_PROPERTY_UID', 'プロパティのID。');
+jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER', 'オプション。プロパティIDが設定されていない場合は,代わりに数値を渡すことができます。');
+jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH', 'オプション。代替テンプレートパス。URL経由で渡すことはできません。絶対でなければなりません。');
+jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME', 'オプション。代替テンプレート名。');

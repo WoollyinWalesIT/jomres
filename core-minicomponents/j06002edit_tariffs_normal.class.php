@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06002edit_tariffs_normal
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -58,7 +59,7 @@ class j06002edit_tariffs_normal
 		$basic_room_details = jomres_singleton_abstract::getInstance('basic_room_details');
 		$basic_room_details->get_all_rooms($defaultProperty);
 		
-		$basic_rate_details = jomres_singleton_abstract::getInstance( 'basic_rate_details' );
+		$basic_rate_details = jomres_singleton_abstract::getInstance('basic_rate_details');
 		$basic_rate_details->get_rates($defaultProperty);
 
 		//we need the jrrportal_rates object to create a tarifftype id if none exists for the existing rate uids
@@ -153,8 +154,7 @@ class j06002edit_tariffs_normal
 		
 		//MRPs
 		if ($mrConfig[ 'singleRoomProperty' ] == '0') {
-			
-			foreach ($basic_property_details->this_property_room_classes as $roomtype_id  => $r) {
+			foreach ($basic_property_details->this_property_room_classes as $roomtype_id => $r) {
 				$rw = array();
 				
 				$this_roomtype_count = count($existing_rooms[ $roomtype_id ][ 'room_uids' ]);
@@ -223,7 +223,7 @@ class j06002edit_tariffs_normal
 			$output[ 'ROOMRATEPERDAY' ] = '<input class="input-mini" type="number" name="roomrateperday" value="'.$roomrateperday.'" />';
 			$output[ 'MAX_PEOPLE' ] = '<input class="input-mini" type="text" name="max_people" value="'.$max_people.'" />';
 
-			foreach ($basic_property_details->this_property_room_classes as $roomtype_id  => $r) {
+			foreach ($basic_property_details->this_property_room_classes as $roomtype_id => $r) {
 				$rw = array();
 				$selected = '';
 

@@ -6,7 +6,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
@@ -58,13 +58,23 @@ defined('_JOMRES_INITCHECK') or die('');
 	
 	/**
 	 * 
-	 * Halts execution of an API feature plugin with an error code. Typically used when the user doesn't have relevant permissions or they have sent faulty data and we cannot continue
+	 * Halts execution of an API feature plugin with an error code. Typically used when the user doesn't have relevant permissions or they have sent faulty data, and we cannot continue
 	 *
 	 */
 
 	Flight::map('halt', function ($code = 204, $message = '' , $charset = 'utf-8' , $lines = array() ) {
 
 		$envelope_data = Flight::response_envelope_data();
+
+		if (class_exists('mcHandler')) {  // The framework has been included, therefore there's a chance a webhook has been triggered. Let's fire up the watcher to respond to any events
+			$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+			$MiniComponents->triggerEvent('99994');
+
+			if ( defined("FORCE_JOMRES_SESSION") && FORCE_JOMRES_SESSION == true ) {
+				$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
+				$tmpBookingHandler->close_jomres_session();
+			}
+		}
 
 		if ($code != 404) {
 			$code = 400;

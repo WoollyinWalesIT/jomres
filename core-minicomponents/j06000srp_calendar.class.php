@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06000srp_calendar
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs = null)
@@ -120,8 +121,8 @@ class j06000srp_calendar
 		$counter = 1;
 
 		if (!$show_just_month) {
-            if (get_showtime('task') != 'dobooking') {
-			$this->retVals = '
+			if (get_showtime('task') != 'dobooking') {
+				$this->retVals = '
 				<div class="row">
 					<div class="col-md-3 jomres-calendar-day-num jomres-calendar-available"> ' .jr_gettext('_JOMRES_COM_AVLCAL_INMONTHFACE_KEY', '_JOMRES_COM_AVLCAL_INMONTHFACE_KEY').'</div>
 					<div class="col-md-3 jomres-calendar-day-num jomres-calendar-booking-occupied-completely">' .jr_gettext('_JOMRES_COM_AVLCAL_OCCUPIEDCOLOUR_KEY', '_JOMRES_COM_AVLCAL_OCCUPIEDCOLOUR_KEY').'</div>
@@ -129,12 +130,12 @@ class j06000srp_calendar
 				<div class="container-fluid">
 					<div class="row">
 					';
-            } else {
-                $this->retVals = '
+			} else {
+				$this->retVals = '
                 <div class="container-fluid">
 				    <div class="row">
                 ';
-            }
+			}
 
 			for ($start_month; $counter <= $months_to_show; ++$start_month) {
 				$this->retVals .= '<div class="col-md-4 col-sm-6">';
@@ -228,8 +229,8 @@ class j06000srp_calendar
 				$link = get_booking_url($property_uid, '', '&pdetails_cal=1&arrivalDate='.date('Y/m/d', $currdate));
 				$fmt = date('Y', $currdate).'/'.date('m', $currdate).'/'.date('d', $currdate);
 				
-				$dow = date( "w", $currdate);
-				if ($mrConfig[ 'fixedArrivalDay' ] != '' && (int)$mrConfig[ 'fixedArrivalDateYesNo' ] != 0  ) {
+				$dow = date("w", $currdate);
+				if ($mrConfig[ 'fixedArrivalDay' ] != '' && (int)$mrConfig[ 'fixedArrivalDateYesNo' ] != 0) {
 					if ($dow != (int)$mrConfig[ 'fixedArrivalDay' ]) {
 						$link = '';
 					}
@@ -251,7 +252,7 @@ class j06000srp_calendar
 					$class = 'jomres-calendar-booking-crossover';
 				}
 
-				if($currdate < $now) {
+				if ($currdate < $now) {
 					$link = '';
 				}
 

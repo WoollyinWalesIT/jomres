@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j16000translate_lang_file_strings
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -58,21 +59,27 @@ class j16000translate_lang_file_strings
 		
 		$jomres_language_definitions = jomres_singleton_abstract::getInstance('jomres_language_definitions');
 
-        $jomres_language = jomres_singleton_abstract::getInstance('jomres_language');
-        $jomres_language->get_language('faq');
-        $jomres_language->get_language('shotcodes');
-        $jomres_language->get_language('video_tutorials');
+		$jomres_language = jomres_singleton_abstract::getInstance('jomres_language');
+		$jomres_language->get_language('faq');
+		$jomres_language->get_language('shotcodes');
+		$jomres_language->get_language('video_tutorials');
 
-		$javascript = 'onchange="switch_language_context(this.value);"';
+/*		$javascript = 'onchange="switch_language_context(this.value);"';
 
 		echo '<h2 class="page-header">'.jr_gettext('_JOMRES_TOUCHTEMPLATES', '_JOMRES_TOUCHTEMPLATES', false).' - '.get_showtime('lang').'</h2>';
 		
-		echo '<p>'.jr_gettext('_JOMRES_COM_LANGUAGE_CONTEXT', '_JOMRES_COM_LANGUAGE_CONTEXT', false) . ' ' . $jomres_property_types->getPropertyTypeDescDropdown($language_context, 'language_context', $javascript).'</p>';
+		echo '<p>'.jr_gettext('_JOMRES_COM_LANGUAGE_CONTEXT', '_JOMRES_COM_LANGUAGE_CONTEXT', false) . ' ' . $jomres_property_types->getPropertyTypeDescDropdown($language_context, 'language_context', $javascript).'</p>';*/
+
+		echo simple_template_output(JOMRES_TEMPLATEPATH_ADMINISTRATOR, $template = 'translate_lang_file_strings_header.html', jr_gettext( '_JOMRES_COM_TRANSLATE_LANGUAGEFILES_INFO', '_JOMRES_COM_TRANSLATE_LANGUAGEFILES_INFO' , false ));
+
 
 		$output = array();
 
 		foreach ($jomres_language_definitions->definitions[$jrConfig['language_context']] as $const => $def) {
-			$output[] = $const." ".jr_gettext($const, $def);
+			if ( $const != '_JOMRES_COM_MR_YES ' && $const != '_JOMRES_COM_MR_NO ' && $const != '_JOMRES_COM_TRANSLATE_LANGUAGEFILES_INFO ') {
+				$output[] = $const." <br/><br/>".jr_gettext($const, $def)."<br/>";
+			}
+
 		}
 
 		foreach ($output as $o) {

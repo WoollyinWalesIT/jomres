@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -34,7 +34,7 @@ class jomSearch
 		$jrConfig = $siteConfig->get();
 		$this->formname = '';
 		$this->searchAll = $searchAll;
-        $this->some_published_properties_exist = true;
+		$this->some_published_properties_exist = true;
 		$this->filter = array('propertyname' => '', 'country' => '', 'region' => '', 'town' => '', 'description' => '', 'feature_uids' => '', 'arrival' => '', 'departure' => '', 'ptype' => '', 'cat_id' => '', 'room_type' => '');
 		$this->makeFormName();
 
@@ -42,7 +42,7 @@ class jomSearch
 			$this->calledByModule = $calledByModule = jomresGetParam($_REQUEST, 'calledByModule', 'mod_jomsearch_m0');
 		}
 
-		if ( isset($_REQUEST['template_file']) && $_REQUEST['template_file'] != '' ) {
+		if (isset($_REQUEST['template_file']) && $_REQUEST['template_file'] != '') {
 			if (this_cms_is_wordpress()) {
 				$override_path = get_template_directory() . JRDS . 'html' . JRDS . 'com_jomres';
 			} else {
@@ -69,8 +69,7 @@ class jomSearch
 				$this->templateFile = $calledByModule . '.html';
 			}
 
-			if (
-				(($calledByModule == 'mod_jomsearch_m0' && $jrConfig['integratedSearch_enable'] == '1' && this_cms_is_joomla()) ||
+			if ((($calledByModule == 'mod_jomsearch_m0' && $jrConfig['integratedSearch_enable'] == '1' && this_cms_is_joomla()) ||
 					($calledByModule == 'mod_jomsearch_m0' && this_cms_is_wordpress() && $includedInModule))
 				&& !isset($_REQUEST['search_widget'])
 			) {
@@ -85,67 +84,67 @@ class jomSearch
 
 			$vals = jomres_cmsspecific_getSearchModuleParameters($calledByModule);
 
-			if (isset($vals[ 'moduleclass_sfx' ])) {
-				$moduleclass_sfx = $vals[ 'moduleclass_sfx' ];
-			}
+		if (isset($vals[ 'moduleclass_sfx' ])) {
+			$moduleclass_sfx = $vals[ 'moduleclass_sfx' ];
+		}
 
-			if (!isset($vals[ 'useCols' ])) {
-				$vals[ 'useCols' ] = false;
-			}
-			if (!isset($vals[ 'featurecols' ])) {
-				$vals[ 'featurecols' ] = false;
-			}
-			if (!isset($vals[ 'geosearchtype' ])) {
-				$vals[ 'geosearchtype' ] = 0;
-			} // 0 none 1 Town 2 Region 3 Country
-			if (!isset($vals[ 'propertyname' ])) {
-				$vals[ 'propertyname' ] = false;
-			}
-			if (!isset($vals[ 'ptype' ])) {
-				$vals[ 'ptype' ] = false;
-			}
-			if (!isset($vals[ 'cat_id' ])) {
-				$vals[ 'cat_id' ] = false;
-			}
-			if (!isset($vals[ 'room_type' ])) {
-				$vals[ 'room_type' ] = false;
-			}
-			if (!isset($vals[ 'features' ])) {
-				$vals[ 'features' ] = false;
-			}
-			if (!isset($vals[ 'description' ])) {
-				$vals[ 'description' ] = false;
-			}
-			if (!isset($vals[ 'availability' ])) {
-				$vals[ 'availability' ] = false;
-			}
-			if (!isset($vals[ 'guestnumber' ])) {
-				$vals[ 'guestnumber' ] = false;
-			}
-			if (!isset($vals[ 'stars' ])) {
-				$vals[ 'stars' ] = false;
-			}
+		if (!isset($vals[ 'useCols' ])) {
+			$vals[ 'useCols' ] = false;
+		}
+		if (!isset($vals[ 'featurecols' ])) {
+			$vals[ 'featurecols' ] = false;
+		}
+		if (!isset($vals[ 'geosearchtype' ])) {
+			$vals[ 'geosearchtype' ] = 0;
+		} // 0 none 1 Town 2 Region 3 Country
+		if (!isset($vals[ 'propertyname' ])) {
+			$vals[ 'propertyname' ] = false;
+		}
+		if (!isset($vals[ 'ptype' ])) {
+			$vals[ 'ptype' ] = false;
+		}
+		if (!isset($vals[ 'cat_id' ])) {
+			$vals[ 'cat_id' ] = false;
+		}
+		if (!isset($vals[ 'room_type' ])) {
+			$vals[ 'room_type' ] = false;
+		}
+		if (!isset($vals[ 'features' ])) {
+			$vals[ 'features' ] = false;
+		}
+		if (!isset($vals[ 'description' ])) {
+			$vals[ 'description' ] = false;
+		}
+		if (!isset($vals[ 'availability' ])) {
+			$vals[ 'availability' ] = false;
+		}
+		if (!isset($vals[ 'guestnumber' ])) {
+			$vals[ 'guestnumber' ] = false;
+		}
+		if (!isset($vals[ 'stars' ])) {
+			$vals[ 'stars' ] = false;
+		}
 
-			if (!isset($vals[ 'geosearch_dropdown' ])) {
-				$vals[ 'geosearch_dropdown' ] = false;
-			}
-			if (!isset($vals[ 'propertyname_dropdown' ])) {
-				$vals[ 'propertyname_dropdown' ] = false;
-			}
-			if (!isset($vals[ 'ptype_dropdown' ])) {
-				$vals[ 'ptype_dropdown' ] = false;
-			}
-			if (!isset($vals[ 'room_type_dropdown' ])) {
-				$vals[ 'room_type_dropdown' ] = false;
-			}
-			if (!isset($vals[ 'features_dropdown' ])) {
-				$vals[ 'features_dropdown' ] = false;
-			}
-			if (!isset($vals[ 'priceranges' ])) {
-				$vals[ 'priceranges' ] = false;
-			}
+		if (!isset($vals[ 'geosearch_dropdown' ])) {
+			$vals[ 'geosearch_dropdown' ] = false;
+		}
+		if (!isset($vals[ 'propertyname_dropdown' ])) {
+			$vals[ 'propertyname_dropdown' ] = false;
+		}
+		if (!isset($vals[ 'ptype_dropdown' ])) {
+			$vals[ 'ptype_dropdown' ] = false;
+		}
+		if (!isset($vals[ 'room_type_dropdown' ])) {
+			$vals[ 'room_type_dropdown' ] = false;
+		}
+		if (!isset($vals[ 'features_dropdown' ])) {
+			$vals[ 'features_dropdown' ] = false;
+		}
+		if (!isset($vals[ 'priceranges' ])) {
+			$vals[ 'priceranges' ] = false;
+		}
 			
-			/* 
+			/*
 			The purpose is to allow us to add searchable urls without forcing the user to modify the configuration.php manually.
 
 			Bit of a hack, but this class is so old but yet robust, I can't see it changing now.
@@ -154,18 +153,18 @@ class jomSearch
 			This *soley* enables searching on various arrays, *if* they're populated. It will inevitably add some queries, but only if calledbymodule is set to m0
 
 			*/
-			if ( $calledByModule == 'mod_jomsearch_m0' && !this_cms_is_wordpress() ){
-				$vals[ 'propertyname' ] = true;
-				$vals[ 'ptype' ]		= true;
-				$vals[ 'cat_id' ]	   = true;
-				$vals[ 'room_type' ]	= true;
-				$vals[ 'features' ]	 = true;
-				$vals[ 'description' ]  = true;
-				$vals[ 'availability' ] = true;
-				$vals[ 'guestnumber' ]  = true;
-				$vals[ 'stars' ]		= true;
-				$vals[ 'priceranges' ]  = true;
-				}
+		if ($calledByModule == 'mod_jomsearch_m0' && !this_cms_is_wordpress()) {
+			$vals[ 'propertyname' ] = true;
+			$vals[ 'ptype' ]		= true;
+			$vals[ 'cat_id' ]	   = true;
+			$vals[ 'room_type' ]	= true;
+			$vals[ 'features' ]	 = true;
+			$vals[ 'description' ]  = true;
+			$vals[ 'availability' ] = true;
+			$vals[ 'guestnumber' ]  = true;
+			$vals[ 'stars' ]		= true;
+			$vals[ 'priceranges' ]  = true;
+		}
 			
 			$useCols = $vals[ 'useCols' ];
 			$featurecols = $vals[ 'featurecols' ];
@@ -273,30 +272,30 @@ class jomSearch
 			$basic_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
 
 			$all_published_properties = get_showtime('published_properties_in_system');
-            if (empty($all_published_properties)) {
-                $this->some_published_properties_exist = false;
-                return;
-            }
+		if (empty($all_published_properties)) {
+			$this->some_published_properties_exist = false;
+			return;
+		}
 
-			if (!$all_published_properties) {
-				$query = 'SELECT propertys_uid,published FROM #__jomres_propertys';
-				$result = doSelectSql($query);
-				$numberOfPropertiesInSystem = count($result);
-				foreach ($result as $r) {
-					$all_properties[ ] = $r->propertys_uid;
-					if ($r->published == '1') {
-						$all_published_properties[ ] = $r->propertys_uid;
-					}
+		if (!$all_published_properties) {
+			$query = 'SELECT propertys_uid,published FROM #__jomres_propertys';
+			$result = doSelectSql($query);
+			$numberOfPropertiesInSystem = count($result);
+			foreach ($result as $r) {
+				$all_properties[ ] = $r->propertys_uid;
+				if ($r->published == '1') {
+					$all_published_properties[ ] = $r->propertys_uid;
 				}
-				set_showtime('numberOfPropertiesInSystem', $numberOfPropertiesInSystem);
-				set_showtime('all_properties_in_system', $all_properties);
-				set_showtime('published_properties_in_system', $all_published_properties);
 			}
+			set_showtime('numberOfPropertiesInSystem', $numberOfPropertiesInSystem);
+			set_showtime('all_properties_in_system', $all_properties);
+			set_showtime('published_properties_in_system', $all_published_properties);
+		}
 
 			$basic_property_details->get_property_name_multi($all_published_properties);
-			foreach ($all_published_properties as $puid) {
-				$this->prep[ 'propertyname' ][ ] = array('pn' => $basic_property_details->property_names[$puid], 'puid' => $puid);
-			}
+		foreach ($all_published_properties as $puid) {
+			$this->prep[ 'propertyname' ][ ] = array('pn' => $basic_property_details->property_names[$puid], 'puid' => $puid);
+		}
 			asort($this->prep[ 'propertyname' ]);
 
 		// -------------------------------------------------------------------------------------------------------------------------------------------
@@ -306,12 +305,12 @@ class jomSearch
 			$tmpCountryArray = array();
 			$tmpCountryArray[ ] = $this->searchAll;
 
-			foreach ($activeCountriesList as $country) {
-				if (!in_array($country->property_country, $tmpCountryArray)) {
-					$this->prep[ 'country' ][ getSimpleCountry($country->property_country) ] = array('countrycode' => $country->property_country, 'countryname' => getSimpleCountry($country->property_country));
-					$tmpCountryArray[ ] = $country->property_country;
-				}
+		foreach ($activeCountriesList as $country) {
+			if (!in_array($country->property_country, $tmpCountryArray)) {
+				$this->prep[ 'country' ][ getSimpleCountry($country->property_country) ] = array('countrycode' => $country->property_country, 'countryname' => getSimpleCountry($country->property_country));
+				$tmpCountryArray[ ] = $country->property_country;
 			}
+		}
 
 			ksort($this->prep[ 'country' ]);
 			array_unshift($this->prep[ 'country' ], array('countrycode' => $this->searchAll, 'countryname' => $this->searchAll));
@@ -325,12 +324,12 @@ class jomSearch
 			$this->prep[ 'region' ][ ] = array('region' => $this->searchAll);
 			$tmpRegionArray[ ] = $this->searchAll;
 
-			foreach ($activeRegionsList as $region) {
-				if (!in_array($region->property_region, $tmpRegionArray)) {
-					$this->prep[ 'region' ][ ] = array('region' => find_region_name($region->property_region));
-					$tmpRegionArray[ ] = find_region_name($region->property_region);
-				}
+		foreach ($activeRegionsList as $region) {
+			if (!in_array($region->property_region, $tmpRegionArray)) {
+				$this->prep[ 'region' ][ ] = array('region' => find_region_name($region->property_region));
+				$tmpRegionArray[ ] = find_region_name($region->property_region);
 			}
+		}
 			$tmpRegionArray = array_unique($tmpRegionArray);
 
 
@@ -357,12 +356,12 @@ class jomSearch
 			$rname = $this->searchAll;
 			$cname = $this->searchAll;
 			$tmpRegionArray[ ] = $this->searchAll;
-			foreach ($activeTownList as $town) {
-				$t = stripslashes($town->property_town);
-				if (!empty($town)) {
-					$this->prep[ 'town' ][ $t ] = array('town' => stripslashes($town->property_town));
-				}
+		foreach ($activeTownList as $town) {
+			$t = stripslashes($town->property_town);
+			if (!empty($town)) {
+				$this->prep[ 'town' ][ $t ] = array('town' => stripslashes($town->property_town));
 			}
+		}
 
 		// -------------------------------------------------------------------------------------------------------------------------------------------
 		// Currently returns an empty array
@@ -376,71 +375,71 @@ class jomSearch
 		// -------------------------------------------------------------------------------------------------------------------------------------------
 
 			$result = prepAvailabilitySearch();
-			if (isset($result[ 'arrival' ])) {
-				$this->prep[ 'arrival' ] = $result[ 'arrival' ];
-			} else {
-				$this->prep[ 'arrival' ] = '';
-			}
+		if (isset($result[ 'arrival' ])) {
+			$this->prep[ 'arrival' ] = $result[ 'arrival' ];
+		} else {
+			$this->prep[ 'arrival' ] = '';
+		}
 
-			if (isset($result[ 'departure' ])) {
-				$this->prep[ 'departure' ] = $result[ 'departure' ];
-			} else {
-				$this->prep[ 'departure' ] = '';
-			}
+		if (isset($result[ 'departure' ])) {
+			$this->prep[ 'departure' ] = $result[ 'departure' ];
+		} else {
+			$this->prep[ 'departure' ] = '';
+		}
 
 		// -------------------------------------------------------------------------------------------------------------------------------------------
 
 			$result = prepFeatureSearch();
-			if ($result && !empty($result)) {
-				foreach ($result as $feature) {
-					if (!empty($feature[ 'title' ])) {
-						$this->prep[ 'features' ][ ] = array('id' => $feature[ 'id' ], 'image' => JOMRES_IMAGELOCATION_RELPATH.'pfeatures/'.$feature[ 'image' ], 'title' => $feature[ 'title' ], 'description' => $feature[ 'description' ]);
-					}
+		if ($result && !empty($result)) {
+			foreach ($result as $feature) {
+				if (!empty($feature[ 'title' ])) {
+					$this->prep[ 'features' ][ ] = array('id' => $feature[ 'id' ], 'image' => JOMRES_IMAGELOCATION_RELPATH.'pfeatures/'.$feature[ 'image' ], 'title' => $feature[ 'title' ], 'description' => $feature[ 'description' ]);
 				}
 			}
+		}
 
 		// -------------------------------------------------------------------------------------------------------------------------------------------
 			$result = prepRoomtypeSearch();
 
-			if ($result && !empty($result)) {
-				foreach ($result as $rtype) {
-					if (!empty($rtype[ 'id' ]) && !empty($rtype[ 'title' ])) {
-						$this->prep[ 'rtypes' ][ ] = array('id' => $rtype[ 'id' ], 'image' => JOMRES_IMAGELOCATION_RELPATH.'rmtypes/'.$rtype[ 'image' ], 'title' => $rtype[ 'title' ], 'description' => $rtype[ 'description' ]);
-					}
+		if ($result && !empty($result)) {
+			foreach ($result as $rtype) {
+				if (!empty($rtype[ 'id' ]) && !empty($rtype[ 'title' ])) {
+					$this->prep[ 'rtypes' ][ ] = array('id' => $rtype[ 'id' ], 'image' => JOMRES_IMAGELOCATION_RELPATH.'rmtypes/'.$rtype[ 'image' ], 'title' => $rtype[ 'title' ], 'description' => $rtype[ 'description' ]);
 				}
 			}
+		}
 
 		// -------------------------------------------------------------------------------------------------------------------------------------------
 			$result = prepPropertyTypeSearch();
-			if ($result && !empty($result)) {
-				foreach ($result as $ptype) {
-					$this->prep[ 'ptypes' ][ ] = array('id' => $ptype[ 'id' ], 'ptype' => $ptype[ 'ptype' ]);
-				}
+		if ($result && !empty($result)) {
+			foreach ($result as $ptype) {
+				$this->prep[ 'ptypes' ][ ] = array('id' => $ptype[ 'id' ], 'ptype' => $ptype[ 'ptype' ]);
 			}
+		}
 
 			$result = prepPropertyCategoriesSearch();
-			if ($result && !empty($result)) {
-				foreach ($result as $c) {
-					$this->prep[ 'categories' ][ ] = array('id' => $c[ 'id' ], 'title' => $c[ 'title' ]);
-				}
+		if ($result && !empty($result)) {
+			foreach ($result as $c) {
+				$this->prep[ 'categories' ][ ] = array('id' => $c[ 'id' ], 'title' => $c[ 'title' ]);
 			}
+		}
 
 
 			$result = prepPriceRangeSearch($pricerange_increments);
-			if ($result && !empty($result)) {
-				foreach ($result as $r) {
-					$this->prep[ 'priceranges' ][ ] = $r;
-				}
+		if ($result && !empty($result)) {
+			foreach ($result as $r) {
+				$this->prep[ 'priceranges' ][ ] = $r;
 			}
+		}
 
 			$result = prepGuestnumberSearch();
-			if ($result && !empty($result)) {
-				$searchAll = jr_gettext('_JOMRES_SEARCH_ALL', '_JOMRES_SEARCH_ALL', false, false);
-				$this->prep[ 'guestnumber' ][ ] = array('id' => 0, 'guestnumber' => $searchAll);
-				foreach ($result as $guestnumber) {
-					$this->prep[ 'guestnumber' ][ ] = array('id' => (int) $guestnumber, 'guestnumber' => (int) $guestnumber);
-				}
+		if ($result && !empty($result)) {
+			$searchAll = jr_gettext('_JOMRES_SEARCH_ALL', '_JOMRES_SEARCH_ALL', false, false);
+			$this->prep[ 'guestnumber' ][ ] = array('id' => 0, 'guestnumber' => $searchAll);
+			foreach ($result as $guestnumber) {
+				$this->prep[ 'guestnumber' ][ ] = array('id' => (int) $guestnumber, 'guestnumber' => (int) $guestnumber);
 			}
+		}
 
 			$searchAll = jr_gettext('_JOMRES_SEARCH_ALL', '_JOMRES_SEARCH_ALL', false, false);
 			$this->prep[ 'stars' ][ ] = array('id' => 0, 'stars' => $searchAll);
@@ -449,7 +448,6 @@ class jomSearch
 			$this->prep[ 'stars' ][ ] = array('id' => 3, 'stars' => 3);
 			$this->prep[ 'stars' ][ ] = array('id' => 4, 'stars' => 4);
 			$this->prep[ 'stars' ][ ] = array('id' => 5, 'stars' => 5);
-
 	}
 
 	/**
@@ -676,7 +674,7 @@ class jomSearch
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -844,7 +842,7 @@ class jomSearch
 	{
 		$filter = (int) $this->filter[ 'sleeps_adults' ];
 
-		if ($filter == 0 ) {
+		if ($filter == 0) {
 			return;
 		}
 
@@ -876,7 +874,7 @@ class jomSearch
 	{
 		$filter = (int) $this->filter[ 'sleeps_children' ];
 
-		if ($filter == 0 ) {
+		if ($filter == 0) {
 			return;
 		}
 
@@ -1125,14 +1123,14 @@ class jomSearch
 		$autocomplete_value = jomresGetParam($_REQUEST, 'autocomplete_value', '');
 
 		// The field was empty, there's nothing to do
-		if ($autocomplete_value == '' ) {
+		if ($autocomplete_value == '') {
 			return;
 		}
 
 		$jomres_countries = jomres_singleton_abstract::getInstance('jomres_countries');
 		$jomres_countries->get_all_countries();
 
-		if ( isset ($jomres_countries->countries[$autocomplete_value] )) {
+		if (isset($jomres_countries->countries[$autocomplete_value])) {
 			$query = "SELECT propertys_uid FROM #__jomres_propertys WHERE published = '1' AND property_country = '$autocomplete_value' $property_ors ";
 			$this->resultBucket = doSelectSql($query);
 		} else {
@@ -1140,7 +1138,7 @@ class jomSearch
 			$jomres_regions->get_all_regions();
 
 			$found = false;
-			foreach ($jomres_regions->regions as $region ) {
+			foreach ($jomres_regions->regions as $region) {
 				if ($region['regionname'] == $autocomplete_value) {
 					$region_id = find_region_id($autocomplete_value);
 					$query = "SELECT propertys_uid FROM #__jomres_propertys WHERE published = '1' AND property_region = '".$region_id."' $property_ors ";
@@ -1149,7 +1147,7 @@ class jomSearch
 				}
 			}
 
-			if (!$found ) {
+			if (!$found) {
 				$query = "SELECT a.propertys_uid  
 										FROM #__jomres_propertys a
 										LEFT JOIN #__jomres_custom_text b ON (
@@ -1204,7 +1202,7 @@ function prepOccupancyLevels()
 {
 	$result = array();
 	jr_import('jomres_occupancy_levels');
-	$jomres_occupancy_levels = new jomres_occupancy_levels( 0 );
+	$jomres_occupancy_levels = new jomres_occupancy_levels(0);
 	$all_occupancy_levels = $jomres_occupancy_levels->get_max_occupancy_levels();
 	$result['highestOccupancyLevels'] = $all_occupancy_levels ;
 
@@ -1259,7 +1257,7 @@ function prepGeographicSearch()
 }
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -1327,8 +1325,7 @@ function prepFeatureSearch()
 	$result[ ] = $r;
 
 	foreach ($basic_property_details->all_property_features as $propertyFeatureId => $feature) {
-
-		if (in_array($propertyFeatureId, $uniqueFeatures) && $feature['include_in_filters'] == "1" ) {
+		if (in_array($propertyFeatureId, $uniqueFeatures) && $feature['include_in_filters'] == "1") {
 			$r = array();
 			$r[ 'id' ] = $propertyFeatureId;
 			$r[ 'title' ] = $feature['abbv'];
@@ -1350,7 +1347,7 @@ function prepRoomtypeSearch()
 	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig = $siteConfig->get();
 	
-	if (!isset($jrConfig['frontend_room_type_editing_show_property_room_types_in_search_options']) ) {
+	if (!isset($jrConfig['frontend_room_type_editing_show_property_room_types_in_search_options'])) {
 		$jrConfig['frontend_room_type_editing_show_property_room_types_in_search_options'] = "1";
 	}
 
@@ -1364,8 +1361,8 @@ function prepRoomtypeSearch()
 	
 	if ($jrConfig['frontend_room_type_editing_show_property_room_types_in_search_options'] == "1") {
 		if (!empty($jomres_room_types->property_specific_room_types)) {
-			foreach ($jomres_room_types->property_specific_room_types as $property ) {
-				foreach ($property as $property_specific_room_type ) {
+			foreach ($jomres_room_types->property_specific_room_types as $property) {
+				foreach ($property as $property_specific_room_type) {
 					$roomTypeList[] = $property_specific_room_type;
 				}
 			}
@@ -1580,7 +1577,7 @@ function prepPriceRangeSearch($increments = 10)
 
 	sort($allTariffs);
 	
-	if ( isset($allTariffs[ 0 ])) {
+	if (isset($allTariffs[ 0 ])) {
 		$highest = end($allTariffs);
 		$lowest = reset($allTariffs);
 		// Found during testing, when one property has the price 100,000,000 and the increments is left to the default 20, you'll get an out of memory error.
@@ -1604,7 +1601,7 @@ function prepPriceRangeSearch($increments = 10)
 			}
 		}
 		$count = count($allTariffs) - 1;
-		$highest = $allTariffs[ $count ];		
+		$highest = $allTariffs[ $count ];
 	}
 
 
@@ -1614,7 +1611,7 @@ function prepPriceRangeSearch($increments = 10)
 }
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -1622,7 +1619,7 @@ function prepPriceRangeSearch($increments = 10)
 // http://uk.php.net/manual/en/function.range.php#82104
 function my_range($start, $end, $step = 1)
 {
-	if ( $step == 0 ) {
+	if ($step == 0) {
 		$step = 100;
 	}
 	$range = array();

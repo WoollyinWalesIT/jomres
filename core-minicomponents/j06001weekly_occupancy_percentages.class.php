@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06001weekly_occupancy_percentages
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -99,17 +100,17 @@ class j06001weekly_occupancy_percentages
 		
 		$start   = new DateTime();
 		$end	 = new DateTime();
-		$start   = $start->modify( '0 days' ); 
+		$start   = $start->modify('0 days');
 		
 		if ($is_widget) {
-			$end	 = $end->modify( '+3 days' ); // Date Period doesn't include the end date
+			$end	 = $end->modify('+3 days'); // Date Period doesn't include the end date
 		} else {
-			$end	 = $end->modify( '+7 days' ); // Date Period doesn't include the end date
+			$end	 = $end->modify('+7 days'); // Date Period doesn't include the end date
 		}
 		$interval = new DateInterval('P1D');
-		$daterange = new DatePeriod($start, $interval ,$end);
+		$daterange = new DatePeriod($start, $interval, $end);
 		$dates = array();
-		foreach($daterange as $date){
+		foreach ($daterange as $date) {
 			$dates[$date->format("Y/m/d")]['number_booked']= 0;
 			$dates[$date->format("Y/m/d")]['date_of_month']=$date->format("d");
 			$dates[$date->format("Y/m/d")]['month_name']=$date->format("M");
@@ -117,26 +118,26 @@ class j06001weekly_occupancy_percentages
 
 		$query = "SELECT room_bookings_uid,date FROM #__jomres_room_bookings WHERE property_uid = $property_uid AND (";
 		
-		foreach ($dates as $date=>$val ) {
+		foreach ($dates as $date => $val) {
 			$query .= "`date` = '".$date."' OR ";
 		}
 		$query = rtrim($query, " OR ").")";
 		
 		$results = doSelectSql($query);
-		if (!empty($results)){
+		if (!empty($results)) {
 			foreach ($results as $res) {
 				$dates[$res->date]['number_booked'] ++;
 			}
 		}
 
-		foreach ($dates as $date=>$number_booked) {
+		foreach ($dates as $date => $number_booked) {
 			$percentage_booked = ($number_booked['number_booked']*100)/$number_of_rooms;
 
 			$dates[$date]['percentage'] = (int)$percentage_booked;
-			$dates[$date]['friendly_date'] = outputDate( $date ) ; // This doesn't scale well responsivly so we'll use the days and month names as determined up above.
-			$dates[$date][''] = 
+			$dates[$date]['friendly_date'] = outputDate($date) ; // This doesn't scale well responsivly so we'll use the days and month names as determined up above.
+			$dates[$date][''] =
 			$dates[$date]['over50'] = '';
-			if ( $percentage_booked>50) {
+			if ($percentage_booked>50) {
 				$dates[$date]['over50'] = 'over50';
 			}
 		}

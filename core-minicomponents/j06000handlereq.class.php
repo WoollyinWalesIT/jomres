@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06000handlereq
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -127,7 +128,7 @@ class j06000handlereq
 				break;
 			case 'addressstring':
 				$ajrq = 'ajrq:::addressstring';
-				$value = str_replace( "&#38;#39;", "'", $value ); // Apostrophes sent by ajax will be mangled, we need to unmangle them then santise them properly.
+				$value = str_replace("&#38;#39;", "'", $value); // Apostrophes sent by ajax will be mangled, we need to unmangle them then santise them properly.
 				$addressString = explode('~', $value);
 				$firstname = $addressString[ 0 ];
 				$surname = $addressString[ 1 ];
@@ -158,10 +159,10 @@ class j06000handlereq
 				$country = $bkg->sanitiseInput('string', $country);
 				$bkg->setGuest_country($country);
 				$landline = $bkg->sanitiseInput('string', $landline);
-				$landline = str_replace( "&#38;#38;#43;", "&#43;", $landline ); // Plus symbols sent from the booking form will be mangled after being sent via ajax, so we need to unmangle them and clean them up as their correct entity before storage
+				$landline = str_replace("&#38;#38;#43;", "&#43;", $landline); // Plus symbols sent from the booking form will be mangled after being sent via ajax, so we need to unmangle them and clean them up as their correct entity before storage
 				$bkg->setGuest_tel_landline($landline);
 				$mobile = $bkg->sanitiseInput('string', $mobile);
-				$mobile = str_replace( "&#38;#38;#43;", "&#43;", $mobile ); // Plus symbols sent from the booking form will be mangled after being sent via ajax, so we need to unmangle them and clean them up as their correct entity before storage
+				$mobile = str_replace("&#38;#38;#43;", "&#43;", $mobile); // Plus symbols sent from the booking form will be mangled after being sent via ajax, so we need to unmangle them and clean them up as their correct entity before storage
 				$bkg->setGuest_tel_mobile($mobile);
 				$email = $bkg->sanitiseInput('string', $email);
 				$bkg->setGuest_email($email);
@@ -184,7 +185,7 @@ class j06000handlereq
 				$value = $bkg->JSCalConvertInputDates($value);
 				$value = $bkg->sanitiseInput('date', $value);
 
-				if (isset($_GET[ 'arr_dep_date' ])){
+				if (isset($_GET[ 'arr_dep_date' ])) {
 					$arr_dep_date = $bkg->JSCalConvertInputDates($_GET[ 'arr_dep_date' ]);
 					$arr_dep_date = $bkg->sanitiseInput('date', $arr_dep_date);
 				}
@@ -248,9 +249,9 @@ class j06000handlereq
 				$ajrq = 'ajrq:::extra_guests';
 				$bkg->setOkToBook(false);
 				$value = $bkg->sanitiseInput('int', $value);
-				$guest_index = (int)jomresGetParam($_GET, 'guest_index', 0 ) ;
+				$guest_index = (int)jomresGetParam($_GET, 'guest_index', 0) ;
 
-				$bkg->set_child_selection( $guest_index , $value);
+				$bkg->set_child_selection($guest_index, $value);
 				break;
 
 			case 'extras':
@@ -381,7 +382,6 @@ class j06000handlereq
 				$bkg->setErrorLog('handlereq::Currently selected rooms '.serialize($bkg->requestedRoom));
 				break;
 			case 'show_log':
-
 				break;
 			case 'heartbeat':
 				session_start();
@@ -444,12 +444,10 @@ class j06000handlereq
 					echo '; populateDiv("staydays","'.$num_period.'")';
 
 					if (get_showtime('include_room_booking_functionality')) {
-
-						if ( isset($mrConfig[ 'compatability_property_configuration' ]) &&  $mrConfig[ 'compatability_property_configuration' ] == 1 && $mrConfig[ 'allow_children' ] == '1' && $field != 'addressstring' ) {
-
+						if ($mrConfig[ 'allow_children' ] == '1' && $field != 'addressstring') {
 							echo '; populateDiv("child_selectors","' . $bkg->sanitise_for_eval($bkg->build_children_selectors()). '")';
 							$bkg->calculate_child_prices();
-							if ( isset($bkg->child_prices['total_price'])) {
+							if (isset($bkg->child_prices['total_price'])) {
 								echo '; populateDiv("child_price","' . output_price($bkg->child_prices['total_price']). '")';
 							}
 						}
@@ -492,7 +490,6 @@ class j06000handlereq
 								$extra_tax = $extra_tax + $extax;
 							}
 						}
-
 					}
 
 					if ($jrConfig[ 'show_tax_in_totals_summary' ] == '1') {
@@ -509,7 +506,7 @@ class j06000handlereq
 					echo '; populateDiv("grandtotal","'.output_price($bkg->getGrandTotal()).'")';
 
 
-					if ( $bkg->cfg_tariffmode == '5' && $bkg->extra_guest_numbers > 0 ) {
+					if ($bkg->cfg_tariffmode == '5' && $bkg->extra_guest_numbers > 0) {
 						echo '; populateDiv("extra_guests_total","'.output_price($bkg->extra_guest_price).'")';
 					}
 
@@ -533,23 +530,22 @@ class j06000handlereq
 						echo '; populateDiv("coupon_discount_value","'.output_price($discount).'")';
 					}
 
-					if ( isset($bkg->booking_length_discount) && $bkg->booking_length_discount != '' ) {
+					if (isset($bkg->booking_length_discount) && $bkg->booking_length_discount != '') {
 						echo '; populateDiv("discount","'.$bkg->booking_length_discount.'")';
 					}
-					if ( isset($bkg->city_tax) && $bkg->city_tax > 0 && $bkg->getGrandTotal() > 0 ) {
+					if (isset($bkg->city_tax) && $bkg->city_tax > 0 && $bkg->getGrandTotal() > 0) {
 						echo '; populateDiv("city_tax","'.output_price($bkg->city_tax).'")';
 					} else {
 						echo '; populateDiv("city_tax","'.output_price(0.00).'")';
 					}
 
-					if ( isset($bkg->cleaning_fee) && $bkg->cleaning_fee > 0 && $bkg->getGrandTotal() > 0  ) {
+					if (isset($bkg->cleaning_fee) && $bkg->cleaning_fee > 0 && $bkg->getGrandTotal() > 0) {
 						echo '; populateDiv("cleaning_fee","'.output_price($bkg->cleaning_fee).'")';
 					} else {
 						echo '; populateDiv("cleaning_fee","'.output_price(0.00).'")';
 					}
 
 					echo '; populateDiv("extra_adults","'.output_price($bkg->extra_guest_price).'")';
-
 				} else {
 					$bkg->setErrorLog('handlereq:: Field '.$lastfield.' exempt from pricing rebuild');
 				}
@@ -568,25 +564,28 @@ class j06000handlereq
 
 			if ($bkg->getOkToBook()) {
 				echo $oktobookClass;
-				echo '; populateDiv("messages","'.$bkg->sanitiseOutput(jr_gettext('_JOMRES_FRONT_MR_REVIEWBOOKING', '_JOMRES_FRONT_MR_REVIEWBOOKING', false, false)).'"); checkSelectRoomMessage(true,"'.$disable_address.'");  jomresJquery.notify({ 
+/*				echo '; populateDiv("messages","'.$bkg->sanitiseOutput(jr_gettext('_JOMRES_FRONT_MR_REVIEWBOOKING', '_JOMRES_FRONT_MR_REVIEWBOOKING', false, false)).'"); checkSelectRoomMessage(true,"'.$disable_address.'");  jomresJquery.notify({
 				message: "'.$bkg->sanitiseOutput(jr_gettext('_JOMRES_FRONT_MR_REVIEWBOOKING', '_JOMRES_FRONT_MR_REVIEWBOOKING', false, false)).'" 
 									 
 				},{ 
 				type: "info" ,
 				template: \'<div data-notify="container" class="col-xs-11 col-sm-4 alert alert-{0}" role="alert"><span data-notify="icon"></span> <span data-notify="title">{1}</span> <span data-notify="message">{2}</span><div class="progress" data-notify="progressbar"><div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div></div><a href="{3}" target="{4}" data-notify="url"></a></div>\' 
-				});';
+				});';*/
+				echo '; populateDiv("messages","'.$bkg->sanitiseOutput(jr_gettext('_JOMRES_FRONT_MR_REVIEWBOOKING', '_JOMRES_FRONT_MR_REVIEWBOOKING', false, false)).'"); checkSelectRoomMessage(true,"'.$disable_address.'");';
 				echo $bkg->setGuestPopupMessage(jr_gettext('_JOMRES_FRONT_MR_REVIEWBOOKING', '_JOMRES_FRONT_MR_REVIEWBOOKING', false, false));
 				echo '; enableSubmitButton(document.ajaxform.confirmbooking); '; // Added timeout because if a user clicks on this button too soon they'll get taken to the review booking before oktobook has been saved, therefore getting themselves redirected back to here
 			} else {
 				$messagesClass = $errorClass;
 				echo $messagesClass;
-				echo '; populateDiv("messages","'.$bkg->sanitiseOutput($bkg->monitorGetFirstMessage()).'"); checkSelectRoomMessage(false,"'.$disable_address.'"); jomresJquery.notify({ 
+/*				echo '; populateDiv("messages","'.$bkg->sanitiseOutput($bkg->monitorGetFirstMessage()).'"); checkSelectRoomMessage(false,"'.$disable_address.'"); jomresJquery.notify({
 					message: "'.$bkg->sanitiseOutput($bkg->monitorGetFirstMessage()).'" 
 				},
 				{ 
 					type: "danger" ,
 					template: \'<div data-notify="container" class="col-xs-11 col-sm-4 alert alert-{0}" role="alert"><span data-notify="icon"></span> <span data-notify="title">{1}</span> <span data-notify="message">{2}</span><div class="progress" data-notify="progressbar"><div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div></div><a href="{3}" target="{4}" data-notify="url"></a></div>\' 
-				});';
+				});';*/
+				echo '; populateDiv("messages","'.$bkg->sanitiseOutput($bkg->monitorGetFirstMessage()).'"); checkSelectRoomMessage(false,"'.$disable_address.'");';
+
 				if ($firstrun != '1') {
 					echo $bkg->setGuestPopupMessage($bkg->monitorGetFirstMessage());
 				}
@@ -607,135 +606,135 @@ class j06000handlereq
 	}
 
 
-		function updateBookingFormAddressDetails(&$bkg)
-		{
-			$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
-			$bkg->storeBookingDetails();
-			$result = $tmpBookingHandler->getGuestData();
-			echo '; document.ajaxform.firstname.value="'.jomres_decode($result[ 'firstname' ]).'"';
-			echo '; document.ajaxform.surname.value="'.jomres_decode($result[ 'surname' ]).'"';
-			echo '; document.ajaxform.house.value="'.jomres_decode($result[ 'house' ]).'"';
-			echo '; document.ajaxform.street.value="'.jomres_decode($result[ 'street' ]).'"';
-			echo '; document.ajaxform.town.value="'.jomres_decode($result[ 'town' ]).'"';
-			//echo '; document.ajaxform.region.value="' . jomres_decode( $result[ 'region' ] ) . '"';
-			echo '; document.ajaxform.country.value="'.jomres_decode($result[ 'country' ]).'"';
-			echo '; document.ajaxform.postcode.value="'.jomres_decode($result[ 'postcode' ]).'"';
-			echo '; document.ajaxform.tel_landline.value="'.jomres_decode($result[ 'tel_landline' ]).'"';
-			echo '; document.ajaxform.tel_mobile.value="'.jomres_decode($result[ 'tel_mobile' ]).'"';
-			echo '; populateDiv("guest_region_div","'.str_replace('"', '\"', setupRegions($result[ 'country' ], $result[ 'region' ])).'")';
-			if ($bkg->checkEmail($result[ 'email' ])) {
-				echo '; document.ajaxform.eemail.value="'.jomres_decode($result[ 'email' ]).'"';
-			}
+	function updateBookingFormAddressDetails(&$bkg)
+	{
+		$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
+		$bkg->storeBookingDetails();
+		$result = $tmpBookingHandler->getGuestData();
+		echo '; document.ajaxform.firstname.value="'.jomres_decode($result[ 'firstname' ]).'"';
+		echo '; document.ajaxform.surname.value="'.jomres_decode($result[ 'surname' ]).'"';
+		echo '; document.ajaxform.house.value="'.jomres_decode($result[ 'house' ]).'"';
+		echo '; document.ajaxform.street.value="'.jomres_decode($result[ 'street' ]).'"';
+		echo '; document.ajaxform.town.value="'.jomres_decode($result[ 'town' ]).'"';
+		//echo '; document.ajaxform.region.value="' . jomres_decode( $result[ 'region' ] ) . '"';
+		echo '; document.ajaxform.country.value="'.jomres_decode($result[ 'country' ]).'"';
+		echo '; document.ajaxform.postcode.value="'.jomres_decode($result[ 'postcode' ]).'"';
+		echo '; document.ajaxform.tel_landline.value="'.jomres_decode($result[ 'tel_landline' ]).'"';
+		echo '; document.ajaxform.tel_mobile.value="'.jomres_decode($result[ 'tel_mobile' ]).'"';
+		echo '; populateDiv("guest_region_div","'.str_replace('"', '\"', setupRegions($result[ 'country' ], $result[ 'region' ])).'")';
+		if ($bkg->checkEmail($result[ 'email' ])) {
+			echo '; document.ajaxform.eemail.value="'.jomres_decode($result[ 'email' ]).'"';
 		}
+	}
 
-		function bookingformlistRooms($isSingleRoomProperty, &$bkg)
-		{
-			if (get_showtime('include_room_booking_functionality')) {
-				$bkg->writeToLogfile('Listing rooms');
-				$arrivalDate = $bkg->getArrivalDate();
-				$departureDate = $bkg->getDepartureDate();
+	function bookingformlistRooms($isSingleRoomProperty, &$bkg)
+	{
+		if (get_showtime('include_room_booking_functionality')) {
+			$bkg->writeToLogfile('Listing rooms');
+			$arrivalDate = $bkg->getArrivalDate();
+			$departureDate = $bkg->getDepartureDate();
 
-				if ($isSingleRoomProperty) {
-					$bkg->requestedRoom = array();
-				}
-				//$bkg->setErrorLog("handlereq-bookingformlistRooms:: Building rooms list");
-				$bkg->setStayDays();
-				$bkg->setDateRangeString();
-				$roomAndTariffArray = array();
-				$freeRoomsArray = array();
-				$dateRangeIncludesWeekend = $bkg->dateRangeIncludesWeekends();
-				$freeRoomsArray = $bkg->getAllRoomUidsForProperty();
-				$freeRoomsArray_count = count($freeRoomsArray);
-				if (!empty($freeRoomsArray)) {
-					$freeRoomsArray = $bkg->findFreeRoomsInDateRange($freeRoomsArray);
-				}
+			if ($isSingleRoomProperty) {
+				$bkg->requestedRoom = array();
+			}
+			//$bkg->setErrorLog("handlereq-bookingformlistRooms:: Building rooms list");
+			$bkg->setStayDays();
+			$bkg->setDateRangeString();
+			$roomAndTariffArray = array();
+			$freeRoomsArray = array();
+			$dateRangeIncludesWeekend = $bkg->dateRangeIncludesWeekends();
+			$freeRoomsArray = $bkg->getAllRoomUidsForProperty();
+			$freeRoomsArray_count = count($freeRoomsArray);
+			if (!empty($freeRoomsArray)) {
+				$freeRoomsArray = $bkg->findFreeRoomsInDateRange($freeRoomsArray);
+			}
 
-				$bkg->setErrorLog('handlereq-bookingformlistRooms:: Number of free rooms '.$freeRoomsArray_count);
-				if (!empty($freeRoomsArray)) { // This must be before the rest of these functions
+			$bkg->setErrorLog('handlereq-bookingformlistRooms:: Number of free rooms '.$freeRoomsArray_count);
+			if (!empty($freeRoomsArray)) { // This must be before the rest of these functions
 				$freeRoomsArray = $bkg->checkPeopleNumbers($freeRoomsArray);
-				}
-				$bkg->setErrorLog('handlereq-bookingformlistRooms:: Number of free rooms '.$freeRoomsArray_count);
-				if (!empty($freeRoomsArray)) {
-					$freeRoomsArray = $bkg->checkRoomFeatureOption($freeRoomsArray);
-				}
+			}
+			$bkg->setErrorLog('handlereq-bookingformlistRooms:: Number of free rooms '.$freeRoomsArray_count);
+			if (!empty($freeRoomsArray)) {
+				$freeRoomsArray = $bkg->checkRoomFeatureOption($freeRoomsArray);
+			}
 
-				$bkg->setErrorLog('handlereq-bookingformlistRooms:: Number of free rooms '.$freeRoomsArray_count);
-				// Added to enable the room to remain in the selected rooms list if it's still available after a particular (date, guest numbers etc) has been changed
-				$selectedRoomUids = array();
-				foreach ($bkg->requestedRoom as $rt) {
-					$rtArray = explode('^', $rt);
-					$r[ $rtArray[ 0 ] ] = $rt;
-					$selectedRoomUids[ ] = $r;
-				}
-				foreach ($selectedRoomUids as $room_uid_holder) {
-					foreach ($room_uid_holder as $key => $room_uid) {
-						if (is_array($freeRoomsArray)) {
-							if (!in_array($key, $freeRoomsArray)) {
-								$bkg->removeFromSelectedRooms($room_uid);
-							}
+			$bkg->setErrorLog('handlereq-bookingformlistRooms:: Number of free rooms '.$freeRoomsArray_count);
+			// Added to enable the room to remain in the selected rooms list if it's still available after a particular (date, guest numbers etc) has been changed
+			$selectedRoomUids = array();
+			foreach ($bkg->requestedRoom as $rt) {
+				$rtArray = explode('^', $rt);
+				$r[ $rtArray[ 0 ] ] = $rt;
+				$selectedRoomUids[ ] = $r;
+			}
+			foreach ($selectedRoomUids as $room_uid_holder) {
+				foreach ($room_uid_holder as $key => $room_uid) {
+					if (is_array($freeRoomsArray)) {
+						if (!in_array($key, $freeRoomsArray)) {
+							$bkg->removeFromSelectedRooms($room_uid);
 						}
 					}
 				}
-				if ($bkg->cfg_booking_form_rooms_list_style == '1') {
-					$bkg->setErrorLog('handlereq-bookingformlistRooms:: Number of free rooms '.$freeRoomsArray_count);
-					if (!empty($freeRoomsArray)) {
-						$freeRoomsArray = $bkg->removeRoomuidsAlreadyInThisBooking($freeRoomsArray);
-					}
-				}
-				if (!empty($freeRoomsArray)) {
-					$freeRoomsArray = $bkg->extractLockedRooms($freeRoomsArray);
-				}
-				$bkg->setErrorLog('handlereq-bookingformlistRooms:: Number of free rooms '.$freeRoomsArray_count);
-				$bkg->number_of_free_rooms = $freeRoomsArray_count;
-				if (!empty($freeRoomsArray)) {
-					$roomAndTariffArray = $bkg->getTariffsForRoomUids($freeRoomsArray);
-				}
-
-				$bkg->setErrorLog('handlereq-bookingformlistRooms:: Room and Tariff array count = '.count($roomAndTariffArray));
-				$output = '';
-
-				if (!$isSingleRoomProperty) {
-					$selected_rooms_text = '<div><h4 class="page-header">'.jr_gettext('_JOMRES_AJAXFORM_SELECTEDROOMS', '_JOMRES_AJAXFORM_SELECTEDROOMS', false, false).'</h4></div>';
-
-					if ($bkg->numberOfCurrentlySelectedRooms() > 0) {
-						$currently_selected = '<div>'.$bkg->listCurrentlySelectedRooms().'</div>';
-					} else {
-						$currently_selected = '<div id="noroomsselected" >'.jr_gettext('_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET', '_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET', false, false).'</div>';
-					}
-
-					$available_rooms_text = '<div><h4 class="page-header">'.jr_gettext('_JOMRES_AJAXFORM_AVAILABLEROOMS', '_JOMRES_AJAXFORM_AVAILABLEROOMS', false, false).'</h4></div><div id="rooms_listing"></div>';
-
-					$selected_rooms_text = $bkg->sanitise_for_eval($selected_rooms_text);
-					$currently_selected = $bkg->sanitise_for_eval($currently_selected);
-					$available_rooms_text = $bkg->sanitise_for_eval($available_rooms_text);
-
-					$output = "populateDiv('selectedRooms','".$selected_rooms_text.$currently_selected."');";
-					$output .= "populateDiv('availRooms','".$available_rooms_text."');";
-
-					if (!empty($freeRoomsArray)) {
-						$output .= ";jomresJquery('#availRooms').fadeIn();";
-					} else {
-						//$output .= ";jomresJquery('#availRooms').fadeOut();"; // Don't use this as it hides the available rooms list, and thereby hides the no rooms available message.
-					}
-
-					if ($bkg->cfg_booking_form_rooms_list_style == '1') {
-						echo $output;
-					}
-				} else {
-					$output .= '<div></div>';
-					$output .= '<div></div>';
-				}
-
-				$output = $bkg->generateRoomsList($roomAndTariffArray);
-				$output = $bkg->sanitise_for_eval($output);
-				$output = "populateDiv('rooms_listing','".$output."');";
-				if ($bkg->cfg_booking_form_rooms_list_style == '2') {
-					$output = "populateDiv('availRooms','".$bkg->sanitise_for_eval($bkg->generate_room_type_dropdowns())."');";
-				}
-
-				echo $output;
 			}
+			if ($bkg->cfg_booking_form_rooms_list_style == '1') {
+				$bkg->setErrorLog('handlereq-bookingformlistRooms:: Number of free rooms '.$freeRoomsArray_count);
+				if (!empty($freeRoomsArray)) {
+					$freeRoomsArray = $bkg->removeRoomuidsAlreadyInThisBooking($freeRoomsArray);
+				}
+			}
+			if (!empty($freeRoomsArray)) {
+				$freeRoomsArray = $bkg->extractLockedRooms($freeRoomsArray);
+			}
+			$bkg->setErrorLog('handlereq-bookingformlistRooms:: Number of free rooms '.$freeRoomsArray_count);
+			$bkg->number_of_free_rooms = $freeRoomsArray_count;
+			if (!empty($freeRoomsArray)) {
+				$roomAndTariffArray = $bkg->getTariffsForRoomUids($freeRoomsArray);
+			}
+
+			$bkg->setErrorLog('handlereq-bookingformlistRooms:: Room and Tariff array count = '.count($roomAndTariffArray));
+			$output = '';
+
+			if (!$isSingleRoomProperty) {
+				$selected_rooms_text = '<div><h4 class="page-header">'.jr_gettext('_JOMRES_AJAXFORM_SELECTEDROOMS', '_JOMRES_AJAXFORM_SELECTEDROOMS', false, false).'</h4></div>';
+
+				if ($bkg->numberOfCurrentlySelectedRooms() > 0) {
+					$currently_selected = '<div>'.$bkg->listCurrentlySelectedRooms().'</div>';
+				} else {
+					$currently_selected = '<div id="noroomsselected" >'.jr_gettext('_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET', '_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET', false, false).'</div>';
+				}
+
+				$available_rooms_text = '<div><h4 class="page-header">'.jr_gettext('_JOMRES_AJAXFORM_AVAILABLEROOMS', '_JOMRES_AJAXFORM_AVAILABLEROOMS', false, false).'</h4></div><div id="rooms_listing"></div>';
+
+				$selected_rooms_text = $bkg->sanitise_for_eval($selected_rooms_text);
+				$currently_selected = $bkg->sanitise_for_eval($currently_selected);
+				$available_rooms_text = $bkg->sanitise_for_eval($available_rooms_text);
+
+				$output = "populateDiv('selectedRooms','".$selected_rooms_text.$currently_selected."');";
+				$output .= "populateDiv('availRooms','".$available_rooms_text."');";
+
+				if (!empty($freeRoomsArray)) {
+					$output .= ";jomresJquery('#availRooms').fadeIn();";
+				} else {
+					//$output .= ";jomresJquery('#availRooms').fadeOut();"; // Don't use this as it hides the available rooms list, and thereby hides the no rooms available message.
+				}
+
+				if ($bkg->cfg_booking_form_rooms_list_style == '1') {
+					echo $output;
+				}
+			} else {
+				$output .= '<div></div>';
+				$output .= '<div></div>';
+			}
+
+			$output = $bkg->generateRoomsList($roomAndTariffArray);
+			$output = $bkg->sanitise_for_eval($output);
+			$output = "populateDiv('rooms_listing','".$output."');";
+			if ($bkg->cfg_booking_form_rooms_list_style == '2') {
+				$output = "populateDiv('availRooms','".$bkg->sanitise_for_eval($bkg->generate_room_type_dropdowns())."');";
+			}
+
+			echo $output;
 		}
+	}
 
 	public function getRetVals()
 	{

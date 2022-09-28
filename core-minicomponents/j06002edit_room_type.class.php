@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06002edit_room_type
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -44,7 +45,7 @@ class j06002edit_room_type
 		
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
-		if ( $jrConfig[ 'frontend_room_type_editing_allowed' ] == 0 ) {
+		if ($jrConfig[ 'frontend_room_type_editing_allowed' ] == 0) {
 			return;
 		}
 		
@@ -57,7 +58,7 @@ class j06002edit_room_type
 		$jomres_room_types = jomres_singleton_abstract::getInstance('jomres_room_types');
 		$jomres_room_types->get_all_room_types();
 		
-		if ($room_classes_uid > 0 ) {
+		if ($room_classes_uid > 0) {
 			$jomres_room_types->validate_manager_access_to_room_type($room_classes_uid);
 		}
 
@@ -67,9 +68,9 @@ class j06002edit_room_type
 
 		$output[ 'ROOMCLASSUID' ] = $room_classes_uid;
 		if (isset($jomres_room_types->property_specific_room_type[$property_uid][$room_classes_uid])) {
-			$output[ 'CLASSABBV' ] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int)$room_classes_uid  ,stripslashes($jomres_room_types->property_specific_room_type[$property_uid][$room_classes_uid]['room_class_abbv']) , false , false );
+			$output[ 'CLASSABBV' ] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int)$room_classes_uid, stripslashes($jomres_room_types->property_specific_room_type[$property_uid][$room_classes_uid]['room_class_abbv']), false, false);
 			$image = $jomres_room_types->property_specific_room_type[$property_uid][$room_classes_uid]['image'];
-			$output[ 'CLASSDESC' ] =jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.(int)$room_classes_uid  , $jomres_room_types->property_specific_room_type[$property_uid][$room_classes_uid]['room_class_full_desc'] , false , false );
+			$output[ 'CLASSDESC' ] =jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.(int)$room_classes_uid, $jomres_room_types->property_specific_room_type[$property_uid][$room_classes_uid]['room_class_full_desc'], false, false);
 		} else {
 			$output[ 'CLASSABBV' ] = '';
 			$output[ 'CLASSDESC' ] = '';
@@ -85,7 +86,6 @@ class j06002edit_room_type
 			$output[ 'SIMPLEMDE_JAVASCRIPT' ] = '';
 			$output[ 'MARKDOWN_BUTTON' ] = '';
 			$output[ 'CLASSDESC' ] = editorAreaText('room_class_desc', $output[ 'CLASSDESC' ], 'room_class_desc', $width, $height, $col, $row);
-			
 		} else {
 			jomres_cmsspecific_addheaddata('javascript', JOMRES_NODE_MODULES_RELPATH.'simple-cmeditor/dist/', 'simplemde.min.js');
 			jomres_cmsspecific_addheaddata('css', JOMRES_NODE_MODULES_RELPATH.'simple-cmeditor/dist/', 'simplemde.min.css');
@@ -111,7 +111,7 @@ class j06002edit_room_type
 		foreach ($images as $i) {
 			$i[ 'ISCHECKED' ] = '';
 			
-			if ( $i[ 'IMAGE_FILENAME' ] == $image ) {
+			if ($i[ 'IMAGE_FILENAME' ] == $image) {
 				$i[ 'ISCHECKED' ] = 'checked';
 			}
 			
@@ -143,7 +143,6 @@ class j06002edit_room_type
 		$tmpl->addRows('pageoutput', $pageoutput);
 		$tmpl->addRows('rows', $rows);
 		$tmpl->displayParsedTemplate();
-		
 	}
 
 	public function touch_template_language()

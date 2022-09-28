@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06000show_property_reviews
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -101,6 +102,8 @@ class j06000show_property_reviews
 		$current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
 		$current_property_details->gather_data($property_uid);
 
+		jomres_set_page_title( $property_uid ,  jr_gettext('_JOMRES_REVIEWS', '_JOMRES_REVIEWS', false) );
+
 		$output = array();
 		$pageoutput = array();
 		$rows = array();
@@ -142,9 +145,9 @@ class j06000show_property_reviews
 		$review_ids = array();
 
 		if (!empty($itemReviews)) {
-			foreach ($itemReviews as $review ) {
+			foreach ($itemReviews as $review) {
 				if (isset($itemReviews["rating_details"])) {
-					foreach ($itemReviews["rating_details"] as $key => $val ) {
+					foreach ($itemReviews["rating_details"] as $key => $val) {
 						$review_ids[] = $key;
 					}
 				}
@@ -180,7 +183,7 @@ class j06000show_property_reviews
 			$guest_details = doSelectSql($query);
 
 			if (!empty($guest_details)) {
-				foreach ($guest_details as $guest ) {
+				foreach ($guest_details as $guest) {
 					$guest_names[$guest->cms_user_id] = array ("enc_firstname" =>$guest->enc_firstname , "enc_surname" =>$guest->enc_surname );
 				}
 			}
@@ -201,7 +204,7 @@ class j06000show_property_reviews
 					'success'
 				);
 
-				if ($review[ 'rating' ] > 5 &&$review[ 'rating' ] < 7  ) {
+				if ($review[ 'rating' ] > 5 &&$review[ 'rating' ] < 7) {
 					$r['RATING_TEXT_COLOUR'] = 'text-warning';
 					$r['RATING_SCORE_TEXT'] = jomres_badge(
 						$rating_text,
@@ -233,9 +236,9 @@ class j06000show_property_reviews
 				$r[ 'RATING_ID' ] = $review[ 'rating_id' ];
 
 				$r['REVIEWER_FIRSTNAME'] = '';
-				if ( 
-					isset(
-						$guest_names[ $review[ 'user_id' ] ]) && 
+				if (isset(
+					$guest_names[ $review[ 'user_id' ] ]
+				) &&
 						( !isset($review[ 'user_name' ]) || trim($review[ 'user_name' ]) == '' )
 					) {  // Reviewer details were not saved, we will query the db for them instead
 					$guest_deets = $guest_names[ $review[ 'user_id' ] ];
@@ -347,20 +350,18 @@ class j06000show_property_reviews
 				$r[ 'RATING_SCHEMA_RATINGVALUE' ] = $sum / $count;
 				
 				$r['REVIEW_REPLY']= '';
-				if ( isset($replies[ $review[ 'rating_id' ] ] )) {
-					$r['REVIEW_REPLY'] = $this->show_review_reply( $replies[ $review[ 'rating_id' ] ] );
-				}
-				elseif ( 
-					$thisJRUser->userIsManager && 
-					in_array($property_uid, $thisJRUser->authorisedProperties) 
+				if (isset($replies[ $review[ 'rating_id' ] ])) {
+					$r['REVIEW_REPLY'] = $this->show_review_reply($replies[ $review[ 'rating_id' ] ]);
+				} elseif ($thisJRUser->userIsManager &&
+					in_array($property_uid, $thisJRUser->authorisedProperties)
 					) { // If the user is a manager for this property, show a link that gives them the opportunity to reply to the review
-						$r['REVIEW_REPLY'] = $this->show_review_reply_opportunity( $review[ 'rating_id' ] );
+						$r['REVIEW_REPLY'] = $this->show_review_reply_opportunity($review[ 'rating_id' ]);
 				}
 
 				$rows[ ] = $r;
 			}
 
-			if (!isset($_REQUEST['reviews_limit']) ) {
+			if (!isset($_REQUEST['reviews_limit'])) {
 				if (!isset($jrConfig[ 'reviews_limit' ])) {
 					$jrConfig[ 'reviews_limit' ] = 2;
 				}
@@ -371,11 +372,10 @@ class j06000show_property_reviews
 
 			$showall = array();
 			$show_fullpage_link = false;
-			if ( $reviews_limit < count($rows) ) {
-				
-				$showall[] = array ( 
+			if ($reviews_limit < count($rows)) {
+				$showall[] = array (
 					"TEXT" => jr_gettext('PORTAL_REVIEWS_SHOW_ALL_REVIEWS', 'PORTAL_REVIEWS_SHOW_ALL_REVIEWS', false, false) ,
-					"LINK" => jomresURL(JOMRES_SITEPAGE_URL."&task=show_property_reviews&property_uid=".$property_uid."&reviews_limit=". count($rows)) 
+					"LINK" => jomresURL(JOMRES_SITEPAGE_URL."&task=show_property_reviews&property_uid=".$property_uid."&reviews_limit=". count($rows))
 					);
 			}
 
@@ -405,9 +405,10 @@ class j06000show_property_reviews
 		}
 	}
 
-	private function show_review_reply($reply) {
+	private function show_review_reply($reply)
+	{
 		
-		if ( is_null($reply) ) {
+		if (is_null($reply)) {
 			throw new Exception('Reply not set');
 		}
 		
@@ -427,8 +428,9 @@ class j06000show_property_reviews
 		return $tmpl->getParsedTemplate();
 	}
 	
-	private function show_review_reply_opportunity($rating_id = 0 ) {
-		if ($rating_id == 0 ) {
+	private function show_review_reply_opportunity($rating_id = 0)
+	{
+		if ($rating_id == 0) {
 			throw new Exception('Rating id is empty. ');
 		}
 		

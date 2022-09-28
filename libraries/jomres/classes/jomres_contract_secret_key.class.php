@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -21,9 +21,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jomres_contract_secret_key
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -33,7 +34,7 @@ class jomres_contract_secret_key
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -42,20 +43,20 @@ class jomres_contract_secret_key
 	{
 		// This generates a random key that's emailed to the client so that non-registered users can also pay for bookings. This is in support of the booking enquiries feature
 		$keeplooking = true;
-		while ($keeplooking):
+		while ($keeplooking) :
 			$secret_key = generateJomresRandomString(50);
-		$query = "SELECT secret_key FROM #__jomres_contracts WHERE secret_key = '".$secret_key."' LIMIT 1";
-		$contract_list = doSelectSql($query);
-		if (empty($contract_list)) {
-			$keeplooking = false;
-		}
+			$query = "SELECT secret_key FROM #__jomres_contracts WHERE secret_key = '".$secret_key."' LIMIT 1";
+			$contract_list = doSelectSql($query);
+			if (empty($contract_list)) {
+				$keeplooking = false;
+			}
 		endwhile;
 
 		return $secret_key;
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -77,7 +78,7 @@ class jomres_contract_secret_key
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -94,7 +95,7 @@ class jomres_contract_secret_key
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -111,7 +112,7 @@ class jomres_contract_secret_key
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -128,7 +129,7 @@ class jomres_contract_secret_key
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */

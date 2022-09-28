@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -316,20 +316,29 @@ try {
 
 	}
 
-	//handle tasks
-	if ($MiniComponents->eventSpecificlyExistsCheck('06000', get_showtime('task'))) {
-		$MiniComponents->specificEvent('06000', get_showtime('task'));
-	} elseif ($MiniComponents->eventSpecificlyExistsCheck('06001', get_showtime('task')) && $thisJRUser->accesslevel >= 50) { // Receptionist and manager tasks
-		redirect_on_administration_if_channel_property ($property_uid , get_showtime('task') ); // Allows the system to redirect administration functions to a parent site if this is a channel property when certain tasks are called
-		$MiniComponents->specificEvent('06001', get_showtime('task'));
-	} elseif ($MiniComponents->eventSpecificlyExistsCheck('06002', get_showtime('task')) && $thisJRUser->accesslevel >= 70) { // Manager only tasks (higher than receptionist)
-		redirect_on_administration_if_channel_property ($property_uid , get_showtime('task') ); // Allows the system to redirect administration functions to a parent site if this is a channel property when certain tasks are called
-		$MiniComponents->specificEvent('06002', get_showtime('task'));
-	} elseif ($MiniComponents->eventSpecificlyExistsCheck('06005', get_showtime('task')) && $thisJRUser->accesslevel >= 1) { // Registered only user tasks
-		$MiniComponents->specificEvent('06005', get_showtime('task'));
+	if (isset($_REQUEST['from_admin']) && !$thisJRUser->userIsRegistered) {
+		echo simple_template_output(JOMRES_TEMPLATEPATH_FRONTEND, 'from_admin_not_logged_in.html', jr_gettext('JOMRES_COM_TRANSITION_FROM_ADMIN_TO_BACKEND_NOT_LOGGED_IN', 'JOMRES_COM_TRANSITION_FROM_ADMIN_TO_BACKEND_NOT_LOGGED_IN', false));
+		if (this_cms_is_joomla()) { // Wordpress users do not need exposition because the session is shared between frontend and admin. Joomla users will see this page if session sharing is not enabled and they're not logged in, therefore further explanation may help them if they're unfamiliar with Jomres.
+			echo simple_template_output(JOMRES_TEMPLATEPATH_FRONTEND, 'from_admin_not_logged_in_joomla_exposition.html', jr_gettext('JOMRES_COM_TRANSITION_FROM_ADMIN_TO_BACKEND_NOT_LOGGED_IN_EXPOSITION_FOR_NEW_USERS_JOOMLA', 'JOMRES_COM_TRANSITION_FROM_ADMIN_TO_BACKEND_NOT_LOGGED_IN_EXPOSITION_FOR_NEW_USERS_JOOMLA', false));
+		}
+
 	} else {
-		no_task_set($property_uid);
+		//handle tasks
+		if ($MiniComponents->eventSpecificlyExistsCheck('06000', get_showtime('task'))) {
+			$MiniComponents->specificEvent('06000', get_showtime('task'));
+		} elseif ($MiniComponents->eventSpecificlyExistsCheck('06001', get_showtime('task')) && $thisJRUser->accesslevel >= 50) { // Receptionist and manager tasks
+			redirect_on_administration_if_channel_property ($property_uid , get_showtime('task') ); // Allows the system to redirect administration functions to a parent site if this is a channel property when certain tasks are called
+			$MiniComponents->specificEvent('06001', get_showtime('task'));
+		} elseif ($MiniComponents->eventSpecificlyExistsCheck('06002', get_showtime('task')) && $thisJRUser->accesslevel >= 70) { // Manager only tasks (higher than receptionist)
+			redirect_on_administration_if_channel_property ($property_uid , get_showtime('task') ); // Allows the system to redirect administration functions to a parent site if this is a channel property when certain tasks are called
+			$MiniComponents->specificEvent('06002', get_showtime('task'));
+		} elseif ($MiniComponents->eventSpecificlyExistsCheck('06005', get_showtime('task')) && $thisJRUser->accesslevel >= 1) { // Registered only user tasks
+			$MiniComponents->specificEvent('06005', get_showtime('task'));
+		} else {
+			no_task_set($property_uid);
+		}
 	}
+
 
 	if (!AJAXCALL && $no_html == 0) {
 		$MiniComponents->triggerEvent('00061'); // Run out of trigger points. Illogically now, 60 triggers the top template, 61 the bottom template.
@@ -399,7 +408,10 @@ try {
 	}
 } catch (Exception $e) {
 	$MiniComponents->triggerEvent('99994');
-		
+
+	if (!isset($no_html)) {
+		$no_html = 0;
+	}
 	//generate the cpanel menu
 	if (!AJAXCALL && $no_html == 0 && !isset($_REQUEST[ 'popup' ])) {
 		echo $MiniComponents->specificEvent('09997', 'menu', array());

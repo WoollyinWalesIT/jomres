@@ -19,7 +19,8 @@
  * @subpackage Jomres/admin
  * @author	 Vince Wooll <support@jomres.net>
  */
-class Jomres_Admin {
+class Jomres_Admin
+{
 
 	/**
 	 * The ID of this plugin.
@@ -46,11 +47,11 @@ class Jomres_Admin {
 	 * @param	  string	$plugin_name	   The name of this plugin.
 	 * @param	  string	$version	The version of this plugin.
 	 */
-	public function __construct( $plugin_name, $version, $loader ) {
+	public function __construct($plugin_name, $version, $loader)
+	{
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
-
 	}
 	
 	/**
@@ -58,10 +59,10 @@ class Jomres_Admin {
 	 *
 	 * @since	9.9.19
 	 */
-	public function register_jomres_admin_menu() {
+	public function register_jomres_admin_menu()
+	{
 		
-		add_menu_page( 'Jomres admin', 'Jomres', 'manage_options', 'jomres/jomres.php', '', '', 6 );
-	
+		add_menu_page('Jomres admin', 'Jomres', 'manage_options', 'jomres/jomres.php', '', '', 6);
 	}
 	
 	/**
@@ -69,42 +70,41 @@ class Jomres_Admin {
 	 *
 	 * @since	9.9.19
 	 */
-	public function admin_trigger_jomres() {
+	public function admin_trigger_jomres()
+	{
 	
 		$wp_jomres = WP_Jomres::getInstance();
 		
-		if ( $wp_jomres->get_content() == '' ) {
+		if ($wp_jomres->get_content() == '') {
 			//check if we are on the jomres admin page
-			if ( isset( $_GET[ 'page' ] ) && $_GET[ 'page' ] == 'jomres/jomres.php' ) {
+			if (isset($_GET[ 'page' ]) && $_GET[ 'page' ] == 'jomres/jomres.php') {
 				ob_start();
 
 				trigger_jomres();
 
 				add_action('admin_enqueue_scripts', array($wp_jomres, 'add_jomres_js_css'), 9999);
 
-				$wp_jomres->set_content( ob_get_contents() );
+				$wp_jomres->set_content(ob_get_contents());
 
 				ob_end_clean();
 			}
 		}
 
 		return true;
-
 	}
 	
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
-	public function jomres_wp_ajax() {
+	public function jomres_wp_ajax()
+	{
 	
 		trigger_jomres();
 
 		die();  // Required for a proper Wordpress AJAX result
-	
 	}
-
 }

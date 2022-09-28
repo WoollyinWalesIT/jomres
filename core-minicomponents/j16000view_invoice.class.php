@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,20 +17,21 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j16000view_invoice
-{	
+{
+
 	
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 
@@ -170,15 +171,17 @@ class j16000view_invoice
 
 		$output[ 'USER' ] = jr_gettext('_JRPORTAL_INVOICES_USER', '_JRPORTAL_INVOICES_USER', false);
 		
-		if ($invoice->raised_date != '1970-01-01 00:00:01')
+		if ($invoice->raised_date != '1970-01-01 00:00:01') {
 			$output[ 'RAISED' ] = $invoice->raised_date;
-		else
+		} else {
 			$output[ 'RAISED' ] = '';
+		}
 		
-		if ($invoice->due_date != '1970-01-01 00:00:01')
+		if ($invoice->due_date != '1970-01-01 00:00:01') {
 			$output[ 'DUE' ] = $invoice->due_date;
-		else
+		} else {
 			$output[ 'DUE' ] = '';
+		}
 
 		// See note at the end of this line!
 		$output[ 'INITTOTAL' ] = output_price($invoice->init_total, $invoice->currencycode, true, true); // This is now wrong. The init total is calculated when the invoice is generated, but recent VAT related changes mean that on older invoices which were created before the VAT changes were added, it's possible that this sum is incorrect. The newer GRAND_TOTAL_INC_TAX output variable is correct, as it's adjusted according to the VAT rules, so we'll replace INITTOTAL with GRAND_TOTAL_INC_TAX in invoice template files.
@@ -274,7 +277,7 @@ class j16000view_invoice
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */

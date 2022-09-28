@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -21,9 +21,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jrportal_commissions // Functions supplied as a class so that they can be extended easily without rewriting  the functions
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -42,7 +43,7 @@ class jrportal_commissions // Functions supplied as a class so that they can be 
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -64,7 +65,7 @@ class jrportal_commissions // Functions supplied as a class so that they can be 
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -77,7 +78,7 @@ class jrportal_commissions // Functions supplied as a class so that they can be 
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -91,7 +92,7 @@ class jrportal_commissions // Functions supplied as a class so that they can be 
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -116,7 +117,7 @@ class jrportal_commissions // Functions supplied as a class so that they can be 
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -158,7 +159,7 @@ class jrportal_commissions // Functions supplied as a class so that they can be 
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -200,7 +201,7 @@ class jrportal_commissions // Functions supplied as a class so that they can be 
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -231,7 +232,7 @@ class jrportal_commissions // Functions supplied as a class so that they can be 
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -262,7 +263,7 @@ class jrportal_commissions // Functions supplied as a class so that they can be 
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -290,7 +291,7 @@ class jrportal_commissions // Functions supplied as a class so that they can be 
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -308,7 +309,7 @@ class jrportal_commissions // Functions supplied as a class so that they can be 
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -338,7 +339,7 @@ class jrportal_commissions // Functions supplied as a class so that they can be 
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -360,7 +361,7 @@ class jrportal_commissions // Functions supplied as a class so that they can be 
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */

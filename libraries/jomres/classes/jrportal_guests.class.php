@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -21,9 +21,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jrportal_guests
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -35,7 +36,7 @@ class jrportal_guests
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -65,7 +66,7 @@ class jrportal_guests
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -132,14 +133,13 @@ class jrportal_guests
 			$this->vat_number_validation_response	= $r->vat_number_validation_response;
 			$this->partner_id						= (int) $r->partner_id;
 			$this->blacklisted						= (int) $r->blacklisted;
-			
 		}
 
 		return true;
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -155,7 +155,7 @@ class jrportal_guests
 			throw new Exception('Error: Property uid not set.');
 		}
 		
-		// A little hacky :s 
+		// A little hacky :s
 		$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 		$original_guestDeets = $tmpBookingHandler->tmpguest;
 		
@@ -240,7 +240,7 @@ class jrportal_guests
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -309,7 +309,7 @@ class jrportal_guests
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -347,7 +347,7 @@ class jrportal_guests
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -374,7 +374,7 @@ class jrportal_guests
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -391,6 +391,6 @@ class jrportal_guests
 					`guests_uid`
 				FROM `#__jomres_guests` 
 				WHERE `mos_userid` = ".(int)$cms_id." AND `property_uid` = ".(int)$this->property_uid;
-		return doSelectSql($query, 1  ) ;
+		return doSelectSql($query, 1) ;
 	}
 }

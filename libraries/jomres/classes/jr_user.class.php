@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -29,7 +29,7 @@ class jr_user
 	private static $internal_debugging;
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -42,12 +42,12 @@ class jr_user
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
-	public function init_user( $id = 0 )
+	public function init_user($id = 0)
 	{
 		//jomres user role
 		$this->jomres_manager_id 				= 0;						//user/manager id in the _jomres_managers table
@@ -94,9 +94,9 @@ class jr_user
 		$this->iban = '';
 		$this->about_me = '';
 
-		if ( $id == 0 ) {
-			if (defined("JOMRES_API_CMS_ROOT") ) {
-			$this->id = Flight::get('user_id');
+		if ($id == 0) {
+			if (defined("JOMRES_API_CMS_ROOT")) {
+				$this->id = Flight::get('user_id');
 			} else {
 				$this->id = jomres_cmsspecific_getcurrentusers_id();
 			}
@@ -120,7 +120,7 @@ class jr_user
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -137,7 +137,7 @@ class jr_user
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -217,15 +217,14 @@ class jr_user
 				$this->passport_number					= $this->jomres_encryption->decrypt($r->enc_passport_number);
 				$this->iban								= $this->jomres_encryption->decrypt($r->enc_iban);
 				$this->about_me							= $this->jomres_encryption->decrypt($r->enc_about_me);
-				$this->preferences							= $this->jomres_encryption->decrypt($r->enc_preferences);
+				$this->preferences						= $this->jomres_encryption->decrypt($r->enc_preferences);
 				 
 				
 				if (!empty($r->params)) {
 					$this->params = json_decode($r->params, true);
 				}
 			}
-		} else { 
-		
+		} else {
 			// 14th June 2018
 			// Registered user has no row in guest profile table. Some things, such as widgets on the dashboard, require a row in this table, and it'll fail with a silly error if the user tries to select a widget without it. As a result, we'll create a record in the profile table for this user, to get  us around this problem.
 		
@@ -324,7 +323,7 @@ class jr_user
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -332,22 +331,22 @@ class jr_user
 	//update user profile params
 	public function update_params()
 	{
-		if ( $this->id == 0 ) {
-			throw new Exception( "Error: Cms user id not set");
+		if ($this->id == 0) {
+			throw new Exception("Error: Cms user id not set");
 		}
 
 		if ($this->profile_id == 0) {
 			$query = "INSERT INTO #__jomres_guest_profile (`cms_user_id`,`enc_firstname`,`enc_surname`,`enc_house`,`enc_street`,`enc_town`,`enc_county`,`enc_country`,`enc_postcode`,`enc_tel_landline`,`enc_tel_mobile`,`enc_email`,`enc_vat_number`,`vat_number_validated`) VALUES ('".(int) $this->id."','','','','','','','','','','','','',0)";
 			if (!doInsertSql($query, '')) {
-				throw new Exception( 'Unable to insert user profile details');
+				throw new Exception('Unable to insert user profile details');
 			}
 		}
 		
 		//update user params
 		$query = "UPDATE #__jomres_guest_profile SET `params` = '".json_encode($this->params)."' WHERE `cms_user_id` = " . (int)$this->id;
 		
-		if ( !doInsertSql( $query, '' ) ) {
-			throw new Exception( "Error: User params update failed");
+		if (!doInsertSql($query, '')) {
+			throw new Exception("Error: User params update failed");
 		}
 		
 		return true;
@@ -412,7 +411,7 @@ class jr_user
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -428,7 +427,7 @@ class jr_user
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -444,7 +443,7 @@ class jr_user
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -460,7 +459,7 @@ class jr_user
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -473,5 +472,47 @@ class jr_user
 		}
 
 		return false;
+	}
+
+	public function user_details_are_complete($cms_user_id)
+	{
+		$cms_user_id = (int) $cms_user_id;
+		if ($cms_user_id == 0) {
+			return false;
+		}
+
+		$query = 'SELECT
+							`id`,
+							`cms_user_id`,
+							`enc_firstname`,
+							`enc_surname`,
+							`enc_house`,
+							`enc_street`,
+							`enc_town`,
+							`enc_county`,
+							`enc_country`,
+							`enc_postcode`,
+							`enc_tel_landline`,
+							`enc_tel_mobile`,
+						FROM #__jomres_guest_profile 
+						WHERE `cms_user_id` = ' .(int) $cms_user_id.' 
+						LIMIT 1 ';
+		$userProfile = doSelectSql($query, 2);
+
+		if ($userProfile['enc_firstname'] == '' ||
+			$userProfile['enc_surname'] == '' ||
+			$userProfile['enc_house'] == '' ||
+			$userProfile['enc_street'] == '' ||
+			$userProfile['enc_town'] == '' ||
+			$userProfile['enc_county'] == '' ||
+			$userProfile['enc_postcode'] == '' ||
+			$userProfile['enc_country'] == '' ||
+			$userProfile['enc_tel_landline'] == '' ||
+			$userProfile['enc_tel_mobile'] == ''
+		) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 }

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06002save_normalmode_tariffs
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -48,8 +49,9 @@ class j06002save_normalmode_tariffs
 		
 		$mrConfig = getPropertySpecificSettings();
 		
-		if ($mrConfig['tariffmode'] != '0' || $mrConfig[ 'is_real_estate_listing' ] == '1' || get_showtime('is_jintour_property'))
+		if ($mrConfig['tariffmode'] != '0' || $mrConfig[ 'is_real_estate_listing' ] == '1' || get_showtime('is_jintour_property')) {
 			return;
+		}
 		
 		$basic_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
 		$basic_property_details->gather_data($defaultProperty);
@@ -69,14 +71,14 @@ class j06002save_normalmode_tariffs
 			$jrportal_rates->property_uid 	= $defaultProperty;
 			
 			//rate details
-			$jrportal_rates->tarifftype_id 	= (int)jomresGetParam( $_POST, 'tarifftypeid', 0 );
-			$jrportal_rates->rates_uid 		= (int)jomresGetParam( $_POST, 'rates_uid', 0 );
+			$jrportal_rates->tarifftype_id 	= (int)jomresGetParam($_POST, 'tarifftypeid', 0);
+			$jrportal_rates->rates_uid 		= (int)jomresGetParam($_POST, 'rates_uid', 0);
 			$jrportal_rates->roomclass_uid 	= (int)jomresGetParam($_POST, 'roomtype', $jrportal_rates->rates_defaults['roomclass_uid']);
 			$jrportal_rates->maxpeople 		= (int)jomresGetParam($_POST, 'max_people', $jrportal_rates->rates_defaults['maxpeople']);
 			$jrportal_rates->validfrom 		= date("Y/m/d");
 			$jrportal_rates->validto 		= date("Y/m/d", strtotime('+10 years'));
 			
-			$roomrateperday 				= jomresGetParam( $_POST, 'roomrateperday', (float)$jrportal_rates->rates_defaults['roomrateperday'] );
+			$roomrateperday 				= jomresGetParam($_POST, 'roomrateperday', (float)$jrportal_rates->rates_defaults['roomrateperday']);
 			$jrportal_rates->roomrateperday = convert_entered_price_into_safe_float($roomrateperday);
 			
 			//room details
@@ -223,12 +225,12 @@ class j06002save_normalmode_tariffs
 			}
 		}
 		
-		$saveMessage = jr_gettext('_JOMRES_MR_AUDIT_UPDATE_TARIFF','_JOMRES_MR_AUDIT_UPDATE_TARIFF',false);
+		$saveMessage = jr_gettext('_JOMRES_MR_AUDIT_UPDATE_TARIFF', '_JOMRES_MR_AUDIT_UPDATE_TARIFF', false);
 		
 		$jomres_messaging =jomres_singleton_abstract::getInstance('jomres_messages');
 		$jomres_messaging->set_message($saveMessage);
 		
-		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=edit_tariffs_normal" ), $saveMessage );
+		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL . "&task=edit_tariffs_normal"), $saveMessage);
 	}
 
 

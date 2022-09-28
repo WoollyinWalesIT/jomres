@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06000show_property_qr_code_directions
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -71,6 +72,8 @@ class j06000show_property_qr_code_directions
 		} else {
 			$output_now = true;
 		}
+
+		jomres_set_page_title( $property_uid ,  jr_gettext('_JOMRES_SCAN_FOR_DIRECTIONS', '_JOMRES_SCAN_FOR_DIRECTIONS', false) );
 
 		$output = array();
 		$url = make_gmap_url_for_property_uid($property_uid);

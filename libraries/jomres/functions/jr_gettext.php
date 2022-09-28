@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -38,7 +38,7 @@ function jr_get_defined($constant, $default = '')
 {
 	if (!defined($constant)) {
 		$jomres_language_definitions = jomres_singleton_abstract::getInstance('jomres_language_definitions');
-		$result = $jomres_language_definitions->get_defined($constant , $default );
+		$result = $jomres_language_definitions->get_defined($constant, $default);
 
 		if ($result === false && $default != '') {
 			$result = $default;
@@ -51,7 +51,7 @@ function jr_get_defined($constant, $default = '')
 }
 
 /**
- * 
+ *
  * @package Jomres\Core\Functions
  *
  *          All output strings are passed through this function for processing.
@@ -109,7 +109,7 @@ function jr_gettext($theConstant, $theValue, $okToEdit = true, $isLink = false)
 		$br = '<br />';
 	}
 
-	if ( isset($jrConfig[ 'prioritise_sitewide_label_definitions' ]) && $jrConfig[ 'prioritise_sitewide_label_definitions' ] == "1") {
+	if (isset($jrConfig[ 'prioritise_sitewide_label_definitions' ]) && $jrConfig[ 'prioritise_sitewide_label_definitions' ] == "1") {
 		if (isset($customTextObj->global_custom_text[$jomres_language_definitions->ptype][$theConstant])) {
 			$theText = $customTextObj->global_custom_text[$jomres_language_definitions->ptype][$theConstant];
 		} elseif (isset($customTextObj->global_custom_text['0'][$theConstant])) {
@@ -157,7 +157,7 @@ function jr_gettext($theConstant, $theValue, $okToEdit = true, $isLink = false)
 			}
 		}
 
-		if ( get_showtime('task') == 'translating' && $okToEdit == true ) {
+		if (get_showtime('task') == 'translating' && $okToEdit == true) {
 			$editing = true;
 		}
 
@@ -180,15 +180,15 @@ function jr_gettext($theConstant, $theValue, $okToEdit = true, $isLink = false)
 					}
 
 					$lang_var_check ='';
-					if (!defined('JOMRES_TARGET_LANG_CHECK_SHOWN')){
+					if (!defined('JOMRES_TARGET_LANG_CHECK_SHOWN')) {
 						$lang_var_check = '
 						if (typeof jomres_target_language === "undefined"){
 							var jomres_target_language = "'.get_showtime('lang').'";
 							}';
-						define('JOMRES_TARGET_LANG_CHECK_SHOWN',1);
+						define('JOMRES_TARGET_LANG_CHECK_SHOWN', 1);
 					}
 					$data_type = 'text';
-					if ( strlen($theText) > 50 ) {
+					if (strlen($theText) > 50) {
 						$data_type = 'textarea';
 					}
 					$theText = '

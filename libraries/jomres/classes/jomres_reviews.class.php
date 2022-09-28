@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -21,9 +21,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jomres_reviews
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -39,7 +40,7 @@ class jomres_reviews
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -55,7 +56,7 @@ class jomres_reviews
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -81,7 +82,7 @@ class jomres_reviews
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -116,7 +117,7 @@ class jomres_reviews
 		$sql = 'SELECT count(rating_id) as cnt1 FROM #__jomres_reviews_ratings WHERE item_id = '.(int) $this->property_uid." and rating_ip = '".$this->ip."' ";
 		$sql .= 'UNION SELECT count(rating_id) as cnt2 FROM #__jomres_reviews_ratings WHERE item_id = '.(int) $this->property_uid.' and user_id = '.(int) $this->userid.' ';
 		$result = doSelectSql($sql);
-		if ( empty($result) || $result[0]->cnt1 == 0)  {
+		if (empty($result) || $result[0]->cnt1 == 0) {
 			return true;
 		}
 
@@ -124,7 +125,7 @@ class jomres_reviews
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -151,12 +152,12 @@ class jomres_reviews
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
-	public function save_review($rating, $title, $description, $pros, $cons , $user_name )
+	public function save_review($rating, $title, $description, $pros, $cons, $user_name)
 	{
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
@@ -167,7 +168,7 @@ class jomres_reviews
 		}
 
 		$contract_uid = 0;
-		if ( isset($_POST[ 'contract_uid' ] )  && (int)$_POST[ 'contract_uid' ] > 0 && !$test_mode ) {
+		if (isset($_POST[ 'contract_uid' ])  && (int)$_POST[ 'contract_uid' ] > 0 && !$test_mode) {
 			$contract_uid = (int)$_POST[ 'contract_uid' ];
 			$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 			
@@ -187,12 +188,12 @@ class jomres_reviews
 			$query = 'SELECT contract_uid FROM #__jomres_contracts WHERE guest_uid IN ('.jomres_implode($allGuestUids).') AND cancelled = 0 ORDER BY tag';
 			$contracts_data = doSelectSql($query);
 			if (!empty($contracts_data)) {
-				foreach ($contracts_data as $contract ) {
+				foreach ($contracts_data as $contract) {
 					$guest_contracts[] = (int)$contract->contract_uid;
 				}
 			}
 
-			if (!in_array($contract_uid , $guest_contracts ) ) { // Fishy, the contract uid passed doesn't match any of the guest's contract uids. 
+			if (!in_array($contract_uid, $guest_contracts)) { // Fishy, the contract uid passed doesn't match any of the guest's contract uids.
 				return;
 			}
 		}
@@ -221,7 +222,6 @@ class jomres_reviews
 
 		$result = doInsertSql($query, '');
 		if ($result>0) {
-			
 			$webhook_notification							   = new stdClass();
 			$webhook_notification->webhook_event				= 'review_saved';
 			$webhook_notification->webhook_event_description	= 'Logs when a review is added.';
@@ -238,7 +238,7 @@ class jomres_reviews
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -260,7 +260,7 @@ class jomres_reviews
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -283,7 +283,6 @@ class jomres_reviews
 				$query = 'DELETE FROM #__jomres_reviews_ratings_detail WHERE `rating_id`='.(int) $rating_id.'';
 				$result = doInsertSql($query, '');
 				if ($result) {
-					
 					$webhook_notification							   	= new stdClass();
 					$webhook_notification->webhook_event				= 'review_deleted';
 					$webhook_notification->webhook_event_description	= 'Logs when a review is added.';
@@ -302,7 +301,7 @@ class jomres_reviews
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -327,7 +326,7 @@ class jomres_reviews
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -352,7 +351,7 @@ class jomres_reviews
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -363,7 +362,7 @@ class jomres_reviews
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -388,8 +387,6 @@ class jomres_reviews
 				$reviews[ $property_uid ][ $res->rating_id ][ 'rating_date' ] = $res->rating_date;
 				$reviews[ $property_uid ][ $res->rating_id ][ 'published' ] = $res->published;
 				$reviews[ $property_uid ][ $res->rating_id ][ 'user_name' ] = $res->user_name;
-				
-				
 			}
 		}
 
@@ -397,7 +394,7 @@ class jomres_reviews
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -415,7 +412,7 @@ class jomres_reviews
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -429,7 +426,7 @@ class jomres_reviews
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -443,7 +440,7 @@ class jomres_reviews
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -457,7 +454,7 @@ class jomres_reviews
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -471,7 +468,7 @@ class jomres_reviews
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -510,7 +507,7 @@ class jomres_reviews
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -542,7 +539,7 @@ class jomres_reviews
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -599,7 +596,7 @@ class jomres_reviews
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -622,7 +619,7 @@ class jomres_reviews
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -635,7 +632,7 @@ class jomres_reviews
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -660,7 +657,7 @@ class jomres_reviews
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -682,12 +679,12 @@ class jomres_reviews
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
-	public function get_review_replies_for_review_ids($review_ids = array() ) 
+	public function get_review_replies_for_review_ids($review_ids = array())
 	{
 		$response = array();
 		if (empty($review_ids)) {
@@ -696,13 +693,13 @@ class jomres_reviews
 		
 		$count = count($review_ids);
 		$txt=" ( ";
-		for ($i=0, $n=$count; $i < $n; $i++)
-			{
+		for ($i=0, $n=$count; $i < $n; $i++) {
 			$id=(int)$review_ids[$i];
 			$txt .= "$id";
-			if ($i < $n-1)
+			if ($i < $n-1) {
 				$txt .= ",";
 			}
+		}
 		$txt .= " ) ";
 	
 		$query = "SELECT `rating_id` , `replier_id` ,`replier_name` ,`reply`  FROM `#__jomres_reviews_ratings_replies` WHERE `rating_id` IN ".$txt;
@@ -711,8 +708,8 @@ class jomres_reviews
 		$replies = array();
 		if (!empty($result)) {
 			foreach ($result as $reply) {
-				$rply = str_replace('&#38;#39;' , "'" , $reply->reply);
-				$rply = str_replace('&#39;' , "'" , $rply);
+				$rply = str_replace('&#38;#39;', "'", $reply->reply);
+				$rply = str_replace('&#39;', "'", $rply);
 				$reply->reply = $rply;
 				$replies[ $reply->rating_id ] = $reply;
 			}
@@ -721,22 +718,22 @@ class jomres_reviews
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
-	public function save_review_reply( $user_id = 0 , $reply = '' , $rating_id = 0  )
+	public function save_review_reply($user_id = 0, $reply = '', $rating_id = 0)
 	{
-		if ($user_id == 0 ) {
+		if ($user_id == 0) {
 			throw new Exception('User id is empty. ');
 		}
 		
-		if ($reply == '' ) {
+		if ($reply == '') {
 			throw new Exception('Reply is empty. ');
 		}
 		
-		if ($rating_id == 0 ) {
+		if ($rating_id == 0) {
 			throw new Exception('Rating id is empty. ');
 		}
 		
@@ -746,7 +743,7 @@ class jomres_reviews
 		jr_import('jomres_encryption');
 		$this->jomres_encryption = new jomres_encryption();
 		if (!empty($replier_details)) {
-			foreach ($replier_details as $guest ) {
+			foreach ($replier_details as $guest) {
 				$manager_name = $this->jomres_encryption->decrypt($guest->enc_firstname)." ".$this->jomres_encryption->decrypt($guest->enc_surname);
 			}
 		} else {
@@ -785,27 +782,27 @@ class jomres_reviews
 		return $result;
 	}
 	
-	public function generate_review_rating_text( $average_rating = 0)
+	public function generate_review_rating_text($average_rating = 0)
 	{
-		if ( $average_rating > 9.8 ) {
+		if ($average_rating > 9.8) {
 			return jr_gettext('JOMRES_REVIEW_SCORE_TOP_1', 'JOMRES_REVIEW_SCORE_TOP_1', false);
 		}
-		if ( $average_rating > 9.5 ) {
+		if ($average_rating > 9.5) {
 			return jr_gettext('JOMRES_REVIEW_SCORE_TOP_2', 'JOMRES_REVIEW_SCORE_TOP_2', false);
 		}
-		if ( $average_rating > 9.0 ) {
+		if ($average_rating > 9.0) {
 			return jr_gettext('JOMRES_REVIEW_SCORE_TOP_3', 'JOMRES_REVIEW_SCORE_TOP_3', false);
 		}
-		if ( $average_rating > 8.5 ) {
+		if ($average_rating > 8.5) {
 			return jr_gettext('JOMRES_REVIEW_SCORE_TOP_4', 'JOMRES_REVIEW_SCORE_TOP_4', false);
 		}
-		if ( $average_rating > 8.0 ) {
+		if ($average_rating > 8.0) {
 			return jr_gettext('JOMRES_REVIEW_SCORE_TOP_5', 'JOMRES_REVIEW_SCORE_TOP_5', false);
 		}
-		if ( $average_rating > 7 ) {
+		if ($average_rating > 7) {
 			return jr_gettext('JOMRES_REVIEW_SCORE_VERY_GOOD', 'JOMRES_REVIEW_SCORE_VERY_GOOD', false);
 		}
-		if ( $average_rating > 6 ) {
+		if ($average_rating > 6) {
 			return jr_gettext('JOMRES_REVIEW_SCORE_GOOD', 'JOMRES_REVIEW_SCORE_GOOD', false);
 		}
 	}

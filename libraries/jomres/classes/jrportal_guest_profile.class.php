@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -21,9 +21,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jrportal_guest_profile
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -32,18 +33,17 @@ class jrportal_guest_profile
 	{
 		$this->jomres_encryption = new jomres_encryption();
 		$this->init_guest_profile();
-		
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
 	public function init_guest_profile()
 	{
-		$this->id = 0; 
+		$this->id = 0;
 		$this->cms_user_id = 0; // the cms user id
 		$this->firstname = '';
 		$this->surname = '';
@@ -67,7 +67,7 @@ class jrportal_guest_profile
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -129,7 +129,7 @@ class jrportal_guest_profile
 			if (isset($images[0])) {
 				if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.'userimages'.JRDS.$this->cms_user_id.JRDS.'medium'.JRDS.$images[0])) {
 					$this->image = JOMRES_IMAGELOCATION_RELPATH.'userimages'.JRDS.$this->cms_user_id.JRDS.'medium'.JRDS.$images[0];
-				} 
+				}
 			}
 		}
 
@@ -137,7 +137,7 @@ class jrportal_guest_profile
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -151,21 +151,20 @@ class jrportal_guest_profile
 		$query = "SELECT id , cms_user_id , guests_uid , property_uid , review , last_changed FROM #__jomres_guest_reviews WHERE cms_user_id = ".(int)$this->cms_user_id." ORDER BY last_changed DESC";
 		$guest_reviews = doSelectSql($query);
 		if (!empty($guest_reviews)) {
-			foreach ($guest_reviews as $review ) {
+			foreach ($guest_reviews as $review) {
 				$this->guest_reviews [ $review->property_uid ] = array ("id" =>$review->id , "cms_user_id" =>$review->cms_user_id ,  "guests_uid" =>$review->guests_uid , "property_uid" =>$review->property_uid , "review" =>$review->review , "last_changed" =>$review->last_changed  );
 			}
-			
 		}
 		return $this->guest_reviews;
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
-	public function save_guest_review( $guests_id = 0 , $property_uid = 0 , $review = ''  )
+	public function save_guest_review($guests_id = 0, $property_uid = 0, $review = '')
 	{
 		if ($this->cms_user_id == 0) {
 			throw new Exception('Error: cms_user_id not set.');
@@ -197,8 +196,7 @@ class jrportal_guest_profile
 				'".$review."',
 				'".date("Y-m-d H:i:s")."'
 				)";
-			} 
-		else {
+		} else {
 			$query = "UPDATE #__jomres_guest_reviews 
 				SET
 				`review` = '".$review."',
@@ -206,9 +204,8 @@ class jrportal_guest_profile
 				WHERE 
 				`cms_user_id` = ".(int)$this->cms_user_id." AND
 				`property_uid` = ".(int)$property_uid;
-			}
+		}
 		
 		$result = doInsertSql($query);
 	}
-
 }

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j16000jomres_syndication_overview
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -96,7 +97,7 @@ class j16000jomres_syndication_overview
 			$output[ '_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTY_DISPLAYS_DESC' ] = jr_gettext('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTY_DISPLAYS_DESC', '_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTY_DISPLAYS_DESC', false);
 			$output[ '_JOMRES_SYNDICATION_STATS_BLURB' ] = jr_gettext('_JOMRES_SYNDICATION_STATS_BLURB', '_JOMRES_SYNDICATION_STATS_BLURB', false);
 	
-			if ($this_installation_listed_on_server->data->response == false ) {
+			if ($this_installation_listed_on_server->data->response == false) {
 				$output[ 'IS_LISTED' ] = jr_gettext('_JOMRES_SYNDICATION_STATS_IS_NOT_LISTED', '_JOMRES_SYNDICATION_STATS_IS_NOT_LISTED', false);
 				$output[ 'IS_LISTED_STATUS' ] = '😢';
 			} else {

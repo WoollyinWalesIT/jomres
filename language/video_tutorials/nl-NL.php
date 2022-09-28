@@ -4,13 +4,13 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 ##################################################################
-defined( '_JOMRES_INITCHECK' ) or die( '' );
+defined('_JOMRES_INITCHECK') or die('');
 ##################################################################
 
 jr_define('VIDEO_TUTORALS_TITLE', 'Video-tutorials');
@@ -47,7 +47,7 @@ jr_define('_JOMRES_TUTORIAL_MICROMANAGE_TARIFF_EDITING_MODE_MORE_GUESTS_MRP', 'V
 jr_define('_JOMRES_TUTORIAL_MICROMANAGE_TARIFF_EDITING_MODE_MORE_GUESTS_MRP_DESC', 'Je kunt meerdere tarieven maken voor hetzelfde kamertype, dus als je verschillende prijzen wilt voor verschillende aantallen gasten, dan kan dat.');
 
 jr_define('_JOMRES_TUTORIAL_MICROMANAGE_GUEST_TYPES', 'Per persoon per nacht - Gasttypes');
-jr_define('_JOMRES_TUTORIAL_MICROMANAGE_GUEST_TYPES_DESC', 'Om per persoon per nacht in rekening te brengen, moet u gasttypes maken. Verschillende gasttypes kunnen verschillen van de basisprijs van een kamer, dus kinderen van verschillende leeftijden kunnen verschillende kortingen krijgen op basis van hun leeftijd. hoef je niet per persoon per nacht in rekening te brengen voor het gebruik van Guest Types, je kunt ze ook gebruiken als je een vast tarief rekent maar toch het aantal gasten wilt vastleggen, of omdat je het aantal gasten in een boeking wilt beperken.' );
+jr_define('_JOMRES_TUTORIAL_MICROMANAGE_GUEST_TYPES_DESC', 'Om per persoon per nacht in rekening te brengen, moet u gasttypes maken. Verschillende gasttypes kunnen verschillen van de basisprijs van een kamer, dus kinderen van verschillende leeftijden kunnen verschillende kortingen krijgen op basis van hun leeftijd. hoef je niet per persoon per nacht in rekening te brengen voor het gebruik van Guest Types, je kunt ze ook gebruiken als je een vast tarief rekent maar toch het aantal gasten wilt vastleggen, of omdat je het aantal gasten in een boeking wilt beperken.');
 
 jr_define('_JOMRES_TUTORIAL_MEDIA_CENTRE_MRP', 'Mediacentrum - Uploaden van afbeeldingen');
 jr_define('_JOMRES_TUTORIAL_MEDIA_CENTRE_MRP_DESC', 'Alle afbeeldingen worden geüpload via het mediacentrum. In deze video uploaden we de afbeelding van het hoofdgebouw, enkele afbeeldingen in diavoorstellingen, een kleine selectie afbeeldingen die op de pagina met zoekresultaten moeten worden weergegeven en afbeeldingen voor een van de kamers.');
@@ -82,7 +82,7 @@ jr_define('_JOMRES_TUTORIAL_SHORTCODES', 'Shortcodes');
 jr_define('_JOMRES_TUTORIAL_SHORTCODES_DESC', 'Shortcodes zijn een uitzonderlijk krachtige functie van Jomres. Het principe is hetzelfde voor zowel Joomla als Wordpress. In deze video laten we u zien waar u de korte codes kunt bekijken (deze lijst zal veranderen afhankelijk van welke plug-ins zijn geïnstalleerd) en hoe ze te gebruiken. U kunt de codes gebruiken in artikelen of modules.');
 
 jr_define('_JOMRES_TUTORIAL_LOGFILES', 'Logbestanden');
-jr_define('_JOMRES_TUTORIAL_LOGFILES_DESC', 'Deze video laat zien hoe u logbestanden kunt bekijken. Uitgebreide logboekregistratie vindt plaats wanneer het systeem wordt uitgevoerd. In de productiemodus (Site Config > Debugging) worden minder logs gegenereerd, dus als u een nieuwe functie test, u moet uw site op Ontwikkeling zetten. Als u uw eigen logboekregistratie aan uw Jomres-scripts wilt toevoegen, kijk dan op <a href="http://www.jomres.net/manual/developers-guide/56-other-discussions/339-logging-in-jomres" target ="_blank">onze handleiding pagina over hoe dit te doen.</a> Hier zullen we een valse foutmelding geven, en dan het logbestand bekijken. Omdat de site daar is ingesteld op Ontwikkeling is veel informatie, normaal gesproken ziet u alleen een bericht dat er een fout is opgetreden en dat deze is gemeld.');
+jr_define('_JOMRES_TUTORIAL_LOGFILES_DESC', 'Deze video laat zien hoe u logbestanden kunt bekijken. Uitgebreide logboekregistratie vindt plaats wanneer het systeem wordt uitgevoerd. In de productiemodus (Site Config > Debugging) worden minder logs gegenereerd, dus als u een nieuwe functie test, u moet uw site op Ontwikkeling zetten. Als u uw eigen logboekregistratie aan uw Jomres-scripts wilt toevoegen, kijk dan op <a href="https://www.jomres.net/manual/developers-guide/56-other-discussions/339-logging-in-jomres" target ="_blank">onze handleiding pagina over hoe dit te doen.</a> Hier zullen we een valse foutmelding geven, en dan het logbestand bekijken. Omdat de site daar is ingesteld op Ontwikkeling is veel informatie, normaal gesproken ziet u alleen een bericht dat er een fout is opgetreden en dat deze is gemeld.');
 
 jr_define('_JOMRES_TUTORIAL_TRANSLATIONS', 'Labels en andere strings vertalen');
 jr_define('_JOMRES_TUTORIAL_TRANSLATIONS_DESC', 'Er zijn een aantal manieren om taalreeksen in Jomres te vertalen. U kunt taalbestanden bewerken, maar ze kunnen worden overschreven wanneer u een upgrade uitvoert. In plaats daarvan raden we u aan de ingebouwde vertaalhulpmiddelen te gebruiken die uniek zijn voor onze software.Als de tekenreeks iets is dat in een formulier is ingevoerd, zoals de naam van een kamertype, kunt u de pagina Label bewerken gebruiken.Als de tekenreeks uit het taalbestand komt, kunt u de tool voor het bewerken van taalbestanden gebruiken. Gebruik de zoekfunctie van de browser om de tekenreeks te vinden die u wilt wijzigen en klik vervolgens op de link om deze te wijzigen. Deze wijzigingen worden opgeslagen in de database en zijn daarom veilig voor updates. U kunt verschillende labels hebben voor verschillende eigenschapstypen, zodat u verander Nieuwe Accommodatie in Nieuwe Camping, bijvoorbeeld door de Taal Context dropdown boven aan de pagina te wijzigen voordat u het label wijzigt.');
@@ -98,5 +98,3 @@ jr_define('_JOMRES_TUTORIAL_ADMIN_PROPERTY_CATEGORIES_DESC', 'Eigendomcategorie�
 
 jr_define('_JOMRES_TUTORIAL_ADMIN_COMPLETING_PROPERTY', 'Sitebeheerder weergave-eigenschappen');
 jr_define('_JOMRES_TUTORIAL_ADMIN_COMPLETING_PROPERTY_DESC', '<p>Van hieruit beheert u geen eigenschappen, u kunt alleen eigenschappen beheren vanaf de frontend, maar in deze lijst kunt u eigenschappen zien die wachten op goedkeuring (als de functie is ingeschakeld) en alle eigenschappen die dat wel zijn onvolledig (bijv. moet nog afbeeldingen uploaden, prijzen instellen, enz.) Klik op de naam van het onroerend goed om naar het dashboard voor dat onroerend goed te gaan. U kunt dan de gidssecties bovenaan de pagina gebruiken om de stappen te zien die die u moet nemen om een ​​eigenschap in te vullen en te publiceren.</p> ');
-
-

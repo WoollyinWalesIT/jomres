@@ -5,7 +5,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -32,7 +32,7 @@ function generateDateInput($fieldName, $dateValue = '', $myID = false, $siteConf
 
 	$uniqueID = generateJomresRandomString(15);
 
-	set_showtime('date_input_label_id' , $uniqueID);
+	set_showtime('date_input_label_id', $uniqueID);
 
 	$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 	$placeholder = '';
@@ -50,28 +50,23 @@ function generateDateInput($fieldName, $dateValue = '', $myID = false, $siteConf
 			$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ] = '';
 		}
 		if ($fieldName != 'start') {
-			if (
-				(!isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate']) || $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'] == '') &&
+			if ((!isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate']) || $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'] == '') &&
 				(!isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate']) || $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate'] == '') &&
 				$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ] == '' &&
 				$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ] == ''
 				) {
-
 				$dateValue = '';
 			}
 		}
-
 	} elseif ($fieldName == 'departureDate' || $fieldName == 'asc_departureDate' || $fieldName == 'end') {
 		$placeholder = jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', false);
 		$uniqueID = get_showtime('departure_date_unique_id');
 		if ($fieldName != 'end') {
-			if (
-				(!isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate']) || $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'] == '') &&
+			if ((!isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate']) || $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'] == '') &&
 				(!isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate']) || $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate'] == '') &&
 				$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ] == '' &&
 				$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ] == ''
 				) {
-
 				$dateValue = '';
 			}
 		}
@@ -89,7 +84,7 @@ function generateDateInput($fieldName, $dateValue = '', $myID = false, $siteConf
 	$jrConfig = $siteConfig->get();
 	
 	$predefined_arrival_day_return_string ='';
-	if ( $jrConfig['is_single_property_installation'] == "1") {
+	if ($jrConfig['is_single_property_installation'] == "1") {
 		$all_property_uids = get_showtime('all_properties_in_system');
 
 		set_showtime('property_uid', $all_property_uids[ 0 ]);
@@ -97,15 +92,15 @@ function generateDateInput($fieldName, $dateValue = '', $myID = false, $siteConf
 
 		$mrConfig = getPropertySpecificSettings($property_uid);
 
-		if ($mrConfig[ 'fixedArrivalDay' ] != '' && (int)$mrConfig[ 'fixedArrivalDateYesNo' ] != 0  ) {
-			for ($i=0;$i<=6;$i++) {
-				if ($i != $mrConfig[ 'fixedArrivalDay' ] ) {
+		if ($mrConfig[ 'fixedArrivalDay' ] != '' && (int)$mrConfig[ 'fixedArrivalDateYesNo' ] != 0) {
+			for ($i=0; $i<=6; $i++) {
+				if ($i != $mrConfig[ 'fixedArrivalDay' ]) {
 					$predefined_arrival_day_return_string .= 'day != '.$i .' && ';
 				}
 				
 				//return [(day != 1 && day != 2)];
 			}
-			if ($predefined_arrival_day_return_string != '' ) {
+			if ($predefined_arrival_day_return_string != '') {
 				$predefined_arrival_day_return_string = 'beforeShowDay: function(date) {
 				var day = date.getDay();
 				return [('.substr($predefined_arrival_day_return_string, 0, -4).')];
@@ -190,8 +185,8 @@ function generateDateInput($fieldName, $dateValue = '', $myID = false, $siteConf
 	}
 
 	$z_index = '0';
-	$calendar_z_index = get_showtime('calendar_z_index' );
-	if (isset($calendar_z_index)  && $calendar_z_index != '' ) {
+	$calendar_z_index = get_showtime('calendar_z_index');
+	if (isset($calendar_z_index)  && $calendar_z_index != '') {
 		$z_index = 'z-index: '.$calendar_z_index.';';
 	}
 

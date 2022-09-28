@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -21,9 +21,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jomres_check_support_key
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -38,7 +39,7 @@ class jomres_check_support_key
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -55,7 +56,7 @@ class jomres_check_support_key
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -66,7 +67,7 @@ class jomres_check_support_key
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -78,12 +79,12 @@ class jomres_check_support_key
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
-	public function check_license_key($force = false , $key = '' )
+	public function check_license_key($force = false, $key = '')
 	{
 
 		
@@ -91,14 +92,15 @@ class jomres_check_support_key
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
 
-        if (!isset($jrConfig['licensekey'])) { // Probably installing
-            return;
-        }
+		if (!isset($jrConfig['licensekey'])) { // Probably installing
+			return;
+		}
 
-		if ( $key == '' )
+		if ($key == '') {
 			$str = 'key='.$jrConfig['licensekey'];
-		else
+		} else {
 			$str = 'key='.$key;
+		}
 		$this->key_hash = $jrConfig['licensekey'];
 
 		$license_data = new stdClass();
@@ -124,16 +126,14 @@ class jomres_check_support_key
 
 
 		if (!file_exists(JOMRES_TEMP_ABSPATH.'license_key_check_cache.php') || $force) {
-			
-			
 			$buffer = queryUpdateServer('check_key.php', $str, 'updates');
 			if ($buffer != '') {
 				$license_data = json_decode($buffer);
 
-				if ( !is_object($license_data)){
+				if (!is_object($license_data)) {
 					$license_data = new stdClass();
 				}
-				if ( isset($license_data->license_valid ) && $license_data->license_valid === true) {
+				if (isset($license_data->license_valid) && $license_data->license_valid === true) {
 					$license_data->license_valid = '1';
 				} else {
 					$license_data->license_valid = '0';
@@ -178,7 +178,7 @@ $license_data->allowed_plugins = "'.$license_data->allowed_plugins.'";
 			$this->owner = $license_data->owner;
 			$this->license_name = $license_data->license_name;
 			if (isset($license_data->allowed_plugins)) {
-				$this->allowed_plugins = explode("," , $license_data->allowed_plugins);
+				$this->allowed_plugins = explode(",", $license_data->allowed_plugins);
 			} else {
 				$this->allowed_plugins = array();
 			}

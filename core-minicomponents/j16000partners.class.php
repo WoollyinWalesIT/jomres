@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j16000partners
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -51,12 +52,12 @@ class j16000partners
 			'base_uri' => 'https://raw.githubusercontent.com/WoollyinWalesIT/partners/master/partners.json'
 		]);
 
-		$response = $client->request('GET', '' )->getBody()->getContents();
+		$response = $client->request('GET', '')->getBody()->getContents();
 		$p = json_decode($response);
 
 		$partner_data = array();
 
-		foreach ( $p->partners as $partner) {
+		foreach ($p->partners as $partner) {
 			$r = array();
 
 			$r['NAME'] = $partner->name;

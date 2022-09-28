@@ -4,40 +4,45 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 // ################################################################
-defined( '_JOMRES_INITCHECK' ) or die( '' );
+defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
-class j06002edit_integration {	
+class j06002edit_integration
+{
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
-	function __construct() {
-		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-		if ( $MiniComponents->template_touch ){$this->template_touchable = false;return;}
+	function __construct()
+	{
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
+			return;
+		}
 
 		$found_webhook_minicomponents = array();
 		foreach ($MiniComponents->registeredClasses['07300'] as $eventName => $eventDetails) {
-		   $found_webhook_minicomponents[]=$eventName;
+			$found_webhook_minicomponents[]=$eventName;
 		}
 		
 		if (empty($found_webhook_minicomponents)) {
@@ -46,7 +51,7 @@ class j06002edit_integration {
 		
 		
 		$ePointFilepath=get_showtime('ePointFilepath');
-		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
+		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 		
 		jr_import("webhooks");
 		$webhooks = new webhooks($thisJRUser->id);
@@ -55,7 +60,7 @@ class j06002edit_integration {
 		$pageoutput = array();
 		$output = array();
 		
-		$integration_id = (int)jomresGetParam( $_REQUEST, 'id', 0 );
+		$integration_id = (int)jomresGetParam($_REQUEST, 'id', 0);
 		
 		$output['PAGETITLE']					=jr_gettext('WEBHOOKS_INTEGRATION_EDIT', 'WEBHOOKS_INTEGRATION_EDIT', false);
 		$output['WEBHOOKS_INTEGRATION_URL']	 =jr_gettext('WEBHOOKS_INTEGRATION_URL', 'WEBHOOKS_INTEGRATION_URL', false);
@@ -67,52 +72,50 @@ class j06002edit_integration {
 		$MiniComponents->triggerEvent('07300');  // As the authentication methods aren't relevent to front or backend they are numbered in the 07000s
 		$authentication_methods = get_showtime('authentication_methods');
 	
-		if (isset($all_webhooks[$integration_id] )) {
+		if (isset($all_webhooks[$integration_id])) {
 			$output['INTEGRATION_ID']   = $all_webhooks[$integration_id]['id'];
 			$output['URL']			  = $all_webhooks[$integration_id]['settings']['url'];
 			$output['AUTHMETHOD']	   = $all_webhooks[$integration_id]['settings']['authmethod'];
-		}
-		else {
+		} else {
 			$output['INTEGRATION_ID']   = '0';
 			$output['URL']			 = 'https://';
 			foreach ($found_webhook_minicomponents as $plugin) { // We don't know which plugin the admin has installed, we'll search all the 07300 scripts found and extract a filename then set that as default
-				$output['AUTHMETHOD']	   = str_replace("webhooks_auth_method_" , "" , $plugin);
-				
+				$output['AUTHMETHOD']	   = str_replace("webhooks_auth_method_", "", $plugin);
 			}
-			
 		}
 		
 		$authMethods = array();
 		if (!empty($authentication_methods)) {
-			foreach ( $authentication_methods as $method ){
+			foreach ($authentication_methods as $method) {
 				$authMethods[ ] = jomresHTML::makeOption($method['plugin'], $method['plugin']);
 			}
 		}
 		
-		$output['AUTHMETHODSDROPDOWN'] = jomresHTML::selectList($authMethods, 'authmethod', 'class="inputbox"  onchange=get_auth_form(this.value); size="1"', 'value', 'text', $output['AUTHMETHOD'] , false );
+		$output['AUTHMETHODSDROPDOWN'] = jomresHTML::selectList($authMethods, 'authmethod', 'class="inputbox"  onchange=get_auth_form(this.value); size="1"', 'value', 'text', $output['AUTHMETHOD'], false);
 		
 		$output['AUTH_FORM'] = $MiniComponents->specificEvent('06002', 'ajax_webhooks_build_auth_form', array('output_now' => false, 'integration_id' => $output['INTEGRATION_ID'], 'auth_method' => $output['AUTHMETHOD']));
 
-		$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
+		$jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
 		$jrtb   = $jrtbar->startTable();
-		$jrtb .= $jrtbar->toolbarItem( 'cancel', jomresURL( JOMRES_SITEPAGE_URL . "&task=webhooks_core" ), '' );
-		$jrtb .= $jrtbar->toolbarItem( 'save', '', '', true, 'save_integration' );
-		if ( $integration_id != '' ) 
-			$jrtb .= $jrtbar->toolbarItem( 'delete', jomresURL( JOMRES_SITEPAGE_URL . "&task=delete_integration&id=".$integration_id."&no_html=1" ), '' );
+		$jrtb .= $jrtbar->toolbarItem('cancel', jomresURL(JOMRES_SITEPAGE_URL . "&task=webhooks_core"), '');
+		$jrtb .= $jrtbar->toolbarItem('save', '', '', true, 'save_integration');
+		if ($integration_id != '') {
+			$jrtb .= $jrtbar->toolbarItem('delete', jomresURL(JOMRES_SITEPAGE_URL . "&task=delete_integration&id=".$integration_id."&no_html=1"), '');
+		}
 		$jrtb .= $jrtbar->endTable();
 		$output[ 'JOMRESTOOLBAR' ] = $jrtb;
 
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
-		$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
-		$tmpl->readTemplatesFromInput( 'edit_integration.html' );
-		$tmpl->addRows( 'pageoutput', $pageoutput );
+		$tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
+		$tmpl->readTemplatesFromInput('edit_integration.html');
+		$tmpl->addRows('pageoutput', $pageoutput);
 		$tmpl->displayParsedTemplate();
-		}
+	}
 
 
 	function getRetVals()
-		{
+	{
 		return null;
-		}
 	}
+}

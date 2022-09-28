@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06000opted_out
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -43,10 +44,11 @@ class j06000opted_out
 		}
 		
 		$output = array();
-		if (!isset($_REQUEST['url_already_forwarded']) && isset($_REQUEST['jr_redirect_url']) )
+		if (!isset($_REQUEST['url_already_forwarded']) && isset($_REQUEST['jr_redirect_url'])) {
 			$output['RETURN_URL'] = jr_base64url_encode($_REQUEST['jr_redirect_url']);
-		else 
+		} else {
 			$output['RETURN_URL'] = $_REQUEST['jr_redirect_url'];
+		}
 		
 		$output['_JOMRES_GDPR_NOCONSENT_INTRO']						= jr_gettext('_JOMRES_GDPR_NOCONSENT_INTRO', '_JOMRES_GDPR_NOCONSENT_INTRO', false);
 		$output['_JOMRES_GDPR_NOCONSENT_DIDNOTCONSENT']				= jr_gettext('_JOMRES_GDPR_NOCONSENT_DIDNOTCONSENT', '_JOMRES_GDPR_NOCONSENT_DIDNOTCONSENT', false);

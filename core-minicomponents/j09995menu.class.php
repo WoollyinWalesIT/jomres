@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j09995menu
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -45,7 +46,12 @@ class j09995menu
 		if (AJAXCALL) {
 			return;
 		}
-		
+
+		$menuoff = get_showtime('menuoff');
+		if ($menuoff === true) {
+			return;
+		}
+
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
 		
@@ -60,6 +66,9 @@ class j09995menu
 		$viewproperty_url = get_property_details_url($property_uid);
 		$dobooking_url = get_booking_url($property_uid);
 
+		jr_import('jomres_occupancy_levels');
+		$jomres_occupancy_levels = new jomres_occupancy_levels($property_uid);
+
 		// There are some differences between J3 & J4 and the font awesome icons
 		$font_awesome_envelope = 'fa-envelope-o';
 		$font_awesome_picture = 'fa-picture-o';
@@ -71,7 +80,7 @@ class j09995menu
 		$font_awesome_childpolicies = 'fa-users';
 		$font_awesome_language = 'fa-language';
 
-		if (jomres_bootstrap_version() == '5' ) {
+		if (jomres_bootstrap_version() == '5') {
 			$font_awesome_envelope = 'fa-envelope';
 			$font_awesome_picture = 'fa-images';
 			$font_awesome_dashboard = 'fa-tachometer-alt';
@@ -120,7 +129,7 @@ class j09995menu
 			$jomres_menu->add_item(10, jr_gettext('_JRPORTAL_INVOICES_SHOWINVOICES', '_JRPORTAL_INVOICES_SHOWINVOICES', false), 'list_invoices', 'fa-list');
 		}
 		
-		if ($thisJRUser->accesslevel >= 1 && get_showtime('numberOfPropertiesInSystem') > 1 ) {
+		if ($thisJRUser->accesslevel >= 1 && get_showtime('numberOfPropertiesInSystem') > 1) {
 			$jomres_menu->add_item(10, jr_gettext('_JOMCOMP_MYUSER_VIEWFAVOURITES', '_JOMCOMP_MYUSER_VIEWFAVOURITES', false), 'muviewfavourites', 'fa-heart');
 		}
 		
@@ -133,23 +142,25 @@ class j09995menu
 			$jomres_menu->add_item(10, jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGOUT', '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGOUT', false), 'logout', $font_awesome_logout);
 		}
 		
-		if (!isset($jrConfig[ 'api_core_show' ]))
+		if (!isset($jrConfig[ 'api_core_show' ])) {
 			$jrConfig[ 'api_core_show' ] =1;
+		}
 		
 		if ($thisJRUser->accesslevel >= 1 && $jrConfig[ 'api_core_show' ] == '1') {
 			$jomres_menu->add_item(10, jr_gettext('_OAUTH_TITLE', '_OAUTH_TITLE', false), 'oauth', 'fa-key');
 			$jomres_menu->add_item(10, jr_gettext('API_DOCUMENTATION_TITLE', 'API_DOCUMENTATION_TITLE', false), 'api_documentation', 'fa-book');
 		}
 		
-		if (!isset($jrConfig[ 'webhooks_core_show' ]))
+		if (!isset($jrConfig[ 'webhooks_core_show' ])) {
 			$jrConfig[ 'webhooks_core_show' ] =1;
+		}
 		
 		if ($thisJRUser->accesslevel >= 50 && $jrConfig[ 'api_core_show' ] == '1') {
 			$jomres_menu->add_item(10, jr_gettext('WEBHOOKS_CORE', 'WEBHOOKS_CORE', false), 'webhooks_core', 'fa-key');
 			$jomres_menu->add_item(10, jr_gettext('WEBHOOKS_DOCUMENTATION_TITLE', 'WEBHOOKS_DOCUMENTATION_TITLE', false), 'webhooks_core_documentation', 'fa-book');
 		}
 		
-		if ($jrConfig[ 'enable_gdpr_compliant_fucntionality' ] == "1" ) {
+		if ($jrConfig[ 'enable_gdpr_compliant_fucntionality' ] == "1") {
 			$jomres_menu->add_item(10, jr_gettext('_JOMRES_GDPR_APP_MENU_ITEM', '_JOMRES_GDPR_APP_MENU_ITEM', false), 'show_consent_form', 'fa-lock');
 			$jomres_menu->add_item(10, jr_gettext('_JOMRES_GDPR_MY_DATA', '_JOMRES_GDPR_MY_DATA', false), 'gdpr_my_data', 'fa-lock');
 		}
@@ -160,13 +171,13 @@ class j09995menu
 		}
 
 		$property_limit_reached = false;
-		if (function_exists("get_number_of_allowed_properties") ) {
-			if (get_showtime('numberOfPropertiesInSystem') >= get_number_of_allowed_properties() ) {
+		if (function_exists("get_number_of_allowed_properties")) {
+			if (get_showtime('numberOfPropertiesInSystem') >= get_number_of_allowed_properties()) {
 				$property_limit_reached = true;
 			}
 		}
 		
-		if ($thisJRUser->accesslevel > 50 && $jrConfig['is_single_property_installation'] == '0' && ($jrConfig[ 'selfRegistrationAllowed' ] == '1' || $thisJRUser->accesslevel >= 90) && !$property_limit_reached ) {
+		if ($thisJRUser->accesslevel > 50 && $jrConfig['is_single_property_installation'] == '0' && ($jrConfig[ 'selfRegistrationAllowed' ] == '1' || $thisJRUser->accesslevel >= 90) && !$property_limit_reached) {
 			$jomres_menu->add_item(20, jr_gettext('_JOMRES_COM_MR_NEWPROPERTY', '_JOMRES_COM_MR_NEWPROPERTY', false), 'new_property', 'fa-plus');
 		}
 
@@ -176,7 +187,7 @@ class j09995menu
 			}
 		}
 		
-		if ($thisJRUser->accesslevel > 50 && get_showtime('numberOfPropertiesInSystem') > 1 && isset($thisJRUser->authorisedProperties[1]) ) {
+		if ($thisJRUser->accesslevel > 50 && get_showtime('numberOfPropertiesInSystem') > 1 && isset($thisJRUser->authorisedProperties[1])) {
 			$jomres_menu->add_item(20, jr_gettext('_JOMRES_COM_MR_PROPERTY_DELETE', '_JOMRES_COM_MR_PROPERTY_DELETE', false), 'delete_property', $font_awesome_delete);
 		}
 		
@@ -216,6 +227,8 @@ class j09995menu
 		if ($thisJRUser->accesslevel > 50) {
 			$jomres_menu->add_item(80, jr_gettext('_JOMRES_PATHWAY_PROPERTYDETAILS', '_JOMRES_PATHWAY_PROPERTYDETAILS', false), 'edit_property', $font_awesome_edit);
 			$jomres_menu->add_item(80, jr_gettext('_JOMRES_COM_MR_GENERALCONFIGDESC', '_JOMRES_COM_MR_GENERALCONFIGDESC', false), 'business_settings', 'fa-cogs');
+			$jomres_menu->add_item(80, jr_gettext('_JOMRES_COM_A_GATEWAYLIST', '_JOMRES_COM_A_GATEWAYLIST', false), 'payment_gateways', "fas fa-wallet" );
+
 
 			$jomres_menu->add_item(80, jr_gettext('JOMRES_TRANSLATIONS_TITLE', 'JOMRES_TRANSLATIONS_TITLE', false), 'translating', $font_awesome_language);
 
@@ -230,27 +243,28 @@ class j09995menu
 			}
 
 			if ($mrConfig[ 'is_real_estate_listing' ] != '1') {
-
-				if ($mrConfig[ 'tariffmode' ] != 5 ) {
-					$jomres_menu->add_item(80, jr_gettext('_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES', '_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES', false), 'listcustomertypes', 'fa-users');
+				if ($mrConfig[ 'tariffmode' ] != 5) {
+					if (!empty($jomres_occupancy_levels->occupancy_levels)) {
+						$jomres_menu->add_item(80, jr_gettext('JOMRES_OCCUPANCY_LEVELS_TITLE', 'JOMRES_OCCUPANCY_LEVELS_TITLE', false), 'list_occupancy_levels', 'fa-users');
+						$jomres_menu->add_item(80, jr_gettext('JOMRES_POLICIES_CHILDREN', 'JOMRES_POLICIES_CHILDREN', false), 'child_policies', $font_awesome_childpolicies);
+					} else {
+						$jomres_menu->add_item(80, jr_gettext('_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES', '_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES', false), 'listcustomertypes', 'fa-users');
+					}
 				} else {
 					$jomres_menu->add_item(80, jr_gettext('JOMRES_OCCUPANCY_LEVELS_TITLE', 'JOMRES_OCCUPANCY_LEVELS_TITLE', false), 'list_occupancy_levels', 'fa-users');
 					$jomres_menu->add_item(80, jr_gettext('JOMRES_POLICIES_CHILDREN', 'JOMRES_POLICIES_CHILDREN', false), 'child_policies', $font_awesome_childpolicies);
-					}
+				}
 
 
 				$jomres_menu->add_item(80, jr_gettext('_JOMRES_EMAIL_TEMPLATES_TITLE', '_JOMRES_EMAIL_TEMPLATES_TITLE', false), 'list_emails', $font_awesome_envelope);
 			}
-			if ( 
-				$mrConfig[ 'is_real_estate_listing' ] != '1' && 
-				!get_showtime('is_jintour_property') && 
-				$mrConfig[ 'singleRoomProperty' ] != '1' && 
+			if ($mrConfig[ 'is_real_estate_listing' ] != '1' &&
+				!get_showtime('is_jintour_property') &&
+				$mrConfig[ 'singleRoomProperty' ] != '1' &&
 				$jrConfig[ 'frontend_room_type_editing_allowed' ] == "1"
 				) {
 				$jomres_menu->add_item(80, jr_gettext('_JOMRES_PROPERTY_ROOM_TYPES_EDIT', '_JOMRES_PROPERTY_ROOM_TYPES_EDIT', false), 'list_room_types', 'fa-pencil-square-o');
 			}
-			
-
 		}
 
 		//help section menus

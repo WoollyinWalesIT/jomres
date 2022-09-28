@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -21,15 +21,16 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class j02990showconfirmation
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -255,7 +256,7 @@ class j02990showconfirmation
 		$rooms = explode(',', $requestedrooms);
 		$booking_parts[ 'NUMROOMS' ] = count($rooms);
 		
-		if ( $booking_parts[ 'NUMROOMS' ] == 0 && get_showtime('include_room_booking_functionality') ) {
+		if ($booking_parts[ 'NUMROOMS' ] == 0 && get_showtime('include_room_booking_functionality')) {
 			jomresRedirect(get_booking_url($bookingDeets[ 'property_uid' ]), '');
 		}
 		
@@ -506,23 +507,23 @@ class j02990showconfirmation
 		}
 		$booking_parts[ 'TOTALINPARTY' ] = $bookingDeets[ 'total_in_party' ];
 
-        if ($mrConfig[ 'tariffmode' ] == '5' ) {
-            $inparty = 0;
-            if ( isset($bookingDeets[ 'standard_guest_numbers' ] ) ){
-                $inparty = $inparty + $bookingDeets[ 'standard_guest_numbers' ];
-            }
+		if ($mrConfig[ 'tariffmode' ] == '5') {
+			$inparty = 0;
+			if (isset($bookingDeets[ 'standard_guest_numbers' ])) {
+				$inparty = $inparty + $bookingDeets[ 'standard_guest_numbers' ];
+			}
 
-            if ( isset($bookingDeets[ 'extra_guest_numbers' ] ) ){
-                $inparty = $inparty + $bookingDeets[ 'extra_guest_numbers' ];
-            }
+			if (isset($bookingDeets[ 'extra_guest_numbers' ])) {
+				$inparty = $inparty + $bookingDeets[ 'extra_guest_numbers' ];
+			}
 
-            if ( isset($bookingDeets[ 'child_numbers' ] ) ){
-                foreach (  $bookingDeets[ 'child_numbers' ] as $key=>$children ) {
-                    $inparty = $inparty + $children;
-                }
-            }
-            $booking_parts[ 'TOTALINPARTY' ] =  $inparty;
-        }
+			if (isset($bookingDeets[ 'child_numbers' ])) {
+				foreach ($bookingDeets[ 'child_numbers' ] as $key => $children) {
+					$inparty = $inparty + $children;
+				}
+			}
+			$booking_parts[ 'TOTALINPARTY' ] =  $inparty;
+		}
 		if ($bookingDeets[ 'single_person_suppliment' ] != 0) {
 			$booking_parts[ 'HSINGLEPERSON_COST' ] = jr_gettext('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST', '_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST');
 			$booking_parts[ 'SINGLEPERSON_COST' ] = output_price($bookingDeets[ 'single_person_suppliment' ]);
@@ -594,29 +595,29 @@ class j02990showconfirmation
 		$gateways = array();
 		
 		if ((int)$mrConfig['requireApproval'] == 0 || $secret_key_payment) {
-			if (!$thisJRUser->userIsManager || $jrConfig[ 'development_production' ] != 'production' ) { // If we are in Production mode, managers cannot pay themselves, but we will allow it in Development
+			//if (!$thisJRUser->userIsManager || $jrConfig[ 'development_production' ] != 'production') { // If we are in Production mode, managers cannot pay themselves, but we will allow it in Development
 				$gateway_output = array();
 				$gwo = array();
 
 				jr_import("gateway_plugin_settings");
 				$plugin_settings = new gateway_plugin_settings();
-				$plugin_settings->get_settings_for_property_uid( $property_uid );
+				$plugin_settings->get_settings_for_property_uid($property_uid);
 
-				if (!empty($plugin_settings->gateway_settings) ) {
+				if (!empty($plugin_settings->gateway_settings)) {
 					$counter = 1;
 					foreach ($plugin_settings->gateway_settings as $gateway_name => $gateway) {
 						if (!isset($gateway['active'])) {
 							$gateway['active'] = 0;
-							}
-						if ($gateway['active'] == 1 ) {
+						}
+						if ($gateway['active'] == 1) {
 							$gw = array();
 							$checked = '';
 							if ($counter == 1) {
 								$checked = 'checked';
-								}
+							}
 							$result = $MiniComponents->specificEvent('03108', $gateway_name, null);
 
-							if ($result !== false ) {
+							if ($result !== false) {
 								if (count($result) > 1) {
 									$gw[ 'GWNAME' ] = $result[ 'gatewayname' ];
 									$tmpgatewaydir = $result[ 'filepath' ];
@@ -625,37 +626,44 @@ class j02990showconfirmation
 									$tmpgatewaydir = $result;
 								}
 								$gw[ 'GWNAME_INTERNAL' ] = $gateway_name;
-								$gw[ 'GWINPUT' ] = '<input type="radio" id="'.$gateway_name.'" name="plugin" value="'.$gateway_name.'" '.$checked.' /> '.$gw[ 'GWNAME' ];
+								$gw[ 'GWINPUT' ] = '<input type="radio" id="'.$gateway_name.'" name="plugin" value="'.$gateway_name.'" '.$checked.' /> ';
 								$gatewaydir = str_replace(JOMRESCONFIG_ABSOLUTE_PATH, get_showtime('live_site').'/', $tmpgatewaydir);
 								$gatewaydir = str_replace('\\', '/', $gatewaydir);
 
-								if (file_exists( $result[ 'filepath' ].'j00510'.$gateway_name.'.gif' )) {
-									$gw[ 'GWIMAGE' ] = '<img src="'.$gatewaydir.'j00510'.$gateway_name.'.gif" border="0"  width="200" alt="'.$gateway_name.' logo" >';
-								} elseif (file_exists( $result[ 'filepath' ].'j00510'.$gateway_name.'.png')) {
-									$gw[ 'GWIMAGE' ] = '<img src="'.$gatewaydir.'j00510'.$gateway_name.'.png" border="0"  width="200" alt="'.$gateway_name.' logo">';
-								} elseif (file_exists( $result[ 'filepath' ].'j00510'.$gateway_name.'.jpg' )) {
-									$gw[ 'GWIMAGE' ] = '<img src="'.$gatewaydir.'j00510'.$gateway_name.'.jpg" border="0"  width="200" alt="'.$gateway_name.' logo">';
+
+								if ($gateway_name != 'stripe_standard') {
+									if (file_exists($result[ 'filepath' ].'j00510'.$gateway_name.'.gif')) {
+										$gw[ 'GWIMAGE' ] = '<img src="'.$gatewaydir.'j00510'.$gateway_name.'.gif" border="0"  width="200" alt="'.$gateway_name.' logo" >';
+									} elseif (file_exists($result[ 'filepath' ].'j00510'.$gateway_name.'.png')) {
+										$gw[ 'GWIMAGE' ] = '<img src="'.$gatewaydir.'j00510'.$gateway_name.'.png" border="0"  width="200" alt="'.$gateway_name.' logo">';
+									} elseif (file_exists($result[ 'filepath' ].'j00510'.$gateway_name.'.jpg')) {
+										$gw[ 'GWIMAGE' ] = '<img src="'.$gatewaydir.'j00510'.$gateway_name.'.jpg" border="0"  width="200" alt="'.$gateway_name.' logo">';
+									} else {
+										$gw[ 'GWIMAGE' ] = '<img src="'.JOMRES_IMAGES_RELPATH.'noimage.gif" border="0"  width="200" alt="No logo found">';
+									}
 								} else {
-									$gw[ 'GWIMAGE' ] = '<img src="'.JOMRES_IMAGES_RELPATH.'noimage.gif" border="0"  width="200" alt="No logo found">';
+									$gw[ 'GWIMAGE' ] = '<img src="'.JOMRES_IMAGES_RELPATH.'j00510'.$gateway_name.'.png" border="0"  width="200" alt="'.$gateway_name.' logo">';
 								}
+
 
 
 								if (isset($MiniComponents->registeredClasses['00509'][$gateway_name])) { // Let's check that the site manager hasn't uninstalled the plugin. If count == 0, then they have, we don't want to attempt to show this gateway
-									$gateways[ ] = $gw;
+									if ( !$thisJRUser->userIsManager || $jrConfig[ 'development_production' ] != 'production' || $gateway['test_mode'] == "1" ) {
+										$gateways[ ] = $gw;
+									}
 								}
 								++$counter;
 							}
-							}
-
 						}
 					}
+				}
 
 				if (!empty($gateways)) {
 					$gwo[ 'GATEWAYCHOICEINTRO' ] = jr_gettext('_JOMRES_COM_A_GATEWAY_BOOKING_CHOOSE', '_JOMRES_COM_A_GATEWAY_BOOKING_CHOOSE');
 					$gateway_output[] = $gwo;
-					}
 				}
-			}
+			//}
+		}
 
 		$booking_parts[ 'PROCESSURL' ] = 'processpayment';
 		$booking_parts[ 'PROCESSURL_SAVETOCART' ] = 'save_booking_to_cart';
@@ -664,13 +672,13 @@ class j02990showconfirmation
 			$amend_contractuid = $tmpBookingHandler->getBookingFieldVal('amend_contractuid');
 			$booking_parts[ 'BOOKINGFORMURL' ] = jomresURL(JOMRES_SITEPAGE_URL_NOSEF.'&task=amendBooking&no_html=1&contractUid='.$amend_contractuid);
 		} else {
-			$booking_parts[ 'BOOKINGFORMURL' ] = get_booking_url($bookingDeets[ 'property_uid' ],'nosef');
+			$booking_parts[ 'BOOKINGFORMURL' ] = get_booking_url($bookingDeets[ 'property_uid' ], 'nosef');
 		}
 
 		$cartoutput = array();
 		if (isset($MiniComponents->registeredClasses[ '06000']['show_cart' ])) {
 			$site_paypal_settings = get_plugin_settings('paypal', 0);
-			if ( (isset($site_paypal_settings['override']) && $site_paypal_settings['override'] == '1' && $jrConfig[ 'useshoppingcart' ] == '1') || empty($gatewayDeets)) {
+			if ((isset($site_paypal_settings['override']) && $site_paypal_settings['override'] == '1' && $jrConfig[ 'useshoppingcart' ] == '1') || empty($gatewayDeets)) {
 				$booking_parts[ '_JOMRES_CART_OR' ] = jr_gettext('_JOMRES_CART_OR', '_JOMRES_CART_OR');
 				$booking_parts[ '_JOMRES_SAVEFORLATER' ] = '<input class="fg-button ui-state-default ui-corner-all" type="submit" id="send" name="send" value="'.jr_gettext('_JOMRES_CART_SAVEFORLATER', '_JOMRES_CART_SAVEFORLATER', false, false).'" class="button" onclick="return confirmation_validate(true);" />';
 				$cartoutput[ ] = array('_JOMRES_SAVEFORLATER' => jr_gettext('_JOMRES_CART_SAVEFORLATER', '_JOMRES_CART_SAVEFORLATER', false, false), '_JOMRES_CART_OR' => $booking_parts[ '_JOMRES_CART_OR' ]);
@@ -756,16 +764,14 @@ class j02990showconfirmation
 		$MiniComponents->triggerEvent('03010', $componentArgs);
 
 		$tmpBookingHandler->close_jomres_session();  // This ensures that the new guest numbers, if they have been added, are saved to the session.
-
-
 	}
 
 
 
-    /**
-     * @return null
-     */
-    public function getRetVals()
+	/**
+	 * @return null
+	 */
+	public function getRetVals()
 	{
 		return null;
 	}

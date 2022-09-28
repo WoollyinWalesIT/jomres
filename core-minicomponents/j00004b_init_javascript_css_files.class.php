@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -18,19 +18,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	 * @package Jomres\Core\Minicomponents
 	 *
 	 * Configures which CSS and Javascript files should be loaded to the theme/template, hands off to the CMS Specific functionality to actually handle adding them to the head of the theme/template.
-	 * 
+	 *
 	 */
 
 class j00004b_init_javascript_css_files
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -86,12 +87,12 @@ class j00004b_init_javascript_css_files
 		$css_files = array();
 		$javascript_files = array();
 
-        // We need to include jquery, because BS5 doesn't use it by default
+		// We need to include jquery, because BS5 doesn't use it by default
 
-        if ( jomres_bootstrap_version() == 5) {
-            $javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'jquery/dist/', 'jquery.js');
-            $javascript_files[] = array(JOMRES_JS_RELPATH, 'no-conflict.js');
-        }
+		if (jomres_bootstrap_version() == 5) {
+			$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'jquery/dist/', 'jquery.js');
+			$javascript_files[] = array(JOMRES_JS_RELPATH, 'no-conflict.js');
+		}
 
 
 		$datepicker_localisation_file = '';
@@ -99,7 +100,7 @@ class j00004b_init_javascript_css_files
 			jomres_cmsspecific_addheaddata('css', $themePath, 'jquery-ui.min.css');
 			$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'jquery-ui-dist/', 'jquery-ui.min.js');
 			$datepicker_localisation_file = 'datepicker-'.get_showtime('datepicker_lang').'.js';
-		} elseif ( get_showtime('task') != 'showplugins' ) { // We're in Joomla frontend
+		} elseif (get_showtime('task') != 'showplugins') { // We're in Joomla frontend
 			jomres_cmsspecific_addheaddata('css', $themePath, 'jquery-ui.min.css');
 			$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'jquery-ui-dist/', 'jquery-ui.min.js');
 			$datepicker_localisation_file = 'datepicker-'.get_showtime('datepicker_lang').'.js';
@@ -126,7 +127,7 @@ class j00004b_init_javascript_css_files
 
 		$javascript_files[] = array(JOMRES_JS_RELPATH, 'jomres.js');
 
-		if ($datepicker_localisation_file!= '' ) { // Joomla 3.9.21 started throwing issues with buttons in plugin manager due to jquery ui / bootstrap.js call order in admin area so modified this script to not call jq ui in show_plugins task on Joomla
+		if ($datepicker_localisation_file!= '') { // Joomla 3.9.21 started throwing issues with buttons in plugin manager due to jquery ui / bootstrap.js call order in admin area so modified this script to not call jq ui in show_plugins task on Joomla
 			$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'jquery-ui/ui/i18n/', $datepicker_localisation_file);
 		}
 
@@ -144,7 +145,7 @@ class j00004b_init_javascript_css_files
 		$javascript_files[] = array(JOMRES_JS_RELPATH, 'jquery.expander.min.js');
 
 		$autocomplete_js = 'autocomplete.js';
-		if ( jomres_bootstrap_version() == '3' ) {
+		if (jomres_bootstrap_version() == '3') {
 			$autocomplete_js = 'autocomplete-backport-bs3.js';
 		}
 
@@ -193,7 +194,7 @@ class j00004b_init_javascript_css_files
 			}
 		}
 
-        switch (jomres_bootstrap_version()) {
+		switch (jomres_bootstrap_version()) {
 			case '2':
 				$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'x-editable/dist/bootstrap-editable/js/', 'bootstrap-editable.min.js');
 				$css_files[] = array(JOMRES_NODE_MODULES_RELPATH.'x-editable/dist/bootstrap-editable/css/', 'bootstrap-editable.css');

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -41,7 +41,7 @@ class jomres_install
 	protected $minicomponent_registry;
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -85,7 +85,7 @@ class jomres_install
 		//jomres integration.php, so we can use jomres features
 		require_once __DIR__ .  '/../../../integration.php';
 		
-		//if this cms is WordPress and we`re running the installer from Jomres itself, 
+		//if this cms is WordPress and we`re running the installer from Jomres itself,
 		//the mysqli db connection the installer uses won`t be available, so we`ll have to manually initialize the db connection.
 		//TODO: try to use $wpdb insetad
 		if (this_cms_is_wordpress()) {
@@ -133,7 +133,7 @@ class jomres_install
 	//jomres version checks, to double check the installer action
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -160,7 +160,6 @@ class jomres_install
 		} else { //the new way
 			//file version is higher than the db version, perform update routines
 			if (version_compare($this->jrConfig['version'], $this->jrConfig['jomres_db_version'], '>')) {
-				
 				if ($this->jomresTablesAndDataExist()) {
 					//jomres tables exist, perform update
 					$this->action = 'update';
@@ -209,7 +208,7 @@ class jomres_install
 	//if db tables exist, it means jomres is installed or was installed previously
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -238,8 +237,7 @@ class jomres_install
 				//jomres data doesn`t exist
 				return false;
 			}
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			return false;
 		}
 		
@@ -250,7 +248,7 @@ class jomres_install
 	//fresh installs
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -293,17 +291,16 @@ class jomres_install
 			//run plugins installation scripts
 			//$this->installPlugins();
 
-			$this->siteConfig->update_setting('compatability_property_configuration', 1 );
+			$this->siteConfig->update_setting('compatability_property_configuration', 1);
 
-			$this->siteConfig->update_setting('initial_setup_done', 0 );
-			$this->siteConfig->update_setting('admin_options_level', 0 );
+			$this->siteConfig->update_setting('initial_setup_done', 0);
+			$this->siteConfig->update_setting('admin_options_level', 0);
 
 			//update db version so we can check this on future updates or db sanity check
 			if (empty($this->messages)) {
 				$this->siteConfig->update_setting('jomres_db_version', $this->jrConfig['version']);
 			}
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			throw new Exception($e->getMessage());
 		}
 	}
@@ -311,7 +308,7 @@ class jomres_install
 	//update existing installation
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -361,17 +358,16 @@ class jomres_install
 			//plugins should already be installed, so most probably their tables won`t need to be created again
 			//$this->installPlugins();
 
-			$this->siteConfig->update_setting('initial_setup_done', 1 );
+			$this->siteConfig->update_setting('initial_setup_done', 1);
 			if (!isset($this->jrConfig['admin_options_level'])) { // The previous version of Jomres was pre-9.24 so the admin_options_level setting will not exist, we'll give full access here, but if the setting already exists we will not change it
-				$this->siteConfig->update_setting('admin_options_level', 2 );
+				$this->siteConfig->update_setting('admin_options_level', 2);
 			}
 
 			//update db version so we can check this on future updates or sanity checks
 			if (empty($this->messages)) {
 				$this->siteConfig->update_setting('jomres_db_version', $this->jrConfig['version']);
 			}
-		} 
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			throw new Exception($e->getMessage());
 		}
 	}
@@ -379,7 +375,7 @@ class jomres_install
 	//uninstall action
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -398,8 +394,7 @@ class jomres_install
 			$this->deleteFiles();
 			
 			return true;
-		} 
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			throw new Exception($e->getMessage());
 		}
 	}
@@ -407,7 +402,7 @@ class jomres_install
 	//create jomres root dir file and define jomres root dir
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -442,7 +437,7 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 	//check and create jomres dirs
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -504,7 +499,7 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 	//create fresh install db tables
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -515,8 +510,7 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 			foreach (glob(JOMRESPATH_BASE.'database'.JRDS.'tables'.JRDS.'*.php') as $filename) {
 				include $filename;
 			}
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			throw new Exception('Error, unable to create default db tables. '.$e->getMessage());
 		}
 	}
@@ -524,7 +518,7 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 	//seed fresh install tales with default content
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -535,17 +529,15 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 			foreach (glob(JOMRESPATH_BASE.'database'.JRDS.'seeds'.JRDS.'*.php') as $filename) {
 				include $filename;
 			}
-		}
-		catch (Exception $e) {
-			throw new Exception('Error, unable to seed default content. '.$e->getMessage() );
-
+		} catch (Exception $e) {
+			throw new Exception('Error, unable to seed default content. '.$e->getMessage());
 		}
 	}
 	
 	//run all plugins installation scripts
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -562,9 +554,8 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 					include $dir.JRDS.'plugin_install.php';
 				}
 			}
-		}
-		catch (Exception $e) {
-			throw new Exception('Error, unable to run core plugins installation scripts. '.$e->getMessage() );
+		} catch (Exception $e) {
+			throw new Exception('Error, unable to run core plugins installation scripts. '.$e->getMessage());
 		}
 		
 		//search all core-plugins and run their installation scripts
@@ -574,8 +565,7 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 					include $dir.JRDS.'plugin_install.php';
 				}
 			}
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			throw new Exception('Error, unable to run remote plugins installation scripts. '.$e->getMessage());
 		}
 	}
@@ -583,7 +573,7 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 	//update routines
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -599,8 +589,7 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 					}
 				}
 			}
-		} 
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			throw new Exception($e->getMessage());
 		}
 	}
@@ -608,7 +597,7 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 	//legacy update routines
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -619,8 +608,7 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 			foreach (glob(JOMRESPATH_BASE.'database'.JRDS.'legacy'.JRDS.'*.php') as $filename) {
 				include $filename;
 			}
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			throw new Exception($e->getMessage());
 		}
 	}
@@ -628,7 +616,7 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 	//copy sample images on fresh installs
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -678,7 +666,7 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 	//copy utility function
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -694,11 +682,10 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 		foreach ($contents as $fileNode) {
 			if (in_array(strtolower($fileNode['extension']), $this->allowed_image_extensions)) {
 				try {
-					if ( ! $this->filesystem->has('local://'.$target.$fileNode['basename'])) {
+					if (! $this->filesystem->has('local://'.$target.$fileNode['basename'])) {
 						$this->filesystem->copy('local://'.$fileNode['path'], 'local://'.$target.$fileNode['basename']);
 					}
-				}
-				catch (Exception $e) {
+				} catch (Exception $e) {
 					throw new Exception('Error, unable to copy ' . 'local://'.$fileNode['path'] . ' to ' . 'local://'.$target.$fileNode['basename']);
 				}
 			}
@@ -710,7 +697,7 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 	//remove obsolete files and regenerate registry
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -732,7 +719,7 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 	//drop jomres tables
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -760,7 +747,7 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 	//delete all jomres files
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -774,9 +761,9 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 
 		
 		//delete jomres_root file
-        if ($this->filesystem->exists('local://jomres_root.php') ) {
-            $this->filesystem->delete('local://jomres_root.php');
-        }
+		if ($this->filesystem->exists('local://jomres_root.php')) {
+			$this->filesystem->delete('local://jomres_root.php');
+		}
 
 		
 		return true;
@@ -785,7 +772,7 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 	//build installation error messages
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -804,7 +791,7 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 	//get installation messages/errors
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -21,9 +21,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jomres_generic_booking_email
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -35,7 +36,7 @@ class jomres_generic_booking_email
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -72,7 +73,7 @@ class jomres_generic_booking_email
 		$this->data[$contract_uid]['ROOMS'] = '';
 		if (isset($current_contract_details->contract[$contract_uid]['roomdeets'])) {
 			foreach ($current_contract_details->contract[$contract_uid]['roomdeets'] as $rd) {
-				if ( isset($rd['room_classes_uid']) && isset($current_property_details->all_room_types[$rd['room_classes_uid']]) ) {
+				if (isset($rd['room_classes_uid']) && isset($current_property_details->all_room_types[$rd['room_classes_uid']])) {
 					$this->data[$contract_uid]['ROOMS'] .= $current_property_details->all_room_types[$rd['room_classes_uid']]['room_class_abbv'];
 				}
 				
@@ -95,8 +96,8 @@ class jomres_generic_booking_email
 		}
 
 		// Numbers of adults and children
-		$this->data[$contract_uid]['LABEL_ADULTS']		= jr_gettext('_JOMRES_SEARCH_FORM_ADULTS', '_JOMRES_SEARCH_FORM_ADULTS' , false );
-		$this->data[$contract_uid]['LABEL_CHILDREN']	= jr_gettext('_JOMRES_SEARCH_FORM_CHILDREN', '_JOMRES_SEARCH_FORM_CHILDREN' , false );
+		$this->data[$contract_uid]['LABEL_ADULTS']		= jr_gettext('_JOMRES_SEARCH_FORM_ADULTS', '_JOMRES_SEARCH_FORM_ADULTS', false);
+		$this->data[$contract_uid]['LABEL_CHILDREN']	= jr_gettext('_JOMRES_SEARCH_FORM_CHILDREN', '_JOMRES_SEARCH_FORM_CHILDREN', false);
 		$this->data[$contract_uid]['NUMBER_ADULTS'] = $current_contract_details->contract[$contract_uid]['contractdeets']['adults'];
 		$this->data[$contract_uid]['NUMBER_CHILDREN'] = $current_contract_details->contract[$contract_uid]['contractdeets']['children'];
 
@@ -125,7 +126,7 @@ class jomres_generic_booking_email
 		}
 
 		//links
-		$this->data[$contract_uid]['LINK_TO_PROPERTY'] = '<a href="'.get_property_details_url($property_uid,'nosef').'">'.jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_WEBSITE', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_WEBSITE', false, false).'</a>';
+		$this->data[$contract_uid]['LINK_TO_PROPERTY'] = '<a href="'.get_property_details_url($property_uid, 'nosef').'">'.jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_WEBSITE', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_WEBSITE', false, false).'</a>';
 
 		if (!$thisJRUser->userIsManager && $thisJRUser->userIsRegistered) {
 			$this->data[$contract_uid]['LINK_TO_BOOKING'] = '<a href="'.JOMRES_SITEPAGE_URL_NOSEF.'&task=muviewbooking&contract_uid='.$contract_uid.'">'.jr_gettext('_JOMCOMP_MYUSER_VIEWBOOKING', '_JOMCOMP_MYUSER_VIEWBOOKING', false, false).'</a>';
@@ -235,7 +236,7 @@ class jomres_generic_booking_email
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -287,13 +288,13 @@ class jomres_generic_booking_email
 
 		//attachments
 		
-		if (isset($this->property_uid) && (int)$this->property_uid > 0 ) {
+		if (isset($this->property_uid) && (int)$this->property_uid > 0) {
 			$terms_pdf_name = "terms_and_conditions_".(int)$this->property_uid.".pdf";
 
-			if (!file_exists(JOMRES_MPDF_ABSPATH.JRDS.$terms_pdf_name )) {
+			if (!file_exists(JOMRES_MPDF_ABSPATH.JRDS.$terms_pdf_name)) {
 				$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
 				$pdf = $MiniComponents->specificEvent('06000', 'terms', array('property_uid' => $this->property_uid , "as_pdf" => true , "output_now" => false ));
-				file_put_contents(JOMRES_MPDF_ABSPATH.JRDS.$terms_pdf_name , $pdf );
+				file_put_contents(JOMRES_MPDF_ABSPATH.JRDS.$terms_pdf_name, $pdf);
 			}
 			
 			$terms_pdf = array('type' => 'pdf', 'path' => JOMRES_MPDF_ABSPATH, 'filename' => $terms_pdf_name);

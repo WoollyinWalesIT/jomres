@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -66,6 +66,3 @@ jr_define('_JOMRES_FAQ_MANAGER_ANSWER_ROOMFEATURES', "Oda özellikleri, odayı �
 jr_define('_JOMRES_FAQ_ADMIN_CATEGORY_PAYMENTS', 'Ödemeler');
 jr_define('_JOMRES_FAQ_ADMIN_QUESTION_TROUBLESHOOTING_NOGATEWAY', "Rezervasyon yaptıktan sonra ödeme geçidini göremezsiniz.");
 jr_define('_JOMRES_FAQ_ADMIN_ANSWER_TROUBLESHOOTING_NOGATEWAY', "Eğer Mülk Yöneticisi olarak oturum açtıysanız, ödemeyi kendiniz yapmadığınız için ödeme geçidini görmezsiniz. Yalnızca yönetici olmayan kullanıcılar, rezervasyon yaparken ağ geçidini görebilir.");
-
-
-

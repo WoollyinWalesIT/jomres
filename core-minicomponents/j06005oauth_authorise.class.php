@@ -4,70 +4,70 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 // ################################################################
-defined( '_JOMRES_INITCHECK' ) or die( '' );
+defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06005oauth_authorise
-	{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	function __construct()
-		{
-		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-		if ( $MiniComponents->template_touch ){$this->template_touchable = false;return;}
+	{
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
+			return;
+		}
 
 		$ePointFilepath=get_showtime('ePointFilepath');
-		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
+		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 
-		$client_id			= jomresGetParam( $_REQUEST, 'client_id', "" );
+		$client_id			= jomresGetParam($_REQUEST, 'client_id', "");
 
-		if ($client_id != "" )
-			{
+		if ($client_id != "") {
 			$query = "SELECT client_id,client_secret,scope,redirect_uri FROM #__jomres_oauth_clients WHERE user_id = ".(int)$thisJRUser->userid;
 			$result = doSelectSql($query);
-			if ( count ($result) > 0 )
-				{
+			if (count($result) > 0) {
 				$user_client_ids = array();
 				$user_client_secrets = array();
 				$user_client_scopes = array();
-				foreach ($result as $cid )
-					{
+				foreach ($result as $cid) {
 					$user_client_ids[]=$cid->client_id;
 					$user_client_secrets[ $cid->client_id ] = $cid->client_secret;
 					$user_client_scopes[ $cid->client_id ] = $cid->scope;
 					$user_client_scopes[ $cid->redirect_uri ] = $cid->redirect_uri;
-					}
-				if (!in_array($_REQUEST['client_id'],$user_client_ids))
+				}
+				if (!in_array($_REQUEST['client_id'], $user_client_ids)) {
 					die("Unauthorised client id");
 				}
 			}
-		else
-			{
+		} else {
 			die("Client id not passed");
-			}
+		}
 		
-		define( 'JOMRES_API_CMS_ROOT' , JOMRESCONFIG_ABSOLUTE_PATH );
+		define('JOMRES_API_CMS_ROOT', JOMRESCONFIG_ABSOLUTE_PATH);
 
 		// include our OAuth2 Server object
 		
@@ -88,7 +88,7 @@ class j06005oauth_authorise
 
 		// display an authorization form
 		if (!isset($_POST['authorized'])) {
-		  exit('
+			exit('
 		<form method="post">
 		  <label>Do You Authorize '.$client_id .'?</label><br />
 		  <input type="submit" name="authorized" value="yes">
@@ -101,18 +101,17 @@ class j06005oauth_authorise
 		
 		
 				
-		if ($is_authorized) 
-			{
-			$server->handleAuthorizeRequest($request, $response, $is_authorized , $thisJRUser->userid);
-			}
+		if ($is_authorized) {
+			$server->handleAuthorizeRequest($request, $response, $is_authorized, $thisJRUser->userid);
+		}
 		$response->send();
 		die();
-		}
+	}
 
 
 
 	function getRetVals()
-		{
+	{
 		return null;
-		}
 	}
+}

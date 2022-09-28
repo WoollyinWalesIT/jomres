@@ -10,7 +10,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
-= The multi-property, multi-vendor, multi-language booking portal =
+= Build your own Online Travel Agency like Booking.com or AirBNB =
 
 Mature, intelligent, secure and powerful. Started in 2005 and maintained continuously for the last 17 years, Jomres is the most complete online booking engine available for WordPress.
 

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -21,9 +21,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jomres_roomlocks
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -33,24 +34,21 @@ class jomres_roomlocks
 		$property_uid = get_showtime('property_uid');
 		$this->session_directory = JOMRES_SESSIONS_ABSPATH;
 
-        if (!is_dir($this->session_directory)) {
-            if (!@mkdir($this->session_directory)) {
-                $this->setMessage('Error, unable to make folder '.$this->session_directory." automatically therefore cannot store booking session data. Please create the folder manually and ensure that it's writable by the web server.", 'danger');
-            }
-        }
-        
+		if (!is_dir($this->session_directory)) {
+			if (!@mkdir($this->session_directory)) {
+				$this->setMessage('Error, unable to make folder '.$this->session_directory." automatically therefore cannot store booking session data. Please create the folder manually and ensure that it's writable by the web server.", 'danger');
+			}
+		}
+		
 		$lock_filename = 'room_lock_'.(int) $property_uid.'.php';
 		$this->sessionfile = $this->session_directory.$lock_filename;
 		$this->clean_up_old_locks();
 		$this->get_all_rooms_already_in_cart();
-
-
-
 	}
 
-	// If the lock is an hour old, we'll remove the lock.	
+	// If the lock is an hour old, we'll remove the lock.
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -87,7 +85,7 @@ class jomres_roomlocks
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -108,7 +106,7 @@ class jomres_roomlocks
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -126,7 +124,7 @@ class jomres_roomlocks
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -165,7 +163,7 @@ class jomres_roomlocks
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -179,7 +177,7 @@ class jomres_roomlocks
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -197,7 +195,7 @@ class jomres_roomlocks
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -208,7 +206,7 @@ class jomres_roomlocks
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -228,7 +226,7 @@ class jomres_roomlocks
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -251,13 +249,12 @@ class jomres_roomlocks
 					}
 				}
 
-				if (isset( $cart['dateRangeString'])) {
+				if (isset($cart['dateRangeString'])) {
 					$dateRangeString = $cart['dateRangeString'];
 					$datesBang = explode(',', $dateRangeString);
 					foreach ($datesBang as $date) {
 						$this->rooms_already_in_cart [$date] = $rooms;
 					}
-
 				}
 			}
 		}

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -29,14 +29,15 @@ defined('_JOMRES_INITCHECK') or die('');
  */
 
 
-function get_property_details_url($property_uid = 0, $type = 'sef', $params = '') {
+function get_property_details_url($property_uid = 0, $type = 'sef', $params = '')
+{
 	$jomres_access_control = jomres_singleton_abstract::getInstance('jomres_access_control');
 	
 	if (!$jomres_access_control->this_user_can('viewproperty')) {
 		return false;
 	}
 
-	switch($type) {
+	switch ($type) {
 		case 'sef':
 			$url = jomresURL(JOMRES_SITEPAGE_URL.'&task=viewproperty&property_uid='.$property_uid.$params);
 			break;
@@ -56,9 +57,9 @@ function get_property_details_url($property_uid = 0, $type = 'sef', $params = ''
 	
 	//if we have a joomla menu of type propertydetails created for this specific property, then we`ll use that url insetad, t avoid duplicates. This allows alows us having modules assigned only to this property details page.
 	if (this_cms_is_joomla()) {
-		$app = JFactory::getApplication(); 
+		$app = JFactory::getApplication();
 		$menu = $app->getMenu();
-		$menuItem = $menu->getItems( 'link', 'index.php?option=com_jomres&view=default&layout=propertydetails&selected_property='.$property_uid, $firstonly = true );
+		$menuItem = $menu->getItems('link', 'index.php?option=com_jomres&view=default&layout=propertydetails&selected_property='.$property_uid, $firstonly = true);
 		if ($menuItem) {
 			if ($type == 'sef' || $type == 'sefsafe') {
 				$url = JRoute::_($menuItem->link.'&Itemid='.$menuItem->id);

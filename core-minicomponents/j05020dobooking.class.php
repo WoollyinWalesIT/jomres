@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,20 +17,21 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-     * Imports MRP or SRP calendar for display in the booking form, builds a button to trigger the form in a modal
-	 * 
+	 * Imports MRP or SRP calendar for display in the booking form, builds a button to trigger the form in a modal
+	 *
 	 */
 
 class j05020dobooking
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs = array())
@@ -53,6 +54,10 @@ class j05020dobooking
 			}
 		}
 		set_showtime('booking_form_calendar', $calendar);
+
+
+		jomres_set_page_title( $property_uid ,  jr_gettext('_JOMRES_COM_MR_QUICKRESDESC', '_JOMRES_COM_MR_QUICKRESDESC', false) );
+
 		require_once JOMRES_FUNCTIONS_ABSPATH.'dobooking.php';
 
 		if (!defined('DOBOOKING_IN_DETAILS')) {

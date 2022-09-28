@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06000show_property_features
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -73,6 +74,10 @@ class j06000show_property_features
 
 		$mrConfig = getPropertySpecificSettings($property_uid);
 
+		if (get_showtime('task') != 'dobooking') {
+			jomres_set_page_title( $property_uid ,  jr_gettext('_JOMRES_SEARCH_FEATURE_INFO', '_JOMRES_SEARCH_FEATURE_INFO', false) );
+		}
+
 		$basic_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
 		$basic_property_details->gather_data($property_uid);
 
@@ -88,9 +93,9 @@ class j06000show_property_features
 
 				$output[ 'HFEATURES' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FEATURES', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FEATURES', false);
 
-				foreach ($basic_property_details->features as $feature_id=>$f) {
+				foreach ($basic_property_details->features as $feature_id => $f) {
 					$url = jomresURL(JOMRES_SITEPAGE_URL.'&send=Search&calledByModule=mod_jomsearch_m0&feature_uids='.$feature_id);
-					$pFeature[ 'FEATURE' ] = jomres_makeTooltip($f[ 'abbv' ], $f[ 'abbv' ], $f[ 'desc' ], JOMRES_IMAGELOCATION_RELPATH.'pfeatures/'.$f[ 'image' ], '', 'property_feature', array() , $url);
+					$pFeature[ 'FEATURE' ] = jomres_makeTooltip($f[ 'abbv' ], $f[ 'abbv' ], $f[ 'desc' ], JOMRES_IMAGELOCATION_RELPATH.'pfeatures/'.$f[ 'image' ], '', 'property_feature', array(), $url);
 					$pFeatures[] = $pFeature;
 				}
 
@@ -111,7 +116,7 @@ class j06000show_property_features
 				$propertyFeatures = array();
 				$features_template = array();
 
-				foreach ($basic_property_details->features as $feature_id=>$f) {
+				foreach ($basic_property_details->features as $feature_id => $f) {
 					$f['feature_uid']=$feature_id;
 					$propertyFeatures[$f['cat_id']][] = $f;
 				}
@@ -130,12 +135,12 @@ class j06000show_property_features
 
 					foreach ($v as $f) {
 						$url = jomresURL(JOMRES_SITEPAGE_URL.'&send=Search&calledByModule=mod_jomsearch_m0&feature_uids='.$f['feature_uid']);
-						if (jomres_bootstrap_version() == '5' ) {
+						if (jomres_bootstrap_version() == '5') {
 							$p = [ 0 => [
 								'IMAGE' 				=> JOMRES_IMAGELOCATION_RELPATH.'pfeatures/'.$f[ 'image' ] ,
 								'FEATURE_DESCRIPTION'	=> $f[ 'abbv' ],
 								'URL'					=> $url,
-								'TOOLTIP'				=> $pFeature[ 'FEATURE' ] = jomres_makeTooltip($f[ 'abbv' ], $f[ 'abbv' ], $f[ 'desc' ], JOMRES_IMAGELOCATION_RELPATH.'pfeatures/'.$f[ 'image' ], '', 'property_feature', array() , $url)
+								'TOOLTIP'				=> $pFeature[ 'FEATURE' ] = jomres_makeTooltip($f[ 'abbv' ], $f[ 'abbv' ], $f[ 'desc' ], JOMRES_IMAGELOCATION_RELPATH.'pfeatures/'.$f[ 'image' ], '', 'property_feature', array(), $url)
 							]];
 
 							$tmpl = new patTemplate();
@@ -143,9 +148,8 @@ class j06000show_property_features
 							$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
 							$tmpl->readTemplatesFromInput('show_property_feature.html');
 							$pFeature[ 'FEATURE' ] = $tmpl->getParsedTemplate();
-
 						} else {
-							$pFeature[ 'FEATURE' ] = jomres_makeTooltip($f[ 'abbv' ], $f[ 'abbv' ], $f[ 'desc' ], JOMRES_IMAGELOCATION_RELPATH.'pfeatures/'.$f[ 'image' ], '', 'property_feature', array() , $url);
+							$pFeature[ 'FEATURE' ] = jomres_makeTooltip($f[ 'abbv' ], $f[ 'abbv' ], $f[ 'desc' ], JOMRES_IMAGELOCATION_RELPATH.'pfeatures/'.$f[ 'image' ], '', 'property_feature', array(), $url);
 						}
 
 						$pFeatures[] = $pFeature;

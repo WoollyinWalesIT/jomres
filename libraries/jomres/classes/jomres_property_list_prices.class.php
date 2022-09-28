@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -21,9 +21,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jomres_property_list_prices
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -38,7 +39,7 @@ class jomres_property_list_prices
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -51,7 +52,7 @@ class jomres_property_list_prices
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -62,7 +63,7 @@ class jomres_property_list_prices
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -137,11 +138,10 @@ class jomres_property_list_prices
 
 				//get departure date
 				if (isset($_REQUEST[ 'departureDate' ]) && $_REQUEST[ 'departureDate' ] != '') {
-					if ( $_REQUEST[ 'arrivalDate' ] != '' && $_REQUEST[ 'departureDate' ] == $_REQUEST[ 'arrivalDate' ] )  {
-						$_REQUEST[ 'departureDate' ] =JSCalmakeInputDates(date( "Y/m/d", strtotime( JSCalConvertInputDates( $_REQUEST[ 'arrivalDate' ])." +1 day" ) ));
+					if ($_REQUEST[ 'arrivalDate' ] != '' && $_REQUEST[ 'departureDate' ] == $_REQUEST[ 'arrivalDate' ]) {
+						$_REQUEST[ 'departureDate' ] =JSCalmakeInputDates(date("Y/m/d", strtotime(JSCalConvertInputDates($_REQUEST[ 'arrivalDate' ])." +1 day")));
 					}
 					$this->departureDate = JSCalConvertInputDates(jomresGetParam($_REQUEST, 'departureDate', ''));
-
 				} elseif (!empty($tmpBookingHandler->tmpsearch_data)) {
 					if (isset($tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ]) && trim($tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ]) != '') {
 						$this->departureDate = $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ];
@@ -191,7 +191,7 @@ class jomres_property_list_prices
 						case 'M':
 							$multiplier = 30;
 							break;
-						}
+					}
 
 					if (!empty($tariffList)) {
 						foreach ($tariffList as $t) {
@@ -249,7 +249,7 @@ class jomres_property_list_prices
 											case 'M':
 												$post_text = jr_gettext('_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY', '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY');
 												break;
-											}
+										}
 									}
 								}
 								$pre_text = jr_gettext('_JOMRES_TARIFFSFROM', '_JOMRES_TARIFFSFROM', false, false);
@@ -262,13 +262,11 @@ class jomres_property_list_prices
 									$grand_total = output_price((($raw_price / $multiplier) * $this->stayDays), '');
 									$price_no_conversion = $poa_price;
 									$post_text = '';
-								}  else {
+								} else {
 									$pre_text = '';
 									$price = jr_gettext('_JOMRES_PRICE_ON_APPLICATION', '_JOMRES_PRICE_ON_APPLICATION', '', true, false);
 									$post_text = '';
 								}
-							
-
 							}
 						} else {
 							$pre_text = jr_gettext('_JOMRES_COM_MR_EXTRA_PRICE', '_JOMRES_COM_MR_EXTRA_PRICE');
@@ -279,19 +277,19 @@ class jomres_property_list_prices
 						}
 					} else {
 						if ($basic_property_details->real_estate_property_price == 0) {
-								if ($mrConfig['poa_price'] != '') {
-									$poa_price = (float)$mrConfig['poa_price'];
-									$pre_text = '';
-									$price = output_price($poa_price);
-									$raw_price = $poa_price;
-									$grand_total = output_price((($raw_price / $multiplier) * $this->stayDays), '');
-									$price_no_conversion = $poa_price;
-									$post_text = '';
-								}  else {
-									$pre_text = '';
-									$price = jr_gettext('_JOMRES_PRICE_ON_APPLICATION', '_JOMRES_PRICE_ON_APPLICATION', '', true, false);
-									$post_text = '';
-								}
+							if ($mrConfig['poa_price'] != '') {
+								$poa_price = (float)$mrConfig['poa_price'];
+								$pre_text = '';
+								$price = output_price($poa_price);
+								$raw_price = $poa_price;
+								$grand_total = output_price((($raw_price / $multiplier) * $this->stayDays), '');
+								$price_no_conversion = $poa_price;
+								$post_text = '';
+							} else {
+								$pre_text = '';
+								$price = jr_gettext('_JOMRES_PRICE_ON_APPLICATION', '_JOMRES_PRICE_ON_APPLICATION', '', true, false);
+								$post_text = '';
+							}
 						} else {
 							$pre_text = jr_gettext('_JOMRES_COM_MR_EXTRA_PRICE', '_JOMRES_COM_MR_EXTRA_PRICE', '', true, false);
 							$price = output_price($basic_property_details->real_estate_property_price);

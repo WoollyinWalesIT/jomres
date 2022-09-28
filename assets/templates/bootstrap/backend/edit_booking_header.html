@@ -27,7 +27,11 @@
 	<div class="well">
 		{TOOLBAR}
 	</div>
-
+	
+	<patTemplate:tmpl name="new_buttons" unusedvars="strip" type="simpleCondition" requiredVars="button">
+		{BUTTON}
+	</patTemplate:tmpl>
+	
 	<patTemplate:tmpl name="noshow_status" unusedvars="strip" type="simpleCondition" requiredVars="message">
 		<p class="{CLASS}">{MESSAGE}</p>
 	</patTemplate:tmpl>

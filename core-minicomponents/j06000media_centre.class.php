@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06000media_centre
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -75,10 +76,10 @@ class j06000media_centre
 				if (isset($type['name']) && $type['name'] != '') {
 					$resource_type_options[ ] = jomresHTML::makeOption($type['resource_type'], $type['name']);
 					if (isset($type['notes'])) {
-						$notes[] = array('NOTE' => str_replace( '"' , '&#34;' , $type['notes']));
+						$notes[] = array('NOTE' => str_replace('"', '&#34;', $type['notes']));
 					}
-				if (isset( $type['preview_link'])) {
-					$preview_links[] = array('RESOURCE_TYPE' => $type['resource_type'] , 'PREVIEW_LINK' => $type['preview_link']);
+					if (isset($type['preview_link'])) {
+						$preview_links[] = array('RESOURCE_TYPE' => $type['resource_type'] , 'PREVIEW_LINK' => $type['preview_link']);
 					}
 				}
 			}
@@ -120,7 +121,7 @@ class j06000media_centre
 			$property_uid = getDefaultProperty();
 			$mrConfig = getPropertySpecificSettings($property_uid);
 
-			 if ($mrConfig[ 'singleRoomProperty' ] == '1' ){
+			if ($mrConfig[ 'singleRoomProperty' ] == '1') {
 				$output['_JOMRES_MEDIA_CENTRE_INSTRUCTIONS']			   = jr_gettext('_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_SRP', '_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_SRP', false);
 			} else {
 				$output['_JOMRES_MEDIA_CENTRE_INSTRUCTIONS']			   = jr_gettext('_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_MRP', '_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_MRP', false);
@@ -156,8 +157,9 @@ class j06000media_centre
 	
 	// Returns a file size limit in bytes based on the PHP upload_max_filesize
 	// and post_max_size
-	function file_upload_max_size() {
-	  static $max_size = -1;
+	function file_upload_max_size()
+	{
+		static $max_size = -1;
 
 		if ($max_size < 0) {
 			// Start with post_max_size.
@@ -173,14 +175,14 @@ class j06000media_centre
 		return $max_size;
 	}
 
-	function parse_size($size) {
+	function parse_size($size)
+	{
 		$unit = preg_replace('/[^bkmgtpezy]/i', '', $size); // Remove the non-unit characters from the size.
 		$size = preg_replace('/[^0-9\.]/', '', $size); // Remove the non-numeric characters from the size.
 		if ($unit) {
 			// Find the position of the unit in the ordered string which is the power of magnitude to multiply a kilobyte by.
 			return round($size * pow(1024, stripos('bkmgtpezy', $unit[0])));
-		}
-		else {
+		} else {
 			return round($size);
 		}
 	}
@@ -191,7 +193,8 @@ class j06000media_centre
  * @param file $file
  * @return string Formatted Filesize, e.g. "113.24 MB".
  */
-	function filesize_formatted($bytes) {
+	function filesize_formatted($bytes)
+	{
 		if ($bytes >= 1073741824) {
 			return number_format($bytes / 1073741824, 2) . ' GB';
 		} elseif ($bytes >= 1048576) {

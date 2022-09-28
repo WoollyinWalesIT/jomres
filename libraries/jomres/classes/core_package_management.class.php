@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,7 +17,7 @@ defined('_JOMRES_INITCHECK') or die('');
 /**
  * @package Jomres\Core\Classes
  *
- * Manages version checking, download and extraction of node modules and the vendor directory. 
+ * Manages version checking, download and extraction of node modules and the vendor directory.
  */
 
 class core_package_management
@@ -25,7 +25,7 @@ class core_package_management
 	private static $internal_debugging;
 
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -36,42 +36,39 @@ class core_package_management
 
 		$this->set_repos();
 
-		if (!isset($this->repos) || empty ($this->repos) ) {
+		if (!isset($this->repos) || empty($this->repos)) {
 			throw new Exception('Repos array is empty');
 		}
 		
 		$this->check_basics();
-		
-
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 	public function check_basics()
 	{
-		if (!isset($_REQUEST['package_manager_install']) || $_REQUEST['package_manager_install'] == '0' ) {
+		if (!isset($_REQUEST['package_manager_install']) || $_REQUEST['package_manager_install'] == '0') {
 			foreach ($this->repos as $library => $repo) {
-				$this->check_repo_local_dirs_exist( $repo );
+				$this->check_repo_local_dirs_exist($repo);
 			}
 		} else {
-
-			if  (!in_array  ('curl', get_loaded_extensions())) {
+			if (!in_array('curl', get_loaded_extensions())) {
 				throw new Exception('Curl PHP extension is not available on this server, please install this PHP library before attempting to continue.');
-				}
+			}
 			
-			if  (!in_array  ('zip', get_loaded_extensions())) {
+			if (!in_array('zip', get_loaded_extensions())) {
 				throw new Exception('zipArchive PHP extension is not available on this server, please install this PHP extension before attempting to continue.');
-				}
+			}
 				
 			$this->install_packages();
 		}
 	}
 
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -82,25 +79,24 @@ class core_package_management
 	
 	// Install all packages from github
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 	private function install_packages()
 	{
 		foreach ($this->repos as $library => $repo) {
-			$this->install_package( $library , $repo);
+			$this->install_package($library, $repo);
 		}
-		
 	}
 	
 	// Install an individual package
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
-	private function install_package( $library , $repo )
+	private function install_package($library, $repo)
 	{
 		$this->download_location = JOMRES_TEMP_ABSPATH . 'package_libs' . JRDS ;
 		$local_archive = $this->download_location.'master_'.$library.'.zip';
@@ -108,18 +104,18 @@ class core_package_management
 		$local_file_size = -1;
 		if (is_file($local_archive)) {
 			$remote_file_size = $this->curl_get_file_size($repo['download_url']);
-			$local_file_size = filesize ($local_archive);
+			$local_file_size = filesize($local_archive);
 		}
 
 		if (!file_exists($local_archive) || $local_file_size != $remote_file_size) {
-			$this->download_package( $library , $repo['download_url'] , $local_archive );
+			$this->download_package($library, $repo['download_url'], $local_archive);
 		}
 		
 		
 		if (!is_file($local_archive)) {
-			throw new Exception("File not downloaded ".$local_archive . ' for the '.$library . ' repo :: Download error reported ' . $this->download_error );
+			throw new Exception("File not downloaded ".$local_archive . ' for the '.$library . ' repo :: Download error reported ' . $this->download_error);
 		}
-		$this->unzip_downloaded_package($library , $local_archive , $repo['local_abs_path'] );
+		$this->unzip_downloaded_package($library, $local_archive, $repo['local_abs_path']);
 		
 		//unlink($local_archive); // Do not uncomment!
 	}
@@ -129,11 +125,11 @@ class core_package_management
 	
 	// Download the file from the repo
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
-	private function unzip_downloaded_package($library , $local_archive , $destination )
+	private function unzip_downloaded_package($library, $local_archive, $destination)
 	{
 		$this->remove_directory($destination);
 		
@@ -142,24 +138,23 @@ class core_package_management
 			$zip->extractTo($this->download_location);
 			$zip->close();
 		} else {
-			throw new Exception("Could not unzip ".$local_archive );
+			throw new Exception("Could not unzip ".$local_archive);
 		}
 
-		rename( $this->download_location.$library , $destination );
+		rename($this->download_location.$library, $destination);
 /* 		 if ( $this->dirmv( $this->download_location.JRDS.$library , $destination ) ) {
 			// unlink($local_archive); // Do not uncomment!
 		 } */
-		
-		
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
-	private function retrieve_remote_file_time($library){
+	private function retrieve_remote_file_time($library)
+	{
 		$url = 'http://updates.jomres4.net/library_packages/jomres_'.$library.'_last_modified.txt';
 		$ch = curl_init();
 
@@ -177,23 +172,22 @@ class core_package_management
 		} else {
 			return $data;
 		}
-
 	}
 
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
-	private function download_package( $library , $remote_archive , $local_archive )
+	private function download_package($library, $remote_archive, $local_archive)
 	{
-        if (strpos(@ini_get('disable_functions'), 'set_time_limit') === false) {
-            $currTimeLimit = ini_get('max_execution_time');
-            set_time_limit($currTimeLimit);
-        }
+		if (strpos(@ini_get('disable_functions'), 'set_time_limit') === false) {
+			$currTimeLimit = ini_get('max_execution_time');
+			set_time_limit($currTimeLimit);
+		}
 
-		$this->file_modification_flag_file = str_replace ( ".zip" , ".txt" , $local_archive );
+		$this->file_modification_flag_file = str_replace(".zip", ".txt", $local_archive);
 
 		if (file_exists($local_archive)) {
 			$last_remote_file_mtime = (int)$this->retrieve_remote_file_time($library);
@@ -202,22 +196,22 @@ class core_package_management
 		}
 
 		$last_local_file_mtime = -1;
-		if ( file_exists($this->file_modification_flag_file) && file_exists($local_archive) ) {
+		if (file_exists($this->file_modification_flag_file) && file_exists($local_archive)) {
 			$last_local_file_mtime = (int)file_get_contents($this->file_modification_flag_file);
 		}
 
-		if ($last_local_file_mtime < $last_remote_file_mtime || is_null($last_remote_file_mtime) ) { // The remote file modification time is less than the remote file modification time. This means that the remote file was more recently updated, so we need to download it. This prevents us from needing to constantly download the same file time and again, if it has already been downloaded once, as it's possible that the server timed out previously due to it being slow to download or unzip the file locally. 
+		if ($last_local_file_mtime < $last_remote_file_mtime || is_null($last_remote_file_mtime)) { // The remote file modification time is less than the remote file modification time. This means that the remote file was more recently updated, so we need to download it. This prevents us from needing to constantly download the same file time and again, if it has already been downloaded once, as it's possible that the server timed out previously due to it being slow to download or unzip the file locally.
 			if (!is_dir(JOMRES_TEMP_ABSPATH)) {
 				mkdir(JOMRES_TEMP_ABSPATH);
 				if (!is_dir(JOMRES_TEMP_ABSPATH)) {
-					throw new Exception("Can't make temporary dir ".JOMRES_TEMP_ABSPATH );
+					throw new Exception("Can't make temporary dir ".JOMRES_TEMP_ABSPATH);
 				}
 			}
 			
 			if (!is_dir($this->download_location)) {
 				mkdir($this->download_location);
 				if (!is_dir($this->download_location)) {
-					throw new Exception("Can't make temporary dir ".$this->download_location );
+					throw new Exception("Can't make temporary dir ".$this->download_location);
 				}
 			}
 
@@ -229,74 +223,76 @@ class core_package_management
 			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
 			curl_setopt($ch, CURLOPT_TIMEOUT, $currTimeLimit);
-			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false); 
-			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); 
+			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 			
-			$data = curl_exec ($ch);
-			$download_error = curl_error($ch); 
+			$data = curl_exec($ch);
+			$download_error = curl_error($ch);
 
-			curl_close ($ch);
+			curl_close($ch);
 
-			if (strstr($download_error,"Operation timed out")) {
-                throw new Exception("Package file download timed out! ".$download_error );
-            }
+			if (strstr($download_error, "Operation timed out")) {
+				throw new Exception("Package file download timed out! ".$download_error);
+			}
 
-			$file = fopen( $local_archive , "w+" );
+			$file = fopen($local_archive, "w+");
 
 			fputs($file, $data);
 			fclose($file);
 			
-			file_put_contents( $this->file_modification_flag_file , $last_remote_file_mtime) ;
+			file_put_contents($this->file_modification_flag_file, $last_remote_file_mtime) ;
 		}
 	}
 	
 	
-	function curl_get_file_size( $url ) {
+	function curl_get_file_size($url)
+	{
 	  // Assume failure.
-	  $result = -1;
+		$result = -1;
 
-	  $curl = curl_init( $url );
+		$curl = curl_init($url);
 
 	  // Issue a HEAD request and follow any redirects.
-	  curl_setopt( $curl, CURLOPT_NOBODY, true );
-	  curl_setopt( $curl, CURLOPT_HEADER, true );
-	  curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
-	  curl_setopt( $curl, CURLOPT_FOLLOWLOCATION, true );
-	  curl_setopt( $curl, CURLOPT_USERAGENT, "Jomres package manager" );
+		curl_setopt($curl, CURLOPT_NOBODY, true);
+		curl_setopt($curl, CURLOPT_HEADER, true);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
+		curl_setopt($curl, CURLOPT_USERAGENT, "Jomres package manager");
 
-	  $data = curl_exec( $curl );
-	  curl_close( $curl );
+		$data = curl_exec($curl);
+		curl_close($curl);
 
-	  if( $data ) {
-		$content_length = "unknown";
-		$status = "unknown";
+		if ($data) {
+			$content_length = "unknown";
+			$status = "unknown";
 
-		if( preg_match( "/^HTTP\/1\.[01] (\d\d\d)/", $data, $matches ) ) {
-		  $status = (int)$matches[1];
+			if (preg_match("/^HTTP\/1\.[01] (\d\d\d)/", $data, $matches)) {
+				$status = (int)$matches[1];
+			}
+
+			if (preg_match("/Content-Length: (\d+)/", $data, $matches)) {
+				$content_length = (int)$matches[1];
+			}
+
+		  // http://en.wikipedia.org/wiki/List_of_HTTP_status_codes
+			if ($status == 200 || ($status > 300 && $status <= 308)) {
+				$result = $content_length;
+			}
 		}
 
-		if( preg_match( "/Content-Length: (\d+)/", $data, $matches ) ) {
-		  $content_length = (int)$matches[1];
-		}
-
-		// http://en.wikipedia.org/wiki/List_of_HTTP_status_codes
-		if( $status == 200 || ($status > 300 && $status <= 308) ) {
-		  $result = $content_length;
-		}
-	  }
-
-	  return $result;
+		return $result;
 	}
 
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
-	private function remove_directory($dirPath) {
-		if ( is_dir($dirPath)) {
-			foreach(new RecursiveIteratorIterator(new RecursiveDirectoryIterator($dirPath, FilesystemIterator::SKIP_DOTS), RecursiveIteratorIterator::CHILD_FIRST) as $path) {
+	private function remove_directory($dirPath)
+	{
+		if (is_dir($dirPath)) {
+			foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator($dirPath, FilesystemIterator::SKIP_DOTS), RecursiveIteratorIterator::CHILD_FIRST) as $path) {
 				$path->isDir() && !$path->isLink() ? rmdir($path->getPathname()) : unlink($path->getPathname());
 			}
 			@rmdir($dirPath);
@@ -305,12 +301,12 @@ class core_package_management
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
-	private function check_repo_local_dirs_exist( $repo )
+	private function check_repo_local_dirs_exist($repo)
 	{
 		
 		if (!is_dir(JOMRES_PACKAGES_ABSPATH)) {
@@ -328,7 +324,7 @@ class core_package_management
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -363,8 +359,8 @@ class core_package_management
 			(isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : (isset($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : '')).((true) ? $_SERVER['REQUEST_URI'] : null)
 		);
 
-		$current_url = str_replace("option=com_installer" , "option=com_jomres" , http_build_url('', $parse));
-		$dashboard_url = str_replace("&no_html=1&jrajax=1" , "" , $current_url."&task=dashboard");
+		$current_url = str_replace("option=com_installer", "option=com_jomres", http_build_url('', $parse));
+		$dashboard_url = str_replace("&no_html=1&jrajax=1", "", $current_url."&task=dashboard");
 		?>
 		
 		<!doctype html>
@@ -552,175 +548,182 @@ class core_package_management
 
 // Credit https://stackoverflow.com/questions/14056977/function-http-build-url
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
- if(!function_exists('http_build_url'))
-        {
-            // Define constants
-			if (!defined('HTTP_URL_REPLACE') ) {
-				define('HTTP_URL_REPLACE',          0x0001);    // Replace every part of the first URL when there's one of the second URL
-			}
+if (!function_exists('http_build_url')) {
+		   // Define constants
+	if (!defined('HTTP_URL_REPLACE')) {
+		define('HTTP_URL_REPLACE', 0x0001);    // Replace every part of the first URL when there's one of the second URL
+	}
 
-			if (!defined('HTTP_URL_JOIN_PATH') ) {
-				define('HTTP_URL_JOIN_PATH',          0x0002);    // Join relative paths
-			}
+	if (!defined('HTTP_URL_JOIN_PATH')) {
+		define('HTTP_URL_JOIN_PATH', 0x0002);    // Join relative paths
+	}
 			
-			if (!defined('HTTP_URL_JOIN_QUERY') ) {
-				define('HTTP_URL_JOIN_QUERY',       0x0004);    // Join query strings
-			}
+	if (!defined('HTTP_URL_JOIN_QUERY')) {
+		define('HTTP_URL_JOIN_QUERY', 0x0004);    // Join query strings
+	}
 			
-			if (!defined('HTTP_URL_STRIP_USER') ) {
-				define('HTTP_URL_STRIP_USER',       0x0008);    // Strip any user authentication information
-			}
+	if (!defined('HTTP_URL_STRIP_USER')) {
+		define('HTTP_URL_STRIP_USER', 0x0008);    // Strip any user authentication information
+	}
 			
-			if (!defined('HTTP_URL_STRIP_PASS') ) {
-				define('HTTP_URL_STRIP_PASS',       0x0010);    // Strip any password authentication information
-			}
+	if (!defined('HTTP_URL_STRIP_PASS')) {
+		define('HTTP_URL_STRIP_PASS', 0x0010);    // Strip any password authentication information
+	}
 			
-			if (!defined('HTTP_URL_STRIP_PORT') ) {
-				define('HTTP_URL_STRIP_PORT',       0x0020);    // Strip explicit port numbers
-			}
+	if (!defined('HTTP_URL_STRIP_PORT')) {
+		define('HTTP_URL_STRIP_PORT', 0x0020);    // Strip explicit port numbers
+	}
 			
-			if (!defined('HTTP_URL_STRIP_PATH') ) {
-				define('HTTP_URL_STRIP_PATH',       0x0040);    // Strip complete path
-			}
+	if (!defined('HTTP_URL_STRIP_PATH')) {
+		define('HTTP_URL_STRIP_PATH', 0x0040);    // Strip complete path
+	}
 			
-			if (!defined('HTTP_URL_STRIP_QUERY') ) {
-				define('HTTP_URL_STRIP_QUERY',      0x0080);    // Strip query string
-			}
+	if (!defined('HTTP_URL_STRIP_QUERY')) {
+		define('HTTP_URL_STRIP_QUERY', 0x0080);    // Strip query string
+	}
 
-			if (!defined('HTTP_URL_STRIP_FRAGMENT') ) {
-				define('HTTP_URL_STRIP_FRAGMENT',   0x0100);    // Strip any fragments (#identifier)
-			}
+	if (!defined('HTTP_URL_STRIP_FRAGMENT')) {
+		define('HTTP_URL_STRIP_FRAGMENT', 0x0100);    // Strip any fragments (#identifier)
+	}
 
-            // Combination constants
-			if ( !defined('HTTP_URL_STRIP_AUTH')) {
-				define('HTTP_URL_STRIP_AUTH',       HTTP_URL_STRIP_USER | HTTP_URL_STRIP_PASS);
-			}
+		   // Combination constants
+	if (!defined('HTTP_URL_STRIP_AUTH')) {
+		define('HTTP_URL_STRIP_AUTH', HTTP_URL_STRIP_USER | HTTP_URL_STRIP_PASS);
+	}
 			
-			if ( !defined('HTTP_URL_STRIP_ALL')) {
-				define('HTTP_URL_STRIP_ALL',        HTTP_URL_STRIP_AUTH | HTTP_URL_STRIP_PORT | HTTP_URL_STRIP_QUERY | HTTP_URL_STRIP_FRAGMENT);
+	if (!defined('HTTP_URL_STRIP_ALL')) {
+		define('HTTP_URL_STRIP_ALL', HTTP_URL_STRIP_AUTH | HTTP_URL_STRIP_PORT | HTTP_URL_STRIP_QUERY | HTTP_URL_STRIP_FRAGMENT);
+	}
+
+		   /**
+			* HTTP Build URL
+			* Combines arrays in the form of parse_url() into a new string based on specific options
+			* @name http_build_url
+			* @param string|array $url     The existing URL as a string or result from parse_url
+			* @param string|array $parts   Same as $url
+			* @param int $flags            URLs are combined based on these
+			* @param array &$new_url       If set, filled with array version of new url
+			* @return string
+			*/
+	function http_build_url(/*string|array*/ $url, /*string|array*/ $parts = array(), /*int*/ $flags = HTTP_URL_REPLACE, /*array*/ &$new_url = false)
+	{
+		// If the $url is a string
+		if (is_string($url)) {
+			$url = parse_url($url);
+		}
+
+		// If the $parts is a string
+		if (is_string($parts)) {
+			$parts  = parse_url($parts);
+		}
+
+		// Scheme and Host are always replaced
+		if (isset($parts['scheme'])) {
+			$url['scheme']  = $parts['scheme'];
+		}
+		if (isset($parts['host'])) {
+			$url['host']    = $parts['host'];
+		}
+
+		// (If applicable) Replace the original URL with it's new parts
+		if (HTTP_URL_REPLACE & $flags) {
+			// Go through each possible key
+			foreach (array('user','pass','port','path','query','fragment') as $key) {
+				// If it's set in $parts, replace it in $url
+				if (isset($parts[$key])) {
+					$url[$key]  = $parts[$key];
+				}
+			}
+		} else {
+			// Join the original URL path with the new path
+			if (isset($parts['path']) && (HTTP_URL_JOIN_PATH & $flags)) {
+				if (isset($url['path']) && $url['path'] != '') {
+					// If the URL doesn't start with a slash, we need to merge
+					if ($url['path'][0] != '/') {
+						// If the path ends with a slash, store as is
+						if ('/' == $parts['path'][strlen($parts['path'])-1]) {
+							$sBasePath  = $parts['path'];
+						}
+						// Else trim off the file
+						else {
+							// Get just the base directory
+							$sBasePath  = dirname($parts['path']);
+						}
+
+						// If it's empty
+						if ('' == $sBasePath) {
+							$sBasePath  = '/';
+						}
+
+						// Add the two together
+						$url['path']    = $sBasePath . $url['path'];
+
+						// Free memory
+						unset($sBasePath);
+					}
+
+					if (false !== strpos($url['path'], './')) {
+						// Remove any '../' and their directories
+						while (preg_match('/\w+\/\.\.\//', $url['path'])) {
+							$url['path']    = preg_replace('/\w+\/\.\.\//', '', $url['path']);
+						}
+
+						// Remove any './'
+						$url['path']    = str_replace('./', '', $url['path']);
+					}
+				} else {
+					$url['path']    = $parts['path'];
+				}
 			}
 
-            /**
-             * HTTP Build URL
-             * Combines arrays in the form of parse_url() into a new string based on specific options
-             * @name http_build_url
-             * @param string|array $url     The existing URL as a string or result from parse_url
-             * @param string|array $parts   Same as $url
-             * @param int $flags            URLs are combined based on these
-             * @param array &$new_url       If set, filled with array version of new url
-             * @return string
-             */
-            function http_build_url(/*string|array*/ $url, /*string|array*/ $parts = array(), /*int*/ $flags = HTTP_URL_REPLACE, /*array*/ &$new_url = false)
-            {
-                // If the $url is a string
-                if(is_string($url))
-                {
-                    $url = parse_url($url);
-                }
+			// Join the original query string with the new query string
+			if (isset($parts['query']) && (HTTP_URL_JOIN_QUERY & $flags)) {
+				if (isset($url['query'])) {
+					$url['query']   .= '&' . $parts['query'];
+				} else {
+					$url['query']   = $parts['query'];
+				}
+			}
+		}
 
-                // If the $parts is a string
-                if(is_string($parts))
-                {
-                    $parts  = parse_url($parts);
-                }
+		// Strips all the applicable sections of the URL
+		if (HTTP_URL_STRIP_USER & $flags) {
+			unset($url['user']);
+		}
+		if (HTTP_URL_STRIP_PASS & $flags) {
+			unset($url['pass']);
+		}
+		if (HTTP_URL_STRIP_PORT & $flags) {
+			unset($url['port']);
+		}
+		if (HTTP_URL_STRIP_PATH & $flags) {
+			unset($url['path']);
+		}
+		if (HTTP_URL_STRIP_QUERY & $flags) {
+			unset($url['query']);
+		}
+		if (HTTP_URL_STRIP_FRAGMENT & $flags) {
+			unset($url['fragment']);
+		}
 
-                // Scheme and Host are always replaced
-                if(isset($parts['scheme'])) $url['scheme']  = $parts['scheme'];
-                if(isset($parts['host']))   $url['host']    = $parts['host'];
+		// Store the new associative array in $new_url
+		$new_url    = $url;
 
-                // (If applicable) Replace the original URL with it's new parts
-                if(HTTP_URL_REPLACE & $flags)
-                {
-                    // Go through each possible key
-                    foreach(array('user','pass','port','path','query','fragment') as $key)
-                    {
-                        // If it's set in $parts, replace it in $url
-                        if(isset($parts[$key])) $url[$key]  = $parts[$key];
-                    }
-                }
-                else
-                {
-                    // Join the original URL path with the new path
-                    if(isset($parts['path']) && (HTTP_URL_JOIN_PATH & $flags))
-                    {
-                        if(isset($url['path']) && $url['path'] != '')
-                        {
-                            // If the URL doesn't start with a slash, we need to merge
-                            if($url['path'][0] != '/')
-                            {
-                                // If the path ends with a slash, store as is
-                                if('/' == $parts['path'][strlen($parts['path'])-1])
-                                {
-                                    $sBasePath  = $parts['path'];
-                                }
-                                // Else trim off the file
-                                else
-                                {
-                                    // Get just the base directory
-                                    $sBasePath  = dirname($parts['path']);
-                                }
-
-                                // If it's empty
-                                if('' == $sBasePath)    $sBasePath  = '/';
-
-                                // Add the two together
-                                $url['path']    = $sBasePath . $url['path'];
-
-                                // Free memory
-                                unset($sBasePath);
-                            }
-
-                            if(false !== strpos($url['path'], './'))
-                            {
-                                // Remove any '../' and their directories
-                                while(preg_match('/\w+\/\.\.\//', $url['path'])){
-                                    $url['path']    = preg_replace('/\w+\/\.\.\//', '', $url['path']);
-                                }
-
-                                // Remove any './'
-                                $url['path']    = str_replace('./', '', $url['path']);
-                            }
-                        }
-                        else
-                        {
-                            $url['path']    = $parts['path'];
-                        }
-                    }
-
-                    // Join the original query string with the new query string
-                    if(isset($parts['query']) && (HTTP_URL_JOIN_QUERY & $flags))
-                    {
-                        if (isset($url['query']))   $url['query']   .= '&' . $parts['query'];
-                        else                        $url['query']   = $parts['query'];
-                    }
-                }
-
-                // Strips all the applicable sections of the URL
-                if(HTTP_URL_STRIP_USER & $flags)        unset($url['user']);
-                if(HTTP_URL_STRIP_PASS & $flags)        unset($url['pass']);
-                if(HTTP_URL_STRIP_PORT & $flags)        unset($url['port']);
-                if(HTTP_URL_STRIP_PATH & $flags)        unset($url['path']);
-                if(HTTP_URL_STRIP_QUERY & $flags)       unset($url['query']);
-                if(HTTP_URL_STRIP_FRAGMENT & $flags)    unset($url['fragment']);
-
-                // Store the new associative array in $new_url
-                $new_url    = $url;
-
-                // Combine the new elements into a string and return it
-                return
-                     ((isset($url['scheme'])) ? $url['scheme'] . '://' : '')
-                    .((isset($url['user'])) ? $url['user'] . ((isset($url['pass'])) ? ':' . $url['pass'] : '') .'@' : '')
-                    .((isset($url['host'])) ? $url['host'] : '')
-                    .((isset($url['port'])) ? ':' . $url['port'] : '')
-                    .((isset($url['path'])) ? $url['path'] : '')
-                    .((isset($url['query'])) ? '?' . $url['query'] : '')
-                    .((isset($url['fragment'])) ? '#' . $url['fragment'] : '')
-                ;
-            }
-        }
+		// Combine the new elements into a string and return it
+		return
+			 ((isset($url['scheme'])) ? $url['scheme'] . '://' : '')
+			.((isset($url['user'])) ? $url['user'] . ((isset($url['pass'])) ? ':' . $url['pass'] : '') .'@' : '')
+			.((isset($url['host'])) ? $url['host'] : '')
+			.((isset($url['port'])) ? ':' . $url['port'] : '')
+			.((isset($url['path'])) ? $url['path'] : '')
+			.((isset($url['query'])) ? '?' . $url['query'] : '')
+			.((isset($url['fragment'])) ? '#' . $url['fragment'] : '')
+		;
+	}
+}
 		

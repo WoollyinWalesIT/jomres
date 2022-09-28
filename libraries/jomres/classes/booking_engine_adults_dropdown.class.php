@@ -4,14 +4,14 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 // ################################################################
-defined( '_JOMRES_INITCHECK' ) or die( '' );
+defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 	
@@ -22,14 +22,15 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 	 */
 
 class booking_engine_adults_dropdown
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
-	public function __construct( $bkg  )
+	public function __construct($bkg)
 	{
 		$this->available_rooms = $bkg->available_rooms_for_selected_dates;
 		$this->property_uid = $bkg->property_uid;
@@ -38,12 +39,12 @@ class booking_engine_adults_dropdown
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
-	public function build_adults_dropdown ( )
+	public function build_adults_dropdown()
 	{
 
 		$guests_dropdown = jomresHTML::integerSelectList(0, $this->mrConfig ["accommodates_adults"], 1, 'standard_guests', 'size="1" class="input-mini  form-select"  autocomplete="off" onchange="getResponse_standardguests();"', 2, '%02d', $use_bootstrap_radios = false);
@@ -56,6 +57,4 @@ class booking_engine_adults_dropdown
 
 		return $standard_guests;
 	}
-
-	
 }

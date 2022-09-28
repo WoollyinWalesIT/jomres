@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06002save_room_type
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -43,7 +44,7 @@ class j06002save_room_type
 
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
-		if ( $jrConfig[ 'frontend_room_type_editing_allowed' ] == 0 ) {
+		if ($jrConfig[ 'frontend_room_type_editing_allowed' ] == 0) {
 			return;
 		}
 		
@@ -57,7 +58,7 @@ class j06002save_room_type
 
 		$feedback_message = jr_gettext('_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_INSERT', '_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_INSERT', false);
 		
-		if ($room_classes_uid > 0 ) {
+		if ($room_classes_uid > 0) {
 			$jomres_room_types->validate_manager_access_to_room_type($room_classes_uid);
 			$feedback_message = jr_gettext('_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_UPDATE', '_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_UPDATE', false);
 		}
@@ -75,8 +76,7 @@ class j06002save_room_type
 		$jomres_room_types->save_room_type();
 
 		
-		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=list_room_types'), $feedback_message );
-		
+		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=list_room_types'), $feedback_message);
 	}
 
 

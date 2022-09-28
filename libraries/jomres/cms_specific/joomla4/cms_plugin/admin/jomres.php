@@ -15,22 +15,23 @@
 	 *
 	 */
 
-defined( '_JEXEC' ) or die( 'Direct Access to this location is not allowed.' );
+defined('_JEXEC') or die('Direct Access to this location is not allowed.');
 
-if (!defined('_JOMRES_INITCHECK'))
-	define('_JOMRES_INITCHECK', 1 );
+if (!defined('_JOMRES_INITCHECK')) {
+	define('_JOMRES_INITCHECK', 1);
+}
 
-define( '_JOMRES_INITCHECK_ADMIN', 1 );
+define('_JOMRES_INITCHECK_ADMIN', 1);
 
 
-JToolBarHelper::title( 'Jomres', 'home.png' );
+JToolBarHelper::title('Jomres', 'home.png');
 
-if (!defined('JOMRES_ROOT_DIRECTORY'))
-	{
-	if (file_exists(dirname(__FILE__).'/../../../jomres_root.php'))
-		require_once (dirname(__FILE__).'/../../../jomres_root.php');
-	else
-		define ( 'JOMRES_ROOT_DIRECTORY' , "jomres" ) ;
+if (!defined('JOMRES_ROOT_DIRECTORY')) {
+	if (file_exists(dirname(__FILE__).'/../../../jomres_root.php')) {
+		require_once(dirname(__FILE__).'/../../../jomres_root.php');
+	} else {
+		define('JOMRES_ROOT_DIRECTORY', "jomres") ;
 	}
+}
 
-require_once( dirname( __FILE__ ) . '/../../../'.JOMRES_ROOT_DIRECTORY.'/admin.php' );
+require_once(dirname(__FILE__) . '/../../../'.JOMRES_ROOT_DIRECTORY.'/admin.php');

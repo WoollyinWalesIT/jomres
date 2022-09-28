@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06001save_review_reply
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -53,13 +54,12 @@ class j06001save_review_reply
 		$Reviews->property_uid = $property_uid;
 		$itemReviews = $Reviews->showReviews($property_uid);
 		
-		if ( isset($itemReviews['fields'][$rating_id] ) ) {
-			$result = $Reviews->save_review_reply( $thisJRUser->id , $review_reply , $rating_id );
+		if (isset($itemReviews['fields'][$rating_id])) {
+			$result = $Reviews->save_review_reply($thisJRUser->id, $review_reply, $rating_id);
 			if ($result) {
-				jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=show_property_reviews&property_uid='.$property_uid ), jr_gettext('_JOMRES_REVIEWS_REPLY_SAVED', '_JOMRES_REVIEWS_REPLY_SAVED'));
+				jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=show_property_reviews&property_uid='.$property_uid), jr_gettext('_JOMRES_REVIEWS_REPLY_SAVED', '_JOMRES_REVIEWS_REPLY_SAVED'));
 			}
 		}
-		
 	}
 
 /**

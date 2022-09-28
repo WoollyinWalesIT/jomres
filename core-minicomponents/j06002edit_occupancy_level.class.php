@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06002edit_occupancy_level
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -69,8 +70,8 @@ class j06002edit_occupancy_level
 
 		$output['ROOM_TYPE_NAME'] = $jomres_occupancy_levels->occupancy_levels[$id]['room_type_name'];
 
-		$output['MAX_ADULTS'] = jomresHTML::integerSelectList(0, 100, 1, 'max_adults', 'class="inputbox" size="1"', (int)  $jomres_occupancy_levels->occupancy_levels[$id]['max_adults'] );
-		$output['MAX_CHILDREN'] = jomresHTML::integerSelectList(0, 100, 1, 'max_children', 'class="inputbox" size="1"', (int) $jomres_occupancy_levels->occupancy_levels[$id]['max_children'] );
+		$output['MAX_ADULTS'] = jomresHTML::integerSelectList(0, 100, 1, 'max_adults', 'class="inputbox" size="1"', (int)  $jomres_occupancy_levels->occupancy_levels[$id]['max_adults']);
+		$output['MAX_CHILDREN'] = jomresHTML::integerSelectList(0, 100, 1, 'max_children', 'class="inputbox" size="1"', (int) $jomres_occupancy_levels->occupancy_levels[$id]['max_children']);
 
 
 		$jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
@@ -88,7 +89,6 @@ class j06002edit_occupancy_level
 		$tmpl->readTemplatesFromInput('edit_occupancy_level.html');
 		$tmpl->addRows('pageoutput', $pageoutput);
 		$tmpl->displayParsedTemplate();
-		
 	}
 
 

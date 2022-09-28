@@ -849,6 +849,13 @@ class patTemplate
 			$common_strings[ '_JOMRES_MENU_HIDE' ] = jr_gettext('_JOMRES_MENU_HIDE', '_JOMRES_MENU_HIDE', false);
 			}
 
+		$common_strings[ 'COMMON_LOGIN_TEXT' ] = jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGIN', '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGIN', false);
+		$common_strings[ 'COMMON_LOGIN_URL' ] = get_showtime('live_site').'/'.jomres_cmsspecific_getlogin_task();
+
+		$common_strings[ 'COMMON_LOGOUT_TEXT' ] = jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGOUT', '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGOUT', false);
+		$common_strings[ 'COMMON_LOGOUT_URL' ] = get_showtime('live_site').'/'.jomres_cmsspecific_getlogout_task();
+
+		$common_strings[ 'COMMON_CANCEL' ] = jr_gettext('_JOMRES_COM_A_CANCEL', '_JOMRES_COM_A_CANCEL', false);
 
 		return $common_strings;
 		}
@@ -2734,6 +2741,7 @@ class patTemplate
 
 				if ( $our_task != $original_task ) // Can you say recurururururing?
 					{
+					set_showtime('run_as_jomres_script' , true );
 					ob_start();
 					
 					$MiniComponents =jomres_getSingleton('mcHandler');
@@ -2759,6 +2767,7 @@ class patTemplate
 					
 					unset($contents);
 					ob_end_clean();
+					set_showtime('run_as_jomres_script' , false );
 					}
 				}
 			}
@@ -2806,7 +2815,7 @@ class patTemplate
 		if ( isset( $this->json_output ) ) 
 			return json_encode( $this->json_output );
 		else
-			return $result;
+			return  jomres_parse_modules($result);
 		}
 
 	private function get_debugging_output()

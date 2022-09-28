@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -21,9 +21,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jomres_menu
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -42,7 +43,7 @@ class jomres_menu
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -61,7 +62,7 @@ class jomres_menu
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -79,7 +80,7 @@ class jomres_menu
 		return true;
 	}
 	
-	/* 
+	/*
 	Core frontend sections
 	1 => 'Dashboard';
 	10 => 'Account';
@@ -94,7 +95,7 @@ class jomres_menu
 	*/
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -147,14 +148,14 @@ class jomres_menu
 			'title' => $title,
 			'icon' => $icon,
 			'is_url' => $is_url,
-			'external' => $external, 
+			'external' => $external,
 			'disabled' => $disabled
 		);
 		
 		return true;
 	}
 	
-	/* 
+	/*
 	Core admin sections
 	1 => 'Dashboard';
 	10 => 'Users';
@@ -166,11 +167,11 @@ class jomres_menu
 	70 => 'Tools'
 	80 => 'Reports'
 	90 => 'Settings'
-	100 => 'Help' 
+	100 => 'Help'
 	*/
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -199,7 +200,7 @@ class jomres_menu
 		$this->admin_items[$task] = array(
 			'section_id' => $section_id,
 			'title' => $title,
-			'icon' => $icon, 
+			'icon' => $icon,
 			'external' => $external,
 			'is_url' => $is_url,
 			'disabled' => $disabled
@@ -211,7 +212,7 @@ class jomres_menu
 	//generate frontend cpanel menu
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -240,7 +241,7 @@ class jomres_menu
 	//generate admin cpanel menu
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */

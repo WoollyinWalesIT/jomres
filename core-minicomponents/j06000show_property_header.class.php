@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06000show_property_header
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -116,13 +117,18 @@ class j06000show_property_header
 		//property room types
 		$output['ROOMTYPES'] = $MiniComponents->specificEvent('06000', 'show_property_room_types', array('output_now' => false, 'property_uid' => $property_uid));
 
+		$output['STICKY_BOOKING_BUTTON_ENABLED'] = "true";
+		if (get_showtime('task') == 'dobooking' ){
+			$output['STICKY_BOOKING_BUTTON_ENABLED'] = "false";
+		}
+
 		//meta data
-		if (strlen($current_property_details->metatitle) > 0) {
+		/*if (strlen($current_property_details->metatitle) > 0) {
 			jomres_cmsspecific_setmetadata('title', jomres_purify_html($current_property_details->metatitle));
 		} else {
 			$property_name = getPropertyName($property_uid);
 			jomres_cmsspecific_setmetadata('title', jomres_purify_html($property_name));
-		}
+		}*/
 
 		if (strlen($current_property_details->metadescription) > 0) {
 			jomres_cmsspecific_setmetadata('description', jomres_purify_html($current_property_details->metadescription));
@@ -153,15 +159,15 @@ class j06000show_property_header
 		$output[ 'COUNTRY' ] = $current_property_details->property_country;
 		$output[ 'POSTCODE' ] = $current_property_details->property_postcode;
 		$output[ 'TELEPHONE' ] = $current_property_details->property_tel;
-		$output[ 'WHATSAPP_TELEPHONE' ] = str_replace( array ( "+" , "00") , "" , $current_property_details->property_tel);
+		$output[ 'WHATSAPP_TELEPHONE' ] = str_replace(array ( "+" , "00"), "", $current_property_details->property_tel);
 		$output[ 'FAX' ] = $current_property_details->property_fax;
  
 		$user_can_view_address = true;
-		if ( $mrConfig['hide_local_address'] == '1' ) {
+		if ($mrConfig['hide_local_address'] == '1') {
 			$user_can_view_address = false;
 		}
 
-		if ( $mrConfig['hide_local_address'] == '1' && $thisJRUser->id > 0 ) {
+		if ($mrConfig['hide_local_address'] == '1' && $thisJRUser->id > 0) {
 			$query = "SELECT guests_uid FROM #__jomres_guests WHERE mos_userid = '".(int)$thisJRUser->id."' AND `property_uid`= $property_uid LIMIT 1";
 			$xistingGuests = doSelectSql($query);
 			if (!empty($xistingGuests)) {
@@ -169,7 +175,7 @@ class j06000show_property_header
 			}
 		}
 		
-		if ( !$user_can_view_address ) {
+		if (!$user_can_view_address) {
 			$output[ 'STREET' ] =  jr_gettext('HIDDEN_ADDRESS_PLACEHOLDER', 'HIDDEN_ADDRESS_PLACEHOLDER', false);
 		}
 		
@@ -193,7 +199,7 @@ class j06000show_property_header
 		$output['POST_TEXT'] = $price['POST_TEXT']; */
 
 		$jomres_property_list_prices = jomres_singleton_abstract::getInstance('jomres_property_list_prices');
-		$jomres_property_list_prices->gather_lowest_prices_multi( array( $property_uid ) , $lowest_ever = false, $hide_rpn = true);
+		$jomres_property_list_prices->gather_lowest_prices_multi(array( $property_uid ), $lowest_ever = false, $hide_rpn = true);
 		
 		$output['PRE_TEXT']		= $jomres_property_list_prices->lowest_prices[$property_uid][ 'PRE_TEXT' ];
 		$output['PRICE']		= $jomres_property_list_prices->lowest_prices[$property_uid][ 'PRICE' ];
@@ -214,8 +220,7 @@ class j06000show_property_header
 
 			$range = get_periods($start, $end);
 			$stayDays = count($range);
-		} elseif (
-				isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']) &&
+		} elseif (isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']) &&
 				(isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate']) && $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'] != '') &&
 				(isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate']) && $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate'] != '')
 				) {
@@ -255,7 +260,7 @@ class j06000show_property_header
 						$output[ 'NIGHTS_TEXT' ] = jr_gettext('_JOMRES_PRICINGOUTPUT_NIGHTS', '_JOMRES_PRICINGOUTPUT_NIGHTS', false);
 					}
 				}
-				if ($stayDays == 0 ) {
+				if ($stayDays == 0) {
 					$stayDays = 1;
 				}
 				$output[ 'STAY_DAYS' ] = $stayDays;
@@ -273,11 +278,11 @@ class j06000show_property_header
 		//property contact details override
 		if ((int) $jrConfig['override_property_contact_details'] == 1) {
 			if ($jrConfig['override_property_contact_tel'] != '') {
-				$output[ 'TELEPHONE' ] = str_replace("&#38;#43;" , "+" , $jrConfig['override_property_contact_tel'] );
+				$output[ 'TELEPHONE' ] = str_replace("&#38;#43;", "+", $jrConfig['override_property_contact_tel']);
 			}
 
 			if ($jrConfig['override_property_contact_fax'] != '') {
-				$output[ 'FAX' ] = str_replace("&#38;#43;" , "+" , $jrConfig['override_property_contact_fax'] ); 
+				$output[ 'FAX' ] = str_replace("&#38;#43;", "+", $jrConfig['override_property_contact_fax']);
 			}
 		}
 
@@ -353,12 +358,11 @@ class j06000show_property_header
 				$output[ 'REQUIRE_APPROVAL_CLASS' ] = 'label-warning';
 			} else {
 				$output[ 'REQUIRE_APPROVAL' ] = jr_gettext('_BOOKING_INSTANT', '_BOOKING_INSTANT', false);
-                if (jomres_bootstrap_version() == '5') {
-                    $output[ 'REQUIRE_APPROVAL_CLASS' ] = 'badge bg-success';
-                } else {
-                    $output[ 'REQUIRE_APPROVAL_CLASS' ] = 'label-success';
-                }
-
+				if (jomres_bootstrap_version() == '5') {
+					$output[ 'REQUIRE_APPROVAL_CLASS' ] = 'badge bg-success';
+				} else {
+					$output[ 'REQUIRE_APPROVAL_CLASS' ] = 'label-success';
+				}
 			}
 		}
 
@@ -392,7 +396,7 @@ class j06000show_property_header
 			$link = array();
 			$url = get_booking_url($property_uid);
 			if ((($mrConfig[ 'fixedArrivalDateYesNo' ] == '1' || $mrConfig[ 'fixedPeriodBookings' ] == '1')) && !isset($tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ])) { // We'll add an invalid arrival date if the fixed arrival date setting is set to Yes. This way we can force the booking engine to see the arrival date is wrong and it'll rebuild the available rooms list, which it doesn't if the date is correct when coming from the Book a room link.
-			$url .= '&arrivalDate=2009-01-01';
+				$url .= '&arrivalDate=2009-01-01';
 			}
 
 			$url = jomresURL($url);

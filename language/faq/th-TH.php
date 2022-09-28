@@ -3,13 +3,13 @@
  * Core file
  *
  * @author Vince Wooll <sales@jomres.net>
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  * @package Jomres
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
  **/
 ##################################################################
-defined( '_JOMRES_INITCHECK' ) or die( '' );
+defined('_JOMRES_INITCHECK') or die('');
 ##################################################################
 
 jr_define('_JOMRES_FAQ', 'คำถามที่ถามบ่อย');
@@ -65,4 +65,3 @@ jr_define('_JOMRES_FAQ_MANAGER_ANSWER_ROOMFEATURES', "คุณสมบัต�
 jr_define('_JOMRES_FAQ_ADMIN_CATEGORY_PAYMENTS', 'การชำระเงิน');
 jr_define('_JOMRES_FAQ_ADMIN_QUESTION_TROUBLESHOOTING_NOGATEWAY', "คุณไม่สามารถดูช่องทางการชำระเงินได้หลังจากทำการจอง");
 jr_define('_JOMRES_FAQ_ADMIN_ANSWER_TROUBLESHOOTING_NOGATEWAY', "หากคุณเข้าสู่ระบบในฐานะผู้จัดการทรัพย์สิน คุณจะไม่เห็นเกตเวย์การชำระเงิน เนื่องจากคุณไม่ชำระเงินเอง เฉพาะผู้ใช้ที่ไม่ใช่ผู้จัดการเท่านั้นที่จะเห็นเกตเวย์เมื่อทำการจอง");
-

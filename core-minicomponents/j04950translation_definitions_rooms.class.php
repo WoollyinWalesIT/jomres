@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.'
 	 * @package Jomres\Core\Minicomponents
 	 *
 	 * Sends the new property welcome email
-     *
+	 *
 	 */
 
 class j04950translation_definitions_rooms
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -59,30 +60,29 @@ class j04950translation_definitions_rooms
 					$room_name =  $room["room_name"];
 					$room_tagline =  $room["tagline"];
 					$room_description =  $room["description"];
-					$subtitle = jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER','_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER',false).' '.$room['room_number'];
+					$subtitle = jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER', '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER', false).' '.$room['room_number'];
 					$definitions[$section_name][$subtitle][] = [
-						'definition' => jr_gettext('_JOMRES_CUSTOMTEXT_ROOMNAME_TITLE'.$room['room_uid'], stripslashes($room_name) ),
+						'definition' => jr_gettext('_JOMRES_CUSTOMTEXT_ROOMNAME_TITLE'.$room['room_uid'], stripslashes($room_name)),
 						'label' => '_JOMRES_COM_MR_EB_ROOM_NAME',
 						'translate_label' => true
 						];
 
 					$definitions[$section_name][$subtitle][] = [
-						'definition' => jr_gettext('_JOMRES_CUSTOMTEXT_ROOM_TAGLINE'.$room['room_uid'], $room_tagline ),
+						'definition' => jr_gettext('_JOMRES_CUSTOMTEXT_ROOM_TAGLINE'.$room['room_uid'], $room_tagline),
 						'label' => '_JOMRES_ROOM_TAGLINE',
 						'translate_label' => true
 						];
 
 					$definitions[$section_name][$subtitle][] = [
-						'definition' => jr_gettext('_JOMRES_CUSTOMTEXT_ROOM_DESCRIPTION_'.$room['room_uid'], $room_description ),
+						'definition' => jr_gettext('_JOMRES_CUSTOMTEXT_ROOM_DESCRIPTION_'.$room['room_uid'], $room_description),
 						'label' => '_JOMRES_ROOM_DESCRIPTION',
 						'translate_label' => true
 						];
-				}
 			}
+		}
 
 
 		$this->retVals = $definitions;
-		
 	}
 
 	public function getRetVals()

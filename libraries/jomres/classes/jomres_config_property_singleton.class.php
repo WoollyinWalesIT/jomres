@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -21,9 +21,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class jomres_config_property_singleton
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -44,7 +45,7 @@ class jomres_config_property_singleton
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -55,7 +56,7 @@ class jomres_config_property_singleton
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -66,7 +67,7 @@ class jomres_config_property_singleton
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -77,7 +78,7 @@ class jomres_config_property_singleton
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -88,32 +89,32 @@ class jomres_config_property_singleton
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
-	public function init($property_uid = null , $force_reload = false )
+	public function init($property_uid = null, $force_reload = false)
 	{
-		return $this->load_property_config($property_uid ,  $force_reload );
+		return $this->load_property_config($property_uid, $force_reload);
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
 
 	//load property config for current property uid
-	public function load_property_config($property_uid = null , $force_reload = false)
+	public function load_property_config($property_uid = null, $force_reload = false)
 	{
 
 		if (!is_null($property_uid)) {
 			$this->property_uid = (int)$property_uid;
 		}
 
-		if ($force_reload == true ) {
-			if ( isset($this->all_property_settings[$this->property_uid]) ) {
+		if ($force_reload == true) {
+			if (isset($this->all_property_settings[$this->property_uid])) {
 				unset($this->all_property_settings[$this->property_uid]);
 			}
 		}
@@ -143,7 +144,7 @@ class jomres_config_property_singleton
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -182,7 +183,7 @@ class jomres_config_property_singleton
 	}
 		
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */

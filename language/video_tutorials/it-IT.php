@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -47,7 +47,7 @@ jr_define('_JOMRES_TUTORIAL_MICROMANAGE_TARIFF_EDITING_MODE_MORE_GUESTS_MRP', 'D
 jr_define('_JOMRES_TUTORIAL_MICROMANAGE_TARIFF_EDITING_MODE_MORE_GUESTS_MRP_DESC', 'Puoi creare più tariffe per lo stesso tipo di camera, quindi se vuoi prezzi differenti per un diverso numero di ospiti, puoi farlo.');
 
 jr_define('_JOMRES_TUTORIAL_MICROMANAGE_GUEST_TYPES', 'Per persona per notte - Tipi di ospiti');
-jr_define('_JOMRES_TUTORIAL_MICROMANAGE_GUEST_TYPES_DESC', 'Per addebitare a persona a notte dovrai creare tipi di ospite. Diversi tipi di ospite possono variare rispetto al prezzo base di una camera, quindi i bambini di età diverse possono avere sconti variabili in base alla loro età. Tu non è necessario addebitare a persona a notte per utilizzare i tipi di ospite, è possibile utilizzarli anche se si addebita una tariffa fissa ma si desidera comunque acquisire il numero di ospiti o perché si desidera limitare il numero di ospiti in una prenotazione.' );
+jr_define('_JOMRES_TUTORIAL_MICROMANAGE_GUEST_TYPES_DESC', 'Per addebitare a persona a notte dovrai creare tipi di ospite. Diversi tipi di ospite possono variare rispetto al prezzo base di una camera, quindi i bambini di età diverse possono avere sconti variabili in base alla loro età. Tu non è necessario addebitare a persona a notte per utilizzare i tipi di ospite, è possibile utilizzarli anche se si addebita una tariffa fissa ma si desidera comunque acquisire il numero di ospiti o perché si desidera limitare il numero di ospiti in una prenotazione.');
 
 jr_define('_JOMRES_TUTORIAL_MEDIA_CENTRE_MRP', 'Media center - Caricamento immagini');
 jr_define('_JOMRES_TUTORIAL_MEDIA_CENTRE_MRP_DESC', 'Tutte le immagini vengono caricate tramite il media center. In questo video caricheremo l\'immagine della proprietà principale, alcune immagini di slideshow, una piccola selezione di immagini da mostrare nella pagina dei risultati di ricerca e immagini per una delle le stanze.');
@@ -83,7 +83,7 @@ jr_define('_JOMRES_TUTORIAL_SHORTCODES_DESC', 'Gli shortcode sono una funzionali
 
 
 jr_define('_JOMRES_TUTORIAL_LOGFILES', 'File di registro');
-jr_define('_JOMRES_TUTORIAL_LOGFILES_DESC', 'Questo video ti mostrerà come visualizzare i file di registro. Quando il sistema è in funzione, si verifica un\'ampia registrazione. Quando sei in modalità Produzione (Configurazione sito > Debug) vengono generati meno registri, quindi se stai testando una nuova funzione, allora dovresti impostare il tuo sito su Sviluppo. Se desideri aggiungere la tua registrazione ai tuoi script Jomres, dai un\'occhiata a <a href="http://www.jomres.net/manual/developers-guide/56-other-discussions/339-logging-in-jomres" target ="_blank">la nostra pagina di manuale su come farlo.</a> Qui lanceremo un falso errore, quindi visualizzeremo il file di registro. Perché il sito è impostato su Development lì sono molte informazioni, normalmente vedresti solo un messaggio che dice che c\'è stato un errore ed è stato segnalato.');
+jr_define('_JOMRES_TUTORIAL_LOGFILES_DESC', 'Questo video ti mostrerà come visualizzare i file di registro. Quando il sistema è in funzione, si verifica un\'ampia registrazione. Quando sei in modalità Produzione (Configurazione sito > Debug) vengono generati meno registri, quindi se stai testando una nuova funzione, allora dovresti impostare il tuo sito su Sviluppo. Se desideri aggiungere la tua registrazione ai tuoi script Jomres, dai un\'occhiata a <a href="https://www.jomres.net/manual/developers-guide/56-other-discussions/339-logging-in-jomres" target ="_blank">la nostra pagina di manuale su come farlo.</a> Qui lanceremo un falso errore, quindi visualizzeremo il file di registro. Perché il sito è impostato su Development lì sono molte informazioni, normalmente vedresti solo un messaggio che dice che c\'è stato un errore ed è stato segnalato.');
 
 jr_define('_JOMRES_TUTORIAL_TRANSLATIONS', 'Traduzione etichette e altre stringhe');
 jr_define('_JOMRES_TUTORIAL_TRANSLATIONS_DESC', 'Ci sono diversi modi per tradurre le stringhe di lingua in Jomres, puoi modificare i file di lingua ma potrebbero essere sovrascritti quando aggiorni. Ti consigliamo invece di utilizzare gli strumenti di traduzione incorporati che sono unici per il nostro software. Se la stringa è qualcosa che è stata inserita in un modulo, come il nome di un tipo di camera, è possibile utilizzare la pagina Modifica etichetta. Se la stringa proviene dal file di lingua, è possibile utilizzare lo strumento di modifica dei file di lingua. Basta utilizzare lo strumento di ricerca del browser per trovare la stringa che si desidera modificare e quindi fare clic sul collegamento per modificarla. Queste modifiche vengono salvate nel database e quindi sono sicure per l\'aggiornamento. È possibile avere etichette diverse per diversi tipi di proprietà, quindi è possibile cambia Nuova Proprietà in Nuovo Campeggio, ad esempio, modificando il menu a discesa del contesto della lingua nella parte superiore della pagina prima di modificare l\'etichetta.');
@@ -99,4 +99,3 @@ jr_define('_JOMRES_TUTORIAL_ADMIN_PROPERTY_CATEGORIES_DESC', 'Le categorie di pr
 
 jr_define('_JOMRES_TUTORIAL_ADMIN_COMPLETING_PROPERTY', 'L\'amministratore del sito visualizza le proprietà');
 jr_define('_JOMRES_TUTORIAL_ADMIN_COMPLETING_PROPERTY_DESC', '<p>Non gestisci le proprietà da qui, puoi gestire solo le proprietà dal frontend, tuttavia in questo elenco puoi vedere le proprietà in attesa di approvazione (se la funzione è abilitata) e quelle che sono incompleto (ad es. è ancora necessario caricare immagini, impostare i prezzi, ecc.) Fare clic sul nome della proprietà per essere indirizzati alla dashboard per quella proprietà. Sarà quindi possibile utilizzare le sezioni della guida nella parte superiore della pagina per vedere i passaggi che devi prendere per completare e pubblicare una proprietà.</p> ');
-

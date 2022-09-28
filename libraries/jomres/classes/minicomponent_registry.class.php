@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,7 +17,8 @@ defined('_JOMRES_INITCHECK') or die('');
  * New for v3.2 of Jomres. Allows the system to create a registry file so that the minicomponent handler doesn't need to constantly search folders and record minicomponents on each run.
  */
 class minicomponent_registry
-{	
+{
+
 	/**
 	 *
 	 * @package Jomres\Core\Classes
@@ -58,7 +59,7 @@ class minicomponent_registry
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -69,7 +70,7 @@ class minicomponent_registry
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -80,7 +81,7 @@ class minicomponent_registry
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -105,7 +106,6 @@ class minicomponent_registry
 		$this->getMiniComponentCMSSpecificClasses();
 
 		if ($jrConfig[ 'safe_mode' ] == '0') {
-
 			if (!defined('AUTO_UPGRADE')) {
 				$this->getMiniComponentCmsTemplateClasses();
 			}
@@ -149,7 +149,7 @@ class minicomponent_registry
 		//reload page if registry changed
 		if ($this->original_filesize != $this->new_filesize && $force_reload_allowed) {
 			if (!defined('AUTO_UPGRADE')) { // We don't want to do this if the installer is running this script
-			echo "<script>	jomresJquery.blockUI({ 
+				echo "<script>	jomresJquery.blockUI({ 
 			message: '<h3>Reloading the page as the registry has changed</h3>',
 			baseZ: 1030,
 			css: {
@@ -161,13 +161,13 @@ class minicomponent_registry
 				opacity: .8, 
 				color: '#fff' 
 			} });</script>";
-				}
+			}
 			echo '<script>window.location.reload();</script>';
 		}
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -195,15 +195,17 @@ class minicomponent_registry
 			ksort($this->registeredClasses[$k]);
 		}
 
-		if (!file_put_contents($this->registry_file,
-'<?php
+		if (!file_put_contents(
+			$this->registry_file,
+			'<?php
 ##################################################################
 defined( \'_JOMRES_INITCHECK\' ) or die( \'\' );
 ##################################################################
 
 $this->registeredClasses = ' .var_export($this->registeredClasses, true).';
 $this->miniComponentDirectories = ' .var_export($this->miniComponentDirectories, true).';
-')) {
+'
+		)) {
 			trigger_error('ERROR: '.$this->registry_file.' can`t be saved. Please solve the permission problem and try again.', E_USER_ERROR);
 			exit;
 		}
@@ -260,7 +262,7 @@ $this->miniComponentDirectories = ' .var_export($this->miniComponentDirectories,
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -279,7 +281,7 @@ $this->miniComponentDirectories = ' .var_export($this->miniComponentDirectories,
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -299,7 +301,7 @@ $this->miniComponentDirectories = ' .var_export($this->miniComponentDirectories,
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -318,15 +320,13 @@ $this->miniComponentDirectories = ' .var_export($this->miniComponentDirectories,
 			$extension = $path_parts[ 'extension' ];
 		}
 		
-		if (
-			is_file($filePath.$filename) && 
-			!in_array(strtolower($filename), $this->unWantedFolderContents) && 
-			(int)$classfileEventPoint > 0 && 
-			(int)$classfileEventPoint <= 99999 && 
+		if (is_file($filePath.$filename) &&
+			!in_array(strtolower($filename), $this->unWantedFolderContents) &&
+			(int)$classfileEventPoint > 0 &&
+			(int)$classfileEventPoint <= 99999 &&
 			strtolower($extension) == 'php'
 			) {
-			if (
-				isset($this->registeredClasses[ $classfileEventPoint][$classfileEventName]) && 
+			if (isset($this->registeredClasses[ $classfileEventPoint][$classfileEventName]) &&
 				($this->registeredClasses[ $classfileEventPoint ][$classfileEventName][ 'eventtype' ] == 'component' ||
 				$this->registeredClasses[ $classfileEventPoint ][$classfileEventName][ 'eventtype' ] == 'remotecomponent' ||
 				$this->registeredClasses[ $classfileEventPoint ][$classfileEventName][ 'eventtype' ] == 'cms_specific_component' )

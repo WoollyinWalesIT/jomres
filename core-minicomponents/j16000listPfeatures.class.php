@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j16000listPfeatures
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -81,10 +82,11 @@ class j16000listPfeatures
 			$r[ 'IMAGE' ] = JOMRES_IMAGELOCATION_RELPATH . 'pfeatures/' . $f['image'];
 			$r[ 'CATEGORY' ] = $f['cat_title'];
 
-			if ($f['include_in_filters'] == "1")
+			if ($f['include_in_filters'] == "1") {
 				$r[ 'INCLUDE_IN_FILTERS' ] = jr_gettext('_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES', false);
-			else
+			} else {
 				$r[ 'INCLUDE_IN_FILTERS' ] = jr_gettext('_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false);
+			}
 			
 			$toolbar = jomres_singleton_abstract::getInstance('jomresItemToolbar');
 			$toolbar->newToolbar();

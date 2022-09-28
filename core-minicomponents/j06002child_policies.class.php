@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06002child_policies
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -63,13 +64,13 @@ class j06002child_policies
 
 		$rows = array();
 		if (!empty($jomres_child_rates->child_rates)) {
-			foreach ($jomres_child_rates->child_rates as $id => $child_rate ) {
+			foreach ($jomres_child_rates->child_rates as $id => $child_rate) {
 				$r = array();
 
 				$toolbar = jomres_singleton_abstract::getInstance('jomresItemToolbar');
 				$toolbar->newToolbar();
-				$toolbar->addItem('fa fa-pencil-square-o', 'btn btn-info', '', jomresURL(JOMRES_SITEPAGE_URL_NOSEF.'&task=edit_child_rate&id='.(int) $id ), jr_gettext('COMMON_EDIT', 'COMMON_EDIT', false));
-				$toolbar->addSecondaryItem('fa fa-trash-o', '', '', jomresURL(JOMRES_SITEPAGE_URL_NOSEF.'&task=delete_child_rate&id='.(int) $id ), jr_gettext('COMMON_DELETE', 'COMMON_DELETE', false));
+				$toolbar->addItem('fa fa-pencil-square-o', 'btn btn-info', '', jomresURL(JOMRES_SITEPAGE_URL_NOSEF.'&task=edit_child_rate&id='.(int) $id), jr_gettext('COMMON_EDIT', 'COMMON_EDIT', false));
+				$toolbar->addSecondaryItem('fa fa-trash-o', '', '', jomresURL(JOMRES_SITEPAGE_URL_NOSEF.'&task=delete_child_rate&id='.(int) $id), jr_gettext('COMMON_DELETE', 'COMMON_DELETE', false));
 
 				$r['EDITLINK'] = $toolbar->getToolbar();
 
@@ -77,7 +78,7 @@ class j06002child_policies
 				$r['AGE_TO'] = $child_rate['age_to'];
 				$r['PRICE'] = $child_rate['price'];
 
-				if ( $child_rate['model'] == 'per_night' ) {
+				if ($child_rate['model'] == 'per_night') {
 					$r['MODEL'] = jr_gettext('JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_NIGHT', 'JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_NIGHT', false);
 				} else {
 					$r['MODEL'] = jr_gettext('JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_STAY', 'JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_STAY', false);
@@ -103,7 +104,6 @@ class j06002child_policies
 		$tmpl->addRows('pageoutput', $pageoutput);
 		$tmpl->addRows('rows', $rows);
 		$tmpl->displayParsedTemplate();
-		
 	}
 
 

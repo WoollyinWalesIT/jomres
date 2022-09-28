@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -25,7 +25,7 @@ class jomres_access_control
 	private static $internal_debugging;
 
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -39,7 +39,7 @@ class jomres_access_control
 		
 		//controllable eventPoints and min access level required for each
 		$this->controllable_patterns = array(
-			'06000' => '0', //public tasks 
+			'06000' => '0', //public tasks
 			'06001' => '50', //reception tasks
 			'06002' => '70', //manager tasks
 			'06005' => '1', //registered tasks
@@ -53,7 +53,7 @@ class jomres_access_control
 			'immediatepay',
 			'editor',
 			'confirmbooking',
-			'completebk',			
+			'completebk',
 			'error',
 			'background_process',
 			'cpanel'
@@ -61,9 +61,9 @@ class jomres_access_control
 		
 		//uncontrollable task patterns. if task names match these patters, the tasks can`t be controlled manually by users
 		$this->uncontrollable_patterns = array(
-			'payment', 
-			'insertbooking', 
-			'handl', 
+			'payment',
+			'insertbooking',
+			'handl',
 			'cron',
 			'ajax',
 			'beds24',
@@ -79,7 +79,7 @@ class jomres_access_control
 	}
 
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -95,7 +95,7 @@ class jomres_access_control
 	}
 
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -113,7 +113,7 @@ class jomres_access_control
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -131,7 +131,7 @@ class jomres_access_control
 	}
 
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -154,7 +154,7 @@ class jomres_access_control
 	}
 	
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -199,7 +199,7 @@ class jomres_access_control
 
 	//check if a user can access a specific task
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -266,7 +266,7 @@ class jomres_access_control
 
 	//not used but here is somebody wants to do this for some reason..
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -278,7 +278,7 @@ class jomres_access_control
 
 	//access levels dropdown
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -342,7 +342,7 @@ class jomres_access_control
 	
 	//check if a task is controllable (some tasks are not controllable)
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -18,20 +18,21 @@ defined('_JOMRES_INITCHECK') or die('');
 	 * @package Jomres\Core\Minicomponents
 	 *
 	 * Property Configuration page tabs. Offers the dropdown that allows the manager to change the property's tariff editing mode.
-	 * 
+	 *
 	 */
 
 
 class j00501tariff_editing_mode_standard_options
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct($componentArgs)
@@ -52,13 +53,15 @@ class j00501tariff_editing_mode_standard_options
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
 		$mrConfig = getPropertySpecificSettings();
+return;
+		jr_import('jomres_occupancy_levels');
+		$jomres_occupancy_levels = new jomres_occupancy_levels(get_showtime('property_uid'));
 
-		if ($mrConfig[ 'is_real_estate_listing' ] != 0 ) {
+		if ($mrConfig[ 'is_real_estate_listing' ] != 0) {
 			return;
 		}
 
-		if ($mrConfig['tariffmode'] == 5) {
-
+		if ($mrConfig['tariffmode'] == 5 || count($jomres_occupancy_levels->occupancy_levels) > 0 ) {
 			if (!isset($mrConfig[ 'extra_guest_price' ])) {
 				$mrConfig[ 'extra_guest_price' ] = '';
 			}
@@ -66,17 +69,16 @@ class j00501tariff_editing_mode_standard_options
 			$configurationPanel->startPanel(jr_gettext('JOMRES_COM_A_TARIFFMODE_STANDARD', 'JOMRES_COM_A_TARIFFMODE_STANDARD', false));
 
 			$configurationPanel->setleft(jr_gettext('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE', 'JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE', false));
-			$configurationPanel->setmiddle( '<input type="text" class="inputbox form-control"  size="5" name="cfg_extra_guest_price" value="'.$mrConfig[ 'extra_guest_price' ].'" />' );
+			$configurationPanel->setmiddle('<input type="text" class="inputbox form-control"  size="5" name="cfg_extra_guest_price" value="'.$mrConfig[ 'extra_guest_price' ].'" />');
 			$configurationPanel->setright(jr_gettext('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE_DESC', 'JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE_DESC', false));
 			$configurationPanel->insertSetting();
 
 			$configurationPanel->endPanel();
 
 			jr_import('jomres_calculate_accommodates_value');
-			$jomres_calculate_accommodates_value = new jomres_calculate_accommodates_value( get_showtime('property_uid') );
+			$jomres_calculate_accommodates_value = new jomres_calculate_accommodates_value(get_showtime('property_uid'));
 			$jomres_calculate_accommodates_value->calculate_accommodates_value();
 		}
-
 	}
 
 /**

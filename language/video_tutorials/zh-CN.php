@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -81,8 +81,8 @@ jr_define('_JOMRES_TUTORIAL_PROPERTY_FEATURES_DESC', '在本视频中，我们�
 jr_define('_JOMRES_TUTORIAL_SHORTCODES', 'Shortcodes');
 jr_define('_JOMRES_TUTORIAL_SHORTCODES_DESC', 'Shortcodes 是 Jomres 的一个非常强大的功能。Joomla 和 Wordpress 的原理是一样的。在这个视频中，我们将向您展示在哪里查看短代码（这个列表会根据插件的不同而变化)安装)以及如何使用它们。您可以使用文章或模块中的代码。');
 
-    jr_define('_JOMRES_TUTORIAL_LOGFILES', '日志文件');
-jr_define('_JOMRES_TUTORIAL_LOGFILES_DESC', '此视频将向您展示如何查看日志文件。系统运行时会进行大量日志记录。在生产模式下（站点配置 > 调试)生成的日志较少，因此如果您正在测试新功能，那么您应该将您的站点设置为开发。如果您想将自己的日志记录添加到您的 Jomres 脚本中，请查看 <a "http://www.jomres.net/manual/developers-guide/56-other-discussions /339-logging-in-jomres" target="_blank">我们的手册页关于如何做。</a>这里我们将抛出一个假错误，然后查看日志文件。因为站点设置为开发那里是很多信息，通常您只会看到一条消息，指出存在错误并且已报告。');
+	jr_define('_JOMRES_TUTORIAL_LOGFILES', '日志文件');
+jr_define('_JOMRES_TUTORIAL_LOGFILES_DESC', '此视频将向您展示如何查看日志文件。系统运行时会进行大量日志记录。在生产模式下（站点配置 > 调试)生成的日志较少，因此如果您正在测试新功能，那么您应该将您的站点设置为开发。如果您想将自己的日志记录添加到您的 Jomres 脚本中，请查看 <a "https://www.jomres.net/manual/developers-guide/56-other-discussions /339-logging-in-jomres" target="_blank">我们的手册页关于如何做。</a>这里我们将抛出一个假错误，然后查看日志文件。因为站点设置为开发那里是很多信息，通常您只会看到一条消息，指出存在错误并且已报告。');
 
 jr_define('_JOMRES_TUTORIAL_TRANSLATIONS', '翻译标签和其他字符串');
 jr_define('_JOMRES_TUTORIAL_TRANSLATIONS_DESC', 'Jomres 中有多种翻译语言字符串的方法，您可以编辑语言文件，但升级时它们可能会被覆盖。相反，我们建议您使用我们独有的内置翻译工具软件，如果字符串是已经输入表格的东西，例如房间类型的名称，您可以使用标签编辑页面。如果字符串来自语言文件，您可以使用语言文件编辑工具。只需使用浏览器搜索工具找到您要更改的字符串，然后单击链接进行更改。这些更改会保存到数据库中，因此是更新安全的。您可以为不同的属性类型设置不同的标签，因此您可以将 New Property 更改为 New Campsite，例如，在更改标签之前更改页面顶部的 Language Context 下拉菜单。');
@@ -98,4 +98,3 @@ jr_define('_JOMRES_TUTORIAL_ADMIN_PROPERTY_CATEGORIES_DESC', '物业类别是一
 
 jr_define('_JOMRES_TUTORIAL_ADMIN_COMPLETING_PROPERTY', '站点管理员查看属性');
 jr_define('_JOMRES_TUTORIAL_ADMIN_COMPLETING_PROPERTY_DESC', '<p>你不能从这里管理属性，你只能从前端管理属性，但是在这个列表中你可以看到待批准的属性（如果该功能已启用)和任何不完整（例如仍然需要上传图片,设置价格等)。点击属性名称以进入该属性的仪表板。然后您将能够使用页面顶部的指南部分来查看步骤您需要完成并发布一个属性。</p> ');
-

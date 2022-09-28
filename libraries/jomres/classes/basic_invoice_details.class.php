@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -22,9 +22,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 class basic_invoice_details
-{	
+{
+
 	/**
-	 * 
+	 *
 	 *
 	 * Constructor
 	 *
@@ -37,7 +38,7 @@ class basic_invoice_details
 	}
 	
 	/**
-	 * 
+	 *
 	 * Retrieves and returns basic invoice information, including line items and calculated totals
 	 *
 	 */
@@ -102,7 +103,7 @@ class basic_invoice_details
 	}
 	
 	/**
-	 * 
+	 *
 	 * Get the invoice information
 	 *
 	 */
@@ -157,7 +158,7 @@ class basic_invoice_details
 	}
 	
 	/**
-	 * 
+	 *
 	 * Get line items for the invoice
 	 *
 	 */

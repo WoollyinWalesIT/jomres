@@ -1,0 +1,113 @@
+<patTemplate:tmpl name="edit_gateway" unusedvars="nbsp">
+	<div class="container">
+		<div class="row mb-3">
+			<div class="col-12">
+				<h2>{STRIPE_STANDARD_TITLE}</h2>
+			</div>
+		</div>
+		<div class="row mb-3">
+			<div class="col-sm-2 ">
+				<img src="{LOGO} " class="img-fluid" width="100" alt="Stripe logo">
+			</div>
+			<div class="col-sm-10">
+				<p class="lead">{STRIPE_STANDARD_MARKETING}</p>
+			</div>
+		</div>
+		<div class="row mb-3">
+			<p class="alert alert-info mb-3">
+				{STRIPE_STANDARD_API_TOKEN_DESC}
+			</p>
+		</div>
+		<form method="post" name="adminForm" class="row g-3">
+			<div class="row mb-3">
+				<label for="active" class="col-sm-2 col-form-label">{JR_GATEWAY_CONFIG_ACTIVE}</label>
+				<div class="col-sm-10">
+					{ACTIVE}
+				</div>
+			</div>
+			
+			<div class="row mb-3">
+				<label class="col-md-2 control-label" for="webhook_url">{STRIPE_STANDARD_WEBHOOK_URL}</label>
+				<div class="col-md-10">
+					<div class="input-group">
+						<input id="webhook_url" name="webhook_url" type="text" value="{WEBHOOK_URL}" class="form-control" readonly />
+						{jomres_script copy_button copy_button_id=webhook_url}
+					</div>
+					<div class="form-text">{STRIPE_STANDARD_WEBHOOK_URL_DESC}</div>
+				</div>
+				
+			</div>
+			
+			<div class="row mb-3">
+				<label for="test_mode" class="col-sm-2 col-form-label">{STRIPE_STANDARD_API_TEST_MODE}</label>
+				<div class="col-sm-10">
+					{TEST_MODE}
+					<div class="form-text">{STRIPE_STANDARD_API_TEST_MODE_DESC}</div>
+				</div>
+			</div>
+			
+			<hr/>
+			
+			<div class="row mb-3">
+				<label for="live_publishable_key" class="col-sm-2 col-form-label">{STRIPE_STANDARD_API_LIVE_PUBLISHABLE_KEY_TITLE}</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="live_publishable_key" name="live_publishable_key" value="{LIVE_PUBLISHABLE_KEY}">
+				</div>
+			</div>
+			
+			<div class="row mb-3">
+				<label for="live_secret_key" class="col-sm-2 col-form-label">{STRIPE_STANDARD_API_LIVE_SECRET_KEY_TITLE}</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="live_secret_key" name="live_secret_key" value="{LIVE_SECRET_KEY}">
+				</div>
+			</div>
+			<div class="row mb-3">
+				<label for="live_signing_secret" class="col-sm-2 col-form-label">{STRIPE_STANDARD_WEBHOOK_LIVE_SIGNING_SECRET}</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="live_signing_secret" name="live_signing_secret" value="{LIVE_SIGNING_SECRET}">
+					<div class="form-text">{STRIPE_STANDARD_WEBHOOK_SIGNING_SECRET_DESC}</div>
+				</div>
+				
+			</div>
+			
+			<hr/>
+			
+			<div class="row mb-3">
+				<label for="test_publishable_key" class="col-sm-2 col-form-label">{STRIPE_STANDARD_API_TEST_PUBLISHABLE_KEY_TITLE}</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="test_publishable_key" name="test_publishable_key" value="{TEST_PUBLISHABLE_KEY}">
+				</div>
+			</div>
+			
+			<div class="row mb-3">
+				<label for="test_secret_key" class="col-sm-2 col-form-label">{STRIPE_STANDARD_API_TEST_SECRET_KEY_TITLE}</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="test_secret_key" name="test_secret_key" value="{TEST_SECRET_KEY}">
+				</div>
+			</div>
+			<div class="row mb-3">
+				<label for="test_signing_secret" class="col-sm-2 col-form-label">{STRIPE_STANDARD_WEBHOOK_TEST_SIGNING_SECRET}</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="test_signing_secret" name="test_signing_secret" value="{TEST_SIGNING_SECRET}">
+				</div>
+			</div>
+			
+			<div class="row pt-3">
+				<div class="col-sm-2">
+				</div>
+				<div class="col-sm-10">
+					<input type="submit" value="{COMMON_SUBMIT}" class="btn btn-success" >
+					
+				</div>
+			</div>
+
+			<input type="hidden" name="no_html" value="1" />
+			<input type="hidden" name="plugin" value="{GATEWAY}" />
+			<input type="hidden" name="task" value="save_plugin" />
+
+			{CSRF_TOKEN}
+		</form>
+	</div>
+
+
+</patTemplate:tmpl>

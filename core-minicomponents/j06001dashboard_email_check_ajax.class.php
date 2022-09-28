@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06001dashboard_email_check_ajax
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -46,9 +47,9 @@ class j06001dashboard_email_check_ajax
 		
 		$guest_email_already_in_system = true;
 		
-		$guest_uids = search_property_guests_by_string($email_address_to_test , 0 , 0 , 0 );
+		$guest_uids = search_property_guests_by_string($email_address_to_test, 0, 0, 0);
 
-		if (empty($guest_uids['matches']))  {
+		if (empty($guest_uids['matches'])) {
 			$guest_email_already_in_system = false;
 		}
 		//set ajax response

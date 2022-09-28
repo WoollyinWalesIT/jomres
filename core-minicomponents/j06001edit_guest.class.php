@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,19 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j06001edit_guest
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()
@@ -48,7 +49,7 @@ class j06001edit_guest
 		$vat_validation = array();
 		$output = array();
 		
-		jr_import( 'jrportal_guests' );
+		jr_import('jrportal_guests');
 		$jrportal_guests = new jrportal_guests();
 		$jrportal_guests->id = $id;
 		$jrportal_guests->property_uid = $defaultProperty;
@@ -70,7 +71,7 @@ class j06001edit_guest
 			$yesno = array();
 			$yesno[] = jomresHTML::makeOption('0', jr_gettext('_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false));
 			$yesno[] = jomresHTML::makeOption('1', jr_gettext('_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES', false));
-			$output[ 'BLACKLISTED' ] = jomresHTML::selectList($yesno, 'blacklisted', 'class="inputbox" size="1"', 'value', 'text', $jrportal_guests->blacklisted );
+			$output[ 'BLACKLISTED' ] = jomresHTML::selectList($yesno, 'blacklisted', 'class="inputbox" size="1"', 'value', 'text', $jrportal_guests->blacklisted);
 
 			$output[ 'DISCOUNT' ] = jomresHTML::integerSelectList(0, 99, 1, 'discount', 'class="inputbox" size="1"', $jrportal_guests->discount);
 

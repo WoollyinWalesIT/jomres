@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,20 +17,21 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * Includes the generateDateInput.php function script. Identified as a function that is regularly modified by users, it is delivered in this format so that  you don't need to be a coder to create your own version of this function. 
-	 * 
+	 * Includes the generateDateInput.php function script. Identified as a function that is regularly modified by users, it is delivered in this format so that  you don't need to be a coder to create your own version of this function.
+	 *
 	 */
 
 class j00001functioncall_get_search_form_elements
-{	
+{
+
 	/**
 	 *
 	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 * Main functionality of the Minicomponent
+	 *
+	 *
+	 *
 	 */
 	 
 	public function __construct()

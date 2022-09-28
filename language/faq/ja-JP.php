@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -52,7 +52,7 @@ jr_define('_JOMRES_FAQ_GUEST_CATEGORY_SOMETHING', 'ゲスト関連の何か');
 jr_define('_JOMRES_FAQ_GUEST_QUESTION_SOMEQUESTION', 'どうすれば何とかできますか？');
 jr_define('_JOMRES_FAQ_GUEST_ANSWER_SOMEANSWER', 'You blahblahblah');
 jr_define('_JOMRES_FAQ_MANAGER_QUESTION_LANGUAGES', '複数の言語で説明を保存するにはどうすればよいですか？');
-    
+	
 jr_define('_JOMRES_FAQ_MANAGER_ANSWER_LANGUAGES', "複数の言語で説明を保存するには,まず[設定]> [プロパティの詳細]ページにアクセスします。プロパティの説明をそこに保存します。次に,サイトを表示している言語を変更します。次に[設定]に移動します。プロパティの詳細ページをもう一度表示し,詳細を再度保存します。したがって,サイトで英語とスペイン語（またはその他の)言語の両方を表示できる場合は,英語を選択し,英語で説明を入力して,[保存]をクリックします。次に,現在の言語を変更します。言語をスペイン語に変換してから,新しいスペイン語の説明を保存します。これは,そのページのすべての入力に対して機能します。 ");
 jr_define('_JOMRES_FAQ_MANAGER_QUESTION_OTHERPROPERTIES', 'このサイトの他のプロパティを変更できますか？');
 jr_define('_JOMRES_FAQ_MANAGER_ANSWER_OTHERPROPERTIES', 'いいえ,できません。管理できるのは,作成した,またはプロパティマネージャーとして割り当てられたプロパティのみです。');
@@ -66,4 +66,3 @@ jr_define('_JOMRES_FAQ_MANAGER_ANSWER_ROOMFEATURES', "部屋の特徴は,部屋�
 jr_define('_JOMRES_FAQ_ADMIN_CATEGORY_PAYMENTS', '支払い');
 jr_define('_JOMRES_FAQ_ADMIN_QUESTION_TROUBLESHOOTING_NOGATEWAY', "予約後に支払いゲートウェイが表示されません。");
 jr_define('_JOMRES_FAQ_ADMIN_ANSWER_TROUBLESHOOTING_NOGATEWAY', "プロパティマネージャーとしてログインしている場合,自分で支払いを行わないため,支払いゲートウェイは表示されません。予約時にゲートウェイが表示されるのはマネージャー以外のユーザーのみです。");
-    

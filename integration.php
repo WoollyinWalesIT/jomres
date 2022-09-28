@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.3
+ *  @version Jomres 10.5.4
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -259,7 +259,7 @@ define('JOMRES_SYSTEMLOG_PATH', fix_path($jrConfig['log_path']));
 
 		if ( isset($jrConfig['amazon_s3_active'])) {
 			if ($jrConfig['amazon_s3_active'] != '1' || $jrConfig['amazon_s3_bucket'] == '') {
-				define('JOMRES_IMAGELOCATION_RELPATH', $path.'/'.JOMRES_ROOT_DIRECTORY.'/uploadedimages/');
+				define('JOMRES_IMAGELOCATION_RELPATH', get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/uploadedimages/');
 			} else {
 				if ($jrConfig['amazon_cloudfront_domain'] != '') {
 					$amazon_url = 'https://'.$jrConfig['amazon_cloudfront_domain'];
@@ -285,7 +285,8 @@ set_showtime('tmplcomponent_source', JOMRES_LIBRARIES_ABSPATH.'fullscreen_view'.
 * copy fullscreen_view/jomres.php to the joomla template dir to help with fullscreen mode
 *
 */
-if (!defined('AUTO_UPGRADE')) {
+
+if (!defined('AUTO_UPGRADE') && !defined('API_STARTED') ) {
 	jomres_cmsspecific_patchJoomlaTemplate();
 }
 
@@ -305,7 +306,6 @@ if ($jrConfig[ 'development_production' ] == 'production') {
 
 //TODO find a better place, maybe jomres.php and framework.php
 $jomresHTML = jomres_singleton_abstract::getInstance('jomresHTML');
-
 
 // CSRF handling
 require_once JOMRES_LIBRARIES_ABSPATH.JRDS.'crsfhandler'.JRDS.'csrfhandler.lib.php';
