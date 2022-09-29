@@ -77,8 +77,8 @@ class j06000stripe_standard_redirect
 		]);
 
 		$checkout_session = $stripe->checkout->sessions->create([
-			'success_url' =>  JOMRES_SITEPAGE_URL_NOSEF.'&task=stripe_standard_response&booking_id='.$tmpBookingHandler->tmpbooking['booking_number'],
-			'cancel_url' =>  JOMRES_SITEPAGE_URL_NOSEF.'&task=stripe_standard_response&booking_id='.$tmpBookingHandler->tmpbooking['booking_number'],
+			'success_url' =>  JOMRES_SITEPAGE_URL_NOSEF.'&task=stripe_standard_response&booking_id='.$tmpBookingHandler->tmpbooking['booking_number'].'&jsid='.$tmpBookingHandler->jomressession,
+			'cancel_url' =>  JOMRES_SITEPAGE_URL_NOSEF.'&task=stripe_standard_response&booking_id='.$tmpBookingHandler->tmpbooking['booking_number'].'&jsid='.$tmpBookingHandler->jomressession,
 			'line_items' => [[
 				'price_data' => [
 					'currency' => $currency_code,

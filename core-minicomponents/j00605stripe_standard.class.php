@@ -22,8 +22,8 @@ class j00605stripe_standard {
 			{
 			$this->template_touchable=false; return;
 			}
-
-		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=stripe_standard_redirect") ,"" );
+			$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
+			jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=stripe_standard_redirect&jsid=".$tmpBookingHandler->jomressession) ,"" );
 		}
 
 	function getRetVals() {
