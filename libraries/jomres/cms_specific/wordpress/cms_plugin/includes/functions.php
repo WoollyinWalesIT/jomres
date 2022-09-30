@@ -203,4 +203,4 @@ function jomres_notice($notice)
 	add_shortcode('default_wordpress_loginform', 'jomres_login_form_shortcode');
 
 
-	add_filter( 'run_wptexturize', '__return_false' );
+	add_filter( 'run_wptexturize', '__return_false' , PHP_INT_MAX );
