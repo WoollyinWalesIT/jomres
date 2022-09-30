@@ -1465,8 +1465,11 @@ function jomres_bootstrap_version()
 			$bootstrap_version = '2';
 		} elseif ($jrConfig[ 'bootstrap_version' ] != '') {
 			$bootstrap_version = (int)$jrConfig[ 'bootstrap_version' ];
+			if ($bootstrap_version == 0) {
+				$bootstrap_version = '5';
+			}
 		} else {
-			$bootstrap_version = '3';
+			$bootstrap_version = '5';
 		}
 	} else {
 		$bootstrap_version = $jrConfig[ 'bootstrap_version' ];

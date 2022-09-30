@@ -40,15 +40,16 @@ if (!defined('AUTO_UPGRADE')) {
 include(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'configuration.php');
 
 if ($jrConfig['bootstrap_version'] == 0 && AJAXCALL === false && !is_admin()) {
-	// If theme is not bootstrap based, we can still include BS and hope that everything works (highly dependant on the theme)
-	// JS
-	wp_enqueue_script('prefix_bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', array('jquery'));
 
-	// CSS
-	wp_register_style('prefix_bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
-	wp_enqueue_style('prefix_bootstrap');
-	wp_register_style('prefix_bootstrap_theme', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css');
-	wp_enqueue_style('prefix_bootstrap_theme');
+	function jomres_load_css_js_sin_bootstrap() {
+		// JS
+		wp_enqueue_script('bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js', array('jquery') , null , false );
+		wp_register_style('bootstrap_css', 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css');
+		wp_enqueue_style(
+			'font-awesome-6','https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css',array(),'6.2.0');
+        }
+
+	add_action('wp_enqueue_scripts', 'jomres_load_css_js_sin_bootstrap');
 }
 
 add_filter('wp_editor_settings', function ($settings) {
