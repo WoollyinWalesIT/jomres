@@ -72,6 +72,60 @@ class j00501booking_settings
 		$configurationPanel->setright(jr_gettext('JOMRES_POLICY_ACCEPT_CHILDREN_DESC', 'JOMRES_POLICY_ACCEPT_CHILDREN_DESC', false));
 		$configurationPanel->insertSetting();
 
+		$configurationPanel->insertHeading(jr_gettext('JOMRES_CITY_TAX_HEADING', 'JOMRES_CITY_TAX_HEADING', false));
+
+		if (!isset($mrConfig[ 'city_tax_value' ])) {
+			$mrConfig[ 'city_tax_value' ] = 0;
+		}
+
+		$configurationPanel->setleft(jr_gettext('JOMRES_CITY_TAX_VALUE', 'JOMRES_CITY_TAX_VALUE', false));
+		$configurationPanel->setmiddle('<input type="number" class="inputbox form-control"  size="5" name="cfg_city_tax_value" value="'.$mrConfig[ 'city_tax_value' ].'" />');
+		$configurationPanel->setright();
+		$configurationPanel->insertSetting();
+
+		$configurationPanel->setleft(jr_gettext('JOMRES_CITY_TAX_METHOD', 'JOMRES_CITY_TAX_METHOD', false));
+		$configurationPanel->setmiddle($componentArgs[ 'city_tax_models_dropdown' ]);
+		$configurationPanel->setright();
+		$configurationPanel->insertSetting();
+
+
+		$configurationPanel->insertHeading(jr_gettext('JOMRES_CLEANING_FEE_HEADING', 'JOMRES_CLEANING_FEE_HEADING', false));
+
+		if (!isset($mrConfig[ 'cleaning_fee' ])) {
+			$mrConfig[ 'cleaning_fee' ] = 0;
+		}
+
+		$configurationPanel->setleft(jr_gettext('JOMRES_CLEANING_FEE_VALUE', 'JOMRES_CLEANING_FEE_VALUE', false));
+		$configurationPanel->setmiddle('<input type="number" class="inputbox form-control"  size="5" name="cfg_cleaning_fee" value="'.$mrConfig[ 'cleaning_fee' ].'" />');
+		$configurationPanel->setright();
+		$configurationPanel->insertSetting();
+
+		jr_import('jomres_occupancy_levels');
+		$jomres_occupancy_levels = new jomres_occupancy_levels(get_showtime('property_uid'));
+
+		if ($mrConfig[ 'is_real_estate_listing' ] != 0) {
+			return;
+		}
+
+		if ($mrConfig['tariffmode'] == 5 || count($jomres_occupancy_levels->occupancy_levels) > 0 ) {
+			if (!isset($mrConfig['extra_guest_price'])) {
+				$mrConfig['extra_guest_price'] = '';
+			}
+
+			$configurationPanel->insertHeading(jr_gettext('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE', 'JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE', false));
+
+			$configurationPanel->setleft(jr_gettext('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE', 'JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE', false));
+			$configurationPanel->setmiddle('<input type="text" class="inputbox form-control"  size="5" name="cfg_extra_guest_price" value="' . $mrConfig['extra_guest_price'] . '" />');
+			$configurationPanel->setright(jr_gettext('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE_DESC', 'JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE_DESC', false));
+			$configurationPanel->insertSetting();
+
+			jr_import('jomres_calculate_accommodates_value');
+			$jomres_calculate_accommodates_value = new jomres_calculate_accommodates_value(get_showtime('property_uid'));
+			$jomres_calculate_accommodates_value->calculate_accommodates_value();
+		}
+
+		$configurationPanel->insertHeading('');
+
 		if ($jrConfig[ 'compatability_property_configuration' ] != 1) {
 			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_VISITORSCANBOOKONLINE', '_JOMRES_COM_A_VISITORSCANBOOKONLINE', false));
 			$configurationPanel->setmiddle($lists['visitorscanbookonline']);
@@ -250,58 +304,56 @@ class j00501booking_settings
 			}
 		}
 
-
-
 		if ($mrConfig[ 'is_real_estate_listing' ] == 0) {
-			if (!isset($jrConfig[ 'minimum_deposit_percentage' ])) {
-				$jrConfig[ 'minimum_deposit_percentage' ] = 0;
+			if (!isset($jrConfig['minimum_deposit_percentage'])) {
+				$jrConfig['minimum_deposit_percentage'] = 0;
 			}
 
 			$configurationPanel->insertHeading(jr_gettext('_JOMRES_HDEPOSITS', '_JOMRES_HDEPOSITS', false));
 
-			if ((int) $jrConfig[ 'minimum_deposit_percentage' ] == 0) {
+			if ((int)$jrConfig['minimum_deposit_percentage'] == 0) {
 				$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT', '_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT', false));
-				$configurationPanel->setmiddle($lists[ 'chargeDepositYesNo' ]);
+				$configurationPanel->setmiddle($lists['chargeDepositYesNo']);
 				$configurationPanel->setright();
 				$configurationPanel->insertSetting();
 			}
 
-			if (!get_showtime('is_jintour_property') && (int) $jrConfig[ 'minimum_deposit_percentage' ] == 0) {
+			if (!get_showtime('is_jintour_property') && (int)$jrConfig['minimum_deposit_percentage'] == 0) {
 				$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_DEPOSIT_FIRSTNIGHTCOST', '_JOMRES_COM_A_DEPOSIT_FIRSTNIGHTCOST', false));
-				$configurationPanel->setmiddle($lists[ 'depositIsOneNight' ]);
+				$configurationPanel->setmiddle($lists['depositIsOneNight']);
 				$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_DEPOSIT_FIRSTNIGHTCOST_DESC', '_JOMRES_COM_A_DEPOSIT_FIRSTNIGHTCOST_DESC', false));
 				$configurationPanel->insertSetting();
 			}
 
-			if ((int) $jrConfig[ 'minimum_deposit_percentage' ] == 0) {
+			if ((int)$jrConfig['minimum_deposit_percentage'] == 0) {
 				$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_DEPOSIT_ISPERCENTAGE', '_JOMRES_COM_A_DEPOSIT_ISPERCENTAGE', false));
-				$configurationPanel->setmiddle($lists[ 'depositIsPercentage' ]);
+				$configurationPanel->setmiddle($lists['depositIsPercentage']);
 				$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_DEPOSIT_ISPERCENTAGE_DESC', '_JOMRES_COM_A_DEPOSIT_ISPERCENTAGE_DESC', false));
 				$configurationPanel->insertSetting();
 			}
 
 			$minimum_deposit_message = '';
-			if ((int) $jrConfig[ 'minimum_deposit_percentage' ] > 0) {
-				$minimum_deposit_message = jr_gettext('_JOMRES_CONFIG_MINIMUM_DEPOSIT_SETTING', '_JOMRES_CONFIG_MINIMUM_DEPOSIT_SETTING', false).(int) $jrConfig[ 'minimum_deposit_percentage' ].'%';
+			if ((int)$jrConfig['minimum_deposit_percentage'] > 0) {
+				$minimum_deposit_message = jr_gettext('_JOMRES_CONFIG_MINIMUM_DEPOSIT_SETTING', '_JOMRES_CONFIG_MINIMUM_DEPOSIT_SETTING', false) . (int)$jrConfig['minimum_deposit_percentage'] . '%';
 			}
 			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_DEPOSIT_VALUE', '_JOMRES_COM_A_DEPOSIT_VALUE', false));
-			$configurationPanel->setmiddle('<input type="number" class="inputbox form-control"  size="5" name="cfg_depositValue" value="'.$mrConfig[ 'depositValue' ].'" />');
+			$configurationPanel->setmiddle('<input type="number" class="inputbox form-control"  size="5" name="cfg_depositValue" value="' . $mrConfig['depositValue'] . '" />');
 			$configurationPanel->setright($minimum_deposit_message);
 			$configurationPanel->insertSetting();
 
-			if (!isset($mrConfig[ 'minimum_deposit_value' ])) {
-				$mrConfig[ 'minimum_deposit_value' ] = 0;
+			if (!isset($mrConfig['minimum_deposit_value'])) {
+				$mrConfig['minimum_deposit_value'] = 0;
 			}
-			
+
 			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE', '_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE', false));
-			$configurationPanel->setmiddle('<input type="number" class="inputbox form-control"  size="5" name="cfg_minimum_deposit_value" value="'.(float)$mrConfig[ 'minimum_deposit_value' ].'" />');
+			$configurationPanel->setmiddle('<input type="number" class="inputbox form-control"  size="5" name="cfg_minimum_deposit_value" value="' . (float)$mrConfig['minimum_deposit_value'] . '" />');
 			$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE_DESC', '_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE_DESC', false));
 			$configurationPanel->insertSetting();
-			
-			
+
+
 			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_VARIABLE', '_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_VARIABLE', false));
-			$configurationPanel->setmiddle($lists[ 'use_variable_deposits' ]);
-			if ($mrConfig[ 'wholeday_booking' ] == '1') {
+			$configurationPanel->setmiddle($lists['use_variable_deposits']);
+			if ($mrConfig['wholeday_booking'] == '1') {
 				$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_VARIABLE_DESC_WHOLEDAY', '_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_VARIABLE_DESC_WHOLEDAY', false));
 			} else {
 				$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_VARIABLE_DESC', '_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_VARIABLE_DESC', false));
@@ -309,7 +361,7 @@ class j00501booking_settings
 			$configurationPanel->insertSetting();
 
 			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_NUMBEROFDAYS', '_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_NUMBEROFDAYS', false));
-			$configurationPanel->setmiddle('<input type="number" class="inputbox form-control"  size="5" name="cfg_variable_deposit_threashold" value="'.$mrConfig[ 'variable_deposit_threashold' ].'" />');
+			$configurationPanel->setmiddle('<input type="number" class="inputbox form-control"  size="5" name="cfg_variable_deposit_threashold" value="' . $mrConfig['variable_deposit_threashold'] . '" />');
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 
@@ -319,40 +371,10 @@ class j00501booking_settings
 			$configurationPanel->insertSetting();
 
 			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_DEPOSIT_DEPOSITROUNDUP', '_JOMRES_COM_A_DEPOSIT_DEPOSITROUNDUP', false));
-			$configurationPanel->setmiddle($lists[ 'roundupDepositYesNo' ]);
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
-
-
-			$configurationPanel->insertHeading(jr_gettext('JOMRES_CITY_TAX_HEADING', 'JOMRES_CITY_TAX_HEADING', false));
-
-			if (!isset($mrConfig[ 'city_tax_value' ])) {
-				$mrConfig[ 'city_tax_value' ] = 0;
-			}
-
-			$configurationPanel->setleft(jr_gettext('JOMRES_CITY_TAX_VALUE', 'JOMRES_CITY_TAX_VALUE', false));
-			$configurationPanel->setmiddle('<input type="number" class="inputbox form-control"  size="5" name="cfg_city_tax_value" value="'.$mrConfig[ 'city_tax_value' ].'" />');
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
-
-			$configurationPanel->setleft(jr_gettext('JOMRES_CITY_TAX_METHOD', 'JOMRES_CITY_TAX_METHOD', false));
-			$configurationPanel->setmiddle($componentArgs[ 'city_tax_models_dropdown' ]);
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
-
-
-			$configurationPanel->insertHeading(jr_gettext('JOMRES_CLEANING_FEE_HEADING', 'JOMRES_CLEANING_FEE_HEADING', false));
-
-			if (!isset($mrConfig[ 'cleaning_fee' ])) {
-				$mrConfig[ 'cleaning_fee' ] = 0;
-			}
-
-			$configurationPanel->setleft(jr_gettext('JOMRES_CLEANING_FEE_VALUE', 'JOMRES_CLEANING_FEE_VALUE', false));
-			$configurationPanel->setmiddle('<input type="number" class="inputbox form-control"  size="5" name="cfg_cleaning_fee" value="'.$mrConfig[ 'cleaning_fee' ].'" />');
+			$configurationPanel->setmiddle($lists['roundupDepositYesNo']);
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 		}
-
 		$configurationPanel->endPanel();
 	}
 

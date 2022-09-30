@@ -45,7 +45,6 @@
 <span class="label label-warning">Change</span> BS5 Checkboxes replaced with BS5 switches (https://getbootstrap.com/docs/5.0/forms/checks-radios/#switches) in booking form.
 <span class="label label-warning">Change</span> BS5 Layout of Booking form's Rooms lists updated. Available and Selected rooms lists tweaked. Feedback messages moved above totals.
 
-
 <span class="label label-important label-danger">Fix</span> Fixed links to jomres.net to use https protocol (lang files)
 <span class="label label-important label-danger">Fix</span> Added some changes to resolve issues in API since Joomla 4.2.2 released
 <span class="label label-important label-danger">Fix</span> Basic room details tweak : Since Joomla 4.2.2 calling this function triggers an error in the api. Given that the api doesn't benefit from having the tooltips, we won't return them.
@@ -56,6 +55,9 @@
 <span class="label label-important label-danger">Fix</span> Change how image root is found so that og:image paths render correctly.
 <span class="label label-important label-danger">Fix</span> Fixed a notice in touch templates.
 <span class="label label-important label-danger">Fix</span> Fix a bug where unpublished properties could be included in host property list on BS5 templated sites
+<span class="label label-important label-danger">Fix</span> Removed a limitation preventing child prices from being calculated if compatability mode not enabled.
+<span class="label label-important label-danger">Fix</span> Refactored extra guest numbers in booking engine.
+<span class="label label-important label-danger">Fix</span> Fixed an issue in Standard mode where the correct guest numbers could not be saved correctly, occupancy calculation code was causing problems.
 
 <h3>Jomres 10.5.3 03/08/2022</h3>
 

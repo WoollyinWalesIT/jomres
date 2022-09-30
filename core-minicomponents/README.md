@@ -44,7 +44,7 @@ The next trigger numbers are used when building the property list/search results
 03030 Shows the booking completed message.  
 03100 Sends emails to managers, guests and admin to update each on the new booking.  
 03150 Various email scripts.
-
+03160 Called when saving account details. Gives plugins the option to parse saved data before it's saved to the database. Reason created : Twilio cannot send messages to invalid numbers, therefore parsing the $_REQUEST['mobile'] value, checking it and if necessary resetting it to empty if it cannot be validated will prevent Twilio throwing errors. From Jomres 10.5.4
 
 03200 Triggers 07005 & 07010  
 

@@ -56,9 +56,15 @@ class j06002save_resource
 		$jrportal_rooms->propertys_uid				= $defaultProperty;
 		$jrportal_rooms->room_uid					= (int) jomresGetParam($_POST, 'roomUid', 0);
 		$jrportal_rooms->room_classes_uid			= (int) jomresGetParam($_POST, 'roomClasses', 0);
-		// $jrportal_rooms->max_people					= (int) jomresGetParam($_POST, 'max_people', 0);
+		 $jrportal_rooms->max_people					= (int) jomresGetParam($_POST, 'max_people', 0);
 		$jrportal_rooms->max_adults					= (int) jomresGetParam($_POST, 'max_adults', 0);
 		$jrportal_rooms->max_children				= (int) jomresGetParam($_POST, 'max_children', 0);
+
+		if ($mrConfig[ 'singleRoomProperty' ] == '1') { // It's an SRP
+			$jrportal_rooms->max_adults = (int) jomresGetParam($_POST, 'max_people', 0);
+			$jrportal_rooms->max_children				= 0;
+		}
+
 		$jrportal_rooms->room_name					= getEscaped(jomresGetParam($_POST, 'room_name', ''));
 		$jrportal_rooms->room_number				= getEscaped(jomresGetParam($_POST, 'room_number', ''));
 		$jrportal_rooms->room_floor					= getEscaped(jomresGetParam($_POST, 'room_floor', ''));
@@ -81,11 +87,31 @@ class j06002save_resource
 			$jrportal_rooms->commit_new_room();
 		}
 
-		if ($mrConfig[ 'compatability_property_configuration' ] == 1) {
-			jr_import('jomres_calculate_accommodates_value');
-			$jomres_calculate_accommodates_value = new jomres_calculate_accommodates_value($defaultProperty);
-			$jomres_calculate_accommodates_value->calculate_accommodates_value();
+		if ($mrConfig[ 'singleRoomProperty' ] == '1') {
+			$jrportal_rooms = new jrportal_rooms();
 
+			$basic_room_details = jomres_singleton_abstract::getInstance('basic_room_details');
+			$basic_room_details->get_all_rooms($defaultProperty);
+			$first_key = array_key_first($basic_room_details->rooms);
+			$the_correct_room_type_id = $basic_room_details->rooms[$first_key]['room_classes_uid'];
+
+			jr_import('jomres_occupancy_levels');
+			$jomres_occupancy_levels = new jomres_occupancy_levels($defaultProperty);
+			foreach ($jomres_occupancy_levels->occupancy_levels as $key => $val) {
+				if ($key != $the_correct_room_type_id) {
+					unset($jomres_occupancy_levels->occupancy_levels[$key]);
+				} else {
+					$jomres_occupancy_levels->set_occupancy_level($the_correct_room_type_id,(int) jomresGetParam($_POST, 'max_people', 0),  0,  (int) jomresGetParam($_POST, 'max_people', 0) );
+				}
+			}
+			$jomres_occupancy_levels->save_occupancy_levels($the_correct_room_type_id);
+		}
+
+		jr_import('jomres_calculate_accommodates_value');
+		$jomres_calculate_accommodates_value = new jomres_calculate_accommodates_value($defaultProperty);
+		$jomres_calculate_accommodates_value->calculate_accommodates_value();
+
+		if ($mrConfig[ 'compatability_property_configuration' ] == 1) {
 			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=list_occupancy_levels'), '');
 		} else {
 			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=list_resources'), '');

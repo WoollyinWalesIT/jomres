@@ -26,6 +26,17 @@ defined('_JOMRES_INITCHECK') or die('');
 
 	Flight::map('json', function ($response_name, $data, $code = 200, $encode = true, $charset = 'utf-8') {
 
+		$headers = jomres_api_postrun_get_headers();
+
+		if (isset($headers['X-JOMRES-NO-ENVELOPE']) && $headers['X-JOMRES-NO-ENVELOPE'] == 1) {
+			Flight::response()
+				->status($code)
+				->header('Content-Type', 'application/json; charset='.$charset)
+				->write(json_encode($data))
+				->send();
+			exit;
+		}
+
 		$envelope_data = Flight::response_envelope_data();
 
 		if (class_exists('mcHandler')) {  // The framework has been included, therefore there's a chance a webhook has been triggered. Let's fire up the watcher to respond to any events
@@ -122,3 +133,21 @@ defined('_JOMRES_INITCHECK') or die('');
 
 		return $data;
 	});
+
+	/*
+	 * Here and not in core functions.php because framework isn't always loaded
+	 *
+	 */
+	function jomres_api_postrun_get_headers()
+	{
+		$all_headers = getallheaders();
+
+		if (!empty($all_headers)) {
+			foreach ($all_headers as $key => $val ) {
+				$new_index = strtoupper($key);
+				unset($all_headers[$key]);
+				$all_headers[$new_index] = $val;
+			}
+		}
+		return $all_headers;
+	}

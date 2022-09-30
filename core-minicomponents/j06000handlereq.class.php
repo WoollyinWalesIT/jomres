@@ -444,7 +444,7 @@ class j06000handlereq
 					echo '; populateDiv("staydays","'.$num_period.'")';
 
 					if (get_showtime('include_room_booking_functionality')) {
-						if (isset($mrConfig[ 'compatability_property_configuration' ]) &&  $mrConfig[ 'compatability_property_configuration' ] == 1 && $mrConfig[ 'allow_children' ] == '1' && $field != 'addressstring') {
+						if ($mrConfig[ 'allow_children' ] == '1' && $field != 'addressstring') {
 							echo '; populateDiv("child_selectors","' . $bkg->sanitise_for_eval($bkg->build_children_selectors()). '")';
 							$bkg->calculate_child_prices();
 							if (isset($bkg->child_prices['total_price'])) {

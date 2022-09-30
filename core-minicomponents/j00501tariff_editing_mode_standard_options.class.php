@@ -53,12 +53,15 @@ class j00501tariff_editing_mode_standard_options
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
 		$mrConfig = getPropertySpecificSettings();
+return;
+		jr_import('jomres_occupancy_levels');
+		$jomres_occupancy_levels = new jomres_occupancy_levels(get_showtime('property_uid'));
 
 		if ($mrConfig[ 'is_real_estate_listing' ] != 0) {
 			return;
 		}
 
-		if ($mrConfig['tariffmode'] == 5) {
+		if ($mrConfig['tariffmode'] == 5 || count($jomres_occupancy_levels->occupancy_levels) > 0 ) {
 			if (!isset($mrConfig[ 'extra_guest_price' ])) {
 				$mrConfig[ 'extra_guest_price' ] = '';
 			}

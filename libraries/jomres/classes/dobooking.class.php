@@ -341,6 +341,9 @@ class dobooking
 
 		$mrConfig = getPropertySpecificSettings($this->property_uid);
 
+		jr_import('jomres_occupancy_levels');
+		$this->jomres_occupancy_levels = new jomres_occupancy_levels($this->property_uid);
+
 		$this->mrConfig = $mrConfig;
 		if (isset($mrConfig[ 'margin' ]) && !empty($mrConfig[ 'margin' ])) {
 			$this->margin = $mrConfig[ 'margin' ];
@@ -2156,17 +2159,27 @@ class dobooking
 	 */
 	public function setStandardGuests($value)
 	{
+		$value = (int)$value;
 		$default_number_of_guests = 2;
 
 		if (!isset($this->standard_guest_numbers)) {
 			$this->standard_guest_numbers = 2;
+			$this->extra_guest_numbers = 0;
 		}
 
-		if ($value > $default_number_of_guests) {
-			$this->extra_guest_numbers =  $value - $default_number_of_guests;
+		if ($value < $default_number_of_guests ) {
+			$this->standard_guest_numbers = $value;
+			$this->extra_guest_numbers = 0;
 		}
 
-		$this->standard_guest_numbers = (int)$value;
+		if ($value == $default_number_of_guests ) {
+			$this->standard_guest_numbers =  $default_number_of_guests;
+			$this->extra_guest_numbers = 0;
+		}
+
+		if ($value > $default_number_of_guests ) {
+			$this->extra_guest_numbers =  $value - $this->standard_guest_numbers;
+		}
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3761,17 +3774,21 @@ class dobooking
 		$this->room_allocations = array();
 		$guests = $this->getVariantsOfType('guesttype');
 
-		if ($mrConfig[ 'tariffmode' ] == '5') {
+		if ($mrConfig[ 'tariffmode' ] == '5' || count($this->jomres_occupancy_levels->occupancy_levels) > 0 ) {
 			$totalNumberOfGuests = $this->standard_guest_numbers + $this->extra_guest_numbers;
 		} else {
 			$totalNumberOfGuests = 0;
 			$guests = $this->getVariantsOfType('guesttype');
 		}
 
-
+		if ($mrConfig[ 'tariffmode' ] == '3') { // dobooking has evolved to use a default number of guests of 2 (standard tariff mode). If an old micromanage tariff set has been created but guest types not created then micromanage bookings will not work now, so we'll set the default number of guests to 2
+			if (empty($guests)) {
+				$guests = array(array('qty' => $this->standard_guest_numbers ));
+			}
+		}
 
 		$this->setErrorLog('checkAllGuestsAllocatedToRooms::Starting ');
-		if (!empty($guests) || $mrConfig[ 'tariffmode' ] == '5') {
+		if (!empty($guests) || $mrConfig[ 'tariffmode' ] == '5' || count($this->jomres_occupancy_levels->occupancy_levels) > 0) {
 			$this->setErrorLog('checkAllGuestsAllocatedToRooms:: count($guests) > 0 ');
 
 			if (empty($this->requestedRoom)) {
@@ -3802,6 +3819,7 @@ class dobooking
 					$room_spread_array[ $key ] = 0;
 				}
 			}
+
 			ksort($room_spread_array);
 			$numberOfSelectedRooms = count($allSelectedRoomsMaxPeople);
 			// if $numberOfSelectedRooms == $totalNumberOfGuests then we can put one person in each room and return
@@ -5888,11 +5906,11 @@ class dobooking
 		}
 
 		$this->extra_guest_price = 0.00;
-		if ($this->cfg_tariffmode == '5' && count($this->requestedRoom) > 0) {
+		if ( count($this->requestedRoom) > 0) {
 			if ($this->extra_guest_numbers > 0) {
 				$this->extra_guest_price = ($this->extra_guest_numbers * $extra_guest_price) * $this->stayDays;
-				$this->extra_guest_price = $this->get_nett_price($this->extra_guest_price, $this->accommodation_tax_rate);
-				$this->room_total = $this->room_total + $this->extra_guest_price;
+				//$this->extra_guest_price = $this->get_nett_price($this->extra_guest_price, $this->accommodation_tax_rate);
+				//$this->room_total = $this->room_total;
 
 				// Not sure about this yet, commented for now
 				/*$this->add_additiional_line_item(
@@ -6057,7 +6075,8 @@ class dobooking
 		if (isset($this->child_prices['total_price'])) {
 			$child_price = $this->child_prices['total_price'];
 		}
-		$this->billing_grandtotal = ($this->room_total + $this->extrasvalue + $this->tax + $this->single_person_suppliment + $this->city_tax + $this->cleaning_fee + $child_price );
+
+		$this->billing_grandtotal = ($this->room_total + $this->extrasvalue + $this->tax + $this->single_person_suppliment + $this->city_tax + $this->cleaning_fee + $child_price + $this->extra_guest_price );
 		$this->room_total_ex_tax = $this->room_total + $this->single_person_suppliment;
 		$this->room_total_inc_tax = $this->room_total + $this->single_person_suppliment + $this->tax;
 		$this->setErrorLog('calcTotals::Total: '.$this->billing_grandtotal);
@@ -7052,6 +7071,9 @@ class dobooking
 		$total_number_of_guests = 0;
 
 		foreach ($this->room_allocations as $room) {
+			if (!isset($room[ 'number_allocated' ])) {
+				$room[ 'number_allocated' ] = $this->standard_guest_numbers;
+			}
 			$total_number_of_guests += $room[ 'number_allocated' ];
 			if ($this->cfg_perPersonPerNight == '0') {
 				$total += $room[ 'price_per_night' ];
