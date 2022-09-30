@@ -316,6 +316,11 @@ try {
 
 	}
 
+	if (defined('WORDPRESS_NON_BOOTSTRAP_TWEAKS') && !defined('WORDPRESS_NON_BOOTSTRAP_TWEAKS_SHOWN') ) {
+		define('WORDPRESS_NON_BOOTSTRAP_TWEAKS_SHOWN' , 1 );
+		echo WORDPRESS_NON_BOOTSTRAP_TWEAKS;
+	}
+
 	if (isset($_REQUEST['from_admin']) && !$thisJRUser->userIsRegistered) {
 		echo simple_template_output(JOMRES_TEMPLATEPATH_FRONTEND, 'from_admin_not_logged_in.html', jr_gettext('JOMRES_COM_TRANSITION_FROM_ADMIN_TO_BACKEND_NOT_LOGGED_IN', 'JOMRES_COM_TRANSITION_FROM_ADMIN_TO_BACKEND_NOT_LOGGED_IN', false));
 		if (this_cms_is_joomla()) { // Wordpress users do not need exposition because the session is shared between frontend and admin. Joomla users will see this page if session sharing is not enabled and they're not logged in, therefore further explanation may help them if they're unfamiliar with Jomres.

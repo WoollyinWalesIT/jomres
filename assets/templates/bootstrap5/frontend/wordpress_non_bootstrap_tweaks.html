@@ -1,9 +1,11 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 
 <patTemplate:comment>
-	A bit of a cludge, but it works
+	A bit of a cludge, but it works.
 
-	It's now possible to run Bootstrap 3 within Wordpress default templates but it does require a few little tweaks here and there
+	It's now possible to run Bootstrap 5 within Wordpress default templates but it does require a few little tweaks here and there. Jomres doesn't have a mechanism to override custom css, so we'll put the custom css in a template file instead.
+	
+	This file was modified to work with the Twenty Twenty Two default Wordpress theme. If you use a different theme then you will probably want to customise it to suit your own needs.
 
 	To ensure that these tweaks don't bork sites that use themes that support Bootstrap (e.g. Leohtian), it's best to put those small tweaks here.
 
@@ -62,6 +64,143 @@
 		max-height: 450px;
 		overflow-y:hidden;
 	}
+
+    input[type=text],
+    input[type=email],
+    input[type=url],
+    input[type=password],
+    input[type=search],
+    input[type=number],
+    input[type=tel],
+    input[type=date],
+    input[type=month],
+    input[type=week],
+    input[type=time],
+    input[type=datetime],
+    input[type=datetime-local],
+    input[type=color],
+    .site textarea {
+        display: block;
+        width: 100%;
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #212529;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border-radius: 0.25rem;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        background-image: unset;
+    }
+
+    input[type=checkbox] {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        position: relative;
+        width: 25px;
+        height: 25px;
+        border: none;
+        background: none;
+    }
+	
+    .form-check {
+        display: block;
+        min-height: 1.5rem;
+        padding-left: 1.5em;
+        margin-bottom: 0.125rem;
+    }
+    .form-check .form-check-input {
+        float: left;
+        margin-left: -1.5em;
+    }
+
+    .form-check-input {
+        width: 1em;
+        height: 1em;
+        margin-top: 0.25em;
+        vertical-align: top;
+        background-color: #fff;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        border: 1px solid rgba(0, 0, 0, 0.25);
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        -webkit-print-color-adjust: exact;
+        color-adjust: exact;
+    }
+    .form-check-input[type=checkbox] {
+        border-radius: 0.25em;
+    }
+    .form-check-input[type=radio] {
+        border-radius: 50%;
+    }
+    .form-check-input:active {
+        filter: brightness(90%);
+    }
+    .form-check-input:focus {
+        border-color: #86b7fe;
+        outline: 0;
+        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+    }
+    .form-check-input:checked {
+        background-color: #0d6efd;
+        border-color: #0d6efd;
+    }
+    .form-check-input:checked[type=checkbox] {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10l3 3l6-6'/%3e%3c/svg%3e");
+    }
+    .form-check-input:checked[type=radio] {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e");
+    }
+    .form-check-input[type=checkbox]:indeterminate {
+        background-color: #0d6efd;
+        border-color: #0d6efd;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/%3e%3c/svg%3e");
+    }
+    .form-check-input:disabled {
+        pointer-events: none;
+        filter: none;
+        opacity: 0.5;
+    }
+    .form-check-input[disabled] ~ .form-check-label, .form-check-input:disabled ~ .form-check-label {
+        opacity: 0.5;
+    }
+    input[type="checkbox"]::after {
+		content:none;
+    }
+	
+	
+    .form-switch {
+        padding-left: 2.5em;
+    }
+    .form-switch .form-check-input {
+        width: 2em;
+        margin-left: -2.5em;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%280, 0, 0, 0.25%29'/%3e%3c/svg%3e");
+        background-position: left center;
+        border-radius: 2em;
+        transition: background-position 0.15s ease-in-out;
+    }
+
+    input[type=checkbox],
+    input[type=radio] {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        position: relative;
+        width: 25px;
+        height: 25px;
+        /*! border: var(--form--border-width) solid var(--form--border-color); */
+        /*! background: var(--global--color-white); */
+    }
+
+	
 </style>
 
 </patTemplate:tmpl>
