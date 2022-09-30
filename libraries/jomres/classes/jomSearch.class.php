@@ -61,8 +61,8 @@ class jomSearch
 			$calledByModule = getEscaped($calledByModule);
 			$this->calledByModule = $calledByModule;
 
-			if (isset($_REQUEST['search_widget']) && is_dir(JOMRES_COREPLUGINS_ABSPATH . 'search_widget' . JRDS . $_REQUEST['search_widget'] . JRDS . 'bootstrap' . $jrConfig['bootstrap_version'])) {
-				$this->templateFilePath = JOMRES_COREPLUGINS_ABSPATH . 'search_widget' . JRDS . $_REQUEST['search_widget'] . JRDS . 'bootstrap' . $jrConfig['bootstrap_version'];
+			if (isset($_REQUEST['search_widget']) && is_dir(JOMRES_COREPLUGINS_ABSPATH . 'search_widget' . JRDS . $_REQUEST['search_widget'] . JRDS . 'bootstrap' . jomres_bootstrap_version())) {
+				$this->templateFilePath = JOMRES_COREPLUGINS_ABSPATH . 'search_widget' . JRDS . $_REQUEST['search_widget'] . JRDS . 'bootstrap' . jomres_bootstrap_version();
 				$this->templateFile = 'index.html';
 			} else {
 				$this->templateFilePath = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'modules' . JRDS . $calledByModule . JRDS . $calledByModule;
