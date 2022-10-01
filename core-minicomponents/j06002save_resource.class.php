@@ -87,23 +87,23 @@ class j06002save_resource
 			$jrportal_rooms->commit_new_room();
 		}
 
+		$the_correct_room_type_id = $jrportal_rooms->room_classes_uid; // This value will be reset when we make a new instance of jrportal_rooms
+
 		if ($mrConfig[ 'singleRoomProperty' ] == '1') {
 			$jrportal_rooms = new jrportal_rooms();
 
 			$basic_room_details = jomres_singleton_abstract::getInstance('basic_room_details');
 			$basic_room_details->get_all_rooms($defaultProperty);
-			$first_key = array_key_first($basic_room_details->rooms);
-			$the_correct_room_type_id = $basic_room_details->rooms[$first_key]['room_classes_uid'];
 
 			jr_import('jomres_occupancy_levels');
 			$jomres_occupancy_levels = new jomres_occupancy_levels($defaultProperty);
 			foreach ($jomres_occupancy_levels->occupancy_levels as $key => $val) {
 				if ($key != $the_correct_room_type_id) {
 					unset($jomres_occupancy_levels->occupancy_levels[$key]);
-				} else {
-					$jomres_occupancy_levels->set_occupancy_level($the_correct_room_type_id,(int) jomresGetParam($_POST, 'max_people', 0),  0,  (int) jomresGetParam($_POST, 'max_people', 0) );
 				}
 			}
+
+			$jomres_occupancy_levels->set_occupancy_level($the_correct_room_type_id,(int) jomresGetParam($_POST, 'max_people', 0),  0,  (int) jomresGetParam($_POST, 'max_people', 0) );
 			$jomres_occupancy_levels->save_occupancy_levels($the_correct_room_type_id);
 		}
 

@@ -80,11 +80,7 @@ class jomres_occupancy_levels
 		if ($id == 0) {
 			throw new Exception('Room type id not set ');
 		}
-
-		if (!isset($this->occupancy_levels[$id])) {
-			throw new Exception('Invalid room type id set');
-		}
-
+		
 		$room_type_name = $this->occupancy_levels[$id] ["room_type_name"];
 
 		$this->occupancy_levels[$id] = array ( "room_type_name"	=> $room_type_name  , "room_type_id" => $id, "max_adults" => (int)$max_adults , "max_children" => (int)$max_children , "max_occupancy" => (int)$max_occupancy );
@@ -98,7 +94,7 @@ class jomres_occupancy_levels
 		}
 
 		if (!isset($this->occupancy_levels[$room_type_id])) {
-			throw new Exception('Room type id not set');
+			throw new Exception('Room type id not set. You sent '.$room_type_id);
 		}
 
 		$policies = base64_encode(serialize($this->occupancy_levels));
