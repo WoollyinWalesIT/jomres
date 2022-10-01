@@ -111,7 +111,7 @@ class j06002save_resource
 		$jomres_calculate_accommodates_value = new jomres_calculate_accommodates_value($defaultProperty);
 		$jomres_calculate_accommodates_value->calculate_accommodates_value();
 
-		if ($mrConfig[ 'compatability_property_configuration' ] == 1) {
+		if ($mrConfig[ 'singleRoomProperty' ] == '1') {
 			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=list_occupancy_levels'), '');
 		} else {
 			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=list_resources'), '');
