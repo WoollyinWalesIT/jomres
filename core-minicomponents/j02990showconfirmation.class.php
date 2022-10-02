@@ -730,6 +730,25 @@ class j02990showconfirmation
 		$booking_parts['TERMS_MODAL_CONTENTS'] = $MiniComponents->specificEvent('06000', 'terms', array('output_now' => false));
 
 		$booking_particulars[ ] = $booking_parts;
+
+		if (!$secret_key_payment && isset($_REQUEST['bypass_confirmation']) && $_REQUEST['bypass_confirmation'] == '1' ) {
+			if ( count($plugin_settings->gateway_settings) > 0 ) {
+				$plugin = '';
+				$active_gateway_found = false;
+
+				foreach ($plugin_settings->gateway_settings as $gateway_name => $gateway_setting) {
+					if ($gateway_setting['active'] == '1' && !$active_gateway_found) {
+						$active_gateway_found = true;
+						$plugin = $gateway_name;
+					}
+				}
+				if ($active_gateway_found) {
+					echo '<script>window.location.href = \''.JOMRES_SITEPAGE_URL_NOSEF.'&no_html=1&jrajax=1&task=processpayment&jsid='.$tmpBookingHandler->jomressession.'&plugin='.$plugin.'\'</script>';
+					exit;
+				}
+			}
+		}
+
 		$tmpl = new patTemplate();
 
 		if (get_showtime('include_room_booking_functionality')) {
