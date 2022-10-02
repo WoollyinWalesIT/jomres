@@ -49,6 +49,12 @@ class j03030bookingcompleted
 		$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 		$property_uid = $tmpBookingHandler->getBookingPropertyId();
 
+		// Here we'll check for payment_success_redirect_url in the showtime singleton. If it exists we will redirect the user to there, instead of showing the message here.
+		$payment_success_redirect_url = get_showtime('payment_success_redirect_url');
+		if (isset($payment_success_redirect_url) && !$payment_success_redirect_url == false && trim($payment_success_redirect_url) != '' ) {
+			jomresRedirect($payment_success_redirect_url);
+		}
+
 		$save_deets = array();
 		$save_details = array();
 
