@@ -306,7 +306,12 @@ class WP_Jomres
 
 		if (! empty($this->css)) {
 			foreach ($this->css as $css_filename => $css) {
-				wp_register_style($css_filename, $css['0'], array(), $css['1'], 'all');
+				if(is_admin()) {
+					$css_dep = $css['1'];
+				} else {
+					$css_dep =  array('bootstrap_css');
+				}
+				wp_register_style( $css_filename, $css['0'], $css_dep , $css['1'], 'all' );
 				wp_enqueue_style($css_filename);
 			}
 

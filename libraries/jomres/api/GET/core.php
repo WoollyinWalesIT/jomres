@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.4
+ *  @version Jomres 10.5.5
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -119,3 +119,87 @@ Flight::route('GET /core/get_properties', function () {
 
 	Flight::json($response_name = "properties", $data);
 });
+
+
+	Flight::route('GET /core/endpoints', function()
+	{
+		require_once("../framework.php");
+
+		$core = get_directory_contents(JOMRES_LIBRARIES_ABSPATH.'jomres'.JRDS.'api');
+		$core_plugins = get_directory_contents(JOMRES_COREPLUGINS_ABSPATH);
+		$remote_plugins = get_directory_contents(JOMRES_REMOTEPLUGINS_ABSPATH);
+
+		$endpoint_plugin_directories = array();
+
+		foreach ($core as $plugin_dir){
+			if (strpos($plugin_dir , 'api_feature_' ) !== false ) {
+				$endpoint_plugin_directories[] = JOMRES_COREPLUGINS_ABSPATH.$plugin_dir;
+			}
+		}
+
+		foreach ($core_plugins as $plugin_dir){
+			if (strpos($plugin_dir , 'api_feature_' ) !== false ) {
+				$endpoint_plugin_directories[] = JOMRES_COREPLUGINS_ABSPATH.$plugin_dir;
+			}
+		}
+
+		if ($remote_plugins != false) {
+			foreach ($remote_plugins as $plugin_dir){
+				if (strpos($plugin_dir , 'api_feature_' ) !== false ) {
+					$endpoint_plugin_directories[] = JOMRES_REMOTEPLUGINS_ABSPATH.$plugin_dir;
+				}
+			}
+		}
+
+		$endpoint_files = array();
+		foreach ($endpoint_plugin_directories as $directory) {
+			$subdirectories = get_directory_contents( $directory);
+			if (!empty($subdirectories)) {
+				foreach ( $subdirectories as $subdir ) {
+					if ( $subdir == 'GET' || $subdir == 'POST' || $subdir == 'PUT' || $subdir == 'DELETE' ) {
+						$files = get_directory_contents( $directory.JRDS.$subdir );
+						if (!empty($files)) {
+							foreach ( $files as $file ) {
+								if ( $file != '.' && $file != '..' ) {
+									$endpoint_files[] = $directory.JRDS.$subdir.JRDS.$file;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		$endpoint_lines = array();
+		if (!empty($endpoint_files)) {
+			foreach ( $endpoint_files as $file ) {
+				$contents = file_get_contents($file);
+				$rows        = explode("\n", $contents);
+				array_shift($rows);
+				foreach($rows as $row => $data) {
+					if (strpos($data , 'Flight::route(' ) !== false && strpos( $data , "if (strpos(") === false ) {
+						$endpoint_lines[] = ltrim($data);
+					}
+				}
+			}
+		}
+
+		$api_url = get_showtime('live_site')."/".JOMRES_ROOT_DIRECTORY."/api";
+
+		$endpoints = array();
+		if (!empty($endpoint_lines)) {
+			foreach ( $endpoint_lines as $line ) {
+				$string = trim(str_replace(["Flight::route( '" , "Flight::route(' " , "Flight::route('" ],'',$line));
+				$bang = explode( ' ' , $string );
+				if ( $bang[0] == 'GET' || $bang[0] == 'POST' || $bang[0] == 'PUT' || $bang[0] == 'DELETE' ) {
+					$endpoint = rtrim($bang[1], '/');
+					$endpoint = rtrim($endpoint, '/\',');
+					$endpoint = rtrim($endpoint, '\',"');
+					$endpoints[] = array("method" => $bang[0], "endpoint" => $api_url . $endpoint);
+				}
+			}
+		}
+
+		Flight::json("endpoints", $endpoints);
+
+	});

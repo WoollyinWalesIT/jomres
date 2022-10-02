@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.4
+ *  @version Jomres 10.5.5
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -89,13 +89,6 @@ class j00060toptemplate
                     <i class="fa fa-warning"></i>
 				</div>
 				';
-		}
-
-		if ($jrConfig['bootstrap_version'] == '0') { // It's wordpress that doesn't use a bootstrap theme
-			$tmpl = new patTemplate();
-			$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
-			$tmpl->readTemplatesFromInput('wordpress_non_bootstrap_tweaks.html');
-			$output[ 'WORDPRESS_NON_BOOTSTRAP_TWEAKS' ] = $tmpl->getParsedTemplate();
 		}
 
 		$output[ 'VIDEO_TUTORIALS' ] = '';

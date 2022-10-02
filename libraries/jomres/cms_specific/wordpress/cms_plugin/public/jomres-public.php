@@ -98,13 +98,13 @@ class Jomres_Public
 
 		if (is_object($post) && strstr(strtolower($post->post_content), '[jomres:' . strtolower($language) . ']')) {
 			if ($wp_jomres->get_content() != '') {
-				$content = '<div id="asamodule_search_results">' . $wp_jomres->get_content() . '</div>';
+				$content = '<div id="asamodule_search_results" style="max-width:100%">' . $wp_jomres->get_content() . '</div>';
 			} else {
-				$content = '<div id="asamodule_search_results">' . $content . '</div>';
+				$content = '<div id="asamodule_search_results" style="max-width:100%">' . $content . '</div>';
 			}
 		} else {
 			if (! strstr($content, 'asamodule_search_results')) {
-				$content = '<div id="asamodule_search_results">' . $content . '</div>';
+				$content = '<div id="asamodule_search_results" style="max-width:100%">' . $content . '</div>';
 			}
 		}
 

@@ -4,7 +4,7 @@
 	 *
 	 * @author Vince Wooll <sales@jomres.net>
 	 *
-	 *  @version Jomres 10.5.4
+	 *  @version Jomres 10.5.5
 	 *
 	 * @copyright	2005-2022 Vince Wooll
 	 * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -107,6 +107,7 @@ class jrportal_rooms
 							`max_people`,
 							`max_adults`,
 							`max_children`,
+							`max_occupancy`,
 							`singleperson_suppliment`,
 							`tagline`,
 							`description`,
@@ -123,6 +124,7 @@ class jrportal_rooms
 							'".(int)$this->max_people."',
 							'".(int)$this->max_adults."',
 							'".(int)$this->max_children."',
+							".(int)($this->max_adults+$this->max_children).",
 							'" .(float) $this->singleperson_suppliment."',
 							'" .(string) $this->tagline."',
 							'" .(string) $this->description."',
@@ -198,6 +200,7 @@ class jrportal_rooms
 						`max_people`				= '".$this->max_people."',
 						`max_adults`		= '".$this->max_adults."',
 						`max_children`		= '".$this->max_children."',
+						`max_occupancy`		= '".$this->max_adults+$this->max_children."',
 						`singleperson_suppliment`	= " .(float) $this->singleperson_suppliment." ,
 						`tagline`		 			= '" .(string) $this->tagline."',
 						`description`				= '" .(string) $this->description."' ,

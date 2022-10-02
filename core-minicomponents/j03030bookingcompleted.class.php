@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.4
+ *  @version Jomres 10.5.5
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -48,6 +48,11 @@ class j03030bookingcompleted
 		$jrConfig = $siteConfig->get();
 		$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 		$property_uid = $tmpBookingHandler->getBookingPropertyId();
+
+		// Here we'll check for payment_success_redirect_url in the user_settings. If it exists we will redirect the user to there, instead of showing the message here.
+		if (isset($tmpBookingHandler->user_settings[ 'payment_success_redirect_url' ])) {
+			jomresRedirect(base64_decode($tmpBookingHandler->user_settings[ 'payment_success_redirect_url' ]));
+		}
 
 		$save_deets = array();
 		$save_details = array();

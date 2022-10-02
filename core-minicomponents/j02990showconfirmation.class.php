@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.4
+ *  @version Jomres 10.5.5
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -108,6 +108,13 @@ class j02990showconfirmation
 
 		$current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
 		$current_property_details->gather_data($property_uid);
+
+		if (isset($_REQUEST['payment_success_redirect_url']) && trim($_REQUEST['payment_success_redirect_url']) != '' ) {
+			$decoded = base64_decode($_REQUEST['payment_success_redirect_url']);
+			if ( $decoded != false && filter_var($decoded, FILTER_VALIDATE_URL ) == true  ) { // It can be base64 decoded
+				$tmpBookingHandler->user_settings[ 'payment_success_redirect_url' ] = $_REQUEST['payment_success_redirect_url'];
+			}
+		}
 
 		// Adult and child fields may be populated if the manager uses Standard tariff editing mode.
 		// If they are not populated, we'll look for Variances instead (old style guest types). If those are populated, we will update the booking engine's temp booking data with adult and child numbers.
@@ -723,6 +730,25 @@ class j02990showconfirmation
 		$booking_parts['TERMS_MODAL_CONTENTS'] = $MiniComponents->specificEvent('06000', 'terms', array('output_now' => false));
 
 		$booking_particulars[ ] = $booking_parts;
+
+		if (!$secret_key_payment && isset($_REQUEST['bypass_confirmation']) && $_REQUEST['bypass_confirmation'] == '1' ) {
+			if ( count($plugin_settings->gateway_settings) > 0 ) {
+				$plugin = '';
+				$active_gateway_found = false;
+
+				foreach ($plugin_settings->gateway_settings as $gateway_name => $gateway_setting) {
+					if ($gateway_setting['active'] == '1' && !$active_gateway_found) {
+						$active_gateway_found = true;
+						$plugin = $gateway_name;
+					}
+				}
+				if ($active_gateway_found) {
+					echo '<script>window.location.href = \''.JOMRES_SITEPAGE_URL_NOSEF.'&no_html=1&jrajax=1&task=processpayment&jsid='.$tmpBookingHandler->jomressession.'&plugin='.$plugin.'\'</script>';
+					exit;
+				}
+			}
+		}
+
 		$tmpl = new patTemplate();
 
 		if (get_showtime('include_room_booking_functionality')) {

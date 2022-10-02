@@ -1,3 +1,18 @@
+<h3>Jomres 10.5.5 02/10/2022</h3>
+
+<span class="label label-success">Feature</span> Updated the no-Bootstrap code so that Jomres itself uses Bootstrap 5 for layout if the theme doesn't support it.
+<span class="label label-success">Feature</span> Added new Core API Endpoint that reports all available endpoints.
+<span class="label label-success">Feature</span> Added ability to set X-JOMRES-NO-ENVELOPE in headers that tells Jomres api to not use the response envelope, just respond with the data.
+<span class="label label-success">Feature</span> Added ability to set payment_success_redirect_url in the url when calling the show confirmation page (must be base64 encoded). Once the booking payment has been processed then where normally the booking completed page would be shown instead the user can be redirected to that success url. Allows plugins such as NBE to hit the confirmation page (where the booking is finally constructed), payment taken, and the user redirected onwards based on the success of the payment.
+<span class="label label-success">Feature</span> Added ability to add bypass_confirmation=1 to the url used when calling the booking confirmation page. This allows remote sites to force calls to this page to automatically redirect to a payment gateway as needed.
+
+<span class="label label-warning">Change</span> Changed the BS3 review star icon so that it works in leohtian
+<span class="label label-warning">Change</span> Stripe plugins now pass the JSID variable in urls. This allows the NBE to be used on a different site (or in an app?) and we can ensure that the session data is used correctly throughout.
+<span class="label label-warning">Change</span> Changed how jomSearch class determines the Bootstrap version to use the built-in function which does some magic, instead of using the BS setting in jrConfig.
+<span class="label label-warning">Change</span> Disable wptexturize when running Jomres scripts, otherwise wp will mangle javascript in Jomres templates.
+
+<span class="label label-important label-danger">Fix</span> Quashed an error that could come up when SRPs save room types. Related to occupancy levels.
+
 <h3>Jomres 10.5.4 26/09/2022</h3>
 
 <span class="label label-success">Feature</span> Stripe Standard payment gateway added to Jomres Core.

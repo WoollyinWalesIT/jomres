@@ -201,3 +201,6 @@ function jomres_notice($notice)
 		return $form;
 	}
 	add_shortcode('default_wordpress_loginform', 'jomres_login_form_shortcode');
+
+
+	add_filter( 'run_wptexturize', '__return_false' , PHP_INT_MAX );

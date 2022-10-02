@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.4
+ *  @version Jomres 10.5.5
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -61,8 +61,8 @@ class jomSearch
 			$calledByModule = getEscaped($calledByModule);
 			$this->calledByModule = $calledByModule;
 
-			if (isset($_REQUEST['search_widget']) && is_dir(JOMRES_COREPLUGINS_ABSPATH . 'search_widget' . JRDS . $_REQUEST['search_widget'] . JRDS . 'bootstrap' . $jrConfig['bootstrap_version'])) {
-				$this->templateFilePath = JOMRES_COREPLUGINS_ABSPATH . 'search_widget' . JRDS . $_REQUEST['search_widget'] . JRDS . 'bootstrap' . $jrConfig['bootstrap_version'];
+			if (isset($_REQUEST['search_widget']) && is_dir(JOMRES_COREPLUGINS_ABSPATH . 'search_widget' . JRDS . $_REQUEST['search_widget'] . JRDS . 'bootstrap' . jomres_bootstrap_version())) {
+				$this->templateFilePath = JOMRES_COREPLUGINS_ABSPATH . 'search_widget' . JRDS . $_REQUEST['search_widget'] . JRDS . 'bootstrap' . jomres_bootstrap_version();
 				$this->templateFile = 'index.html';
 			} else {
 				$this->templateFilePath = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'modules' . JRDS . $calledByModule . JRDS . $calledByModule;
