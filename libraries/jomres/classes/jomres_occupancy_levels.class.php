@@ -80,14 +80,11 @@ class jomres_occupancy_levels
 		if ($id == 0) {
 			throw new Exception('Room type id not set ');
 		}
-
-		if (!isset($this->occupancy_levels[$id])) {
-			throw new Exception('Invalid room type id set');
-		}
-
+		
 		$room_type_name = $this->occupancy_levels[$id] ["room_type_name"];
 
 		$this->occupancy_levels[$id] = array ( "room_type_name"	=> $room_type_name  , "room_type_id" => $id, "max_adults" => (int)$max_adults , "max_children" => (int)$max_children , "max_occupancy" => (int)$max_occupancy );
+
 	}
 
 	public function save_occupancy_levels($room_type_id = 0)
@@ -97,7 +94,7 @@ class jomres_occupancy_levels
 		}
 
 		if (!isset($this->occupancy_levels[$room_type_id])) {
-			throw new Exception('Room type id not set');
+			throw new Exception('Room type id not set. You sent '.$room_type_id);
 		}
 
 		$policies = base64_encode(serialize($this->occupancy_levels));
@@ -114,9 +111,10 @@ class jomres_occupancy_levels
 		// Now to update rooms of this type with the updated occupancy levels
 
 		$query = "UPDATE #__jomres_rooms SET 
-			max_people = ".$this->occupancy_levels[$room_type_id]['max_occupancy']." ,  
-			max_adults = ".$this->occupancy_levels[$room_type_id]['max_adults']." , 
-			max_children = ".$this->occupancy_levels[$room_type_id]['max_children']." 
+			`max_people` = ".$this->occupancy_levels[$room_type_id]['max_occupancy']." ,  
+			`max_adults` = ".$this->occupancy_levels[$room_type_id]['max_adults']." , 
+			`max_children` = ".$this->occupancy_levels[$room_type_id]['max_children'].",
+			`max_occupancy` = ".$this->occupancy_levels[$room_type_id]['max_occupancy']."
 			WHERE propertys_uid = ".(int) $this->property_uid." AND room_classes_uid = ".$room_type_id." ";
 
 		doInsertSql($query);

@@ -47,6 +47,46 @@ class j06002list_resources
 		$mrConfig = getPropertySpecificSettings($defaultProperty);
 		$output = array();
 
+
+		// If a room/property type is changed we can end up with duplicated but incorrect occupancy levels, so we'll recalculate them here and then redirect to the edit resource page instead of listing resources as there're only ever one
+		if ($mrConfig[ 'singleRoomProperty' ] == '1') {
+			jr_import('jrportal_rooms');
+			$jrportal_rooms = new jrportal_rooms();
+
+			$current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
+			$current_property_details->gather_data_multi(array( $defaultProperty ));
+
+
+			$basic_room_details = jomres_singleton_abstract::getInstance('basic_room_details');
+			$basic_room_details->get_all_rooms($defaultProperty);
+			$first_key = array_key_first($basic_room_details->rooms);
+			$the_correct_room_type_id = $basic_room_details->rooms[$first_key]['room_classes_uid'];
+
+			jr_import('jomres_occupancy_levels');
+			$jomres_occupancy_levels = new jomres_occupancy_levels($defaultProperty);
+			foreach ($jomres_occupancy_levels->occupancy_levels as $key => $val) {
+				if ($key != $the_correct_room_type_id) {
+					unset($jomres_occupancy_levels->occupancy_levels[$key]);
+				} else {
+					$rooms_max_adults		= 0;
+					foreach ($current_property_details->multi_query_result[$defaultProperty][ 'rooms_max_adults' ] as $rooms ) {
+						$rooms_max_adults = $rooms_max_adults + array_sum($rooms);
+					}
+					$rooms_max_children		= 0;
+					foreach ($current_property_details->multi_query_result[$defaultProperty][ 'rooms_max_children' ] as $rooms ) {
+						$rooms_max_children = $rooms_max_children + array_sum($rooms);
+					}
+					$rooms_max_occupancy	= $rooms_max_adults + $rooms_max_children;
+
+					$jomres_occupancy_levels->set_occupancy_level( $the_correct_room_type_id, $rooms_max_adults, $rooms_max_children, $rooms_max_occupancy );
+					$room_uid =  $basic_room_details->rooms[$first_key]["room_uid"];
+				}
+			}
+
+			$jomres_occupancy_levels->save_occupancy_levels($the_correct_room_type_id);
+			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_resource&roomUid='.$room_uid), '');
+		}
+
 		$jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
 		$jomres_media_centre_images->get_images($defaultProperty, array('rooms'));
 
