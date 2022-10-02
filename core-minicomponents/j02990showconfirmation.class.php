@@ -109,6 +109,13 @@ class j02990showconfirmation
 		$current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
 		$current_property_details->gather_data($property_uid);
 
+		if (isset($_REQUEST['payment_success_redirect_url']) && trim($_REQUEST['payment_success_redirect_url']) != '' ) {
+			$decoded = base64_decode($_REQUEST['payment_success_redirect_url']);
+			if ( $decoded != false && filter_var($decoded, FILTER_VALIDATE_URL ) == true  ) { // It can be base64 decoded
+				$tmpBookingHandler->user_settings[ 'payment_success_redirect_url' ] = $_REQUEST['payment_success_redirect_url'];
+			}
+		}
+
 		// Adult and child fields may be populated if the manager uses Standard tariff editing mode.
 		// If they are not populated, we'll look for Variances instead (old style guest types). If those are populated, we will update the booking engine's temp booking data with adult and child numbers.
 
