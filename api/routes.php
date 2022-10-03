@@ -36,8 +36,8 @@ if (substr($request->url,0,6) == '/core/' ) {
 	$features_files = Flight::get('features_files');
 
 
-	
-		
+
+
 	/**
 	 * 
 	 * Improved tree to route mapping
@@ -78,7 +78,7 @@ if (substr($request->url,0,6) == '/core/' ) {
 	 */
 
 	// Fall back to the older way, which will still work for existing api features
-	if (!$found) {
+	//if (!$found) {
 		if (file_exists(JOMRES_API_JOMRES_ROOT.DIRECTORY_SEPARATOR.'core-plugins'.DIRECTORY_SEPARATOR.'api_feature_'.$route.DIRECTORY_SEPARATOR.$request->method.DIRECTORY_SEPARATOR.$sub_filename.'.php')) {
 			require_once JOMRES_API_JOMRES_ROOT.DIRECTORY_SEPARATOR.'core-plugins'.DIRECTORY_SEPARATOR.'api_feature_'.$route.DIRECTORY_SEPARATOR.$request->method.DIRECTORY_SEPARATOR.$sub_filename.'.php';
 		} elseif (file_exists(JOMRES_API_JOMRES_ROOT.DIRECTORY_SEPARATOR.'remote_plugins'.DIRECTORY_SEPARATOR.'api_feature_'.$route.DIRECTORY_SEPARATOR.$request->method.DIRECTORY_SEPARATOR.$sub_filename.'.php')) {
@@ -90,7 +90,7 @@ if (substr($request->url,0,6) == '/core/' ) {
 		} else {
 			Flight::halt(404, ' Request '.$request->url.' unknown');
 		}
-	}
+	//}
 
 }
 
