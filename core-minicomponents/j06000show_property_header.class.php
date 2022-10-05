@@ -142,6 +142,12 @@ class j06000show_property_header
 			jomres_cmsspecific_setmetadata('keywords', $current_property_details->property_town.', '.$current_property_details->property_region.', '.$current_property_details->property_country);
 		}
 
+		if (this_cms_is_joomla()) {
+			$doc     = JFactory::getDocument();
+			$canonicalLink = '<link href="' .get_showtime('live_site').get_property_details_url($property_uid, 'sef') . '" rel="canonical" />';
+			$doc->addCustomTag($canonicalLink);
+		}
+
 		//Facebook meta data
 		$short_property_description = jomres_decode(jr_substr(strip_tags($jomres_markdown->get_markdown($current_property_details->property_description)), 0, 200)).'...';
 		jomres_cmsspecific_addcustomtag('<meta property="og:url" content="'.get_property_details_url($property_uid, 'nosef').'&skip_consent_form=1" />');
