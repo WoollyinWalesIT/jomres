@@ -3722,6 +3722,9 @@ function jomresRedirect($url, $msg = '', $class = 'alert-info', $code = 302)
 	$jr_redirect_url = jomresGetParam($_REQUEST, 'jr_redirect_url', '');
 	if ((string)$jr_redirect_url != '') {
 		$url = jr_base64url_decode($jr_redirect_url);
+		if (stristr($url, get_showtime('live_site')) === false ){
+			die('Bad link');
+		}
 	}
 
 	if (strncmp('cli', PHP_SAPI, 3) !== 0) {
