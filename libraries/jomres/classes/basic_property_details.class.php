@@ -51,6 +51,7 @@ class basic_property_details
 		$this->get_all_room_types();
 		$this->get_all_property_types();
 		$this->get_all_property_features();
+		$this->get_global_room_features(); // Has a different naming pattern because the get_all_room_features method isn't used by this class, instead it's used by other scripts. Because I wanted to make it so that get_basic_module_data function changes required the minimum number of queries to be called when this singleton is initiated to get room feature information, a new method is created for this purpose and the results put into $this->global_room_features
 	}
 
 	/**
@@ -542,6 +543,17 @@ class basic_property_details
 				$this->multi_query_result[ $data->propertys_uid ][ 'metadescription' ] = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_METADESCRIPTION_'.$data->propertys_uid, $data->metadescription, false);
 				$this->multi_query_result[ $data->propertys_uid ][ 'metakeywords' ] = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_METAKEYWORDS_'.$data->propertys_uid, $data->metakeywords, false);
 				$this->multi_query_result[ $data->propertys_uid ][ 'property_features' ] = $data->property_features;
+				$this->multi_query_result[ $data->propertys_uid ][ 'property_features_names' ] = array();
+				if (!empty($this->all_property_features) && !empty($this->multi_query_result[ $data->propertys_uid ][ 'property_features' ]) ) {
+					$feature_ids = explode("," , $this->multi_query_result[ $data->propertys_uid ][ 'property_features' ] );
+					foreach ($feature_ids as $feature_id) {
+						if ( trim($feature_id) != "" && (int)$feature_id > 0 && isset($this->all_property_features[$feature_id]) ) {
+							$this->multi_query_result[ $data->propertys_uid ][ 'property_features_names' ][$feature_id]['abbv'] = $this->all_property_features[$feature_id]['abbv'];
+							$this->multi_query_result[ $data->propertys_uid ][ 'property_features_names' ][$feature_id]['search_url'] = jomresURL(JOMRES_SITEPAGE_URL.'&task=search&calledByModule=mod_jomsearch_m0&feature_uids[]='.$feature_id);
+						}
+					}
+				}
+
 				$this->multi_query_result[ $data->propertys_uid ][ 'property_mappinglink' ] = $data->property_mappinglink;
 				$this->multi_query_result[ $data->propertys_uid ][ 'real_estate_property_price' ] = $data->property_key;
 
@@ -567,8 +579,9 @@ class basic_property_details
 			}
 
 			$temp_rooms = array();
-			$query = 'SELECT `room_uid`,`room_classes_uid`,`propertys_uid`,`max_people` , `max_adults` , `max_children`   FROM #__jomres_rooms WHERE propertys_uid IN ('.jomres_implode($property_uids).') ';
+			$query = 'SELECT `room_uid`,`room_classes_uid`,`propertys_uid`,`max_people` , `max_adults` , `max_children` , `room_features_uid`   FROM #__jomres_rooms WHERE propertys_uid IN ('.jomres_implode($property_uids).') ';
 			$rooms = doSelectSql($query);
+
 			foreach ($rooms as $room) {
 				$this->multi_query_result[ $room->propertys_uid ][ 'rooms' ][ $room->room_uid ] = $room->room_uid;
 				if (isset($this->all_room_types[ $room->room_classes_uid ])) {
@@ -581,6 +594,23 @@ class basic_property_details
 				$this->multi_query_result[ $room->propertys_uid ][ 'rooms_max_people' ][ $room->room_classes_uid ][$room->room_uid] = $room->max_people;
 				$this->multi_query_result[ $room->propertys_uid ][ 'rooms_max_adults' ][ $room->room_classes_uid ][$room->room_uid] = $room->max_adults;
 				$this->multi_query_result[ $room->propertys_uid ][ 'rooms_max_children' ][ $room->room_classes_uid ][$room->room_uid] = $room->max_children;
+
+
+				// The goal here is to populate the $this->multi_query_result[  $data->propertys_uid ][ 'room_features' ] variable for all room features of this property
+				if ( !isset($this->multi_query_result[ $data->propertys_uid ][ 'room_features' ]) ) {
+					$this->multi_query_result[ $data->propertys_uid ][ 'room_features' ] = array();
+				}
+
+				$bang = explode( "," , $room->room_features_uid );
+
+				if (!empty($bang) && $bang != [ 0 => '' ] ) {
+					foreach ($bang as $rm_feature_id) {
+						if ( trim($rm_feature_id) != '' && (int)$rm_feature_id > 0 && isset($this->global_room_features[$rm_feature_id] ) ) {
+							$this->multi_query_result[  $data->propertys_uid ][ 'room_features' ][$rm_feature_id]['abbv'] = $this->global_room_features[$rm_feature_id]['feature_description'];
+							$this->multi_query_result[  $data->propertys_uid ][ 'room_features' ][$rm_feature_id]['id'] = $rm_feature_id;
+						}
+					}
+				}
 			}
 
 			foreach ($propertyData as $d) {
@@ -717,6 +747,28 @@ class basic_property_details
 					$this->all_room_features[ $f->room_features_uid ][ 'ptype_xref' ] = unserialize($f->ptype_xref);
 				} else {
 					$this->all_room_features[ $f->room_features_uid ][ 'ptype_xref' ] = array();
+				}
+			}
+		}
+	}
+
+	public function get_global_room_features()
+	{
+		$this->global_room_features = array();
+
+		$query = 'SELECT `room_features_uid`, `feature_description`, `property_uid`, `ptype_xref`, `image` , `property_uid` FROM #__jomres_room_features';
+		$roomFeatures = doSelectSql($query);
+		if (!empty($roomFeatures)) {
+			foreach ($roomFeatures as $f) {
+				$this->global_room_features[ $f->room_features_uid ][ 'room_features_uid' ] = (int) $f->room_features_uid;
+				$this->global_room_features[ $f->room_features_uid ][ 'property_uid' ] = (int) $f->property_uid;
+				$this->global_room_features[ $f->room_features_uid ][ 'feature_description' ] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION'.(int) $f->room_features_uid, stripslashes($f->feature_description), false);
+				$this->global_room_features[ $f->room_features_uid ][ 'image' ] = $f->image;
+
+				if ($f->ptype_xref != '') {
+					$this->global_room_features[ $f->room_features_uid ][ 'ptype_xref' ] = unserialize($f->ptype_xref);
+				} else {
+					$this->global_room_features[ $f->room_features_uid ][ 'ptype_xref' ] = array();
 				}
 			}
 		}

@@ -41,6 +41,16 @@
 				</div>
 			</div>
 			<patTemplate:comment>
+				<patTemplate:tmpl name="room_features" type="simpleCondition" requiredVars="abbv">
+					<span style="font-size: 0.7em;">{ABBV}/</span>
+				</patTemplate:tmpl>
+			</patTemplate:comment>
+			<patTemplate:comment>
+				<patTemplate:tmpl name="property_features_names" type="simpleCondition" requiredVars="abbv">
+					<a href="{SEARCH_URL}" style="font-size: 0.7em;">{ABBV}/</a>
+				</patTemplate:tmpl>
+			</patTemplate:comment>
+			<patTemplate:comment>
 				<div class="card-footer" align="center">
 					<a href="{MOREINFORMATIONLINK}" class="btn btn-info" title="{PROPERTY_NAME}">{MOREINFORMATION}</a>
 				</div>

@@ -234,7 +234,6 @@ function get_property_module_data($property_uid_array, $alt_template_path = '', 
 
 			$property_data[ 'STARSIMAGES' ] = $MiniComponents->specificEvent('06000', 'show_property_stars', array('property_uid' => $property_uid , 'output_now' => false ));
 
-
 			$property_data[ 'TOWN_SEARCH_LINK' ] = jomresURL(JOMRES_SITEPAGE_URL.'&send=Search&calledByModule=mod_jomsearch_m0&town='.jomres_decode($current_property_details->multi_query_result[ $property_uid ][ 'property_town' ]));
 			$property_data[ 'REGION_SEARCH_LINK' ] = jomresURL(JOMRES_SITEPAGE_URL.'&send=Search&calledByModule=mod_jomsearch_m0&region='.$current_property_details->multi_query_result[ $property_uid ][ 'property_region_id' ]);
 			$property_data[ 'COUNTRY_SEARCH_LINK' ] = jomresURL(JOMRES_SITEPAGE_URL.'&send=Search&calledByModule=mod_jomsearch_m0&country='.jomres_decode($current_property_details->multi_query_result[ $property_uid ][ 'property_country_code' ]));
@@ -269,8 +268,22 @@ function get_property_module_data($property_uid_array, $alt_template_path = '', 
 				$tmpl->addRows('room_types', $current_property_details->multi_query_result[ $property_uid ][ 'room_types' ]);
 			}
 
-			if (isset($current_property_details->multi_query_result[ $property_uid ][ 'room_features' ]) && !empty($current_property_details->multi_query_result[ $property_uid ][ 'room_features' ])) {
-				$tmpl->addRows('room_features', $current_property_details->multi_query_result[ $property_uid ][ 'room_features' ]);
+			if (
+				isset($property_data[ 'room_features' ]) &&
+				is_array($property_data[ 'room_features' ]) &&
+				!empty($property_data[ 'room_features' ]) &&
+				!is_null($property_data[ 'room_features' ])
+			) {
+				$tmpl->addRows('room_features',$property_data[ 'room_features' ] );
+			}
+
+			if (
+				isset($property_data[ 'property_features_names' ]) &&
+				is_array($property_data[ 'property_features_names' ]) &&
+				!empty($property_data[ 'property_features_names' ]) &&
+				!is_null($property_data[ 'property_features_names' ])
+			) {
+				$tmpl->addRows('property_features_names',$property_data[ 'property_features_names' ]);
 			}
 
 			if ($alt_template_name != '') {
