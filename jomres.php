@@ -411,8 +411,8 @@ try {
 			echo $button_modal.'<br/>';
 		}
 	}
-} catch (Exception $e) {
-	$MiniComponents->triggerEvent('99994');
+} catch (\Exception $e) {
+	//$MiniComponents->triggerEvent('99994');
 
 	if (!isset($no_html)) {
 		$no_html = 0;
