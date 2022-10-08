@@ -548,8 +548,10 @@ class basic_property_details
 					$feature_ids = explode("," , $this->multi_query_result[ $data->propertys_uid ][ 'property_features' ] );
 					foreach ($feature_ids as $feature_id) {
 						if ( trim($feature_id) != "" && (int)$feature_id > 0 && isset($this->all_property_features[$feature_id]) ) {
-							$this->multi_query_result[ $data->propertys_uid ][ 'property_features_names' ][$feature_id]['abbv'] = $this->all_property_features[$feature_id]['abbv'];
-							$this->multi_query_result[ $data->propertys_uid ][ 'property_features_names' ][$feature_id]['search_url'] = jomresURL(JOMRES_SITEPAGE_URL.'&task=search&calledByModule=mod_jomsearch_m0&feature_uids[]='.$feature_id);
+							$abbv = $this->all_property_features[$feature_id]['abbv'];
+							$url = JOMRES_SITEPAGE_URL.'&task=search&calledByModule=mod_jomsearch_m0&feature_uids[]='.$feature_id;
+							$this->multi_query_result[ $data->propertys_uid ][ 'property_features_names' ][$feature_id]['abbv'] =$abbv;
+							$this->multi_query_result[ $data->propertys_uid ][ 'property_features_names' ][$feature_id]['search_url'] = $url;
 						}
 					}
 				}
