@@ -1,6 +1,6 @@
 === Jomres Hotel Booking Engine for WordPress ===
 Contributors: jomres
-Tags: iCal, Channel Manager, Hotel Booking, Apartment booking, Booking portal, Hotel,  Booking, hotels,  motel, motels,  calendar, room booking, reservation plugin, holiday apartments, holiday rentals, apartment rentals, cottage rental, b&b, tool hire, ecommerce, tours, api, json, REST, rest-api, webhooks
+Tags:  booking engine, hotel booking, channel manager, rest api, jomres, ical, hotel, reservations
 Donate link: https://www.jomres.net
 Requires at least: 4.3.1
 Tested up to: 6.0
@@ -13,6 +13,8 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 = Build your own Online Travel Agency like Booking.com or AirBNB =
 
 Mature, intelligent, secure and powerful. Started in 2005 and maintained continuously for the last 17 years, Jomres is the most complete online booking engine available for WordPress.
+
+Stripe payment gateway is built into the free Core, check out the step-by-step guide here that shows you how to [create a booking website in WordPress for free.](https://www.jomres.net/documentation/create-a-booking-website-in-wordpress-for-free)
 
 Jomres is a commission-free, responsive, Open Source multi-vendor, multi-language, multi-property online booking plugin for accommodation, rentals and tours used by thousands of businesses worldwide to manage their properties and reservations. You can create an unlimited number of booking websites, accessible to customers on any device, in any language.
 
