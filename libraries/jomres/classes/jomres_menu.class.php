@@ -126,6 +126,9 @@ class jomres_menu
 
 			if ($is_url) {
 				$query_string = parse_url($task, PHP_URL_QUERY);
+				if (is_null($query_string)) {
+					$query_string = '';
+				}
 				parse_str($query_string, $query_params);
 				
 				if (isset($query_params['task'])) {

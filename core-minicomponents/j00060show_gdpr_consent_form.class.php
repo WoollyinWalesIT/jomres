@@ -42,6 +42,7 @@ class j00060show_gdpr_consent_form
 			$this->template_touchable = false;
 			return;
 		}
+
 		$jomres_gdpr_optin_consent = new jomres_gdpr_optin_consent();
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();

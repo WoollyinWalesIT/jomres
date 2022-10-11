@@ -32,9 +32,16 @@ class data_source_stars extends jomres_data_source_base
 			foreach ($this->cms_languages as $lang) {
 				$tmp_arr = [];
 				foreach ($result as $s) {
+					if (is_null($s->stars)) {
+						$s->stars = 0;
+					}
+
 					$no = $s->stars;
 					if (!isset($stars_array[$no])) {
 						$stars_array[$no] = 0;
+					}
+					if (!isset($tmp_arr[$no])) {
+						$tmp_arr[$no] = 0;
 					}
 					$tmp_arr[$no]++;
 				}

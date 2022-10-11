@@ -31,7 +31,7 @@ class jomres_countries
 
 	public function __construct()
 	{
-		$this->countries = false;
+		$this->countries = array();
 		$this->used_countries = false;
 		
 		$this->get_used_property_countries();
@@ -75,7 +75,7 @@ class jomres_countries
 	//get all countries in the system
 	public function get_all_countries()
 	{
-		if (is_array($this->countries)) {
+		if (!empty($this->countries)) {
 			return true;
 		}
 

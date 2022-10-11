@@ -13,7 +13,9 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-	
+
+use function \PHP81_BC\strftime;
+
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
@@ -187,7 +189,7 @@ class j06000srp_calendar
 		if ($thisMonthName == '') {
 			$thisMonthName = jr_gettext('_JOMRES_CUSTOMTEXT_'.date('M', $stdate), strftime('%B', $stdate), false, false);
 		}
-
+		date('Y', strtotime($this->now));
 		$this->retVals .= '<div class="calendar-month-name">'.$thisMonthName.' '.strftime('%Y', $stdate).'</div>';
 
 		$this->retVals .= '<table class="calendar"  cellspacing="0" cellpadding="0">';

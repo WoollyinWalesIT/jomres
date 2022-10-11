@@ -157,6 +157,10 @@ class j06000show_property_header
 		jomres_cmsspecific_addcustomtag('<meta property="og:image" content="'.$output[ 'IMAGELARGE' ].'" />');
 
 		//property details
+		if (is_null($current_property_details->property_tel)) {
+			$current_property_details->property_tel = '';
+		}
+
 		$output[ 'STARS' ] = $starslink;
 		$output[ 'PROPERTY_NAME' ] = $current_property_details->property_name;
 		$output[ 'STREET' ] = $current_property_details->property_street;

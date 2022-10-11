@@ -87,9 +87,29 @@ class basic_room_details
 		}
 
 		foreach ($result as $r) {
+			if (is_null($r->room_features_uid)) {
+				$r->room_features_uid = '';
+			}
+			if (is_null($r->room_name)) {
+				$r->room_name = '';
+			}
+			if (is_null($r->room_number)) {
+				$r->room_number = '';
+			}
+			if (is_null($r->room_floor)) {
+				$r->room_floor = '';
+			}
+			if (is_null($r->tagline)) {
+				$r->tagline = '';
+			}
+			if (is_null($r->description)) {
+				$r->description = '';
+			}
+
 			$this->rooms[$r->room_uid]['room_uid']					= (int) $r->room_uid;
 			$this->rooms[$r->room_uid]['room_classes_uid']			= (int) $r->room_classes_uid;
 			$this->rooms[$r->room_uid]['propertys_uid']				= (int) $r->propertys_uid;
+
 			$this->rooms[$r->room_uid]['room_features_uid']			= stripslashes($r->room_features_uid);
 			$this->rooms[$r->room_uid]['room_name']					= jr_gettext('_JOMRES_CUSTOMTEXT_ROOMNAME_TITLE'.$r->room_uid, stripslashes($r->room_name), false);
 			$this->rooms[$r->room_uid]['room_number']				= stripslashes($r->room_number);

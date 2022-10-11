@@ -30,7 +30,7 @@ if (substr($request->url,0,6) == '/core/' ) {
 } else {
 	$sub_filename = '';
 	if (isset($bang[3])) {
-		$sub_filename = $route.'_'.filter_var($bang[3], FILTER_SANITIZE_STRING);
+		$sub_filename = $route.'_'.filter_var($bang[3], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 	}
 
 	$features_files = Flight::get('features_files');

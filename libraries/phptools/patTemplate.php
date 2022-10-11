@@ -2007,6 +2007,10 @@ class patTemplate
 				}
 
 			$var                                     = $this->_startTag . $key . $this->_endTag;
+			if (is_null($value)) {
+				$value = '';
+			}
+
 			$this->_templates[ $template ][ 'work' ] = str_replace( $var, $value, $this->_templates[ $template ][ 'work' ] );
 			}
 

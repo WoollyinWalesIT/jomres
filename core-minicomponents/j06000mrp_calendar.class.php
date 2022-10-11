@@ -14,6 +14,8 @@
 	defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
+use function \PHP81_BC\strftime;
+
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *

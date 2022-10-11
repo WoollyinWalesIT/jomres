@@ -331,6 +331,9 @@ class basic_property_details
 			}
 		}
 
+		if (is_null($this->property_features)) {
+			$this->property_features = '';
+		}
 		$bang = explode(',', $this->property_features);
 		$propertyFeaturesArray = array();
 		foreach ($bang as $b) {
@@ -603,6 +606,9 @@ class basic_property_details
 					$this->multi_query_result[ $data->propertys_uid ][ 'room_features' ] = array();
 				}
 
+				if (is_null($room->room_features_uid)) {
+					$room->room_features_uid = '';
+				}
 				$bang = explode( "," , $room->room_features_uid );
 
 				if (!empty($bang) && $bang != [ 0 => '' ] ) {

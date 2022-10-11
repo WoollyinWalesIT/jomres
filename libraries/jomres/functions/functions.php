@@ -1197,7 +1197,7 @@ function jomres_get_client_ip()
 		$ipaddress = '127.0.0.1';
 	}
 
-	return filter_var($ipaddress, FILTER_SANITIZE_STRING);
+	return filter_var($ipaddress, FILTER_VALIDATE_IP);
 }
 
 	/**

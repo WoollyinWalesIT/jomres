@@ -39,6 +39,8 @@ class jomres_cron
 
 		$this->method = $jrConfig[ 'cron_method' ];
 		$this->now = time();
+		$this->formatted_date = date('H:M d/M/Y', strtotime($this->now));
+
 		$this->lastRan = 0;
 		$this->allJobs = array();
 		$this->allUnlockedJobs = array();
@@ -326,7 +328,7 @@ class jomres_cron
 
 				jomres_async_request("GET", $url, 0, array());
 
-				$this->debug[ ] = 'Triggered '.(string) $job[ 'job_name' ].' at '.strftime('%H:%M %d/%m/%Y', $this->now);
+				$this->debug[ ] = 'Triggered '.(string) $job[ 'job_name' ].' at '.$this->formatted_date;
 				$lockedJobs[] = $job[ 'id' ];
 			}
 		}
@@ -542,7 +544,7 @@ class jomres_cron
 		$jrConfig = $siteConfig->get();
 		
 		if ($jrConfig['development_production'] == 'development' && !empty($this->debug)) {
-			$data = strftime('%H:%M %d/%m/%Y', $this->now).' ~~ ';
+			$data = $this->formatted_date.' ~~ ';
 			foreach ($this->debug as $str) {
 				$data .= $str.' ~~ ';
 			}

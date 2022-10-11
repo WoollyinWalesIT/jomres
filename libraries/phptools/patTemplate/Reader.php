@@ -1428,8 +1428,13 @@ class patTemplate_Reader extends patTemplate_Module
 
 		if ( $key === null )
 			{
-			if (!isset($this->_tmplStack[ $pos ][ $property ]))
+			if (!isset($this->_tmplStack[ $pos ][ $property ])) {
+				if ($this->_tmplStack[ $pos ] === false ) {
+					$this->_tmplStack[ $pos ] = array();
+				}
 				$this->_tmplStack[ $pos ][ $property ] = array();
+			}
+
 			
 			if ( !in_array( $value, $this->_tmplStack[ $pos ][ $property ] ) )
 				{

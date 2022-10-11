@@ -24,6 +24,9 @@ defined('_JOMRES_INITCHECK') or die('');
 function xss_clean($data)
 {
 	// Fix &entity\n;
+	if (is_null($data)) {
+		return '';
+	}
 	$data = str_replace(array('&amp;', '&lt;', '&gt;'), array('&amp;amp;', '&amp;lt;', '&amp;gt;'), $data);
 	$data = preg_replace('/(&#*\w+)[\x00-\x20]+;/u', '$1;', $data);
 	$data = preg_replace('/(&#x*[0-9A-F]+);*/iu', '$1;', $data);
