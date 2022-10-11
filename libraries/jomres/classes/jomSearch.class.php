@@ -1187,14 +1187,13 @@ class jomSearch
 	 */
 	public function makeFormName()
 	{
-		// We need to give the form a random name otherwise the availability search will not work
-		list($usec, $sec) = explode(' ', microtime());
-		mt_srand($sec * $usec);
-		$possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefhijklmnopqrstuvwxyz';
-		for ($i = 0; $i < 10; ++$i) {
-			$key = mt_rand(0, strlen($possible) - 1);
-			$this->formname .= $possible[ $key ];
+		$characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		$charactersLength = strlen($characters);
+		$randomString = '';
+		for ($i = 0; $i < 10; $i++) {
+			$randomString .= $characters[rand(0, $charactersLength - 1)];
 		}
+		$this->formname = $randomString;
 	}
 } // End class jomSearch
 
