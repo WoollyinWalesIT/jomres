@@ -1830,7 +1830,11 @@ class UploadHandler
 		$this->response = $content;
 		if ($print_response) {
 			$json = json_encode($content);
-			$redirect = stripslashes($this->get_post_param('redirect'));
+
+			if ( is_null( $this->get_post_param('redirect') ) ) {
+				$redirect = false;
+			}
+
 			if ($redirect && preg_match($this->options['redirect_allow_target'], $redirect)) {
 				$this->header('Location: '.sprintf($redirect, rawurlencode($json)));
 				return;
@@ -2004,7 +2008,7 @@ class UploadHandler
 	 *
 	 */
 
-	protected function basename($filepath, $suffix = null)
+	protected function basename($filepath, $suffix = '')
 	{
 		$splited = preg_split('/\//', rtrim($filepath, '/ '));
 		return substr(basename('X'.$splited[count($splited)-1], $suffix), 1);

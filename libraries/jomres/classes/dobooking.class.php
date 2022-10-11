@@ -7073,7 +7073,6 @@ class dobooking
 		$total = 0.00;
 		$total_nodiscount = 0.00;
 		$total_number_of_guests = 0;
-//var_dump($this->room_allocations);exit;
 
 		foreach ($this->room_allocations as $room) {
 			if (!isset($room[ 'number_allocated' ])) {
