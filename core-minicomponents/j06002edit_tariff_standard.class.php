@@ -14,6 +14,8 @@
 defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.');
 // ################################################################
 
+use function \PHP81_BC\strftime;
+
 class j06002edit_tariff_standard
 {
 	function __construct()

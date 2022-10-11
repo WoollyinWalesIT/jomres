@@ -172,7 +172,10 @@ class jomres_roomlocks
 	{
 		$dates_array = $this->init_lockfile();
 		$jomressession = get_showtime('jomressession');
-		unset($dates_array[ $jomressession ]);
+		if (isset($dates_array[ $jomressession ])) {
+			unset($dates_array[ $jomressession ]);
+		}
+
 		$this->save_lockfile_data($dates_array);
 	}
 	

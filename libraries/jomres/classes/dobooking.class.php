@@ -715,6 +715,10 @@ class dobooking
 
 		$interval = new DateInterval('P1D');
 		foreach ($tariffs as $t) {
+			if (is_null($t->modifiers)) {
+				$t->modifiers = '';
+			}
+
 			$roomrate = $this->get_nett_price($t->roomrateperday, $this->accommodation_tax_rate);
 			$dates = $this->get_periods($t->validfrom, $t->validto.' 23:59:59', $interval);
 			$this->allPropertyTariffs[ $t->rates_uid ] = array(
@@ -7069,6 +7073,7 @@ class dobooking
 		$total = 0.00;
 		$total_nodiscount = 0.00;
 		$total_number_of_guests = 0;
+//var_dump($this->room_allocations);exit;
 
 		foreach ($this->room_allocations as $room) {
 			if (!isset($room[ 'number_allocated' ])) {

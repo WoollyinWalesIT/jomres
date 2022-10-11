@@ -49,6 +49,8 @@ class j06000srp_calendar
 		$jrConfig = $siteConfig->get();
 		$this->retVals = '';
 
+		$this->now = time();
+
 		$property_uid = (int) jomresGetParam($_REQUEST, 'property_uid', '');
 		if (isset($componentArgs ['property_uid'])) {
 			$property_uid = (int) $componentArgs ['property_uid'];

@@ -687,11 +687,17 @@ function dobooking($selectedProperty, $thisdate, $remus)
 		$roomfeaturesHeader[ ] = array('_JOMRES_BOOKINGORM_ROOMFEATURE_FILTER' => $output[ '_JOMRES_BOOKINGORM_ROOMFEATURE_FILTER' ]);
 
 		foreach ($bkg->room_feature_checkboxes as $feature) {
+			if (!isset( $basic_room_details->all_room_features[  $feature['ID'] ][ 'small' ])){
+				$image = $basic_room_details->all_room_features[  $feature['ID'] ] ['image'];
+			} else {
+				$image =  $basic_room_details->all_room_features[  $feature['ID'] ][ 'small' ];
+			}
+
 			$rf = array();
 			$rf[ 'INPUTBOX' ] = $feature[ 'INPUTBOX' ];
 			$rf[ 'DESCRIPTION' ] = $feature[ 'DESCRIPTION' ];
 			$rf[ 'IMAGE' ] = $basic_room_details->all_room_features[  $feature['ID'] ][ 'tooltip' ];
-			$rf[ 'IMAGE_RELATIVE' ] = $basic_room_details->all_room_features[  $feature['ID'] ][ 'small' ];
+			$rf[ 'IMAGE_RELATIVE' ] = $image;
 			$roomfeatures[ ] = $rf;
 		}
 	}

@@ -108,14 +108,13 @@ if (!class_exists('booking')) {
 			// If this date picker is "arrivalDate" then we need to create a departure date input name too, then set it in showtime. With that we'll be able to tell this set of functionality what the id of the
 			// departureDate is so that it can set it's date when this one changes
 			if ($fieldName != 'departureDate') {
-				list($usec, $sec) = explode(' ', microtime());
-				mt_srand($sec * $usec);
-				$possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefhijklmnopqrstuvwxyz';
-				for ($i = 0; $i < 10; ++$i) {
-					$key = mt_rand(0, strlen($possible) - 1);
-					$uniqueID .= $possible[ $key ];
+				$characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+				$charactersLength = strlen($characters);
+				$randomString = '';
+				for ($i = 0; $i < 10; $i++) {
+					$randomString .= $characters[rand(0, $charactersLength - 1)];
 				}
-				set_showtime('departure_date_unique_id', $uniqueID.'_XXX');
+				set_showtime('departure_date_unique_id', $randomString.'_XXX');
 			} else {
 				$uniqueID = get_showtime('departure_date_unique_id');
 			}
