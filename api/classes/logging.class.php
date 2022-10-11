@@ -129,7 +129,9 @@ class logging
 
         if ( defined('AJAXCALL') && !AJAXCALL && !defined("API_STARTED") ) {
             if ($jrConfig['development_production'] == 'development' ) {
+				$timezone = new \DateTimeZone(date_default_timezone_get() ?: 'UTC');
                 $logger = new Logger($channel);
+				$logger->setTimezone($timezone);
                 $logger->pushProcessor(new \Monolog\Processor\WebProcessor); // pushing the web server preprocessor
                 $browserHandler = new \Monolog\Handler\BrowserConsoleHandler(\Monolog\Logger::DEBUG);
                 $logger->pushHandler($browserHandler);
@@ -137,7 +139,7 @@ class logging
                 $logger->debug($message);
             }
         }
-        
+
         $message = $username.' ~~ '.$message.' ~~ '.session_id().' ~~ '.$url;
 
 		$loggerTimeFormat = "Y-m-d H:i:s.u";
@@ -145,6 +147,8 @@ class logging
 		$formatter = new LineFormatter($loggerFormat, $loggerTimeFormat);
 
         $logger = new Logger($channel);
+		$logger->setTimezone($timezone);
+
 		$logger->useMicrosecondTimestamps(true);
         $logger->pushProcessor(new \Monolog\Processor\WebProcessor());
 
