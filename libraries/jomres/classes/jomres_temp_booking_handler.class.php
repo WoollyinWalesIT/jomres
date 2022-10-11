@@ -89,7 +89,7 @@ class jomres_temp_booking_handler
 		$this->user_agent = preg_replace("/[^A-Za-z0-9[:space:]]/", "", strip_tags(trim($_SERVER['HTTP_USER_AGENT'])));
 
 		$current_url = getCurrentUrl(true);
-		$this->current_url = filter_var($current_url, FILTER_SANITIZE_STRING);
+		$this->current_url = filter_var($current_url, FILTER_SANITIZE_URL);
 
 		//init arrays
 		$this->_init();
