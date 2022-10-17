@@ -42,6 +42,15 @@ class j16000jomres_patreon_nag
 			return;
 		}
 
+		jr_import('jomres_check_support_key');
+		$key_validation = new jomres_check_support_key(JOMRES_SITEPAGE_URL_ADMIN.'&task=showplugins');
+
+		$this->key_valid = $key_validation->key_valid;
+
+		if ($this->key_valid) {
+			return;
+		}
+
 		$tmpl = new patTemplate();
 		$tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
 		$tmpl->readTemplatesFromInput('jomres_patron_nag.html');
