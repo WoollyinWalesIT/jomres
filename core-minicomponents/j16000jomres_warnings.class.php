@@ -106,6 +106,23 @@ class j16000jomres_warnings
 
 		$output['MEDIA_CENTRE_S3_IMAGES_IMPORT_WARNING'] = s3_images_import_check();
 
+
+		$output['PLUGIN_UPDATES_AVAILABLE'] = '';
+		if (
+			get_showtime('task') != 'save_site_settings' &&
+			get_showtime('task') != 'site_settings' &&
+			get_showtime('task') != 'showplugins' &&
+			get_showtime('task') != 'addplugin' &&
+			get_showtime('task') != 'removeplugin' &&
+			get_showtime('task') != 'updates'
+		) {
+			//jomres plugin update check
+			$output['PLUGIN_UPDATES_AVAILABLE'] = $MiniComponents->specificEvent('16000', 'jomres_plugin_update_check', array('output_now' => true));
+			if ($output['PLUGIN_UPDATES_AVAILABLE'] != false) {
+
+			}
+		}
+
 		$pageoutput[ ] = $output;
 		$tmpl = new patTemplate();
 		$tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);

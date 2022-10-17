@@ -173,26 +173,6 @@ try {
 		}
 	}
 
-    if ($jrConfig['development_production'] != 'development') {
-        if (
-            get_showtime('task') != 'save_site_settings' &&
-            get_showtime('task') != 'site_settings' &&
-            get_showtime('task') != 'showplugins' &&
-            get_showtime('task') != 'addplugin' &&
-            get_showtime('task') != 'removeplugin' &&
-            get_showtime('task') != 'updates'
-        ) {
-            //jomres plugin update check
-            $output['PLUGIN_UPDATES_AVAILABLE'] = $MiniComponents->specificEvent('16000', 'jomres_plugin_update_check', array('output_now' => true));
-            if ($output['PLUGIN_UPDATES_AVAILABLE'] != false) {
-                return;
-            }
-        }
-    }
-
-
-
-
 	//output bottom area
 	if (!AJAXCALL) {
 //		$pageoutput[] = $output;

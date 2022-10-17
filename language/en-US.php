@@ -2649,7 +2649,7 @@ jr_define('JOMRES_ORGANISATIION_LOGO_URL', 'Url to your organisation logo');
 jr_define('JOMRES_UPDATE_MESSAGE_LINK', 'Update Jomres now');
 
 jr_define('PLUGIN_UPDATE_MESSAGE_TITLE', 'Plugin updates');
-jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE1', 'There are new versions of plugins available in the plugin manager. You must update all plugins before you can continue to use Jomres as updates improve functionality and ensure that your installation remains secure.');
+jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE1', 'There are new versions of plugins available in the plugin manager. You should update alll plugins before you can continue to use Jomres as updates improve functionality and ensure that your installation remains secure.');
 jr_define('PLUGIN_UPDATE_MESSAGE_NUMBER', 'Plugins to update');
 
 jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE2', 'If your license is no longer valid, you can get a new license key from our website.');
