@@ -769,6 +769,10 @@ class patTemplate
 				$this->rows_samples[$template]=$rows[0];
 			}
 
+		if (is_null($rows)) {
+			$rows = array();
+		}
+			
 		$common = $this->add_common_jomres_strings();
 		if ( !empty($rows))
 			{
