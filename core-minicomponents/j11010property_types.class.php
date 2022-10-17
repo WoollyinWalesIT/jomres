@@ -52,7 +52,7 @@ class j11010property_types
 								);
 		
 		$task = get_showtime('task');
-		if (strpos($task, "media_centre") === false
+		if ( $task != '' && strpos($task, "media_centre") === false
 			) {
 			return;
 		}
