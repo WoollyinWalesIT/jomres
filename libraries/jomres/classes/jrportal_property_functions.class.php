@@ -49,12 +49,12 @@ class jrportal_property_functions // Functions supplied as a class so that they 
 					$property_region = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_REGION'.$r->property_region, $r->property_region, false);
 				}
 				$retResult[ $r->propertys_uid ][ 'id' ] = $r->propertys_uid;
-				$retResult[ $r->propertys_uid ][ 'property_name' ] = stripslashes($r->property_name);
-				$retResult[ $r->propertys_uid ][ 'property_street' ] = stripslashes($r->property_street);
-				$retResult[ $r->propertys_uid ][ 'property_town' ] = stripslashes($r->property_town);
+				$retResult[ $r->propertys_uid ][ 'property_name' ] = stripslashes( (string) $r->property_name);
+				$retResult[ $r->propertys_uid ][ 'property_street' ] = stripslashes( (string) $r->property_street);
+				$retResult[ $r->propertys_uid ][ 'property_town' ] = stripslashes( (string) $r->property_town);
 				$retResult[ $r->propertys_uid ][ 'property_region' ] = stripslashes($property_region);
 				$retResult[ $r->propertys_uid ][ 'property_country' ] = $r->property_country;
-				$retResult[ $r->propertys_uid ][ 'property_postcode' ] = stripslashes($r->property_postcode);
+				$retResult[ $r->propertys_uid ][ 'property_postcode' ] = stripslashes( (string) $r->property_postcode);
 				$retResult[ $r->propertys_uid ][ 'published' ] = $r->published;
 			}
 		}
