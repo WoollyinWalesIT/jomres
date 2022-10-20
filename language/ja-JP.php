@@ -2732,3 +2732,5 @@ jr_define('JOMRES_TARGET_LANGUAGE', 'ターゲット言語');
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_INFO', 'このページでは、デポジットの支払いを受け取る支払いゲートウェイを設定できます。支払いゲートウェイのアカウントが必要です。設定ページには、ゲートウェイの設定方法が記載されています。 The gateway has a test mode and if Test Mode is enabled, you as a property manager will be able to use the payment gateway to test your configuration. テストモードが無効になっている場合、管理者以外のユーザーのみが予約プロセス中に支払いゲートウェイを見ることができます .');
 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "テストモード");
+
+	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "開発モードが有効になっているため、この機能を使用すると Jomres のインストールを Nightly ブランチに更新することになります。これは Jomres の最新バージョンであり、安定している場合と安定していない場合があります。 Nightly に更新したくない場合は、[管理] > [Jomres] > [設定] > [サイトの構成] > [デバッグ] タブにアクセスし、[運用/開発] オプションを [運用] に設定してください。");

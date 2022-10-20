@@ -2770,3 +2770,5 @@ jr_define('JOMRES_UPDATES_INFO', "דף זה יכול להוריד ולהתקין
 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "מצב בדיקה");
 
+
+	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "מצב הפיתוח מופעל, לכן אם תשתמש בתכונה זו תעדכן את התקנת Jomres שלך לסניף Nightly. זוהי הגרסה העדכנית ביותר של Jomres ועשויה להיות יציבה או לא. אם תעשה זאת. לא רוצה לעדכן ל-Nightly, בקר ב-Admin > Jomres > הגדרות > תצורת אתר > כרטיסיית איתור באגים והגדר את אפשרות הפקה/פיתוח ל-Production.");

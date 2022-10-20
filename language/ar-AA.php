@@ -2765,3 +2765,6 @@ jr_define ('JOMRES_COM_TRANSITION_FROM_ADMIN_TO_BACKEND_NOT_LOGGED_IN_EXPOSITION
 jr_define ('_ JOMRES_COM_A_GATEWAYLIST_INFO' , 'في هذه الصفحة يمكنك تكوين بوابات الدفع التي تريد استلام مدفوعات الإيداع من خلالها. ستحتاج إلى حساب على بوابة الدفع. ستزودك صفحة الإعدادات بإرشادات حول كيفية تكوين البوابة. إذا تحتوي البوابة على وضع اختبار وإذا تم تمكين وضع الاختبار ، فستتمكن كمدير للممتلكات من استخدام بوابة الدفع لاختبار التكوين الخاص بك. عند تعطيل وضع الاختبار ، سيرى المستخدمون غير المديرين فقط بوابات الدفع أثناء عملية الحجز . ') ;
 
 jr_define ('_ JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR' , "وضع الاختبار") ;
+
+
+	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "Development mode is enabled, therefore if you use this feature you will be updating your installation of Jomres to the Nightly branch. This is the most recent version of Jomres and may or may not be stable. If you do not want to update to Nightly please visit Admin > Jomres > Settings > Site Configuration > Debugging tab and set the Production/Development option to Production.");

@@ -2702,3 +2702,5 @@ Du kan la målspråket settes til ditt nåværende språk og bruke denne siden t
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_INFO', 'På denne siden kan du konfigurere hvilke betalingsgatewayer du ønsker å motta innskuddsbetalinger gjennom. Du trenger en konto på betalingsgatewayen. Innstillingssiden vil gi deg instruksjoner om hvordan du konfigurerer gatewayen. Hvis gatewayen har en testmodus og hvis testmodus er aktivert, vil du som eiendomsforvalter kunne bruke betalingsgatewayen til å teste konfigurasjonen din. Når testmodus er deaktivert vil bare ikke-administratorbrukere se betalingsgatewayene under bestillingsprosessen .');
 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Testmodus");
+
+	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "Utviklingsmodus er aktivert, så hvis du bruker denne funksjonen vil du oppdatere installasjonen av Jomres til Nightly-avdelingen. Dette er den nyeste versjonen av Jomres og kan være stabil eller ikke. Hvis du gjør det ikke ønsker å oppdatere til Nightly, gå til Admin > Jomres > Innstillinger > Site Configuration > Debugging-fanen og sett Produksjon/Utvikling-alternativet til Produksjon.");

@@ -2730,3 +2730,5 @@ Meghagyhatja a célnyelvet az aktuális nyelven, és ezen az oldalon átnevezhet
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_INFO', 'Ezen az oldalon konfigurálhatja, hogy mely fizetési átjárókon keresztül szeretne letéti kifizetéseket fogadni. Szüksége lesz egy számlára a fizetési átjárón. A beállítások oldalon található útmutatás az átjáró konfigurálásához. Ha az átjárónak van tesztmódja, és ha a Teszt mód be van kapcsolva, Ön, mint ingatlankezelő, használhatja a fizetési átjárót a konfiguráció tesztelésére. Ha a Teszt mód le van tiltva, csak a nem menedzser felhasználók láthatják a fizetési átjárókat a foglalási folyamat során .');
 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Tesztmód");
+
+	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "A Fejlesztési mód engedélyezve van, ezért ha ezt a funkciót használja, akkor frissíteni fogja a Jomres telepítését a Nightly ágra. Ez a Jomres legfrissebb verziója, és lehet, hogy stabil vagy nem. Ha igen nem szeretne Nightly-ra frissíteni, kérjük, keresse fel az Admin > Jomres > Beállítások > Webhely konfigurációja > Hibakeresés fület, és állítsa a Gyártás/Fejlesztés opciót Gyártás értékre.");

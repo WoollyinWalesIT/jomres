@@ -2755,3 +2755,5 @@ Podeu deixar l\'idioma d\'arribada configurat en el vostre idioma actual i utili
 
 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Mode de prova");
+
+	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "El mode de desenvolupament està habilitat, per tant, si feu servir aquesta funció, actualitzareu la vostra instal·lació de Jomres a la branca de Nightly. Aquesta és la versió més recent de Jomres i pot ser estable o no. Si ho feu? no voleu actualitzar a Nightly, visiteu Admin > Jomres > Configuració > Configuració del lloc > pestanya Depuració i configureu l'opció Producció/Desenvolupament a Producció.");

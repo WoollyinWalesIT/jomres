@@ -2752,3 +2752,5 @@ Możesz pozostawić język docelowy ustawiony na swój bieżący język i użyć
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_INFO', 'Na tej stronie możesz skonfigurować, przez które bramki płatności chcesz otrzymywać wpłaty depozytowe. Będziesz potrzebować konta na bramce płatności. Strona ustawień zawiera instrukcje dotyczące konfiguracji bramki. Jeśli bramka ma tryb testowy i jeśli włączony jest tryb testowy, jako zarządca nieruchomości będziesz mógł użyć bramki płatniczej do przetestowania konfiguracji. Gdy tryb testowy jest wyłączony, tylko użytkownicy niebędący menedżerami zobaczą bramki płatnicze podczas procesu rezerwacji .');
 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Tryb testowy");
+
+	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "Tryb programistyczny jest włączony, dlatego jeśli użyjesz tej funkcji, zaktualizujesz swoją instalację Jomresa do gałęzi Nightly. Jest to najnowsza wersja Jomresa i może być stabilna lub nie. Jeśli to zrobisz nie chcesz aktualizować do Nightly, odwiedź Admin > Jomres > Ustawienia > Konfiguracja witryny > karta Debugowanie i ustaw opcję Produkcja/Rozwój na Produkcja.");

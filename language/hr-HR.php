@@ -2774,3 +2774,5 @@ Možete ostaviti ciljni jezik postavljen na vaš trenutni jezik i koristiti ovu 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_INFO', 'Na ovoj stranici možete konfigurirati pristupnike plaćanja putem kojih želite primati isplate depozita. Trebat će vam račun na pristupniku plaćanja. Stranica s postavkama pružit će vam upute o tome kako konfigurirati pristupnik. Ako pristupnik ima testni način rada i ako je testni način rada omogućen, vi kao upravitelj objekta moći ćete koristiti pristupnik plaćanja za testiranje svoje konfiguracije. Kada je testni način rada onemogućen, samo će korisnici koji nisu upravitelji vidjeti pristupnike plaćanja tijekom procesa rezervacije .');
 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Testni način");
+
+	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "Razvojni mod je omogućen, stoga ako koristite ovu značajku, ažurirat ćete svoju instalaciju Jomresa na Nightly granu. Ovo je najnovija verzija Jomresa i može, ali ne mora biti stabilna. Ako to učinite ne želite ažurirati na Nightly, posjetite Admin > Jomres > Postavke > Konfiguracija web-mjesta > karticu Debugging i postavite opciju Proizvodnja/Razvoj na Proizvodnja.");

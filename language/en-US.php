@@ -2760,3 +2760,6 @@ You can leave the target language set to your current language and use this page
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_INFO', 'On this page you can configure which payment gateways you want to receive deposit payments through. You will need an account on the payment gateway. The settings page will provide you with instructions on how to configure the gateway. If the gateway has a test mode and if Test Mode is enabled, you as a property manager will be able to use the payment gateway to test your configuration. When Test Mode is disabled only non-Manager users will see the payment gateways during the booking process.');
 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Test mode");
+
+	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "Development mode is enabled, therefore if you use this feature you will be updating your installation of Jomres to the Nightly branch. This is the most recent version of Jomres and may or may not be stable. If you do not want to update to Nightly please visit Admin > Jomres > Settings > Site Configuration > Debugging tab and set the Production/Development option to Production.");
+

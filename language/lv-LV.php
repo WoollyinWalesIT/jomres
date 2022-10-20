@@ -2734,3 +2734,5 @@ Varat atstāt mērķa valodu iestatītu uz savu pašreizējo valodu un izmantot 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_INFO', 'Šajā lapā varat konfigurēt, caur kurām maksājumu vārtejām vēlaties saņemt depozīta maksājumus. Maksājumu vārtejā būs nepieciešams konts. Iestatījumu lapa sniegs norādījumus, kā konfigurēt vārteju. Ja vārtejai ir pārbaudes režīms, un, ja testa režīms ir iespējots, jūs kā īpašuma pārvaldnieks varēsit izmantot maksājumu vārteju, lai pārbaudītu savu konfigurāciju. Ja testa režīms ir atspējots, tikai tie lietotāji, kas nav pārvaldnieki, rezervēšanas procesa laikā redzēs maksājumu vārtejas .');
 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Pārbaudes režīms");
+
+	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "Izstrādes režīms ir iespējots, tādēļ, ja izmantojat šo līdzekli, jūs atjaunināsiet savu Jomres instalāciju uz Nakts filiāli. Šī ir jaunākā Jomres versija un var būt vai nav stabila. Ja jūs to darāt nevēlaties atjaunināt uz Nightly, lūdzu, apmeklējiet Administrēšana > Jomres > Iestatījumi > Vietnes konfigurācija > cilne Atkļūdošana un iestatiet opciju Ražošana/izstrāde uz Ražošana.");

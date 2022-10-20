@@ -62,6 +62,11 @@ class j16000updates
 			$this_version = get_jomres_current_version();
 			$latest_version = get_latest_jomres_version();
 
+			$output[ 'NIGHTLY_WARNING' ] = '';
+			if ($this->development_production == 'development') {
+				$output[ 'NIGHTLY_WARNING' ] = simple_template_output(JOMRES_TEMPLATEPATH_ADMINISTRATOR, $template = 'update_nightly_warning.html', jr_gettext('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', 'JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', false));
+			}
+
 			$output[ '_JOMRES_VERSIONCHECK_THISJOMRESVERSION' ]		= jr_gettext('_JOMRES_VERSIONCHECK_THISJOMRESVERSION', '_JOMRES_VERSIONCHECK_THISJOMRESVERSION', false);
 			$output[ '_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION' ]	= jr_gettext('_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION', '_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION', false);
 			$output[ 'JOMRES_UPDATE_MESSAGE_LINK' ]					= jr_gettext('JOMRES_UPDATE_MESSAGE_LINK', 'JOMRES_UPDATE_MESSAGE_LINK', false);

@@ -2794,3 +2794,5 @@ Puoi lasciare la lingua di destinazione impostata sulla tua lingua corrente e ut
 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Modalità test");
 
+
+	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "La modalità sviluppo è abilitata, quindi se usi questa funzione aggiornerai l'installazione di Jomres al ramo Nightly. Questa è la versione più recente di Jomres e potrebbe essere stabile o meno. Se lo fai non vuoi aggiornare a Nightly, visita Admin > Jomres > Settings > Site Configuration > Debugging e imposta l'opzione Production/Development su Production.");

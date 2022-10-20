@@ -2703,3 +2703,5 @@ U kunt de doeltaal op uw huidige taal laten staan en deze pagina gebruiken om it
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_INFO', 'Op deze pagina kunt u configureren via welke betalingsgateways u aanbetalingen wilt ontvangen. U hebt een account nodig op de betalingsgateway. Op de instellingenpagina vindt u instructies voor het configureren van de gateway. Indien de gateway heeft een testmodus en als de testmodus is ingeschakeld, kunt u als propertymanager de betalingsgateway gebruiken om uw configuratie te testen.Als de testmodus is uitgeschakeld, zien alleen niet-manager-gebruikers de betalingsgateways tijdens het boekingsproces .');
 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Testmodus");
+
+	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "Ontwikkelingsmodus is ingeschakeld, dus als u deze functie gebruikt, werkt u uw installatie van Jomres bij naar de Nightly-tak. Dit is de meest recente versie van Jomres en kan al dan niet stabiel zijn. Als u dat doet niet wilt updaten naar Nightly, ga naar Beheer > Jomres > Instellingen > Siteconfiguratie > tabblad Foutopsporing en zet de optie Productie/Ontwikkeling op Productie.");

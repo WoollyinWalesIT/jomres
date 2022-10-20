@@ -2707,3 +2707,5 @@ Můžete ponechat cílový jazyk nastavený na váš aktuální jazyk a použít
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_INFO', 'Na této stránce můžete nakonfigurovat, přes které platební brány chcete přijímat zálohové platby. Budete potřebovat účet na platební bráně. Stránka nastavení vám poskytne pokyny, jak bránu nakonfigurovat. Pokud brána má testovací režim, a pokud je povolen testovací režim, jako správce nemovitosti budete moci použít platební bránu k testování své konfigurace. Když je testovací režim deaktivován, během procesu rezervace uvidí platební brány pouze uživatelé, kteří nejsou správcem .');
 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Testovací režim");
+
+	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "Režim vývoje je povolen, takže pokud použijete tuto funkci, aktualizujete svou instalaci Jomres na větev Nightly. Toto je nejnovější verze Jomres a může, ale nemusí být stabilní. Pokud ano Nechcete aktualizovat na Nightly, navštivte Admin > Jomres > Nastavení > Konfigurace webu > karta Ladění a nastavte volbu Produkce/Vývoj na Produkci.");

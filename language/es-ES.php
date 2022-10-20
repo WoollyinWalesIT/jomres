@@ -2768,3 +2768,6 @@ Puede dejar el idioma de destino establecido en su idioma actual y usar esta pá
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_INFO', 'En esta página puede configurar a través de qué pasarelas de pago desea recibir pagos de depósitos. Necesitará una cuenta en la pasarela de pago. La página de configuración le proporcionará instrucciones sobre cómo configurar la pasarela. Si la puerta de enlace tiene un modo de prueba y si el modo de prueba está habilitado, usted, como administrador de la propiedad, podrá usar la pasarela de pago para probar su configuración. Cuando el modo de prueba está deshabilitado, solo los usuarios que no son administradores verán las pasarelas de pago durante el proceso de reserva .');
 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Modo de prueba");
+
+
+	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "El modo de desarrollo está habilitado, por lo tanto, si usa esta función, actualizará su instalación de Jomres a la rama Nightly. Esta es la versión más reciente de Jomres y puede o no ser estable. Si lo hace no desea actualizar a Nightly, visite Admin > Jomres > Configuración > Configuración del sitio > pestaña Depuración y establezca la opción Producción/Desarrollo en Producción.");
