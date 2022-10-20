@@ -2743,3 +2743,5 @@ jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', '保存更改后，页面中�
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_INFO', '在此页面上，您可以配置要通过哪些支付网关接收存款付款。您需要在支付网关上拥有一个帐户。设置页面将为您提供有关如何配置网关的说明。如果 网关有一个测试模式，如果启用了测试模式，您作为物业经理将能够使用支付网关来测试您的配置。禁用测试模式时，只有非经理用户才能在预订过程中看到支付网关 .');
 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "测试模式");
+
+	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "开发模式已启用，因此如果您使用此功能，您将更新您的 Jomres 安装到 Nightly 分支。这是 Jomres 的最新版本，可能稳定也可能不稳定。如果您这样做 不想更新到 Nightly 请访问 Admin > Jomres > Settings > Site Configuration > Debugging 选项卡并将生产/开发选项设置为生产。");

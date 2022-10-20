@@ -2745,3 +2745,5 @@ Ciljni jezik lahko pustite nastavljen na vaš trenutni jezik in uporabite to str
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_INFO', 'Na tej strani lahko konfigurirate, prek katerih plačilnih prehodov želite prejemati plačila pologov. Potrebovali boste račun na plačilnem prehodu. Na strani z nastavitvami boste našli navodila, kako konfigurirati prehod. Če prehod ima testni način in če je testni način omogočen, boste kot upravitelj nepremičnine lahko uporabili plačilni prehod za testiranje vaše konfiguracije. Ko je testni način onemogočen, bodo med postopkom rezervacije plačilne prehode videli samo uporabniki, ki niso upravitelji .');
 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Testni način");
+
+	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "Razvojni način je omogočen, zato boste, če uporabljate to funkcijo, posodobili svojo namestitev Jomresa na vejo Nightly. To je najnovejša različica Jomresa in je lahko stabilna ali pa ne. Če to storite ne želite posodobiti na Nightly, obiščite Admin > Jomres > Settings > Site Configuration > zavihek Debugging in nastavite možnost Production/Development na Production.");

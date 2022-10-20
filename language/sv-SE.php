@@ -2733,3 +2733,5 @@ Du kan lämna målspråket inställt på ditt nuvarande språk och använda denn
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_INFO', 'På den här sidan kan du konfigurera vilka betalningsgateways du vill ta emot insättningsbetalningar genom. Du behöver ett konto på betalningsgatewayen. Inställningssidan ger dig instruktioner om hur du konfigurerar gatewayen. Om gatewayen har ett testläge och om testläge är aktiverat kommer du som fastighetsförvaltare att kunna använda betalningsgatewayen för att testa din konfiguration. När testläget är inaktiverat kommer endast icke-manageranvändare att se betalningsportarna under bokningsprocessen .');
 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Testläge");
+
+	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "Utvecklingsläget är aktiverat, så om du använder den här funktionen kommer du att uppdatera din installation av Jomres till Nightly-grenen. Detta är den senaste versionen av Jomres och kanske inte är stabil. Om du gör det. inte vill uppdatera till Nightly, besök Admin > Jomres > Inställningar > Webbplatskonfiguration > fliken Felsökning och ställ in alternativet Produktion/Utveckling till Produktion.");

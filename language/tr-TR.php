@@ -2735,3 +2735,5 @@ Hedef dili mevcut dilinize ayarlı bırakabilir ve bu sayfayı, öğeleri tek te
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_INFO', 'Bu sayfada, mevduat ödemelerini almak istediğiniz ödeme ağ geçitlerini yapılandırabilirsiniz. Ödeme ağ geçidinde bir hesaba ihtiyacınız olacak. Ayarlar sayfası, ağ geçidini nasıl yapılandıracağınıza ilişkin talimatlar sağlayacaktır. ağ geçidinin bir test modu vardır ve Test Modu etkinleştirilirse, mülk yöneticisi olarak yapılandırmanızı test etmek için ödeme ağ geçidini kullanabilirsiniz.Test Modu devre dışı bırakıldığında, rezervasyon işlemi sırasında ödeme ağ geçitlerini yalnızca Yönetici olmayan kullanıcılar görebilir .');
 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Test modu");
+
+	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "Geliştirme modu etkin, bu nedenle bu özelliği kullanırsanız Jomres kurulumunuzu Nightly şubesine güncelleyeceksiniz. Bu, Jomres'in en son sürümüdür ve kararlı olabilir veya olmayabilir. Bunu yaparsanız Nightly'ye güncellemek istemiyorsanız lütfen Yönetici > Jomres > Ayarlar > Site Yapılandırması > Hata Ayıklama sekmesini ziyaret edin ve Üretim/Geliştirme seçeneğini Üretim olarak ayarlayın.");
