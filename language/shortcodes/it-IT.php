@@ -251,3 +251,7 @@ jr_define('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_MRPSRP', 'Se m
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER', 'Facoltativo. Se l\'id della proprietà non è impostato, puoi invece passare un numero.');
 jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH', 'Facoltativo. Percorso del modello alternativo. Non può essere passato tramite url. Deve essere assoluto.');
 jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME', 'Facoltativo. Nome modello alternativo.');
+
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET', "Mostra un output del tipo di modulo proprietà per il posizionamento con codici brevi. L'output del modulo proprietà è un piccolo frammento di dettagli di proprietà progettato per essere mostrato in vari punti della pagina.");
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_PROPERTY_UID', 'ID facoltativo della proprietà. Se l\'uid della proprietà non è impostato, verrà mostrata una proprietà pubblicata a caso.');
+jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_ALT_TEMPLATE_NAME', 'Facoltativo. Nome del modello alternativo, senza ".html". Il modello deve esistere nella directory di sostituzione del modello. Ciò consente di utilizzare versioni personalizzate di "basic_module_output.html" in diversi punti delle pagine. ' );

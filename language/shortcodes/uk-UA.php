@@ -251,3 +251,7 @@ jr_define('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_MRPSRP', 'Чи
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER', 'Необов\'язково. Якщо ідентифікатор властивості не встановлено, замість цього можна передати число.');
 jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH', 'Необов\'язково. Альтернативний шлях до шаблону. Не можна передати через URL-адресу. Має бути абсолютним.');
 jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME', 'Необов\'язково. Альтернативна назва шаблону.');
+
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET', "Показує вихідні дані типу модуля властивостей для розміщення з короткими кодами. Вихідні дані модуля властивостей — це невеликий фрагмент деталей властивостей, призначених для показу в різних місцях сторінки.");
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_PROPERTY_UID', 'Необов\'язково. Ідентифікатор властивості. Якщо uid властивості не встановлено, буде показано випадкову опубліковану властивість.');
+jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_ALT_TEMPLATE_NAME', 'Необов\'язково. Альтернативна назва шаблону без ".html". Шаблон має існувати в каталозі заміни шаблону. Це дозволяє вам використовувати налаштовані версії "basic_module_output.html" у різних місцях ваших сторінок. ' );

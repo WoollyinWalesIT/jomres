@@ -38,7 +38,22 @@ class j06000property_widget
 		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch) {
 			$this->template_touchable = false;
-
+			$this->shortcode_data = array(
+				'task' => 'property_widget',
+				'info' => '_JOMRES_SHORTCODES_06000PROPERTY_WIDGET',
+				'arguments' => array(
+					array(
+						'argument' => 'property_uid',
+						'arg_info' => '_JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_PROPERTY_UID',
+						'arg_example' => '1',
+					),
+					array(
+						'argument' => 'alt_template_name',
+						'arg_info' => '_JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_ALT_TEMPLATE_NAME',
+						'arg_example' => 'basic_module_output_verbose',
+					),
+				),
+			);
 			return;
 		}
 
@@ -51,7 +66,8 @@ class j06000property_widget
 		}
 
 		if ($property_uid == 0) {
-			return;
+			$all_published_properties = get_showtime('published_properties_in_system');
+			$property_uid = array_rand( array_flip($all_published_properties) );
 		}
 
 		if (!user_can_view_this_property($property_uid)) {

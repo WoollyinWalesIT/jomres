@@ -251,3 +251,7 @@ jr_define('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_MRPSRP', 'MRP 
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER', 'İstəyə bağlıdır. Əgər mülkiyyət id-si təyin edilməyibsə, onun yerinə nömrə ötürə bilərsiniz.');
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH', 'Könüllüdür. Alternativ şablon yolu. Url vasitəsilə ötürülə bilməz. Mütləq olmalıdır.');
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME', 'İstəyə görə. Alternativ şablon adı.');
+
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET', "Qısa kodlarla yerləşdirmə üçün mülkiyyət modulu tipli çıxışı göstərir. Mülkiyyət modulunun çıxışı səhifənin müxtəlif yerlərində göstərilmək üçün nəzərdə tutulmuş əmlak təfərrüatlarının kiçik bir parçasıdır.");
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_PROPERTY_UID', 'Könüllüdür. Əmlakın ID-si. Əgər mülkiyyət uid-i təyin olunmayıbsa, təsadüfi nəşr edilmiş xüsusiyyət göstəriləcək.');
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_ALT_TEMPLATE_NAME', 'İstəyə bağlıdır. Alternativ şablon adı, ".html" olmadan. Şablon şablonun ləğvi kataloqunda olmalıdır. Bu, "bas.moout in" səhifənizdə müxtəlif yerlərə daxil edilmiş_bas.html səhifənizin fərdiləşdirilmiş versiyalarından istifadə etməyə imkan verir. ');

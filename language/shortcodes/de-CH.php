@@ -251,3 +251,7 @@ jr_define('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_MRPSRP', 'Ob M
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER', 'Optional. Wenn die Eigenschafts-ID nicht gesetzt ist, können Sie stattdessen eine Nummer übergeben.');
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH', 'Optional. Alternativer Vorlagenpfad. Kann nicht per URL übergeben werden. Muss absolut sein.');
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME', 'Optional. Alternativer Vorlagenname.');
+
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET', "Zeigt die Ausgabe eines Eigenschaftsmodultyps zur Platzierung mit Shortcodes an. Die Ausgabe des Eigenschaftsmoduls ist ein kleiner Ausschnitt von Eigenschaftsdetails, der an verschiedenen Stellen auf der Seite angezeigt werden soll.");
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_PROPERTY_UID', 'Optional. ID der Eigenschaft. Wenn die UID der Eigenschaft nicht gesetzt ist, wird eine zufällige veröffentlichte Eigenschaft angezeigt.');
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_ALT_TEMPLATE_NAME', 'Optional. Alternativer Template-Name, ohne ".html". Das Template muss im Template-Override-Verzeichnis vorhanden sein. Dadurch können Sie benutzerdefinierte Versionen von "basic_module_output.html" an verschiedenen Stellen auf Ihren Seiten verwenden. ' );

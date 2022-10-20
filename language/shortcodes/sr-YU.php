@@ -257,3 +257,7 @@ jr_define('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_MRPSRP', 'Whet
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER', 'Optional. If the property id is not set, you can pass a number instead.');
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH', 'Optional. Alternative template path. Cannot be passed via url. Must be absolute.');
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME', 'Optional. Alternative template name.');
+
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET', "Shows a property module type output for placement with shortcodes. Property module output is a small snippet of property details designed to be shown in various places in the page.");
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_PROPERTY_UID', 'Optional. ID of the property. If property uid is not set then a random published property will be shown.');
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_ALT_TEMPLATE_NAME', 'Optional. Alternative template name, without ".html". The template must exist in the template override directory. This allows you to use customised versions of "basic_module_output.html" in different places in your pages. ');

@@ -247,3 +247,7 @@ jr_define('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_MRPSRP', 'Αν
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER', 'Προαιρετικό. Εάν το αναγνωριστικό ιδιότητας δεν έχει οριστεί, μπορείτε να περάσετε έναν αριθμό.');
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH', 'Προαιρετικό. Εναλλακτική διαδρομή προτύπου. Δεν μπορεί να περάσει μέσω url. Πρέπει να είναι απόλυτη.');
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME', 'Προαιρετικό. Εναλλακτικό όνομα προτύπου.');
+
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET', "Δείχνει έξοδο τύπου λειτουργικής μονάδας για τοποθέτηση με σύντομους κώδικες. Η έξοδος της μονάδας ιδιότητας είναι ένα μικρό απόσπασμα λεπτομερειών ιδιοκτησίας που έχει σχεδιαστεί για να εμφανίζεται σε διάφορα σημεία της σελίδας.");
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_PROPERTY_UID', 'Προαιρετικό. Αναγνωριστικό της ιδιότητας. Εάν δεν έχει οριστεί το αναγνωριστικό ιδιότητας, θα εμφανιστεί μια τυχαία δημοσιευμένη ιδιότητα.');
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_ALT_TEMPLATE_NAME', 'Προαιρετικό. Εναλλακτικό όνομα προτύπου, χωρίς ".html". Το πρότυπο πρέπει να υπάρχει στον κατάλογο παράκαμψης προτύπου. Αυτό σας επιτρέπει να χρησιμοποιείτε προσαρμοσμένες εκδόσεις του "basic_module_output.html" σας σε διαφορετικές θέσεις.' );

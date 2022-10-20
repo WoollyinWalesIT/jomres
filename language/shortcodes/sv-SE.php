@@ -251,3 +251,7 @@ jr_define('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_MRPSRP', 'Huru
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER', 'Valfritt. Om egenskaps-id inte är angivet kan du skicka ett nummer istället.');
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH', 'Valfritt. Alternativ mallsökväg. Kan inte skickas via url. Måste vara absolut.');
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME', 'Valfritt. Alternativt mallnamn.');
+
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET', "Visar en egenskapsmodultyp utdata för placering med kortkoder. Egenskapsmodulutdata är ett litet utdrag av egenskapsdetaljer designat för att visas på olika ställen på sidan.");
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_PROPERTY_UID', 'Valfritt. ID för egenskapen. Om egenskapens uid inte är inställt kommer en slumpmässig publicerad egenskap att visas.');
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_ALT_TEMPLATE_NAME', 'Valfritt. Alternativt mallnamn, utan ".html". Mallen måste finnas i mallöverstyrningskatalogen. Detta gör att du kan använda anpassade versioner av "basic_module_output.html" på olika platser i dina sidor. ' );

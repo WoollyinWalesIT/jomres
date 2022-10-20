@@ -251,3 +251,7 @@ jr_define('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_MRPSRP', 'Či 
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER', 'Voliteľné. Ak nie je nastavené ID vlastnosti, môžete namiesto toho zadať číslo.');
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH', 'Voliteľné. Alternatívna cesta šablóny. Nemôže byť odovzdaná cez adresu URL. Musí byť absolútna.');
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME', 'Voliteľné. Alternatívny názov šablóny.');
+
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET', "Zobrazuje výstup typu modulu vlastností pre umiestnenie s krátkymi kódmi. Výstup modulu vlastností je malý úryvok detailov vlastností navrhnutý na zobrazenie na rôznych miestach na stránke.");
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_PROPERTY_UID', 'Voliteľné. ID vlastnosti. Ak nie je nastavené uid vlastnosti, zobrazí sa náhodne publikovaná vlastnosť.');
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_ALT_TEMPLATE_NAME', 'Voliteľné. Alternatívny názov šablóny, bez ".html". Šablóna musí existovať v adresári prepísania šablóny. To vám umožňuje používať prispôsobené verzie "základného_modulu" na rôznych miestach_výstupu.html ');

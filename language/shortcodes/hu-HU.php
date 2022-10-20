@@ -251,3 +251,7 @@ jr_define('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_MRPSRP', 'Az M
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER', 'Opcionális. Ha a tulajdonságazonosító nincs beállítva, átadhat helyette egy számot.');
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH', 'Opcionális. Alternatív sablon elérési út. Nem adható át url-en keresztül. Abszolútnak kell lennie.');
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME', 'Opcionális. Alternatív sablonnév.');
+
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET', "Tulajdonságmodul típusú kimenetet jelenít meg rövid kódokkal történő elhelyezéshez. A tulajdonságmodul kimenete a tulajdonságok részleteinek egy kis részlete, amelyet úgy terveztek, hogy az oldal különböző helyein megjelenjen.");
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_PROPERTY_UID', 'Opcionális. A tulajdonság azonosítója. Ha a tulajdonságazonosító nincs beállítva, akkor egy véletlenszerűen közzétett tulajdonság jelenik meg.');
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_ALT_TEMPLATE_NAME', 'Opcionális. Alternatív sablonnév, ".html" nélkül. A sablonnak léteznie kell a sablonfelülírási könyvtárban. Ez lehetővé teszi a "basic_module_output.html" testreszabott verzióinak használatát a különböző helyeken. ');

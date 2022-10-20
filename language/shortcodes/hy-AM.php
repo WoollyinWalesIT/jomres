@@ -249,3 +249,7 @@ jr_define('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_MRPSRP', 'Whet
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER', 'Ըստ ցանկության: Եթե հատկության ID-ն սահմանված չէ, փոխարենը կարող եք փոխանցել թիվ:');
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH', 'Ըստ ցանկության: Կաղապարի այլընտրանքային ուղի: Հնարավոր չէ անցնել url-ով: Պետք է լինի բացարձակ:');
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME', 'Ըստ ցանկության: Կաղապարի այլընտրանքային անուն:');
+
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET', "Ցուցադրում է սեփականության մոդուլի տիպի ելքը կարճ կոդերով տեղադրելու համար: Հատկությունների մոդուլի ելքը գույքի մանրամասների փոքր հատված է, որը նախատեսված է էջի տարբեր վայրերում ցուցադրելու համար:");
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_PROPERTY_UID', 'Ըստ ցանկության: Սեփականության ID: Եթե գույքի uid-ը սահմանված չէ, ապա կցուցադրվի պատահական հրապարակված հատկություն:');
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_ALT_TEMPLATE_NAME', 'Ըստ ցանկության: Այլընտրանքային ձևանմուշի անուն, առանց «.html»: Կաղապարը պետք է գոյություն ունենա կաղապարի փոխարինման գրացուցակում: Սա թույլ է տալիս օգտագործել "basic_module_output.html" հարմարեցված տարբերակները: «տեղադրել ձեր հիմնական_մոդուլը տարբեր վայրերում»_: ');
