@@ -110,11 +110,12 @@ if (!class_exists('booking')) {
 			if ($fieldName != 'departureDate') {
 				$characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 				$charactersLength = strlen($characters);
-				$randomString = '';
+				$uniqueID = '';
 				for ($i = 0; $i < 10; $i++) {
-					$randomString .= $characters[rand(0, $charactersLength - 1)];
+					$uniqueID .= $characters[rand(0, $charactersLength - 1)];
 				}
-				set_showtime('departure_date_unique_id', $randomString.'_XXX');
+
+				set_showtime('departure_date_unique_id', $uniqueID.'_XXX');
 			} else {
 				$uniqueID = get_showtime('departure_date_unique_id');
 			}
