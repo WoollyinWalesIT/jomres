@@ -146,6 +146,8 @@ class j06000show_property_header
 			$doc     = JFactory::getDocument();
 			$canonicalLink = '<link href="' .get_showtime('live_site').get_property_details_url($property_uid, 'sef') . '" rel="canonical" />';
 			$doc->addCustomTag($canonicalLink);
+		} else {
+			echo '<link rel="canonical" href="'.get_showtime('live_site').get_property_details_url($property_uid, 'sef').'">';
 		}
 
 		//Facebook meta data
