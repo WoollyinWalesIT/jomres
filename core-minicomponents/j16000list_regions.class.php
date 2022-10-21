@@ -67,6 +67,7 @@ class j16000list_regions
 				$r[ 'REGIONNAME' ] = $region[ 'regionname' ];
 				$r[ 'COUNTRYCODE' ] = $region[ 'countrycode' ];
 				$r[ 'COUNTRYNAME' ] = getSimpleCountry($region[ 'countrycode' ]);
+				$r[ 'ID' ] = $region[ 'id' ];
 
 				$toolbar = jomres_singleton_abstract::getInstance('jomresItemToolbar');
 				$toolbar->newToolbar();
