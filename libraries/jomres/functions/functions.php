@@ -1972,7 +1972,7 @@ function make_agent_link($property_id = 0)
 
 	$manager_id = $property_manager_xref[ $property_id ];
 
-	$output[ 'IMAGE' ] = JOMRES_IMAGES_RELPATH.'noimage.gif';
+	$output[ 'IMAGE' ] = JOMRES_IMAGES_RELPATH.'noimage.svg';
 
 	$image_filename = '';
 	$contents = get_directory_contents(JOMRES_IMAGELOCATION_ABSPATH.'userimages'.JRDS.(int) $manager_id);
@@ -4797,7 +4797,7 @@ function getImageForProperty($imageType, $property_uid, $itemUid)
 			}
 			break;
 		case 'room':
-			$default_image = JOMRES_IMAGES_RELPATH.'noimage.gif';
+			$default_image = JOMRES_IMAGES_RELPATH.'noimage.svg';
 			if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.$property_uid.'_room_'.$itemUid.'.jpg')) {
 				$fileLocation = JOMRES_IMAGELOCATION_RELPATH.$property_uid.'_room_'.$itemUid.'.jpg';
 			} else {

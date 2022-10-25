@@ -77,7 +77,7 @@ class j06005edit_my_account
 		$output[ 'LANDLINE' ] = '';
 		$output[ 'MOBILE' ] = '';
 		//$output[ 'EMAIL' ] = restore_task_specific_email_address($user_details[ $thisJRUser->id ][ 'email' ]);
-		$output[ 'IMAGE' ] = JOMRES_IMAGES_RELPATH.'noimage.gif';
+		$output[ 'IMAGE' ] = JOMRES_IMAGES_RELPATH.'noimage.svg';
 
 		$output['JOMRES_JS_RELPATH'] = JOMRES_JS_RELPATH;
 

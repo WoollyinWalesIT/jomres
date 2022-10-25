@@ -300,7 +300,7 @@ class j01070show_property_schema
 					$r[ 'MAXPEOPLE' ] = $room['max_people'];
 					$r[ 'BED' ] = $current_property_details->room_types[$room_type_id]['abbv'];
 
-					$r[ 'IMAGEMEDIUM' ] = JOMRES_IMAGES_RELPATH.'noimage.gif';
+					$r[ 'IMAGEMEDIUM' ] = JOMRES_IMAGES_RELPATH.'noimage.svg';
 
 				if (isset($jomres_media_centre_images->images['rooms']) && isset($jomres_media_centre_images->images['rooms'][$room['room_uid']][0]['large']) && $jomres_media_centre_images->images['rooms'][$room['room_uid']][0]['large'] != '') {
 					$r[ 'IMAGEMEDIUM' ] = $jomres_media_centre_images->images['rooms'][$room['room_uid']][0]['medium'];

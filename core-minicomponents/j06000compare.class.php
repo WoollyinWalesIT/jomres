@@ -110,7 +110,7 @@ class j06000compare
 				$property_types[ $p->id ] = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTYTYPES'.(int) $p->id, $p->ptype, false, false);
 			}
 
-			$no_image_image = JOMRES_IMAGES_RELPATH.'noimage.gif';
+			$no_image_image = JOMRES_IMAGES_RELPATH.'noimage.svg';
 
 			// We need to find out which features are used by all properties found in the search results
 			$all_used_features = array();
@@ -142,7 +142,7 @@ class j06000compare
 				}
 
 
-				$property_image = JOMRES_IMAGES_RELPATH.'noimage.gif';
+				$property_image = JOMRES_IMAGES_RELPATH.'noimage.svg';
 				if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.$property_uid.'_property_'.$property_uid.'.jpg')) {
 					$property_image = JOMRES_IMAGELOCATION_RELPATH.$property_uid.'_property_'.$property_uid.'.jpg';
 				}

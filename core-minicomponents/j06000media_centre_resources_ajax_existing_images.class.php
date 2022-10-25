@@ -123,7 +123,7 @@ class j06000media_centre_resources_ajax_existing_images
 			$tmpl->addRows('pageoutput', $pageoutput);
 			$tmpl->displayParsedTemplate();
 		} else {
-			echo ' <img src="'.JOMRES_IMAGES_RELPATH.'noimage.gif'.'" />';
+			echo ' <img src="'.JOMRES_IMAGES_RELPATH.'noimage.svg'.'" />';
 		}
 	}
 

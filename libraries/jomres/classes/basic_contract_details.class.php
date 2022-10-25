@@ -180,7 +180,7 @@ class basic_contract_details
 			$this->contract[$contract_uid]['contractdeets']['booking_data_archive_id'] = $contract->booking_data_archive_id;
 
 			//guest details
-			$this->contract[$contract_uid]['guestdeets']['image'] = JOMRES_IMAGES_RELPATH.'noimage.gif';
+			$this->contract[$contract_uid]['guestdeets']['image'] = JOMRES_IMAGES_RELPATH.'noimage.svg';
 			if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.'userimages'.JRDS.'userimage_'.(int) $contract->mos_userid.'.jpg')) {
 				$this->contract[$contract_uid]['guestdeets']['image'] = JOMRES_IMAGELOCATION_RELPATH.'userimages/userimage_'.(int) $contract->mos_userid.'_thumbnail.jpg';
 			}

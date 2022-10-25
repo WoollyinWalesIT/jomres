@@ -61,7 +61,7 @@ class jrportal_guest_profile
 		$this->passport_number = '';
 		$this->iban = '';
 		$this->about_me = '';
-		$this->image = JOMRES_IMAGES_RELPATH.'noimage.gif';
+		$this->image = JOMRES_IMAGES_RELPATH.'noimage.svg';
 		
 		$this->guest_reviews = array();
 	}
