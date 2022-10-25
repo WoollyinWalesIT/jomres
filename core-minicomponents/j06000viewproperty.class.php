@@ -572,24 +572,41 @@ class j06000viewproperty
 			$tmpl->addRows('contactuslink', $contactuslink);
 		}
 
-		$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+
 
 		if (isset($_REQUEST[ 'jr_printable' ])) {
 			$tmpl->readTemplatesFromInput('composite_property_details_printable.html');
 		} else {
-			if (jomres_bootstrap_version() == '5') {
-				if (isset($_REQUEST['view_property_template']) && $_REQUEST['view_property_template'] != '') {
-					$tmpl->readTemplatesFromInput($_REQUEST['view_property_template'].'.html');
-				} else {
-					$tmpl->readTemplatesFromInput('property_details.html');
+
+			$alt_template_path = '';
+			$alt_template_name = '';
+
+			if ($alt_template_name == '' && isset($_REQUEST['alt_template_name']) && $_REQUEST['alt_template_name'] != '') {
+				$temp_template = jomresGetParam($_REQUEST, 'alt_template_name', '');
+				if (file_exists(get_override_directory().JRDS.$temp_template.'.html')) {
+					$alt_template_name = $temp_template;
+					$alt_template_path = get_override_directory();
+					$tmpl->setRoot($alt_template_path);
+					$tmpl->readTemplatesFromInput($alt_template_name.'.html');
 				}
 			} else {
-				if ($jrConfig[ 'property_details_in_tabs' ] == '1') {
-					$tmpl->readTemplatesFromInput('composite_property_details.html');
+				$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+				if (jomres_bootstrap_version() == '5') {
+					if (isset($_REQUEST['view_property_template']) && $_REQUEST['view_property_template'] != '') {
+						$tmpl->readTemplatesFromInput($_REQUEST['view_property_template'].'.html');
+					} else {
+						$tmpl->readTemplatesFromInput('property_details.html');
+					}
 				} else {
-					$tmpl->readTemplatesFromInput('composite_property_details_notabs.html');
+					if ($jrConfig[ 'property_details_in_tabs' ] == '1') {
+						$tmpl->readTemplatesFromInput('composite_property_details.html');
+					} else {
+						$tmpl->readTemplatesFromInput('composite_property_details_notabs.html');
+					}
 				}
 			}
+
+
 		}
 
 		$tmpl->displayParsedTemplate();
