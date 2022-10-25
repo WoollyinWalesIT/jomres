@@ -219,6 +219,7 @@ function get_property_module_data($property_uid_array, $alt_template_path = '', 
 			$property_data[ 'IMAGETHUMB' ] = $jomres_media_centre_images->images ['property'][0][0]['small'];
 
 			$property_data[ 'PROPERTY_DESCRIPTION' ] = ($jomres_markdown->get_markdown($current_property_details->property_description));
+			$property_data[ 'MAX_OCCUPANCY' ] = $mrConfig['accommodates'];
 
 			$property_data[ 'PRICE_PRE_TEXT' ] = $jomres_property_list_prices->lowest_prices[$property_uid][ 'PRE_TEXT' ];
 			$property_data[ 'PRICE_PRICE' ] = $jomres_property_list_prices->lowest_prices[$property_uid][ 'PRICE' ];
