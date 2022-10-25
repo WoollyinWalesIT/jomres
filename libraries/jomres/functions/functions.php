@@ -146,6 +146,8 @@ function get_override_directory()
 	return $override_path;
 }
 
+
+
 	 /*
 	 *
 	 * The goal here is to provide a function that will take a shortcode and produce output. It's effectively the same as the do_shortcode function in WP so that I can include Jomres shortcodes in Joomla template files. There are other ways it can be done, but by allowing shortcodes exactly as they're entered in content/shortcode documentation we can save the designer/integrator from needing to learn another syntax. It also means I can modify the jomres shortcodes plugin to use this function, at a later time, so that we don't have duplication of effort
@@ -154,14 +156,19 @@ function get_override_directory()
 
 function run_jomres_shortcode($shortcode_string = '')
 {
-	if ($shortcode_string == '') {
+	if ( trim($shortcode_string) == '') {
 		return '';
 	}
 
+	// Old style shortcodes
 	$regex = '/{jomres\s*.*?}/i';
-
-	// find all instances of mambot and put in $matches
 	preg_match_all($regex, $shortcode_string, $matches);
+
+	// New style so that we can use exactly the same shortcodes in both Joomla and WordPress
+	if ($matches[0] == [] ) {
+		$regex = '/\[jomres\s*.*?\]/i';
+		preg_match_all($regex, $shortcode_string, $matches);
+	}
 
 	if (count($matches)>0) {
 		foreach ($matches[0] as $m) {
