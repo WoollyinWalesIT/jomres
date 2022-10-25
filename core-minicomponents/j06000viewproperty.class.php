@@ -583,11 +583,15 @@ class j06000viewproperty
 
 			if ($alt_template_name == '' && isset($_REQUEST['alt_template_name']) && $_REQUEST['alt_template_name'] != '') {
 				$temp_template = jomresGetParam($_REQUEST, 'alt_template_name', '');
+
 				if (file_exists(get_override_directory().JRDS.$temp_template.'.html')) {
 					$alt_template_name = $temp_template;
 					$alt_template_path = get_override_directory();
 					$tmpl->setRoot($alt_template_path);
 					$tmpl->readTemplatesFromInput($alt_template_name.'.html');
+				} else {
+					echo "Error, ".get_override_directory().JRDS.$temp_template.".html does not exist. alt_template_name variable is wrong.";
+					return;
 				}
 			} else {
 				$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
