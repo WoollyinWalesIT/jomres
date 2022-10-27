@@ -48,7 +48,14 @@ class j06002delete_tariff_advanced
 		
 		$jomres_messaging = jomres_singleton_abstract::getInstance('jomres_messages');
 		$jomres_messaging->set_message($saveMessage);
-		
+
+		$webhook_notification						   	= new stdClass();
+		$webhook_notification->webhook_event			= 'property_state_change';
+		$webhook_notification->webhook_event_description= 'A catchall webhook notification which notes that the property state has changed. Primarily designed for caching features to remove/refresh cache elements';
+		$webhook_notification->data					 	= new stdClass();
+		$webhook_notification->data->property_uid	   	= $defaultProperty;
+		add_webhook_notification($webhook_notification);
+
 		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL . "&task=list_tariffs_advanced"), $saveMessage);
 	}
 

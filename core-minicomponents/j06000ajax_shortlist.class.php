@@ -120,6 +120,13 @@ class j06000ajax_shortlist
 			}
 		}
 
+		$webhook_notification						   		= new stdClass();
+		$webhook_notification->webhook_event				= 'property_favourited';
+		$webhook_notification->webhook_event_description	= 'Logs when a property is favourited';
+		$webhook_notification->data					 		= new stdClass();
+		$webhook_notification->data->property_uid	   		= $property_uid;
+		add_webhook_notification($webhook_notification);
+
 		echo $result;
 	}
 

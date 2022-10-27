@@ -73,6 +73,10 @@ class j16000jomres_income_overview
 						AND DATE_FORMAT(b.paid, '%Y') = '".$this_year."' ";
 		$result = doSelectSql($query, 2);
 
+		if (is_null($result['bookings_total'])) {
+			$result['bookings_total'] = 0;
+		}
+
 		$output['BOOKINGS_INCOME'] = output_price(abs($result['bookings_total']));
 		$output['BOOKINGS_INCOME_LABEL_CLASS'] = 'label-blue';
 

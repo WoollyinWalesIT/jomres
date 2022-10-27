@@ -80,6 +80,13 @@ class jomres_child_rates
 			$query = "UPDATE #__jomres_settings SET `value`='".$rates."' WHERE `property_uid` = ".(int)  $this->property_uid." and `akey` = 'child_rates' ";
 		}
 		doInsertSql($query);
+
+		$webhook_notification						   	= new stdClass();
+		$webhook_notification->webhook_event			= 'property_state_change';
+		$webhook_notification->webhook_event_description= 'A catchall webhook notification which notes that the property state has changed. Primarily designed for caching features to remove/refresh cache elements';
+		$webhook_notification->data					 	= new stdClass();
+		$webhook_notification->data->property_uid	   	= $this->property_uid;
+		add_webhook_notification($webhook_notification);
 	}
 
 	public function delete_child_rate($id)

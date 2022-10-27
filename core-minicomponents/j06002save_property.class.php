@@ -151,6 +151,13 @@ class j06002save_property
 		$componentArgs = array('property_uid' => $jomres_properties->propertys_uid);
 		$MiniComponents->triggerEvent('04902', $componentArgs);
 
+		$webhook_notification						   	= new stdClass();
+		$webhook_notification->webhook_event			= 'property_state_change';
+		$webhook_notification->webhook_event_description= 'A catchall webhook notification which notes that the property state has changed. Primarily designed for caching features to remove/refresh cache elements';
+		$webhook_notification->data					 	= new stdClass();
+		$webhook_notification->data->property_uid	   	=  $jomres_properties->propertys_uid;
+		add_webhook_notification($webhook_notification);
+
 		//redirect back to edit property page
 		jomresRedirect(jomresUrl(JOMRES_SITEPAGE_URL.'&task=edit_property'));
 	}

@@ -69,6 +69,13 @@ class jomres_currency_exchange_rates
 		if ($this->update_now) {
 			if ($this->update_exchange_rates()) {
 				$this->save_rates();
+
+				$webhook_notification						   	= new stdClass();
+				$webhook_notification->webhook_event			= 'property_state_change';
+				$webhook_notification->webhook_event_description= 'A catchall webhook notification which notes that the property state has changed. Primarily designed for caching features to remove/refresh cache elements. Setting the property uid to zero tells caches to update states for all properties';
+				$webhook_notification->data					 	= new stdClass();
+				$webhook_notification->data->property_uid	   	= 0;
+				add_webhook_notification($webhook_notification);
 			}
 		}
 	}

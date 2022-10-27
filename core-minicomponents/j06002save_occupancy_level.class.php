@@ -58,6 +58,13 @@ class j06002save_occupancy_level
 		$jomres_occupancy_levels->set_occupancy_level($room_type_id, $max_adults, $max_children, $max_adults + $max_children);
 		$jomres_occupancy_levels->save_occupancy_levels($room_type_id);
 
+		$webhook_notification						   	= new stdClass();
+		$webhook_notification->webhook_event			= 'property_state_change';
+		$webhook_notification->webhook_event_description= 'A catchall webhook notification which notes that the property state has changed. Primarily designed for caching features to remove/refresh cache elements';
+		$webhook_notification->data					 	= new stdClass();
+		$webhook_notification->data->property_uid	   	= $property_uid;
+		add_webhook_notification($webhook_notification);
+
 		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=list_occupancy_levels'), '');
 	}
 

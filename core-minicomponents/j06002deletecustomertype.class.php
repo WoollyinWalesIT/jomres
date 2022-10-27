@@ -35,7 +35,14 @@ class j06002deletecustomertype
 		$jrportal_guest_types->property_uid	= $defaultProperty;
 		
 		$success = $jrportal_guest_types->delete_guest_type();
-		
+
+		$webhook_notification						   	= new stdClass();
+		$webhook_notification->webhook_event			= 'property_state_change';
+		$webhook_notification->webhook_event_description= 'A catchall webhook notification which notes that the property state has changed. Primarily designed for caching features to remove/refresh cache elements';
+		$webhook_notification->data					 	= new stdClass();
+		$webhook_notification->data->property_uid	   	= $defaultProperty;
+		add_webhook_notification($webhook_notification);
+
 		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL."&task=listcustomertypes"), jr_gettext('_JOMRES_MR_AUDIT_DELETE_CUSTOMERTYPE', '_JOMRES_MR_AUDIT_DELETE_CUSTOMERTYPE', false));
 	}
 

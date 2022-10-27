@@ -1396,7 +1396,7 @@ class UploadHandler
 			return false;
 		}
 	}
-	
+
 	/**
 	 *
 	 *
