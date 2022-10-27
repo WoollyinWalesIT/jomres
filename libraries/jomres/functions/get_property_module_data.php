@@ -89,9 +89,12 @@
 		$tmpBookingHandler = jomres_getSingleton('jomres_temp_booking_handler');
 		$currency_code = $tmpBookingHandler->user_settings[ 'current_exchange_rate' ];
 
-
+		$tname = 'basic_module_output.html';
+		if ( isset($alt_template_name) && $alt_template_name != '') {
+			$tname = $alt_template_name;
+		}
 		$search_selections = base64_encode(serialize($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']));
-		$cache_file_pattern = substr($search_selections, 30, 50)."_".$currency_code.".html";
+		$cache_file_pattern = substr($search_selections, 30, 50)."_".$currency_code."_".$tname.".html";
 		foreach ($property_uid_array as $property_uid) {
 			if ($property_uid > 0) {
 
