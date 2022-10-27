@@ -62,7 +62,7 @@ if (substr($request->url,0,6) == '/core/' ) {
 	$found = false;
 	foreach ($reversed as $path ) {
 		$test = substr($path, 0, -1).'.php';
-		
+
 		if ( file_exists( $test ) ) {
 			$found = true;
 			require_once($test);
@@ -70,7 +70,7 @@ if (substr($request->url,0,6) == '/core/' ) {
 		}
 	}
 
-		
+
 	/**
 	 * 
 	 * The older route finding method, required to work with current API Feature plugins
@@ -78,7 +78,7 @@ if (substr($request->url,0,6) == '/core/' ) {
 	 */
 
 	// Fall back to the older way, which will still work for existing api features
-	//if (!$found) {
+	if (!$found) {
 		if (file_exists(JOMRES_API_JOMRES_ROOT.DIRECTORY_SEPARATOR.'core-plugins'.DIRECTORY_SEPARATOR.'api_feature_'.$route.DIRECTORY_SEPARATOR.$request->method.DIRECTORY_SEPARATOR.$sub_filename.'.php')) {
 			require_once JOMRES_API_JOMRES_ROOT.DIRECTORY_SEPARATOR.'core-plugins'.DIRECTORY_SEPARATOR.'api_feature_'.$route.DIRECTORY_SEPARATOR.$request->method.DIRECTORY_SEPARATOR.$sub_filename.'.php';
 		} elseif (file_exists(JOMRES_API_JOMRES_ROOT.DIRECTORY_SEPARATOR.'remote_plugins'.DIRECTORY_SEPARATOR.'api_feature_'.$route.DIRECTORY_SEPARATOR.$request->method.DIRECTORY_SEPARATOR.$sub_filename.'.php')) {
@@ -90,7 +90,7 @@ if (substr($request->url,0,6) == '/core/' ) {
 		} else {
 			Flight::halt(404, ' Request '.$request->url.' unknown');
 		}
-	//}
+	}
 
 }
 
