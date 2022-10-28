@@ -81,6 +81,10 @@ class j16000media_centre_dbimport
 		jr_import('jomres_media_centre_images_dbimport');
 		$jomres_media_centre_images_dbimport = new jomres_media_centre_images_dbimport(get_showtime('all_properties_in_system'), true);
 
+		if ($force) {
+			$jomres_media_centre_images_dbimport->use_db = false;
+		}
+
 		if (!using_bootstrap()) {
 			if (!$jomres_media_centre_images_dbimport->run()) {
 				echo 'Error: Could not import images to database.';
