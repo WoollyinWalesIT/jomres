@@ -78,7 +78,11 @@
 				$arr = $_REQUEST;
 				$query_string = '?x=1&';
 				foreach ($arr as $key => $val) {
-					$query_string .= $key . '=' . $val . '&';
+					if (is_string($val)) { // we don't care about keeping search query contents, this url is just for property management, not guests
+						$query_string .=
+							$key . '=' .
+							$val . '&';
+					}
 				}
 			}
 
