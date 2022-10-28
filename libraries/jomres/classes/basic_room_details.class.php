@@ -194,13 +194,31 @@ class basic_room_details
 			$this->room['room_uid']					= (int) $r->room_uid;
 			$this->room['room_classes_uid']			= (int) $r->room_classes_uid;
 			$this->room['propertys_uid']			= (int) $r->propertys_uid;
+			if (is_null($r->room_features_uid)) {
+				$r->room_features_uid = '';
+			}
 			$this->room['room_features_uid']		= stripslashes($r->room_features_uid);
+			if (is_null($r->room_name)) {
+				$r->room_name = '';
+			}
 			$this->room['room_name']				= jr_gettext('_JOMRES_CUSTOMTEXT_ROOMNAME_TITLE'.$r->room_uid, stripslashes($r->room_name), false);
+			if (is_null($r->room_number)) {
+				$r->room_number = '';
+			}
 			$this->room['room_number']				= stripslashes($r->room_number);
+			if (is_null($r->room_floor)) {
+				$r->room_floor = '';
+			}
 			$this->room['room_floor']				= stripslashes($r->room_floor);
 			$this->room['max_people']				= (int) $r->max_people;
 			$this->room['singleperson_suppliment']	= (float) $r->singleperson_suppliment;
+			if (is_null($r->tagline)) {
+				$r->tagline = '';
+			}
 			$this->room['tagline']					= jr_gettext('_JOMRES_CUSTOMTEXT_ROOM_TAGLINE'.$r->room_uid, stripslashes($r->tagline), false);
+			if (is_null($r->description)) {
+				$r->description = '';
+			}
 			$this->room['description']				= jomres_decode(jr_gettext('_JOMRES_CUSTOMTEXT_ROOM_DESCRIPTION_'.$r->room_uid, stripslashes($r->description), false));
 			$this->room['surcharge']				= (float) $r->surcharge;
 			$this->room['max_occupancy']			= (float) $r->max_occupancy;
