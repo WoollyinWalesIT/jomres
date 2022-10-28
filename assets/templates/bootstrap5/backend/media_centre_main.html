@@ -79,7 +79,6 @@
 				<div class="spinner-border text-info" role="status">
 					<span class="visually-hidden">Loading...</span>
 				</div>
-			
 			</div>
 		</div>
 		<div class="col-5">
@@ -276,7 +275,7 @@
         function get_resource_ids_for_resource_type(resource_type)
         {
             hide_uploaded();
-            jomresJquery('#existing_images').fadeOut();
+            //jomresJquery('#existing_images').fadeOut();
             jomresJquery.get(ajax_url + '&task=media_centre_resources_ajax&resource_type=' + resource_type,
                 function (data) {
                     if (data != '')
