@@ -64,13 +64,18 @@
 			}
 
 
-			$new_value = $resource_types["slideshow"];
-			unset($resource_types["slideshow"]);
-			$resource_types = $this->array_unshift_assoc($resource_types, 'slideshow' , $new_value );
+			if (isset($resource_types["slideshow"])) {
+				$new_value = $resource_types["slideshow"];
+				unset($resource_types["slideshow"]);
+				$resource_types = $this->array_unshift_assoc($resource_types, 'slideshow' , $new_value );
+			}
 
-			$new_value = $resource_types["property"];
-			unset($resource_types["property"]);
-			$resource_types = $this->array_unshift_assoc($resource_types, 'property' , $new_value );
+			if (isset($resource_types["property"])) {
+				$new_value = $resource_types["property"];
+				unset($resource_types["property"]);
+				$resource_types = $this->array_unshift_assoc($resource_types, 'property' , $new_value );
+			}
+
 
 			$notes = array();
 			$preview_links = array();
