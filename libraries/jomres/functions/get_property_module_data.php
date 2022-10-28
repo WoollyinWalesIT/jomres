@@ -111,7 +111,7 @@
 
 				$cache_file = $cache_dir.JRDS.$property_uid."_".$cache_file_pattern;
 
-				if (file_exists($cache_file)) {
+				if (file_exists($cache_file) && $jrConfig[ 'development_production' ] != 'development' ) {
 					$cache_contents = unserialize(base64_decode(file_get_contents($cache_file)));
 					$res[ $property_uid ][ 'template' ] = $cache_contents['template'];
 					$res[ $property_uid ][ 'data' ] = $cache_contents['data'];
@@ -323,13 +323,15 @@
 					$res[ $property_uid ][ 'template' ] = $tmpl->getParsedTemplate();
 					$res[ $property_uid ][ 'data' ] = $property_data;
 
-					$success = file_put_contents(
-						$cache_file , base64_encode(
-							serialize(
-								$res[ $property_uid ]
+					if ( $jrConfig[ 'development_production' ] != 'development') {
+						$success = file_put_contents(
+							$cache_file , base64_encode(
+								serialize(
+									$res[ $property_uid ]
+								)
 							)
-						)
-					);
+						);
+					}
 				}
 			}
 		}
