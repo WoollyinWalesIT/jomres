@@ -3729,7 +3729,12 @@ function jomresRedirect($url, $msg = '', $class = 'alert-info', $code = 302)
 	$jr_redirect_url = jomresGetParam($_REQUEST, 'jr_redirect_url', '');
 	if ((string)$jr_redirect_url != '') {
 		$url = jr_base64url_decode($jr_redirect_url);
-		if (stristr($url, get_showtime('live_site')) === false ){
+		$str = parse_url($url);
+		$redirect_domain = $str["host"];
+		$this_site_str = parse_url(get_showtime('live_site'));
+		$local_domain = $this_site_str["host"];
+
+		if ( $redirect_domain != $local_domain ){
 			die('Bad link');
 		}
 	}
