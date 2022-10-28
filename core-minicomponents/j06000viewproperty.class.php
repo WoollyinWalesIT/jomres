@@ -316,7 +316,10 @@ class j06000viewproperty
 		}
 
 		//qr code
-		$output['QR_CODE_DIRECTIONS'] = $MiniComponents->specificEvent('06000', 'show_property_qr_code_directions', array('output_now' => false, 'property_uid' => $property_uid));
+
+		// Jomres 10.6 disabled as qr code scripts are throwing errors in php8.1 and we're no longer using qr codes in property details
+		$output['QR_CODE_DIRECTIONS'] = '';
+		// $output['QR_CODE_DIRECTIONS'] = $MiniComponents->specificEvent('06000', 'show_property_qr_code_directions', array('output_now' => false, 'property_uid' => $property_uid));
 
 		//get the tabs content
 		if (!isset($jrConfig[ 'property_details_in_tabs' ])) {
