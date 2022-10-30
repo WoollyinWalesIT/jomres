@@ -25,54 +25,66 @@
 
 			$template_packages = get_showtime('template_packages');
 
+
 			if (!empty($template_packages)) { // There are some override packages installed, we can go ahead and check for overrides, which requires an extra query.
 				// An alternative method of providing template overrides through plugins
 				$overrides_class = jomres_singleton_abstract::getInstance('template_overrides');
 				$ptype_id = (int)get_showtime('ptype_id');
 			}
 
-			if (isset($overrides_class->template_overrides[$templatename])) { // Template overrides are available
-				if (
-					(int)$ptype_id >0 && // Property type id is set and greater than 0
-					file_exists(JOMRESPATH_BASE.$overrides_class->template_overrides[$templatename]['path'] .$ptype_id.JRDS. $templatename) // And a template of the required name exists in the property type template directory with a sub directory of the property type id
-				) {
-					$content = file_get_contents( JOMRESPATH_BASE.$overrides_class->template_overrides[$templatename]['path'] .$ptype_id.JRDS. $templatename );
-				} else {
-					$content = file_get_contents( JOMRESPATH_BASE.$overrides_class->template_overrides[$templatename]['path'] . $templatename );
+			// Allows shortcodes to set their own alt template name
+			if (isset($_REQUEST[$templatename]) && $_REQUEST[$templatename] != '') {
+				$temp_template = jomresGetParam($_REQUEST, $templatename, '');
+				$alt_template_path = get_override_directory();
+				if (file_exists($alt_template_path . JRDS . $temp_template )) {
+					$content = file_get_contents($alt_template_path . JRDS . $temp_template);
 				}
+				// If another shortcode wants a custom template, they can set it themselves. If we don't unset it here, any following calls to the same shortcode will result in the alternative being used in error
+				unset($_REQUEST[$templatename]);
 			} else {
-				$override_template = false;
-				if ( !isset( $_REQUEST[ 'nocustomtemplate' ] ) )
-					$override_template = $this->get_cms_template_override( $templatename);
+				if (isset($overrides_class->template_overrides[$templatename])) { // Template overrides are available
+					if (
+						(int)$ptype_id >0 && // Property type id is set and greater than 0
+						file_exists(JOMRESPATH_BASE.$overrides_class->template_overrides[$templatename]['path'] .$ptype_id.JRDS. $templatename) // And a template of the required name exists in the property type template directory with a sub directory of the property type id
+					) {
+						$content = file_get_contents( JOMRESPATH_BASE.$overrides_class->template_overrides[$templatename]['path'] .$ptype_id.JRDS. $templatename );
+					} else {
+						$content = file_get_contents( JOMRESPATH_BASE.$overrides_class->template_overrides[$templatename]['path'] . $templatename );
+					}
+				} else {
+					$override_template = false;
+					if ( !isset( $_REQUEST[ 'nocustomtemplate' ] ) )
+						$override_template = $this->get_cms_template_override( $templatename);
 
-				if ( !$override_template )
-				{
-					$custom_paths = get_showtime( 'custom_paths' );
-
-					if ( is_array($custom_paths) && array_key_exists( $templatename, $custom_paths ) )
+					if ( !$override_template )
 					{
-						$default_root = $custom_paths[ $templatename ];
+						$custom_paths = get_showtime( 'custom_paths' );
+
+						if ( is_array($custom_paths) && array_key_exists( $templatename, $custom_paths ) )
+						{
+							$default_root = $custom_paths[ $templatename ];
+						}
+						else
+						{
+							$default_root = $this->_options[ 'root' ][ '__default' ];
+						}
+
+						if ( !file_exists($default_root . JRDS . $templatename)) {
+							$siteConfig		= jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+							$jrConfig		  = $siteConfig->get();
+							$post_error_message = '';
+							if ($jrConfig['development_production'] != 'development') {
+								$post_error_message = ' Please check the administrator > jomres > tools > log files area for more information. ';
+							}
+
+							throw new Exception("Error: the file ".$default_root . JRDS . $templatename. " does not exist. ".$post_error_message );
+						}
+						$content = file_get_contents( $default_root . JRDS . $templatename );
 					}
 					else
 					{
-						$default_root = $this->_options[ 'root' ][ '__default' ];
+						$content = $override_template;
 					}
-
-					if ( !file_exists($default_root . JRDS . $templatename)) {
-						$siteConfig		= jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-						$jrConfig		  = $siteConfig->get();
-						$post_error_message = '';
-						if ($jrConfig['development_production'] != 'development') {
-							$post_error_message = ' Please check the administrator > jomres > tools > log files area for more information. ';
-						}
-
-						throw new Exception("Error: the file ".$default_root . JRDS . $templatename. " does not exist. ".$post_error_message );
-					}
-					$content = file_get_contents( $default_root . JRDS . $templatename );
-				}
-				else
-				{
-					$content = $override_template;
 				}
 			}
 
