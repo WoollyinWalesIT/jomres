@@ -39,8 +39,6 @@
 				if (file_exists($alt_template_path . JRDS . $temp_template )) {
 					$content = file_get_contents($alt_template_path . JRDS . $temp_template);
 				}
-				// If another shortcode wants a custom template, they can set it themselves. If we don't unset it here, any following calls to the same shortcode will result in the alternative being used in error
-				unset($_REQUEST[$templatename]);
 			} else {
 				if (isset($overrides_class->template_overrides[$templatename])) { // Template overrides are available
 					if (
