@@ -47,15 +47,6 @@
 		$jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
 		$jomres_media_centre_images->get_images_multi($property_uid_array, array('property'));
 
-
-		if ($alt_template_name == '' && isset($_REQUEST['alt_template_name']) && $_REQUEST['alt_template_name'] != '') {
-			$temp_template = jomresGetParam($_REQUEST, 'alt_template_name', '');
-			if (file_exists(get_override_directory().JRDS.$temp_template.'.html')) {
-				$alt_template_name = $temp_template.'.html';
-				$alt_template_path = get_override_directory();
-			}
-		}
-
 		jr_import('jomres_ribbon_generator');
 
 		jr_import('jomres_markdown');
@@ -89,15 +80,29 @@
 		$tmpBookingHandler = jomres_getSingleton('jomres_temp_booking_handler');
 		$currency_code = $tmpBookingHandler->user_settings[ 'current_exchange_rate' ];
 
-		$tname = 'basic_module_output.html';
-		if ( isset($alt_template_name) && $alt_template_name != '') {
-			$tname = $alt_template_name;
+		/*		if (isset($_REQUEST['alt_template_name']) && $_REQUEST['alt_template_name'] != '' ) {
+					$key =  $_REQUEST['alt_template_name'];
+					$_REQUEST[$key.'.html'] = $_REQUEST['alt_template_name'].'.html';
+					unset($_REQUEST['alt_template_name']);
+				}*/
+		$template_file_name = 'basic_module_output.html';
+		if ($alt_template_name == '' && isset($_REQUEST[$template_file_name]) && $_REQUEST[$template_file_name] != '') {
+			$temp_template = jomresGetParam($_REQUEST, $template_file_name, '');
+			if (file_exists(get_override_directory().JRDS.$temp_template)) {
+				$template_file_name = $temp_template;
+			}
 		}
+
+		if ($alt_template_name != '' ) {
+			$template_file_name = $alt_template_name;
+		}
+
 		if (!isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections'])) {
 			$tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections'] = array();
 		}
 		$search_selections = base64_encode(serialize($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']));
-		$cache_file_pattern = substr($search_selections, 30, 50)."_".$currency_code."_".$tname.".html";
+		$cache_file_pattern = substr($search_selections, 30, 50)."_".$currency_code."_".$template_file_name;
+
 		foreach ($property_uid_array as $property_uid) {
 			if ($property_uid > 0) {
 
@@ -311,15 +316,7 @@
 						$tmpl->addRows('property_features_names',$property_data[ 'property_features_names' ]);
 					}
 
-					if ($alt_template_name != '') {
-						$tmpl->readTemplatesFromInput($alt_template_name);
-					} else {
-						if (using_bootstrap() && jomres_bootstrap_version() == '3' && $vertical) {
-							$tmpl->readTemplatesFromInput('basic_module_output_vertical.html');
-						} else {
-							$tmpl->readTemplatesFromInput('basic_module_output.html');
-						}
-					}
+					$tmpl->readTemplatesFromInput($template_file_name);
 					$res[ $property_uid ][ 'template' ] = $tmpl->getParsedTemplate();
 					$res[ $property_uid ][ 'data' ] = $property_data;
 

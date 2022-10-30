@@ -36,10 +36,12 @@
 			if (isset($_REQUEST[$templatename]) && $_REQUEST[$templatename] != '') {
 				$temp_template = jomresGetParam($_REQUEST, $templatename, '');
 				$alt_template_path = get_override_directory();
-				if (file_exists($alt_template_path . JRDS . $temp_template )) {
+				if (file_exists($alt_template_path . JRDS . $temp_template)) {
 					$content = file_get_contents($alt_template_path . JRDS . $temp_template);
 				}
-			} else {
+			}
+
+			if (!isset($content) || is_null($content)) {
 				if (isset($overrides_class->template_overrides[$templatename])) { // Template overrides are available
 					if (
 						(int)$ptype_id >0 && // Property type id is set and greater than 0
