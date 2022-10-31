@@ -238,6 +238,8 @@
 						$property_data[ 'property_street' ] =  jr_gettext('HIDDEN_ADDRESS_PLACEHOLDER', 'HIDDEN_ADDRESS_PLACEHOLDER', false);
 					}
 
+					$property_data[ 'MAX_OCCUPANCY' ] = $mrConfig['accommodates'];
+
 					$current_property_details->gather_data($property_uid);
 
 					set_showtime('property_uid', $property_uid);
