@@ -263,11 +263,24 @@
 
 					$property_data[ 'PROPERTY_UID' ] = $property_uid;
 
-
 					$property_data[ 'LIVE_SITE' ] = get_showtime('live_site');
 					$property_data[ 'MOREINFORMATION' ] = jr_gettext('_JOMRES_COM_A_CLICKFORMOREINFORMATION', '_JOMRES_COM_A_CLICKFORMOREINFORMATION', $editable = false, true);
 					$property_data[ 'QUICKINFORMATION' ] = jr_gettext('_JOMRES_QUICK_INFO', '_JOMRES_QUICK_INFO', $editable = false, true);
 					$property_data[ 'MOREINFORMATIONLINK' ] = get_property_details_url($property_uid);
+					$property_data[ 'BOOKINGLINK' ] = get_booking_url($property_uid);
+					if ($mrConfig[ 'singleRoomProperty' ] == '1') {
+						if ($mrConfig[ 'requireApproval' ] == '1') {
+							$property_data[ 'BOOKTHIS_TEXT' ] = jr_gettext('_BOOKING_CALCQUOTE', '_BOOKING_CALCQUOTE', false);
+						} else {
+							$property_data[ 'BOOKTHIS_TEXT' ] = jr_gettext('_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY', '_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY', false);
+						}
+					} else {
+						if ($mrConfig[ 'requireApproval' ] == '1') {
+							$property_data[ 'BOOKTHIS_TEXT' ] = jr_gettext('_BOOKING_CALCQUOTE', '_BOOKING_CALCQUOTE', false);
+						} else {
+							$property_data[ 'BOOKTHIS_TEXT' ] = jr_gettext('_JOMRES_FRONT_MR_MENU_BOOKAROOM', '_JOMRES_FRONT_MR_MENU_BOOKAROOM', false);
+						}
+					}
 
 					$property_data[ 'STARSIMAGES' ] = $MiniComponents->specificEvent('06000', 'show_property_stars', array('property_uid' => $property_uid , 'output_now' => false ));
 
