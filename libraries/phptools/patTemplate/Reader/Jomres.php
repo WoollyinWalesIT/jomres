@@ -35,6 +35,7 @@
 			// Allows shortcodes to set their own alt template name
 			if (isset($_REQUEST[$templatename]) && $_REQUEST[$templatename] != '') {
 				$temp_template = jomresGetParam($_REQUEST, $templatename, '');
+				$temp_template = str_replace( '&#34;' , '' , $temp_template );
 				$alt_template_path = get_override_directory();
 				if (file_exists($alt_template_path . JRDS . $temp_template)) {
 					$content = file_get_contents($alt_template_path . JRDS . $temp_template);
