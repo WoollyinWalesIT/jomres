@@ -28,6 +28,8 @@
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
 
+		$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
+
 		jr_import('jomres_property_categories');
 		$jomres_property_categories = new jomres_property_categories();
 
@@ -59,8 +61,9 @@
 			$shortlist_items = $tmpBookingHandler->tmpsearch_data[ 'shortlist_items' ];
 		}
 
-		$shortlist_items = array();
+
 		if ($thisJRUser->userIsRegistered) {
+			$shortlist_items = array();
 			$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 			$query = "SELECT `property_uid` FROM #__jomcomp_mufavourites WHERE `my_id` = '".(int) $thisJRUser->id."'";
 			$propys = doSelectSql($query);
@@ -103,6 +106,8 @@
 		$search_selections = base64_encode(serialize($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']));
 		$cache_file_pattern = substr($search_selections, 30, 50)."_".$currency_code."_".$template_file_name;
 
+		$cache_feature_enabled = false;
+
 		foreach ($property_uid_array as $property_uid) {
 			if ($property_uid > 0) {
 
@@ -116,7 +121,7 @@
 
 				$cache_file = $cache_dir.JRDS.$property_uid."_".$cache_file_pattern;
 
-				if (file_exists($cache_file) && $jrConfig[ 'development_production' ] != 'development' ) {
+				if ($cache_feature_enabled && file_exists($cache_file) && $jrConfig[ 'development_production' ] != 'development' ) {
 					$cache_contents = unserialize(base64_decode(file_get_contents($cache_file)));
 					$res[ $property_uid ][ 'template' ] = $cache_contents['template'];
 					$res[ $property_uid ][ 'data' ] = $cache_contents['data'];
@@ -320,7 +325,7 @@
 					$res[ $property_uid ][ 'template' ] = $tmpl->getParsedTemplate();
 					$res[ $property_uid ][ 'data' ] = $property_data;
 
-					if ( $jrConfig[ 'development_production' ] != 'development') {
+					if ($cache_feature_enabled && $jrConfig[ 'development_production' ] != 'development') {
 						$success = file_put_contents(
 							$cache_file , base64_encode(
 								serialize(
