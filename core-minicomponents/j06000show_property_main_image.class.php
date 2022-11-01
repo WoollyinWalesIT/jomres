@@ -75,6 +75,20 @@
 				$output_now = true;
 			}
 
+			if (isset($componentArgs[ 'image_size' ])) {
+				$image_size = (string)$componentArgs[ 'image_size' ];
+			} else {
+				if ( isset($_REQUEST['image_size']) && trim($_REQUEST['image_size']) != '' ) {
+					$image_size = (int)jomresGetParam($_REQUEST, 'image_size', '');
+				} else {
+					$image_size = 'small';
+				}
+			}
+
+			if ( $image_size != 'small' && $image_size != 'medium' && $image_size != 'large' ) {
+				$image_size = 'small';
+			}
+
 			$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 			$jrConfig = $siteConfig->get();
 
@@ -96,13 +110,16 @@
 				$slideshowArgs['showcounter'] = 'false';
 				$slideshowArgs['link_to_property_details'] = true;
 				$slideshowArgs['images'] = $imagesArray;
+				$slideshowArgs['image_size'] = $image_size;
+
 				$result = $MiniComponents->specificEvent('01060', 'slideshow', $slideshowArgs);
 				$output[ 'SLIDESHOW' ] = $result['slideshow'];
 			} else {
 				$po = [ [
-					'LARGE_IMAGE' => $jomres_media_centre_images->images['property'][0][0]['large'],
+					'MEDIUM_IMAGE' => $jomres_media_centre_images->images['property'][0][0]['medium'],
 					'SMALL_IMAGE' => $jomres_media_centre_images->images['property'][0][0]['small'],
 				] ] ;
+
 				$tmpl = new patTemplate();
 				$tmpl->addRows('pageoutput', $po);
 				$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
