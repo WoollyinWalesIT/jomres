@@ -61,23 +61,23 @@ class j10501file_uploads
 
 		$configurationPanel->setleft(jr_gettext('_JOMRES_COM_THUMBNAIL_SMALL_WIDTH', '_JOMRES_COM_THUMBNAIL_SMALL_WIDTH', false));
 		$configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_thumbnail_property_list_max_width" value="'.$jrConfig[ 'thumbnail_property_list_max_width' ].'">');
-		$configurationPanel->setright(jr_gettext('_JOMRES_COM_THUMBNAIL_SMALL_WIDTH_DESC', '_JOMRES_COM_THUMBNAIL_SMALL_WIDTH_DESC', false));
-		$configurationPanel->insertSetting();
-
-		$configurationPanel->setleft(jr_gettext('_JOMRES_COM_THUMBNAIL_SMALL_HEIGHT', '_JOMRES_COM_THUMBNAIL_SMALL_HEIGHT', false));
-		$configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_thumbnail_property_list_max_height" value="'.$jrConfig[ 'thumbnail_property_list_max_height' ].'">');
 		$configurationPanel->setright();
 		$configurationPanel->insertSetting();
+
+		/*$configurationPanel->setleft(jr_gettext('_JOMRES_COM_THUMBNAIL_SMALL_HEIGHT', '_JOMRES_COM_THUMBNAIL_SMALL_HEIGHT', false));
+		$configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_thumbnail_property_list_max_height" value="'.$jrConfig[ 'thumbnail_property_list_max_height' ].'">');
+		$configurationPanel->setright();
+		$configurationPanel->insertSetting();*/
 
 		$configurationPanel->setleft(jr_gettext('_JOMRES_COM_THUMBNAIL_MED_WIDTH', '_JOMRES_COM_THUMBNAIL_MED_WIDTH', false));
 		$configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_thumbnail_property_header_max_width" value="'.$jrConfig[ 'thumbnail_property_header_max_width' ].'">');
 		$configurationPanel->setright();
 		$configurationPanel->insertSetting();
 
-		$configurationPanel->setleft(jr_gettext('_JOMRES_COM_THUMBNAIL_MED_HEIGHT', '_JOMRES_COM_THUMBNAIL_MED_HEIGHT', false));
+		/*$configurationPanel->setleft(jr_gettext('_JOMRES_COM_THUMBNAIL_MED_HEIGHT', '_JOMRES_COM_THUMBNAIL_MED_HEIGHT', false));
 		$configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_thumbnail_property_header_max_height" value="'.$jrConfig[ 'thumbnail_property_header_max_height' ].'">');
 		$configurationPanel->setright();
-		$configurationPanel->insertSetting();
+		$configurationPanel->insertSetting();*/
 
 		$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_UPLOADS_IMAGES_WIDTH_LARGE', '_JOMRES_COM_A_UPLOADS_IMAGES_WIDTH_LARGE', false));
 		$configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_maxwidth" value="'.$jrConfig[ 'maxwidth' ].'">');

@@ -273,11 +273,11 @@ class j06005save_my_account
 						),
 						'medium' => array(
 							'max_width' => (int)$jrConfig[ 'thumbnail_property_header_max_width' ],
-							'max_height' => (int)$jrConfig[ 'thumbnail_property_header_max_height' ]
+							'max_height' => (int)$jrConfig[ 'thumbnail_property_header_max_width' ]
 						),
 						'thumbnail' => array(
 							'max_width' => (int)$jrConfig[ 'thumbnail_property_list_max_width' ],
-							'max_height' => (int)$jrConfig[ 'thumbnail_property_list_max_height' ]
+							'max_height' => (int)$jrConfig[ 'thumbnail_property_list_max_width' ]
 						)
 					),
 					'print_response' => false,
