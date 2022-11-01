@@ -170,29 +170,34 @@
 						$script_url = JOMRES_SITEPAGE_URL_ADMIN_AJAX.'&task=media_centre_handler&delete=1&resource_type='.$resource_type.'&resource_id='.$resource_id;
 					}
 
+					if (jomres_cmsspecific_areweinadminarea()) {
+						$crop = false;
+					} else {
+						$crop = true;
+					}
+
 					$upload_handler = new UploadHandler(array(
 						//class params
 						'accept_file_types' => '/\.(jpe?g|png)$/i',
 						'script_url' => $script_url,
 						'upload_dir' => $abs_path,
 						'upload_url' => $rel_path,
-						'crop' => true,
 						'image_versions' => array(
 							// The empty image version key defines options for the original/large image:
 							'' => array(
 								'max_width' => (int)$jrConfig[ 'maxwidth' ] * (16/9),
 								'max_height' => (int)$jrConfig[ 'maxwidth' ],
-								'crop' => true
+								'crop' => $crop
 							),
 							'medium' => array(
 								'max_width' => (int)$jrConfig[ 'thumbnail_property_header_max_width' ] * (16/9),
 								'max_height' => (int)$jrConfig[ 'thumbnail_property_header_max_width' ],
-								'crop' => true
+								'crop' => $crop
 							),
 							'thumbnail' => array(
 								'max_width' => (int)$jrConfig[ 'thumbnail_property_list_max_width' ] * (16/9),
 								'max_height' => (int)$jrConfig[ 'thumbnail_property_list_max_width' ],
-								'crop' => true
+								'crop' => $crop
 							)
 						),
 						//jomres specific params, required for post upload processing
