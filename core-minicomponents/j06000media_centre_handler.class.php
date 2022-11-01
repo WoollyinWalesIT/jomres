@@ -180,17 +180,17 @@
 						'image_versions' => array(
 							// The empty image version key defines options for the original/large image:
 							'' => array(
-								'max_width' => (int)$jrConfig[ 'maxwidth' ],
+								'max_width' => (int)$jrConfig[ 'maxwidth' ] * (16/9),
 								'max_height' => (int)$jrConfig[ 'maxwidth' ],
 								'crop' => true
 							),
 							'medium' => array(
-								'max_width' => (int)$jrConfig[ 'thumbnail_property_header_max_width' ],
+								'max_width' => (int)$jrConfig[ 'thumbnail_property_header_max_width' ] * (16/9),
 								'max_height' => (int)$jrConfig[ 'thumbnail_property_header_max_width' ],
 								'crop' => true
 							),
 							'thumbnail' => array(
-								'max_width' => (int)$jrConfig[ 'thumbnail_property_list_max_width' ],
+								'max_width' => (int)$jrConfig[ 'thumbnail_property_list_max_width' ] * (16/9),
 								'max_height' => (int)$jrConfig[ 'thumbnail_property_list_max_width' ],
 								'crop' => true
 							)

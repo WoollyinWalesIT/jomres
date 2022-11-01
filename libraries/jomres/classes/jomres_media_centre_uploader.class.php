@@ -1193,6 +1193,9 @@
 
 		protected function imagick_create_scaled_image($file_name, $version, $options)
 		{
+			$crop = (isset($options['crop']) ? $options['crop'] : false);
+
+
 			list($file_path, $new_file_path) =
 				$this->get_scaled_image_file_paths($file_name, $version);
 			$image = $this->imagick_get_image_object(
@@ -1229,13 +1232,12 @@
 
 			$image_strip = (isset($options['strip']) ? $options['strip'] : false);
 
-			if (!$image_oriented && ($max_width >= $img_width) && ($max_height >= $img_height) && !$image_strip && empty($options["jpeg_quality"])) {
-				if ($file_path !== $new_file_path) {
-					return copy($file_path, $new_file_path);
-				}
-				return true;
-			}
-			$crop = (isset($options['crop']) ? $options['crop'] : false);
+			/*		if (!$image_oriented && ($max_width >= $img_width) && ($max_height >= $img_height) && !$image_strip && empty($options["jpeg_quality"])) {
+						if ($file_path !== $new_file_path) {
+							return copy($file_path, $new_file_path);
+						}
+						return true;
+					}*/
 
 			if ($crop) {
 				$x = 0;
@@ -1249,11 +1251,11 @@
 				}
 			}
 			$success = $image->resizeImage(
-				$new_width,
-				$new_height,
+				(int)$new_width,
+				(int)$new_height,
 				isset($options['filter']) ? $options['filter'] : Imagick::FILTER_LANCZOS,
 				isset($options['blur']) ? $options['blur'] : 1,
-				$new_width && $new_height // fit image into constraints if not to be cropped
+				(int)$new_width && (int)$new_height // fit image into constraints if not to be cropped
 			);
 			if ($success && $crop) {
 				$success = $image->cropImage(
@@ -1263,7 +1265,7 @@
 					(int)$y
 				);
 				if ($success) {
-					$success = $image->setImagePage($max_width, $max_height, 0, 0);
+					$success = $image->setImagePage((int)$max_width, (int)$max_height, 0, 0);
 				}
 			}
 			$type = strtolower(substr(strrchr($file_name, '.'), 1));

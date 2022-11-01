@@ -118,15 +118,15 @@ if (!in_array($route,$auth_free_routes) && $route != 'core' ) {
 			$_POST['client_id'] = '';
 		}
 
-		$client_id = filter_var($_POST['client_id'], FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH);
+		$client_id = filter_var($_POST['client_id'], FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_FLAG_STRIP_HIGH);
 		logging::log_message('Received a token request from '.$client_id, 'API', 'INFO');
 		require_once __DIR__.'/oauth/token.php';
 	} else if (isset($_GET['client_id'])) {
-		$client_id = filter_var($_GET['client_id'], FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH);
+		$client_id = filter_var($_GET['client_id'], FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_FLAG_STRIP_HIGH);
 		logging::log_message('Received a token request from '.$client_id, 'API', 'INFO');
 		require_once __DIR__.'/oauth/token.php';
 	} else {
-		$request = filter_var($_SERVER['REQUEST_URI'], FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH);
+		$request = filter_var($_SERVER['REQUEST_URI'], FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_FLAG_STRIP_HIGH);
 		logging::log_message(' Received a token which sent '.$request, 'API', 'INFO');
 		require_once __DIR__.'/oauth/resource.php';
 	}
