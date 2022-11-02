@@ -202,6 +202,8 @@ function run_jomres_shortcode($shortcode_string = '')
 						$_GET[$vals[0]]=$vals[1];
 					}
 				}
+				$_REQUEST['shortcode_call']=1;
+				$_GET['shortcode_call']=1;
 			}
 
 			if (!defined('_JOMRES_INITCHECK')) {
