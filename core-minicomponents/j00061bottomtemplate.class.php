@@ -1,19 +1,19 @@
 <?php
-/**
- * Core file.
- *
- * @author Vince Wooll <sales@jomres.net>
- *
- *  @version Jomres 10.5.5
- *
- * @copyright	2005-2022 Vince Wooll
- * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
- **/
+	/**
+	 * Core file.
+	 *
+	 * @author Vince Wooll <sales@jomres.net>
+	 *
+	 *  @version Jomres 10.5.5
+	 *
+	 * @copyright	2005-2022 Vince Wooll
+	 * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
+	 **/
 
 // ################################################################
-defined('_JOMRES_INITCHECK') or die('');
+	defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-	
+
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
@@ -21,39 +21,44 @@ defined('_JOMRES_INITCHECK') or die('');
 	 *
 	 */
 
-class j00061bottomtemplate
-{
-
-	/**
-	 *
-	 * Constructor
-	 *
-	 * Main functionality of the Minicomponent
-	 *
-	 *
-	 *
-	 */
-	 
-	public function __construct($componentArgs)
+	class j00061bottomtemplate
 	{
-		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-		if ($MiniComponents->template_touch) {
-			$this->template_touchable = false;
 
-			return;
-		}
-		if (AJAXCALL) {
-			return;
-		}
-		$jomres_tooltips = jomres_singleton_abstract::getInstance('jomres_tooltips');
+		/**
+		 *
+		 * Constructor
+		 *
+		 * Main functionality of the Minicomponent
+		 *
+		 *
+		 *
+		 */
 
-		$management_view = jomresGetParam($_REQUEST, 'tmpl', false);
+		public function __construct($componentArgs)
+		{
+			// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+			$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+			if ($MiniComponents->template_touch) {
+				$this->template_touchable = false;
 
-		$output = array();
+				return;
+			}
+			if (AJAXCALL) {
+				return;
+			}
 
-		if (using_bootstrap()) {
-			$output[ 'RADIO_BUTTON_JAVASCRIPT' ] = '
+			if (get_showtime('menuoff') == true) {
+				return;
+			}
+
+			$jomres_tooltips = jomres_singleton_abstract::getInstance('jomres_tooltips');
+
+			$management_view = jomresGetParam($_REQUEST, 'tmpl', false);
+
+			$output = array();
+
+			if (using_bootstrap()) {
+				$output[ 'RADIO_BUTTON_JAVASCRIPT' ] = '
 			<!-- Joomla 3 frontend doesn\'t yet have this, and Jomres needs it for the property config (among others). Put in for now, will see if we need to remove it when Alpha 2 is released -->
 			<script>
 				(function($){
@@ -74,24 +79,24 @@ class j00061bottomtemplate
 					});
 				})(jQuery);
 			</script>';
+			}
+
+			$pageoutput[ ] = $output;
+
+			$tmpl = new patTemplate();
+			$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+			if ($management_view) {
+				$tmpl->readTemplatesFromInput('management_bottom.html');
+			} else {
+				$tmpl->readTemplatesFromInput('bottom.html');
+			}
+			$tmpl->addRows('pageoutput', $pageoutput);
+			$tmpl->displayParsedTemplate();
 		}
 
-		$pageoutput[ ] = $output;
 
-		$tmpl = new patTemplate();
-		$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
-		if ($management_view) {
-			$tmpl->readTemplatesFromInput('management_bottom.html');
-		} else {
-			$tmpl->readTemplatesFromInput('bottom.html');
+		public function getRetVals()
+		{
+			return null;
 		}
-		$tmpl->addRows('pageoutput', $pageoutput);
-		$tmpl->displayParsedTemplate();
 	}
-
-
-	public function getRetVals()
-	{
-		return null;
-	}
-}

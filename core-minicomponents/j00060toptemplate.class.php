@@ -65,6 +65,10 @@
 				return;
 			}
 
+			if (get_showtime('menuoff') == true) {
+				return;
+			}
+
 			$output = array();
 			if (class_exists('channelmanagement_framework_properties')) {  // The channel management framework is installed
 				$mrConfig = getPropertySpecificSettings($defaultProperty);
