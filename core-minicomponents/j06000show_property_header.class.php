@@ -143,6 +143,7 @@
 			} else {
 				echo '<link rel="canonical" href="'.get_showtime('live_site').get_property_details_url($property_uid, 'sef').'">';
 			}
+			$output['CANONICAL_URL'] = get_showtime('live_site').get_property_details_url($property_uid, 'sef');
 
 			//Facebook meta data
 			$short_property_description = jomres_decode(jr_substr(strip_tags($jomres_markdown->get_markdown($current_property_details->property_description)), 0, 200)).'...';

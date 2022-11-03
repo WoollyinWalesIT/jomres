@@ -268,6 +268,7 @@
 					$property_data[ 'MOREINFORMATION' ] = jr_gettext('_JOMRES_COM_A_CLICKFORMOREINFORMATION', '_JOMRES_COM_A_CLICKFORMOREINFORMATION', $editable = false, true);
 					$property_data[ 'QUICKINFORMATION' ] = jr_gettext('_JOMRES_QUICK_INFO', '_JOMRES_QUICK_INFO', $editable = false, true);
 					$property_data[ 'MOREINFORMATIONLINK' ] = get_property_details_url($property_uid);
+					$output['CANONICAL_URL'] = get_showtime('live_site').get_property_details_url($property_uid, 'sef');
 					$property_data[ 'BOOKINGLINK' ] = get_booking_url($property_uid);
 					if ($mrConfig[ 'singleRoomProperty' ] == '1') {
 						if ($mrConfig[ 'requireApproval' ] == '1') {
