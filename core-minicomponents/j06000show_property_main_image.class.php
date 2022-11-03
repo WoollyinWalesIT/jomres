@@ -79,7 +79,7 @@
 				$image_size = (string)$componentArgs[ 'image_size' ];
 			} else {
 				if ( isset($_REQUEST['image_size']) && trim($_REQUEST['image_size']) != '' ) {
-					$image_size = (int)jomresGetParam($_REQUEST, 'image_size', '');
+					$image_size = (string)jomresGetParam($_REQUEST, 'image_size', '');
 				} else {
 					$image_size = 'small';
 				}
