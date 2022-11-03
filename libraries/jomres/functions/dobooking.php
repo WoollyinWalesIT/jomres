@@ -183,7 +183,7 @@ function dobooking($selectedProperty, $thisdate, $remus)
 
 	$mrConfig = getPropertySpecificSettings($selectedProperty);
 	if ($jrConfig[ 'is_single_property_installation' ] == '0' && !defined('DOBOOKING_IN_DETAILS')) {
-		property_header($selectedProperty);
+		/*property_header($selectedProperty);*/
 	}
 
 	$current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');

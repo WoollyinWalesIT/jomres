@@ -50,7 +50,7 @@ class j06000mrpavailabilitycalendar
 		$this->retVals = '';
 		$this->pop = jomresGetParam($_REQUEST, 'popup', 0);
 		if ($this->pop == 1) {
-			property_header($property_uid);
+			/*property_header($property_uid);*/
 		}
 		if (isset($componentArgs[ 'showlinks' ])) {
 			$this->showlinks = $componentArgs[ 'showlinks' ];

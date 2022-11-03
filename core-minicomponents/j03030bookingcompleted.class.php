@@ -69,7 +69,7 @@ class j03030bookingcompleted
 			$save_deets[ 'PROPERTY_DETAILS_URL' ] = get_property_details_url($property_uid);
 		}
 		$save_details[ ] = $save_deets;
-		property_header($property_uid);
+		/*property_header($property_uid);*/
 		$tmpl = new patTemplate();
 		$tmpl->addRows('completed', $save_details);
 		$componentArgs = array('tmpl' => $tmpl);

@@ -160,9 +160,9 @@ class j02990showconfirmation
 			$booking_parts[ 'SPECIALREQS' ] = $thisJRUser->preferences;
 		}
 
-		if ($jrConfig[ 'is_single_property_installation' ] == 0) {
+		/*if ($jrConfig[ 'is_single_property_installation' ] == 0) {
 			property_header($property_uid);
-		}
+		}*/
 
 		if (!$bookingDeets[ 'ok_to_book' ]) {
 			jomresRedirect(get_booking_url($bookingDeets[ 'property_uid' ]), '');

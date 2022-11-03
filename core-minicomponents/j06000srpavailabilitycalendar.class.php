@@ -79,7 +79,7 @@ class j06000srpavailabilitycalendar
 		
 		$this->pop = jomresGetParam($_REQUEST, 'popup', 0);
 		if ($this->pop == 1) {
-			property_header($property_uid);
+			/*property_header($property_uid);*/
 		}
 
 		$requestedDate = $componentArgs[ 'requestedDate' ];

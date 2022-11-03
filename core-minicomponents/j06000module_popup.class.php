@@ -57,7 +57,7 @@ class j06000module_popup
 		$current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
 
 		if ($property_uid > 0) {
-			property_header($property_uid, false);
+			/*property_header($property_uid, false);*/
 
 
 			$current_property_details->gather_data($property_uid);

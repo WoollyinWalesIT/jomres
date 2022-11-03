@@ -108,7 +108,7 @@ class j06000contactowner
 					return;
 				} else {
 					if (!isset($componentArgs[ 'noshownow' ])) {
-						property_header($property_uid);
+						/*property_header($property_uid);*/
 					}
 				}
 			}
