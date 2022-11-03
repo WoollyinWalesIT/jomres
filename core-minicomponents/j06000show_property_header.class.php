@@ -142,6 +142,7 @@
 				$doc->addCustomTag($canonicalLink);
 			} else {
 				echo '<link rel="canonical" href="'.get_showtime('live_site').get_property_details_url($property_uid, 'sef').'">';
+
 			}
 			$output['CANONICAL_URL'] = get_showtime('live_site').get_property_details_url($property_uid, 'sef');
 
@@ -158,8 +159,12 @@
 				$current_property_details->property_tel = '';
 			}
 
+			jr_import('jomres_markdown');
+			$jomres_markdown = new jomres_markdown();
+
 			$output[ 'STARS' ] = $starslink;
 			$output[ 'PROPERTY_NAME' ] = $current_property_details->property_name;
+			$output[ 'FULL_PROPERTY_DESCRIPTION' ] = jomres_cmsspecific_parseByBots($jomres_markdown->get_markdown($current_property_details->property_description));
 			$output[ 'STREET' ] = $current_property_details->property_street;
 			$output[ 'TOWN' ] = $current_property_details->property_town;
 			$output[ 'REGION' ] = $current_property_details->property_region;
