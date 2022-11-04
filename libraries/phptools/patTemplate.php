@@ -834,6 +834,7 @@
 
 			$common_strings[ 'LIVE_SITE' ]                       = get_showtime( "live_site" );
 			$common_strings[ 'LIVESITE' ]                        = get_showtime( "live_site" );
+			$common_strings[ 'SITENAME' ]                        = get_showtime('sitename');
 			$common_strings[ 'COMMON_LAST_VIEWED_PROPERTY_UID' ] = get_showtime( 'last_viewed_property_uid' );
 
 			$backtrace                                = debug_backtrace();
@@ -2611,19 +2612,24 @@
 				case 'nbsp':
 					$this->_templates[ $template ][ 'result' ] = preg_replace( $regexp, '\\1&nbsp;', $this->_templates[ $template ][ 'result' ] );
 					break;
+				case 'ignore':
+					break;
 				case 'import':
+					//$jomres_language_definitions = jomres_singleton_abstract::getInstance('jomres_language_definitions');
 					$regex = '/{(.*?)}/';
 					preg_match_all($regex, $this->_templates[ $template ][ 'result' ], $matches);
 					if (!empty($matches[0])) {
 						$count = count($matches[0]);
 						for ( $i = 0; $i < $count; $i++ ) {
-							$lang_def = substr($matches[0][$i], 1, -1);
-
-							$new_string = jr_gettext( $lang_def , '', false );
-							$this->_templates[ $template ][ 'result' ] = str_replace( $matches[0][$i] , $new_string , $this->_templates[ $template ][ 'result' ]);
+							$check = str_replace(" " , "" , $matches[0][$i]);
+							$first_chars = substr($check, 0, 7);
+							if ($first_chars !== '{jomres') {
+								$lang_def = substr($matches[0][$i], 1, -1);
+								$new_string = jr_gettext( $lang_def , '', false );
+								$this->_templates[ $template ][ 'result' ] = str_replace( $matches[0][$i] , $new_string , $this->_templates[ $template ][ 'result' ]);
+							}
 						}
 					}
-					break;
 				case 'ignore':
 					break;
 				default:
