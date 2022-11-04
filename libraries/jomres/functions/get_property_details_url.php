@@ -39,19 +39,19 @@
 
 		switch ($type) {
 			case 'sef':
-				$url = jomresURL(JOMRES_SITEPAGE_URL.'&task=viewproperty&menuoff=1&property_uid='.$property_uid.$params);
+				$url = jomresURL(JOMRES_SITEPAGE_URL.'&task=viewproperty&menuoff=1&nofollowmenuoff=1&property_uid='.$property_uid.$params);
 				break;
 			case 'nosef':
-				$url = jomresURL(JOMRES_SITEPAGE_URL_NOSEF.'&menuoff=1&task=viewproperty&property_uid='.$property_uid.$params);
+				$url = jomresURL(JOMRES_SITEPAGE_URL_NOSEF.'&menuoff=1&nofollowmenuoff=1&task=viewproperty&property_uid='.$property_uid.$params);
 				break;
 			case 'sefsafe':
-				$url = JOMRES_SITEPAGE_URL.'&menuoff=1&task=viewproperty&property_uid='.$property_uid.$params;
+				$url = JOMRES_SITEPAGE_URL.'&menuoff=1&nofollowmenuoff=1&task=viewproperty&property_uid='.$property_uid.$params;
 				break;
 			case 'ajax':
-				$url = JOMRES_SITEPAGE_URL_AJAX.'&menuoff=1&task=viewproperty&property_uid='.$property_uid.$params;
+				$url = JOMRES_SITEPAGE_URL_AJAX.'&menuoff=1&nofollowmenuoff=1&task=viewproperty&property_uid='.$property_uid.$params;
 				break;
 			default:
-				$url = jomresURL(JOMRES_SITEPAGE_URL.'&menuoff=1&task=viewproperty&property_uid='.$property_uid.$params);
+				$url = jomresURL(JOMRES_SITEPAGE_URL.'&menuoff=1&nofollowmenuoff=1&task=viewproperty&property_uid='.$property_uid.$params);
 				break;
 		}
 

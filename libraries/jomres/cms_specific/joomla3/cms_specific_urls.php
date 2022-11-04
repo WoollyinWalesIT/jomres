@@ -63,15 +63,19 @@ if (isset($_REQUEST[ 'is_wrapped' ])) {
 }
 
 //menuoff
-if (isset($_REQUEST[ 'menuoff' ])) {
-	if ($_REQUEST[ 'menuoff' ] == '1') {
-		$tmpl .= '&menuoff=1';
-		set_showtime('menuoff', true);
-	} else {
-		$tmpl .= '&menuoff=0';
-		set_showtime('menuoff', false);
+	if (isset($_REQUEST[ 'menuoff' ])) {
+		if ($_REQUEST[ 'menuoff' ] == '1') {
+			set_showtime('menuoff', true);
+			if (!isset($_REQUEST[ 'nofollowmenuoff' ])) {
+				$tmpl .= '&menuoff=1';
+			} else {
+				$tmpl .= '&menuoff=0';
+			}
+		} else {
+			$tmpl .= '&menuoff=0';
+			set_showtime('menuoff', false);
+		}
 	}
-}
 
 //topoff
 if (isset($_REQUEST[ 'topoff' ])) {
