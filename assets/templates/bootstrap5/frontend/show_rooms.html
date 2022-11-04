@@ -1,73 +1,73 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<div class="row gy-5">
-<patTemplate:tmpl name="rows">
-	<div class="col-sm-12">
-		<div class="card">
-			
-			<div class="card-header">
-				<div class="card-title"><h3 class="text-truncate">{ROOMTYPE} - {ROOMNAME} {ROOMNUMBER}</h3></div>
-			</div>
-			<div class="card-body">
-				<div class="card-text text-truncate">
-					<div class="row">
-						<div class="col-8">
-							
+	<div class="row gy-5">
+		<patTemplate:tmpl name="rows">
+			<div class="col-sm-12">
+				<div class="card">
+					
+					<div class="card-header">
+						<div class="card-title"><h3 class="text-truncate">{ROOMTYPE} - {ROOMNAME} {ROOMNUMBER}</h3></div>
+					</div>
+					<div class="card-body">
+						<div class="card-text text-truncate">
 							<div class="row">
-								<div class="col-sm-12">
+								<div class="col-8">
+									
 									<div class="row">
-										<div class="col-sm-5">
-											<div><span class="text-muted">{HEADER_MAXPEOPLE}:</span> {MAXPEOPLE}</div>
-											<div><span class="text-muted">{HEADER_ROOMFLOOR}:</span> {ROOMFLOOR}</div>
-										</div>
-										<div class="col-sm-7">
-											<a href="{AVLCALLINK}" class="btn btn-secondary"><i class="fa fa-calendar"></i> {AVLCALTITLE}</a>
+										<div class="col-sm-12">
+											<div class="row">
+												<div class="col-sm-5">
+													<div><span class="text-muted">{HEADER_MAXPEOPLE}:</span> {MAXPEOPLE}</div>
+													<div><span class="text-muted">{HEADER_ROOMFLOOR}:</span> {ROOMFLOOR}</div>
+												</div>
+												<div class="col-sm-7">
+													<a href="{AVLCALLINK}" class="btn btn-secondary"><i class="fa fa-calendar"></i> {AVLCALTITLE}</a>
+												</div>
+											</div>
 										</div>
 									</div>
+									<p class="lead text-truncate">{TAGLINE}</p>
+								</div>
+								<div class="col-4">
+									<a href="#" data-bs-toggle="modal" data-bs-target="#modal_{RANDOM_IDENTIFIER}"><img src="{IMAGEMEDIUM}" style="width: 100%; height: 15vw; object-fit: cover;" class="card-img-top image-fluid" alt="{ROOMNUMBER}" /></a>
 								</div>
 							</div>
-							<p class="lead">{TAGLINE}</p>
-						</div>
-						<div class="col-4">
-							<a href="#" data-bs-toggle="modal" data-bs-target="#modal_{RANDOM_IDENTIFIER}"><img src="{IMAGEMEDIUM}" style="width: 100%; height: 15vw; object-fit: cover;" class="card-img-top" alt="{ROOMNUMBER}" /></a>
+							
+							
+							
+							<div class="row">
+								<div class="col-sm-5 text-align-left">
+									<p class="text-success ">{PRICE_PRE_TEXT} {PRICE_PRICE}</p>
+								</div>
+								<div class="col-sm-7  text-align-left">
+									<a href="{BOOKING_LINK}" class="btn btn-primary">{BOOKING_BUTTON_TEXT}</a>
+								</div>
+							</div>
 						</div>
 					</div>
-					
-					
-
-					<div class="row">
-						<div class="col-sm-5 text-align-left">
-							<p class="text-success ">{PRICE_PRE_TEXT} {PRICE_PRICE}</p>
+				</div>
+			
+			</div>
+			
+			<div class="modal fade" id="modal_{RANDOM_IDENTIFIER}" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title" id="myModalLabel">{ROOMTYPE} - {ROOMNAME} {ROOMNUMBER}</h4>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 						</div>
-						<div class="col-sm-7  text-align-left">
-							<a href="{BOOKING_LINK}" class="btn btn-primary">{BOOKING_BUTTON_TEXT}</a>
+						<div class="modal-body">
+							<img src="{IMAGELARGE}" class="img-fluid" alt="{ROOMNUMBER}" />
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-
+			
+			<script>
+                document.addEventListener('DOMContentLoaded', function(){
+                    jomresJquery('#modal_{RANDOM_IDENTIFIER}').appendTo("body");
+                });
+			</script>
+		</patTemplate:tmpl>
 	</div>
-
-<div class="modal fade" id="modal_{RANDOM_IDENTIFIER}" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-	<div class="modal-dialog modal-lg">
-		<div class="modal-content">
-			<div class="modal-header">
-			<h4 class="modal-title" id="myModalLabel">{ROOMTYPE} - {ROOMNAME} {ROOMNUMBER}</h4>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			</div>
-			<div class="modal-body">
-				<img src="{IMAGELARGE}" class="img-fluid" alt="{ROOMNUMBER}" />
-			</div>
-		</div>
-	</div>
-</div>
-
-<script>
-	document.addEventListener('DOMContentLoaded', function(){
-	 jomresJquery('#modal_{RANDOM_IDENTIFIER}').appendTo("body");
-	});
-</script>
-</patTemplate:tmpl>
-</div>
 
 </patTemplate:tmpl>
