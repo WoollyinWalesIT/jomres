@@ -2611,6 +2611,19 @@
 				case 'nbsp':
 					$this->_templates[ $template ][ 'result' ] = preg_replace( $regexp, '\\1&nbsp;', $this->_templates[ $template ][ 'result' ] );
 					break;
+				case 'import':
+					$regex = '/{(.*?)}/';
+					preg_match_all($regex, $this->_templates[ $template ][ 'result' ], $matches);
+					if (!empty($matches[0])) {
+						$count = count($matches[0]);
+						for ( $i = 0; $i < $count; $i++ ) {
+							$lang_def = substr($matches[0][$i], 1, -1);
+
+							$new_string = jr_gettext( $lang_def , '', false );
+							$this->_templates[ $template ][ 'result' ] = str_replace( $matches[0][$i] , $new_string , $this->_templates[ $template ][ 'result' ]);
+						}
+					}
+					break;
 				case 'ignore':
 					break;
 				default:
