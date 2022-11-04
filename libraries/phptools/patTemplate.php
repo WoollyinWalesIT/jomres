@@ -862,6 +862,18 @@
 
 			$common_strings[ 'COMMON_CANCEL' ] = jr_gettext('_JOMRES_COM_A_CANCEL', '_JOMRES_COM_A_CANCEL', false);
 
+			$siteConfig   = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+			$jrConfig     = $siteConfig->get();
+			$common_strings[ 'SITE_BUSINESS_NAME' ] = $jrConfig[ 'business_name' ];
+			$common_strings[ 'SITE_HOUSENO' ] = $jrConfig[ 'business_address' ];
+			$common_strings[ 'SITE_STREET' ] = $jrConfig[ 'business_street' ];
+			$common_strings[ 'SITE_TOWN' ] = $jrConfig[ 'business_town' ];
+			$common_strings[ 'SITE_REGION' ] = find_region_name($jrConfig[ 'business_region' ]);
+			$common_strings[ 'SITE_COUNTRY' ] = getSimpleCountry($jrConfig[ 'business_country' ]);
+			$common_strings[ 'SITE_POSTCODE' ] = $jrConfig[ 'business_postcode' ];
+			$common_strings[ 'SITE_TELEPHONE' ] = $jrConfig[ 'business_telephone' ];
+			$common_strings[ 'SITE_EMAIL' ] = $jrConfig[ 'business_email' ];
+			$common_strings[ 'SITE_WHATSAPP_TELEPHONE' ] = str_replace(array ( "+" , "00"), "", $jrConfig[ 'business_telephone' ] );
 			return $common_strings;
 		}
 
