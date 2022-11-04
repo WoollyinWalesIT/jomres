@@ -116,6 +116,7 @@
 				$output[ 'SLIDESHOW' ] = $result['slideshow'];
 			} else {
 				$po = [ [
+					'LARGE_IMAGE' => $jomres_media_centre_images->images['property'][0][0]['large'],
 					'MEDIUM_IMAGE' => $jomres_media_centre_images->images['property'][0][0]['medium'],
 					'SMALL_IMAGE' => $jomres_media_centre_images->images['property'][0][0]['small'],
 				] ] ;
