@@ -873,6 +873,7 @@
 			$common_strings[ 'SITE_POSTCODE' ] = $jrConfig[ 'business_postcode' ];
 			$common_strings[ 'SITE_TELEPHONE' ] = $jrConfig[ 'business_telephone' ];
 			$common_strings[ 'SITE_EMAIL' ] = $jrConfig[ 'business_email' ];
+			$common_strings[ 'SITE_EMAIL_HIDDEN' ] = jomres_hide_email($jrConfig[ 'business_email' ]);
 			$common_strings[ 'SITE_WHATSAPP_TELEPHONE' ] = str_replace(array ( "+" , "00"), "", $jrConfig[ 'business_telephone' ] );
 			return $common_strings;
 		}
