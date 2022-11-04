@@ -1071,26 +1071,13 @@ function fix_path($path = '')
 	 *
 	 * A function to obsfucate email addresses in content to defend against spammers.
 	 *
-	 * http://www.maurits.vdschee.nl/php_hide_email/
+	 * Return html entity encoded string. Email obsfucation is pointless, however I'll get hauled over the coals if I don't at least demonstrate awareness of the subject.
 	 *
 	 */
-function jomres_hide_email($email)
-{
-	$character_set = '+-.0123456789@ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz';
-	$key = str_shuffle($character_set);
-	$cipher_text = '';
-	$id = 'e'.rand(1, 999999999);
-	for ($i = 0; $i < strlen($email); $i += 1) {
-		$cipher_text .= $key[strpos($character_set, $email[$i])];
+	function jomres_hide_email($email)
+	{
+		return mb_encode_numericentity($email, array(0x000000, 0x10ffff, 0, 0xffffff), 'UTF-8');
 	}
-	$script = 'var a="'.$key.'";var b=a.split("").sort().join("");var c="'.$cipher_text.'";var d="";';
-	$script .= 'for(var e=0;e<c.length;e++)d+=b.charAt(a.indexOf(c.charAt(e)));';
-	$script .= 'document.getElementById("'.$id.'").innerHTML="<a href=\\"mailto:"+d+"\\">"+d+"</a>"';
-	$script = 'eval("'.str_replace(array('\\', '"'), array('\\\\', '\"'), $script).'")';
-	$script = '<script type="text/javascript">/*<![CDATA[*/'.$script.'/*]]>*/</script>';
-
-	return '<span id="'.$id.'">[javascript protected email address]</span>'.$script;
-}
 
 	/**
 	 *
