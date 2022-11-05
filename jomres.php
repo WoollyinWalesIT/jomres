@@ -36,6 +36,8 @@ if (isset($_REQUEST['task']) && isset($_REQUEST['field'])) { // Booking engine h
 	}
 }
 
+define('JOMRES_CORE_HAS_RUN' , 1, );
+
 ob_start('removeBOM');
 
 // Added X-Clacks Overhead. If you're a fan of Sir Terry, leave it in. If you're not, take it out
