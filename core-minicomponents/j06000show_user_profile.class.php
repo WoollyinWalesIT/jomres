@@ -121,6 +121,10 @@ class j06000show_user_profile
 			}
 		}
 
+		if ( trim($jrportal_guest_profile->firstname) == '' && trim($jrportal_guest_profile->surname) == '' && $cms_user_id == $thisJRUser->id ) { // User hasn't saved any data yet, we'll redirect them to the edit my account page
+			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_my_account'), '');
+		}
+
 		$output = array();
 		$private_output = array();
 		
