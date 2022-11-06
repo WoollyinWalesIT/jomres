@@ -43,6 +43,9 @@ ob_start('removeBOM');
 // Added X-Clacks Overhead. If you're a fan of Sir Terry, leave it in. If you're not, take it out
 header('X-Clacks-Overhead: GNU Terry Pratchett');
 
+// Project pups
+header('X-Clacks-Overhead-Jomres: GNU Tosie, Bonnie, Penny, Lily, Sheba, Jason, Sally');
+
 require_once dirname(__FILE__).'/integration.php';
 
 try {
