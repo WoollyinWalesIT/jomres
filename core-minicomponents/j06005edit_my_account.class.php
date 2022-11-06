@@ -131,6 +131,9 @@ class j06005edit_my_account
 
 				$validation_success = $validation->vat_number_validation_response;
 
+				if (is_null($validation_success)) {
+					$validation_success = '';
+				}
 				if (strlen($validation_success) > 0) {
 					$vat_validation[0][ 'VAT_NUMBER_VALIDATION_STATUS'] = $validation_success;
 
