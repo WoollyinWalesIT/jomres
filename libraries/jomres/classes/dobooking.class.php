@@ -4315,17 +4315,19 @@ class dobooking
 									$pass_price_check = false;
 								} else {
 									//$this->setPopupMessage( str_replace(";", " " ,serialize( $this->micromanage_tarifftype_to_date_map[$tariff_type_id] ) ) );
-									$map_count = count($this->micromanage_tarifftype_to_date_map[ $tariff_type_id ]);
-									foreach ($this->micromanage_tarifftype_to_date_map[ $tariff_type_id ] as $dates) {
-										$this->setErrorLog('getTariffsForRoomUids:: Count dates '.$map_count.' Count daterange array '.$dateRangeArray_count.' ');
-										if ($map_count != $dateRangeArray_count) { // There are more dates in the date range array than there are valid tariffs. This means that during the map building phase we passed the date of the last tariff found
-											$this->setErrorLog('getTariffsForRoomUids:: tariff map count != dates count ');
-											$pass_price_check = false;
-										} else {
-											if ((float) $dates[ 'price' ] == 0 && $dates[ 'tariff_type_id' ] == $tariff_type_id) {
+									if (is_array($this->micromanage_tarifftype_to_date_map[ $tariff_type_id ]) ) {
+										$map_count = count($this->micromanage_tarifftype_to_date_map[$tariff_type_id]);
+										foreach ($this->micromanage_tarifftype_to_date_map[$tariff_type_id] as $dates) {
+											$this->setErrorLog('getTariffsForRoomUids:: Count dates ' . $map_count . ' Count daterange array ' . $dateRangeArray_count . ' ');
+											if ($map_count != $dateRangeArray_count) { // There are more dates in the date range array than there are valid tariffs. This means that during the map building phase we passed the date of the last tariff found
+												$this->setErrorLog('getTariffsForRoomUids:: tariff map count != dates count ');
 												$pass_price_check = false;
-												$this->setErrorLog('getTariffsForRoomUids:: Removing a tariff as at least one other tariff in the series is set to 0. Tariff type id = '.$tariff_type_id);
-												$filtered_out_type_type_ids[ ] = $tariff_type_id;
+											} else {
+												if ((float)$dates['price'] == 0 && $dates['tariff_type_id'] == $tariff_type_id) {
+													$pass_price_check = false;
+													$this->setErrorLog('getTariffsForRoomUids:: Removing a tariff as at least one other tariff in the series is set to 0. Tariff type id = ' . $tariff_type_id);
+													$filtered_out_type_type_ids[] = $tariff_type_id;
+												}
 											}
 										}
 									}
