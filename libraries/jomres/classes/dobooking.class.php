@@ -4330,6 +4330,8 @@ class dobooking
 												}
 											}
 										}
+									} else {
+										$pass_price_check = false;
 									}
 								}
 							}
