@@ -2,34 +2,34 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 	<style>
         .card-img-top {
-            width: 100%;
-            object-fit: cover;
-            height: 200px;
+            width: 100% !important;
+            object-fit: cover !important;
+            height: 200px !important;
         }
 
         .card-img-radius {
-            border-radius: 20px;
+            border-radius: 20px !important;
         }
 
         .card-img-top-lg {
             width:100%;
-            max-height: 600px;
-            min-height: 600px;
-            object-fit: cover;
+            max-height: 600px !important;
+            min-height: 600px !important;
+            object-fit: cover !important;
         }
 
         .card-img-top-md {
             width:100%;
-            max-height: 300px;
-            min-height: 300px;
-            object-fit: cover;
+            max-height: 300px !important;
+            min-height: 300px !important;
+            object-fit: cover !important;
         }
 
         .card-img-top-sm {
             width:100%;
-            max-height: 100px;
-            min-height: 100px;
-            object-fit: cover;
+            max-height: 100px !important;
+            min-height: 100px !important;
+            object-fit: cover !important;
         }
 
 
@@ -62,26 +62,33 @@
             text-align: center;
             color: white;
         }
+
+        .top-left{
+            position: absolute;
+            top: 8px;
+            left: 24px;
+            z-index: 10 !important;
+            background-color: rgba(1, 33, 82, 0.50);
+            font-weight: bold;
+        }
+
         .bottom-left {
             position: absolute;
             bottom: 8px;
-            left: 16px;
+            left: 24px;
             z-index: 10 !important;
+            background-color: rgba(55, 122, 40, 0.5);
         }
 
         .bottom-right {
             position: absolute;
             bottom: 8px;
-            right: 16px;
+            right: 24px;
             z-index: 10 !important;
+            background-color: rgb(122, 93, 40, 0.5);
         }
-
-        .top-left{
-            position: absolute;
-            top: 8px;
-            left: 16px;
-            z-index: 10 !important;
-        }
+	
+	
 	
 	</style>
 
