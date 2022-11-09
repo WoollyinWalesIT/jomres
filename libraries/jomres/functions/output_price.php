@@ -24,6 +24,10 @@ defined('_JOMRES_INITCHECK') or die('');
  */
 function output_price($value, $currencycode = '', $do_conversion = true, $zeroOK = true, $just_code = false)
 {
+	if (is_null($value) || $value == '') {
+		$value = 0.0;
+	}
+
 	$price = (float) number_format($value, 2, '.', '');
 
 	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
