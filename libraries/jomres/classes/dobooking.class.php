@@ -5913,20 +5913,16 @@ class dobooking
 			$this->addBookingNote('Coupon', $note);
 		}
 
-		$this->extra_guest_price = 0.00;
+		//var_dump($mrConfig[ 'extra_guest_price' ]);exit;
+
+		$this->extra_guest_price = 0.0;
+		$this->extra_guests_price_inclusive = 0.0;
+
 		if ( count($this->requestedRoom) > 0) {
 			if ($this->extra_guest_numbers > 0) {
+				$extra_guest_price = $this->rate_pernight/2;
 				$this->extra_guest_price = ($this->extra_guest_numbers * $extra_guest_price) * $this->stayDays;
-				//$this->extra_guest_price = $this->get_nett_price($this->extra_guest_price, $this->accommodation_tax_rate);
-				//$this->room_total = $this->room_total;
-
-				// Not sure about this yet, commented for now
-				/*$this->add_additiional_line_item(
-				'UNKNOWN',
-				$id = 0,
-				jr_gettext('JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS', 'JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS', false) ,
-				$this->extra_guest_price,
-				$tax_code_id = 0);*/
+				$this->extra_guests_price_inclusive = $this->get_gross_price($this->extra_guest_price , $this->accommodation_tax_rate );
 			}
 
 			$modifiers = $this->get_modifiers();
@@ -6084,7 +6080,7 @@ class dobooking
 			$child_price = $this->child_prices['total_price'];
 		}
 
-		$this->billing_grandtotal = ($this->room_total + $this->extrasvalue + $this->tax + $this->single_person_suppliment + $this->city_tax + $this->cleaning_fee + $child_price + $this->extra_guest_price );
+		$this->billing_grandtotal = ($this->room_total + $this->extrasvalue + $this->tax + $this->single_person_suppliment + $this->city_tax + $this->cleaning_fee + $child_price + $this->extra_guests_price_inclusive );
 		$this->room_total_ex_tax = $this->room_total + $this->single_person_suppliment;
 		$this->room_total_inc_tax = $this->room_total + $this->single_person_suppliment + $this->tax;
 		$this->setErrorLog('calcTotals::Total: '.$this->billing_grandtotal);
