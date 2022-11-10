@@ -1,36 +1,32 @@
-<pattemplate:tmpl name="pageoutput" unusedvars="strip">
+<pattemplate:tmpl name="pageoutput" unusedvars="import">
 <div class="container">
-		<div class="row">
-			<div class="col-3"><p class="h6">{HROOM_TYPE_TEXT}</p></div>
-			<div class="col-2"><p class="h6">{HROOM_TYPE_TEXT}</p></div>
-			<div class="col-3"><p class="h6">{HGUESTPER_ROOM}</p></div>
-			<div class="col-2"><p class="h6">{HRATE_TEXT}</p></div>
-			<div class="col-2"><p class="h6">{HNUMBEROFROOMS}</p></div>
-		</div>
 	<pattemplate:tmpl name="rows" type="simpleCondition" requiredvars="room_type_text">
-				<div class="row">
-					<div class="col-3">
-						<img src="{ROOM_TYPE_IMAGE}" class="img-fluid" />
-					</div>
-					<div class="col-2">
-						<p>{ROOM_TYPE_TEXT}</p>
-						<p>{TARIFF_NAME_TEXT}
-							<br><span class="badge badge-warning">{NUMBER_OF_ROOMS_PRE} {NUMBER_OF_ROOMS} {NUMBER_OF_ROOMS_POST}</span>
-						</p>
-					</div>
-					<div class="col-3">
-						<p>{GUESTPER_ROOM}</p>
-					</div>
-					<div class="col-2">
-						<p class="big-price">{RATE_TEXT}</p>
-					</div>
-					<div class="col-2">
-						<p>{NUMBEROFROOMS}</p>
-					</div>
+		<div class="row">
+			<div class="col-sm-3 d-none d-lg-block">
+				<img src="{ROOM_TYPE_IMAGE}" class="img-fluid" />
+			</div>
+			<div class="col-sm-2">
+				<strong>{_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK}</strong>
+				<p> {ROOM_TYPE_TEXT}</p>
+				<div class="d-none d-lg-block">
+					<p>{TARIFF_NAME_TEXT}
+						<br><span class="badge badge-warning">{NUMBER_OF_ROOMS_PRE} {NUMBER_OF_ROOMS} {NUMBER_OF_ROOMS_POST}</span>
+					</p>
 				</div>
-				<div class="d-md-none d-block">
-					<p>{NUMBEROFROOMS} {ROOM_TYPE_TEXT} - {RATE_TEXT}</p>
-				</div>
+			</div>
+			<div class="col-sm-3 d-none d-lg-block">
+				<strong>{_JOMRES_MAX_GUESTS_PER_ROOM}</strong>
+				<p>{GUESTPER_ROOM}</p>
+			</div>
+			<div class="col-sm-2 d-none d-lg-block">
+				<strong>{_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERDAY}</strong>
+				<p class="big-price">{RATE_TEXT}</p>
+			</div>
+			<div class="col-sm-2">
+				<strong>{_JOMRES_NUMBEROFROOMSAVAILABLE}</strong>
+				<p>{NUMBEROFROOMS}</p>
+			</div>
+		</div>
 		<hr/>
 	</pattemplate:tmpl>
 </div>
