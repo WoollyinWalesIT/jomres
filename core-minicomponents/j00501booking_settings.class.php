@@ -60,7 +60,7 @@ class j00501booking_settings
 		jr_import('jomres_calculate_accommodates_value');
 		$jomres_calculate_accommodates_value = new jomres_calculate_accommodates_value(get_showtime('property_uid'));
 		$jomres_calculate_accommodates_value->calculate_accommodates_value();
-		
+
 		$lists = $componentArgs[ 'lists' ];
 		//$tabs=$componentArgs['tabs'];
 		$weekenddayDropdown = $componentArgs[ 'weekenddayDropdown' ];

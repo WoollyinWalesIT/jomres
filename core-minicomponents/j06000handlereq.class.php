@@ -545,6 +545,9 @@ class j06000handlereq
 						echo '; populateDiv("cleaning_fee","'.output_price(0.00).'")';
 					}
 
+					if (!isset($bkg->extra_guests_price_inclusive)) {
+						$bkg->extra_guests_price_inclusive =0.0;
+					}
 					echo '; populateDiv("extra_adults","'.output_price($bkg->extra_guests_price_inclusive).'")';
 				} else {
 					$bkg->setErrorLog('handlereq:: Field '.$lastfield.' exempt from pricing rebuild');
