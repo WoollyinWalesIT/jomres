@@ -113,7 +113,7 @@ try {
 	if (!AJAXCALL) {
 		$pageoutput = array();
 		$output = array();
-		
+
 		//generate the cpanel menu
 		$MiniComponents->specificEvent('19997', 'menu', array());
 		$output[ 'CONTROL_PANEL_MENU' ] = $MiniComponents->miniComponentData[ '19997' ][ 'menu' ];
