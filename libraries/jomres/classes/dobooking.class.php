@@ -6041,7 +6041,7 @@ class dobooking
 		if (!empty($this->extras)) {
 			$extrasArray = explode(',', $this->extras);
 			foreach ($extrasArray as $extra) {
-				if (!empty($extra) && isset($extraDeets[ 'price' ]) ) {
+				if ( !empty($extra) ) {
 					$this->setErrorLog('calcExtras: Getting data for extra: '.$extra);
 					$query = "SELECT price,tax_rate FROM #__jomres_extras WHERE uid = '$extra'";
 					$extraDeets = doSelectSql($query, 2);
