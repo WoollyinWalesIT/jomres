@@ -6287,9 +6287,11 @@ class dobooking
 		if (empty($this->requestedRoom)) { // No rooms selected yet
 			return;
 		}
-		if (empty($guests)) { // Guest numbers not chosen/used
+
+		if ( $this->getTotalInParty() == 0 && empty($guests) ) { // Guest numbers not chosen/used/selected yet
 			return;
 		}
+
 		$use_propertywide_sps_setting = false;
 
 		$this->single_person_suppliment = 0.00;
