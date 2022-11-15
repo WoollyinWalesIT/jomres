@@ -86,9 +86,9 @@ class jomres_sanity_check
 			$this->warnings .= $this->check_property_type_published();
 
 
-			if ($this->mrConfig['tariffmode'] != '5') {
+			/*if ($this->mrConfig['tariffmode'] != '5') {
 				$this->warnings .= $this->checks_guest_types_pppn();
-			}
+			}*/
 
 			if ($this->mrConfig[ 'is_real_estate_listing' ] == 0 && get_showtime('include_room_booking_functionality')) {
 				$this->warnings .= $this->checks_tariffs_exist();
@@ -496,7 +496,7 @@ class jomres_sanity_check
 	 *
 	 */
 
-	public function checks_guest_types_pppn()
+	/*public function checks_guest_types_pppn()
 	{
 		if ($this->mrConfig[ 'is_real_estate_listing' ] == '0') {
 			$ignore_on_tasks = array('listCustomerTypes', 'editCustomerType', 'saveCustomerType', 'deleteCustomerType', 'saveCustomerTypeOrder');
@@ -514,7 +514,7 @@ class jomres_sanity_check
 		}
 
 		return '';
-	}
+	}*/
 	
 	/**
 	 *
