@@ -44,9 +44,6 @@ class j00501tariff_editing_mode
 			return;
 		}
 
-		// We're no longer offering users the opportunity to change tariff editing modes, I want everybody to use Micromanage. I'll leave this option in situ so that integrators have the older code available if they still want to offer it, but for Jomres moving forward, it's Micromanage only
-		return;
-
 		if ($componentArgs['is_channel_property']) {
 			return;
 		}
@@ -60,6 +57,10 @@ class j00501tariff_editing_mode
 		$tariffModeDD = $componentArgs[ 'tariffModeDD' ];
 
 		if ($mrConfig[ 'is_real_estate_listing' ] != 0) {
+			return;
+		}
+
+		if ($mrConfig[ 'tariffmode' ] == '2') {
 			return;
 		}
 
