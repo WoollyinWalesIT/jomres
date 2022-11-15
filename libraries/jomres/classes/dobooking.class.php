@@ -7100,7 +7100,7 @@ class dobooking
 				$this->room_total = $this->room_total - $discount;
 				$this->total_discount = $discount;
 				$this->setErrorLog('<b>calcLastMinuteDiscount:: Room total modified to: '.$this->room_total.'</b>');
-				$disc_txt = jr_gettext('_JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION1', '_JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION1', false).' '.jr_gettext('_JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION2', '_JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION2', false).': '.output_price($discount);
+				$disc_txt = jr_gettext('_JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION1', '_JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION1', false).' '.jr_gettext('_JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION2', '_JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION2', false).': '.output_price($this->get_gross_price($discount,$this->accommodation_tax_rate));
 				$this->echo_populate_div('; populateDiv("discount","'.$disc_txt.'")');
 				$tmpBookingHandler->updateBookingField('lastminutediscount', $disc_txt);
 				$tmpBookingHandler->updateBookingField('booking_discounted', true);
