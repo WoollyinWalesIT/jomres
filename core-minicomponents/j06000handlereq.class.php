@@ -240,8 +240,7 @@ class j06000handlereq
 				$ajrq = 'ajrq:::extra_guests';
 				$bkg->setOkToBook(false);
 				$value = $bkg->sanitiseInput('int', $value);
-				$bkg->writeToLogfile('Starting extra guest input');
-				$retText = 'Extra added to booking';
+				$bkg->resetRequestedRoom();
 				$bkg->setStandardGuests($value);
 				break;
 
@@ -544,11 +543,6 @@ class j06000handlereq
 					} else {
 						echo '; populateDiv("cleaning_fee","'.output_price(0.00).'")';
 					}
-
-					if (!isset($bkg->extra_guests_price_inclusive)) {
-						$bkg->extra_guests_price_inclusive =0.0;
-					}
-					echo '; populateDiv("extra_adults","'.output_price($bkg->extra_guests_price_inclusive).'")';
 				} else {
 					$bkg->setErrorLog('handlereq:: Field '.$lastfield.' exempt from pricing rebuild');
 				}
@@ -639,6 +633,7 @@ class j06000handlereq
 			if (!empty($freeRoomsArray)) { // This must be before the rest of these functions
 				$freeRoomsArray = $bkg->checkPeopleNumbers($freeRoomsArray);
 			}
+
 			$bkg->setErrorLog('handlereq-bookingformlistRooms:: Number of free rooms '.$freeRoomsArray_count);
 			if (!empty($freeRoomsArray)) {
 				$freeRoomsArray = $bkg->checkRoomFeatureOption($freeRoomsArray);
@@ -661,6 +656,7 @@ class j06000handlereq
 					}
 				}
 			}
+
 			if ($bkg->cfg_booking_form_rooms_list_style == '1') {
 				$bkg->setErrorLog('handlereq-bookingformlistRooms:: Number of free rooms '.$freeRoomsArray_count);
 				if (!empty($freeRoomsArray)) {
