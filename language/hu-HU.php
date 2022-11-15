@@ -2466,7 +2466,7 @@ jr_define('_JOMRES_MICROMANAGE_MODAL_BUTTON', "Utasítások");
 
 jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS', "Ha különböző árakat szeretne hozzáadni különböző vendégek számához, <em> több szobatípust is létrehozhat minden szobatípushoz </em>, és különböző min/max vendégek értékeket tartalmazhat ezekben a tarifákban. ");
 
-jr_define('_JOMRES_MICROMANAGE_INFO', "Adjon nevet a tarifának, határozza meg az éjszakák maximális számát, valamint a foglalási űrlapon feltüntetett minimális és maximális vendégszámot a tarifa felajánlása előtt. <br/> <br/> Használja a dátumválasztó panelen az árak és a minimális éjszakák beállításainak hozzáadásához egy dátumtartományhoz, vagy közvetlenül szerkesztheti a bevitelt. Ha nem szeretné, hogy a tarifát egyáltalán felkínálják bizonyos dátumokon, hagyja 0 (nulla) értéket ezeket a dátumokat. <br/> <br/> Különböző minimális éjszakákat rendelhet különböző dátumokon, így ha hosszabb foglalásokat szeretne a fesztivál/konferencia hetek alatt, akkor beállíthatja, hogy a minimális éjszakák magasabbak legyenek ezekben az időszakokban. <br/ > <br/> Ha személyenként és személyenként (PPPN) számol fel, akkor engedélyezheti ezt a beállítást a Beállítások> Tulajdon beállítása> Tarifák és pénznem lapon, majd hozza létre a kívánt vendégtípusokat a Beállítások> Vendégtípusok menüben. ");
+	jr_define('_JOMRES_MICROMANAGE_INFO', "Adjon nevet a tarifának, határozza meg az éjszakák maximális számát, valamint a minimális és maximális vendégszámot, amely szükséges a foglalási űrlapon a tarifa felajánlása előtt.<br/><br/> a dátumválasztó panel az árak és a minimális éjszakák beállításainak hozzáadásához egy adott dátumtartományhoz, vagy közvetlenül szerkesztheti a beviteleket. Ha nem szeretné, hogy bizonyos dátumokon egyáltalán felkínálják a tarifát, hagyja az árat 0-ra (nullára) állítva ezek a dátumok. <br/><br/> Különböző napokon eltérő minimális éjszakákat rendelhet, így ha hosszabb foglalásokat szeretne a fesztivál/konferencia heteiben, akkor beállíthatja, hogy a minimális éjszakák száma magasabb legyen ezekben az időszakokban.<br/ ><br/>Ha személyenkénti személyenkénti díjat (PPPN) számít fel, engedélyezheti ezt a beállítást a Beállítások > Tulajdon konfigurációja > Tarifák és pénznem lapon.");
 
 jr_define('_JOMRES_MICROMANAGE_EXTRAOPTIONS', "Extra lehetőségek");
 
@@ -2577,8 +2577,6 @@ jr_define('JOMRES_OCCUPANCY_LEVELS_MAX_OCCUPANCY', 'Maximum kihasználtság');
 jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT', 'Foglalási szint szerkesztése:');
 jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT_DESC', 'Ennek a szobatípusnak a kihasználtsági szintjeinek szerkesztése. Ne vegye figyelembe a kiságyon alvó vendégeket (ezek hozzáadódnak az Extra létrehozásával)');
 jr_define('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE_DESC', 'Mennyi díjat kell fizetni minden további felnőttért?');
-
-jr_define('JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS', 'Extra felnőttek');
 
 
 jr_define('_JOMRES_SANITYCHECK_CHILD_RATES', 'Még nem konfigurálta a gyermekárfolyamokat.');

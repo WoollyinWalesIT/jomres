@@ -2480,7 +2480,7 @@ jr_define('_JOMRES_MICROMANAGE_MODAL_BUTTON', "使用说明");
 
 jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS', "如果您想为不同数量的客人添加不同的价格，则<em>您可以为每种房型创建多个关税</em>，并在这些关税中设置不同的最小/最大客人值。 ");
 
-jr_define('_JOMRES_MICROMANAGE_INFO', "在提供资费之前，为资费命名，定义最大晚数，以及预订表格中要求的最少和最多客人数。<br/><br/>使用日期选择器面板将价格和最少入住天数设置添加到一系列日期，或直接编辑输入。如果您不想在某些日期提供关税，请将价格设置为 0（零)那些日期。<br/><br/>您可以在不同日期设置不同的最少晚数，因此如果您想在节日/会议周期间预订更长的时间，那么您可以将这些期间的最少晚数设置得更高。<br/ ><br/>如果您按每人每人 (PPPN) 收费，您可以在\"设置\">\"属性配置\">\"关税和货币\"选项卡中启用该设置，然后在\"设置\">\"客人类型\"中创建您需要的客人类型。");
+	jr_define('_JOMRES_MICROMANAGE_INFO', "为价目表命名，定义在提供价目表之前在预订表格中需要的最多晚数以及最少和最多客人数。<br/><br/>使用 日期选择器面板，用于将价格和最短住宿天数设置添加到日期范围，或直接编辑输入。如果您根本不想在某些日期提供关税，请将价格设置为 0（零） 那些日期。<br/><br/>您可以在不同的日期设置不同的最短住宿晚数，因此如果您想在节日/会议周期间预订更长的时间，那么您可以将这些时间段的最短住宿晚数设置得更高。<br/ ><br/>如果您按每人每航程 (PPPN) 收费，您可以在设置 > 住宿配置 > 关税和货币选项卡中启用该设置。");
 
 jr_define('_JOMRES_MICROMANAGE_EXTRAOPTIONS', "额外选项");
 jr_define('_JOMRES_MICROMANAGE_EXTRA_OPTIONS', "这些是不常用的附加选项，但您仍然可以使用。<br/><strong>忽略 PPPN</strong> 意味着忽略每人每晚。您可以有几种不同的资费对于相同的房型，例如，其中一种按每人每晚收费，另一种不收费。<br/><strong>允许周末</strong>\"允许周末\"选项让您可以选择仅收取工作日可用，例如，如果您想要为商务旅客提供特殊关税。在这种情况下，您可以将选项设置为\"否\"，将最少晚数设置为 1，最多晚数为 5。<br/><strong>周末only</strong> 仅周末选项与允许周末选项相反。您可以在\"属性配置\"设置中配置您认为是周末的日子。这使您能够定义您可能想要的仅周末费率为特别活动提供优惠。<br/><strong>入住日期</strong> 此选项使您能够强制仅在一周中的某些天签到，最好与\"物业配置\">\"预订\"选项卡 >\"固定时段\"选项结合使用。大多数用户希望将此选项设置为全部。<br/>最后两个选项<strong>已选择的最小房间</strong>和<strong>已选择的最大房间</strong>非常专业且对关税极其复杂的物业很有用。 <em>除非您有特定需求，否则您应该保留这些选项。</em>如果您只想在客人已在预订表格中选择 N 个房间时提供此资费，请使用它们，例如您可以有一个基本费率，其中这些选项保留为默认值，第二个费率将已选择的最小房间选项设置为 1，然后一旦选择了房间，将在预订表格中提供第二个费率。");
@@ -2592,8 +2592,6 @@ jr_define('JOMRES_OCCUPANCY_LEVELS_MAX_OCCUPANCY', '最大入住人数');
 jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT', '编辑占用级别：');
 jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT_DESC', '编辑此房间类型的入住率。不包括睡在婴儿床上的客人（这些是通过创建额外的添加)');
 jr_define('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE_DESC', '每增加一个成人，他们应该收取多少费用？');
-
-jr_define('JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS', '额外的成人');
 
 jr_define('_JOMRES_SANITYCHECK_CHILD_RATES', '您还没有配置儿童费率。');
 jr_define('_JOMRES_SANITYCHECK_CHILD_RATES_BUTTON', '现在设置儿童费率');

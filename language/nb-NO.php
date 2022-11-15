@@ -2434,7 +2434,7 @@ jr_define('_JOMRES_MICROMANAGE_MODAL_BUTTON', "Instruksjoner");
 
 jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS', "Hvis du vil legge til forskjellige priser for forskjellige antall gjester, kan du <em> opprette mer enn flere tariffer for hver romtype </em> og ha forskjellige min/maks gjester verdier i disse tariffene. ");
 
-jr_define('_JOMRES_MICROMANAGE_INFO', "Gi tariffen et navn, definer maksimalt antall netter og minimum og maksimum antall gjester som kreves i bestillingsskjemaet før tariffen tilbys. <br/> <br/> Bruk datovelgerpanelet for å legge til priser og minimumsnettinnstillinger til en dato, eller redigere inngangene direkte. Hvis du ikke vil at tariffen skal tilbys i det hele tatt på bestemte datoer, lar du prisen stå til 0 (null) på disse datoene. <br/> <br/> Du kan ha forskjellige minimumsnett på forskjellige datoer, så hvis du vil ha lengre bestillinger i løpet av festival-/konferanseukene, kan du angi at min netter skal være høyere i bare de periodene. <br/ > <br/> Hvis du belaster Per Person Per Pight (PPPN) kan du aktivere denne innstillingen i Innstillinger> Eiendomskonfigurasjon> Tariffer og valuta -fanen, og opprett deretter gjestetypene du trenger i Innstillinger> Gjestetyper. ");
+	jr_define('_JOMRES_MICROMANAGE_INFO', "Gi tariffen et navn, definer maksimalt antall netter og minimum og maksimum antall gjester som kreves i bestillingsskjemaet før tariffen tilbys.<br/><br/> Bruk datovelgerpanelet for å legge til priser og minimumsinnstillinger for netter til en rekke datoer, eller redigere inndataene direkte. Hvis du ikke vil at tariffen skal tilbys i det hele tatt på bestemte datoer, lar du prisen settes til 0 ( null ) på disse datoene. <br/><br/> Du kan ha forskjellige minimumsovernattinger på forskjellige datoer, så hvis du vil ha lengre bestillinger i løpet av festival-/konferanseukene, kan du stille inn antall netter til å være høyere i akkurat disse periodene.<br/ ><br/>Hvis du belaster per person per pitt (PPPN), kan du aktivere den innstillingen i Innstillinger > Eiendomskonfigurasjon > Tariffer og valuta-fanen.");
 
 jr_define('_JOMRES_MICROMANAGE_EXTRAOPTIONS', "Ekstra alternativer");
 
@@ -2545,9 +2545,6 @@ jr_define('JOMRES_OCCUPANCY_LEVELS_MAX_OCCUPANCY', 'Maksimal belegg');
 jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT', 'Edit occupancy level for:');
 jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT_DESC', 'Rediger belegg for denne romtypen. Ikke ta med gjester som sover i barnesenger (de legges til ved å opprette et ekstra)');
 jr_define('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE_DESC', 'Hvor mye skal de belastes for hver ekstra voksen?');
-
-jr_define('JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS', 'Ekstra voksne');
-
 
 jr_define('_JOMRES_SANITYCHECK_CHILD_RATES', 'You have not configured child rates yet.');
 jr_define('_JOMRES_SANITYCHECK_CHILD_RATES_BUTTON', 'Still child rate (s) now');

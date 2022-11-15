@@ -2507,7 +2507,7 @@ Sve informacije koje sami dostavite web stranici su istinite, točne, aktualne i
 	jr_define('_JOMRES_MICROMANAGE_MODAL_BUTTON', "Upute");
 
 	jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS', "Ako želite dodati različite cijene za različit broj gostiju, <em> možete stvoriti više od nekoliko tarifa za svaku vrstu sobe </em> i imati različite vrijednosti min/max gostiju u tim tarifama. ");
-	jr_define('_JOMRES_MICROMANAGE_INFO', "Dajte tarifi naziv, definirajte maksimalan broj noćenja te minimalni i maksimalni broj gostiju koji su potrebni u obrascu za rezervaciju prije nego što se ponudi tarifa. <br/> <br/> Koristite ploču za odabir datuma za dodavanje cijena i postavki minimalnih noćenja u niz datuma ili izravno uređivanje unosa. Ako ne želite da se tarifa uopće nudi na određene datume, ostavite cijenu postavljenu na 0 (nula) na te datume. <br/> <br/> Možete imati različite minimalne noćenja na različite datume, pa ako želite duže rezervacije tijekom festivalskih/konferencijskih tjedana, možete postaviti minimalne noći da budu veće samo u tim razdobljima. <br/ > <br/> Ako naplaćujete po osobi po udjelu (PPPN), možete omogućiti tu postavku u Postavke> Konfiguracija imovine> Tarife i valuta, a zatim stvorite potrebne vrste gostiju u Postavkama> Vrste gostiju. ");
+	jr_define('_JOMRES_MICROMANAGE_INFO', "Dajte naziv tarifi, definirajte maksimalan broj noćenja te minimalan i maksimalan broj gostiju koji su potrebni u obrascu za rezervaciju prije nego što se ponudi tarifa.<br/><br/> Koristite ploča za odabir datuma kako biste dodali cijene i minimalne postavke noćenja nizu datuma ili izravno uredili unose. Ako ne želite da se tarifa uopće nudi na određene datume, ostavite cijenu postavljenu na 0 (nula) na te datume. <br/><br/> Možete imati različit minimalni broj noćenja na različite datume, pa ako želite dulje rezervacije tijekom festivalskih/konferencijskih tjedana, možete postaviti da minimalni broj noćenja bude viši samo u tim razdobljima.<br/ ><br/>Ako naplaćujete po osobi po noći (PPPN), tu postavku možete omogućiti u Postavke > Konfiguracija objekta > kartica Tarife i valuta.");
 
 	jr_define('_JOMRES_MICROMANAGE_EXTRAOPTIONS', "Dodatne opcije");
 
@@ -2621,9 +2621,6 @@ Sve informacije koje sami dostavite web stranici su istinite, točne, aktualne i
 	jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT', 'Uredi razinu zauzetosti za:');
 	jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT_DESC', 'Uredi razinu zauzetosti za ovu vrstu sobe. Ne uključuje goste koji spavaju na dječjim krevetićima (oni se dodaju stvaranjem dodatka)');
 	jr_define('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE_DESC', 'Koliko treba naplatiti za svaku dodatnu odraslu osobu?');
-
-	jr_define('JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS', 'Dodatne odrasle osobe');
-
 
 	jr_define('_JOMRES_SANITYCHECK_CHILD_RATES', 'Još niste konfigurirali podređene cijene.');
 	jr_define('_JOMRES_SANITYCHECK_CHILD_RATES_BUTTON', 'Odmah postavite podređene stope');
