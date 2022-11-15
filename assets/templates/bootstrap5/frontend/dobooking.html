@@ -212,21 +212,23 @@
 										</div>
 									</pattemplate:tmpl>
 								</div>
-								<pattemplate:tmpl name="guesttypes" type="simpleCondition" requiredvars="fieldname">
-									<div class="col-lg-3">
-										<div class="form-group">
-											<label class="col-form-label" for="{FIELDNAME}">{TEXT}</label>{DROPDOWN}</div>
-									</div>
-								</pattemplate:tmpl>
-								<pattemplate:tmpl name="standard_guests" type="simpleCondition" requiredvars="guests_dropdown">
-									<div class="col-lg-3">
-										<div class="form-group">
+								<div class="row">
+									<pattemplate:tmpl name="guesttypes" type="simpleCondition" requiredvars="fieldname">
+										<div class="col-md-12">
+											<div class="form-group">
+												<label class="col-form-label" for="{FIELDNAME}">{TEXT}</label>{DROPDOWN}</div>
+										</div>
+									</pattemplate:tmpl>
+									<pattemplate:tmpl name="standard_guests" type="simpleCondition" requiredvars="guests_dropdown">
+										<div class="col-md-3 form-group">
 											<label class="col-form-label" for="standard_guests">{TEXT}</label>{GUESTS_DROPDOWN}
 											<p class="form-text">{INFO}</p>
 										</div>
-									</div>
-								</pattemplate:tmpl>
-								<div id="child_selectors">{BOOKING_FORM_CHILD_SELECTORS}</div>
+									</pattemplate:tmpl>
+										<div class="col-9">
+											<div id="child_selectors" class="row">{BOOKING_FORM_CHILD_SELECTORS}</div>
+										</div>
+								</div>
 							</div>
 						</div>
 					</div>
