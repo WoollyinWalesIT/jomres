@@ -49,7 +49,7 @@ set_showtime('socket', $socket);
 	 *
 	 *
 	 */
-
+	#[AllowDynamicProperties]
 class jomres_database
 {
 	private $link;

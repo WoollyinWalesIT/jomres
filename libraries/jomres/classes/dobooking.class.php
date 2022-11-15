@@ -21,6 +21,9 @@
 	#
 	 * It is not designed to be implemented or called directly. Instead it is called by the j05000bookingobject.class.php file which inherits from this file.
 	 */
+
+	#[AllowDynamicProperties]
+
 class dobooking
 {
 	/**

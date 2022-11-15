@@ -23,7 +23,7 @@ use GuzzleHttp\Exception\RequestException;
 	 * @package Jomres\Core\Classes
 	 *
 	 */
-
+	#[AllowDynamicProperties]
 class jomres_deferred_tasks
 {
 

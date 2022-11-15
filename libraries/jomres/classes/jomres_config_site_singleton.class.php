@@ -19,7 +19,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	 * @package Jomres\Core\Classes
 	 *
 	 */
-
+	#[AllowDynamicProperties]
 class jomres_config_site_singleton
 {
 	public function __construct()

@@ -19,7 +19,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	 * @package Jomres\Core\Classes
 	 *
 	 */
-
+	#[AllowDynamicProperties]
 class jrportal_property_functions // Functions supplied as a class so that they can be extended easily without rewriting  the functions
 {
 

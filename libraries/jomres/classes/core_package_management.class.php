@@ -20,6 +20,8 @@ defined('_JOMRES_INITCHECK') or die('');
  * Manages version checking, download and extraction of node modules and the vendor directory.
  */
 
+	#[AllowDynamicProperties]
+
 class core_package_management
 {
 	private static $internal_debugging;

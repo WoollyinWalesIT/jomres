@@ -21,6 +21,7 @@
 	 *
 	 * Search class and supporting functions.
 	 */
+	#[AllowDynamicProperties]
 	class jomSearch
 	{
 		/**

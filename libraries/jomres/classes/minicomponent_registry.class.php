@@ -16,6 +16,7 @@ defined('_JOMRES_INITCHECK') or die('');
 /**
  * New for v3.2 of Jomres. Allows the system to create a registry file so that the minicomponent handler doesn't need to constantly search folders and record minicomponents on each run.
  */
+	#[AllowDynamicProperties]
 class minicomponent_registry
 {
 

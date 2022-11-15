@@ -19,7 +19,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	 * @package Jomres\Core\Classes
 	 *
 	 */
-
+	#[AllowDynamicProperties]
 // A class for providing feedback to all users
 class jomres_user_feedback
 {

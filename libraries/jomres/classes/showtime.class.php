@@ -21,7 +21,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	 * @package Jomres\Core\Classes
 	 *
 	 */
-
+	#[AllowDynamicProperties]
 class showtime
 {
 	private static $internal_debugging;

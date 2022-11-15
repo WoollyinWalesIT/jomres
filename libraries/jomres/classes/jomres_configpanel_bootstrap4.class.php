@@ -23,6 +23,7 @@ jr_import('jomres_content_tabs');
  * Creates the Jomres config panel object.
  *
  */
+	#[AllowDynamicProperties]
 class jomres_configpanel_bootstrap4 extends jomres_content_tabs
 {
 	/**

@@ -21,6 +21,8 @@ defined('_JOMRES_INITCHECK') or die('');
 	 *          A basic class for pulling guest type information
 	 */
 
+	#[AllowDynamicProperties]
+
 class basic_guest_type_details
 {
 

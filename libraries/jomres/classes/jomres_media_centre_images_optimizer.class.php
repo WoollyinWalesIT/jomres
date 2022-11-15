@@ -21,7 +21,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	 * @package Jomres\Core\Classes
 	 *
 	 */
-
+	#[AllowDynamicProperties]
 class jomres_media_centre_images_optimizer
 {
 	protected $optimizer;

@@ -18,6 +18,7 @@ defined('_JOMRES_INITCHECK') or die('');
  * 	 * @package Jomres\Core\Classes
  * Creates the Jomres menu bar icons and the toolbar icons. These have been replaced because the standard Joomla toolbar doesn't return a value, simply outputting the toolbar when the method is called, no use when you want to use patTemplates.
  */
+	#[AllowDynamicProperties]
 class jomres_toolbar_bootstrap
 {
 	/**

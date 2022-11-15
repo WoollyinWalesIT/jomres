@@ -19,6 +19,7 @@ defined('_JOMRES_INITCHECK') or die('');
 * Methods for collecting and anonymising various sets of data for GDPR compliance
 *
 */
+	#[AllowDynamicProperties]
 class jomres_gdpr_personal_information_collections
 {
 	 private $cms_id = 0;

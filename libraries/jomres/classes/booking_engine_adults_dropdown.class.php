@@ -21,6 +21,8 @@ defined('_JOMRES_INITCHECK') or die('');
 	 *
 	 */
 
+	#[AllowDynamicProperties]
+
 class booking_engine_adults_dropdown
 {
 

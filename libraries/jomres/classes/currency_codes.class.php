@@ -20,6 +20,8 @@ defined('_JOMRES_INITCHECK') or die('');
  *
  */
 
+	#[AllowDynamicProperties]
+
 class currency_codes
 {
 	public function __construct()

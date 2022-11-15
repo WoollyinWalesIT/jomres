@@ -19,7 +19,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	 *
 	 *
 	 */
-
+	#[AllowDynamicProperties]
 class jrportal_availability
 {
 	protected $property_uid;

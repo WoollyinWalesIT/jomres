@@ -20,6 +20,8 @@ defined('_JOMRES_INITCHECK') or die('');
  *
  */
 
+	#[AllowDynamicProperties]
+
 class booking_engine_calculate_child_prices
 {
 

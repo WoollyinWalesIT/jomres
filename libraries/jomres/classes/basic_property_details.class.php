@@ -23,6 +23,8 @@
 	 *          Used extensively throughout Jomres, this is used as a singleton to ensure that we maintain property information in ram for as long as possible without having to constantly query the database for lots of complex information
 	 */
 
+#[AllowDynamicProperties]
+
 class basic_property_details
 {
 	/**

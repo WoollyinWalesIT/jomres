@@ -20,6 +20,7 @@ defined('_JOMRES_INITCHECK') or die('');
 * Methods for cleaning up various sets of data, primarily for GDPR compliance
 *
 */
+	#[AllowDynamicProperties]
 class jomres_gdpr_cleanup
 {
 	public function __construct()

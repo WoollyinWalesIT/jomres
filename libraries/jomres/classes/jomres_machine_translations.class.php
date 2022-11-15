@@ -19,6 +19,7 @@ defined('_JOMRES_INITCHECK') or die('');
 * Doesn't do anything by itself, instead it is a placeholder that plugins can override to provide their own machine translation features.
 *
 */
+	#[AllowDynamicProperties]
 class jomres_machine_translations
 {
 	

@@ -32,6 +32,7 @@ defined('_JOMRES_INITCHECK') or die('');
  *
  * @since 2.6
  */
+	#[AllowDynamicProperties]
 class JomresPage
 {
 	public $total_records = 1; ///Total Records returned by sql query

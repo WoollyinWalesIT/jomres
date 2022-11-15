@@ -19,7 +19,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	 *
 	 *
 	 */
-
+	#[AllowDynamicProperties]
 class jomres_data_source_base
 {
 	/**

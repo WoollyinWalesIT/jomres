@@ -19,7 +19,7 @@
 	 * @package Jomres\Core\Classes
 	 *
 	 */
-
+	#[AllowDynamicProperties]
 	class jomres_property_selector_dropdown
 	{
 

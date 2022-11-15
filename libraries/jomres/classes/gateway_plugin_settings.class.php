@@ -20,7 +20,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	 * @package Jomres\Core\Classes
 	 *
 	 */
-
+	#[AllowDynamicProperties]
 class gateway_plugin_settings
 {
 	public $gateway_settings;

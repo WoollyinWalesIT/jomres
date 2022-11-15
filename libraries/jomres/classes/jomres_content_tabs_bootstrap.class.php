@@ -21,6 +21,7 @@ defined('_JOMRES_INITCHECK') or die('');
  *
  * @since 2.6
  */
+	#[AllowDynamicProperties]
 class jomres_content_tabs_bootstrap
 {
 

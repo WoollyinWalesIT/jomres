@@ -21,7 +21,7 @@
 	 * @package Jomres\Core\Classes
 	 *
 	 */
-
+	#[AllowDynamicProperties]
 class jomres_call_api
 {
 	public $token;

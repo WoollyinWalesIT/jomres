@@ -21,7 +21,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	 * @package Jomres\Core\Classes
 	 *
 	 */
-
+	#[AllowDynamicProperties]
 final class jomres_ip2location_lite
 {
 	protected $errors = array();

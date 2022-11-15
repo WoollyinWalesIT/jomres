@@ -19,7 +19,7 @@
 	 * @package Jomres\Core\Classes
 	 *
 	 */
-
+	#[AllowDynamicProperties]
 class jomres_language
 {
 	/**

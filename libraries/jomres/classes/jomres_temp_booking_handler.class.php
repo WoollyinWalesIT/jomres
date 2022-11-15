@@ -21,7 +21,7 @@
 	 * @package Jomres\Core\Classes
 	 *
 	 */
-
+	#[AllowDynamicProperties]
 class jomres_temp_booking_handler
 {
 	/**

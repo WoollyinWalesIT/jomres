@@ -24,6 +24,7 @@ use Joomla\CMS\Factory;
  *
  *
  */
+	#[AllowDynamicProperties]
 class jomres_content_tabs_bootstrap5
 {
 	/**
