@@ -118,9 +118,6 @@ class j16000jomres_warnings
 		) {
 			//jomres plugin update check
 			$output['PLUGIN_UPDATES_AVAILABLE'] = $MiniComponents->specificEvent('16000', 'jomres_plugin_update_check', array('output_now' => true));
-			if ($output['PLUGIN_UPDATES_AVAILABLE'] != false) {
-
-			}
 		}
 
 		$pageoutput[ ] = $output;
