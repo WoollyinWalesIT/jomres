@@ -137,10 +137,6 @@ try {
 		//bootstrap
 		$output[ 'USING_BOOTSTRAP' ] = 'true';
 
-
-		// Review message
-		$output['REVIEW_REQUEST'] = $MiniComponents->specificEvent('16000', 'show_reviews_message', array('output_now' => false));
-
 		//output top area
 		$pageoutput[ ] = $output;
 		$tmpl = new patTemplate();
