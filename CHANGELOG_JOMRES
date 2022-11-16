@@ -13,6 +13,7 @@
 <span class="label label-success">Feature</span> Added booking link
 <span class="label label-success">Feature</span> Image uploading now defaults to using just max width setting, and implemented cropping for images.
 
+<span class="label label-warning">Change</span> Tariff configuration mode switching disabled for properties using Micromanage, and all new properties will be using micromanage mode from now on. The big OTAs are moving to using rate plans like Micromanage mode, and having more than one tariff mode was making the booking engine overly complicated. So, now the old Guest Types functionality is disabled, we'll switch to everybody using the newer Adult and Child types and moving forward we only need to maintain the one mode. With this decision, I can now create more variations on that mode.
 <span class="label label-warning">Change</span> Loads'a markup improvements in BS5.
 <span class="label label-warning">Change</span> Set the timezone in the class calling the logger
 <span class="label label-warning">Change</span> Catch abuse of redirect url and don't respond.
