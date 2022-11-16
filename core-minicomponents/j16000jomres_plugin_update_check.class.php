@@ -54,8 +54,6 @@ class j16000jomres_plugin_update_check
 
 		$this->retVals = false;
 
-
-
 		$items_requiring_attention = get_number_of_items_requiring_attention_for_menu_option('showplugins');
 		if (!empty($items_requiring_attention)) {
 			$output = array();
@@ -86,9 +84,10 @@ class j16000jomres_plugin_update_check
 			} else {
 				$this->retVals = $tmpl->getParsedTemplate();
 			}
-			$this->retVals = true;
+
+
 		} else {
-			$this->retVals = false;
+			$this->retVals = '';
 		}
 	}
 
