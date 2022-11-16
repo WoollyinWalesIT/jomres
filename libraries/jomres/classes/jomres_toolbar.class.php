@@ -28,7 +28,7 @@ if (!using_bootstrap()) {
 	 *
 	 *
 	 */
-
+	#[AllowDynamicProperties]
 	class jomres_toolbar extends jomres_toolbar_normal
 	{
 

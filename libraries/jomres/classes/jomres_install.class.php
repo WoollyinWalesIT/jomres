@@ -19,7 +19,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	 * @package Jomres\Core\Classes
 	 *
 	 */
-
+	#[AllowDynamicProperties]
 class jomres_install
 {
 	protected $messages;
@@ -291,7 +291,7 @@ class jomres_install
 			//run plugins installation scripts
 			//$this->installPlugins();
 
-			$this->siteConfig->update_setting('compatability_property_configuration', 1);
+			$this->siteConfig->update_setting('compatability_property_configuration', 0);
 
 			$this->siteConfig->update_setting('initial_setup_done', 0);
 			$this->siteConfig->update_setting('admin_options_level', 0);

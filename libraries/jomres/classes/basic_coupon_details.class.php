@@ -21,6 +21,8 @@ defined('_JOMRES_INITCHECK') or die('');
 	 *          A basic class for pulling coupon information
 	 */
 
+#[AllowDynamicProperties]
+
 class basic_coupon_details
 {
 

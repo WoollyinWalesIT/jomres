@@ -19,7 +19,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	 * @package Jomres\Core\Classes
 	 *
 	 */
-
+	#[AllowDynamicProperties]
 class jomres_roomlocks
 {
 
@@ -94,6 +94,9 @@ class jomres_roomlocks
 	{
 		$room_uid = $this->extract_room_uid($room_uid);
 		$dates_array = $this->init_lockfile();
+		if ( $dates_array === false ) {
+			$dates_array = array();
+		}
 		$jomressession = get_showtime('jomressession');
 		if (!isset($dates_array[ $jomressession ])) {
 			$dates_array[ $jomressession ] = array();

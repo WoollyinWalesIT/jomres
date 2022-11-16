@@ -25,7 +25,7 @@ use Defuse\Crypto\Crypto;
 	 * @package Jomres\Core\Classes
 	 *
 	 */
-
+	#[AllowDynamicProperties]
 class jomres_encryption
 {
 	private $encryption_key = '';

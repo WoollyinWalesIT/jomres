@@ -22,7 +22,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	 * @package Jomres\Core\Classes
 	 *
 	 */
-
+	#[AllowDynamicProperties]
 class jomres_properties
 {
 
@@ -267,7 +267,7 @@ class jomres_properties
 					(
 					".(int) $this->propertys_uid.",
 					'tariffmode',
-					5
+					3
 					)";
 
 				if (!doInsertSql($query, jr_gettext('_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS', '_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS', false))) {

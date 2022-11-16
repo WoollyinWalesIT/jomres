@@ -2397,7 +2397,7 @@ jr_define('_JOMRES_MICROMANAGE_BASIC_SETTINGS', "Meest gebruikte opties");
 jr_define('_JOMRES_MICROMANAGE_MODAL_BUTTON', "Instructies");
 
 jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS', "Als u verschillende prijzen voor verschillende aantallen gasten wilt toevoegen, <em>kunt u meer dan verschillende tarieven voor elk kamertype maken</em> en verschillende min/max gastenwaarden in die tarieven opnemen. ");
-jr_define('_JOMRES_MICROMANAGE_INFO', "Geef het tarief een naam, definieer het maximum aantal nachten en het minimum en maximum aantal gasten dat vereist is in het boekingsformulier voordat het tarief wordt aangeboden.<br/><br/> Gebruik het datumkiezerpaneel om prijzen en minimumnachten toe te voegen aan een reeks datums, of de invoer rechtstreeks te bewerken. Als u niet wilt dat het tarief op bepaalde data wordt aangeboden, laat u de prijs op 0 ( nul ) staan ​​op die data. <br/><br/> Je kunt verschillende minimum nachten hebben op verschillende data, dus als je langere boekingen wilt tijdens festival-/conferentieweken, dan kun je het minimum aantal nachten in juist die periodes hoger instellen.<br/ ><br/>Als u per persoon per persoon (PPPN) in rekening brengt, kunt u die instelling inschakelen in Instellingen > Eigenschapconfiguratie > tabblad Tarieven en valuta, en vervolgens de gewenste gasttypen maken in Instellingen > Gasttypen.");
+	jr_define('_JOMRES_MICROMANAGE_INFO', "Geef het tarief een naam, definieer het maximum aantal nachten en het minimum en maximum aantal gasten dat vereist is in het boekingsformulier voordat het tarief wordt aangeboden.<br/><br/> Gebruik het datumkiezerpaneel om prijzen en instellingen voor minimum aantal nachten toe te voegen aan een reeks datums, of om de invoer rechtstreeks te bewerken.Als u niet wilt dat het tarief op bepaalde datums wordt aangeboden, laat u de prijs ingesteld op 0 (nul) op die data. <br/><br/> Je kunt verschillende minimum aantal nachten hebben op verschillende data, dus als je langere boekingen wilt tijdens festival-/conferentieweken, kun je het minimum aantal nachten hoger instellen in alleen die periodes.<br/ ><br/>Als u Per Persoon Per Pight (PPPN) in rekening brengt, kunt u die instelling inschakelen in Instellingen > Vastgoedconfiguratie > tabblad Tarieven en valuta.");
 
 jr_define('_JOMRES_MICROMANAGE_EXTRAOPTIONS', "Extra opties");
 
@@ -2511,9 +2511,6 @@ jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT', 'Bezettingsniveau bewerken voor: ');
 jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT_DESC', 'Bezettingsniveaus voor dit kamertype bewerken. Geen gasten die op babybedjes slapen opnemen (deze worden toegevoegd door een Extra aan te maken) ');
 jr_define('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE_DESC', 'Hoeveel moet er voor elke extra volwassene in rekening worden gebracht?');
 
-jr_define('JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS', 'Extra volwassenen');
-
-
 jr_define('_JOMRES_SANITYCHECK_CHILD_RATES', 'Je hebt nog geen kindertarieven geconfigureerd.');
 jr_define('_JOMRES_SANITYCHECK_CHILD_RATES_BUTTON', 'Stel nu kindertarief(en) in');
 jr_define('_JOMRES_SANITYCHECK_OCCUPANCY_LEVELS', 'U heeft uw accommodatie geconfigureerd om kinderen toe te laten, maar u heeft nog geen bezettingsniveaus voor kinderen ingesteld.');
@@ -2563,9 +2560,6 @@ jr_define('JOMRES_OCCUPANCY_LEVELS_MAX_OCCUPANCY', 'Maximale bezetting');
 jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT', 'Bezettingsniveau bewerken voor: ');
 jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT_DESC', 'Bezettingsniveaus voor dit kamertype bewerken. Geen gasten die op babybedjes slapen opnemen (deze worden toegevoegd door een Extra aan te maken) ');
 jr_define('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE_DESC', 'Hoeveel moet er voor elke extra volwassene in rekening worden gebracht?');
-
-jr_define('JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS', 'Extra volwassenen');
-
 
 jr_define('_JOMRES_SANITYCHECK_CHILD_RATES', 'Je hebt nog geen kindertarieven geconfigureerd.');
 jr_define('_JOMRES_SANITYCHECK_CHILD_RATES_BUTTON', 'Stel nu kindertarief(en) in');

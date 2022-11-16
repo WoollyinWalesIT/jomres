@@ -126,16 +126,6 @@
 					$output[ 'MANAGEMENT_VIEW_DROPDOWN' ] = $management_dropdown;
 
 					set_showtime('menuitem_management_view_dropdown', $output[ 'MANAGEMENT_VIEW_DROPDOWN' ]);
-
-					/* Timezone feature disabled
-					if ( $jrConfig[ 'use_timezone_switcher' ] == "1" )
-						{
-						$timezone_dropdown[ 0 ][ 'TIMEZONE_DROPDOWN' ] = $tz->get_dropdown();
-						$date = new DateTime( null, new DateTimeZone( $thisJRUser->users_timezone ) );
-						$timezone_dropdown[ 0 ][ 'TIMEZONEBLURB' ] = outputDate( date_format( $date, "Y/m/d" ) ) . " " . date_format( $date, "H:i:s" );
-						}
-					set_showtime( "menuitem_timezone_dropdown", $timezone_dropdown[ 0 ][ 'TIMEZONE_DROPDOWN' ] );
-					set_showtime( "menuitem_timezoneblurb", $timezone_dropdown[ 0 ][ 'TIMEZONEBLURB' ] );*/
 				}
 			}
 

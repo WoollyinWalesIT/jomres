@@ -15,7 +15,7 @@
 	 * @package Jomres\Core\Classes
 	 *
 	 */
-
+	#[AllowDynamicProperties]
 	class UploadHandler
 	{
 

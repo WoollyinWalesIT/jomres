@@ -25,6 +25,7 @@ jr_import('jomres_content_tabs');
  *
  * @since 2.6
  */
+	#[AllowDynamicProperties]
 class jomres_configpanel extends jomres_content_tabs
 {
 	/**

@@ -21,6 +21,9 @@ defined('_JOMRES_INITCHECK') or die('');
 	 *          A utility class for getting information about a booking
 	 */
 
+#[AllowDynamicProperties]
+
+
 class basic_contract_details
 {
 

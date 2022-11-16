@@ -23,7 +23,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	 * @package Jomres\Core\Classes
 	 *
 	 */
-
+	#[AllowDynamicProperties]
 class purified_inputs_cache
 {
 	public function __construct()

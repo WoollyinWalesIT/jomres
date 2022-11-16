@@ -20,6 +20,8 @@ defined('_JOMRES_INITCHECK') or die('');
 	 *
 	 */
 
+	#[AllowDynamicProperties]
+
 class basic_rate_details
 {
 

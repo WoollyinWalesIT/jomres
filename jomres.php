@@ -44,7 +44,7 @@ ob_start('removeBOM');
 header('X-Clacks-Overhead: GNU Terry Pratchett');
 
 // Project pups
-header('X-Clacks-Overhead-Jomres: GNU Tosie, Bonnie, Penny, Lily, Sheba, Jason, Sally');
+header('X-Clacks-Overhead-Jomres-ProjectPups: GNU Tosie, Bonnie, Penny, Lily, Sheba, Jason, Sally, Lena');
 
 require_once dirname(__FILE__).'/integration.php';
 

@@ -17,6 +17,7 @@ defined('_JOMRES_INITCHECK') or die('');
 /**
  * The true heart of Jomres. Finds all core and plugin minicomponents for Jomres, enables calling of specific minicomponents and can return minicomponent stored variables.
  */
+	#[AllowDynamicProperties]
 class mcHandler
 {
 

@@ -21,6 +21,8 @@ defined('_JOMRES_INITCHECK') or die('');
 	 *          A basic class for pulling invoice information
 	 */
 
+	#[AllowDynamicProperties]
+
 class basic_invoice_details
 {
 

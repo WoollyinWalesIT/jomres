@@ -23,7 +23,7 @@ defined('_JOMRES_INITCHECK') or die('');
 //50: receptionist
 //70: property manager
 //90: super property manager
-
+	#[AllowDynamicProperties]
 class jr_user
 {
 	private static $internal_debugging;

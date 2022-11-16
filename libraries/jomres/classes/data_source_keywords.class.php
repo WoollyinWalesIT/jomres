@@ -14,6 +14,8 @@
 	defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
+	#[AllowDynamicProperties]
+
 class data_source_keywords extends jomres_data_source_base
 {
 	public function build_data_cache_file()

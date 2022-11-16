@@ -23,6 +23,7 @@ jr_import('jomres_content_tabs_bootstrap5');
  * Creates the Jomres config panel object.
  *
  */
+	#[AllowDynamicProperties]
 class jomres_configpanel_bootstrap5_wordpress extends jomres_content_tabs_bootstrap5_wordpress
 {
 	/**

@@ -2467,7 +2467,7 @@ jr_define('_JOMRES_MICROMANAGE_MODAL_BUTTON', "Instruktioner");
 
 jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS', "Om du vill lägga till olika priser för olika antal gäster <em>kan du skapa fler än flera taxor för varje rumstyp</em> och ha olika min/max gästvärden i dessa tariffer. ");
 
-jr_define('_JOMRES_MICROMANAGE_INFO', "Ge tariffen ett namn, definiera det maximala antalet nätter och det lägsta och högsta antalet gäster som krävs i bokningsformuläret innan tariffen erbjuds.<br/><br/> Använd datumväljarpanelen för att lägga till priser och inställningar för lägsta nätter till ett antal datum, eller redigera inmatningarna direkt. Om du inte vill att tariffen ska erbjudas alls på vissa datum, lämna priset inställt på 0 ( noll ) på dessa datum. <br/><br/> Du kan ha olika miniminätter på olika datum, så om du vill ha längre bokningar under festival-/konferensveckor kan du ställa in antalet minsta nätter för att vara högre under just dessa perioder.<br/ ><br/>Om du debiterar per person per pris (PPPN) kan du aktivera den inställningen i Inställningar > Fastighetskonfiguration > fliken Tariffer och valuta och sedan skapa de gästtyper som du behöver i Inställningar > Gästtyper.");
+	jr_define('_JOMRES_MICROMANAGE_INFO', "Ge tariffen ett namn, definiera det maximala antalet nätter och det lägsta och högsta antalet gäster som krävs i bokningsformuläret innan tariffen erbjuds.<br/><br/> Använd datumväljarpanelen för att lägga till priser och inställningar för lägsta nätter till ett antal datum, eller redigera inmatningarna direkt. Om du inte vill att tariffen ska erbjudas alls på vissa datum, lämna priset inställt på 0 ( noll ) på dessa datum. <br/><br/> Du kan ha olika miniminätter på olika datum, så om du vill ha längre bokningar under festival-/konferensveckor kan du ställa in min. nätter för att vara högre under just dessa perioder.<br/ ><br/>Om du debiterar per person per pris (PPPN) kan du aktivera den inställningen i Inställningar > Fastighetskonfiguration > fliken Tariffer och valuta.");
 
 jr_define('_JOMRES_MICROMANAGE_EXTRAOPTIONS', "Extra alternativ");
 
@@ -2580,9 +2580,6 @@ jr_define('JOMRES_OCCUPANCY_LEVELS_MAX_OCCUPANCY', 'Maximal beläggning');
 jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT', 'Redigera beläggningsnivå för: ');
 jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT_DESC', 'Redigera beläggningsnivåer för denna rumstyp. Inkludera inte gäster som sover på barnsängar (de läggs till genom att skapa en extra) ');
 jr_define('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE_DESC', 'För varje ytterligare vuxen, hur mycket ska de debiteras?');
-
-jr_define('JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS', 'Extra vuxna');
-
 
 jr_define('_JOMRES_SANITYCHECK_CHILD_RATES', 'Du har inte konfigurerat underordnade priser ännu.');
 jr_define('_JOMRES_SANITYCHECK_CHILD_RATES_BUTTON', 'Ställ in underordnad pris nu');

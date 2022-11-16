@@ -19,7 +19,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	 * @package Jomres\Core\Classes
 	 *
 	 */
-
+	#[AllowDynamicProperties]
 class jomres_sanity_check
 {
 	public $warnings;
@@ -86,9 +86,9 @@ class jomres_sanity_check
 			$this->warnings .= $this->check_property_type_published();
 
 
-			if ($this->mrConfig['tariffmode'] != '5') {
+			/*if ($this->mrConfig['tariffmode'] != '5') {
 				$this->warnings .= $this->checks_guest_types_pppn();
-			}
+			}*/
 
 			if ($this->mrConfig[ 'is_real_estate_listing' ] == 0 && get_showtime('include_room_booking_functionality')) {
 				$this->warnings .= $this->checks_tariffs_exist();
@@ -256,7 +256,7 @@ class jomres_sanity_check
 
 	public function check_occupancy_levels()
 	{
-		if (isset($this->mrConfig[ 'compatability_property_configuration' ]) && $this->mrConfig[ 'compatability_property_configuration' ] == '1' && $this->mrConfig[ 'allow_children' ] == '1') {
+		if ($this->mrConfig[ 'allow_children' ] == '1') {
 			jr_import('jomres_occupancy_levels');
 			$jomres_occupancy_levels = new jomres_occupancy_levels($this->property_uid);
 
@@ -282,7 +282,7 @@ class jomres_sanity_check
 
 	public function check_child_rates()
 	{
-		if (isset($this->mrConfig[ 'compatability_property_configuration' ]) && $this->mrConfig[ 'compatability_property_configuration' ] == '1' && $this->mrConfig[ 'allow_children' ] == '1') {
+		if ($this->mrConfig[ 'allow_children' ] == '1') {
 			jr_import('jomres_child_rates');
 			$jomres_child_rates = new jomres_child_rates($this->property_uid);
 			if (!isset($jomres_child_rates->child_rates) || empty($jomres_child_rates->child_rates)) {
@@ -496,7 +496,7 @@ class jomres_sanity_check
 	 *
 	 */
 
-	public function checks_guest_types_pppn()
+	/*public function checks_guest_types_pppn()
 	{
 		if ($this->mrConfig[ 'is_real_estate_listing' ] == '0') {
 			$ignore_on_tasks = array('listCustomerTypes', 'editCustomerType', 'saveCustomerType', 'deleteCustomerType', 'saveCustomerTypeOrder');
@@ -514,7 +514,7 @@ class jomres_sanity_check
 		}
 
 		return '';
-	}
+	}*/
 	
 	/**
 	 *

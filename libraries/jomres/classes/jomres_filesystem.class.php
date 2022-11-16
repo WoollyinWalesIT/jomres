@@ -25,7 +25,7 @@ use League\Flysystem\AwsS3v3\AwsS3Adapter;
 	 * @package Jomres\Core\Classes
 	 *
 	 */
-
+	#[AllowDynamicProperties]
 class jomres_filesystem
 {
 	protected $filesystem;

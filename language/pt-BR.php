@@ -2504,7 +2504,7 @@ jr_define('_JOMRES_MICROMANAGE_MODAL_BUTTON', "Instruções");
 
 jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS', "Se você deseja adicionar preços diferentes para diferentes números de hóspedes, <em> você pode criar mais de várias tarifas para cada tipo de quarto </em> e ter diferentes valores mínimo / máximo de hóspedes nessas tarifas. ");
 
-jr_define('_JOMRES_MICROMANAGE_INFO', "Atribuir um nome à tarifa, definir o número máximo de noites e o número mínimo e máximo de hóspedes exigidos no formulário de reserva antes de a tarifa ser oferecida. <br/> <br/> Utilização o painel de seleção de datas para adicionar preços e configurações de noites mínimas a um intervalo de datas ou editar as entradas diretamente. Se você não quiser que a tarifa seja oferecida em certas datas, deixe o preço definido como 0 (zero) em essas datas. <br/> <br/> Você pode ter noites mínimas diferentes em datas diferentes, então se você quiser reservas mais longas durante as semanas do festival / conferência, você pode definir as noites mínimas para serem mais altas apenas nesses períodos. <br / > <br/> Se você cobrar por pessoa por noite (PPPN), poderá habilitar essa configuração em Configurações> Configuração da propriedade> guia Tarifas e moeda e, em seguida, criar os tipos de hóspedes necessários em Configurações> Tipos de hóspedes. ");
+	jr_define('_JOMRES_MICROMANAGE_INFO', "Dê um nome à tarifa, defina o número máximo de noites e o número mínimo e máximo de hóspedes necessários no formulário de reserva antes da oferta da tarifa.<br/><br/> Use o painel seletor de datas para adicionar preços e configurações mínimas de noites a um intervalo de datas ou editar as entradas diretamente. Se você não quiser que a tarifa seja oferecida em determinadas datas, deixe o preço definido como 0 ( zero ) em essas datas. <br/><br/> Você pode ter noites mínimas diferentes em datas diferentes, portanto, se quiser reservas mais longas durante as semanas de festivais/conferências, pode definir as noites mínimas para serem maiores apenas nesses períodos.<br/ ><br/>Se você cobra por Pessoa Por Pight (PPPN) você pode habilitar essa configuração em Configurações > Configuração da Propriedade > guia Tarifas e Moeda.");
 
 jr_define('_JOMRES_MICROMANAGE_EXTRAOPTIONS', "Opções extras");
 
@@ -2616,9 +2616,6 @@ jr_define('JOMRES_OCCUPANCY_LEVELS_MAX_OCCUPANCY', 'Ocupação máxima');
 jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT', 'Editar nível de ocupação para:');
 jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT_DESC', 'Editar os níveis de ocupação para este tipo de quarto. Não incluir hóspedes dormindo em berços (eles são adicionados criando um Extra)');
 jr_define('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE_DESC', 'Por cada adulto adicional, quanto deve ser cobrado?');
-
-jr_define('JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS', 'Adultos extras');
-
 
 jr_define('_JOMRES_SANITYCHECK_CHILD_RATES', 'Você ainda não configurou taxas para crianças.');
 jr_define('_JOMRES_SANITYCHECK_CHILD_RATES_BUTTON', 'Definir taxa (s) filho (s) agora');

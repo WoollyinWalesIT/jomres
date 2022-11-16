@@ -2493,8 +2493,7 @@ jr_define('_JOMRES_MICROMANAGE_BASIC_SETTINGS', "Opcions més utilitzades");
 
 jr_define('_JOMRES_MICROMANAGE_MODAL_BUTTON', "Instruccions");
 
-jr_define("_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS", "Si voleu afegir preus diferents per a un nombre diferent de convidats, llavors <em> podeu crear més de diverses tarifes per a cada tipus d'habitació </em> i tenir valors de convidats mínims / màxims diferents en aquestes tarifes. ");
-jr_define('_JOMRES_MICROMANAGE_INFO', "Doneu un nom a la tarifa, definiu el nombre màxim de nits i el nombre mínim i màxim de convidats que es requereixen al formulari de reserva abans que s'ofereixi la tarifa. <br/> <br/> Utilitzeu el tauler seleccionador de dates per afegir preus i configuracions mínimes de nits a un interval de dates o editar les entrades directament. Si no voleu que s'ofereixi la tarifa en determinades dates, deixeu el preu establert a 0 (zero) a aquestes dates. <br/> <br/> Podeu tenir nits mínimes diferents en dates diferents, de manera que si voleu reserves més llargues durant les setmanes del festival o conferència, podeu establir que les nits mínimes siguin més altes només en aquests períodes. <br / > <br/> Si cobreu per persona per despesa (PPPN), podeu habilitar aquesta configuració a Configuració> Configuració de propietats> Fitxa Tarifes i moneda i, a continuació, creeu els tipus de convidats que necessiteu a Configuració> Tipus de convidats. ");
+	jr_define('_JOMRES_MICROMANAGE_INFO', "Doneu un nom a la tarifa, definiu el nombre màxim de nits i el nombre mínim i màxim de convidats que es requereixen al formulari de reserva abans que s'ofereixi la tarifa.<br/><br/> Ús el tauler de selecció de dates per afegir preus i la configuració de nits mínimes a un interval de dates, o editar les entrades directament. Si no voleu que la tarifa s'ofereixi en absolut en determinades dates, deixeu el preu establert a 0 (zero) el aquestes dates. <br/><br/> Podeu tenir nits mínimes diferents en dates diferents, de manera que si voleu reserves més llargues durant les setmanes de festivals/conferències, podeu establir que les nits mínimes siguin més altes només en aquests períodes.<br/ ><br/>Si cobreu per persona per nit (PPPN), podeu activar aquesta configuració a Configuració > Configuració de la propietat > pestanya Tarifes i moneda.");
 
 jr_define('_JOMRES_MICROMANAGE_EXTRAOPTIONS', "Opcions addicionals");
 
@@ -2601,9 +2600,6 @@ jr_define('JOMRES_OCCUPANCY_LEVELS_MAX_OCCUPANCY', 'Ocupació màxima');
 jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT', 'Edita el nivell d\'ocupació de:');
 jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT_DESC', 'Edita els nivells d\'ocupació per a aquest tipus d\'habitació. No incloguis els hostes que dormen en bressols (s\'afegeixen creant un extra)');
 jr_define('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE_DESC', 'Per a cada adult addicional, quant se\'ls hauria de cobrar?');
-
-jr_define('JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS', 'Adults addicionals');
-
 
 jr_define('_JOMRES_SANITYCHECK_CHILD_RATES', 'Encara no heu configurat les taxes secundàries.');
 jr_define('_JOMRES_SANITYCHECK_CHILD_RATES_BUTTON', 'Estableix ara les taxes filles');

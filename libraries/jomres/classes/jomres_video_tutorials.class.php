@@ -19,7 +19,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	 * @package Jomres\Core\Classes
 	 *
 	 */
-
+	#[AllowDynamicProperties]
 class jomres_video_tutorials
 {
 
@@ -230,13 +230,13 @@ class jomres_video_tutorials
 			$videos_array['MRP']['list_tariffs_micromanage'][] = $arr;
 			$videos_array['MRP']['business_settings'][] = $arr;
 			
-			$arr = array ("title" => "_JOMRES_TUTORIAL_MICROMANAGE_GUEST_TYPES" , "description" => "_JOMRES_TUTORIAL_MICROMANAGE_GUEST_TYPES_DESC" , "video_id" => "ty61n8l2qVI" );
+			/*$arr = array ("title" => "_JOMRES_TUTORIAL_MICROMANAGE_GUEST_TYPES" , "description" => "_JOMRES_TUTORIAL_MICROMANAGE_GUEST_TYPES_DESC" , "video_id" => "ty61n8l2qVI" );
 			$videos_array['MRP']['list_tariffs_micromanage'][] = $arr;
 			$videos_array['MRP']['business_settings'][] = $arr;
 			$videos_array['MRP']['listcustomertypes'][] = $arr;
 			$videos_array['SRP']['list_tariffs_micromanage'][] = $arr;
 			$videos_array['SRP']['business_settings'][] = $arr;
-			$videos_array['SRP']['listcustomertypes'][] = $arr;
+			$videos_array['SRP']['listcustomertypes'][] = $arr;*/
 			
 			
 			$arr = array ("title" => "_JOMRES_TUTORIAL_MEDIA_CENTRE_MRP" , "description" => "_JOMRES_TUTORIAL_MEDIA_CENTRE_MRP_DESC" , "video_id" => "azlhJ28mrdU" );

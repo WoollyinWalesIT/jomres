@@ -245,6 +245,7 @@ class j06001listguests_ajax
 			
 			if ($found) {
 				$r[] = $g->guests_uid;
+				$r[] = $basic_property_details->property_names[$g->property_uid];
 				$r[] = '<a href="'.jomresUrl(JOMRES_SITEPAGE_URL.'&task=show_user_profile&cms_user_id='.$g->mos_userid).'" target="_blank">'.$firstname.'</a>';
 				$r[] = '<a href="'.jomresUrl(JOMRES_SITEPAGE_URL.'&task=show_user_profile&cms_user_id='.$g->mos_userid).'" target="_blank">'.$surname.'</a>';
 				$r[] = $email;
@@ -258,7 +259,7 @@ class j06001listguests_ajax
 				$r[] = $tel_mobile;
 				$r[] = $vat_number;
 				$r[] = $g->discount.'%';
-				$r[] = $basic_property_details->property_names[$g->property_uid];
+
 
 				$output['data'][] = $r;
 			}
