@@ -141,9 +141,6 @@ try {
 		// Review message
 		$output['REVIEW_REQUEST'] = $MiniComponents->specificEvent('16000', 'show_reviews_message', array('output_now' => false));
 
-		// Feedback message
-		$output['FEEDBACK_REQUEST'] = $MiniComponents->specificEvent('16000', 'show_feedback_message', array('output_now' => false));
-
 		//output top area
 		$pageoutput[ ] = $output;
 		$tmpl = new patTemplate();
