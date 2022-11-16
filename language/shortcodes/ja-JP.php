@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -250,3 +250,7 @@ jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_PROPERTY_UID'
 jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER', 'オプション。プロパティIDが設定されていない場合は,代わりに数値を渡すことができます。');
 jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH', 'オプション。代替テンプレートパス。URL経由で渡すことはできません。絶対でなければなりません。');
 jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME', 'オプション。代替テンプレート名。');
+
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET', "ショートコードを配置するプロパティ モジュール タイプの出力を表示します。プロパティ モジュールの出力は、ページのさまざまな場所に表示されるように設計されたプロパティの詳細の小さなスニペットです。");
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_PROPERTY_UID', 'オプション。プロパティの ID。プロパティ uid が設定されていない場合、ランダムに公開されたプロパティが表示されます。');
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_ALT_TEMPLATE_NAME', 'オプション。".html" を含まない代替テンプレート名。テンプレートはテンプレート オーバーライド ディレクトリに存在する必要があります。これにより、ページ内のさまざまな場所で "basic_module_output.html" のカスタマイズされたバージョンを使用できます。 ' );

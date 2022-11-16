@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -251,3 +251,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER', 'Opcional. Si no se establece la identificación de la propiedad, puede pasar un número en su lugar');
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH', 'Opcional. Ruta de plantilla alternativa. No se puede pasar a través de url. Debe ser absoluta.');
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME', 'Opcional. Nombre de plantilla alternativo.');
+
+jr_define ('_ JOMRES_SHORTCODES_06000PROPERTY_WIDGET', "إظهار إخراج نوع وحدة الخاصية للوضع مع الرموز القصيرة. إخراج وحدة الخاصية عبارة عن مقتطف صغير من تفاصيل الخاصية المصممة لتظهر في أماكن مختلفة في الصفحة.") ;
+jr_define ('_ JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_PROPERTY_UID' , 'اختياري. معرف الخاصية. إذا لم يتم تعيين معرف الخاصية ، فسيتم عرض خاصية منشورة عشوائيًا.') ;
+jr_define ('_ JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_ALT_TEMPLATE_NAME' , 'اختياري. اسم نموذج بديل ، بدون ".html". يجب أن يكون النموذج موجودًا في دليل تجاوز النموذج. يسمح لك ذلك باستخدام إصدارات مخصصة من "basic_module_output.html" في أماكن مختلفة. ) ؛	');

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -110,6 +110,13 @@ class j06002save_resource
 		jr_import('jomres_calculate_accommodates_value');
 		$jomres_calculate_accommodates_value = new jomres_calculate_accommodates_value($defaultProperty);
 		$jomres_calculate_accommodates_value->calculate_accommodates_value();
+
+		$webhook_notification						   	= new stdClass();
+		$webhook_notification->webhook_event			= 'property_state_change';
+		$webhook_notification->webhook_event_description= 'A catchall webhook notification which notes that the property state has changed. Primarily designed for caching features to remove/refresh cache elements';
+		$webhook_notification->data					 	= new stdClass();
+		$webhook_notification->data->property_uid	   	=  $defaultProperty;
+		add_webhook_notification($webhook_notification);
 
 		if ($mrConfig[ 'singleRoomProperty' ] == '1') {
 			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=list_occupancy_levels'), '');

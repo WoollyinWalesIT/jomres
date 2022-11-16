@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -57,7 +57,7 @@ class j06000module_popup
 		$current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
 
 		if ($property_uid > 0) {
-			property_header($property_uid, false);
+			/*property_header($property_uid, false);*/
 
 
 			$current_property_details->gather_data($property_uid);
@@ -96,9 +96,9 @@ class j06000module_popup
 
 			/*
 			$jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
-			$output[ 'IMAGELARGE' ]  = $property_deets[ 'LIVESITE' ] ."/jomres/assets/images/noimage.gif";
-			$output[ 'IMAGEMEDIUM' ] = $property_deets[ 'LIVESITE' ] ."/jomres/assets/images/noimage.gif";
-			$output[ 'IMAGETHUMB' ]  = $property_deets[ 'LIVESITE' ] ."/jomres/assets/images/noimage.gif";
+			$output[ 'IMAGELARGE' ]  = $property_deets[ 'LIVESITE' ] ."/jomres/assets/images/noimage.svg";
+			$output[ 'IMAGEMEDIUM' ] = $property_deets[ 'LIVESITE' ] ."/jomres/assets/images/noimage.svg";
+			$output[ 'IMAGETHUMB' ]  = $property_deets[ 'LIVESITE' ] ."/jomres/assets/images/noimage.svg";
 			$jomres_media_centre_images->get_images($propertys_uid, array('property'));
 			if ($jomres_media_centre_images->images['property'][0][0]['large'] != "")
 				{

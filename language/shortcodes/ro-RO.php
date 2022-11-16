@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -182,3 +182,7 @@ jr_define("_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_MRPSRP", "Dac�
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER', 'Opțional. Dacă id-ul proprietății nu este setat, puteți transmite un număr.');
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH', 'Opțional. Cale alternativă a șablonului. Nu poate fi transmisă prin adresa URL. Trebuie să fie absolută.');
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME', 'Opțional. Nume șablon alternativ.');
+
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET', "Afișează o ieșire de tip de modul de proprietate pentru plasare cu coduri scurte. Ieșirea modulului de proprietate este un mic fragment de detalii despre proprietate concepute pentru a fi afișate în diferite locuri din pagină.");
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_PROPERTY_UID', 'Opțional. ID-ul proprietății. Dacă uid-ul proprietății nu este setat, va fi afișată o proprietate publicată aleatoriu.');
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_ALT_TEMPLATE_NAME', 'Opțional. Nume alternativ de șablon, fără „.html”. Șablonul trebuie să existe în directorul de înlocuire a șablonului. Acest lucru vă permite să utilizați versiuni personalizate ale „basic_module_output.html” în diferite locuri în paginile dvs. ');

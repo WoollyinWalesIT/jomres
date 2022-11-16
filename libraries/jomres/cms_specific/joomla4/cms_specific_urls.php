@@ -4,7 +4,7 @@
 	 *
 	 * @author Vince Wooll <sales@jomres.net>
 	 *
-	 *  @version Jomres 10.5.5
+	 *  @version Jomres 10.6.0
 	 *
 	 * @copyright	2005-2022 Vince Wooll
 	 * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -76,8 +76,12 @@ if (isset($_REQUEST[ 'is_wrapped' ])) {
 //menuoff
 if (isset($_REQUEST[ 'menuoff' ])) {
 	if ($_REQUEST[ 'menuoff' ] == '1') {
-		$tmpl .= '&menuoff=1';
 		set_showtime('menuoff', true);
+		if (!isset($_REQUEST[ 'nofollowmenuoff' ])) {
+			$tmpl .= '&menuoff=1';
+		} else {
+			$tmpl .= '&menuoff=0';
+		}
 	} else {
 		$tmpl .= '&menuoff=0';
 		set_showtime('menuoff', false);

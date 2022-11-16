@@ -2,7 +2,7 @@
 /**
 * Jomres CMS Agnostic Plugin
 * @author Woollyinwales IT <sales@jomres.net>
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
 * @package Jomres
  * @copyright	2005-2022 Vince Wooll
 * Jomres (tm) PHP files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project.
@@ -43,6 +43,13 @@ class j06002savecustomertype
 		} else {
 			$jrportal_guest_types->commit_new_guest_type();
 		}
+
+		$webhook_notification						   	= new stdClass();
+		$webhook_notification->webhook_event			= 'property_state_change';
+		$webhook_notification->webhook_event_description= 'A catchall webhook notification which notes that the property state has changed. Primarily designed for caching features to remove/refresh cache elements';
+		$webhook_notification->data					 	= new stdClass();
+		$webhook_notification->data->property_uid	   	=  $defaultProperty;
+		add_webhook_notification($webhook_notification);
 
 		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL."&task=listcustomertypes"), jr_gettext('_JOMRES_COM_MR_CUSTOMERTYPE_UPDATED', '_JOMRES_COM_MR_CUSTOMERTYPE_UPDATED', false));
 	}

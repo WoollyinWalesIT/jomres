@@ -34,16 +34,23 @@ jomresJquery(document).ready(function () {
 			return this.fadeOut();
 		}
 	}
-	
-  jomresJquery.fn.editableform.buttons  = ''+
-      '<button type="submit" class="btn btn-primary editable-submit"><i class="fa fa-check"></i></button>'+
-      '<button type="button" class="btn editable-cancel"><i class="fa fa-window-close"></i></button>';
-	  
+
+	jomresJquery.fn.editableform.buttons  = ''+
+		'<button type="submit" class="btn btn-primary editable-submit"><i class="fa fa-check"></i></button>'+
+		'<button type="button" class="btn editable-cancel"><i class="fa fa-window-close"></i></button>';
+
 });
 
 jomresJquery('.copy_to_clipboard').on("click",function(e){
 	e.preventDefault();
 });
+
+function onRequestsObserved( batch ) {
+	// At a later date I want to add a spinner indicator whenever we're doing anything ajax. Maybe.
+	//console.log('observed');
+}
+var requestObserver = new PerformanceObserver( onRequestsObserved );
+requestObserver.observe( { type: 'resource' /*, buffered: true */ } );
 
 function jomresCopyToClipboard(input_id) {
 
@@ -76,13 +83,13 @@ function Block_Error() {
 function toggle_button_class(id) {
 	var isActive = jomresJquery(id).hasClass('active');
 	if (isActive)
-		{
+	{
 		jomresJquery(id).removeClass('active btn-success');
-		}
+	}
 	else
-		{
+	{
 		jomresJquery(id).addClass('active btn-success');
-		}
+	}
 }
 
 function make_datatable(table_id, pagetitle, livesite, ajaxurl, showTools) {
@@ -99,37 +106,37 @@ function make_datatable(table_id, pagetitle, livesite, ajaxurl, showTools) {
 				d.jr_order = d.order;
 				delete d.search;
 				delete d.order;
-				}
 			}
 		}
+	}
 	if (typeof showTools === 'undefined')
-		{
+	{
 		showTableTools = true;
-		}
+	}
 	else
-		{
+	{
 		showTableTools = showTools;
-		}
-		
+	}
+
 	if (showTableTools)
-		{
+	{
 		if (jomres_template_version == "bootstrap3"){
 			sDomm = "<'row'<'col-xs-4'lr><'col-xs-4'B><'col-xs-4'f>>t<'row'<'col-xs-4'i><'col-xs-8'p>>";
-			}
+		}
 		else {
 			sDomm = "<'row-fluid'<'span4'lr><'span4'B><'span4'f>>t<'row-fluid'<'span4'i><'span8'p>>";
-			}
 		}
+	}
 	else
-		{
+	{
 		if (jomres_template_version == "bootstrap3"){
 			sDomm = "<'row'<'col-xs-4'l><'col-xs-2'r><'col-xs-6'f>>t<'row'<'col-xs-4'i><'col-xs-8'p>>";
-			}
+		}
 		else {
 			sDomm = "<'row-fluid'<'span4'r><'span2'r><'span6'f>>t<'row-fluid'<'span4'i><'span8'p>>";
-			}
-		
 		}
+
+	}
 	var oTable = jomresJquery('#' + table_id).dataTable({
 		"processing": bProcessing,
 		"serverSide": bServerSide,
@@ -221,29 +228,29 @@ function make_datatable(table_id, pagetitle, livesite, ajaxurl, showTools) {
 }
 
 function dataTableSetHiddenColumns(table_id, column_ids)
-	{
+{
 	var oTable = jomresJquery('#' + table_id).DataTable();
 	var hiddenColumnsSet = localStorage.getItem( 'hiddenColumnsSet' + table_id);
 	if (!hiddenColumnsSet && column_ids.constructor === Array && column_ids.length > 0 )
-		{
+	{
 		oTable.columns(column_ids).visible(false,false);
 		jomresJquery( oTable.columns(column_ids).header() ).addClass( 'none' );
-		}
+	}
 	else
-		{
+	{
 		oTable.columns().every( function () {
-			if (this.visible() === false ) 
-				{
+			if (this.visible() === false )
+			{
 				this.visible(false,false);
 				jomresJquery( this.header() ).addClass( 'none' );
-				}
+			}
 			else
-				{
+			{
 				this.visible(true,false);
 				jomresJquery( this.header() ).removeClass( 'none' );
-				}
-			});
-		}
+			}
+		});
+	}
 	oTable.responsive.rebuild();
 	oTable.responsive.recalc();
 	localStorage.setItem( 'hiddenColumnsSet' + table_id, true);
@@ -289,7 +296,7 @@ function bind_data_toggle() {
 			property_uid = jomresJquery(this).attr('property_uid');
 			task = jomresJquery(this).attr('ajax_task');
 			loader = '';
-			
+
 			if (task == 'show_property_reviews') {
 				jomresJquery('#property_reviews' + random_identifier).html(loader);
 			}
@@ -299,37 +306,37 @@ function bind_data_toggle() {
 			}
 			else
 				jomresJquery('#module_' + random_identifier + '_popup').html(loader);
-			
+
 			e.preventDefault();
-			
+
 			if (task == 'show_property_reviews') {
 				ajax_url = property_reviews_ajax_url + property_uid;
-				}
+			}
 			else if (task == 'faq'){
 				ajax_url = live_site_ajax + '&task=faq';
-				}
+			}
 			else{
 				ajax_url = module_pop_ajax_url + property_uid;
-				}
+			}
 
 			jomresJquery.get(ajax_url , function (data) {
 				if (jomres_template_version == "bootstrap3" || jomres_template_version == "bootstrap4"){
 					result = '<div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">x</button><h4>' + modal_title + '</h4></div><div class="modal-body">' + data + '</div></div></div>';
-					}
+				}
 				else {
 					result = '<div class="modal-header"><button type="button" class="close" data-dismiss="modal">x</button><h4>' + modal_title + '</h4></div><div class="modal-body">' + data + '</div>';
-					}
-				
+				}
+
 				if (task == 'show_property_reviews') {
 					jomresJquery('#property_reviews' + random_identifier).html(result);
-					}
+				}
 				else if (task == 'faq') {
 					jomresJquery('#FAQModal').html(result);
-					}
+				}
 				else {
 					jomresJquery('#module_' + random_identifier + '_popup').html(result);
-					}
-				
+				}
+
 				jomresJquery(".jomres_bt_tooltip_features").tipsy({html: true, fade: true, gravity: 'sw', delayOut: 100});
 			});
 		});
@@ -374,31 +381,31 @@ function module_popup(random_identifier, property_uid) {
 
 jomresJquery(document).ready(function () {
 	if (jomres_template_version != 'jquery_ui') {return false};
-	
+
 	//all hover and click logic for buttons
 	jomresJquery(".fg-button:not(.ui-state-disabled)")
-	.hover(
-		function () {
-			jomresJquery(this).addClass("ui-state-hover");
-		},
-		function () {
-			jomresJquery(this).removeClass("ui-state-hover");
-		}
-	)
-	.mousedown(function () {
-		jomresJquery(this).parents('.fg-buttonset-single:first').find(".fg-button.ui-state-active").removeClass("ui-state-active");
-		if (jomresJquery(this).is('.ui-state-active.fg-button-toggleable, .fg-buttonset-multi .ui-state-active')) {
-			jomresJquery(this).removeClass("ui-state-active");
-		}
-		else {
-			jomresJquery(this).addClass("ui-state-active");
-		}
-	})
-	.mouseup(function () {
-		if (!jomresJquery(this).is('.fg-button-toggleable, .fg-buttonset-single .fg-button,  .fg-buttonset-multi .fg-button')) {
-			jomresJquery(this).removeClass("ui-state-active");
-		}
-	});
+		.hover(
+			function () {
+				jomresJquery(this).addClass("ui-state-hover");
+			},
+			function () {
+				jomresJquery(this).removeClass("ui-state-hover");
+			}
+		)
+		.mousedown(function () {
+			jomresJquery(this).parents('.fg-buttonset-single:first').find(".fg-button.ui-state-active").removeClass("ui-state-active");
+			if (jomresJquery(this).is('.ui-state-active.fg-button-toggleable, .fg-buttonset-multi .ui-state-active')) {
+				jomresJquery(this).removeClass("ui-state-active");
+			}
+			else {
+				jomresJquery(this).addClass("ui-state-active");
+			}
+		})
+		.mouseup(function () {
+			if (!jomresJquery(this).is('.fg-button-toggleable, .fg-buttonset-single .fg-button,  .fg-buttonset-multi .fg-button')) {
+				jomresJquery(this).removeClass("ui-state-active");
+			}
+		});
 });
 
 
@@ -454,20 +461,20 @@ function insertParam(sourceUrl, parameterName, parameterValue, replaceDuplicates
 			if (!(replaceDuplicates && parameterParts[0] == parameterName)) {
 				if (newQueryString == "") {
 					newQueryString = "?";
-					}
+				}
 				else {
 					newQueryString += "&";
-					}
+				}
 				newQueryString += parameterParts[0] + "=" + parameterParts[1];
 			}
 		}
 	}
 	if (newQueryString == "") {
 		newQueryString = "?";
-		}
+	}
 	else {
 		newQueryString += "&";
-		}
+	}
 	newQueryString += parameterName + "=" + parameterValue;
 
 	return urlParts[0] + newQueryString;
@@ -483,10 +490,10 @@ function populateDiv(div_id, content) {
 function jomres_isChecked(ischecked) {
 	if (ischecked == true) {
 		document.adminForm.boxchecked.value++;
-		}
+	}
 	else {
 		document.adminForm.boxchecked.value--;
-		}
+	}
 };
 
 function jomres_checkAll(n) {
@@ -521,7 +528,7 @@ function jomres_submitbutton(pressbutton) {
 function disableSubmitButton(button) {
 	if (typeof button.disabled != 'undefined') {
 		button.disabled = true;
-		}
+	}
 	else if (!button.buttonDisabled) {
 		button.oldValue = button.value;
 		button.oldOnclick = button.onclick;
@@ -535,7 +542,7 @@ function disableSubmitButton(button) {
 function enableSubmitButton(button) {
 	if (typeof button.disabled != 'undefined') {
 		button.disabled = false;
-		}
+	}
 	else if (button.buttonDisabled) {
 		button.value = button.oldValue;
 		button.onclick = button.oldOnclick;
@@ -802,7 +809,7 @@ function buildSelected(string) {
 	if (string != undefined) {
 		if (string.length > 0) {
 			populateDiv("selectedRooms", string);
-			}
+		}
 		//document.getElementById("selectedRooms").innerHTML = string;
 	}
 };
@@ -811,7 +818,7 @@ function buildAvailable(string) {
 	if (string != undefined) {
 		if (string.length > 0) {
 			populateDiv("availRooms", string);
-			}
+		}
 		//document.getElementById("availRooms").innerHTML = string;
 	}
 };
@@ -821,7 +828,7 @@ function checkSelectRoomMessage(oktobook, disable_address) {
 		if (rooms_list_enabled) {
 			if (show_extras == true) {
 				jomresJquery("#extrascontainer").delay(800).fadeTo("slow", 0.1);
-				}
+			}
 
 			jomresJquery("#bookingform_footer").delay(800).fadeTo("slow", 0.1);
 			jomresJquery("#accommodation_container").delay(800).fadeTo("slow", 0.1);
@@ -830,7 +837,7 @@ function checkSelectRoomMessage(oktobook, disable_address) {
 	else {
 		if (show_extras == true) {
 			jomresJquery("#extrascontainer").delay(800).fadeTo("slow", 1);
-			}
+		}
 		jomresJquery("#bookingform_address").delay(800).slideDown("slow");
 		jomresJquery("#bookingform_footer").delay(800).fadeTo("slow", 1);
 		jomresJquery("#accommodation_container").delay(800).fadeTo("slow", 1);
@@ -872,22 +879,22 @@ function ajaxADate(arrivalDate, dformat) {
 
 	if (dformat == "%d/%m/%Y") {
 		dd = fday + "/" + fmonth + "/" + String(d.getFullYear())
-		}
+	}
 	if (dformat == "%Y/%m/%d") {
 		dd = String(d.getFullYear()) + "/" + fmonth + "/" + fday
-		}
+	}
 	if (dformat == "%m/%d/%Y") {
 		dd = fmonth + "/" + fday + "/" + String(d.getFullYear())
-		}
+	}
 	if (dformat == "%d-%m-%Y") {
 		dd = fday + "-" + fmonth + "-" + String(d.getFullYear())
-		}
+	}
 	if (dformat == "%Y-%m-%d") {
 		dd = String(d.getFullYear()) + "-" + fmonth + "-" + fday
-		}
+	}
 	if (dformat == "%m-%d-%Y") {
 		dd = fmonth + "-" + fday + "-" + String(d.getFullYear())
-		}
+	}
 
 	var one_day = 1000 * 60 * 60 * 24;
 	var difference = Math.ceil((d.getTime() - currentDepartureDated.getTime()) / (one_day)) + mininterval;
@@ -901,43 +908,43 @@ function jomres_split_date(date, dformat) {
 		day = dateArray[0]
 		mon = dateArray[1]
 		year = dateArray[2]
-		}
+	}
 	if (dformat == "%Y/%m/%d") {
 		dateArray = date.split("/")
 		day = dateArray[2]
 		mon = dateArray[1]
 		year = dateArray[0]
-		}
+	}
 	if (dformat == "%m/%d/%Y") {
 		dateArray = date.split("/")
 		day = dateArray[1]
 		mon = dateArray[0]
 		year = dateArray[2]
-		}
+	}
 	if (dformat == "%d-%m-%Y") {
 		dateArray = date.split("-")
 		day = dateArray[0]
 		mon = dateArray[1]
 		year = dateArray[2]
-		}
+	}
 	if (dformat == "%Y-%m-%d") {
 		dateArray = date.split("-")
 		day = dateArray[2]
 		mon = dateArray[1]
 		year = dateArray[0]
-		}
+	}
 	if (dformat == "%m-%d-%Y") {
 		dateArray = date.split("-")
 		day = dateArray[1]
 		mon = dateArray[0]
 		year = dateArray[2]
-		}
+	}
 	if (dformat == "%d.%m.%Y") {
 		dateArray = date.split(".")
 		day = dateArray[0]
 		mon = dateArray[1]
 		year = dateArray[2]
-		}
+	}
 	return  [ day, mon , year ];
 };
 ///////////////////////////////////////
@@ -978,47 +985,47 @@ function checkaddressfields() {
 	if (validation_firstname && firstname.length == 0) {
 		setInputFillToErrorColour("#firstname");
 		pass = false;
-		}
+	}
 	if (validation_surname && surname.length == 0) {
 		setInputFillToErrorColour("#surname");
 		pass = false;
-		}
+	}
 	if (validation_houseno && house.length == 0) {
 		setInputFillToErrorColour("#house");
 		pass = false;
-		}
+	}
 	if (validation_street && street.length == 0) {
 		setInputFillToErrorColour("#street");
 		pass = false;
-		}
+	}
 	if (validation_town && town.length == 0) {
 		setInputFillToErrorColour("#town");
 		pass = false;
-		}
+	}
 	if (validation_postcode && postcode.length == 0) {
 		setInputFillToErrorColour("#postcode");
 		pass = false;
-		}
+	}
 	if (validation_country && country.length == 0) {
 		setInputFillToErrorColour("#country");
 		pass = false;
-		}
+	}
 	if (validation_landline && tel_landline.length == 0) {
 		setInputFillToErrorColour("#tel_landline");
 		pass = false;
-		}
+	}
 	if (validation_cellmobile && tel_mobile.length == 0) {
 		setInputFillToErrorColour("#tel_mobile");
 		pass = false;
-		}
+	}
 	if (validation_email && eemail.length == 0) {
 		setInputFillToErrorColour("#eemail");
 		pass = false;
-		}
+	}
 	if (validation_email && !echeck(eemail)) {
 		setInputFillToErrorColour("#eemail");
 		pass = false;
-		}
+	}
 	if (!pass) {
 		jomresJquery('div.recheckaddress').show();
 		return false;
@@ -1034,30 +1041,30 @@ function dobooking_validate() {
 		getResponse_guest();
 		document.ajaxform.confirmbooking.disabled = true;
 		jomresJquery.when(jr_deferred).done(function() {submitBooking()});
-		}
-	};
+	}
+};
 
 function submitBooking() {
 	document.ajaxform.action = livesite;
 	document.ajaxform.submit(document.ajaxform.confirmbooking.disabled = true);
-	};
+};
 
 function setInputFillToOkColour(field) {
 	jomresJquery(field).addClass(success_class);
-	};
+};
 
 function setInputFillToErrorColour(field) {
 	jomresJquery(field).addClass(error_class);
-	};
+};
 
 function submitenter(myfield, e) {
 	var keycode;
 	if (window.event) {
 		keycode = window.event.keyCode;
-		}
+	}
 	else if (e) {
 		keycode = e.which;
-		}
+	}
 	else return true;
 	if (!document.ajaxform.confirmbooking.disabled) {
 		if (keycode == 13) {
@@ -1066,7 +1073,7 @@ function submitenter(myfield, e) {
 		}
 		else {
 			return true;
-			}
+		}
 	}
 	else {
 		return true;
@@ -1085,35 +1092,35 @@ function echeck(str) {
 	var ldot = str.indexOf(dot)
 	if (strlen == 0) {
 		return false
-		}
+	}
 	if (str.indexOf(at) == -1) {
 		//alert("Invalid E-mail ID")
 		return false
-		}
+	}
 	if (str.indexOf(at) == -1 || str.indexOf(at) == 0 || str.indexOf(at) == lstr) {
 		//alert("Invalid E-mail ID");
 		return false;
-		}
+	}
 	if (str.indexOf(dot) == -1 || str.indexOf(dot) == 0 || str.indexOf(dot) == lstr) {
 		//alert("Invalid E-mail ID")
 		return false
-		}
+	}
 	if (str.indexOf(at, (lat + 1)) != -1) {
 		//alert("Invalid E-mail ID")
 		return false
-		}
+	}
 	if (str.substring(lat - 1, lat) == dot || str.substring(lat + 1, lat + 2) == dot) {
 		//alert("Invalid E-mail ID")
 		return false
-		}
+	}
 	if (str.indexOf(dot, (lat + 2)) == -1) {
 		//alert("Invalid E-mail ID")
 		return false
-		}
+	}
 	if (str.indexOf(" ") != -1) {
 		//alert("Invalid E-mail ID")
 		return false
-		}
+	}
 	return true
 };
 
@@ -1141,10 +1148,10 @@ function toggle_review_div(uid, property_name) {
 function shortlist(property_uid, show_label) {
 	if (typeof show_label !== 'undefined' && show_label != '') {
 		a = parseInt(show_label);
-		}
+	}
 	else {
 		a = 0;
-		}
+	}
 	jomresJquery.get(live_site_ajax + "&task=ajax_shortlist&property_uid=" + property_uid + "&show_label=" + a, function (data) {
 		jomresJquery('#shortlist_' + property_uid).html(data);
 	});
@@ -1168,22 +1175,22 @@ function lastAddedLiveFunc() {
 			var animation = '<div id="animation"><img src="' + path_to_jomres_dir + '/'+JOMRES_ROOT_DIRECTORY + '/assets/images/ajax_animation/broken_circle.gif" /></div>';
 			jomresJquery("#livescrolling_results").append(animation);
 			jomresJquery.get(live_site_ajax + "&task=ajax_list_properties&nofollowtmpl&lastID=" + id,
-			function (data) {
-				var result = data.split("^");
-				jomresJquery("#animation").remove();
-				if (result[0] != "") {
-					jomresJquery("#livescrolling_results").replaceWith(result[0]);
-					bind_data_toggle();
-					eval(result[1]);
-				}
+				function (data) {
+					var result = data.split("^");
+					jomresJquery("#animation").remove();
+					if (result[0] != "") {
+						jomresJquery("#livescrolling_results").replaceWith(result[0]);
+						bind_data_toggle();
+						eval(result[1]);
+					}
 
-				killScroll = false; // IMPORTANT - Make function available again.
-				var bol = jomresJquery("input[type=checkbox][name=compare]:checked").length >= 3;
-				jomresJquery("input[type=checkbox][name=compare]").not(":checked").attr("disabled", bol);
-				last_scrolled_id = id;
-				jomresJquery(".jomres_bt_tooltip_features").tipsy({html: true, fade: true, gravity: 'sw', delayOut: 100});
-				//console.log(last_scrolled_id);
-			});
+					killScroll = false; // IMPORTANT - Make function available again.
+					var bol = jomresJquery("input[type=checkbox][name=compare]:checked").length >= 3;
+					jomresJquery("input[type=checkbox][name=compare]").not(":checked").attr("disabled", bol);
+					last_scrolled_id = id;
+					jomresJquery(".jomres_bt_tooltip_features").tipsy({html: true, fade: true, gravity: 'sw', delayOut: 100});
+					//console.log(last_scrolled_id);
+				});
 		}
 	}
 };

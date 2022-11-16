@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,7 +13,9 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-	
+
+use function \PHP81_BC\strftime;
+
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
@@ -46,6 +48,8 @@ class j06000srp_calendar
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
 		$this->retVals = '';
+
+		$this->now = time();
 
 		$property_uid = (int) jomresGetParam($_REQUEST, 'property_uid', '');
 		if (isset($componentArgs ['property_uid'])) {
@@ -187,7 +191,7 @@ class j06000srp_calendar
 		if ($thisMonthName == '') {
 			$thisMonthName = jr_gettext('_JOMRES_CUSTOMTEXT_'.date('M', $stdate), strftime('%B', $stdate), false, false);
 		}
-
+		date('Y', strtotime($this->now));
 		$this->retVals .= '<div class="calendar-month-name">'.$thisMonthName.' '.strftime('%Y', $stdate).'</div>';
 
 		$this->retVals .= '<table class="calendar"  cellspacing="0" cellpadding="0">';

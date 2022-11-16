@@ -1,3 +1,63 @@
+<h3>Jomres 10.6.0 08/11/2022</h3>
+
+<span class="label label-success">Feature</span> Property switching dropdown re-added to Jomres, and significantly updated. This allows us to switch properties quickly when administering properties. This is a useful older feature that has been reintroduced and updated to be context sensitive.
+<span class="label label-success">Feature</span> Shortcodes can now define custom templates. Example : {jomres asamodule_random &asamodule_random_listlimit=3&basic_module_output.html=basic_module_output_circular.html} If basic_module_output_circular.html exists in the override directory, it will be used instead. Allows individual shortcodes to be highly customised without needing to modify any code.
+<span class="label label-success">Feature</span> An old friend returns to the stage, updated for BS5 : Slideshow images now show in property lists and basic module output areas. Works best with the BS5 carousel plugin installed. Works ok with the native Galleria slideshow plugin, but the slideshow heights aren't exactly right, slideshow images are cropped by Galleria. This slideshow feature can detect if more than 1 Main Property Image has been uploaded, and if so, then a slideshow is shown where previously just an image was shown. A new card_image.html template is the fallback template.
+<span class="label label-success">Feature</span> Added a new feature to patTemplate where if the unused vars setting ( e.g. <patTemplate:tmpl name="pageoutput" unusedvars="import">) is set to import, then any missing definitions will be checked to see if they're language file definitions. If so, we can automatically replace them. This means that we don't need to add language definitions to scripts that call a template file, the definition will be automatically added. Older templates (including BS5 templates) will not have this "import" flag set. It's possible they contain items that shouldn't be there, but it's now an option to use this import ability in new template files. I have been trying unsuccessfully for ages to find a way to not constantly need to define language strings in calling scripts but all of the things I tried resulted in too much memory use. This solution is smaller and subsequentially faster.
+<span class="label label-success">Feature</span> Added new menu options to Joomla plugin : Guest Bookings & My Profile
+<span class="label label-success">Feature</span> Added (commented out but available) property features and room features to basic module output script.
+<span class="label label-success">Feature</span> Add canonical tag to meta on Joomla
+<span class="label label-success">Feature</span> Added a new script that allows site admins to show a property widget for a single property wherever they want, through a shortcode.
+<span class="label label-success">Feature</span> Updated run_jomres_shortcode function so that WP style shortcodes can be used. Both older {} shortcode braces can be used, as well is [] (WP style) braces. Leads to simpler documentation.
+<span class="label label-success">Feature</span> Added occupancy to basic module output html
+<span class="label label-success">Feature</span> Added booking link
+<span class="label label-success">Feature</span> Image uploading now defaults to using just max width setting, and implemented cropping for images.
+
+<span class="label label-warning">Change</span> Tariff configuration mode switching disabled for properties using Micromanage, and all new properties will be using micromanage mode from now on. The big OTAs are moving to using rate plans like Micromanage mode, and having more than one tariff mode was making the booking engine overly complicated. So, now the old Guest Types functionality is disabled, we'll switch to everybody using the newer Adult and Child types and moving forward we only need to maintain the one mode. With this decision, I can now create more variations on that mode.
+<span class="label label-warning">Change</span> Loads'a markup improvements in BS5.
+<span class="label label-warning">Change</span> Set the timezone in the class calling the logger
+<span class="label label-warning">Change</span> Catch abuse of redirect url and don't respond.
+<span class="label label-warning">Change</span> Don't trigger webhook event scripts on error, as the event script itself could be the cause.
+<span class="label label-warning">Change</span> Changed how old plugin update check works, now it shows where warnings show.
+<span class="label label-warning">Change</span> Added a warning to Update feature so that users will be aware that they're updating to the Nightly branch if Dev mode enabled.
+<span class="label label-warning">Change</span> Add region id to list regions page
+<span class="label label-warning">Change</span> Added a class to add border radius to module data
+<span class="label label-warning">Change</span> Added number accommodates to get_property_module_data function.
+<span class="label label-warning">Change</span> Removed bootstrap warning as it's no longer applicable.
+<span class="label label-warning">Change</span> noimage.gif updated to svg
+<span class="label label-warning">Change</span> Added a new property_state_change webhook and caching feature to get_property_module_data function to create/use cache files. Caching is not yet used, as it needs a bit more work yet.
+<span class="label label-warning">Change</span> Remove a previous change to route handling in api.
+<span class="label label-warning">Change</span> Move property image and slideshow options so that they're first and second respectively in media centre.
+<span class="label label-warning">Change</span> Fullscreen view and Video tutorials now fixed to bottom as most of the time they're not used.
+<span class="label label-warning">Change</span> Ensure BS5 templates use lazy image loading.
+<span class="label label-warning">Change</span> Removed buttons from room type/property feature output that typically appears in list properties (search results)
+<span class="label label-warning">Change</span> Change how we check for an existing image so that the thumb is correctly returned and not the large image, should speed up the media centre.
+<span class="label label-warning">Change</span> new css class card-img-height added to basic module output
+<span class="label label-warning">Change</span> Comparison table received some love
+<span class="label label-warning">Change</span> Updated default image upload sizes
+<span class="label label-warning">Change</span> Check to see if the search function has been called as a shortcode. If it has, don't show the search header output. It's not designed to be there and won't work.
+<span class="label label-warning">Change</span> Top and bottom templates don't show any output if menuoff is in url
+<span class="label label-warning">Change</span> get property details function now returns menuoff by default as part of the url, but a new flag ensures that subsequent urls don't include menuoff
+<span class="label label-warning">Change</span> Added full property description to property header script
+<span class="label label-warning">Change</span> Property header disabled on all pages except viewproperty
+<span class="label label-warning">Change</span> Added site address details to common strings
+<span class="label label-warning">Change</span> Changed how emails are obsfucated. Older js didn't work well enough. Obsfucation is mostly theatre, any semi-smart bot will always unscramble the email address with ease.
+<span class="label label-warning">Change</span> Improved markup in show property rooms template
+<span class="label label-warning">Change</span> Added a definition that says that Jomres Core has been run. This helps Jomres scripts used as shortcodes to know if Jomres is shown on that particular page. Because Jomres isn't a traditional Joomla component which relies on Views, we can't just check the current active menu, so this is the next best thing.
+<span class="label label-warning">Change</span> Project pups added to X-Clacks-Overhead-Jomres. Faithful companions will always be remembered. Yeah, I'm sentimental about my dogs.
+<span class="label label-warning">Change</span> In BS5 we use property module data in show my reviews script
+<span class="label label-warning">Change</span> If the guest has no profile information, we'll redirect them to Edit My Account to put that right when they try to view their profile page.
+<span class="label label-warning">Change</span> Added usage of different comparison methods to new sleeps adults and sleeps children searches
+<span class="label label-warning">Change</span> Sticky class removed from sidebar as it's effectiveness depends on the host template
+<span class="label label-warning">Change</span> added a new wrapper script that will redirect a property to it's correct list tariffs xxx page when called.
+
+<span class="label label-important label-danger">Fix</span> PHP8.1 adjustments
+<span class="label label-important label-danger">Fix</span> Check that a presumed array is an array
+<span class="label label-important label-danger">Fix</span> Disabled old qr code generation scripts are they're throwing errors in PHP8.1. I'll leave the old script in place for now as it can't be run by outside actors and it allows backward compatability for older sites if they want to continue using it.
+<span class="label label-important label-danger">Fix</span> Tweaked db image importer to ensure that it always imports, it stopped working so I assume php8.1 is at fault but I couldn't track it down.
+<span class="label label-important label-danger">Fix</span> Added random identifier for an id that was missing. Basic module output.
+<span class="label label-important label-danger">Fix</span> Added a check in case a property type has been modified and a new room didn't get added.
+
 <h3>Jomres 10.5.5 02/10/2022</h3>
 
 <span class="label label-success">Feature</span> Updated the no-Bootstrap code so that Jomres itself uses Bootstrap 5 for layout if the theme doesn't support it.

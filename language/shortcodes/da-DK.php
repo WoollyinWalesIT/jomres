@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -251,3 +251,7 @@ jr_define('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_MRPSRP', 'Om M
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER', 'Valgfrit. Hvis egenskabs-id\'et ikke er angivet, kan du videregive et nummer i stedet.');
 jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH', 'Valgfrit. Alternativ skabelonsti. Kan ikke sendes via url. Skal være absolut.');
 jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME', 'Valgfrit. Alternativt skabelonnavn.');
+
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET', "Viser en egenskabsmodultype output til placering med shortcodes. Egenskabsmoduloutput er et lille udsnit af egenskabsdetaljer designet til at blive vist forskellige steder på siden.");
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_PROPERTY_UID', 'Valgfrit. ID for egenskaben. Hvis egenskabens uid ikke er indstillet, vil en tilfældig publiceret egenskab blive vist.');
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_ALT_TEMPLATE_NAME', 'Valgfrit. Alternativt skabelonnavn, uden ".html". Skabelonen skal findes i skabelontilsidesættelsesbiblioteket. Dette giver dig mulighed for at bruge tilpassede versioner af "basic_module_output.html" forskellige steder i dine sider. ' );

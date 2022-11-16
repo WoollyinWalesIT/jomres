@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -21,7 +21,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	 * @package Jomres\Core\Classes
 	 *
 	 */
-
+	#[AllowDynamicProperties]
 class jomres_currency_exchange_rates
 {
 
@@ -69,6 +69,13 @@ class jomres_currency_exchange_rates
 		if ($this->update_now) {
 			if ($this->update_exchange_rates()) {
 				$this->save_rates();
+
+				$webhook_notification						   	= new stdClass();
+				$webhook_notification->webhook_event			= 'property_state_change';
+				$webhook_notification->webhook_event_description= 'A catchall webhook notification which notes that the property state has changed. Primarily designed for caching features to remove/refresh cache elements. Setting the property uid to zero tells caches to update states for all properties';
+				$webhook_notification->data					 	= new stdClass();
+				$webhook_notification->data->property_uid	   	= 0;
+				add_webhook_notification($webhook_notification);
 			}
 		}
 	}

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -19,7 +19,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	 * @package Jomres\Core\Classes
 	 *
 	 */
-
+	#[AllowDynamicProperties]
 class jomres_roomlocks
 {
 
@@ -94,6 +94,9 @@ class jomres_roomlocks
 	{
 		$room_uid = $this->extract_room_uid($room_uid);
 		$dates_array = $this->init_lockfile();
+		if ( $dates_array === false ) {
+			$dates_array = array();
+		}
 		$jomressession = get_showtime('jomressession');
 		if (!isset($dates_array[ $jomressession ])) {
 			$dates_array[ $jomressession ] = array();
@@ -172,7 +175,10 @@ class jomres_roomlocks
 	{
 		$dates_array = $this->init_lockfile();
 		$jomressession = get_showtime('jomressession');
-		unset($dates_array[ $jomressession ]);
+		if (isset($dates_array[ $jomressession ])) {
+			unset($dates_array[ $jomressession ]);
+		}
+
 		$this->save_lockfile_data($dates_array);
 	}
 	

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -251,3 +251,7 @@ jr_define('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_MRPSRP', 'אם
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER', 'אופציונלי. אם מזהה המאפיין לא מוגדר, אתה יכול להעביר מספר במקום זאת.');
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH', 'אופציונלי. נתיב תבנית חלופי. לא ניתן להעביר דרך כתובת אתר. חייב להיות מוחלט.');
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME', 'אופציונלי. שם תבנית חלופי.');
+
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET', "מראה פלט מסוג מודול נכס למיקום עם קודי קצר. פלט מודול נכס הוא קטע קטן של פרטי נכס שנועד להיות מוצג במקומות שונים בדף.");
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_PROPERTY_UID', 'אופציונלי. מזהה המאפיין. אם המאפיין uid לא מוגדר אז מאפיין שפורסם אקראי יוצג.');
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_ALT_TEMPLATE_NAME', 'אופציונלי. שם תבנית חלופי, ללא ".html". התבנית חייבת להתקיים בספריית עקיפת התבנית. זה מאפשר לך להשתמש בגרסאות מותאמות אישית של "basic_module_output.html בדפים שלך" במקומות שונים. ');

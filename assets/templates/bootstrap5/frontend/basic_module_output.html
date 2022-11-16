@@ -1,15 +1,15 @@
 
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 	{JOMRES_POPUPURL_GLOBALVAR}
-	<div class="card shadow mb-3">
+	<div class="card mb-3 border-0">
 		<div class="image-container ">
 			<a href="{MOREINFORMATIONLINK}">
-				<img src="{IMAGEMEDIUM}" alt="{PROPERTY_NAME}" class="card-img-top" />
+				{PROPERTY_IMAGE_OR_SLIDESHOW}
 			</a>
 			{RIBBON}
-			<div class="top-left d-none d-sm-block bg-secondary bg-opacity-25 text-white rounded-1 p-1">{PROPERTY_TYPE_TITLE} {STARSIMAGES}</div>
-			<div class="bottom-left bg-info  bg-opacity-25 text-white rounded-3 p-1"><strong><span class="price">{PRICE_PRICE}</span></strong></div>
-			<a href="javascript:void(0);" id="shortlist_{UID}" onclick="shortlist('{UID}')" class="d-none d-sm-block bg-secondary bg-opacity-25  bottom-right">{SHORTLIST}</a>
+			<div class="top-left  text-white rounded-1 p-1">{PROPERTY_TYPE_TITLE} {STARSIMAGES} <i class="fas fa-users fs-6"></i> {MAX_OCCUPANCY}</div>
+			<div class="bottom-left  text-white rounded-1 p-1"><strong><span class="price">{PRICE_PRICE}</span></strong> </div>
+			<a href="javascript:void(0);" id="shortlist_{UID}" onclick="shortlist('{UID}')" class=" text-white rounded-1 p-1">{SHORTLIST}</a>
 		
 		</div>
 		<div class="card-body margin-0">
@@ -41,6 +41,16 @@
 				</div>
 			</div>
 			<patTemplate:comment>
+				<patTemplate:tmpl name="room_features" type="simpleCondition" requiredVars="abbv">
+					<span style="font-size: 0.7em;">{ABBV}/</span>
+				</patTemplate:tmpl>
+			</patTemplate:comment>
+			<patTemplate:comment>
+				<patTemplate:tmpl name="property_features_names" type="simpleCondition" requiredVars="abbv">
+					<a href="{SEARCH_URL}" style="font-size: 0.7em;">{ABBV}/</a>
+				</patTemplate:tmpl>
+			</patTemplate:comment>
+			<patTemplate:comment>
 				<div class="card-footer" align="center">
 					<a href="{MOREINFORMATIONLINK}" class="btn btn-info" title="{PROPERTY_NAME}">{MOREINFORMATION}</a>
 				</div>
@@ -54,9 +64,9 @@
 	</script>
 	
 	<div class="modal fade" id="module_{RANDOM_IDENTIFIER}_popup"></div>
-	<div class="offcanvas offcanvas-start" style="width: 65%; " tabindex="-1" id="reviewsOffCanvas{RANDOM_IDENTIFIER}" aria-labelledby="offcanvasReviewsLabel">
+	<div class="offcanvas offcanvas-start" style="width: 65%; " tabindex="-1" id="reviewsOffCanvas{RANDOM_IDENTIFIER}" aria-labelledby="offcanvasReviewsLabel{RANDOM_IDENTIFIER}">
 		<div class="offcanvas-header">
-			<h5 class="offcanvas-title" id="offcanvasExampleLabel">{_JOMRES_REVIEWS}</h5>
+			<h5 class="offcanvas-title" id="offcanvasReviewsLabel{RANDOM_IDENTIFIER}">{_JOMRES_REVIEWS}</h5>
 			<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 		</div>
 		<div class="offcanvas-body">

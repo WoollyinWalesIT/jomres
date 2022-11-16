@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -251,3 +251,7 @@ jr_define('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_MRPSRP', 'Zda 
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER', 'Volitelné. Pokud není nastaveno ID vlastnosti, můžete místo toho předat číslo.');
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH', 'Volitelné. Alternativní cesta šablony. Nelze předat přes adresu URL. Musí být absolutní.');
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME', 'Volitelné. Alternativní název šablony.');
+
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET', "Zobrazuje výstup typu modulu vlastností pro umístění s krátkými kódy. Výstup modulu vlastností je malý úryvek detailů vlastností navržený k zobrazení na různých místech na stránce.");
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_PROPERTY_UID', 'Volitelné. ID vlastnosti. Pokud není nastaveno uid vlastnosti, zobrazí se náhodně publikovaná vlastnost.');
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_ALT_TEMPLATE_NAME', 'Volitelné. Alternativní název šablony, bez ".html". Šablona musí existovat v adresáři pro přepsání šablony. To vám umožňuje používat přizpůsobené verze "basic_module" na různých místech na vašich stránkách .html ');

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -250,3 +250,7 @@ jr_define('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_MRPSRP', 'Om M
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER', 'Valgfritt. Hvis egenskaps-IDen ikke er angitt, kan du sende et nummer i stedet.');
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH', 'Valgfritt. Alternativ malbane. Kan ikke sendes via url. Må være absolutt.');
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME', 'Valgfritt. Alternativt malnavn.');
+
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET', "Viser en egenskapsmodultype utdata for plassering med kortkoder. Eiendomsmodulutdata er et lite utdrag av egenskapsdetaljer designet for å vises på forskjellige steder på siden.");
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_PROPERTY_UID', 'Valgfri. ID for egenskapen. Hvis egenskaps-uid ikke er angitt, vil en tilfeldig publisert egenskap vises.');
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_ALT_TEMPLATE_NAME', 'Valgfritt. Alternativt malnavn, uten ".html". Malen må finnes i maloverstyringskatalogen. Dette lar deg bruke tilpassede versjoner av "basic_module_output.html" på forskjellige steder. ' );

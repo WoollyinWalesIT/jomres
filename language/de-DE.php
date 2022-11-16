@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -2524,7 +2524,7 @@ jr_define('_JOMRES_MICROMANAGE_MODAL_BUTTON', "Anleitung");
 
 jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS', "Wenn Sie unterschiedliche Preise für unterschiedliche Gästezahlen hinzufügen möchten, <em>können Sie für jeden Zimmertyp mehr als mehrere Tarife erstellen</em> und in diesen Tarifen unterschiedliche Mindest-/Höchstwerte für Gäste festlegen. ");
 
-jr_define('_JOMRES_MICROMANAGE_INFO', "Geben Sie dem Tarif einen Namen, definieren Sie die maximale Anzahl von Nächten und die minimale und maximale Anzahl von Gästen, die im Buchungsformular erforderlich sind, bevor der Tarif angeboten wird.<br/><br/> Verwenden das Datumsauswahlfeld, um Preise und Mindestnächteeinstellungen zu einem Datumsbereich hinzuzufügen oder die Eingaben direkt zu bearbeiten.Wenn Sie möchten, dass der Tarif an bestimmten Tagen überhaupt nicht angeboten wird, lassen Sie den Preis auf 0 ( Null ) gesetzt an diesen Daten. <br/><br/> Sie können unterschiedliche Mindestnächte an verschiedenen Daten festlegen. Wenn Sie also während der Festival-/Konferenzwochen längere Buchungen wünschen, können Sie die Mindestnächte in genau diesen Zeiträumen höher einstellen.<br/ ><br/>Wenn Sie pro Person pro Pight (PPPN) berechnen, können Sie diese Einstellung unter Einstellungen > Objektkonfiguration > Registerkarte Tarife und Währung aktivieren und dann die gewünschten Gasttypen unter Einstellungen > Gasttypen erstellen.");
+	jr_define('_JOMRES_MICROMANAGE_INFO', "Geben Sie dem Tarif einen Namen, definieren Sie die maximale Anzahl an Nächten und die minimale und maximale Anzahl an Gästen, die im Buchungsformular erforderlich sind, bevor der Tarif angeboten wird.<br/><br/> Verwenden das Datumsauswahlfeld, um Preise und Einstellungen für die Mindestübernachtungen zu einer Reihe von Daten hinzuzufügen, oder bearbeiten Sie die Eingaben direkt. Wenn Sie möchten, dass der Tarif an bestimmten Daten überhaupt nicht angeboten wird, lassen Sie den Preis auf 0 ( Null ) eingestellt diese Daten. <br/><br/> Sie können an verschiedenen Daten unterschiedliche Mindestübernachtungen haben. Wenn Sie also längere Buchungen während der Festival-/Konferenzwochen wünschen, können Sie die Mindestübernachtungen nur in diesen Zeiträumen höher festlegen.<br/ ><br/>Wenn Sie Per Person Per Pight (PPPN) berechnen, können Sie diese Einstellung in Einstellungen > Unterkunftskonfiguration > Registerkarte Tarife und Währung aktivieren.");
 
 jr_define('_JOMRES_MICROMANAGE_EXTRAOPTIONS', "Zusätzliche Optionen");
 
@@ -2637,9 +2637,6 @@ jr_define('JOMRES_OCCUPANCY_LEVELS_MAX_OCCUPANCY', 'Maximalbelegung');
 jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT', 'Belegungsgrad bearbeiten für : ');
 jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT_DESC', 'Belegungsgrad für diesen Zimmertyp bearbeiten. Gäste, die in Babybetten schlafen, nicht einbeziehen (diese werden durch Erstellen eines Extra hinzugefügt) ');
 jr_define('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE_DESC', 'Wie viel muss für jeden weiteren Erwachsenen berechnet werden?');
-
-jr_define('JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS', 'Zusätzliche Erwachsene');
-
 
 jr_define('_JOMRES_SANITYCHECK_CHILD_RATES', 'Sie haben noch keine Kinderpreise konfiguriert.');
 jr_define('_JOMRES_SANITYCHECK_CHILD_RATES_BUTTON', 'Jetzt Kindertarif(e) festlegen');
@@ -2790,3 +2787,5 @@ Sie können die Zielsprache auf Ihrer aktuellen Sprache belassen und diese Seite
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_INFO', 'Auf dieser Seite können Sie konfigurieren, über welche Zahlungs-Gateways Sie Einzahlungen erhalten möchten. Sie benötigen ein Konto auf dem Zahlungs-Gateway. Die Einstellungsseite enthält Anweisungen zur Konfiguration des Gateways. Wenn Das Gateway verfügt über einen Testmodus und wenn der Testmodus aktiviert ist, können Sie als Unterkunftsverwalter das Zahlungsgateway verwenden, um Ihre Konfiguration zu testen. Wenn der Testmodus deaktiviert ist, sehen nur Nicht-Manager-Benutzer die Zahlungsgateways während des Buchungsvorgangs .');
 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Testmodus");
+
+	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "Der Entwicklungsmodus ist aktiviert. Wenn Sie diese Funktion verwenden, aktualisieren Sie daher Ihre Installation von Jomres auf den Nightly-Zweig. Dies ist die neueste Version von Jomres und kann stabil sein oder nicht. Wenn Sie dies tun nicht auf Nightly aktualisieren möchten, besuchen Sie bitte Admin > Jomres > Einstellungen > Site-Konfiguration > Registerkarte Debugging und setzen Sie die Option Produktion/Entwicklung auf Produktion.");

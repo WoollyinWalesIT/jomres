@@ -5,7 +5,7 @@
 	 *
 	 * @author Vince Wooll <sales@jomres.net>
 	 *
-	 *  @version Jomres 10.5.5
+	 *  @version Jomres 10.6.0
 	 *
 	 * @copyright	2005-2022 Vince Wooll
 	 * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -146,6 +146,8 @@ function get_override_directory()
 	return $override_path;
 }
 
+
+
 	 /*
 	 *
 	 * The goal here is to provide a function that will take a shortcode and produce output. It's effectively the same as the do_shortcode function in WP so that I can include Jomres shortcodes in Joomla template files. There are other ways it can be done, but by allowing shortcodes exactly as they're entered in content/shortcode documentation we can save the designer/integrator from needing to learn another syntax. It also means I can modify the jomres shortcodes plugin to use this function, at a later time, so that we don't have duplication of effort
@@ -154,14 +156,19 @@ function get_override_directory()
 
 function run_jomres_shortcode($shortcode_string = '')
 {
-	if ($shortcode_string == '') {
+	if ( trim($shortcode_string) == '') {
 		return '';
 	}
 
+	// Old style shortcodes
 	$regex = '/{jomres\s*.*?}/i';
-
-	// find all instances of mambot and put in $matches
 	preg_match_all($regex, $shortcode_string, $matches);
+
+	// New style so that we can use exactly the same shortcodes in both Joomla and WordPress
+	if ($matches[0] == [] ) {
+		$regex = '/\[jomres\s*.*?\]/i';
+		preg_match_all($regex, $shortcode_string, $matches);
+	}
 
 	if (count($matches)>0) {
 		foreach ($matches[0] as $m) {
@@ -195,6 +202,8 @@ function run_jomres_shortcode($shortcode_string = '')
 						$_GET[$vals[0]]=$vals[1];
 					}
 				}
+				$_REQUEST['shortcode_call']=1;
+				$_GET['shortcode_call']=1;
 			}
 
 			if (!defined('_JOMRES_INITCHECK')) {
@@ -1062,26 +1071,13 @@ function fix_path($path = '')
 	 *
 	 * A function to obsfucate email addresses in content to defend against spammers.
 	 *
-	 * http://www.maurits.vdschee.nl/php_hide_email/
+	 * Return html entity encoded string. Email obsfucation is pointless, however I'll get hauled over the coals if I don't at least demonstrate awareness of the subject.
 	 *
 	 */
-function jomres_hide_email($email)
-{
-	$character_set = '+-.0123456789@ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz';
-	$key = str_shuffle($character_set);
-	$cipher_text = '';
-	$id = 'e'.rand(1, 999999999);
-	for ($i = 0; $i < strlen($email); $i += 1) {
-		$cipher_text .= $key[strpos($character_set, $email[$i])];
+	function jomres_hide_email($email)
+	{
+		return mb_encode_numericentity($email, array(0x000000, 0x10ffff, 0, 0xffffff), 'UTF-8');
 	}
-	$script = 'var a="'.$key.'";var b=a.split("").sort().join("");var c="'.$cipher_text.'";var d="";';
-	$script .= 'for(var e=0;e<c.length;e++)d+=b.charAt(a.indexOf(c.charAt(e)));';
-	$script .= 'document.getElementById("'.$id.'").innerHTML="<a href=\\"mailto:"+d+"\\">"+d+"</a>"';
-	$script = 'eval("'.str_replace(array('\\', '"'), array('\\\\', '\"'), $script).'")';
-	$script = '<script type="text/javascript">/*<![CDATA[*/'.$script.'/*]]>*/</script>';
-
-	return '<span id="'.$id.'">[javascript protected email address]</span>'.$script;
-}
 
 	/**
 	 *
@@ -1197,7 +1193,7 @@ function jomres_get_client_ip()
 		$ipaddress = '127.0.0.1';
 	}
 
-	return filter_var($ipaddress, FILTER_SANITIZE_STRING);
+	return filter_var($ipaddress, FILTER_VALIDATE_IP);
 }
 
 	/**
@@ -1965,7 +1961,7 @@ function make_agent_link($property_id = 0)
 
 	$manager_id = $property_manager_xref[ $property_id ];
 
-	$output[ 'IMAGE' ] = JOMRES_IMAGES_RELPATH.'noimage.gif';
+	$output[ 'IMAGE' ] = JOMRES_IMAGES_RELPATH.'noimage.svg';
 
 	$image_filename = '';
 	$contents = get_directory_contents(JOMRES_IMAGELOCATION_ABSPATH.'userimages'.JRDS.(int) $manager_id);
@@ -3722,6 +3718,14 @@ function jomresRedirect($url, $msg = '', $class = 'alert-info', $code = 302)
 	$jr_redirect_url = jomresGetParam($_REQUEST, 'jr_redirect_url', '');
 	if ((string)$jr_redirect_url != '') {
 		$url = jr_base64url_decode($jr_redirect_url);
+		$str = parse_url($url);
+		$redirect_domain = $str["host"];
+		$this_site_str = parse_url(get_showtime('live_site'));
+		$local_domain = $this_site_str["host"];
+
+		if ( $redirect_domain != $local_domain ){
+			die('Bad link');
+		}
 	}
 
 	if (strncmp('cli', PHP_SAPI, 3) !== 0) {
@@ -4787,7 +4791,7 @@ function getImageForProperty($imageType, $property_uid, $itemUid)
 			}
 			break;
 		case 'room':
-			$default_image = JOMRES_IMAGES_RELPATH.'noimage.gif';
+			$default_image = JOMRES_IMAGES_RELPATH.'noimage.svg';
 			if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.$property_uid.'_room_'.$itemUid.'.jpg')) {
 				$fileLocation = JOMRES_IMAGELOCATION_RELPATH.$property_uid.'_room_'.$itemUid.'.jpg';
 			} else {

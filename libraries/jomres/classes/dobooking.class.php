@@ -4,7 +4,7 @@
 	 *
 	 * @author Vince Wooll <sales@jomres.net>
 	 *
-	 *  @version Jomres 10.5.5
+	 *  @version Jomres 10.6.0
 	 *
 	 * @copyright	2005-2022 Vince Wooll
 	 * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -21,6 +21,9 @@
 	#
 	 * It is not designed to be implemented or called directly. Instead it is called by the j05000bookingobject.class.php file which inherits from this file.
 	 */
+
+	#[AllowDynamicProperties]
+
 class dobooking
 {
 	/**
@@ -715,6 +718,10 @@ class dobooking
 
 		$interval = new DateInterval('P1D');
 		foreach ($tariffs as $t) {
+			if (is_null($t->modifiers)) {
+				$t->modifiers = '';
+			}
+
 			$roomrate = $this->get_nett_price($t->roomrateperday, $this->accommodation_tax_rate);
 			$dates = $this->get_periods($t->validfrom, $t->validto.' 23:59:59', $interval);
 			$this->allPropertyTariffs[ $t->rates_uid ] = array(
@@ -1637,7 +1644,6 @@ class dobooking
 		$output[ 'JOMRES_CITY_TAX_HEADING' ] = $this->sanitiseOutput(jr_gettext('JOMRES_CITY_TAX_HEADING', 'JOMRES_CITY_TAX_HEADING', false, false))." : ".$city_tax_model_string;
 		$output[ 'JOMRES_CLEANING_FEE_HEADING' ] = $this->sanitiseOutput(jr_gettext('JOMRES_CLEANING_FEE_HEADING', 'JOMRES_CLEANING_FEE_HEADING', false, false));
 		$output[ 'JOMRES_BOOKING_FORM_CHILDREN_AGES' ] = $this->sanitiseOutput(jr_gettext('JOMRES_BOOKING_FORM_CHILDREN_AGES', 'JOMRES_BOOKING_FORM_CHILDREN_AGES', false, false));
-		$output[ 'JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS' ] = $this->sanitiseOutput(jr_gettext('JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS', 'JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS', false, false));
 
 		return $output;
 	}
@@ -4196,14 +4202,20 @@ class dobooking
 	 */
 	public function getTotalInParty()
 	{
-		$subtotal = 0;
+
 		$n = count($this->variancetypes);
-		for ($i = 0; $i < $n; ++$i) {
-			if (isset($this->variancetypes[ $i ]) && $this->variancetypes[ $i ] == 'guesttype') {
-				$subtotal = $subtotal + $this->varianceqty[ $i ];
+		// For older properties with guesttypes
+		if ($n > 0) {
+			$subtotal = 0;
+			for ($i = 0; $i < $n; ++$i) {
+				if (isset($this->variancetypes[ $i ]) && $this->variancetypes[ $i ] == 'guesttype') {
+					$subtotal = $subtotal + $this->varianceqty[ $i ];
+				}
 			}
+			$this->total_in_party = $subtotal;
+		} else { // For newer properties with Standard mode (hopefully soon to be retired, but retaining the guest numbers aspect) guest types
+			$this->total_in_party = $this->standard_guest_numbers +	$this->extra_guest_numbers ;
 		}
-		$this->total_in_party = $subtotal;
 
 		return $this->total_in_party;
 	}
@@ -4311,19 +4323,23 @@ class dobooking
 									$pass_price_check = false;
 								} else {
 									//$this->setPopupMessage( str_replace(";", " " ,serialize( $this->micromanage_tarifftype_to_date_map[$tariff_type_id] ) ) );
-									$map_count = count($this->micromanage_tarifftype_to_date_map[ $tariff_type_id ]);
-									foreach ($this->micromanage_tarifftype_to_date_map[ $tariff_type_id ] as $dates) {
-										$this->setErrorLog('getTariffsForRoomUids:: Count dates '.$map_count.' Count daterange array '.$dateRangeArray_count.' ');
-										if ($map_count != $dateRangeArray_count) { // There are more dates in the date range array than there are valid tariffs. This means that during the map building phase we passed the date of the last tariff found
-											$this->setErrorLog('getTariffsForRoomUids:: tariff map count != dates count ');
-											$pass_price_check = false;
-										} else {
-											if ((float) $dates[ 'price' ] == 0 && $dates[ 'tariff_type_id' ] == $tariff_type_id) {
+									if (is_array($this->micromanage_tarifftype_to_date_map[ $tariff_type_id ]) ) {
+										$map_count = count($this->micromanage_tarifftype_to_date_map[$tariff_type_id]);
+										foreach ($this->micromanage_tarifftype_to_date_map[$tariff_type_id] as $dates) {
+											$this->setErrorLog('getTariffsForRoomUids:: Count dates ' . $map_count . ' Count daterange array ' . $dateRangeArray_count . ' ');
+											if ($map_count != $dateRangeArray_count) { // There are more dates in the date range array than there are valid tariffs. This means that during the map building phase we passed the date of the last tariff found
+												$this->setErrorLog('getTariffsForRoomUids:: tariff map count != dates count ');
 												$pass_price_check = false;
-												$this->setErrorLog('getTariffsForRoomUids:: Removing a tariff as at least one other tariff in the series is set to 0. Tariff type id = '.$tariff_type_id);
-												$filtered_out_type_type_ids[ ] = $tariff_type_id;
+											} else {
+												if ((float)$dates['price'] == 0 && $dates['tariff_type_id'] == $tariff_type_id) {
+													$pass_price_check = false;
+													$this->setErrorLog('getTariffsForRoomUids:: Removing a tariff as at least one other tariff in the series is set to 0. Tariff type id = ' . $tariff_type_id);
+													$filtered_out_type_type_ids[] = $tariff_type_id;
+												}
 											}
 										}
+									} else {
+										$pass_price_check = false;
 									}
 								}
 							}
@@ -5780,75 +5796,21 @@ class dobooking
 
 		$this->setErrorLog('makeNightlyRoomCharges:: Started');
 		$total = 0.00;
-		$result = $this->getVariantsOfType('guesttype');
 		$this->allRoomsAreIgnorePPPN = true;
-		$extra_guest_price = 0;
 		foreach ($this->requestedRoom as $r) {
 			$rm_idArr = explode('^', $r);
 			$tariff_id = $rm_idArr[ 1 ];
-			if (!isset($mrConfig[ 'extra_guest_price' ])) {
-				$mrConfig[ 'extra_guest_price' ] = 0;
-			}
-			$extra_guest_price = convert_entered_price_into_safe_float($mrConfig[ 'extra_guest_price' ]);
 			$ignore_pppn = $this->allPropertyTariffs[ $tariff_id ][ 'ignore_pppn' ];
 			if ($ignore_pppn == '0') {
 				$this->allRoomsAreIgnorePPPN = false;
 			}
 		}
-		if ($this->cfg_perPersonPerNight == '1' && $this->allRoomsAreIgnorePPPN) {
-			$this->setErrorLog('makeNightlyRoomCharges::Property is configured to charge Per Person Per Night, however all rooms have IGNORE PPPN set to yes, so rooms will be calculated per room, not per person. ');
-		} else {
-			if ($this->cfg_perPersonPerNight == '1') {
-				$this->setErrorLog('makeNightlyRoomCharges::Property is configured to charge Per Person Per Night. One or more rooms are not set to Ignore PPN. All rooms will be calculated as per person per night as it is impossible for Jomres to ascertain how many people will be in each room.');
-			}
-		}
 
 		$total_nodiscount = 0;
-		if (!empty($result)) {
-			foreach ($result as $r) {
-				if ($this->cfg_perPersonPerNight == '1') {
-					if ($this->allRoomsAreIgnorePPPN) {
-						$val = $this->rate_pernight;
-						$val_nodiscount = $this->rate_pernight_nodiscount;
-					} else {
-						$val = $r[ 'qty' ] * $r[ 'val' ];
-						$val_nodiscount = $r[ 'qty' ] * $r[ 'val_nodiscount' ];
-					}
-				} else {
-					if ($r[ 'qty' ] != 0) {
-						$val = $r[ 'val' ];
-						$val_nodiscount = $r[ 'val' ];
-					} else {
-						$val = 0;
-						$val_nodiscount = 0;
-					}
-				}
-				if ($this->cfg_perPersonPerNight == '1' && $this->allRoomsAreIgnorePPPN) {
-					$total = $val * count($this->requestedRoom);
-					$total_nodiscount = $val_nodiscount * count($this->requestedRoom);
-				} else {
-					if ($this->cfg_perPersonPerNight == '1') {
-						$total += $val;
-						$total_nodiscount += $val_nodiscount;
-					} else {
-						$total = $this->rate_pernight;
-						$total_nodiscount = $this->rate_pernight_nodiscount;
-					}
-				}
-				$this->setErrorLog('makeNightlyRoomCharges::Total: '.$total);
-			}
-			if ($this->cfg_perPersonPerNight == '1') {
-				$this->room_total = ($total * $this->stayDays);
-				$this->room_total_nodiscount = ($total_nodiscount * $this->stayDays);
-			} else {
-				$this->room_total = ($total * $this->stayDays) * count($this->requestedRoom);
-				$this->room_total_nodiscount = ($total_nodiscount * $this->stayDays) * count($this->requestedRoom);
-			}
-		} elseif ($this->cfg_tariffmode == '5' && $this->cfg_perPersonPerNight == '1') {
-			$this->room_total = ($this->rate_pernight * $this->stayDays) * $this->standard_guest_numbers;
+		if ( $this->cfg_perPersonPerNight == '1') {
+			$this->room_total = ($this->rate_pernight * $this->stayDays) *  $this->getTotalInParty();
 		} else {
 			$this->room_total = ($this->rate_pernight * $this->stayDays) * count($this->requestedRoom);
-			$this->room_total_nodiscount = ($this->rate_pernight_nodiscount * $this->stayDays) * count($this->requestedRoom);
 		}
 
 		$tmpBookingHandler = jomres_getSingleton('jomres_temp_booking_handler');
@@ -5905,21 +5867,7 @@ class dobooking
 			$this->addBookingNote('Coupon', $note);
 		}
 
-		$this->extra_guest_price = 0.00;
 		if ( count($this->requestedRoom) > 0) {
-			if ($this->extra_guest_numbers > 0) {
-				$this->extra_guest_price = ($this->extra_guest_numbers * $extra_guest_price) * $this->stayDays;
-				//$this->extra_guest_price = $this->get_nett_price($this->extra_guest_price, $this->accommodation_tax_rate);
-				//$this->room_total = $this->room_total;
-
-				// Not sure about this yet, commented for now
-				/*$this->add_additiional_line_item(
-				'UNKNOWN',
-				$id = 0,
-				jr_gettext('JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS', 'JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS', false) ,
-				$this->extra_guest_price,
-				$tax_code_id = 0);*/
-			}
 
 			$modifiers = $this->get_modifiers();
 
@@ -6076,7 +6024,7 @@ class dobooking
 			$child_price = $this->child_prices['total_price'];
 		}
 
-		$this->billing_grandtotal = ($this->room_total + $this->extrasvalue + $this->tax + $this->single_person_suppliment + $this->city_tax + $this->cleaning_fee + $child_price + $this->extra_guest_price );
+		$this->billing_grandtotal = ($this->room_total + $this->extrasvalue + $this->tax + $this->single_person_suppliment + $this->city_tax + $this->cleaning_fee + $child_price );
 		$this->room_total_ex_tax = $this->room_total + $this->single_person_suppliment;
 		$this->room_total_inc_tax = $this->room_total + $this->single_person_suppliment + $this->tax;
 		$this->setErrorLog('calcTotals::Total: '.$this->billing_grandtotal);
@@ -6093,7 +6041,7 @@ class dobooking
 		if (!empty($this->extras)) {
 			$extrasArray = explode(',', $this->extras);
 			foreach ($extrasArray as $extra) {
-				if (!empty($extra)) {
+				if ( !empty($extra) ) {
 					$this->setErrorLog('calcExtras: Getting data for extra: '.$extra);
 					$query = "SELECT price,tax_rate FROM #__jomres_extras WHERE uid = '$extra'";
 					$extraDeets = doSelectSql($query, 2);
@@ -6342,9 +6290,11 @@ class dobooking
 		if (empty($this->requestedRoom)) { // No rooms selected yet
 			return;
 		}
-		if (empty($guests)) { // Guest numbers not chosen/used
+
+		if ( $this->getTotalInParty() == 0 && empty($guests) ) { // Guest numbers not chosen/used/selected yet
 			return;
 		}
+
 		$use_propertywide_sps_setting = false;
 
 		$this->single_person_suppliment = 0.00;
@@ -7150,7 +7100,7 @@ class dobooking
 				$this->room_total = $this->room_total - $discount;
 				$this->total_discount = $discount;
 				$this->setErrorLog('<b>calcLastMinuteDiscount:: Room total modified to: '.$this->room_total.'</b>');
-				$disc_txt = jr_gettext('_JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION1', '_JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION1', false).' '.jr_gettext('_JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION2', '_JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION2', false).': '.output_price($discount);
+				$disc_txt = jr_gettext('_JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION1', '_JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION1', false).' '.jr_gettext('_JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION2', '_JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION2', false).': '.output_price($this->get_gross_price($discount,$this->accommodation_tax_rate));
 				$this->echo_populate_div('; populateDiv("discount","'.$disc_txt.'")');
 				$tmpBookingHandler->updateBookingField('lastminutediscount', $disc_txt);
 				$tmpBookingHandler->updateBookingField('booking_discounted', true);

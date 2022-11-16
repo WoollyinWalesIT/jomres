@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -2499,7 +2499,7 @@ jr_define('_JOMRES_MICROMANAGE_MODAL_BUTTON', "Instruktioner");
 
 jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS', "Hvis du vil tilføje forskellige priser for forskellige antal gæster, så kan <em> du oprette mere end flere takster for hver rumtype </em> og have forskellige min/max -gæsteværdier i disse takster. ");
 
-jr_define('_JOMRES_MICROMANAGE_INFO', "Giv taksten et navn, definer det maksimale antal nætter og det mindste og maksimale antal gæster, der kræves i reservationsformularen, inden taksten tilbydes. <br/> <br/> Brug datovælgerpanelet for at tilføje priser og minimumsnætterindstillinger til en række datoer eller redigere input direkte. Hvis du ikke ønsker, at taksten overhovedet skal tilbydes på bestemte datoer, skal du lade prisen være 0 (nul) den disse datoer. <br/> <br/> Du kan have forskellige minimumsnætter på forskellige datoer, så hvis du vil have længere bookinger i løbet af festival-/konferenceuger, kan du indstille minunætterne til at være højere i netop disse perioder. <br/ > <br/> Hvis du opkræver pr. person pr. magt (PPPN), kan du aktivere denne indstilling i fanen Indstillinger> Ejendommskonfiguration> Tariffer og valuta, og derefter oprette de gæstetyper, du har brug for i Indstillinger> Gæstetyper. ");
+	jr_define('_JOMRES_MICROMANAGE_INFO', "Giv taksten et navn, definer det maksimale antal overnatninger og det minimum og maksimum antal gæster, der kræves i reservationsformularen, før taksten tilbydes.<br/><br/> Brug datovælgerpanelet for at tilføje priser og indstillinger for minimumsnætter til en række datoer eller redigere input direkte. Hvis du slet ikke ønsker, at taksten skal tilbydes på bestemte datoer, skal du lade prisen være sat til 0 ( nul ) på disse datoer. <br/><br/> Du kan have forskellige minimumnætter på forskellige datoer, så hvis du ønsker længere bookinger i løbet af festival-/konferenceuger, kan du indstille minimumsnætterne til at være højere i netop disse perioder.<br/ ><br/>Hvis du opkræver Per Person Per Pight (PPPN), kan du aktivere denne indstilling under Indstillinger > Ejendomskonfiguration > fanen Tariffer og valuta.");
 
 jr_define('_JOMRES_MICROMANAGE_EXTRAOPTIONS', "Ekstra muligheder");
 
@@ -2611,9 +2611,6 @@ jr_define('JOMRES_OCCUPANCY_LEVELS_MAX_OCCUPANCY', 'Maksimal belægning');
 jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT', 'Edit occupancy level for:');
 jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT_DESC', 'Red belægningsniveauer for denne værelsestype. Inkluder ikke gæster, der sover i barnesenge (de tilføjes ved at oprette en ekstra)');
 jr_define('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE_DESC', 'Hvor meget skal de opkræves for hver ekstra voksen?');
-
-jr_define('JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS', 'Ekstra voksne');
-
 
 jr_define('_JOMRES_SANITYCHECK_CHILD_RATES', 'Du har ikke konfigureret børnesatser endnu.');
 jr_define('_JOMRES_SANITYCHECK_CHILD_RATES_BUTTON', 'Set child rate (s) now');
@@ -2761,3 +2758,5 @@ Du kan lade målsproget være indstillet til dit nuværende sprog og bruge denne
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_INFO', 'På denne side kan du konfigurere, hvilke betalingsgateways du ønsker at modtage indbetalinger via. Du skal bruge en konto på betalingsgatewayen. Siden med indstillinger giver dig instruktioner om, hvordan du konfigurerer gatewayen. Hvis gatewayen har en testtilstand, og hvis testtilstand er aktiveret, vil du som ejendomsadministrator være i stand til at bruge betalingsgatewayen til at teste din konfiguration. Når testtilstand er deaktiveret vil kun ikke-administratorbrugere se betalingsgateways under bookingprocessen .');
 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Testtilstand");
+
+	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "Udviklingstilstand er aktiveret, så hvis du bruger denne funktion, opdaterer du din installation af Jomres til Nightly-grenen. Dette er den seneste version af Jomres og er muligvis ikke stabil. Hvis du gør det. ikke ønsker at opdatere til Nightly, besøg venligst Admin > Jomres > Indstillinger > Site Configuration > Debugging fanen og indstil Produktion/Udviklingsindstillingen til Produktion.");

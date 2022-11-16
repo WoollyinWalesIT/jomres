@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -250,3 +250,7 @@ jr_define('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_MRPSRP', '是�
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER', '可选。如果属性id没有设置，你可以传递一个数字代替。');
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH', '可选。替代模板路径。不能通过url传递。必须是绝对的。');
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME', '可选。替代模板名称。');
+
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET', "显示属性模块类型输出，用于放置短代码。属性模块输出是一小段属性详细信息，旨在显示在页面的各个位置。");
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_PROPERTY_UID', '可选。属性的ID。如果未设置属性uid，则将显示随机发布的属性。');
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_ALT_TEMPLATE_NAME', '可选。替代模板名称，不带“.html”。模板必须存在于模板覆盖目录中。这允许您在页面的不同位置使用“basic_module_output.html”的自定义版本。' );

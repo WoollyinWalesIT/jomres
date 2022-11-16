@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -19,7 +19,7 @@ defined('_JOMRES_INITCHECK') or die('');
  **/
  
 $jrConfig = array(
-  'version' => '10.5.5',
+  'version' => '10.6.0',
   'defaultCrate' => '1',
   'property_list_limit' => '9',
   'useGlobalCurrency' => '1',
@@ -31,7 +31,7 @@ $jrConfig = array(
   'cal_input' => '%d/%m/%Y',
   'errorChecking' => '0',
   'dumpTemplate' => '0',
-  'maxwidth' => '900',
+  'maxwidth' => '1200',
   'fileSize' => '5000',
   'propertyListDescriptionLimit' => '120',
   'randomsearchlimit' => '5000',
@@ -76,7 +76,7 @@ $jrConfig = array(
   'business_country' => 'GB',
   'business_postcode' => 'XX Edit me in Site Configuration - Your company details XX',
   'business_telephone' => 'XX Edit me in Site Configuration - Your company details XX',
-  'business_email' => 'XX Edit me in Site Configuration - Your company details XX',
+  'business_email' => 'test@example.com',
   'contact_owner_emails_to_alternative' => '0',
   'contact_owner_emails_to_alternative_email' => '',
   'is_single_property_installation' => '0',
@@ -95,9 +95,9 @@ $jrConfig = array(
   'use_timezone_switcher' => '1',
   'load_jquery' => '1',
   'thumbnail_property_list_max_width' => '250',
-  'thumbnail_property_list_max_height' => '140',
-  'thumbnail_property_header_max_width' => '400',
-  'thumbnail_property_header_max_height' => '225',
+  'thumbnail_property_list_max_height' => '',
+  'thumbnail_property_header_max_width' => '600',
+  'thumbnail_property_header_max_height' => '',
   'use_commission' => '0',
   'manager_bookings_trigger_commission' => '1',
   'commission_autosuspend_on_overdue' => '1',
@@ -204,7 +204,7 @@ $jrConfig = array(
   'secret_key_location' => '',
   'gdpr_booking_retention_period' => '365',
   'gdpr_other_invoice_retention_period' => '3653', // 10 years (including the odd leap day or two)
-  'enable_gdpr_compliant_fucntionality' => '1',
+  'enable_gdpr_compliant_fucntionality' => '0',
   'machine_translations_source_language' => 'en-GB',
   'frontend_room_type_editing_allowed' => '0',
   'frontend_room_type_editing_show_property_room_types_in_search_options' => '1',

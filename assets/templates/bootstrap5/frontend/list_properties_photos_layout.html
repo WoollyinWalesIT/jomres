@@ -15,13 +15,10 @@
 	<div class="row">
 		<patTemplate:tmpl name="property_details" unusedvars="&nbsp;">
 			<div class="col-md-3 p-2  d-flex">
-				<div class="card w-100 {BUDGET_BORDER_CLASS}" id="{UID}">
-					<div class="image-container d-block d-sm-block d-md-block d-lg-none d-xl-none d-xxl-none ">
-						{RIBBON}{PROPERTY_IMAGE_OR_SLIDESHOW}
-						<div class="bottom-left bg-info text-white rounded-3 p-2 ">{PRICE_PRE_TEXT} <strong>{PRICE_PRICE}</strong>{PRICE_POST_TEXT}</div>
-					</div>
-					<div class="image-container d-none d-sm-none d-md-none d-lg-block d-xl-block d-xxl-block d-xxl-block ">
-						{RIBBON}{PROPERTY_IMAGE_OR_SLIDESHOW}
+				<div class="jomres_property_list_propertywrapper card w-100 {BUDGET_BORDER_CLASS} border-0" id="{UID}">
+					<div class="image-container ">
+						{PROPERTY_IMAGE_OR_SLIDESHOW}
+						{RIBBON}
 						<div class="bottom-left bg-info text-white rounded-3 p-2 ">{PRICE_PRE_TEXT} <strong>{PRICE_PRICE}</strong>{PRICE_POST_TEXT}</div>
 					</div>
 					<div class="card-body {FEATURED_LISTINGS_CLASS} text-truncate">

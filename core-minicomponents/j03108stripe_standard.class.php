@@ -30,6 +30,8 @@ class j03108stripe_standard
 
 		if (isset($tmpBookingHandler->tmpbooking['property_uid']) && $tmpBookingHandler->tmpbooking['property_uid'] > 0 ) {
 
+			$settingArray = array();
+
 			$query		= "SELECT setting,value FROM #__jomres_pluginsettings WHERE prid = ".$tmpBookingHandler->tmpbooking['property_uid']." AND plugin = 'stripe_standard' ";
 			$settingsList = doSelectSql( $query );
 			if ( count ($settingsList) > 0)
@@ -41,8 +43,15 @@ class j03108stripe_standard
 			}
 
 			if ( !isset($settingArray[ 'test_mode' ]) || $settingArray[ 'test_mode' ] == '1' ) {
+				if ( !isset($settingArray[ 'test_secret_key' ])) {
+					$settingArray[ 'test_secret_key' ] = '';
+				}
 				$secret_key = trim($settingArray[ 'test_secret_key' ]);
 			} else {
+				if ( !isset($settingArray[ 'live_secret_key' ])) {
+					$settingArray[ 'live_secret_key' ] = '';
+				}
+
 				$secret_key = trim($settingArray[ 'live_secret_key' ]);
 			}
 

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -36,10 +36,15 @@ if (isset($_REQUEST['task']) && isset($_REQUEST['field'])) { // Booking engine h
 	}
 }
 
+define('JOMRES_CORE_HAS_RUN' , 1, );
+
 ob_start('removeBOM');
 
 // Added X-Clacks Overhead. If you're a fan of Sir Terry, leave it in. If you're not, take it out
 header('X-Clacks-Overhead: GNU Terry Pratchett');
+
+// Project pups
+header('X-Clacks-Overhead-Jomres-ProjectPups: GNU Tosie, Bonnie, Penny, Lily, Sheba, Jason, Sally, Lena');
 
 require_once dirname(__FILE__).'/integration.php';
 
@@ -411,8 +416,8 @@ try {
 			echo $button_modal.'<br/>';
 		}
 	}
-} catch (Exception $e) {
-	$MiniComponents->triggerEvent('99994');
+} catch (\Exception $e) {
+	//$MiniComponents->triggerEvent('99994');
 
 	if (!isset($no_html)) {
 		$no_html = 0;

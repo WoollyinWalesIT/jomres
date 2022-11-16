@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -69,7 +69,7 @@ class j03030bookingcompleted
 			$save_deets[ 'PROPERTY_DETAILS_URL' ] = get_property_details_url($property_uid);
 		}
 		$save_details[ ] = $save_deets;
-		property_header($property_uid);
+		/*property_header($property_uid);*/
 		$tmpl = new patTemplate();
 		$tmpl->addRows('completed', $save_details);
 		$componentArgs = array('tmpl' => $tmpl);

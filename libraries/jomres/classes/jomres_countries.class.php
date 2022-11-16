@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -19,7 +19,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	 * @package Jomres\Core\Classes
 	 *
 	 */
-
+	#[AllowDynamicProperties]
 class jomres_countries
 {
 
@@ -31,7 +31,7 @@ class jomres_countries
 
 	public function __construct()
 	{
-		$this->countries = false;
+		$this->countries = array();
 		$this->used_countries = false;
 		
 		$this->get_used_property_countries();
@@ -75,7 +75,7 @@ class jomres_countries
 	//get all countries in the system
 	public function get_all_countries()
 	{
-		if (is_array($this->countries)) {
+		if (!empty($this->countries)) {
 			return true;
 		}
 

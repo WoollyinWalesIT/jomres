@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -24,6 +24,9 @@ defined('_JOMRES_INITCHECK') or die('');
 function xss_clean($data)
 {
 	// Fix &entity\n;
+	if (is_null($data)) {
+		return '';
+	}
 	$data = str_replace(array('&amp;', '&lt;', '&gt;'), array('&amp;amp;', '&amp;lt;', '&amp;gt;'), $data);
 	$data = preg_replace('/(&#*\w+)[\x00-\x20]+;/u', '$1;', $data);
 	$data = preg_replace('/(&#x*[0-9A-F]+);*/iu', '$1;', $data);

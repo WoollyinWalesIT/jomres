@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -251,3 +251,7 @@ jr_define('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_MRPSRP', 'Of M
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER', 'Optioneel. Als de property-ID niet is ingesteld, kunt u in plaats daarvan een nummer doorgeven.');
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH', 'Optioneel. Alternatief sjabloonpad. Kan niet worden doorgegeven via url. Moet absoluut zijn.');
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME', 'Optioneel. Alternatieve sjabloonnaam.');
+
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET', "Toont een eigenschapsmodule-uitvoer voor plaatsing met shortcodes. De eigenschapsmodule-uitvoer is een klein fragment van eigenschapsdetails dat is ontworpen om op verschillende plaatsen op de pagina te worden weergegeven.");
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_PROPERTY_UID', 'Optioneel. ID van de eigenschap. Als de eigenschap uid niet is ingesteld, wordt een willekeurig gepubliceerde eigenschap weergegeven.');
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_ALT_TEMPLATE_NAME', 'Optioneel. Alternatieve sjabloonnaam, zonder ".html". De sjabloon moet in de sjabloonoverschrijvingsmap staan. Hierdoor kunt u aangepaste versies van "basic_module_output.html" op verschillende plaatsen in uw pagina\'s gebruiken. ' );

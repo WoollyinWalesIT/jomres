@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -300,3 +300,7 @@ jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_PROPERTY_UID'
 jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER', 'По избор. Ако идентификаторът на свойството не е зададен, можете вместо това да подадете число.');
 jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH', 'По избор. Алтернативен път към шаблона. Не може да се предава чрез url. Трябва да е абсолютен.');
 jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME', 'По избор. Алтернативно име на шаблон.');
+
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET', "Показва изход от тип модул за свойства за поставяне с кратки кодове. Изходът от модул за свойства е малък фрагмент от подробности за свойствата, предназначени да бъдат показани на различни места в страницата.");
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_PROPERTY_UID', 'По избор. ID на свойството. Ако uid на свойство не е зададено, ще се покаже произволно публикувано свойство.');
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_ALT_TEMPLATE_NAME', 'По избор. Алтернативно име на шаблон, без ".html". Шаблонът трябва да съществува в директорията за заместване на шаблона. Това ви позволява да използвате персонализирани версии на "basic_module_output.html" на различни места във вашите страници.' );

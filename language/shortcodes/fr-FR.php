@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Translation to fr-FR by Stéphane Bernard, Valtari NumAgency, France - 03/07/2019 - https://www.valtari.fr
@@ -246,3 +246,6 @@ jr_define('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_MRPSRP', 'Whet
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER', 'Facultatif. Si l\'ID de la propriété n\'est pas défini, vous pouvez passer un numéro à la place.');
 jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH', 'Facultatif. Autre chemin d\'accès au modèle. Ne peut pas être transmis via l\'URL. Doit être absolu.');
 jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME', 'Facultatif. Nom de modèle alternatif.');
+
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET', "Affiche une sortie de type de module de propriété pour le placement avec des codes abrégés. La sortie du module de propriété est un petit extrait de détails de propriété conçu pour être affiché à divers endroits de la page.");
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_PROPERTY_UID', 'Facultatif. ID de la propriété. Si l\'uid de la propriété n\'est pas défini, une propriété publiée aléatoire sera affichée.');

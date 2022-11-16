@@ -1,44 +1,57 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-
-<script type="text/javascript">
-document.addEventListener('DOMContentLoaded', function(){
-	jomresJquery('#FAQModal').appendTo("body");
-	jomresJquery(".sticky").sticky({topSpacing:0});
-});
-</script>
-
-<div id="jomres_alternate_menu_position" style="margin-bottom:5px;"></div> <patTemplate:comment> Automatically populated by mainmenu_options_alternate.html </patTemplate:comment>
-
-<!-- available if required by a plugin -->
-<div id="jomres_content_area" class="container-fluid jr_property_{PROPERTY_UID}"> <patTemplate:comment> Closed in bottom.html </patTemplate:comment>
-	<noscript>
-		<blockquote>
-			<p><b>You do not have JavaScript enabled.</b><br/>
-				The functionality of this site requires the use of JavaScript so
-					please enable before continuing. For assistance in enabling JavaScript, please contact the
-					webmaster.
-			</p>
-		</blockquote>
-	</noscript>
-
-	<h2 id="tour_target_property_name" style="{CURRENT_PROPERTY_STYLE}">{HACTIVE_PROPERTY}{PROPERTYNAME}</h2>
-
-	<div class="row">
-		<patTemplate:tmpl name="widgets_dropdown" type="simpleCondition" requiredVars="widgets_dropdown">
-			<div class="col-md-6">
-				{WIDGETS_DROPDOWN}
+	
+	<script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function(){
+            jomresJquery('#FAQModal').appendTo("body");
+            jomresJquery(".sticky").sticky({topSpacing:0});
+        });
+	</script>
+	
+	<div class="container"> <patTemplate:comment> Closed in bottom.html </patTemplate:comment>
+		<div id="jomres_alternate_menu_position" style="margin-bottom:5px;"></div> <patTemplate:comment> Automatically populated by mainmenu_options_alternate.html </patTemplate:comment>
+		
+		<!-- available if required by a plugin -->
+		<div id="jomres_content_area" class="container-fluid jr_property_{PROPERTY_UID}"> <patTemplate:comment> Closed in bottom.html </patTemplate:comment>
+			<noscript>
+				<blockquote>
+					<p><b>You do not have JavaScript enabled.</b><br/>
+						The functionality of this site requires the use of JavaScript so
+						please enable before continuing. For assistance in enabling JavaScript, please contact the
+						webmaster.
+					</p>
+				</blockquote>
+			</noscript>
+			<div class="sticky-top bg-white" style="z-index: 101;">
+				<div class="row">
+					<div class="col-6">
+						<div class="row mb-3 ">
+							<label for="switch_property" class="h3 col-sm-4 col-form-label {CURRENT_PROPERTY_STYLE}">{HACTIVE_PROPERTY}{PROPERTYNAME}</label>
+							<div class="col-sm-8">
+								{PROPERTY_SELECTOR_DROPDOWN}
+							</div>
+						</div>
+					</div>
+					<patTemplate:tmpl name="widgets_dropdown" type="simpleCondition" requiredVars="widgets_dropdown">
+						<div class="col-md-6">
+							{WIDGETS_DROPDOWN}
+						</div>
+					</patTemplate:tmpl>
+				</div>
 			</div>
-		</patTemplate:tmpl>
-		<div class="col-md-6">
-			<div class="float-right">
-				{MANAGEMENT_VIEW_DROPDOWN}
-				{VIDEO_TUTORIALS}
+			
+			<div class="fixed-bottom bg-white">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="float-right">
+							{MANAGEMENT_VIEW_DROPDOWN}
+							{VIDEO_TUTORIALS}
+						</div>
+					</div>
+				</div>
 			</div>
-		</div>
-	</div>
-	<hr/>
-	<div class="clearfix"></div>
-	{SANITY_CHECKS}
-	<div id="jomres_feedback" class="clearfix"></div>
-	<div id="tour_target_content"></div>
+			<hr/>
+			<div class="clearfix"></div>
+			{SANITY_CHECKS}
+			<div id="jomres_feedback" class="clearfix"></div>
+			<div id="tour_target_content"></div>
 </patTemplate:tmpl>

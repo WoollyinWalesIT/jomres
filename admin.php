@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -113,7 +113,7 @@ try {
 	if (!AJAXCALL) {
 		$pageoutput = array();
 		$output = array();
-		
+
 		//generate the cpanel menu
 		$MiniComponents->specificEvent('19997', 'menu', array());
 		$output[ 'CONTROL_PANEL_MENU' ] = $MiniComponents->miniComponentData[ '19997' ][ 'menu' ];
@@ -136,13 +136,6 @@ try {
 
 		//bootstrap
 		$output[ 'USING_BOOTSTRAP' ] = 'true';
-
-
-		// Review message
-		$output['REVIEW_REQUEST'] = $MiniComponents->specificEvent('16000', 'show_reviews_message', array('output_now' => false));
-
-		// Feedback message
-		$output['FEEDBACK_REQUEST'] = $MiniComponents->specificEvent('16000', 'show_feedback_message', array('output_now' => false));
 
 		//output top area
 		$pageoutput[ ] = $output;
@@ -172,26 +165,6 @@ try {
 			$MiniComponents->triggerEvent('10001'); //task doesn`t exist, go to cpanel frontpage
 		}
 	}
-
-    if ($jrConfig['development_production'] != 'development') {
-        if (
-            get_showtime('task') != 'save_site_settings' &&
-            get_showtime('task') != 'site_settings' &&
-            get_showtime('task') != 'showplugins' &&
-            get_showtime('task') != 'addplugin' &&
-            get_showtime('task') != 'removeplugin' &&
-            get_showtime('task') != 'updates'
-        ) {
-            //jomres plugin update check
-            $output['PLUGIN_UPDATES_AVAILABLE'] = $MiniComponents->specificEvent('16000', 'jomres_plugin_update_check', array('output_now' => true));
-            if ($output['PLUGIN_UPDATES_AVAILABLE'] != false) {
-                return;
-            }
-        }
-    }
-
-
-
 
 	//output bottom area
 	if (!AJAXCALL) {

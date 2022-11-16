@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -24,6 +24,10 @@ defined('_JOMRES_INITCHECK') or die('');
  */
 function output_price($value, $currencycode = '', $do_conversion = true, $zeroOK = true, $just_code = false)
 {
+	if (is_null($value) || $value == '') {
+		$value = 0.0;
+	}
+
 	$price = (float) number_format($value, 2, '.', '');
 
 	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');

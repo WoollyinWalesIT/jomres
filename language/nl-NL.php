@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -2397,7 +2397,7 @@ jr_define('_JOMRES_MICROMANAGE_BASIC_SETTINGS', "Meest gebruikte opties");
 jr_define('_JOMRES_MICROMANAGE_MODAL_BUTTON', "Instructies");
 
 jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS', "Als u verschillende prijzen voor verschillende aantallen gasten wilt toevoegen, <em>kunt u meer dan verschillende tarieven voor elk kamertype maken</em> en verschillende min/max gastenwaarden in die tarieven opnemen. ");
-jr_define('_JOMRES_MICROMANAGE_INFO', "Geef het tarief een naam, definieer het maximum aantal nachten en het minimum en maximum aantal gasten dat vereist is in het boekingsformulier voordat het tarief wordt aangeboden.<br/><br/> Gebruik het datumkiezerpaneel om prijzen en minimumnachten toe te voegen aan een reeks datums, of de invoer rechtstreeks te bewerken. Als u niet wilt dat het tarief op bepaalde data wordt aangeboden, laat u de prijs op 0 ( nul ) staan ​​op die data. <br/><br/> Je kunt verschillende minimum nachten hebben op verschillende data, dus als je langere boekingen wilt tijdens festival-/conferentieweken, dan kun je het minimum aantal nachten in juist die periodes hoger instellen.<br/ ><br/>Als u per persoon per persoon (PPPN) in rekening brengt, kunt u die instelling inschakelen in Instellingen > Eigenschapconfiguratie > tabblad Tarieven en valuta, en vervolgens de gewenste gasttypen maken in Instellingen > Gasttypen.");
+	jr_define('_JOMRES_MICROMANAGE_INFO', "Geef het tarief een naam, definieer het maximum aantal nachten en het minimum en maximum aantal gasten dat vereist is in het boekingsformulier voordat het tarief wordt aangeboden.<br/><br/> Gebruik het datumkiezerpaneel om prijzen en instellingen voor minimum aantal nachten toe te voegen aan een reeks datums, of om de invoer rechtstreeks te bewerken.Als u niet wilt dat het tarief op bepaalde datums wordt aangeboden, laat u de prijs ingesteld op 0 (nul) op die data. <br/><br/> Je kunt verschillende minimum aantal nachten hebben op verschillende data, dus als je langere boekingen wilt tijdens festival-/conferentieweken, kun je het minimum aantal nachten hoger instellen in alleen die periodes.<br/ ><br/>Als u Per Persoon Per Pight (PPPN) in rekening brengt, kunt u die instelling inschakelen in Instellingen > Vastgoedconfiguratie > tabblad Tarieven en valuta.");
 
 jr_define('_JOMRES_MICROMANAGE_EXTRAOPTIONS', "Extra opties");
 
@@ -2511,9 +2511,6 @@ jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT', 'Bezettingsniveau bewerken voor: ');
 jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT_DESC', 'Bezettingsniveaus voor dit kamertype bewerken. Geen gasten die op babybedjes slapen opnemen (deze worden toegevoegd door een Extra aan te maken) ');
 jr_define('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE_DESC', 'Hoeveel moet er voor elke extra volwassene in rekening worden gebracht?');
 
-jr_define('JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS', 'Extra volwassenen');
-
-
 jr_define('_JOMRES_SANITYCHECK_CHILD_RATES', 'Je hebt nog geen kindertarieven geconfigureerd.');
 jr_define('_JOMRES_SANITYCHECK_CHILD_RATES_BUTTON', 'Stel nu kindertarief(en) in');
 jr_define('_JOMRES_SANITYCHECK_OCCUPANCY_LEVELS', 'U heeft uw accommodatie geconfigureerd om kinderen toe te laten, maar u heeft nog geen bezettingsniveaus voor kinderen ingesteld.');
@@ -2563,9 +2560,6 @@ jr_define('JOMRES_OCCUPANCY_LEVELS_MAX_OCCUPANCY', 'Maximale bezetting');
 jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT', 'Bezettingsniveau bewerken voor: ');
 jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT_DESC', 'Bezettingsniveaus voor dit kamertype bewerken. Geen gasten die op babybedjes slapen opnemen (deze worden toegevoegd door een Extra aan te maken) ');
 jr_define('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE_DESC', 'Hoeveel moet er voor elke extra volwassene in rekening worden gebracht?');
-
-jr_define('JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS', 'Extra volwassenen');
-
 
 jr_define('_JOMRES_SANITYCHECK_CHILD_RATES', 'Je hebt nog geen kindertarieven geconfigureerd.');
 jr_define('_JOMRES_SANITYCHECK_CHILD_RATES_BUTTON', 'Stel nu kindertarief(en) in');
@@ -2703,3 +2697,5 @@ U kunt de doeltaal op uw huidige taal laten staan en deze pagina gebruiken om it
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_INFO', 'Op deze pagina kunt u configureren via welke betalingsgateways u aanbetalingen wilt ontvangen. U hebt een account nodig op de betalingsgateway. Op de instellingenpagina vindt u instructies voor het configureren van de gateway. Indien de gateway heeft een testmodus en als de testmodus is ingeschakeld, kunt u als propertymanager de betalingsgateway gebruiken om uw configuratie te testen.Als de testmodus is uitgeschakeld, zien alleen niet-manager-gebruikers de betalingsgateways tijdens het boekingsproces .');
 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Testmodus");
+
+	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "Ontwikkelingsmodus is ingeschakeld, dus als u deze functie gebruikt, werkt u uw installatie van Jomres bij naar de Nightly-tak. Dit is de meest recente versie van Jomres en kan al dan niet stabiel zijn. Als u dat doet niet wilt updaten naar Nightly, ga naar Beheer > Jomres > Instellingen > Siteconfiguratie > tabblad Foutopsporing en zet de optie Productie/Ontwikkeling op Productie.");

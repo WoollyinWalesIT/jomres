@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -252,3 +252,7 @@ jr_define('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_MRPSRP', 'Par�
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER', 'Neobligāti. Ja īpašuma ID nav iestatīts, tā vietā varat nodot numuru.');
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH', 'Neobligāti. Alternatīvas veidnes ceļš. Nevar nodot caur url. Jābūt absolūtam.');
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME', 'Neobligāti. Alternatīvas veidnes nosaukums.');
+
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET', "Rāda rekvizītu moduļa tipa izvadi izvietošanai ar īskodiem. Rekvizītu moduļa izvade ir neliels rekvizītu detaļas fragments, kas paredzēts rādīšanai dažādās lapas vietās.");
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_PROPERTY_UID', 'Neobligāti. Īpašuma ID. Ja rekvizīta uid nav iestatīts, tiks parādīts nejauši publicēts rekvizīts.');
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_ALT_TEMPLATE_NAME', 'Neobligāti. Alternatīvs veidnes nosaukums, bez ".html". Šai veidnei ir jābūt veidņu ignorēšanas direktorijā. Tas ļauj izmantot pielāgotas "basic_html" moduļa versijas in.out ');

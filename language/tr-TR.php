@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -2470,7 +2470,7 @@ jr_define('_JOMRES_MICROMANAGE_MODAL_BUTTON', "Talimatlar");
 
 jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS', "Farklı sayıda misafir için farklı fiyatlar eklemek istiyorsanız, <em>her oda tipi için birden fazla tarife oluşturabilir</em> ve bu tarifelerde farklı min/maks misafir değerlerine sahip olabilirsiniz. ");
 
-jr_define('_JOMRES_MICROMANAGE_INFO', "Tarifeye bir isim verin, maksimum gece sayısını, minimum ve maksimum misafir sayısını tarife sunulmadan önce rezervasyon formunda tanımlayın.<br/><br/> Kullanım Tarih seçme paneli, belirli bir tarih aralığına fiyat ve minimum gece ayarı eklemek veya girişleri doğrudan düzenlemek için.Tarifenin belirli tarihlerde sunulmasını istemiyorsanız, fiyatı 0 (sıfır) <br/><br/> Farklı tarihlerde farklı minimum gecelere sahip olabilirsiniz, bu nedenle festival/konferans haftalarında daha uzun rezervasyonlar istiyorsanız minimum gece sayısını yalnızca bu dönemlerde daha yüksek olacak şekilde ayarlayabilirsiniz.<br/ ><br/>Kişi Başına Pight (PPPN) alıyorsanız Ayarlar > Tesis Konfigürasyonu > Tarifeler ve Para Birimi sekmesinden bu ayarı etkinleştirebilir, ardından Ayarlar > Misafir Tipleri'nde istediğiniz misafir tiplerini oluşturabilirsiniz.");
+	jr_define('_JOMRES_MICROMANAGE_INFO', "Tarife sunulmadan önce rezervasyon formunda tarifeye bir ad verin, maksimum gece sayısını ve minimum ve maksimum misafir sayısını tanımlayın.<br/><br/> Kullanın Bir tarih aralığına fiyat ve minimum gece ayarları eklemek veya doğrudan girişleri düzenlemek için tarih seçici paneli.Belirli tarihlerde tarifenin hiç sunulmasını istemiyorsanız, fiyatı 0 (sıfır) olarak bırakın. <br/><br/> Farklı tarihlerde farklı minimum gecelere sahip olabilirsiniz, bu nedenle festival/konferans haftalarında daha uzun rezervasyonlar istiyorsanız, sadece bu dönemlerde minimum geceleri daha yüksek olacak şekilde ayarlayabilirsiniz.<br/ ><br/>Kişi Başına Kişi Başına (PPPN) ücret alıyorsanız, bu ayarı Ayarlar > Mülk Yapılandırma > Tarifeler ve Para Birimi sekmesinden etkinleştirebilirsiniz.");
 
 jr_define('_JOMRES_MICROMANAGE_EXTRAOPTIONS', "Ekstra seçenekler");
 jr_define('_JOMRES_MICROMANAGE_EXTRA_OPTIONS', "Bunlar, çok yaygın olarak kullanılmayan, ancak yine de size sunulan ek seçeneklerdir. <br/><strong> PPPN'yi Yoksay</strong> Kişi Başına Gecelik Yoksay anlamına gelir. Birkaç farklı tarifeniz olabilir. aynı oda tipi için, örneğin biri gecelik kişi başı ücretlendirilir, diğeri ise ücretlendirilmez.<br/><strong>Hafta sonlarına izin ver</strong> Hafta Sonlarına İzin Ver seçeneği size yalnızca bir tarife yapma seçeneği sunar. örneğin iş seyahatinde olanlar için özel bir tarife istiyorsanız hafta içi kullanılabilir.Bu durumda seçeneği Hayır ve minimum gece sayısını 1 ve maksimum gece sayısını en fazla 5 olarak ayarlarsınız. <br/><strong>Hafta sonları yalnızca</strong> Yalnızca Hafta Sonları seçeneği, Hafta Sonlarına İzin Ver seçeneğinin tersidir. Hafta sonu olarak düşündüğünüz günler Mülk Yapılandırma ayarlarınızda yapılandırılabilir. Bu size, isteyebileceğiniz yalnızca bir hafta sonu ücreti tanımlama olanağı verir. özel etkinlikler için teklif.<br/><strong>Check-in Haftanın günü </strong> Bu seçenek, check-in'i yalnızca haftanın belirli günlerinde olmaya zorlama olanağı sağlar ve en iyi şekilde Tesis Yapılandırması > Rezervasyonlar sekmesi > Sabit dönemler seçenekleriyle birlikte kullanılır. Kullanıcıların çoğu, bu seçeneği Tümü olarak bırakmak isteyecektir.<br/>Son iki seçenek, <strong>Minimum oda zaten seçili</strong> ve <strong>Maksimum oda zaten seçili</strong> çok özeldir ve son derece karmaşık tarifelere sahip mülkler için kullanışlıdır. <em>Belirli bir ihtiyacınız yoksa, bu seçenekleri olduğu gibi bırakmalısınız.</em> Bu tarifeyi yalnızca misafirin rezervasyon formunda N sayıda oda seçtiğinde sunulmasını istiyorsanız kullanın, örneğin bu seçeneklerin varsayılan olarak bırakıldığı bir temel tarife ve minimum oda seçeneğinin 1 olarak ayarlandığı ikinci bir tarifeniz olabilir, bu ikinci tarife oda seçildikten sonra rezervasyon formunda sunulacaktır.");
@@ -2583,8 +2583,6 @@ jr_define('JOMRES_OCCUPANCY_LEVELS_MAX_OCCUPANCY', 'Maksimum doluluk');
 jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT', 'Doluluk seviyesini düzenle : ');
 jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT_DESC', 'Bu oda tipi için doluluk seviyelerini düzenleyin. Bebek karyolasında uyuyan konukları dahil etmeyin (Bunlar Ekstra oluşturularak eklenir) ');
 jr_define('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE_DESC', 'Her ek yetişkin için ne kadar ücret alınmalı?');
-
-jr_define('JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS', 'Ekstra yetişkinler');
 
 
 jr_define('_JOMRES_SANITYCHECK_CHILD_RATES', 'Henüz alt ücretleri yapılandırmadınız.');
@@ -2735,3 +2733,5 @@ Hedef dili mevcut dilinize ayarlı bırakabilir ve bu sayfayı, öğeleri tek te
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_INFO', 'Bu sayfada, mevduat ödemelerini almak istediğiniz ödeme ağ geçitlerini yapılandırabilirsiniz. Ödeme ağ geçidinde bir hesaba ihtiyacınız olacak. Ayarlar sayfası, ağ geçidini nasıl yapılandıracağınıza ilişkin talimatlar sağlayacaktır. ağ geçidinin bir test modu vardır ve Test Modu etkinleştirilirse, mülk yöneticisi olarak yapılandırmanızı test etmek için ödeme ağ geçidini kullanabilirsiniz.Test Modu devre dışı bırakıldığında, rezervasyon işlemi sırasında ödeme ağ geçitlerini yalnızca Yönetici olmayan kullanıcılar görebilir .');
 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Test modu");
+
+	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "Geliştirme modu etkin, bu nedenle bu özelliği kullanırsanız Jomres kurulumunuzu Nightly şubesine güncelleyeceksiniz. Bu, Jomres'in en son sürümüdür ve kararlı olabilir veya olmayabilir. Bunu yaparsanız Nightly'ye güncellemek istemiyorsanız lütfen Yönetici > Jomres > Ayarlar > Site Yapılandırması > Hata Ayıklama sekmesini ziyaret edin ve Üretim/Geliştirme seçeneğini Üretim olarak ayarlayın.");

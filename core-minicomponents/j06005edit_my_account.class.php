@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -77,7 +77,7 @@ class j06005edit_my_account
 		$output[ 'LANDLINE' ] = '';
 		$output[ 'MOBILE' ] = '';
 		//$output[ 'EMAIL' ] = restore_task_specific_email_address($user_details[ $thisJRUser->id ][ 'email' ]);
-		$output[ 'IMAGE' ] = JOMRES_IMAGES_RELPATH.'noimage.gif';
+		$output[ 'IMAGE' ] = JOMRES_IMAGES_RELPATH.'noimage.svg';
 
 		$output['JOMRES_JS_RELPATH'] = JOMRES_JS_RELPATH;
 
@@ -131,6 +131,9 @@ class j06005edit_my_account
 
 				$validation_success = $validation->vat_number_validation_response;
 
+				if (is_null($validation_success)) {
+					$validation_success = '';
+				}
 				if (strlen($validation_success) > 0) {
 					$vat_validation[0][ 'VAT_NUMBER_VALIDATION_STATUS'] = $validation_success;
 

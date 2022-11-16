@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -2483,7 +2483,7 @@ jr_define('_JOMRES_MICROMANAGE_MODAL_BUTTON', "Instructions");
 
 jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS', "If you want to add different prices for different numbers of guests then <em>you can create more than several tariffs for each room type</em> and have different min/max guests values in those tariffs.");
 
-jr_define('_JOMRES_MICROMANAGE_INFO', "Give the tariff a name, define the maximum number of nights, and the minimum and maximum number of guests that are required in the booking form before the tariff is offered.<br/><br/> Use the date picker panel to add prices and minimum nights settings to a range of dates, or edit the inputs directly. If you don't want the tariff to be offered at all on certain dates, leave the price set to 0 ( zero ) on those dates. <br/><br/> You can have different minimum nights on different dates, so if you want longer bookings during festival/conference weeks then you can set the min nights to be higher in just those periods.<br/><br/>If you charge Per Person Per Pight (PPPN) you can enable that setting in Settings > Property Configuration > Tariffs and Currency tab, then create the guest types that you require in Settings > Guest Types.");
+jr_define('_JOMRES_MICROMANAGE_INFO', "Give the tariff a name, define the maximum number of nights, and the minimum and maximum number of guests that are required in the booking form before the tariff is offered.<br/><br/> Use the date picker panel to add prices and minimum nights settings to a range of dates, or edit the inputs directly. If you don't want the tariff to be offered at all on certain dates, leave the price set to 0 ( zero ) on those dates. <br/><br/> You can have different minimum nights on different dates, so if you want longer bookings during festival/conference weeks then you can set the min nights to be higher in just those periods.<br/><br/>If you charge Per Person Per Pight (PPPN) you can enable that setting in Settings > Property Configuration > Tariffs and Currency tab.");
 
 jr_define('_JOMRES_MICROMANAGE_EXTRAOPTIONS', "Extra options");
 
@@ -2598,8 +2598,6 @@ jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT', 'Edit occupancy level for : ');
 jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT_DESC', 'Edit occupancy levels for this room type. Do not include guests sleeping on cots (those are added by creating an Extra) ');
 jr_define('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE_DESC', 'For each additional adult, how much should they be charged?');
 
-jr_define('JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS', 'Extra adults');
-
 jr_define('_JOMRES_SANITYCHECK_CHILD_RATES', 'You have not configured child rates yet.');
 jr_define('_JOMRES_SANITYCHECK_CHILD_RATES_BUTTON', 'Set child rate(s) now');
 jr_define('_JOMRES_SANITYCHECK_OCCUPANCY_LEVELS', 'You have configured your property to allow children but you have not set any occupancy levels for children yet.');
@@ -2649,7 +2647,7 @@ jr_define('JOMRES_ORGANISATIION_LOGO_URL', 'Url to your organisation logo');
 jr_define('JOMRES_UPDATE_MESSAGE_LINK', 'Update Jomres now');
 
 jr_define('PLUGIN_UPDATE_MESSAGE_TITLE', 'Plugin updates');
-jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE1', 'There are new versions of plugins available in the plugin manager. You must update all plugins before you can continue to use Jomres as updates improve functionality and ensure that your installation remains secure.');
+jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE1', 'There are new versions of plugins available in the plugin manager. You should update all plugins before you continue to use Jomres as updates improve functionality and ensure that your installation remains secure.');
 jr_define('PLUGIN_UPDATE_MESSAGE_NUMBER', 'Plugins to update');
 
 jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE2', 'If your license is no longer valid, you can get a new license key from our website.');
@@ -2760,3 +2758,6 @@ You can leave the target language set to your current language and use this page
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_INFO', 'On this page you can configure which payment gateways you want to receive deposit payments through. You will need an account on the payment gateway. The settings page will provide you with instructions on how to configure the gateway. If the gateway has a test mode and if Test Mode is enabled, you as a property manager will be able to use the payment gateway to test your configuration. When Test Mode is disabled only non-Manager users will see the payment gateways during the booking process.');
 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Test mode");
+
+	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "Development mode is enabled, therefore if you use this feature you will be updating your installation of Jomres to the Nightly branch. This is the most recent version of Jomres and may or may not be stable. If you do not want to update to Nightly please visit Admin > Jomres > Settings > Site Configuration > Debugging tab and set the Production/Development option to Production.");
+

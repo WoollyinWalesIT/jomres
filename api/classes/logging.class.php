@@ -5,7 +5,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -127,9 +127,12 @@ class logging
         $stream_handler = new StreamHandler($jrConfig['log_path'].$log_file, Logger::DEBUG);
         $stream_handler->setFormatter($formatter);
 
+		$timezone = new \DateTimeZone(date_default_timezone_get() ?: 'UTC');
         if ( defined('AJAXCALL') && !AJAXCALL && !defined("API_STARTED") ) {
             if ($jrConfig['development_production'] == 'development' ) {
+
                 $logger = new Logger($channel);
+				$logger->setTimezone($timezone);
                 $logger->pushProcessor(new \Monolog\Processor\WebProcessor); // pushing the web server preprocessor
                 $browserHandler = new \Monolog\Handler\BrowserConsoleHandler(\Monolog\Logger::DEBUG);
                 $logger->pushHandler($browserHandler);
@@ -137,7 +140,7 @@ class logging
                 $logger->debug($message);
             }
         }
-        
+
         $message = $username.' ~~ '.$message.' ~~ '.session_id().' ~~ '.$url;
 
 		$loggerTimeFormat = "Y-m-d H:i:s.u";
@@ -145,6 +148,8 @@ class logging
 		$formatter = new LineFormatter($loggerFormat, $loggerTimeFormat);
 
         $logger = new Logger($channel);
+		$logger->setTimezone($timezone);
+
 		$logger->useMicrosecondTimestamps(true);
         $logger->pushProcessor(new \Monolog\Processor\WebProcessor());
 

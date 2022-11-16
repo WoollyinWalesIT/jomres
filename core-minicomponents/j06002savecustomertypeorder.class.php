@@ -3,7 +3,7 @@
  * Core file
  *
  * @author Vince Wooll <sales@jomres.net>
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  * @package Jomres
  * @copyright	2005-2016 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
@@ -39,7 +39,14 @@ class j06002savecustomertypeorder
 			
 			$jrportal_guest_types->save_guest_type_order();
 		}
-		
+
+		$webhook_notification						   	= new stdClass();
+		$webhook_notification->webhook_event			= 'property_state_change';
+		$webhook_notification->webhook_event_description= 'A catchall webhook notification which notes that the property state has changed. Primarily designed for caching features to remove/refresh cache elements';
+		$webhook_notification->data					 	= new stdClass();
+		$webhook_notification->data->property_uid	   	=  $defaultProperty;
+		add_webhook_notification($webhook_notification);
+
 		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL . "&task=listcustomertypes"), jr_gettext('_JOMRES_MR_AUDIT_REORDER_CUSTOMERTYPE', '_JOMRES_MR_AUDIT_REORDER_CUSTOMERTYPE', false));
 	}
 

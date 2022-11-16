@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -67,15 +67,11 @@ class j00501booking_form
 
 		$configurationPanel->startPanel(jr_gettext('_JOMRES_HBOOKING_FORM', '_JOMRES_HBOOKING_FORM', false));
 
-		if ($mrConfig['tariffmode'] != '5') {
-			if ($jrConfig[ 'compatability_property_configuration' ] != 1) {
-				$configurationPanel->setleft(jr_gettext('_JOMRES_BOOKING_FORM_EXTERNAL_URL', '_JOMRES_BOOKING_FORM_EXTERNAL_URL', false));
-				$configurationPanel->setmiddle('<input type="url" class="inputbox form-control"  size="50" name="cfg_externalBookingFormUrl" value="' . $mrConfig['externalBookingFormUrl'] . '" />');
-				$configurationPanel->setright(jr_gettext('_JOMRES_BOOKING_FORM_EXTERNAL_URL_DESC', '_JOMRES_BOOKING_FORM_EXTERNAL_URL_DESC', false));
-				$configurationPanel->insertSetting();
-			}
-		}
 
+		$configurationPanel->setleft(jr_gettext('_JOMRES_BOOKING_FORM_EXTERNAL_URL', '_JOMRES_BOOKING_FORM_EXTERNAL_URL', false));
+		$configurationPanel->setmiddle('<input type="url" class="inputbox form-control"  size="50" name="cfg_externalBookingFormUrl" value="' . $mrConfig['externalBookingFormUrl'] . '" />');
+		$configurationPanel->setright(jr_gettext('_JOMRES_BOOKING_FORM_EXTERNAL_URL_DESC', '_JOMRES_BOOKING_FORM_EXTERNAL_URL_DESC', false));
+		$configurationPanel->insertSetting();
 
 		if ($mrConfig[ 'singleRoomProperty' ] != '1') {
 			$configurationPanel->setleft(jr_gettext('_JOMRES_ROOMMSLIST_STYLE', '_JOMRES_ROOMMSLIST_STYLE', false));
@@ -121,39 +117,39 @@ class j00501booking_form
 			}
 		}
 
-		if ($jrConfig[ 'compatability_property_configuration' ] != 1) {
-			$configurationPanel->insertHeading(jr_gettext('_JOMRES_HREQUIRED_FIELDS', '_JOMRES_HREQUIRED_FIELDS', false));
 
-			$configurationPanel->setleft(jr_gettext('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_HOUSE_EXPL', '_JOMRES_FRONT_MR_EB_GUEST_JOMRES_HOUSE_EXPL'));
-			$configurationPanel->setmiddle($lists[ 'bookingform_requiredfields_houseno' ]);
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
+		$configurationPanel->insertHeading(jr_gettext('_JOMRES_HREQUIRED_FIELDS', '_JOMRES_HREQUIRED_FIELDS', false));
 
-			$configurationPanel->setleft(jr_gettext('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_STREET_EXPL', '_JOMRES_FRONT_MR_EB_GUEST_JOMRES_STREET_EXPL'));
-			$configurationPanel->setmiddle($lists[ 'bookingform_requiredfields_street' ]);
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
+		$configurationPanel->setleft(jr_gettext('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_HOUSE_EXPL', '_JOMRES_FRONT_MR_EB_GUEST_JOMRES_HOUSE_EXPL'));
+		$configurationPanel->setmiddle($lists[ 'bookingform_requiredfields_houseno' ]);
+		$configurationPanel->setright();
+		$configurationPanel->insertSetting();
 
-			$configurationPanel->setleft(jr_gettext('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_TOWN_EXPL', '_JOMRES_FRONT_MR_EB_GUEST_JOMRES_TOWN_EXPL'));
-			$configurationPanel->setmiddle($lists[ 'bookingform_requiredfields_town' ]);
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
+		$configurationPanel->setleft(jr_gettext('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_STREET_EXPL', '_JOMRES_FRONT_MR_EB_GUEST_JOMRES_STREET_EXPL'));
+		$configurationPanel->setmiddle($lists[ 'bookingform_requiredfields_street' ]);
+		$configurationPanel->setright();
+		$configurationPanel->insertSetting();
 
-			$configurationPanel->setleft(jr_gettext('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_POSTCODE_EXPL', '_JOMRES_FRONT_MR_EB_GUEST_JOMRES_POSTCODE_EXPL'));
-			$configurationPanel->setmiddle($lists[ 'bookingform_requiredfields_postcode' ]);
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
+		$configurationPanel->setleft(jr_gettext('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_TOWN_EXPL', '_JOMRES_FRONT_MR_EB_GUEST_JOMRES_TOWN_EXPL'));
+		$configurationPanel->setmiddle($lists[ 'bookingform_requiredfields_town' ]);
+		$configurationPanel->setright();
+		$configurationPanel->insertSetting();
 
-			$configurationPanel->setleft(jr_gettext('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_LANDLINE_EXPL', '_JOMRES_FRONT_MR_EB_GUEST_JOMRES_LANDLINE_EXPL'));
-			$configurationPanel->setmiddle($lists[ 'bookingform_requiredfields_tel' ]);
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
+		$configurationPanel->setleft(jr_gettext('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_POSTCODE_EXPL', '_JOMRES_FRONT_MR_EB_GUEST_JOMRES_POSTCODE_EXPL'));
+		$configurationPanel->setmiddle($lists[ 'bookingform_requiredfields_postcode' ]);
+		$configurationPanel->setright();
+		$configurationPanel->insertSetting();
 
-			$configurationPanel->setleft(jr_gettext('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_MOBILE_EXPL', '_JOMRES_FRONT_MR_EB_GUEST_JOMRES_MOBILE_EXPL'));
-			$configurationPanel->setmiddle($lists[ 'bookingform_requiredfields_mobile' ]);
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
-		}
+		$configurationPanel->setleft(jr_gettext('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_LANDLINE_EXPL', '_JOMRES_FRONT_MR_EB_GUEST_JOMRES_LANDLINE_EXPL'));
+		$configurationPanel->setmiddle($lists[ 'bookingform_requiredfields_tel' ]);
+		$configurationPanel->setright();
+		$configurationPanel->insertSetting();
+
+		$configurationPanel->setleft(jr_gettext('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_MOBILE_EXPL', '_JOMRES_FRONT_MR_EB_GUEST_JOMRES_MOBILE_EXPL'));
+		$configurationPanel->setmiddle($lists[ 'bookingform_requiredfields_mobile' ]);
+		$configurationPanel->setright();
+		$configurationPanel->insertSetting();
+
 
 		$mrConfig[ 'bookingform_requiredfields_email' ] = "1"; // For GDPR compliance, bookings will always require an email address and the property manager will not be allowed to change this setting
 		

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -273,11 +273,11 @@ class j06005save_my_account
 						),
 						'medium' => array(
 							'max_width' => (int)$jrConfig[ 'thumbnail_property_header_max_width' ],
-							'max_height' => (int)$jrConfig[ 'thumbnail_property_header_max_height' ]
+							'max_height' => (int)$jrConfig[ 'thumbnail_property_header_max_width' ]
 						),
 						'thumbnail' => array(
 							'max_width' => (int)$jrConfig[ 'thumbnail_property_list_max_width' ],
-							'max_height' => (int)$jrConfig[ 'thumbnail_property_list_max_height' ]
+							'max_height' => (int)$jrConfig[ 'thumbnail_property_list_max_width' ]
 						)
 					),
 					'print_response' => false,

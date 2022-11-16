@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -2469,7 +2469,7 @@ jr_define('_JOMRES_MICROMANAGE_MODAL_BUTTON', "Norādījumi");
 
 jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS', "Ja vēlaties pievienot dažādas cenas dažādiem viesiem, <em> jūs varat izveidot vairāk nekā vairākus tarifus katram istabas tipam </em> un šajos tarifos ir atšķirīgas minimālo/maksimālo viesu vērtības. ");
 
-jr_define('_JOMRES_MICROMANAGE_INFO', "Piešķiriet tarifam nosaukumu, definējiet maksimālo nakšu skaitu un minimālo un maksimālo viesu skaitu, kas nepieciešams rezervācijas veidlapā pirms tarifa piedāvājuma. <br/> <br/> Izmantojiet datumu atlasītāja paneli, lai datumu diapazonam pievienotu cenas un minimālo nakšu iestatījumus vai tieši rediģētu ievades datus. Ja nevēlaties, lai tarifs noteiktos datumos tiktu piedāvāts vispār, atstājiet cenu iestatītu uz 0 (nulle) šajos datumos. <br/> <br/> Dažādos datumos var būt dažādas minimālās naktis, tādēļ, ja vēlaties ilgākas rezervācijas festivāla/konferences nedēļu laikā, varat iestatīt, lai minētās naktis būtu lielākas tikai šajos periodos. <br/ > <br/> Ja iekasējat maksu par personu (PPN), varat iespējot šo iestatījumu cilnē Iestatījumi> Īpašuma konfigurācija> Cilne Tarifi un valūta, pēc tam izveidojiet nepieciešamos viesu veidus sadaļā Iestatījumi> Viesu veidi. ");
+	jr_define('_JOMRES_MICROMANAGE_INFO', "Piešķiriet tarifam nosaukumu, definējiet maksimālo nakšu skaitu un minimālo un maksimālo viesu skaitu, kas ir nepieciešams rezervācijas formā pirms tarifa piedāvāšanas.<br/><br/> Izmantojiet. datumu atlasītāja panelis, lai pievienotu cenas un minimālo nakšu iestatījumus datumu diapazonam vai rediģētu ievades tieši. Ja nevēlaties, lai tarifs tiktu piedāvāts noteiktos datumos vispār, atstājiet cenu iestatītu uz 0 (nulle) šajos datumos. <br/><br/> Dažādos datumos var būt dažādas minimālās naktis, tādēļ, ja vēlaties veikt ilgākas rezervācijas festivāla/konferenču nedēļās, varat iestatīt augstāku minimālo nakšu skaitu tieši šajos periodos.<br/ ><br/>Ja iekasējat maksu par vienu personu par izmitināšanu (PPPN), varat iespējot šo iestatījumu sadaļā Iestatījumi > Īpašuma konfigurācija > cilne Tarifi un valūta.");
 
 jr_define('_JOMRES_MICROMANAGE_EXTRAOPTIONS', "Papildu iespējas");
 
@@ -2582,9 +2582,6 @@ jr_define('JOMRES_OCCUPANCY_LEVELS_MAX_OCCUPANCY', 'Maksimālā noslodze');
 jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT', 'Rediģēt noslogojuma līmeni:');
 jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT_DESC', 'Rediģēt šī numura tipa noslogojumu. Neiekļaujiet viesus, kas guļ bērnu gultiņās (tie tiek pievienoti, izveidojot papildu)');
 jr_define('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE_DESC', 'Cik jāmaksā par katru papildu pieaugušo?');
-
-jr_define('JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS', 'Papildu pieaugušie');
-
 
 jr_define('_JOMRES_SANITYCHECK_CHILD_RATES', 'Jūs vēl neesat konfigurējis bērnu likmes.');
 jr_define('_JOMRES_SANITYCHECK_CHILD_RATES_BUTTON', 'Iestatīt bērnu likmi (-es) tūlīt');
@@ -2734,3 +2731,5 @@ Varat atstāt mērķa valodu iestatītu uz savu pašreizējo valodu un izmantot 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_INFO', 'Šajā lapā varat konfigurēt, caur kurām maksājumu vārtejām vēlaties saņemt depozīta maksājumus. Maksājumu vārtejā būs nepieciešams konts. Iestatījumu lapa sniegs norādījumus, kā konfigurēt vārteju. Ja vārtejai ir pārbaudes režīms, un, ja testa režīms ir iespējots, jūs kā īpašuma pārvaldnieks varēsit izmantot maksājumu vārteju, lai pārbaudītu savu konfigurāciju. Ja testa režīms ir atspējots, tikai tie lietotāji, kas nav pārvaldnieki, rezervēšanas procesa laikā redzēs maksājumu vārtejas .');
 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Pārbaudes režīms");
+
+	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "Izstrādes režīms ir iespējots, tādēļ, ja izmantojat šo līdzekli, jūs atjaunināsiet savu Jomres instalāciju uz Nakts filiāli. Šī ir jaunākā Jomres versija un var būt vai nav stabila. Ja jūs to darāt nevēlaties atjaunināt uz Nightly, lūdzu, apmeklējiet Administrēšana > Jomres > Iestatījumi > Vietnes konfigurācija > cilne Atkļūdošana un iestatiet opciju Ražošana/izstrāde uz Ražošana.");

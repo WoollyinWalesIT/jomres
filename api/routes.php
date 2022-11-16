@@ -9,7 +9,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -30,14 +30,14 @@ if (substr($request->url,0,6) == '/core/' ) {
 } else {
 	$sub_filename = '';
 	if (isset($bang[3])) {
-		$sub_filename = $route.'_'.filter_var($bang[3], FILTER_SANITIZE_STRING);
+		$sub_filename = $route.'_'.filter_var($bang[3], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 	}
 
 	$features_files = Flight::get('features_files');
 
 
-	
-		
+
+
 	/**
 	 * 
 	 * Improved tree to route mapping
@@ -62,7 +62,7 @@ if (substr($request->url,0,6) == '/core/' ) {
 	$found = false;
 	foreach ($reversed as $path ) {
 		$test = substr($path, 0, -1).'.php';
-		
+
 		if ( file_exists( $test ) ) {
 			$found = true;
 			require_once($test);
@@ -70,7 +70,7 @@ if (substr($request->url,0,6) == '/core/' ) {
 		}
 	}
 
-		
+
 	/**
 	 * 
 	 * The older route finding method, required to work with current API Feature plugins

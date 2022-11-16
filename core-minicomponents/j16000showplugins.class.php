@@ -4,7 +4,7 @@
 	 *
 	 * @author Vince Wooll <sales@jomres.net>
 	 *
-	 *  @version Jomres 10.5.5
+	 *  @version Jomres 10.6.0
 	 *
 	 * @copyright	2005-2022 Vince Wooll
 	 * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -193,7 +193,7 @@ function createPath($path)
 	if (is_dir($path)) {
 		return true;
 	}
-	$prev_path = substr($path, 0, strrpos($path, '/', -2) + 1);
+	$prev_path = substr($path, 0, strrpos($path, JRDS, -2) + 1);
 	$return = createPath($prev_path);
 	return ($return && is_writable($prev_path)) ? mkdir($path) : false;
 }

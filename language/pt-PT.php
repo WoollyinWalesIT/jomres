@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Translated to pt-PT by Mario Oliveira, Camara de Lobos, Madeira Island, Portugal, 17Set2010 - www.marioliveira.net - Updated 21Jun2011 for ver 5.1
@@ -2504,7 +2504,7 @@ jr_define('_JOMRES_MICROMANAGE_MODAL_BUTTON', "Instruções");
 
 jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS', "Se você deseja adicionar preços diferentes para diferentes números de hóspedes, <em> você pode criar mais de várias tarifas para cada tipo de quarto </em> e ter diferentes valores mínimo / máximo de hóspedes nessas tarifas. ");
 
-jr_define('_JOMRES_MICROMANAGE_INFO', "Atribuir um nome à tarifa, definir o número máximo de noites e o número mínimo e máximo de hóspedes exigidos no formulário de reserva antes de a tarifa ser oferecida. <br/> <br/> Utilização o painel de seleção de datas para adicionar preços e configurações de noites mínimas a um intervalo de datas ou editar as entradas diretamente. Se você não quiser que a tarifa seja oferecida em certas datas, deixe o preço definido como 0 (zero) em essas datas. <br/> <br/> Você pode ter noites mínimas diferentes em datas diferentes, então se você quiser reservas mais longas durante as semanas do festival / conferência, você pode definir as noites mínimas para serem mais altas apenas nesses períodos. <br / > <br/> Se você cobrar por pessoa por noite (PPPN), poderá habilitar essa configuração em Configurações> Configuração da propriedade> guia Tarifas e moeda e, em seguida, criar os tipos de hóspedes necessários em Configurações> Tipos de hóspedes. ");
+	jr_define('_JOMRES_MICROMANAGE_INFO', "Dê um nome à tarifa, defina o número máximo de noites e o número mínimo e máximo de hóspedes necessários no formulário de reserva antes da oferta da tarifa.<br/><br/> Use o painel seletor de datas para adicionar preços e configurações mínimas de noites a um intervalo de datas ou editar as entradas diretamente. Se você não quiser que a tarifa seja oferecida em determinadas datas, deixe o preço definido como 0 ( zero ) em essas datas. <br/><br/> Você pode ter noites mínimas diferentes em datas diferentes, portanto, se quiser reservas mais longas durante as semanas de festivais/conferências, pode definir as noites mínimas para serem maiores apenas nesses períodos.<br/ ><br/>Se você cobra por Pessoa Por Pight (PPPN) você pode habilitar essa configuração em Configurações > Configuração da Propriedade > guia Tarifas e Moeda.");
 
 jr_define('_JOMRES_MICROMANAGE_EXTRAOPTIONS', "Opções extras");
 
@@ -2616,9 +2616,6 @@ jr_define('JOMRES_OCCUPANCY_LEVELS_MAX_OCCUPANCY', 'Ocupação máxima');
 jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT', 'Editar nível de ocupação para:');
 jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT_DESC', 'Editar os níveis de ocupação para este tipo de quarto. Não incluir hóspedes dormindo em berços (eles são adicionados criando um Extra)');
 jr_define('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE_DESC', 'Por cada adulto adicional, quanto deve ser cobrado?');
-
-jr_define('JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS', 'Adultos extras');
-
 
 jr_define('_JOMRES_SANITYCHECK_CHILD_RATES', 'Você ainda não configurou taxas para crianças.');
 jr_define('_JOMRES_SANITYCHECK_CHILD_RATES_BUTTON', 'Definir taxa (s) filho (s) agora');
@@ -2770,3 +2767,5 @@ Você pode deixar o idioma de destino definido para seu idioma atual e usar esta
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_INFO', 'Nesta página você pode configurar por quais gateways de pagamento você deseja receber pagamentos de depósito. Você precisará de uma conta no gateway de pagamento. A página de configurações fornecerá instruções sobre como configurar o gateway. Se o gateway tem um modo de teste e se o modo de teste estiver ativado, você como gerente da propriedade poderá usar o gateway de pagamento para testar sua configuração. Quando o modo de teste estiver desativado, apenas usuários não gerentes verão os gateways de pagamento durante o processo de reserva .');
 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Modo de teste");
+
+	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "O modo de desenvolvimento está habilitado, portanto se você usar este recurso você estará atualizando sua instalação do Jomres para o ramo Nightly. Esta é a versão mais recente do Jomres e pode ou não ser estável. Se você fizer isso não deseja atualizar para Nightly, visite Admin > Jomres > Configurações > Configuração do Site > guia Depuração e defina a opção Produção/Desenvolvimento para Produção.");

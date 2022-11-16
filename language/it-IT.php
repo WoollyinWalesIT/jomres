@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -2528,7 +2528,7 @@ jr_define('_JOMRES_MICROMANAGE_MODAL_BUTTON', "Istruzioni");
 
 jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS', "Se vuoi aggiungere prezzi diversi per diversi numeri di ospiti, <em>puoi creare più di diverse tariffe per ogni tipo di camera</em> e avere valori minimi/massimi per gli ospiti in quelle tariffe. ");
 
-jr_define('_JOMRES_MICROMANAGE_INFO', "Dai un nome alla tariffa, definisci il numero massimo di notti e il numero minimo e massimo di ospiti richiesti nel modulo di prenotazione prima che la tariffa venga offerta.<br/><br/> Usa il pannello di selezione della data per aggiungere le impostazioni dei prezzi e delle notti minime a un intervallo di date o modificare direttamente gli input Se non si desidera che la tariffa sia offerta in determinate date, lasciare il prezzo impostato su 0 ( zero ) su quelle date. <br/><br/> Puoi avere notti minime diverse in date diverse, quindi se desideri prenotazioni più lunghe durante le settimane di festival/conferenze, puoi impostare le notti minime in modo che siano più alte solo in quei periodi.<br/ ><br/>Se addebiti l'importo a persona per notte (PPPN), puoi abilitare tale impostazione in Impostazioni > Configurazione proprietà > scheda Tariffe e valuta, quindi creare i tipi di ospite richiesti in Impostazioni > Tipi di ospite.");
+	jr_define('_JOMRES_MICROMANAGE_INFO', "Assegna un nome alla tariffa, definisci il numero massimo di notti e il numero minimo e massimo di ospiti richiesti nel modulo di prenotazione prima che la tariffa venga offerta.<br/><br/> Usa il pannello di selezione della data per aggiungere i prezzi e le impostazioni delle notti minime a un intervallo di date o modificare direttamente gli input. Se non desideri che la tariffa venga offerta in determinate date, lascia il prezzo impostato su 0 (zero) su quelle date. <br/><br/> Puoi avere notti minime diverse in date diverse, quindi se desideri prenotazioni più lunghe durante le settimane di festival/conferenze, puoi impostare le notti minime in modo che siano più alte solo in quei periodi.<br/ ><br/>Se addebiti per persona per persona (PPPN) puoi abilitare tale impostazione in Impostazioni > Configurazione struttura > Tariffe e valuta.");
 
 jr_define('_JOMRES_MICROMANAGE_EXTRAOPTIONS', "Opzioni extra");
 jr_define('_JOMRES_MICROMANAGE_EXTRA_OPTIONS', "Queste sono opzioni aggiuntive che non sono così comunemente usate, ma comunque disponibili per te. <br/><strong>Ignora PPPN</strong> Significa Ignora per persona per notte. Puoi avere diverse tariffe differenti per lo stesso tipo di camera, ad esempio uno dei quali addebita a persona per notte e uno no.<br/><strong>Consenti weekend</strong> L'opzione Consenti weekend ti dà la possibilità di fare una tariffa che è solo disponibile durante i giorni feriali, ad esempio se desideri una tariffa speciale per i viaggiatori d'affari, in tal caso imposteresti l'opzione su No e le notti minime su 1 e le notti massime, al massimo, 5. <br/><strong>Fine settimana solo</strong> L'opzione Solo fine settimana è l'opposto dell'opzione Consenti fine settimana. I giorni che consideri giorni del fine settimana possono essere configurati nelle impostazioni di Configurazione della proprietà. Questo ti dà la possibilità di definire una tariffa solo per il fine settimana che potresti voler offerta per eventi speciali.<br/><strong>Check-in Giorno della settimana </strong> Questa opzione ti dà la possibilità di forzare il check-in solo in determinati giorni della settimana e viene utilizzata al meglio in combinazione con la configurazione della struttura > scheda Prenotazioni > opzioni di periodi fissi. La maggior parte degli utenti vorrà lasciare questa opzione impostata su Tutti.<br/>Le ultime due opzioni, <strong>Mini sale già selezionate</strong> e <strong>Massimo sale già selezionate</strong> sono molto specializzate e utile agli immobili con tariffe estremamente complicate. <em>Se non hai un'esigenza specifica, dovresti lasciare queste opzioni da sole.</em> Usale se vuoi che questa tariffa sia offerta solo quando l'ospite ha già selezionato N numero di camere nel modulo di prenotazione, quindi ad esempio potresti avere una tariffa di base in cui tali opzioni sono lasciate al valore predefinito e una seconda tariffa in cui l'opzione di camere minime già selezionate è impostata su 1, quindi questa seconda tariffa verrà offerta nel modulo di prenotazione una volta selezionata una camera.");
@@ -2641,8 +2641,6 @@ jr_define('JOMRES_OCCUPANCY_LEVELS_MAX_OCCUPANCY', 'Occupazione massima');
 jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT', 'Modifica livello di occupazione per: ');
 jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT_DESC', 'Modifica i livelli di occupazione per questa tipologia di camera. Non includere gli ospiti che dormono sulle culle (questi vengono aggiunti creando un Extra) ');
 jr_define('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE_DESC', 'Per ogni adulto in più, quanto devono pagare?');
-
-jr_define('JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS', 'Adulti extra');
 
 
 jr_define('_JOMRES_SANITYCHECK_CHILD_RATES', 'Non hai ancora configurato le tariffe per bambini.');
@@ -2794,3 +2792,5 @@ Puoi lasciare la lingua di destinazione impostata sulla tua lingua corrente e ut
 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Modalità test");
 
+
+	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "La modalità sviluppo è abilitata, quindi se usi questa funzione aggiornerai l'installazione di Jomres al ramo Nightly. Questa è la versione più recente di Jomres e potrebbe essere stabile o meno. Se lo fai non vuoi aggiornare a Nightly, visita Admin > Jomres > Settings > Site Configuration > Debugging e imposta l'opzione Production/Development su Production.");

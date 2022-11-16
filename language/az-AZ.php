@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -2477,7 +2477,7 @@ jr_define('_JOMRES_MICROMANAGE_MODAL_BUTTON', "Instrucciones");
 
 jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS', "Si desea agregar diferentes precios para diferentes números de huéspedes, entonces <em> puede crear más de varias tarifas para cada tipo de habitación </em> y tener diferentes valores mínimos / máximos de huéspedes en esas tarifas. ");
 
-jr_define('_JOMRES_MICROMANAGE_INFO', "Asigne un nombre a la tarifa, defina el número máximo de noches y el número mínimo y máximo de huéspedes que se requieren en el formulario de reserva antes de ofrecer la tarifa. <br/> <br/> Uso el panel selector de fechas para agregar precios y configuraciones de noches mínimas a un rango de fechas, o editar las entradas directamente. Si no desea que se ofrezca la tarifa en ciertas fechas, deje el precio establecido en 0 (cero) el esas fechas. <br/> <br/> Puede tener diferentes noches mínimas en diferentes fechas, por lo que si desea reservas más largas durante las semanas de festivales / conferencias, puede configurar las noches mínimas para que sean más altas solo en esos períodos. <br / > <br/> Si cobra por persona por tarifa (PPPN), puede habilitar esa configuración en Configuración> Configuración de la propiedad> pestaña Tarifas y moneda, luego cree los tipos de huéspedes que necesite en Configuración> Tipos de invitados. ");
+	jr_define('_JOMRES_MICROMANAGE_INFO', "Tarifə ad verin, tarif təklif edilməzdən əvvəl rezervasiya formasında tələb olunan gecələrin maksimum sayını, minimum və maksimum qonaq sayını təyin edin.<br/><br/> İstifadə edin. bir sıra tarixlərə qiymətlər və minimum gecə parametrləri əlavə etmək və ya birbaşa daxiletmələri redaktə etmək üçün tarix seçici paneli. Əgər tarifin müəyyən tarixlərdə təklif olunmasını istəmirsinizsə, qiyməti 0 (sıfır) olaraq təyin edin. bu tarixlər. <br/><br/> Fərqli tarixlərdə fərqli minimum gecələr keçirə bilərsiniz, belə ki, festival/konfrans həftələrində daha uzun rezervasiyalar istəyirsinizsə, minimum gecələri məhz həmin dövrlərdə daha yüksək olaraq təyin edə bilərsiniz.<br/ ><br/>Şəxs Başına (PPPN) ödəniş etsəniz, bu parametri Parametrlər > Mülk Konfiqurasiyası > Tariflər və Valyuta nişanında aktivləşdirə bilərsiniz.");
 
 jr_define('_JOMRES_MICROMANAGE_EXTRAOPTIONS', "Opciones extra");
 
@@ -2590,9 +2590,6 @@ jr_define('JOMRES_OCCUPANCY_LEVELS_MAX_OCCUPANCY', 'Ocupación máxima');
 jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT', 'Editar nivel de ocupación para:');
 jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT_DESC', 'Edite los niveles de ocupación para este tipo de habitación. No incluya a los huéspedes que duerman en cunas (se agregan mediante la creación de un extra)');
 jr_define('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE_DESC', 'Por cada adulto adicional, ¿cuánto se les debe cobrar?');
-
-jr_define('JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS', 'Adultos adicionales');
-
 
 jr_define('_JOMRES_SANITYCHECK_CHILD_RATES', 'Aún no ha configurado las tarifas para niños.');
 jr_define('_JOMRES_SANITYCHECK_CHILD_RATES_BUTTON', 'Establecer tarifas de niños ahora');
@@ -2743,3 +2740,5 @@ Siz hədəf dili təyin edilmiş cari dilinizə buraxa və onların fərdi səhi
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_INFO', 'Bu səhifədə siz hansı ödəniş şlüzləri vasitəsilə depozit ödənişlərini qəbul etmək istədiyinizi konfiqurasiya edə bilərsiniz. Ödəniş şluzunda hesabınıza ehtiyacınız olacaq. Parametrlər səhifəsində şluzun konfiqurasiyasına dair təlimatlar sizə təqdim olunacaq. Əgər şlüzdə test rejimi var və Test Rejimi aktivdirsə, siz mülkiyyət meneceri olaraq konfiqurasiyanızı yoxlamaq üçün ödəniş şlüzündən istifadə edə biləcəksiniz. Test Rejimi deaktiv edildikdə yalnız qeyri-Menecer istifadəçilər rezervasiya zamanı ödəniş şlüzlərini görəcəklər. .');
 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Sınaq rejimi");
+
+	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "İnkişaf rejimi aktivdir, ona görə də bu funksiyadan istifadə etsəniz, Jomres quraşdırmanızı Gecə şöbəsinə yeniləyəcəksiniz. Bu, Jomres-in ən son versiyasıdır və stabil ola bilər, ya da olmaya bilər. Əgər etsəniz Gecəyə yeniləmək istəmirsinizsə, lütfən, Admin > Jomres > Parametrlər > Sayt Konfiqurasiyası > Sazlama nişanına daxil olun və İstehsal/İnkişaf seçimini İstehsal olaraq təyin edin.");

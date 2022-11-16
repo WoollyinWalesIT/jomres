@@ -4,7 +4,7 @@
 	 *
 	 * @author Vince Wooll <sales@jomres.net>
 	 *
-	 *  @version Jomres 10.5.5
+	 *  @version Jomres 10.6.0
 	 *
 	 * @copyright	2005-2022 Vince Wooll
 	 * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -21,7 +21,7 @@
 	 * @package Jomres\Core\Classes
 	 *
 	 */
-
+	#[AllowDynamicProperties]
 class jomres_temp_booking_handler
 {
 	/**
@@ -89,7 +89,7 @@ class jomres_temp_booking_handler
 		$this->user_agent = preg_replace("/[^A-Za-z0-9[:space:]]/", "", strip_tags(trim($_SERVER['HTTP_USER_AGENT'])));
 
 		$current_url = getCurrentUrl(true);
-		$this->current_url = filter_var($current_url, FILTER_SANITIZE_STRING);
+		$this->current_url = filter_var($current_url, FILTER_SANITIZE_URL);
 
 		//init arrays
 		$this->_init();

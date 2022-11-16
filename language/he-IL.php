@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -2502,7 +2502,7 @@ jr_define('_JOMRES_MICROMANAGE_MODAL_BUTTON', "הוראות");
 
 jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS', "אם אתה רוצה להוסיף מחירים שונים עבור מספר אורחים אחר, אז <em> תוכל ליצור יותר ממספר תעריפים עבור כל סוג חדר </em> ולהעריך ערכי מינימום/מקסימום אורחים בתעריפים אלה. ");
 
-jr_define('_JOMRES_MICROMANAGE_INFO', "תן שם לתעריף, הגדר את מספר הלילות המרבי ואת מספר האורחים המינימלי והמקסימלי הנדרש בטופס ההזמנה לפני הצעת התעריף. <br/> <br/> השתמש לוח לוח בוחרי התאריכים כדי להוסיף מחירים והגדרות לילות מינימליים לטווח תאריכים, או לערוך את התשומות ישירות. אם אינך רוצה שהתעריף יציע כלל בתאריכים מסוימים, השאר את המחיר מוגדר ל -0 (אפס) ב- תאריכים אלה. <br/> <br/> אתה יכול לקבל לילות מינימום שונים בתאריכים שונים, כך שאם אתה רוצה הזמנות ארוכות יותר במהלך שבועות פסטיבל/ועידה, תוכל להגדיר את לילות הדקות להיות גבוהים יותר רק בתקופות האלה. <br/ > <br/> אם אתה גובה תשלום לאדם לכל ערך (PPPN) תוכל להפעיל הגדרה זו בהגדרות> תצורת נכס> תעריפים ומטבע, ולאחר מכן צור את סוגי האורחים הדרושים לך בהגדרות> סוגי אורחים. ");
+	jr_define('_JOMRES_MICROMANAGE_INFO', "תנו לתעריף שם, הגדר את מספר הלילות המקסימלי ואת המספר המינימלי והמקסימלי של אורחים הנדרשים בטופס ההזמנה לפני שהתעריף מוצע.<br/><br/> השתמש לוח בוחר התאריכים כדי להוסיף מחירים והגדרות מינימום לילות לטווח של תאריכים, או לערוך את התשומות ישירות. אם אינך רוצה שהתעריף יוצע כלל בתאריכים מסוימים, השאר את המחיר מוגדר ל-0 (אפס) ב- תאריכים אלה. <br/><br/> אתה יכול לקבל מינימום לילות שונים בתאריכים שונים, כך שאם אתה רוצה הזמנות ארוכות יותר במהלך שבועות פסטיבלים/כנסים, תוכל להגדיר את הלילות המינימליים להיות גבוהים יותר רק בתקופות אלה.<br/ ><br/>אם אתה מחייב לאדם לכל פיט (PPPN) אתה יכול להפעיל את ההגדרה הזו בהגדרות > תצורת נכס > כרטיסיית תעריפים ומטבע.");
 
 jr_define('_JOMRES_MICROMANAGE_EXTRAOPTIONS', "אפשרויות נוספות");
 
@@ -2615,9 +2615,6 @@ jr_define('JOMRES_OCCUPANCY_LEVELS_MAX_OCCUPANCY', 'תפוסה מרבית');
 jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT', 'ערוך רמת תפוסה עבור:');
 jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT_DESC', 'ערוך רמות תפוסה עבור סוג חדר זה. אל תכלול אורחים שישנים על מיטות תינוק (אלה מתווספים על ידי יצירת תוספת)');
 jr_define('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE_DESC', 'על כל מבוגר נוסף, כמה צריך לחייב אותו?');
-
-jr_define('JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS', 'מבוגרים נוספים');
-
 
 jr_define('_JOMRES_SANITYCHECK_CHILD_RATES', 'עדיין לא הגדרת תעריפי ילדים');
 jr_define('_JOMRES_SANITYCHECK_CHILD_RATES_BUTTON', 'הגדר תעריפי ילדים עכשיו');
@@ -2770,3 +2767,5 @@ jr_define('JOMRES_UPDATES_INFO', "דף זה יכול להוריד ולהתקין
 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "מצב בדיקה");
 
+
+	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "מצב הפיתוח מופעל, לכן אם תשתמש בתכונה זו תעדכן את התקנת Jomres שלך לסניף Nightly. זוהי הגרסה העדכנית ביותר של Jomres ועשויה להיות יציבה או לא. אם תעשה זאת. לא רוצה לעדכן ל-Nightly, בקר ב-Admin > Jomres > הגדרות > תצורת אתר > כרטיסיית איתור באגים והגדר את אפשרות הפקה/פיתוח ל-Production.");

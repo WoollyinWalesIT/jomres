@@ -1,80 +1,95 @@
 
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 	<style>
-		.card-img-top {
-			width: 100%;
-			height: 15vw;
-			object-fit: cover;
-		}
+        .card-img-top {
+            width: 100% !important;
+            object-fit: cover !important;
+            height: 200px !important;
+        }
 
-		.card-img-top-lg {
-			width:100%;
-			max-height: 600px;
-			min-height: 600px;
-			object-fit: cover;
-		}
+        .card-img-radius {
+            border-radius: 20px !important;
+        }
 
-		.card-img-top-md {
-			width:100%;
-			max-height: 300px;
-			min-height: 300px;
-			object-fit: cover;
-		}
+        .card-img-top-lg {
+            width:100%;
+            max-height: 600px !important;
+            min-height: 600px !important;
+            object-fit: cover !important;
+        }
 
-		.card-img-top-sm {
-			width:100%;
-			max-height: 100px;
-			min-height: 100px;
-			object-fit: cover;
-		}
+        .card-img-top-md {
+            width:100%;
+            max-height: 300px !important;
+            min-height: 300px !important;
+            object-fit: cover !important;
+        }
 
-		.ribbon {
-			position: absolute !important;
-			right:0 !important;
-			top:0 !important;
-			z-index: 10 !important;
-			overflow: hidden !important;
-			width: 90px !important;
-			height: 90px !important;
-			text-align: right !important;}
-		.ribbon span 	{
-			background:#EEA2A2;
-			font-size: 12px !important;
-			font-weight: bold !important;
-			text-transform: uppercase !important;
-			text-align: center !important;
-			line-height: 24px !important;
-			transform: rotate(45deg) !important;
-			-webkit-transform: rotate(45deg) !important;
-			width: 170px !important;
-			display: block !important;
-			position: absolute !important;
-			top: 25px !important;
-			right: -49px !important;}
+        .card-img-top-sm {
+            width:100%;
+            max-height: 100px !important;
+            min-height: 100px !important;
+            object-fit: cover !important;
+        }
 
-		.image-container {
-			position: relative;
-			text-align: center;
-			color: white;
-		}
-		.bottom-left {
-			position: absolute;
-			bottom: 8px;
-			left: 16px;
-		}
 
-		.bottom-right {
-			position: absolute;
-			bottom: 8px;
-			right: 16px;
-		}
+        .ribbon {
+            position: absolute !important;
+            right:0 !important;
+            top:0 !important;
+            z-index: 10 !important;
+            overflow: hidden !important;
+            width: 90px !important;
+            height: 90px !important;
+            text-align: right !important;}
+        .ribbon span 	{
+            background:#EEA2A2;
+            font-size: 12px !important;
+            font-weight: bold !important;
+            text-transform: uppercase !important;
+            text-align: center !important;
+            line-height: 24px !important;
+            transform: rotate(45deg) !important;
+            -webkit-transform: rotate(45deg) !important;
+            width: 170px !important;
+            display: block !important;
+            position: absolute !important;
+            top: 25px !important;
+            right: -49px !important;}
 
-		.top-left{
-			position: absolute;
-			top: 8px;
-			left: 16px;
-		}
+        .image-container {
+            position: relative;
+            text-align: center;
+            color: white;
+        }
 
+        .top-left{
+            position: absolute;
+            top: 8px;
+            left: 24px;
+            z-index: 10 !important;
+            background-color: rgba(1, 33, 82, 0.50);
+            font-weight: bold;
+        }
+
+        .bottom-left {
+            position: absolute;
+            bottom: 8px;
+            left: 24px;
+            z-index: 10 !important;
+            background-color: rgba(55, 122, 40, 0.5);
+        }
+
+        .bottom-right {
+            position: absolute;
+            bottom: 8px;
+            right: 24px;
+            z-index: 10 !important;
+            background-color: rgb(122, 93, 40, 0.5);
+        }
+	
+	
+	
 	</style>
 
 </patTemplate:tmpl>

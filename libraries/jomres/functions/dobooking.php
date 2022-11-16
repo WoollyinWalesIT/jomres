@@ -5,7 +5,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -183,7 +183,7 @@ function dobooking($selectedProperty, $thisdate, $remus)
 
 	$mrConfig = getPropertySpecificSettings($selectedProperty);
 	if ($jrConfig[ 'is_single_property_installation' ] == '0' && !defined('DOBOOKING_IN_DETAILS')) {
-		property_header($selectedProperty);
+		/*property_header($selectedProperty);*/
 	}
 
 	$current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
@@ -687,11 +687,17 @@ function dobooking($selectedProperty, $thisdate, $remus)
 		$roomfeaturesHeader[ ] = array('_JOMRES_BOOKINGORM_ROOMFEATURE_FILTER' => $output[ '_JOMRES_BOOKINGORM_ROOMFEATURE_FILTER' ]);
 
 		foreach ($bkg->room_feature_checkboxes as $feature) {
+			if (!isset( $basic_room_details->all_room_features[  $feature['ID'] ][ 'small' ])){
+				$image = $basic_room_details->all_room_features[  $feature['ID'] ] ['image'];
+			} else {
+				$image =  $basic_room_details->all_room_features[  $feature['ID'] ][ 'small' ];
+			}
+
 			$rf = array();
 			$rf[ 'INPUTBOX' ] = $feature[ 'INPUTBOX' ];
 			$rf[ 'DESCRIPTION' ] = $feature[ 'DESCRIPTION' ];
 			$rf[ 'IMAGE' ] = $basic_room_details->all_room_features[  $feature['ID'] ][ 'tooltip' ];
-			$rf[ 'IMAGE_RELATIVE' ] = $basic_room_details->all_room_features[  $feature['ID'] ][ 'small' ];
+			$rf[ 'IMAGE_RELATIVE' ] = $image;
 			$roomfeatures[ ] = $rf;
 		}
 	}

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -240,8 +240,7 @@ class j06000handlereq
 				$ajrq = 'ajrq:::extra_guests';
 				$bkg->setOkToBook(false);
 				$value = $bkg->sanitiseInput('int', $value);
-				$bkg->writeToLogfile('Starting extra guest input');
-				$retText = 'Extra added to booking';
+				$bkg->resetRequestedRoom();
 				$bkg->setStandardGuests($value);
 				break;
 
@@ -544,8 +543,6 @@ class j06000handlereq
 					} else {
 						echo '; populateDiv("cleaning_fee","'.output_price(0.00).'")';
 					}
-
-					echo '; populateDiv("extra_adults","'.output_price($bkg->extra_guest_price).'")';
 				} else {
 					$bkg->setErrorLog('handlereq:: Field '.$lastfield.' exempt from pricing rebuild');
 				}
@@ -564,34 +561,17 @@ class j06000handlereq
 
 			if ($bkg->getOkToBook()) {
 				echo $oktobookClass;
-/*				echo '; populateDiv("messages","'.$bkg->sanitiseOutput(jr_gettext('_JOMRES_FRONT_MR_REVIEWBOOKING', '_JOMRES_FRONT_MR_REVIEWBOOKING', false, false)).'"); checkSelectRoomMessage(true,"'.$disable_address.'");  jomresJquery.notify({
-				message: "'.$bkg->sanitiseOutput(jr_gettext('_JOMRES_FRONT_MR_REVIEWBOOKING', '_JOMRES_FRONT_MR_REVIEWBOOKING', false, false)).'" 
-									 
-				},{ 
-				type: "info" ,
-				template: \'<div data-notify="container" class="col-xs-11 col-sm-4 alert alert-{0}" role="alert"><span data-notify="icon"></span> <span data-notify="title">{1}</span> <span data-notify="message">{2}</span><div class="progress" data-notify="progressbar"><div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div></div><a href="{3}" target="{4}" data-notify="url"></a></div>\' 
-				});';*/
 				echo '; populateDiv("messages","'.$bkg->sanitiseOutput(jr_gettext('_JOMRES_FRONT_MR_REVIEWBOOKING', '_JOMRES_FRONT_MR_REVIEWBOOKING', false, false)).'"); checkSelectRoomMessage(true,"'.$disable_address.'");';
 				echo $bkg->setGuestPopupMessage(jr_gettext('_JOMRES_FRONT_MR_REVIEWBOOKING', '_JOMRES_FRONT_MR_REVIEWBOOKING', false, false));
 				echo '; enableSubmitButton(document.ajaxform.confirmbooking); '; // Added timeout because if a user clicks on this button too soon they'll get taken to the review booking before oktobook has been saved, therefore getting themselves redirected back to here
 			} else {
 				$messagesClass = $errorClass;
 				echo $messagesClass;
-/*				echo '; populateDiv("messages","'.$bkg->sanitiseOutput($bkg->monitorGetFirstMessage()).'"); checkSelectRoomMessage(false,"'.$disable_address.'"); jomresJquery.notify({
-					message: "'.$bkg->sanitiseOutput($bkg->monitorGetFirstMessage()).'" 
-				},
-				{ 
-					type: "danger" ,
-					template: \'<div data-notify="container" class="col-xs-11 col-sm-4 alert alert-{0}" role="alert"><span data-notify="icon"></span> <span data-notify="title">{1}</span> <span data-notify="message">{2}</span><div class="progress" data-notify="progressbar"><div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div></div><a href="{3}" target="{4}" data-notify="url"></a></div>\' 
-				});';*/
 				echo '; populateDiv("messages","'.$bkg->sanitiseOutput($bkg->monitorGetFirstMessage()).'"); checkSelectRoomMessage(false,"'.$disable_address.'");';
 
 				if ($firstrun != '1') {
 					echo $bkg->setGuestPopupMessage($bkg->monitorGetFirstMessage());
 				}
-
-				//echo ';jomresJquery("#bookingform_address").delay(800).fadeTo("slow", 1);';
-
 				echo '; disableSubmitButton(document.ajaxform.confirmbooking); ';
 			}
 
@@ -653,6 +633,7 @@ class j06000handlereq
 			if (!empty($freeRoomsArray)) { // This must be before the rest of these functions
 				$freeRoomsArray = $bkg->checkPeopleNumbers($freeRoomsArray);
 			}
+
 			$bkg->setErrorLog('handlereq-bookingformlistRooms:: Number of free rooms '.$freeRoomsArray_count);
 			if (!empty($freeRoomsArray)) {
 				$freeRoomsArray = $bkg->checkRoomFeatureOption($freeRoomsArray);
@@ -675,6 +656,7 @@ class j06000handlereq
 					}
 				}
 			}
+
 			if ($bkg->cfg_booking_form_rooms_list_style == '1') {
 				$bkg->setErrorLog('handlereq-bookingformlistRooms:: Number of free rooms '.$freeRoomsArray_count);
 				if (!empty($freeRoomsArray)) {

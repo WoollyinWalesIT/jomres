@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -251,3 +251,7 @@ jr_define('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_MRPSRP', 'Czy 
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER', 'Opcjonalnie. Jeśli identyfikator właściwości nie jest ustawiony, możesz zamiast tego podać numer.');
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH', 'Opcjonalne. Alternatywna ścieżka szablonu. Nie można przekazać przez adres URL. Musi być bezwzględna.');
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME', 'Opcjonalnie. Alternatywna nazwa szablonu.');
+
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET', "Pokazuje dane wyjściowe typu modułu właściwości do umieszczenia z kodami skróconymi. Dane wyjściowe modułu właściwości to mały fragment szczegółów właściwości zaprojektowany do wyświetlania w różnych miejscach na stronie.");
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_PROPERTY_UID', 'Opcjonalnie. Identyfikator właściwości. Jeśli identyfikator właściwości nie jest ustawiony, zostanie wyświetlona losowa opublikowana właściwość.');
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_ALT_TEMPLATE_NAME', 'Opcjonalne. Alternatywna nazwa szablonu, bez „.html”. Szablon musi istnieć w katalogu zastępowania szablonu. Pozwala to na używanie niestandardowych wersji „basic_module_output.html” w różnych miejscach na Twoich stronach. ');

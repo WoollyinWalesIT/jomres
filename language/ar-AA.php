@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -2495,7 +2495,7 @@ jr_define('_JOMRES_MICROMANAGE_MODAL_BUTTON', "التعليمات") ;
 
 jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS', "إذا كنت تريد إضافة أسعار مختلفة لأعداد مختلفة من الضيوف , فبإمكانك <em> إنشاء أكثر من عدة تعريفات لكل نوع غرفة </ em> والحصول على قيم مختلفة للحد الأدنى / الأقصى للضيوف في تلك التعريفات. ") ;
 
-jr_define('_JOMRES_MICROMANAGE_INFO', "امنح التعرفة اسمًا , وحدد الحد الأقصى لعدد الليالي , والحد الأدنى والحد الأقصى لعدد الضيوف المطلوبين في نموذج الحجز قبل تقديم التعريفة. <br/> <br/> الاستخدام لوحة منتقي التاريخ لإضافة الأسعار وإعدادات الحد الأدنى لليالي إلى نطاق من التواريخ , أو تحرير المدخلات مباشرة. إذا كنت لا تريد عرض التعريفة على الإطلاق في تواريخ معينة , فاترك السعر مضبوطًا على 0 (صفر) في هذه التواريخ. <br/> <br/> يمكن أن يكون لديك حد أدنى مختلف لليالي في تواريخ مختلفة , لذلك إذا كنت تريد حجوزات أطول خلال أسابيع المهرجان / المؤتمر , فيمكنك تعيين عدد الليالي ليكون أعلى في تلك الفترات فقط. <br / > <br/> إذا كنت تفرض رسومًا على كل شخص لكل شخص (PPPN); فيمكنك تمكين هذا الإعداد في الإعدادات> تكوين الموقع> علامة التبويب التعريفات والعملة , ثم إنشاء أنواع الضيف التي تريدها في الإعدادات> أنواع الضيوف. ") ;
+jr_define ('_ JOMRES_MICROMANAGE_INFO' , "امنح التعرفة اسمًا ، وحدد الحد الأقصى لعدد الليالي ، والحد الأدنى والحد الأقصى لعدد الضيوف المطلوبين في نموذج الحجز قبل تقديم التعريفة. <br/> <br/> الاستخدام لوحة منتقي التاريخ لإضافة الأسعار وإعدادات الحد الأدنى لليالي إلى نطاق من التواريخ ، أو تحرير المدخلات مباشرة. إذا كنت لا تريد عرض التعريفة على الإطلاق في تواريخ معينة ، فاترك السعر مضبوطًا على 0 (صفر) في تلك التواريخ. <br/> <br/> يمكن أن يكون لديك حد أدنى مختلف لليالي في تواريخ مختلفة ، لذلك إذا كنت تريد حجوزات أطول خلال أسابيع المهرجان / المؤتمر ، فيمكنك تعيين عدد الليالي ليكون أعلى في تلك الفترات فقط. <br / > <br/> إذا كنت تفرض رسومًا على كل شخص لكل شخص (PPPN) ، فيمكنك تمكين هذا الإعداد في الإعدادات> تكوين الخاصية> علامة التبويب التعريفات والعملة. ") ;
 
 jr_define('_JOMRES_MICROMANAGE_EXTRAOPTIONS', "خيارات إضافية") ;
 
@@ -2610,9 +2610,6 @@ jr_define("JOMRES_OCCUPANCY_LEVELS_MAX_OCCUPANCY", "الحد الأقصى للإ
 jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT', 'تحرير مستوى الإشغال لـ:') ;
 jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT_DESC', "قم بتحرير مستويات الإشغال لهذا النوع من الغرف. لا تقم بتضمين الضيوف الذين ينامون على أسرّة أطفال (تمت إضافتهم من خلال إنشاء إضافي)") ;
 jr_define('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE_DESC', "لكل شخص بالغ إضافي , كم يجب أن يتم تحصيل الرسوم؟") ;
-
-jr_define("JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS", "بالغون إضافيون") ;
-
 
 jr_define('_JOMRES_SANITYCHECK_CHILD_RATES', 'لم تقم بتكوين المعدلات الفرعية حتى الآن.') ;
 jr_define('_JOMRES_SANITYCHECK_CHILD_RATES_BUTTON', 'تعيين معدل (معدلات) الأطفال الآن') ;
@@ -2765,3 +2762,6 @@ jr_define ('JOMRES_COM_TRANSITION_FROM_ADMIN_TO_BACKEND_NOT_LOGGED_IN_EXPOSITION
 jr_define ('_ JOMRES_COM_A_GATEWAYLIST_INFO' , 'في هذه الصفحة يمكنك تكوين بوابات الدفع التي تريد استلام مدفوعات الإيداع من خلالها. ستحتاج إلى حساب على بوابة الدفع. ستزودك صفحة الإعدادات بإرشادات حول كيفية تكوين البوابة. إذا تحتوي البوابة على وضع اختبار وإذا تم تمكين وضع الاختبار ، فستتمكن كمدير للممتلكات من استخدام بوابة الدفع لاختبار التكوين الخاص بك. عند تعطيل وضع الاختبار ، سيرى المستخدمون غير المديرين فقط بوابات الدفع أثناء عملية الحجز . ') ;
 
 jr_define ('_ JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR' , "وضع الاختبار") ;
+
+
+	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "Development mode is enabled, therefore if you use this feature you will be updating your installation of Jomres to the Nightly branch. This is the most recent version of Jomres and may or may not be stable. If you do not want to update to Nightly please visit Admin > Jomres > Settings > Site Configuration > Debugging tab and set the Production/Development option to Production.");

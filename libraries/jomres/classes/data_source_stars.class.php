@@ -4,7 +4,7 @@
 	 *
 	 * @author Vince Wooll <sales@jomres.net>
 	 *
-	  *  @version Jomres 10.5.5
+	  *  @version Jomres 10.6.0
 	 *
 	 * @copyright	2005-2022 Vince Wooll
 	 * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,6 +13,8 @@
 // ################################################################
 	defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+
+	#[AllowDynamicProperties]
 
 class data_source_stars extends jomres_data_source_base
 {
@@ -32,9 +34,16 @@ class data_source_stars extends jomres_data_source_base
 			foreach ($this->cms_languages as $lang) {
 				$tmp_arr = [];
 				foreach ($result as $s) {
+					if (is_null($s->stars)) {
+						$s->stars = 0;
+					}
+
 					$no = $s->stars;
 					if (!isset($stars_array[$no])) {
 						$stars_array[$no] = 0;
+					}
+					if (!isset($tmp_arr[$no])) {
+						$tmp_arr[$no] = 0;
 					}
 					$tmp_arr[$no]++;
 				}

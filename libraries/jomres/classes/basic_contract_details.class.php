@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -20,6 +20,9 @@ defined('_JOMRES_INITCHECK') or die('');
 	 *
 	 *          A utility class for getting information about a booking
 	 */
+
+#[AllowDynamicProperties]
+
 
 class basic_contract_details
 {
@@ -180,7 +183,7 @@ class basic_contract_details
 			$this->contract[$contract_uid]['contractdeets']['booking_data_archive_id'] = $contract->booking_data_archive_id;
 
 			//guest details
-			$this->contract[$contract_uid]['guestdeets']['image'] = JOMRES_IMAGES_RELPATH.'noimage.gif';
+			$this->contract[$contract_uid]['guestdeets']['image'] = JOMRES_IMAGES_RELPATH.'noimage.svg';
 			if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.'userimages'.JRDS.'userimage_'.(int) $contract->mos_userid.'.jpg')) {
 				$this->contract[$contract_uid]['guestdeets']['image'] = JOMRES_IMAGELOCATION_RELPATH.'userimages/userimage_'.(int) $contract->mos_userid.'_thumbnail.jpg';
 			}

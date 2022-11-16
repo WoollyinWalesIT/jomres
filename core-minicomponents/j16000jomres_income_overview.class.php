@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -72,6 +72,10 @@ class j16000jomres_income_overview
 						a.inv_id = b.id 
 						AND DATE_FORMAT(b.paid, '%Y') = '".$this_year."' ";
 		$result = doSelectSql($query, 2);
+
+		if (is_null($result['bookings_total'])) {
+			$result['bookings_total'] = 0;
+		}
 
 		$output['BOOKINGS_INCOME'] = output_price(abs($result['bookings_total']));
 		$output['BOOKINGS_INCOME_LABEL_CLASS'] = 'label-blue';

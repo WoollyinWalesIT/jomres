@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -67,10 +67,10 @@ class j00001define_template_paths
 		}
 
 		if (!defined('JOMRES_TEMPLATEPATH_ADMINISTRATOR')) {
-			if (!using_bootstrap()) {
-				define('JOMRES_TEMPLATEPATH_ADMINISTRATOR', JOMRESPATH_BASE.JRDS.'assets'.JRDS.'templates'.JRDS.'jquery_ui'.JRDS.'administrator');
-			} elseif (_JOMRES_DETECTED_CMS == 'joomla3' || this_cms_is_wordpress()) {
+			if (_JOMRES_DETECTED_CMS == 'joomla3' || this_cms_is_wordpress()) {
 				define('JOMRES_TEMPLATEPATH_ADMINISTRATOR', JOMRESPATH_BASE.JRDS.'assets'.JRDS.'templates'.JRDS.'bootstrap'.JRDS.'administrator');
+			} elseif (_JOMRES_DETECTED_CMS == 'joomla4') {
+				define('JOMRES_TEMPLATEPATH_ADMINISTRATOR', JOMRESPATH_BASE.JRDS.'assets'.JRDS.'templates'.JRDS.'bootstrap5'.JRDS.'administrator');
 			} else {
 				define('JOMRES_TEMPLATEPATH_ADMINISTRATOR', JOMRESPATH_BASE.JRDS.'assets'.JRDS.'templates'.JRDS.'bootstrap'.$jrConfig[ 'bootstrap_version' ].JRDS.'administrator');
 			}

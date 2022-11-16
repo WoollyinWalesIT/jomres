@@ -4,7 +4,7 @@
 	 *
 	 * @author Vince Wooll <sales@jomres.net>
 	 *
-	 *  @version Jomres 10.5.5
+	 *  @version Jomres 10.6.0
 	 *
 	 * @copyright	2005-2022 Vince Wooll
 	 * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -19,7 +19,7 @@
 	 * @package Jomres\Core\Classes
 	 *
 	 */
-
+	#[AllowDynamicProperties]
 class jomres_obsolete_file_handling
 {
 	protected $filesystem;
@@ -1349,7 +1349,7 @@ class jomres_obsolete_file_handling
 		$this->add_file($this->dir_minicomponents.'j02990add_tourist_tax.class.php');
 
 		$this->add_file($this->dir_minicomponents.'j00501gateways.class.php'); // Gateway configuration has been moved to it's own page, we no longer need this tab
-
+		$this->add_file($this->dir_minicomponents.'j16000show_feedback_message.class.php');
 
 	}
 

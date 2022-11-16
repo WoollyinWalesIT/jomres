@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -2495,7 +2495,7 @@ jr_define('_JOMRES_MICROMANAGE_MODAL_BUTTON', "Pokyny");
 
 jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS', 'Ak chcete pridať rôzne ceny pre rôzny počet hostí, potom <em> môžete vytvoriť viac ako niekoľko taríf pre každý typ miestnosti </em> a mať v týchto tarifách rôzne hodnoty min/max hostí. ');
 
-jr_define('_JOMRES_MICROMANAGE_INFO', "Pomenujte tarifu, definujte maximálny počet nocí a minimálny a maximálny počet hostí, ktorí sú v rezervačnom formulári požadovaní pred ponúknutím tarify. <br/> <br/> Použiť panel výberu dátumu na pridanie cien a nastavení minimálnych nocí do rozsahu dátumov alebo úpravu vstupov priamo. Ak nechcete, aby bola tarifa v určité dátumy vôbec ponúkaná, nechajte cenu nastavenú na 0 (nula) tieto dátumy. <br/> <br/> Môžete mať rôzne minimálne noci v rôzne dátumy, takže ak chcete dlhšie rezervácie počas festivalových/konferenčných týždňov, môžete nastaviť minimálne noci tak, aby boli vyššie práve v týchto obdobiach. <br/ > <br/> Ak účtujete poplatok za osobu na investíciu (PPPN), môžete toto nastavenie povoliť v časti Nastavenia> Konfigurácia vlastníctva> Tarify a mena, potom vytvorte požadované typy hostí v časti Nastavenia> Typy hostí. ");
+	jr_define('_JOMRES_MICROMANAGE_INFO', "Pomenujte tarifu, definujte maximálny počet nocí a minimálny a maximálny počet hostí, ktoré sú potrebné v rezervačnom formulári pred ponúknutím tarify.<br/><br/> Použiť panel na výber dátumu na pridanie cien a nastavení minimálneho počtu nocí k rozsahu dátumov alebo úpravu vstupov priamo. Ak nechcete, aby sa tarifa v určité dátumy ponúkala vôbec, ponechajte cenu nastavenú na 0 ( nula ) na tieto dátumy. <br/><br/> Môžete mať rôzne minimálne noci v rôznych dátumoch, takže ak chcete dlhšie rezervácie počas festivalových/konferenčných týždňov, môžete nastaviť minimálne noci tak, aby boli vyššie práve v týchto obdobiach.<br/ ><br/>Ak si účtujete poplatky za osobu za hru (PPPN), môžete toto nastavenie povoliť v časti Nastavenia > Konfigurácia majetku > Tarify a mena.");
 
 jr_define('_JOMRES_MICROMANAGE_EXTRAOPTIONS', "Extra možnosti");
 
@@ -2609,7 +2609,6 @@ jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT', 'Upraviť úroveň obsadenosti pre:');
 jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT_DESC', 'Upraviť úrovne obsadenosti pre tento typ miestnosti. Nezahŕňať hostí spiacich na detských postieľkach (tie sa pridajú vytvorením Extra)');
 jr_define('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE_DESC', 'Koľko by sa malo účtovať za každú ďalšiu dospelú osobu?');
 
-jr_define('JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS', 'Extra dospelí');
 jr_define('_JOMRES_SANITYCHECK_CHILD_RATES', 'Ešte ste nenakonfigurovali detské sadzby.');
 jr_define('_JOMRES_SANITYCHECK_CHILD_RATES_BUTTON', 'Nastaviť teraz podradené sadzby');
 jr_define('_JOMRES_SANITYCHECK_OCCUPANCY_LEVELS', 'Svoj majetok ste nakonfigurovali tak, aby umožňoval prístup deťom, ale zatiaľ ste pre deti nenastavili žiadne úrovne obsadenosti.');
@@ -2759,3 +2758,5 @@ Môžete ponechať cieľový jazyk nastavený na váš aktuálny jazyk a použi�
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_INFO', 'Na tejto stránke môžete nakonfigurovať, cez ktoré platobné brány chcete prijímať zálohové platby. Budete potrebovať účet na platobnej bráne. Stránka s nastaveniami vám poskytne pokyny na konfiguráciu brány. Ak brána má testovací režim a ak je povolený testovací režim, vy ako správca objektu budete môcť použiť platobnú bránu na otestovanie svojej konfigurácie. Keď je testovací režim vypnutý, platobné brány uvidia počas procesu rezervácie iba používatelia, ktorí nie sú správcom .');
 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Testovací režim");
+
+	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "Režim vývoja je povolený, takže ak použijete túto funkciu, aktualizujete svoju inštaláciu Jomresu na vetvu Nightly. Toto je najnovšia verzia Jomres a môže, ale nemusí byť stabilná. Ak áno nechcete aktualizovať na Nightly, navštívte Správca > Jomres > Nastavenia > Konfigurácia lokality > karta Ladenie a nastavte možnosť Výroba/Vývoj na Produkciu.");

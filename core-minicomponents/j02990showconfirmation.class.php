@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -160,9 +160,9 @@ class j02990showconfirmation
 			$booking_parts[ 'SPECIALREQS' ] = $thisJRUser->preferences;
 		}
 
-		if ($jrConfig[ 'is_single_property_installation' ] == 0) {
+		/*if ($jrConfig[ 'is_single_property_installation' ] == 0) {
 			property_header($property_uid);
-		}
+		}*/
 
 		if (!$bookingDeets[ 'ok_to_book' ]) {
 			jomresRedirect(get_booking_url($bookingDeets[ 'property_uid' ]), '');
@@ -512,25 +512,21 @@ class j02990showconfirmation
 		if (get_showtime('include_room_booking_functionality')) {
 			$booking_parts[ 'HTOTALINPARTY' ] = jr_gettext('_JOMRES_AJAXFORM_BILLING_TOTALINPARTY', '_JOMRES_AJAXFORM_BILLING_TOTALINPARTY');
 		}
+
 		$booking_parts[ 'TOTALINPARTY' ] = $bookingDeets[ 'total_in_party' ];
 
-		if ($mrConfig[ 'tariffmode' ] == '5') {
-			$inparty = 0;
-			if (isset($bookingDeets[ 'standard_guest_numbers' ])) {
-				$inparty = $inparty + $bookingDeets[ 'standard_guest_numbers' ];
-			}
-
-			if (isset($bookingDeets[ 'extra_guest_numbers' ])) {
-				$inparty = $inparty + $bookingDeets[ 'extra_guest_numbers' ];
-			}
-
-			if (isset($bookingDeets[ 'child_numbers' ])) {
-				foreach ($bookingDeets[ 'child_numbers' ] as $key => $children) {
-					$inparty = $inparty + $children;
-				}
-			}
-			$booking_parts[ 'TOTALINPARTY' ] =  $inparty;
+		$inparty = 0;
+		if (isset($bookingDeets[ 'standard_guest_numbers' ])) {
+			$inparty = $inparty + $bookingDeets[ 'standard_guest_numbers' ];
 		}
+
+		if (isset($bookingDeets[ 'child_numbers' ])) {
+			foreach ($bookingDeets[ 'child_numbers' ] as $key => $children) {
+				$inparty = $inparty + $children;
+			}
+		}
+		$booking_parts[ 'TOTALINPARTY' ] =  $inparty;
+
 		if ($bookingDeets[ 'single_person_suppliment' ] != 0) {
 			$booking_parts[ 'HSINGLEPERSON_COST' ] = jr_gettext('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST', '_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST');
 			$booking_parts[ 'SINGLEPERSON_COST' ] = output_price($bookingDeets[ 'single_person_suppliment' ]);
@@ -646,7 +642,7 @@ class j02990showconfirmation
 									} elseif (file_exists($result[ 'filepath' ].'j00510'.$gateway_name.'.jpg')) {
 										$gw[ 'GWIMAGE' ] = '<img src="'.$gatewaydir.'j00510'.$gateway_name.'.jpg" border="0"  width="200" alt="'.$gateway_name.' logo">';
 									} else {
-										$gw[ 'GWIMAGE' ] = '<img src="'.JOMRES_IMAGES_RELPATH.'noimage.gif" border="0"  width="200" alt="No logo found">';
+										$gw[ 'GWIMAGE' ] = '<img src="'.JOMRES_IMAGES_RELPATH.'noimage.svg" border="0"  width="200" alt="No logo found">';
 									}
 								} else {
 									$gw[ 'GWIMAGE' ] = '<img src="'.JOMRES_IMAGES_RELPATH.'j00510'.$gateway_name.'.png" border="0"  width="200" alt="'.$gateway_name.' logo">';

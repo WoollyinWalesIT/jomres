@@ -84,7 +84,7 @@ class j06000stripe_standard_response
 		if ($checkout_session->status == 'complete') {
 			$MiniComponents->specificEvent('03030', 'bookingcompleted', [] );
 		} else {
-			property_header($tmpBookingHandler->tmpbooking['property_uid']);
+			/*property_header($tmpBookingHandler->tmpbooking['property_uid']);*/
 
 			$booking_form_url = get_booking_url($tmpBookingHandler->tmpbooking['property_uid']);
 

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -2487,7 +2487,7 @@ jr_define('_JOMRES_MICROMANAGE_MODAL_BUTTON', "Instrukcje");
 
 jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS', "Jeśli chcesz dodać różne ceny dla różnej liczby gości, <em>możesz utworzyć więcej niż kilka taryf dla każdego typu pokoju</em> i mieć w nich różne wartości min./maks. gości. ");
 
-jr_define('_JOMRES_MICROMANAGE_INFO', "Nadaj taryfie nazwę, określ maksymalną liczbę noclegów oraz minimalną i maksymalną liczbę gości wymaganych w formularzu rezerwacji przed zaoferowaniem taryfy.<br/><br/> panel wyboru daty, aby dodać ceny i ustawienia minimalnych noclegów do zakresu dat lub bezpośrednio edytować dane wejściowe Jeśli nie chcesz, aby taryfa była oferowana w ogóle w określonych terminach, pozostaw cenę ustawioną na 0 (zero) w dniu w tych dniach. <br/><br/> Możesz mieć różne minimalne noce w różnych terminach, więc jeśli chcesz dłuższych rezerwacji podczas tygodni festiwalowych/konferencyjnych, możesz ustawić wyższe minimalne noce tylko w tych okresach.<br/ ><br/>Jeśli pobierasz opłatę za osobę za miejsce (PPPN), możesz włączyć to ustawienie na karcie Ustawienia > Konfiguracja obiektu > Taryfy i waluta, a następnie utwórz wymagane typy gości w sekcji Ustawienia > Typy gości.");
+	jr_define('_JOMRES_MICROMANAGE_INFO', "Nadaj taryfie nazwę, zdefiniuj maksymalną liczbę nocy oraz minimalną i maksymalną liczbę gości wymaganych w formularzu rezerwacji przed zaoferowaniem taryfy.<br/><br/> Użyj panel selektora dat, aby dodać ceny i ustawienia minimalnej liczby nocy do zakresu dat lub bezpośrednio edytować dane wejściowe.Jeśli nie chcesz, aby taryfa była w ogóle oferowana w określonych dniach, pozostaw cenę ustawioną na 0 (zero) te daty. <br/><br/> Możesz mieć różne minimalne noce w różnych terminach, więc jeśli chcesz mieć dłuższe rezerwacje podczas tygodni festiwalowych/konferencyjnych, możesz ustawić wyższe minimalne noce tylko w tych okresach.<br/ ><br/>Jeśli pobierasz opłatę za osobę za osobę (PPPN), możesz włączyć to ustawienie w zakładce Ustawienia > Konfiguracja obiektu > Taryfy i waluta.");
 
 jr_define('_JOMRES_MICROMANAGE_EXTRAOPTIONS', "Dodatkowe opcje");
 
@@ -2601,9 +2601,6 @@ jr_define('JOMRES_OCCUPANCY_LEVELS_MAX_OCCUPANCY', 'Maksymalne obłożenie');
 jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT', 'Edytuj poziom zajętości dla: ');
 jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT_DESC', 'Edytuj poziomy obłożenia dla tego typu pokoju. Nie uwzględniaj gości śpiących w łóżeczkach (są one dodawane przez utworzenie dodatkowego) ');
 jr_define('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE_DESC', 'Jaka powinna być opłata za każdą dodatkową osobę dorosłą?');
-
-jr_define('JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS', 'Dodatkowi dorośli');
-
 
 jr_define('_JOMRES_SANITYCHECK_CHILD_RATES', 'Nie skonfigurowałeś jeszcze stawek podrzędnych.');
 jr_define('_JOMRES_SANITYCHECK_CHILD_RATES_BUTTON', 'Ustaw teraz stawki dla dzieci');
@@ -2752,3 +2749,5 @@ Możesz pozostawić język docelowy ustawiony na swój bieżący język i użyć
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_INFO', 'Na tej stronie możesz skonfigurować, przez które bramki płatności chcesz otrzymywać wpłaty depozytowe. Będziesz potrzebować konta na bramce płatności. Strona ustawień zawiera instrukcje dotyczące konfiguracji bramki. Jeśli bramka ma tryb testowy i jeśli włączony jest tryb testowy, jako zarządca nieruchomości będziesz mógł użyć bramki płatniczej do przetestowania konfiguracji. Gdy tryb testowy jest wyłączony, tylko użytkownicy niebędący menedżerami zobaczą bramki płatnicze podczas procesu rezerwacji .');
 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Tryb testowy");
+
+	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "Tryb programistyczny jest włączony, dlatego jeśli użyjesz tej funkcji, zaktualizujesz swoją instalację Jomresa do gałęzi Nightly. Jest to najnowsza wersja Jomresa i może być stabilna lub nie. Jeśli to zrobisz nie chcesz aktualizować do Nightly, odwiedź Admin > Jomres > Ustawienia > Konfiguracja witryny > karta Debugowanie i ustaw opcję Produkcja/Rozwój na Produkcja.");

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -19,7 +19,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	 * @package Jomres\Core\Classes
 	 *
 	 */
-
+	#[AllowDynamicProperties]
 class jomres_regions
 {
 
@@ -31,8 +31,8 @@ class jomres_regions
 
 	public function __construct()
 	{
-		$this->regions = false;
-		$this->country_regions = false;
+		$this->regions = array();
+		$this->country_regions = array();
 		
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
@@ -55,7 +55,7 @@ class jomres_regions
 	//get all regions used by properties, no need to get all others at this point
 	public function get_used_property_regions()
 	{
-		if (is_array($this->regions)) {
+		if (!empty($this->regions)) {
 			return true;
 		}
 		

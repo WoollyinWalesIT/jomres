@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -251,3 +251,7 @@ jr_define('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_MRPSRP', 'Hoć
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER', 'Neobavezno. Ako ID svojstva nije postavljen, umjesto toga možete proslijediti broj.');
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH', 'Izborno. Alternativni put predloška. Ne može se proslijediti putem url-a. Mora biti apsolutan.');
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME', 'Neobavezno. Alternativni naziv predloška.');
+
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET', "Pokazuje tip izlaza modula svojstava za postavljanje s kratkim kodovima. Izlaz modula svojstava mali je isječak detalja o svojstvu dizajniran za prikazivanje na različitim mjestima na stranici.");
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_PROPERTY_UID', 'Neobavezno. ID svojstva. Ako uid svojstva nije postavljen, prikazat će se nasumično objavljeno svojstvo.');
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_ALT_TEMPLATE_NAME', 'Neobavezno. Alternativni naziv predloška, bez ".html". Predložak mora postojati u direktoriju za nadjačavanje predložaka. To vam omogućuje korištenje prilagođenih verzija "basic_module_output.html" na različitim mjestima na vašim stranicama. ' );

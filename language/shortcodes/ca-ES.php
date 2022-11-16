@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -209,3 +209,7 @@ jr_define("_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_MRPSRP", "Si e
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER', 'Opcional. Si l\'identificador de propietat no està definit, podeu passar un número.');
 jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH', 'Opcional. Camí alternatiu de la plantilla. No es pot passar per URL. Ha de ser absolut.');
 jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME', 'Opcional. Nom alternatiu de la plantilla.');
+
+jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET', "Mostra una sortida del tipus de mòdul de propietat per a la col·locació amb codis curts. La sortida del mòdul de propietat és un petit fragment de detalls de propietat dissenyat per mostrar-se en diversos llocs de la pàgina.");
+jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_PROPERTY_UID', 'Opcional. ID de la propietat. Si no s\'estableix l\'ID de la propietat, es mostrarà una propietat publicada aleatòriament.');
+jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_ALT_TEMPLATE_NAME', 'Opcional. Nom de plantilla alternatiu, sense ".html". La plantilla ha d\'existir al directori de substitució de plantilles. Això us permet utilitzar versions personalitzades de "basic_module_output.html" en diferents llocs de les vostres pàgines.html. ');

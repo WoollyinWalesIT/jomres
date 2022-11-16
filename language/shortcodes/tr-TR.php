@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -250,3 +250,7 @@ jr_define('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_MRPSRP', 'MRP\
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER', 'Opsiyonel. Özellik kimliği ayarlanmadıysa, bunun yerine bir sayı iletebilirsiniz.');
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH', 'Opsiyonel. Alternatif şablon yolu. URL ile geçilemez. Mutlak olmalıdır.');
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME', 'Opsiyonel. Alternatif şablon adı.');
+
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET', "Kısa kodlarla yerleşim için bir özellik modülü tipi çıktısını gösterir. Özellik modülü çıktısı, sayfanın çeşitli yerlerinde gösterilmek üzere tasarlanmış küçük bir özellik ayrıntısı parçacığıdır.");
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_PROPERTY_UID', 'Opsiyonel. Mülkün kimliği. Özellik uid ayarlanmadıysa, rastgele yayınlanan bir özellik gösterilecektir.');
+	jr_define('_JOMRES_SHORTCODES_06000PROPERTY_WIDGET_ARG_ALT_TEMPLATE_NAME', 'İsteğe bağlı. Alternatif şablon adı, ".html" olmadan. Şablon, şablon geçersiz kılma dizininde bulunmalıdır. Bu, "basic_module_output.html" nin özelleştirilmiş sürümlerini sayfalarınızın farklı yerlerinde kullanmanıza olanak tanır.' );

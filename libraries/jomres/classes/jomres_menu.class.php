@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -19,7 +19,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	 * @package Jomres\Core\Classes
 	 *
 	 */
-
+	#[AllowDynamicProperties]
 class jomres_menu
 {
 
@@ -126,6 +126,9 @@ class jomres_menu
 
 			if ($is_url) {
 				$query_string = parse_url($task, PHP_URL_QUERY);
+				if (is_null($query_string)) {
+					$query_string = '';
+				}
 				parse_str($query_string, $query_params);
 				
 				if (isset($query_params['task'])) {

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.5
+ *  @version Jomres 10.6.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -2481,7 +2481,7 @@ jr_define('_JOMRES_MICROMANAGE_MODAL_BUTTON', "Navodila");
 
 jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS', "Če želite dodati različne cene za različno število gostov, <em> lahko ustvarite več kot več tarif za vsako vrsto sobe </em> in v teh tarifah nastavite različne vrednosti min/max gostov. ");
 
-jr_define('_JOMRES_MICROMANAGE_INFO', "Dajte tarifi ime, določite največje število nočitev ter najmanjše in največje število gostov, ki so potrebni v obrazcu za rezervacijo, preden je ponujena tarifa. <br/> <br/> Uporabite na plošči za izbiranje datuma, da v različne datume dodate cene in nastavitve minimalnih nočitev ali neposredno uredite vnose. Če ne želite, da se tarifa na določene datume sploh ponudi, pustite ceno nastavljeno na 0 (nič) na ti datumi. <br/> <br/> Na različne datume imate lahko različne minimalne noči, zato, če želite daljše rezervacije v tednih festivala/konference, lahko nastavite, da bodo najmanjše noči v teh obdobjih višje. <br/ > <br/> Če zaračunavate na osebo na ceno (PPPN), lahko to nastavitev omogočite v Nastavitve> Konfiguracija nepremičnine> Tarife in valuta, nato pa ustvarite potrebne vrste gostov v Nastavitve> Vrste gostov. ");
+	jr_define('_JOMRES_MICROMANAGE_INFO', "Poimenujte tarifo, določite največje število nočitev ter najmanjše in največje število gostov, ki so zahtevani v obrazcu za rezervacijo, preden se ponudi tarifa.<br/><br/> Uporabite ploščo za izbiro datuma, da dodate cene in minimalne nastavitve nočitev za vrsto datumov ali neposredno uredite vnose. Če ne želite, da je tarifa na voljo na določene datume, pustite ceno nastavljeno na 0 (nič) na te datume. <br/><br/> Na različne datume imate lahko različno minimalno število nočitev, tako da, če želite daljše rezervacije med festivalskimi/konferenčnimi tedni, lahko nastavite višje minimalno število nočitev samo v teh obdobjih.<br/ ><br/>Če zaračunavate na osebo na nočitev (PPPN), lahko to nastavitev omogočite v Nastavitve > Konfiguracija nepremičnine > zavihek Tarife in valuta.");
 
 jr_define('_JOMRES_MICROMANAGE_EXTRAOPTIONS', "Dodatne možnosti");
 
@@ -2592,9 +2592,6 @@ jr_define('JOMRES_OCCUPANCY_LEVELS_MAX_OCCUPANCY', 'Največja zasedenost');
 jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT', 'Urejanje ravni zasedenosti za:');
 jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT_DESC', 'Urejanje ravni zasedenosti za to vrsto sobe. Ne vključujte gostov, ki spijo na otroških posteljicah (ti so dodani z ustvarjanjem dodatka)');
 jr_define('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE_DESC', 'Koliko bi morali zaračunati za vsako dodatno odraslo osebo?');
-
-jr_define('JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS', 'Dodatni odrasli');
-
 
 jr_define('_JOMRES_SANITYCHECK_CHILD_RATES', 'Niste še konfigurirali podrejenih stopenj.');
 jr_define('_JOMRES_SANITYCHECK_CHILD_RATES_BUTTON', 'Zdaj nastavite podrejene stopnje');
@@ -2745,3 +2742,5 @@ Ciljni jezik lahko pustite nastavljen na vaš trenutni jezik in uporabite to str
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_INFO', 'Na tej strani lahko konfigurirate, prek katerih plačilnih prehodov želite prejemati plačila pologov. Potrebovali boste račun na plačilnem prehodu. Na strani z nastavitvami boste našli navodila, kako konfigurirati prehod. Če prehod ima testni način in če je testni način omogočen, boste kot upravitelj nepremičnine lahko uporabili plačilni prehod za testiranje vaše konfiguracije. Ko je testni način onemogočen, bodo med postopkom rezervacije plačilne prehode videli samo uporabniki, ki niso upravitelji .');
 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Testni način");
+
+	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "Razvojni način je omogočen, zato boste, če uporabljate to funkcijo, posodobili svojo namestitev Jomresa na vejo Nightly. To je najnovejša različica Jomresa in je lahko stabilna ali pa ne. Če to storite ne želite posodobiti na Nightly, obiščite Admin > Jomres > Settings > Site Configuration > zavihek Debugging in nastavite možnost Production/Development na Production.");
