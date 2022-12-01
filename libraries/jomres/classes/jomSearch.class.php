@@ -1601,6 +1601,11 @@
 		sort($allTariffs);
 
 		if (isset($allTariffs[ 0 ])) {
+
+			if ($increments ==0) {
+				$increments = 10;
+			}
+
 			$highest = end($allTariffs);
 			$lowest = reset($allTariffs);
 			// Found during testing, when one property has the price 100,000,000 and the increments is left to the default 20, you'll get an out of memory error.
