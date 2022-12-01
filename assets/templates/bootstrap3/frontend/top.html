@@ -27,8 +27,13 @@ jomresJquery(document).ready(function(){
 					webmaster.</font></p>
 		</blockquote>
 	</noscript>
-
-	<h2 id="tour_target_property_name" style="{CURRENT_PROPERTY_STYLE}">{HACTIVE_PROPERTY}{PROPERTYNAME}</h2>
+	
+	<div class="row mb-3 ">
+		<label for="switch_property" class="col-sm-2">{HACTIVE_PROPERTY}{PROPERTYNAME}</label>
+		<div class="col-sm-6">
+			{PROPERTY_SELECTOR_DROPDOWN}
+		</div>
+	</div>
 
 	<div class="row">
 		<patTemplate:tmpl name="widgets_dropdown" type="simpleCondition" requiredVars="widgets_dropdown">
