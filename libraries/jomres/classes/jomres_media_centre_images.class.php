@@ -365,7 +365,7 @@ class jomres_media_centre_images
 			return true;
 		}
 
-		if ($this->use_db) {
+		if ($this->use_db && get_showtime('task') != 'media_centre_dbimport' ) {
 			$this->get_site_images_multi_from_db($type);
 		} else {
 			$MiniComponents = jomres_getSingleton('mcHandler');
