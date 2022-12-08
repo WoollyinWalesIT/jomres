@@ -323,7 +323,7 @@ class jomres_property_features
 		
 		$jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
 		$jomres_media_centre_images->get_site_images('pfeatures');
-		
+
 		foreach ($jomres_media_centre_images->site_images['pfeatures'] as $image) {
 			$r = array();
 			

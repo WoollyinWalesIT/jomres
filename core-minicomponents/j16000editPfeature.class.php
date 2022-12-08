@@ -88,7 +88,7 @@ class j16000editPfeature
 
 		//feature images
 		$images = $jomres_property_features->get_all_property_features_images();
-		
+
 		foreach ($images as $i) {
 			$i[ 'ISCHECKED' ] = '';
 			

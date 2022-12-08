@@ -447,7 +447,12 @@
 				foreach ($MiniComponents->miniComponentData['00035'] as $key => $tabs) {
 					if ($tabs != '') {
 						if (!in_array(strtoupper($key), $standalone_elements)) {
-							if ($tabs['TAB_ANCHOR'] != '' && $tabs['TAB_TITLE'] != '' && $tabs['TAB_CONTENT'] != '') {
+							if (
+								(isset($tabs['TAB_ANCHOR']) && isset($tabs['TAB_TITLE']) && isset($tabs['TAB_CONTENT']) )
+								&&
+								($tabs['TAB_ANCHOR'] != '' && $tabs['TAB_TITLE'] != '' && $tabs['TAB_CONTENT'] != '' )
+								)
+							{
 								if (!$tab_active) {
 									$tab_class = 'active';
 									$tab_active = true;

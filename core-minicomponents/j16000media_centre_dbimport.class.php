@@ -77,7 +77,7 @@ class j16000media_centre_dbimport
 			//already imported, simply redirect back
 			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN), '');
 		}
-		
+
 		jr_import('jomres_media_centre_images_dbimport');
 		$jomres_media_centre_images_dbimport = new jomres_media_centre_images_dbimport(get_showtime('all_properties_in_system'), true);
 

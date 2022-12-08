@@ -58,7 +58,7 @@ class jomres_media_centre_images_dbimport
 			$this->get_site_images();
 			
 			$this->import_site_images();
-				
+
 			//empty the array to free up memory
 			$this->jomres_media_centre_images->site_images = array();
 		}
