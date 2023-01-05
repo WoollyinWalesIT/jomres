@@ -365,7 +365,7 @@ class j06000show_property_reviews
 				if (!isset($jrConfig[ 'reviews_limit' ])) {
 					$jrConfig[ 'reviews_limit' ] = 2;
 				}
-				$reviews_limit = $jrConfig[ 'reviews_limit' ];
+				$reviews_limit = (int)$jrConfig[ 'reviews_limit' ];
 			} else {
 				$reviews_limit = (int)jomresGetParam($_REQUEST, 'reviews_limit', 0);
 			}
