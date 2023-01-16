@@ -66,6 +66,7 @@
 			}
 
 			if (get_showtime('menuoff') == true) {
+				echo '<div id="jomres_content_area">'; // closed in j00061bottomtemplate.class.php
 				return;
 			}
 
