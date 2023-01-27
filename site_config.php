@@ -219,6 +219,7 @@ $jrConfig = array(
   'use_groupby_fix'  => '0',
   'business_languages' => 'English,French,German,Spanish',
   'business_logo' => '',
+ //	'secret_setting_use_old_guest_types' => '1',
 );
 
 
