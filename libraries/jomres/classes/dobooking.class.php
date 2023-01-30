@@ -756,8 +756,8 @@ class dobooking
 						$mindays_array[$mindays] = 1;
 					}
 				}
-				if (count($mindays_array) ==1) {
-					$this->mininterval = $mindays_array[$mindays];
+				if (count($mindays_array) == 1) {
+					$this->mininterval = (int) $mindays;
 				}
 			}
 		}
