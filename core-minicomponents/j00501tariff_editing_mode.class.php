@@ -60,9 +60,9 @@ class j00501tariff_editing_mode
 			return;
 		}
 
-		if ($mrConfig[ 'tariffmode' ] == '2') {
+		/*if ($mrConfig[ 'tariffmode' ] == '2') {
 			return;
-		}
+		}*/
 
 		$configurationPanel->startPanel(jr_gettext('JOMRES_COM_A_TARIFFMODE', 'JOMRES_COM_A_TARIFFMODE', false));
 
