@@ -747,6 +747,19 @@ class dobooking
 				'maxrooms_alreadyselected' => $t->maxrooms_alreadyselected,
 				'tariff_dates' => $dates,
 			);
+
+			if (!empty($this->allPropertyTariffs)) {
+				$mindays_array = array();
+				foreach ($this->allPropertyTariffs as $tariff) {
+					$mindays = $tariff['mindays'];
+					if (!isset($mindays_array[$mindays] )) {
+						$mindays_array[$mindays] = 1;
+					}
+				}
+				if (count($mindays_array) ==1) {
+					$this->mininterval = $mindays_array[$mindays];
+				}
+			}
 		}
 	}
 
