@@ -625,26 +625,17 @@ jr_define('JOMRES_COM_A_TARIFFMODE_NORMAL', 'Normal');
 jr_define('JOMRES_COM_A_TARIFFMODE_ADVANCED', 'Avançat');
 jr_define('JOMRES_COM_A_TARIFFMODE_TARIFFTYPES', 'Micro gestió');
 jr_define('JOMRES_COM_A_TARIFFMODE', 'Mode configuració tarifes');
-jr_define('JOMRES_COM_A_TARIFFMODE_DESC', "<b>Compte: Canviar entre diferents tipus de tarifes pot originar pèrdua de dades. Vegi les notes a continuació respecte a això</b>.
+jr_define('JOMRES_COM_A_TARIFFMODE_DESC', "<b>Avís: canviar entre diferents modes d'edició de tarifes pot provocar la pèrdua de dades. Consulteu la nota següent sobre això.</b>.
 <br/><br/>
-Té tres opcions per a configurar les tarifes.<br/>
-Mode Normal: Pots tenir una tarifa per cada tipus d'habitació, això és vàlid per als següents 10 anys.<br/>
-Micro gestió: Pots canviar el preu per cada día i habitació/propietat<br/>
-Avançat: L'antic mètode Jomres de generar tarifes<br/>
+Teniu dues opcions sobre com configureu les vostres tarifes.<br/>
+Micromanage: Podeu modificar el preu de cada dia per a cada tipus d'habitació/immoble. <br/>
+Avançat: podeu crear un conjunt de tarifes que no estiguin vinculades entre si. <br/>
 <br/>
-Els diferents modes de tarifes li permeten escollir el mètode de configuració de les tarifes que més li convingui. <br/>
-El mode normal és el més simplista, però és més fàcil d'entendre, ja que creuarà referència d'habitacions i tarifes a tipus d'habitació/propietat i li permet configurar les habitacions i els preus en la mateixa pàgina. <br/>
-Micro gestió li permet variar els tipus en el día a día sense haver de gestionar un munt de tarifes, que es realitza per lots de referències creuades de tarifes diferents entre sí. Això dóna lloc a una sèrie de tarifes que s'han creat per a que abarquin un període de temps, però no es poden aplicar una tarifa sobre una altra. <br/>
-Mode avançat li permet crear una habitació i asociar-la amb un tipus d'habitació. A continuació, crea una tarifa que s'associa amb un tipus d'habitació. L'ús d'aquest mètode és possible aplicar una tarifa sobre una altra, per exemple, un tipus d'habitació \"Doble llit\" pot tenir una tarifa d'allotjament i esmorzar, y una altra per al llit, esmorzar i sopar. El mètode avançat requereix una mica més d'atenció als detalls, ja que és posible desassociar una habitació o tarifa d'un tipus d'habitació/propietat o configurar-la incorrectament vàlida desde i fins les dates, però dóna opcions de configuració que els altres modes no ofereixen. <br/>
+Micromanage us permet variar les tarifes dia a dia sense haver de gestionar munts de tarifes, es fa fent referència creuada a moltes tarifes diferents entre si. Això fa que es creïn una sèrie de tarifes que cobreixen un període de temps, però no podeu superposar les tarifes les unes a les altres.<br/>
+El mode avançat us permet crear tarifes que no estan enllaçades amb altres tarifes. Això us permet crear preus per a la vostra propietat que d'una altra manera no podeu crear en mode Micromanage. És més laboriós d'utilitzar, perquè cal assegurar-se que les dates vàlides de cada tarifa coincideixen perfectament des de/fins, però permet crear tarifes més complicades.<br/>
 <br/>
-Degut a que els modes Normal i Micro gestió requereixen una posada a punt específica d'habitacions i tarifes per al mode de treballar el sistema pot ser necessari tornar a situar algunes dades per a fer les configuracions de l'actual compatible amb el mode d'edició actual tarifa. <br/>
-<br/>
-Normal -> Avançat. Sense canvis. Les tarifes vigents es mantenen. <br/>
-Normal -> Micro gestió. Totes les tarifes existents s'eliminen. <br/>
-Avançat -> Normal. Totes les tarifes existents s'eliminen. <br/>
-Avançat -> Micro gestió. Totes les tarifes existents s'eliminen. <br/>
-Micro gestió -> Avançat. Totes les referències creuades existents entre les tarifes s'eliminen, però les tarifes es mantenen. <br/>
-Micro gestió -> Normal. Totes les referpencies creuades existents i les tarifes s'eliminen.<br/>");
+Si canvieu d'Advanced a Micromanage, s'eliminaran totes les tarifes existents.<br/>
+<br/>");
 jr_define('_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS', "Mostrar la llista d'habitacions en el full de detall?");
 jr_define('JOMRES_PROPERTYTYPE', 'Tipus de propietat');
 jr_define('JOMRES_MAXPEOPLEINROOM', 'Persones màximes per habitació');

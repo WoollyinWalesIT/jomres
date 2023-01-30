@@ -659,27 +659,17 @@ jr_define('JOMRES_COM_A_TARIFFMODE_NORMAL', 'Normal');
 jr_define('JOMRES_COM_A_TARIFFMODE_ADVANCED', 'Erweitert');
 jr_define('JOMRES_COM_A_TARIFFMODE_TARIFFTYPES', 'Microverwaltung');
 jr_define('JOMRES_COM_A_TARIFFMODE', 'Tarif-Konfiguration-Modus');
-jr_define('JOMRES_COM_A_TARIFFMODE_DESC', '<b>Warnung: Der Wechsel zwischen den verschiedenen Tariftypen kann zu Datenverlust f&uuml;hren. Bitte folgende Hinweise beachten.</b>.
+jr_define('JOMRES_COM_A_TARIFFMODE_DESC', '<b>Warnung: Das Umschalten zwischen verschiedenen Tarifbearbeitungsmodi kann zu Datenverlust führen. Siehe dazu den Hinweis unten.</b>.
 <br/><br/>
-Es gibt drei M&ouml;glichkeiten die Preisberechnung zu konfigurieren.<br/>
-Normal: Ein f&uuml;r die n&auml;chsten 10 Jahre g&uuml;ltiger Preis f&uuml;r jeden Raumtyp.<br/>
-Microverwaltung: F&uuml;r jeden Tag, jeden Raum-/Unterkunftstyp und alle Kombinationen daraus kann ein modifizierter Preis ausgegeben werden. <br/>
-Erweitert: Die \"alte" Methode mit der Jomres die Preise berechnete. <br/>
+Sie haben zwei Möglichkeiten, wie Sie Ihre Tarife konfigurieren.<br/>
+Mikromanagement: Sie können den Preis für jeden Tag für jeden Zimmer-/Unterkunftstyp ändern. <br/>
+Erweitert: Sie können eine Reihe von Tarifen erstellen, die nicht miteinander verknüpft sind. <br/>
 <br/>
-Die verschiedenen Preismodi erlauben eine Methode zur Preisgestaltung zu w&auml;hlen die die eigenen Anforderungen am besten umsetzt.<br/>
-Der Normalmodus ist die einfachste und leicht verst&auml;ndlichste Methode, da sie nur Kreuzreferenzen zwischen Preisen und Raum-/Unterkunftstypen erstellt und erlaubt R&auml;ume und Preise auf der selben Seite zu konfigurieren.<br/>
-Microverwaltung erlaubt die Preise auf einer t&auml;glichen Basis zu variieren ohne Unmengen von Tarifen zu erstellen. Es werden Kreuzreferenzen zwischen verschiedenen Tarifen erstellt. Daraus resultiert eine Anzahl von Tarifen die zur Abdeckung einer Zeitperiode dienen, sich aber nicht &uuml;berlappen k&ouml;nnen.<br/>
-Der erweiterte Modus erlaubt einen Raum zu erstellen und mit einem Raumtyp zu verbinden. Es wird dann ein Tarif erstellt und DIESER mit einem Raumtyp verbunden. Diese Methode erlaubt jeden anderen Tarif zu "&uuml;berlagern", z.B. ein Raumtyp "Doppelbett" kann einen Preis f&uuml;r &Uuml;bernachtung und Fr&uuml;hst&uuml;ck haben und einen anderen Preis f&uuml;r &Uuml;bernachtung, Fr&uuml;hst&uuml;ck und Abendessen. Die erweiterte Methode erfordert etwas mehr Sorgfalt im Detail weil es m&ouml;glich ist einen Raum oder Tarif vom Raum-/Unterkunftstyp zu entkoppeln, oder ung&uuml;ltige G&uuml;ltigkeitszeitr&auml;ume zu erstellen. Sie bietet aber Konfigurationsm&ouml;glichkeiten die in den anderen Modi nicht gegeben sind.<br/>
+Mit Micromanage können Sie die Tarife von Tag zu Tag ändern, ohne Unmengen von Tarifen verwalten zu müssen, indem Sie viele verschiedene Tarife miteinander referenzieren. Dadurch werden mehrere Tarife über einen Zeitraum für Sie erstellt, Sie können Tarife aber nicht übereinander schichten.<br/>
+Im erweiterten Modus können Sie Tarife erstellen, die nicht mit anderen Tarifen verknüpft sind. Auf diese Weise können Sie Preise für Ihre Immobilie erstellen, die Sie sonst im Micromanage-Modus nicht erstellen können. Es ist umständlicher zu bedienen, da Sie sicherstellen müssen, dass die Gültigkeitsdaten von/bis jedes Tarifs perfekt übereinstimmen, aber es ermöglicht Ihnen, kompliziertere Tarife zu erstellen.<br/>
 <br/>
-Da Normalmodus und Microverwaltung eine spezielle Konfiguration der R&auml;ume und Tarife ben&ouml;tigen um die Berechnungen durchzuf&uuml;hren kann es sein, dass das System einige Daten zur&uuml;cksetzen muss um die augenblickliche Konfiguration der Tarife mit dem aktiven Tarif-Editor kompatibel zu machen.
-<br/>
-<br/>
-Normal -> Erweitert. Keine &Auml;nderung. Die vorhandenen Preise bleiben erhalten.<br/>
-Normal -> Microverwaltung. Alle vorhandenen Preise werden gel&ouml;scht.<br/>
-Erweitert -> Normal. Alle vorhandenen Preise werden gel&ouml;scht.<br/>
-Erweitert -> Microverwaltung. Alle vorhandenen Preise werden gel&ouml;scht.<br/>
-Microverwaltung -> Erweitert. Alle vorhandenen Referenzen zu den Preisen werden entfernt, aber die Preise selber bleiben bestehen.<br/>
-Microverwaltung -> Normal. Alle vorhandenen Referenzen und Preise werden gel&ouml;scht.<br/>');
+Bei einem Wechsel von Advanced zu Micromanage werden alle bestehenden Tarife entfernt.<br/>
+<br/>');
 jr_define('_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS', 'Zimmerliste in Unterkunfsdetailsseite anzeigen?');
 jr_define('JOMRES_PROPERTYTYPE', 'Unterkunftstyp');
 jr_define('JOMRES_MAXPEOPLEINROOM', 'Max Personen pro Zimmer');

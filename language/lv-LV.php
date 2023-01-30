@@ -611,21 +611,17 @@ jr_define('JOMRES_COM_A_TARIFFMODE_NORMAL', 'Parasts');
 jr_define('JOMRES_COM_A_TARIFFMODE_ADVANCED', 'Paplašināts');
 jr_define('JOMRES_COM_A_TARIFFMODE_TARIFFTYPES', 'Mikromanage');
 jr_define('JOMRES_COM_A_TARIFFMODE', 'Tarifu konfigurācijas veids');
-jr_define('JOMRES_COM_A_TARIFFMODE_DESC', '<b>Uzmanību: Pārslēgšanās starp tarifu tipiem var izraisīt datu zudumu!<br/> Ja neesat pārliecināts kādu tarifu veidu Jums vajag izvēlēties vai vēlāk, konfigurējot tarifus nesaprotat kā to darīt, lūdzu rakstiet mums uz e-pastu support@bookingpro.eu vai support@rezervacija.lv, aprakstiet savu cenu politiku un mēs Jums palīdzēsim izvēlēties pareizo variantu.</b>
+jr_define('JOMRES_COM_A_TARIFFMODE_DESC', '<b>Brīdinājums: pārslēdzoties starp dažādiem tarifu rediģēšanas režīmiem, var tikt zaudēti dati. Par to skatiet tālāk sniegto piezīmi.</b>.
 <br/><br/>
-Jums ir trīs veidi kā konfigurēt tarifus.<br/><br/>
-<b>Parasts:</b> Jums ir viens tarifa veids katram numuru tipam. Šādu konfigurāciju var izvēlēties, ja Jums numuru cenas ir nemainīgas (neatkarīgi no nedēļas dienas vai rezervācijas ilguma). Vai arī, ja Jūs cenu aprēķināt no personu skaita rezervācijā. Ir iespējams norādīt dažādas cenas viesu tipiem, piem: pieaugušie, bērni, pensionāri, u.t.t.  Ļoti vienkārši konfigurējams. Nav iespējams norādīt numuru nosaukumus un kurā stāvā atrodas. Ja Jums vienāda tipa numuriem ir dažādas cenas (piem: divvietīgs numurs ar skatu uz ielu un divvietīgs numurs ar skatu uz ezeru), tad šis tarifu konfigurācijas veids Jums nav piemērots. <br/><br/>
-<b>Micromanage:</b> Konfigurācijas veids ar ļoti plašām cenu konfigurēšanas iespējām. Grūtāk apgūstams, bet ļoti elastīgs. Jūs varat norādīt cenu jebkuram numuru tipam jebkurā dienā. Norādiet nedēļas nogales cenas, svētku dienu cenas, mainiet cenas atkarībā no sezonas. Katram numuru tipam varat izveidot vairākus tarifus, piem: cena vienai dienai, cena vairākām dienām (varat norādīt min un max dienu skaitu, kad tarifs darbojās), cenu ar vai bez brokastīm, pusdienām, u.t.t. Var norādīt numura nosaukumu, stāvu, smēķešanas opciju, opciju pieejams invalīdiem vai nē. Var norādīt katram numuram aprīkojumu un pievienot numura attēlu. Ir iespējams aprēķināt cenu no personu daudzuma kā arī izveidot dažādas cenas dažādiem viesu tipiem. <br/><br/>
-<b>Paplašināts:</b> Nav tik plašas iespējas kā Micromanage, tomēr vairāk iespēju nekā Parastajam veidam. Šeit var norādīt vairākus tarifus vienam numuru tipam, piemēram, <b>divvietīgs numurs ar brokastīm</b> vai <b>divvietīgs numurs ar brokastīm un vakariņām</b>, tāpat var norādīt dažādas cenas atkarībā no rezervācijas ilguma. Nav iespējams izveidot vienam numuram dažādas cenas dažādām nedēļas dienām. Var norādīt numura nosaukumu, stāvu, smēķešanas opciju, opciju pieejams invalīdiem vai nē.Var norādīt katram numuram aprīkojumu un pievienot numura attēlu. Ir iespējams aprēķināt cenu no personu daudzuma kā arī izveidot dažādas cenas dažādiem viesu tipiem.  <br/>
+Jums ir divas iespējas, kā konfigurēt savus tarifus.<br/>
+Mikropārvaldība: varat mainīt cenu katrai telpai/īpašuma tipam katru dienu. <br/>
+Papildu: varat izveidot tarifu kopu, kas nav savstarpēji saistīti. <br/>
 <br/>
-Tarifu veidu saderība.<br/>
+Micromanage ļauj mainīt tarifus katru dienu, nepārvaldot tarifu virkni. Tas tiek darīts, savstarpēji atsaucoties uz dažādiem tarifiem. Tā rezultātā jums tiek izveidoti vairāki tarifi noteiktā laika periodā, taču jūs nevarat noslāņot tarifus viens otram.<br/>
+Uzlabotais režīms ļauj izveidot tarifus, kas nav saistīti ar citiem tarifiem. Tas ļauj savam īpašumam izveidot cenas, kuras citādi nevar izveidot mikropārvaldības režīmā. Tā lietošana ir darbietilpīgāka, jo ir jāpārliecinās, ka katra tarifa derīguma termiņš no/līdz perfekti sakrīt, taču tas ļauj izveidot sarežģītākus tarifus.<br/>
 <br/>
-Parasts -> Paplašināts. Nav izmaiņu.<br/>
-Parasts -> Mikromanage. Visi esošie tarifi tiek dzēsti.<br/>
-Paplašināts -> Parasts. Visi esošie tarifi tiek dzēsti.<br/>
-Paplašināts -> Mikromanage. Visi esošie tarifi tiek dzēsti.<br/>
-Mikromanage -> Paplašināts. Visi esošie tarifi tiek dzēsti.<br/>
-Mikromanage -> Parasts. Visi esošie tarifi tiek dzēsti.<br/>');
+Ja pārslēgsities no Advanced uz Micromanage, visi esošie tarifi tiks noņemti.<br/>
+<br/>');
 jr_define('_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS', 'Rādīt numuru sarakstu naktsmītnes detaļu lapā?');
 jr_define('JOMRES_PROPERTYTYPE', 'Naktsmītnes tips');
 jr_define('JOMRES_MAXPEOPLEINROOM', 'Max cilvēku skaits numurā');

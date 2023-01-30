@@ -624,7 +624,17 @@ jr_define('JOMRES_COM_A_MESSAGE', 'Zpráva');
 jr_define('JOMRES_COM_A_TARIFFMODE_NORMAL', 'Normální');
 jr_define('JOMRES_COM_A_TARIFFMODE_ADVANCED', 'Rozšířený');
 jr_define('JOMRES_COM_A_TARIFFMODE', 'Režim cen');
-jr_define('JOMRES_COM_A_TARIFFMODE_DESC', 'Nastavte na rozšířený, pokud potřebujete pracovat se složitějšími ceníky');
+jr_define('JOMRES_COM_A_TARIFFMODE_DESC', '<b>Upozornění: Přepínání mezi různými režimy úpravy tarifů může vést ke ztrátě dat. Viz poznámka níže týkající se toho.</b>.
+<br/><br/>
+Máte dvě možnosti, jak si nakonfigurovat tarify.<br/>
+Micromanage: Můžete upravit cenu pro každý den pro každý typ pokoje/nemovitosti. <br/>
+Pokročilé: Můžete vytvořit sadu tarifů, které spolu nejsou propojeny. <br/>
+<br/>
+Micromanage vám umožňuje měnit sazby každý den, aniž byste museli spravovat stohy tarifů, provádí se křížovým odkazováním na mnoho různých tarifů mezi sebou. To má za následek, že pro vás bude vytvořeno několik tarifů pokrývajících určité časové období, ale nelze je vrstvit na sebe.<br/>
+Pokročilý režim umožňuje vytvářet tarify, které nejsou propojeny s jinými tarify. To vám umožní vytvářet ceny pro váš majetek, které jinak v režimu Micromanage vytvořit nemůžete. Používání je pracnější, protože je potřeba zajistit, aby každý tarif s platností od/do dokonale souhlasil, ale umožňuje vytvářet složitější tarify.<br/>
+<br/>
+Pokud přejdete z Advanced na Micromanage, všechny stávající tarify budou odstraněny.<br/>
+<br/>');
 jr_define('_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS', 'Ukázat seznam pokojů na základní stránce kapacity?');
 jr_define('JOMRES_PROPERTYTYPE', 'Typ kapacity');
 jr_define('JOMRES_MAXPEOPLEINROOM', 'Maximální počet osob na pokoji');

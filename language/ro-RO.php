@@ -629,26 +629,17 @@ jr_define('JOMRES_COM_A_TARIFFMODE_NORMAL', 'Normal');
 jr_define('JOMRES_COM_A_TARIFFMODE_ADVANCED', 'Avansat');
 jr_define('JOMRES_COM_A_TARIFFMODE_TARIFFTYPES', 'Micromanagement');
 jr_define('JOMRES_COM_A_TARIFFMODE', 'Mod configurare tarif');
-jr_define('JOMRES_COM_A_TARIFFMODE_DESC', "<b> Avertisment: Comutarea între diferite tipuri de tarife poate duce la pierderea datelor. Consultați nota de mai jos cu privire la acest lucru </b>.
-<br/> <br/>
-Aveți trei opțiuni cu privire la modul în care vă configurați tarifele. <br/>
-Mod normal: veți avea un tarif pentru fiecare tip de cameră valabil în următorii 10 ani. <br/>
-Micromanage: Puteți modifica prețul pentru fiecare zi pentru fiecare tip de cameră / proprietate. <br/>
-Avansat: metoda veche Jomres de gestionare a tarifelor. <br/>
+jr_define('JOMRES_COM_A_TARIFFMODE_DESC', "<b>Avertisment: comutarea între diferite moduri de editare a tarifelor poate duce la pierderea datelor. Consultați nota de mai jos referitoare la acest lucru.</b>.
+<br/><br/>
+Aveți două opțiuni cu privire la modul în care vă configurați tarifele.<br/>
+Micromanage: Puteți modifica prețul pentru fiecare zi pentru fiecare cameră/tip de proprietate. <br/>
+Avansat: puteți crea un set de tarife care nu sunt legate între ele. <br/>
 <br/>
-Diferitele moduri tarifare vă permit să alegeți metoda de configurare a tarifelor care vi se potrivește cel mai bine. <br/>
-Modul normal este cel mai simplist, dar este cel mai ușor de înțeles, deoarece va încrucișa camerele de referință și tarifele la tipurile de camere / proprietăți și vă permite să configurați camere și prețuri pe aceeași pagină. <br/>
-Gestionarea micro vă permite să modificați tarifele de la o zi la alta, fără a fi nevoie să gestionați raze de tarife, se face prin referențierea încrucișată a unor tarife diferite între ele. Acest lucru duce la crearea unui număr de tarife care acoperă o perioadă de timp, dar nu puteți strânge tarifele unul peste celălalt. <br/>
-Modul avansat vă permite să creați o cameră și să o asociați cu un tip de cameră. Apoi creați un tarif și îl asociați cu un tip de cameră. Folosind această metodă, este posibil să straturiți tarifele unul de celălalt, de exemplu un tip de cameră Pat dublu poate avea un tarif pentru cazare și micul dejun, iar altul pentru pat, mic dejun și masă de seară. Metoda avansată necesită un pic mai multă atenție la detalii, deoarece este posibil să se asocieze o cameră sau un tarif de la un tip de cameră / proprietate sau să se stabilească incorect valabil de la și până la date, dar vă oferă opțiuni de configurare pe care celelalte moduri nu oferi. <br/>
+Micromanage vă permite să variați tarifele de la o zi la alta, fără a fi nevoit să gestionați o mulțime de tarife, se realizează prin compararea mai multor tarife diferite între ele. Acest lucru duce la crearea unui număr de tarife pentru dvs. care acoperă o perioadă de timp, dar nu puteți suprapune tarifele unul peste altul.<br/>
+Modul avansat vă permite să creați tarife care nu sunt legate de alte tarife. Acest lucru vă permite să creați prețuri pentru proprietatea dvs. pe care altfel nu le puteți crea în modul Micromanage. Este mai laborios de utilizat, deoarece trebuie să vă asigurați că fiecare tarif valabil de la/până se potrivește perfect, dar vă permite să creați tarife mai complicate.<br/>
 <br/>
-Deoarece modurile Normale și Micromanage necesită o setare specifică de camere și tarife pentru ca modul tarifar să funcționeze, este posibil ca sistemul să fie nevoit să reseteze unele date pentru a face configurațiile tarifare actuale compatibile cu modul curent de editare tarifară. <br/>
-<br/>
-Normal -> Avansat. Nicio schimbare. Tarifele existente sunt păstrate. <br/>
-Normal -> Micromanage. Toate tarifele existente sunt eliminate. <br/>
-Avansat -> Normal. Toate tarifele existente sunt eliminate. <br/>
-Avansat -> Micromanage. Toate tarifele existente sunt eliminate. <br/>
-Micromanage -> Advanced. Toate referințele încrucișate existente între tarife sunt eliminate, dar tarifele în sine vor rămâne. <br/>
-Micromanage -> Normal. Toate referințele încrucișate și tarifele existente sunt eliminate. <br/> ");
+Dacă treceți de la Advanced la Micromanage, toate tarifele existente vor fi eliminate.<br/>
+<br/>");
 jr_define('_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS', 'Arata lista de camere in pagina cu detalii a unitatii de cazare?');
 jr_define('JOMRES_PROPERTYTYPE', 'Tip unitate de cazare');
 jr_define('JOMRES_MAXPEOPLEINROOM', 'Nr. maxim de persoane in camera');

@@ -624,26 +624,17 @@ defined('_JOMRES_INITCHECK') or die('');
 	jr_define('JOMRES_COM_A_TARIFFMODE_ADVANCED', 'Advanced');
 	jr_define('JOMRES_COM_A_TARIFFMODE_TARIFFTYPES', 'Micromanage');
 	jr_define('JOMRES_COM_A_TARIFFMODE', 'Način postavki tarife');
-	jr_define('JOMRES_COM_A_TARIFFMODE_DESC', "<b>Warning: Switching between different tariff types may result in loss of data. See the note below regarding this</b>.
+	jr_define('JOMRES_COM_A_TARIFFMODE_DESC', "<b>Upozorenje: Prebacivanje između različitih načina uređivanja tarifa može dovesti do gubitka podataka. Pogledajte napomenu u nastavku u vezi s tim.</b>.
 <br/><br/>
-You have three options as to how you configure your tariffs.<br/>
-Normal mode: You will have one tariff for each room type that is valid for the next 10 years.<br/>
-Micromanage: You can modify the price for each and every day for each room/property type. <br/>
-Advanced: The \"old\" Jomres method of managing tariffs. <br/>
+Imate dvije opcije kako konfigurirati svoje tarife.<br/>
+Micromanage: Možete mijenjati cijenu za svaki dan za svaku vrstu sobe/nekretnine. <br/>
+Napredno: Možete kreirati skup tarifa koje nisu međusobno povezane. <br/>
 <br/>
-The different tariff modes allow you to choose the method of configuring tariffs that suits you best.<br/>
-Normal mode is the most simplistic but it's the easiest to understand because it will cross reference rooms and tariffs to room/property types and allows you to configure rooms and prices on the same page.<br/>
-Micro manage allows you to vary the rates on a day to day basis without having to manage reams of tariffs, it is done by cross referencing lots of different tariffs with each other. This results in a number of tariffs being created for you covering a period of time, but you can not layer tariffs over each other.<br/>
-Advanced mode lets you create a room and associate it with a room type. You then create a tariff and associate THAT with a room type. Using this method it is possible to \"layer\" tariffs over each other, for example a room type \"Double bed\" can have one tariff for bed and breakfast, and another for bed, breakfast and evening meal. The advanced method requires a little more attention to detail because it is possible to dis-associate a room or tariff from a room/property type, or to incorrectly set valid from and to dates, but it does give you configuration options that the other modes do not offer. <br/>
+Micromanage vam omogućuje da mijenjate stope iz dana u dan bez potrebe za upravljanjem hrpama tarifa, to se radi međusobnim upoređivanjem mnogo različitih tarifa. To rezultira izradom većeg broja tarifa koje pokrivaju određeno vremensko razdoblje, ali tarife ne možete stavljati jedna preko druge.<br/>
+Napredni način rada omogućuje kreiranje tarifa koje nisu povezane s drugim tarifama. To vam omogućuje stvaranje cijena za vašu nekretninu koje inače ne možete stvoriti u načinu rada Micromanage. Zahtjevniji je za korištenje, jer morate osigurati da datumi valjanosti svake tarife od/do savršeno odgovaraju, ali vam omogućuje stvaranje kompliciranijih tarifa.<br/>
 <br/>
-Because Normal and Micromanage modes require a specific set up of rooms and tariffs for the tariff mode to work the system may need to reset some data to make the current tariff configurations compatible with the current tariff editing mode.<br/>
-<br/>
-Normal -> Advanced. No change. Existing tariffs are retained.<br/>
-Normal -> Micromanage. All existing tariffs are removed.<br/>
-Advanced -> Normal. All existing tariffs are removed.<br/>
-Advanced -> Micromanage. All existing tariffs are removed.<br/>
-Micromanage -> Advanced. All existing cross references between tariffs are removed, but the tariffs themselves will remain.<br/>
-Micromanage -> Normal. All existing cross references and tariffs are removed.<br/>");
+Ako prijeđete s Naprednog na Micromanage, sve postojeće tarife bit će uklonjene.<br/>
+<br/>");
 	jr_define('_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS', 'Prikaži popis soba na stranici sa podacima objekta?');
 	jr_define('JOMRES_PROPERTYTYPE', 'Vrsta objekta');
 	jr_define('JOMRES_MAXPEOPLEINROOM', 'Maksimalan broj osoba po sobi');

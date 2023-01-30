@@ -604,27 +604,17 @@ jr_define('JOMRES_COM_A_TARIFFMODE_NORMAL', 'Normal');
 jr_define('JOMRES_COM_A_TARIFFMODE_ADVANCED', 'Avançado');
 jr_define('JOMRES_COM_A_TARIFFMODE_TARIFFTYPES', 'Micromanage');
 jr_define('JOMRES_COM_A_TARIFFMODE', 'Modo de configuração de tarifa');
-jr_define('JOMRES_COM_A_TARIFFMODE_DESC', '<b>Aviso: Alternar entre tipos diferentes de tipos de tarifa pode resultar em perda de dados.<br /> Veja a nota abaixo sobre isto</b>.
+jr_define('JOMRES_COM_A_TARIFFMODE_DESC', '<b>Aviso: Alternar entre diferentes modos de edição de tarifas pode resultar em perda de dados. Veja a nota abaixo sobre isso.</b>.
+<br/><br/>
+Você tem duas opções para configurar suas tarifas.<br/>
+Micromanage: Você pode modificar o preço de cada dia para cada tipo de quarto/propriedade. <br/>
+Avançado: Você pode criar um conjunto de tarifas que não estão vinculadas entre si. <br/>
 <br/>
-Tem três opções para configurar as suas tarifas.<br/>
-Modo normal: Terá uma tarifa para cada tipo de quarto, válida para os próximos 10 anos.<br/>
-Micromanage: Pode modificar o valor de cada e em cada dia diferente para cada tipo de quarto/propriedade. <br/>
-Avançado: O "velho" método Jomres de gerir tarifas. <br/>
+O Micromanage permite que você varie as tarifas diariamente sem ter que gerenciar resmas de tarifas, isso é feito cruzando várias tarifas diferentes umas com as outras. Isso resulta na criação de uma série de tarifas para você cobrindo um período de tempo, mas você não pode sobrepor as tarifas umas às outras.<br/>
+O modo avançado permite criar tarifas que não estão vinculadas a outras tarifas. Isso permite que você crie preços para sua propriedade que você não pode criar no modo Micromanage. É mais trabalhoso de usar, porque você precisa garantir que as datas válidas de/até de cada tarifa correspondam perfeitamente, mas permite criar tarifas mais complicadas.<br/>
 <br/>
-Os diferentes modos permitem escolher o método e configurar tarifas que melhor se adapte à sua preferência.<br/>
-O modo Normal é o mais simples e fácil de entender porque cruza referências de quartos e tarifas com tipos de quarto/propriedade e permite configurar quartos e preços na mesma página.<br/>
-O Micro manage permite variar as tarifas numa base diária sem ter que gerir quartos ou tarifas; é feito por cruzamento de referências de muitas tarifas diferentes entre si. isto resulta num certo número de tarifas que são criadas para si cobrindo um determinado período de tempo, mas não pode sobrepor tarifas umas em relação às outras.<br/>
-O modo Avançado deixa-o criar um quarto e associá-lo com um tipo de quarto. Cria então uma tarifa e associa essa tarifa com um tipo de quarto. Utilizando este método é possível "sobrepor" tarifas umas sobre as outras, por exemplo um quarto do tipo "Cama dupla" pode ter uma tarifa para <i>bed & breakfast</i> (dormida e pequeno almoço) e outra para dormida, pequeno almoço e jantar. O m
-etodo avançado requer um pouco mais de atenção ao pormenor, porque é possível dissociar um quarto ou tarifa de um tipo de quarto/propriedade, ou incorrectamente definir datas De e PARA, mas dá-lhe opções de configuração que os outros modos não proporcionam. <br/>
-<br/>
-Porque os modos Normal e Micromanage requerem uma definição específica de quartos e tarifas, para que o modo tarifa funcione o sistema pode necessitar de reiniciar alguns dados para tornar as configurações actuais de tarifas compatíveis com o presente modo de edição de tarifa.<br/>
-<br/>
-Normal -> Avançado. Não muda. As tarifas existentes são mantidas.<br/>
-Normal -> Micromanage. Todas as tarifas existentes são removidas.<br/>
-Avançado -> Normal. Todas as tarifas existentes são removidas.<br/>
-Avançado -> Micromanage. Todas as tarifas existentes são removidas.<br/>
-Micromanage -> Avançado. Todas as referências cruzadas existentes entre tarifas são removidas, mas as próprias tarifas permanecem inalteradas.<br/>
-Micromanage -> Normal. Todas as referências cruzadas e tarifas são removidas.<br/>');
+Se você mudar de Advanced para Micromanage, todas as tarifas existentes serão removidas.<br/>
+<br/>');
 jr_define('_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS', 'Mostrar lista de quartos na página de pormenores da propriedade?');
 jr_define('JOMRES_PROPERTYTYPE', 'Tipo de propriedade');
 jr_define('JOMRES_MAXPEOPLEINROOM', 'Máx pessoas por quarto');

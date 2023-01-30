@@ -639,26 +639,17 @@ jr_define('JOMRES_COM_A_TARIFFMODE_NORMAL', 'Normale');
 jr_define('JOMRES_COM_A_TARIFFMODE_ADVANCED', 'Avanzato');
 jr_define('JOMRES_COM_A_TARIFFMODE_TARIFFTYPES', 'Microgestione');
 jr_define('JOMRES_COM_A_TARIFFMODE', 'Configurazione tariffe');
-jr_define('JOMRES_COM_A_TARIFFMODE_DESC', "<b>Attenzione: Cambiare spesso il metodo di gestione tariffe potrebbe causare una perdita di dati. Vedi la nota sotto a riguardo</b>.
+jr_define('JOMRES_COM_A_TARIFFMODE_DESC', "<b>Avviso: il passaggio tra diverse modalità di modifica delle tariffe può comportare la perdita di dati. Vedi la nota qui sotto riguardo a questo.</b>.
 <br/><br/>
-Sono disponibili tre opzioni di configurazione delle tariffe.<br/>
-Normale: Avrai una tariffa per ciascun tipo di camera che sara valido per i prossimi 10 anni.<br/>
-Microgestione: E possibile modificare il prezzo singolarmente per ciascun giorno relativo a ogni singola camera/genere di struttura. <br/>
-Avanzato: Il \"vecchio\" metodo Jomres di gestione tariffe. <br/>
+Hai due opzioni su come configurare le tue tariffe.<br/>
+Microgestione: puoi modificare il prezzo per ogni singolo giorno per ogni tipo di camera/proprietà. <br/>
+Avanzato: puoi creare un set di tariffe non collegate tra loro. <br/>
 <br/>
-Ciascuna opzione di gestione permette di scegliere il metodo di configurazione che soddisfa al meglio le tue esigenze.<br/>
-L'opzione Normale, la più semplicistica ma la più facile da capire, mette in corrispondenza camere e tariffe con il tipo di camera\"ad esempio matrimoniale\" e permette quindi di configurare camere e prezzi nella stessa pagina.<br/>
-Microgestione permette di variare i prezzi giornalmente senza aver bisogno di gestire serie infinite di tariffe. Il risultato e un numero di tariffe per la gestione di un certo periodo di tempo, ma non puoi sovrapporre le tariffe tra di loro.<br/>
-La gestione avanzata ti permette di creare una stanza e associarla con un tipo di camera. Quindi puoi creare una tariffa e associarla con un tipo di camera ad esempio \"matrimoniale\". Con questo metodo &egrave; possibile sovrapporre le tariffe tra loro, per esempio un tipo di camera \"matrimoniale\" puoi avere una tariffa per bed and breakfast, una per la mezza pensione e una per la pensione completa. La gestione avanzata richiede un pochino di attenzione ai dettagli in quanto possibile disassociare una camera o una tariffa da un tipo di camera, o inserire date errate per un determinato periodo, ad esempio alta stagione, ma questo tipo di configurazione rende possibili opzioni che gil metodi normale e microgestione non offrono. <br/>
+Micromanage ti consente di variare le tariffe su base giornaliera senza dover gestire risme di tariffe, è fatto incrociando tra loro molte tariffe diverse. Ciò si traduce nella creazione di una serie di tariffe per te che coprono un periodo di tempo, ma non puoi sovrapporre le tariffe l'una all'altra.<br/>
+La modalità avanzata consente di creare tariffe non collegate ad altre tariffe. Ciò ti consente di creare prezzi per la tua proprietà che altrimenti non potresti creare in modalità Micromanage. È più laborioso da usare, perché devi assicurarti che le date valide da/a di ogni tariffa corrispondano perfettamente, ma ti permette di creare tariffe più complicate.<br/>
 <br/>
-Siccome La gestione Normale e la MicroGestione richiedono una configurazione specifica delle camere e delle tariffe per far funzionare questi tipi di gestione il sistema potrebbe avere bisogno di resettare alcuni dati per rendere le opzioni sulle tariffe premodifica compatibili con il metodo di configurazione scelto.<br/>
-<br/>
-Normale -> Avanzato. Nessun Cambiamento. Le tariffe esistenti rimangono intatte.<br/>
-Normale -> MicroGestione. Tutte le tariffe esistenti vengono rimosse.<br/>
-Avanzato -> Normale. Tutte le tariffe esistenti vengono rimosse.<br/>
-Avanzato -> MicroGestione. Tutte le tariffe esistenti vengono rimosse.<br/>
-MicroGestione -> Avanzato. Tutte le corrispondenze tra le tariffe vengono rimosse, ma le tariffe rimangono intatte.<br/>
-MicroGestione -> Normale. Tutte le corrispondenze tra le tariffe vengono rimosse.<br/>");
+Se passi da Advanced a Micromanage, tutte le tariffe esistenti verranno rimosse.<br/>
+<br/>");
 jr_define('_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS', 'Mostra la lista delle camere nella scheda della struttura?');
 jr_define('JOMRES_PROPERTYTYPE', 'Tipo struttura');
 jr_define('JOMRES_MAXPEOPLEINROOM', 'Capienza camera');

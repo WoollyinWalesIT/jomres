@@ -628,26 +628,17 @@ jr_define('JOMRES_COM_A_TARIFFMODE_NORMAL', 'Normal');
 jr_define('JOMRES_COM_A_TARIFFMODE_ADVANCED', 'Avanceret');
 jr_define('JOMRES_COM_A_TARIFFMODE_TARIFFTYPES', 'Micromanage');
 jr_define('JOMRES_COM_A_TARIFFMODE', 'Tariff Configuration Mode');
-jr_define('JOMRES_COM_A_TARIFFMODE_DESC', "<b> Advarsel: Skift mellem forskellige tariftyper kan resultere i tab af data. Se bemærkning herunder angående dette </b>.
-<br/> <br/>
-Du har tre muligheder for, hvordan du konfigurerer dine takster. <br/>
-Normal tilstand: Du vil have en takst for hver værelsestype, der er gyldig i de næste 10 år. <br/>
-Mikromanage: Du kan ændre prisen for hver dag for hvert værelse/ejendomstype. <br/>
-Avanceret: Den \gamle \" Jomres -metode til håndtering af takster. <br/>
+jr_define('JOMRES_COM_A_TARIFFMODE_DESC', "<b>Advarsel: Skift mellem forskellige takstredigeringstilstande kan resultere i tab af data. Se bemærkningen nedenfor om dette.</b>.
+<br/><br/>
+Du har to muligheder for, hvordan du konfigurerer dine takster.<br/>
+Micromanage: Du kan ændre prisen for hver dag for hver værelse/ejendomstype. <br/>
+Avanceret: Du kan oprette et sæt takster, der ikke er knyttet til hinanden. <br/>
 <br/>
-De forskellige taksttilstande giver dig mulighed for at vælge den metode til konfiguration af takster, der passer bedst til dig. <br/>
-Normal tilstand er den mest forenklede, men det er den letteste at forstå, fordi den krydser referencerum og takster til værelsestype/ejendomstyper og giver dig mulighed for at konfigurere værelser og priser på samme side. <br/>
-Mikrostyring giver dig mulighed for at variere satserne dagligt uden at skulle styre mængder af takster, det gøres ved at krydshenvise mange forskellige takster med hinanden. Dette resulterer i, at der oprettes en række takster for dig over en periode, men du kan ikke lægge takster over hinanden. <br/>
-Avanceret tilstand lader dig oprette et værelse og knytte det til en værelsestype. Du opretter derefter en takst og forbinder DET med en værelsestype. Ved hjælp af denne metode er det muligt at \"lagre \" takster over hinanden, f.eks. Kan en værelsestype \"Dobbeltseng \" have en takst for bed and breakfast og en anden for seng, morgenmad og aftensmad. Den avancerede metode kræver lidt mere opmærksomhed på detaljer, fordi det er muligt at adskille et værelse eller en tarif fra en værelse/ejendomstype, eller at forkert angive gyldig fra og til datoer, men det giver dig konfigurationsmuligheder, som de andre tilstande ikke tilbyde. <br/>
+Micromanage giver dig mulighed for at variere satserne fra dag til dag uden at skulle administrere bunker af takster, det gøres ved at krydshenvise en masse forskellige takster med hinanden. Dette resulterer i, at der oprettes en række takster for dig, der dækker en periode, men du kan ikke lægge tariffer over hinanden.<br/>
+Avanceret tilstand lader dig oprette takster, der ikke er forbundet med andre takster. Dette giver dig mulighed for at oprette priser for din ejendom, som du ellers ikke kan oprette i Micromanage-tilstand. Det er mere besværligt at bruge, fordi du skal sikre, at hver tarifs gyldige fra/til datoer passer perfekt, men det giver dig mulighed for at oprette mere komplicerede takster.<br/>
 <br/>
-Fordi normale og mikromanage -tilstande kræver et specifikt opsætning af lokaler og takster for at tarifftilstanden skal fungere, kan det være nødvendigt at nulstille nogle data for at gøre de aktuelle tarifkonfigurationer kompatible med den aktuelle tarifredigeringsfunktion. <br/>
-<br/>
-Normal -> Avanceret. Ingen ændring. Eksisterende takster bevares. <br/>
-Normal -> Mikromanage. Alle eksisterende takster fjernes. <br/>
-Avanceret -> Normal. Alle eksisterende takster fjernes. <br/>
-Avanceret -> Micromanage. Alle eksisterende takster fjernes. <br/>
-Mikromanage -> Avanceret. Alle eksisterende krydshenvisninger mellem takster fjernes, men selve taksterne forbliver. <br/>
-Mikromanage -> Normal. Alle eksisterende krydshenvisninger og takster fjernes. <br/> ");
+Hvis du skifter fra Advanced til Micromanage, vil alle eksisterende takster blive fjernet.<br/>
+<br/>");
 jr_define('_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS', 'Show rooms list in property details page?');
 jr_define('JOMRES_PROPERTYTYPE', 'Egenskabstype');
 jr_define('JOMRES_MAXPEOPLEINROOM', 'Max people per room');

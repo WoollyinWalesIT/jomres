@@ -616,26 +616,17 @@ jr_define('JOMRES_COM_A_TARIFFMODE_NORMAL', 'Običajno');
 jr_define('JOMRES_COM_A_TARIFFMODE_ADVANCED', 'Napredno');
 jr_define('JOMRES_COM_A_TARIFFMODE_TARIFFTYPES', 'Mikro upravljanje');
 jr_define('JOMRES_COM_A_TARIFFMODE', 'Način konfiguracije tarif');
-jr_define('JOMRES_COM_A_TARIFFMODE_DESC', "<b> Opozorilo: Preklop med različnimi vrstami tarif lahko povzroči izgubo podatkov. V zvezi s tem glejte spodnjo opombo </b>.
-<br/> <br/>
-Na voljo imate tri možnosti za konfiguriranje tarif. <br/>
-Običajen način: Za vsako vrsto sobe boste imeli eno tarifo, ki bo veljala naslednjih 10 let. <br/>
-Micromanage: Za vsako sobo/vrsto nepremičnine lahko spremenite ceno za vsak dan. <br/>
-Napredno: \"stara\" Jomresova metoda upravljanja tarif. <br/>
+jr_define('JOMRES_COM_A_TARIFFMODE_DESC', "<b>Opozorilo: preklapljanje med različnimi načini urejanja tarif lahko povzroči izgubo podatkov. V zvezi s tem glejte spodnjo opombo.</b>.
+<br/><br/>
+Imate dve možnosti, kako konfigurirati svoje tarife.<br/>
+Micromanage: Ceno lahko spremenite za vsak dan za vsako sobo/tip nepremičnine. <br/>
+Napredno: ustvarite lahko nabor tarif, ki niso med seboj povezane. <br/>
 <br/>
-Različni tarifni načini vam omogočajo, da izberete način konfiguriranja tarif, ki vam najbolj ustreza. <br/>
-Običajen način je najbolj poenostavljen, vendar ga je najlažje razumeti, saj bo referenčne sobe in tarife prekrival z vrstami sob/nepremičnin in vam omogočil, da na isti strani konfigurirate sobe in cene. <br/>
-Mikro upravljanje vam omogoča, da vsakodnevno spreminjate stopnje, ne da bi morali upravljati sklope tarif. Posledično se za vas ustvarijo številne tarife, ki pokrivajo določeno časovno obdobje, vendar tarif ne morete prelagati drug na drugega. <br/>
-Napredni način vam omogoča, da ustvarite sobo in jo povežete z vrsto sobe. Nato ustvarite tarifo in to povežete s tipom sobe. S to metodo je možno \"preložiti\" tarife drug na drugega, na primer soba tipa \"zakonska postelja\" ima lahko eno tarifo za nočitev z zajtrkom, drugo pa za nočitev, zajtrk in večerni obrok. Napredna metoda zahteva malo več pozornosti do podrobnosti, ker je mogoče ločiti sobo ali tarifo od vrste sobe/nepremičnine ali napačno nastaviti veljavno od in do datumov, vendar vam daje možnosti konfiguracije, ki jih imajo drugi načini ne ponujajo. <br/>
+Micromanage vam omogoča vsakodnevno spreminjanje stopenj, ne da bi morali upravljati kupe tarif, to storite tako, da navzkrižno primerjate veliko različnih tarif med seboj. Posledica tega je, da se za vas ustvari več tarif, ki pokrivajo določeno časovno obdobje, vendar tarif ne morete nadgraditi.<br/>
+Napredni način vam omogoča ustvarjanje tarif, ki niso povezane z drugimi tarifami. To vam omogoča ustvarjanje cen za vašo nepremičnino, ki jih sicer ne morete ustvariti v načinu Micromanage. Uporaba je zahtevnejša, ker morate zagotoviti, da se datumi veljavnosti od/do vsake tarife popolnoma ujemajo, vendar vam omogoča ustvarjanje bolj zapletenih tarif.<br/>
 <br/>
-Ker način Normal in Micromanage za delovanje tarifnega načina zahtevata posebno nastavitev sob in tarif, bo sistem morda moral ponastaviti nekatere podatke, da bodo trenutne konfiguracije tarif združljive s trenutnim načinom urejanja tarif. <br/>
-<br/>
-Običajno -> Napredno. Ni sprememb. Obstoječe tarife se ohranijo. <br/>
-Običajno -> Mikro upravljanje. Vse obstoječe tarife so odstranjene. <br/>
-Napredno -> Običajno. Vse obstoječe tarife so odstranjene. <br/>
-Napredno -> Mikro upravljanje. Vse obstoječe tarife so odstranjene. <br/>
-Mikro upravljanje -> Napredno. Vse obstoječe navzkrižne povezave med tarifami se odstranijo, same tarife pa bodo ostale. <br/>
-Mikro upravljanje -> Normalno. Vse obstoječe navzkrižne reference in tarife so odstranjene. <br/> ");
+Če preklopite z Advanced na Micromanage, bodo vse obstoječe tarife odstranjene.<br/>
+<br/>");
 jr_define('_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS', 'Pokaži seznam sob na strani s podrobnostmi o nepremičninah?');
 jr_define('JOMRES_PROPERTYTYPE', 'Vrsta lastnosti');
 jr_define('JOMRES_MAXPEOPLEINROOM', 'Največ ljudi na sobo');

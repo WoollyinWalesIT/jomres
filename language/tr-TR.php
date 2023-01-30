@@ -609,26 +609,17 @@ jr_define('JOMRES_COM_A_TARIFFMODE_NORMAL', 'Normal');
 jr_define('JOMRES_COM_A_TARIFFMODE_ADVANCED', 'Gelişmiş');
 jr_define('JOMRES_COM_A_TARIFFMODE_TARIFFTYPES', 'Micromanage');
 jr_define('JOMRES_COM_A_TARIFFMODE', 'Tariff Configuration Mode');
-jr_define('JOMRES_COM_A_TARIFFMODE_DESC', "<b>Uyarı: Farklı tarife türleri arasında geçiş yapılması veri kaybına neden olabilir. Bununla ilgili aşağıdaki nota bakın.</b>.
+jr_define('JOMRES_COM_A_TARIFFMODE_DESC', "<b>Uyarı: Farklı tarife düzenleme modları arasında geçiş yapılması veri kaybına neden olabilir. Bununla ilgili aşağıdaki nota bakın.</b>.
 <br/><br/>
-Tarifelerinizi nasıl yapılandırdığınız konusunda üç seçeneğiniz vardır.<br/>
-Normal mod: Önümüzdeki 10 yıl için geçerli olan her oda türü için bir tarifeniz olacak. <br/>
-Micromanage: Her bir kaynak / mülk türü için her birinin fiyatını değiştirebilirsiniz. <br/>
-Advanced: Tarife yönetmek için \"eski \" Jomres yöntemi. <br/>
+Tarifelerinizi nasıl yapılandıracağınız konusunda iki seçeneğiniz var.<br/>
+Micromanage: Her oda/tesis tipi için her gün için fiyatı değiştirebilirsiniz. <br/>
+Gelişmiş: Birbirine bağlı olmayan bir dizi tarife oluşturabilirsiniz. <br/>
 <br/>
-Farklı tarife modları, size en uygun tarifeleri yapılandırma yöntemini seçmenizi sağlar. <br/>
-Normal mod en basittir, ancak referans oda ve tarifeleri kaynak / mülk türlerine göre çaprazlayacak ve oda ve fiyatları aynı sayfada yapılandırmanıza olanak tanıdığından anlaşılması en kolay yoldur.<br/>
-Mikromanage tarifelerin hepsini yönetmek zorunda kalmadan, bir gün bazında oranları değiştirmenize olanak tanır, bu birbirleri ile çok sayıda farklı tarife çapraz başvurarak yapılır. Bu, sizin için belirli bir süre kapsayan bir dizi tarifeye neden olur, ancak tarifeleri tarif ettiremezsiniz. <br/>
-Gelişmiş mod, bir kaynak oluşturup bir kaynak türü ile ilişkilendirmenizi sağlar. Daha sonra bir tarife oluşturun ve MADDE ile bir kaynak türünü ilişkilendirin. Bu yöntemi kullanarak, birbiri üzerinde \"katman\" tarifeleri yapmak mümkündür, örneğin bir kaynak türü \"Çift kişilik yatak \" bir yatak ve kahvaltı için bir tarife, bir tane ise yatak, kahvaltı ve akşam yemeği içerebilir. Gelişmiş yöntem, bir kaynak / mülk türünün bir kaynak veya tarife ilişkisini ortadan kaldırmak ya da tarih ve tarihleri ​​hatalı olarak ayarlamak mümkündür, ancak diğer modların yapılandırma seçeneklerini vermesi nedeniyle, ayrıntıya biraz daha dikkat etmeniz gerekir. <br/>
+Mikro yönetim, tarife yığınlarını yönetmek zorunda kalmadan oranları günden güne değiştirmenize olanak tanır, birçok farklı tarife birbiriyle çapraz referans alınarak yapılır. Bu, sizin için belirli bir süreyi kapsayan bir dizi tarife oluşturulmasına neden olur, ancak tarifeleri birbiri üzerine katmanlayamazsınız.<br/>
+Gelişmiş mod, diğer tarifelerle bağlantılı olmayan tarifeler oluşturmanıza olanak sağlar. Bu, mülkünüz için Micromanage modunda başka türlü oluşturamayacağınız fiyatlar oluşturmanıza olanak tanır. Kullanımı daha zahmetlidir, çünkü her tarifenin geçerlilik başlangıç/bitiş tarihlerinin birbirine tam olarak uymasını sağlamanız gerekir, ancak daha karmaşık tarifeler oluşturmanıza olanak tanır.<br/>
 <br/>
-Normal ve Micromanage modları, tarife modunun çalışması için belirli bir oda ve tarif ayarlamasını gerektirdiğinden, sistem geçerli tarife yapılandırmalarını mevcut tarife düzenleme moduyla uyumlu hale getirmek için bazı verileri sıfırlamanız gerekebilir. .<br/>
-<br/>
-Normal -> Gelişmiş. Değişiklik yok. Mevcut tarife saklanır.<br/>
-Normal -> Mikromanage. Mevcut tarifelerin tümü kaldırılır. <br/>
-Gelişmiş -> Normal. Mevcut tarifelerin tümü kaldırılır.<br/>
-Gelişmiş -> Micromanage. Mevcut tarifelerin tümü kaldırılır. <br/>
-Mikromanage -> Gelişmiş. Tarifeler arasındaki mevcut tüm çapraz referanslar kaldırılır ancak tarife kendiliğinden kalır. <br/>
-Mikromanage -> Normal. Mevcut tüm çapraz referanslar ve tarife kaldırılır. <br/> ");
+Advanced'den Micromanage'e geçerseniz mevcut tüm tarifeler kaldırılacaktır.<br/>
+<br/>");
 jr_define('_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS', 'Odalar listesini mülk ayrıntıları sayfasında gösterilsin mi?');
 jr_define('JOMRES_PROPERTYTYPE', 'Özellik türü');
 jr_define('JOMRES_MAXPEOPLEINROOM', 'Oda başına maksimum kişi');

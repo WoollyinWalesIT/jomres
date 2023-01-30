@@ -648,14 +648,17 @@ jr_define('JOMRES_COM_A_TARIFFMODE_NORMAL', 'Podstawowy');
 jr_define('JOMRES_COM_A_TARIFFMODE_TARIFFTYPES', 'Rozszerzony');
 jr_define('JOMRES_COM_A_TARIFFMODE_ADVANCED', 'Zaawansowany');
 jr_define('JOMRES_COM_A_TARIFFMODE', 'Tryb konfiguracji cen');
-jr_define('JOMRES_COM_A_TARIFFMODE_DESC', '<b>Ostrzeżenie! Przełączanie pomiędzy różnymi trybami konfiguracji cen może spowodować utratę danych, przeczytaj poniższe uwagi.</b>
-	<br /><br />
-	Dostępne są trzy opcje możliwości konfiguracji cen.
-	<ul>
-		<li>Tryb podstawowy - Będziesz miał jedną cenę dla każdego zasobu.</li>
-		<li>Rozszerzony - Można modyfikować cenę za każdy dzień i za każdy zasób w danym rodzaju oferty.</li>
-		<li>Zaawansowany - Dowolna możliwość kształtowania cen.</li>
-	</ul>');
+jr_define('JOMRES_COM_A_TARIFFMODE_DESC', '<b>Ostrzeżenie: Przełączanie między różnymi trybami edycji taryfy może spowodować utratę danych. Zobacz poniższą notatkę na ten temat.</b>.
+<br/><br/>
+Masz dwie możliwości konfiguracji taryf.<br/>
+Mikrozarządzanie: Możesz modyfikować cenę każdego dnia dla każdego rodzaju pokoju/obiektu. <br/>
+Zaawansowane: Możesz utworzyć zestaw taryf, które nie są ze sobą powiązane. <br/>
+<br/>
+Micromanage pozwala na codzienne zmienianie stawek bez konieczności zarządzania ryzami taryf, odbywa się to poprzez wzajemne odwoływanie się do wielu różnych taryf. Powoduje to utworzenie dla Ciebie wielu taryf obejmujących pewien okres czasu, ale nie możesz nakładać taryf na siebie.<br/>
+Tryb zaawansowany umożliwia tworzenie taryf, które nie są powiązane z innymi taryfami. Pozwala to na tworzenie cen dla Twojej nieruchomości, których nie można utworzyć w inny sposób w trybie Micromanage. Jest bardziej pracochłonny w użyciu, ponieważ musisz upewnić się, że daty obowiązywania od/do każdej taryfy są idealnie dopasowane, ale pozwala tworzyć bardziej skomplikowane taryfy.<br/>
+<br/>
+Jeśli przełączysz się z Zaawansowanego na Mikrozarządzanie, wszystkie istniejące taryfy zostaną usunięte.<br/>
+<br/>');
 jr_define('_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS', 'lista zasobówna stronie szczegółów oferty');
 jr_define('JOMRES_PROPERTYTYPE', 'Rodzaj oferty');
 jr_define('JOMRES_MAXPEOPLEINROOM', 'Maks klientów dla zasobu');

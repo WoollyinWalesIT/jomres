@@ -617,26 +617,17 @@ jr_define('JOMRES_COM_A_TARIFFMODE_NORMAL', 'Normal');
 jr_define('JOMRES_COM_A_TARIFFMODE_ADVANCED', 'Avansert');
 jr_define('JOMRES_COM_A_TARIFFMODE_TARIFFTYPES', 'Detaljstyrt');
 jr_define('JOMRES_COM_A_TARIFFMODE', 'Modus for prissetting');
-jr_define('JOMRES_COM_A_TARIFFMODE_DESC', '<b>Advarsel: Endring mellom forskjellige pristyper kan resultere i tap av data. Se melding under for mer informasjon.</b>.
+jr_define('JOMRES_COM_A_TARIFFMODE_DESC', '<b>Advarsel: Bytting mellom ulike tariffredigeringsmoduser kan føre til tap av data. Se merknaden nedenfor angående dette.</b>.
 <br/><br/>
-Du har tre valg for hvordan du vil definere priser.<br/>
-Normal modus: Du har én pris for hver enhetstype som er gyldig de neste 10 årene.<br/>
-Detaljstyrt: Du kan modifisere prisen for hver og en dag for hver enhetstype.<br/>
-Avansert: Den "gamle" metoden for å styre priser. <br/>
+Du har to alternativer for hvordan du konfigurerer tariffene dine.<br/>
+Micromanage: Du kan endre prisen for hver dag for hver rom/eiendomstype. <br/>
+Avansert: Du kan lage et sett med tariffer som ikke er knyttet til hverandre. <br/>
 <br/>
-De forskjellige modusene gjør at du kan velge den modusen som passer deg best.<br/>
-Normal modus er den enkleste, og den er enkel å forstå da den krysser enheter og priser med enhetstyper slik at du kan endre alt på én side.<br/>
-Detaljstyrt gjør at du kan variere prisene dag for dag uten å måtte endre en drøss med priser. Den krysser forskjellige priser med hverandre, og gjør at du har mange priser for å dekke forskjellige perioder. Men: du kan ikke legge priser over hverandre.<br/>
-Avansert modus lar deg lage en enhet og knytte den til en enhetstype. Du kan så lage et prisoppsett som du knytter om til DEN enhetstypen. Ved å bruke denne metoden er det mulig å legge forskjellige "lag"# med priser oppå hverandre, for eksempel en enhetstype "dobbeltrom" kan ha én pris for rom og frokost, og en annen pris for rom, frokost og middag. Den avanserte modusen krever mer fokus på detaljer siden det er mulig å IKKE knytte en enhet eller pris til en enhetstype, eller å sette datoer feil, men den gir deg innstillingsmuligheter som ingen andre moduser kan gi deg.<br/>
+Micromanage lar deg variere prisene fra dag til dag uten å måtte administrere mengder av tariffer, det gjøres ved å krysshenvise til mange forskjellige tariffer med hverandre. Dette resulterer i at det opprettes en rekke tariffer for deg som dekker en periode, men du kan ikke legge tariffer over hverandre.<br/>
+Avansert modus lar deg lage tariffer som ikke er knyttet til andre tariffer. Dette lar deg lage priser for eiendommen din som du ellers ikke kan lage i Micromanage-modus. Det er mer arbeidskrevende å bruke, fordi du må sørge for at hver tariff er gyldig fra/til datoene passer perfekt, men den lar deg lage mer kompliserte tariffer.<br/>
 <br/>
-Siden Normal og Detaljstyrt trenger spesifikke oppsett av enheter og priser for at oppsettene skal virke kan systemet trenge å slette data for å få det gjeldende prisoppsettet til å virke.<br/>
-<br/>
-Normal -> Avansert: Ingen endring. Eksisterende priser blir beholdt.<br/>
-Normal -> Detaljstyrt: Alle eksisterende prisoppsett blir fjernet.<br/>
-Avansert -> Normal: Alle eksisterende prisoppsett blir fjernet.<br/>
-Avansert -> Detaljstyrt. Alle eksisterende prisoppsett blir fjernet.<br/>
-Detaljstyrt -> Avansert. Alle eksisterende kryssreferanser mellom prisoppsett blir fjernet, men prisene i seg selv blir beholdt.<br/>
-Detaljstyrt -> Normal. Alle eksisterende kryssreferanser og priser blir fjernet.<br/>');
+Hvis du bytter fra Advanced til Micromanage, vil alle eksisterende tariffer bli fjernet.<br/>
+<br/>');
 jr_define('_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS', 'Vis enhetsliste i detaljefeltet for utleiested?');
 jr_define('JOMRES_PROPERTYTYPE', 'Utleietype');
 jr_define('JOMRES_MAXPEOPLEINROOM', 'Maks antall personer per enhet');

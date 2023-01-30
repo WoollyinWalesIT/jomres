@@ -630,27 +630,17 @@ jr_define('JOMRES_COM_A_TARIFFMODE_NORMAL', 'Normalna Tarifa');
 jr_define('JOMRES_COM_A_TARIFFMODE_ADVANCED', 'Napredna Tarifa');
 jr_define('JOMRES_COM_A_TARIFFMODE_TARIFFTYPES', 'Mikro tarifa');
 jr_define('JOMRES_COM_A_TARIFFMODE', 'Konfigurisanje tipova tarifa');
-jr_define('JOMRES_COM_A_TARIFFMODE_DESC', "<b>VAŽNO UPOZORENJE: Prebacivanje između različitih tipova tarifa može dovesti do gubitka podataka. Pogledajte napomenu ispod u vezi sa ovim</b>.
+jr_define('JOMRES_COM_A_TARIFFMODE_DESC', "<b>Warning: Switching between different tariff editing modes may result in loss of data. See the note below regarding this.</b>.
 <br/><br/>
-Imate tri opcije kako da konfigurišete svoje tarife.<br/>
-Normalni režim: Imaćete jednu tarifu za svaki tip sobeili apartmana koja važi narednih 10 godina.<br/>
-Mikro : Možete menjati cenu za svaki dan za svaku sobu, apartman ili drugi tip nekretnine. <br/>
-Napredni: \"stari\" metod konfigurisanja tarifa. <br/>
+You have two options as to how you configure your tariffs.<br/>
+Micromanage: You can modify the price for each and every day for each room/property type. <br/>
+Advanced: You can create a set of tariffs that are not linked to each other. <br/>
 <br/>
-Različiti tarifni režimi vam omogućavaju da izaberete metod konfigurisanja tarifa koji vam najviše odgovara.<br/>
-Normalni režim je najjednostavniji, i najlakše ga je razumeti jer će ukrštati referentne sobe i tarife na tipove soba/nekretnina i omogućava vam da konfigurišete sobe i cene na istoj stranici.<br/>
-Mikro upravljanje vam omogućava da menjate cene na dnevnoj bazi bez potrebe da upravljate gomilom tarifa, to se radi unakrsnim referenciranjem mnogo različitih tarifa jedna sa drugom. Ovo dovodi do stvaranja većeg broja tarifa za vas, koji pokrivaju određeni vremenski period, ali ne možete da postavljate tarife jednu preko druge.<br/>
-Napredni režim vam omogućava da kreirate sobu i da je povežete sa tipom sobe. Zatim kreirate tarifu i povezujete TO sa tipom sobe. Ovim metodom moguće je \"prelepiti\" tarife jednu preko druge, na primer soba tipa \"Bračni krevet\" može imati jednu tarifu za noćenje sa doručkom, a drugu za noćenje, doručak i večeru. Napredni metod zahteva malo više pažnje na detalje jer je moguće odvojiti sobu ili tarifu od tipa sobe/nekretnine, ili pogrešno postaviti važeće od i do datuma, ali vam daje opcije konfiguracije koje drugi režimi ne nude. <br/>
+Micromanage allows you to vary the rates on a day to day basis without having to manage reams of tariffs, it is done by cross referencing lots of different tariffs with each other. This results in a number of tariffs being created for you covering a period of time, but you can not layer tariffs over each other.<br/>
+Advanced mode lets you create tariffs that are not linked with other tariffs. This allows you to create prices for your property that you cannot otherwise create in Micromanage mode. It is more laborious to use, because you need to ensure that each tariff's valid from/to dates perfectly match, but it allows you to create more complicated tariffs.<br/>
 <br/>
-Pošto Normalni i Mikro režimi zahtevaju specifično podešavanje soba i tarifa da bi tarifni režim funkcionisao, sistem će možda morati da resetuje neke podatke da bi trenutne tarifne konfiguracije bile kompatibilne sa trenutnim režimom za uređivanje tarifa.<br/>
-<br/>
-Normalni -> Napredni. Nema promene. Postojeće tarife se zadržavaju.<br/>
-Normalni -> Mikro. Sve postojeće tarife biće uklonjene.<br/>
-Napredni -> Normalni. Sve postojeće tarife biće uklonjene.<br/>
-Napredni -> Mikro. Sve postojeće tarife biće uklonjene.<br/>
-Mikro -> Napredni. Sve postojeće unakrsne reference između tarifa biće uklonjene, ali same tarife će ostati.<br/>
-Mikro -> Normalni. Sve postojeće unakrsne reference i tarife biće uklonjene
-.<br/>");
+If you switch from Advanced to Micromanage, all existing tariffs will be removed.<br/>
+<br/>");
 jr_define('_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS', 'Želite li da prikažete listu soba na stranici sa detaljima o objektu?');
 jr_define('JOMRES_PROPERTYTYPE', 'Property type');
 jr_define('JOMRES_MAXPEOPLEINROOM', 'Max osoba u sobi');

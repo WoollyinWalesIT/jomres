@@ -627,26 +627,17 @@ jr_define('JOMRES_COM_A_TARIFFMODE_NORMAL', 'normálny');
 jr_define('JOMRES_COM_A_TARIFFMODE_ADVANCED', 'Rozšírené');
 jr_define('JOMRES_COM_A_TARIFFMODE_TARIFFTYPES', 'Micromanage');
 jr_define('JOMRES_COM_A_TARIFFMODE', 'režim konfigurácie tarify');
-jr_define('JOMRES_COM_A_TARIFFMODE_DESC', "<b> Upozornenie: Prepínanie medzi rôznymi druhmi taríf môže mať za následok stratu dát. K tomu si pozrite nasledujúcu poznámku </b>.
-<br/> <br/>
-Máte tri možnosti konfigurácie taríf. <br/>
-Normálny režim: Na každý typ miestnosti budete mať jednu tarifu, ktorá platí ďalších 10 rokov. <br/>
-Mikromanažment: Cenu môžete upravovať každý deň pre každú izbu/typ nehnuteľnosti. <br/>
-Rozšírené: \"starý\" Jomresov spôsob správy taríf. <br/>
+jr_define('JOMRES_COM_A_TARIFFMODE_DESC', "<b>Upozornenie: Prepínanie medzi rôznymi režimami úpravy taríf môže viesť k strate údajov. V tejto súvislosti si pozrite poznámku nižšie.</b>.
+<br/><br/>
+Máte dve možnosti, ako si nakonfigurovať tarify.<br/>
+Micromanage: Môžete upraviť cenu pre každý deň pre každý typ izby/nehnuteľnosti. <br/>
+Pokročilé: Môžete vytvoriť sadu taríf, ktoré nie sú navzájom prepojené. <br/>
 <br/>
-Rôzne tarifné režimy vám umožňujú vybrať si spôsob konfigurácie taríf, ktorý vám najviac vyhovuje. <br/>
-Normálny režim je najjednoduchší, ale je najľahšie pochopiteľný, pretože bude krížiť referenčné miestnosti a tarify s typmi izieb/nehnuteľností a umožní vám konfigurovať izby a ceny na tej istej stránke. <br/>
-Mikro správa vám umožňuje meniť sadzby na dennej báze bez toho, aby ste museli spravovať balíčky taríf, a to pomocou vzájomného krížového porovnávania mnohých rôznych taríf. Výsledkom je, že sa vám na určitý čas vytvorí niekoľko taríf, ale nemôžete ich vrstviť navzájom. <br/>
-Rozšírený režim vám umožní vytvoriť miestnosť a priradiť ju k typu miestnosti. Potom vytvoríte tarifu a priradíte TO k typu miestnosti. Pomocou tejto metódy je možné 'vrstviť'tarify nad sebou, napríklad pre typ miestnosti 'Manželská posteľ'môže byť jeden tarif pre nocľah s raňajkami a druhý pre nocľah, raňajky a večeru. Pokročilá metóda vyžaduje trochu viac pozornosti k detailom, pretože je možné odpojiť izbu alebo tarifu od typu miestnosti/nehnuteľnosti alebo nesprávne nastaviť platné dátumy a dátumy, ale poskytuje možnosti konfigurácie, ktoré ostatné režimy neponúkajte. <br/>
+Micromanage vám umožňuje meniť sadzby na dennej báze bez toho, aby ste museli spravovať množstvo taríf, robí sa to krížovým odkazovaním na množstvo rôznych taríf navzájom. Výsledkom je, že sa pre vás vytvorí niekoľko taríf pokrývajúcich určité časové obdobie, ale nemôžete navzájom vrstviť tarify.<br/>
+Pokročilý režim vám umožňuje vytvárať tarify, ktoré nie sú prepojené s inými tarifami. To vám umožňuje vytvárať ceny pre váš majetok, ktoré inak nemôžete vytvoriť v režime Micromanage. Jeho používanie je náročnejšie, pretože je potrebné zabezpečiť, aby sa dátumy platné od/do každej tarify dokonale zhodovali, no umožňuje vytvárať komplikovanejšie tarify.<br/>
 <br/>
-Pretože normálny a mikromanažérsky režim vyžadujú na fungovanie tarifného režimu špecifické nastavenia miestností a taríf, môže byť potrebné, aby systém resetoval niektoré údaje, aby boli aktuálne konfigurácie taríf kompatibilné s aktuálnym režimom úprav taríf. <br/>
-<br/>
-Normálne -> Rozšírené. Žiadna zmena. Existujúce tarify zostanú zachované. <br/>
-Normálne -> Mikromanáž. Všetky existujúce tarify budú odstránené. <br/>
-Rozšírené -> Normálne. Všetky existujúce tarify budú odstránené. <br/>
-Rozšírené -> Mikromanáž. Všetky existujúce tarify budú odstránené. <br/>
-Mikromanage -> Rozšírené. Všetky existujúce krížové odkazy medzi tarifami budú odstránené, ale samotné tarify zostanú. <br/>
-Mikromanage -> Normálne. Všetky existujúce krížové referencie a tarify budú odstránené. <br/> ");
+Ak prejdete z rozšíreného na Micromanage, všetky existujúce tarify budú odstránené.<br/>
+<br/>");
 jr_define('_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS', 'Zobraziť zoznam izieb na stránke podrobností nehnuteľnosti?');
 jr_define('JOMRES_PROPERTYTYPE', 'Property type');
 jr_define('JOMRES_MAXPEOPLEINROOM', 'Maximálny počet osôb na izbu');

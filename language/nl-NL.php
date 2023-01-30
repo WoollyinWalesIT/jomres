@@ -610,26 +610,17 @@ jr_define('JOMRES_COM_A_TARIFFMODE_NORMAL', "Normaal ");
 jr_define('JOMRES_COM_A_TARIFFMODE_ADVANCED', "Geavanceerd ");
 jr_define('JOMRES_COM_A_TARIFFMODE_TARIFFTYPES', "Micromanage ");
 jr_define('JOMRES_COM_A_TARIFFMODE', "Tariefconfiguratiemodus ");
-jr_define('JOMRES_COM_A_TARIFFMODE_DESC', "<b> Waarschuwing: het wisselen van modus kan leiden tot het verlies van data.Zie de toelichting hieronder over dit </b>.
+jr_define('JOMRES_COM_A_TARIFFMODE_DESC', "<b>Waarschuwing: schakelen tussen verschillende tariefbewerkingsmodi kan leiden tot gegevensverlies. Zie de opmerking hieronder hierover.</b>.
 <br/><br/>
-U heeft drie opties over hoe u uw tarieven configureert. <br/>
-Normale modus: U hebt één tarief voor elk kamertype dat geldig is voor de komende 10 jaar. <br/>
-Micromanage: U kunt de prijs voor elke dag voor elk type kamer/verhuurobject beheren. <br/>
-Geavanceerd: Iets uitgereider dan de normale modus om tarieven te beheren. <br/>
+U heeft twee mogelijkheden om uw tarieven te configureren.<br/>
+Micromanage: U kunt de prijs voor elke dag wijzigen voor elk type kamer/accommodatie. <br/>
+Geavanceerd: U kunt een set tarieven aanmaken die niet aan elkaar gekoppeld zijn. <br/>
 <br/>
-Met de verschillende tariefmodi kunt u de methode kiezen voor het configureren van tarieven die het beste bij u passen. <br/>
-De normale modus is het meest eenvoudig, maar het is het makkelijkste te begrijpen omdat het u de mogelijkheid biedt om kamers en prijzen op dezelfde pagina te configureren. <br/>
-Met micromanage kunt u de tarieven dagelijks aanpassen, u kunt verschillende tarieven met elkaar combineren. Dit resulteert in een aantal tarieven die voor een periode worden gemaakt voor u, maar u kunt geen tarief over elkaar oplopen. <br/>
-Met de geavanceerde modus kunt u een kamer creëren en associëren met een kamertype. U maakt dan een tarief en associeert dat met een kamertype. Met behulp van deze methode is het mogelijk om verschillende tarieven als lagen over elkaar te halen, bijvoorbeeld een kamertype. Dubbel bed kan één bed en breakfast hebben, en een ander voor bed, ontbijt en avondmaaltijd. De geavanceerde methode vereist een beetje meer aandacht voor detail, omdat het mogelijk is om een ​​kamer of tarief van een verhuurobject/kamertype te ontkoppelen, maar het geeft u configuratie opties die de andere modi niet bieden. <br/>
+Met Micromanage kunt u de tarieven van dag tot dag variëren zonder dat u een hele reeks tarieven hoeft te beheren. Dit wordt gedaan door veel verschillende tarieven met elkaar te vergelijken. Dit resulteert in een aantal tarieven die voor een bepaalde periode voor u worden aangemaakt, maar u kunt geen tarieven over elkaar heen leggen.<br/>
+In de geavanceerde modus kunt u tarieven maken die niet gekoppeld zijn aan andere tarieven. Hierdoor kunt u prijzen voor uw onroerend goed maken die u anders niet kunt maken in de Micromanage-modus. Het is arbeidsintensiever in het gebruik, omdat u ervoor moet zorgen dat de geldig van/tot datums van elk tarief perfect overeenkomen, maar u kunt er ingewikkelder tarieven mee maken.<br/>
 <br/>
-Omdat de normale en Micromanage-modi een specifieke opstelling van kamers en tarieven vereisen voor de tariefmodus om te werken, moet het systeem mogelijk sommige gegevens opnieuw instellen om de huidige tariefconfiguraties compatibel te maken met de huidige tariefbewerkingsmodus. <br/>
-<br/>
-Normaal -> Geavanceerd. Geen verandering. Bestaande tarieven worden behouden. <br/>
-Normaal -> Micromanage. Alle bestaande tarieven worden verwijderd. <br/>
-Geavanceerd -> Normaal. Alle bestaande tarieven worden verwijderd. <br/>
-Geavanceerd -> Micromanage. Alle bestaande tarieven worden verwijderd. <br/>
-Micromanage -> Advanced. Alle bestaande kruisverwijzingen tussen tarieven worden verwijderd, maar de tarieven zelf blijven. <br/>
-Micromanage -> Normaal. Alle bestaande kruisverwijzingen en tarieven worden verwijderd. <br/> ");
+Als u overstapt van Advanced naar Micromanage, worden alle bestaande tarieven verwijderd.<br/>
+<br/>");
 jr_define('_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS', "Toon kamerlijst op pagina met verhuurobjectgegevens? ");
 jr_define('JOMRES_PROPERTYTYPE', "Verhuurobject type");
 jr_define('JOMRES_MAXPEOPLEINROOM', "Max gasten per kamer ");

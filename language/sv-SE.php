@@ -612,26 +612,17 @@ jr_define('JOMRES_COM_A_TARIFFMODE_NORMAL', 'Normal');
 jr_define('JOMRES_COM_A_TARIFFMODE_ADVANCED', 'Avancerad');
 jr_define('JOMRES_COM_A_TARIFFMODE_TARIFFTYPES', 'Detaljstyra');
 jr_define('JOMRES_COM_A_TARIFFMODE', 'Konfigurationsläge för prislistor');
-jr_define('JOMRES_COM_A_TARIFFMODE_DESC', '<b>Varning: Att växla mellan olika prislistetyper kan resultera i förlust av data. Se anmärkning nedan om detta.</b>
+jr_define('JOMRES_COM_A_TARIFFMODE_DESC', '<b>Varning: Växling mellan olika tariffredigeringslägen kan resultera i förlust av data. Se anmärkningen nedan angående detta.</b>.
 <br/><br/>
-Du har tre alternativ för hur du kan konfigurera prislistor. <br/>
-Normalläge:. Du kommer att ha en prislista för varje inkvarteringstyp som gäller för de kommande 10 åren <br/>
-Detaljstyra: Du kan ändra priset för varje dag och för varje inkvarterings/verksamhetstyp. <br/>
-Avancerat: Den "gamla" Jomres metoden att hantera prislistor. <br/>
+Du har två alternativ för hur du konfigurerar dina tariffer.<br/>
+Micromanage: Du kan ändra priset för varje dag för varje rum/fastighetstyp. <br/>
+Avancerat: Du kan skapa en uppsättning tariffer som inte är kopplade till varandra. <br/>
 <br/>
-De olika prislistlägena gör att du kan välja metod för att konfigurera prislistor på det sätt som passar dig bäst.<br/>
-Normalläge är den enklaste, men den är också den enklaste att förstå eftersom det görs en korsreferens mellan inkvarteringer och prislistor samt inkvarterings/verksamhetstyper och ger dig möjlighet att konfigurera inkvarteringer och priser på samma sida. <br/>
-Detaljstyrning tillåter dig att variera priserna på en daglig basis utan att behöva hantera mängder av prislistor, det sker genom att det görs korsreferenser mellan massor av olika prislistor med varandra. Detta resulterar i att ett antal prislistor skapas för dig som omfattar en period, men du kan inte lägga prislistor över varandra.<br/>
-Avancerat läge tillåter dig att skapa en inkvartering och koppla det till en inkvarteringstyp. Du skapar då en prislista och associerar den med en inkvarteringstyp. Med denna metod är det möjligt att lägga ett lager av prislistor på varandra, t.ex. inkvarteringstypen "Dubbelsäng" kan ha ett pris, "bed and breakfast" en annan och "bed and breakfast och kvällsmåltid" ytterligare en. Den avancerade metoden kräver lite mer kontroll på detaljerna eftersom det är möjligt att disassociera en inkvartering eller prislista från en inkvarterings/verksamhetstyp eller felaktigt ange giltiga från och till datum, men det ger dig konfigurationsalternativ som de andra lägena inte erbjuder.<br/>
+Micromanage låter dig variera priserna från dag till dag utan att behöva hantera mängder av tariffer, det görs genom att korshänvisa massor av olika tariffer med varandra. Detta resulterar i att ett antal tariffer skapas för dig som täcker en tidsperiod, men du kan inte lägga tariffer över varandra.<br/>
+Avancerat läge låter dig skapa tariffer som inte är kopplade till andra tariffer. Detta gör att du kan skapa priser för din fastighet som du annars inte kan skapa i Micromanage-läge. Det är mer mödosamt att använda, eftersom du måste se till att varje taxa är giltig från/till datum perfekt matchar, men det låter dig skapa mer komplicerade tariffer.<br/>
 <br/>
-Eftersom Normal och Detaljstyrningslägena behöver en särskild uppsättning inkvarteringar och prislistor för att prislistläget ska fungera kan systemet behöva återställa vissa data för att göra de nuvarande prislistkonfigurationerna kompatibla med det nuvarande prislistredigeringsläget. <br/>
-<br/>
-Normal -> Avancerat. Ingen förändring. Befintliga prislistor behålls. <br/>
-Normal -> Detaljstyra. Alla befintliga prislistor tas bort. <br/>
-Avancerat -> Normal. Alla befintliga prislistor tas bort. <br/>
-Avancerat -> Detaljstyra. Alla befintliga prislistor tas bort. <br/>
-Detaljstyra -> Avancerat. Alla befintliga korshänvisningar mellan prislistorna tas bort, men prislistorna själva kommer att finnas kvar. <br/>
-Detaljstyra -> Normal. Alla befintliga korshänvisningar och prislistor tas bort <br/>');
+Om du byter från Advanced till Micromanage kommer alla befintliga tariffer att tas bort.<br/>
+<br/>');
 jr_define('_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS', 'Visa inkvarteringslista på verksamhetens informationssida?');
 jr_define('JOMRES_PROPERTYTYPE', 'Verksamhetstyp');
 jr_define('JOMRES_MAXPEOPLEINROOM', 'Max antal personer per inkvartering');

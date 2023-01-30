@@ -613,26 +613,17 @@ jr_define('JOMRES_COM_A_TARIFFMODE_NORMAL', 'Normal');
 jr_define('JOMRES_COM_A_TARIFFMODE_ADVANCED', 'Qabaqcıl');
 jr_define('JOMRES_COM_A_TARIFFMODE_TARIFFTYPES', 'Micromanage');
 jr_define('JOMRES_COM_A_TARIFFMODE', 'Tarif Konfiqurasiya Rejimi');
-jr_define('JOMRES_COM_A_TARIFFMODE_DESC', "<b> Xəbərdarlıq: Fərqli tarif növləri arasında keçid məlumatların itirilməsi ilə nəticələnə bilər. Bu </b> ilə əlaqədar aşağıdakı nota baxın.
-<br/> <br/>
-Tariflərinizi necə konfiqurasiya etməyinizə dair üç seçiminiz var. <br/>
-Normal rejim: Növbəti 10 il ərzində qüvvədə olan hər bir resurs növü üçün bir tarifiniz olacaq. <br/>
-Micromanage: Hər bir qaynaq/mülk növü üçün hər gün üçün qiyməti dəyişə bilərsiniz. <br/>
-Ətraflı: Tarifləri idarə etmək üçün \"köhnə\" Jomres üsulu. <br/>
+jr_define('JOMRES_COM_A_TARIFFMODE_DESC', "<b>Xəbərdarlıq: Müxtəlif tarif redaktə rejimləri arasında keçid məlumat itkisi ilə nəticələnə bilər. Bununla bağlı aşağıdakı qeydə baxın.</b>.
+<br/><br/>
+Tariflərinizi necə konfiqurasiya etməyinizlə bağlı iki seçiminiz var.<br/>
+Micromanage: Siz hər otaq/əmlak növü üçün hər gün üçün qiyməti dəyişə bilərsiniz. <br/>
+Qabaqcıl: Siz bir-biri ilə əlaqəli olmayan tariflər dəsti yarada bilərsiniz. <br/>
 <br/>
-Fərqli tarif rejimi sizə ən uyğun tarifləri konfiqurasiya etmək üsulunu seçməyə imkan verir. <br/>
-Normal rejim ən sadədir, lakin başa düşmək ən asandır, çünki istinad otaqlarını və tarifləri resurs/əmlak növlərinə keçir və otaqları və qiymətləri eyni səhifədə konfiqurasiya etməyə imkan verir. <br/>
-Mikro idarəetmə, tariflərin reamsını idarə etmədən gündəlik olaraq dərəcələri dəyişməyə imkan verir, bu bir çox fərqli tarifləri bir -biri ilə əlaqələndirməklə edilir. Bu, bir müddət ərzində sizin üçün bir çox tariflərin yaradılmasına gətirib çıxarır, ancaq tarifləri bir -birinin üstünə qoya bilməzsiniz. <br/>
-Qabaqcıl rejim bir qaynaq yaratmağa və onu bir qaynaq növü ilə əlaqələndirməyə imkan verir. Sonra bir tarif yaradın və bunu bir qaynaq növü ilə əlaqələndirin. Bu üsuldan istifadə edərək tarifləri bir -birinin üstünə \"qat\" qoymaq mümkündür, məsələn, bir qaynaq növü \"İki nəfərlik yataq\" yataq və səhər yeməyi üçün bir tarifə, digər yataq, səhər yeməyi və axşam yeməyi tarifinə malik ola bilər. Qabaqcıl metod bir az daha çox diqqət tələb edir, çünki bir qaynağı/tarifi bir resurs/mülkiyyət növündən ayırmaq və ya tarixdən etibarən səhv təyin etmək mümkündür, ancaq digər rejimlərin konfiqurasiya seçimlərini verir. təklif etmə. <br/>
+Micromanage bir çox tarifləri idarə etmədən tarifləri gündən-günə dəyişməyə imkan verir, bu, çoxlu müxtəlif tarifləri bir-biri ilə çarpazlaşdırmaqla həyata keçirilir. Bu, sizin üçün müəyyən bir dövrü əhatə edən bir sıra tariflərin yaradılması ilə nəticələnir, lakin siz tarifləri bir-birinizin üzərinə qoya bilməzsiniz.<br/>
+Qabaqcıl rejim sizə digər tariflərlə əlaqəli olmayan tariflər yaratmağa imkan verir. Bu, Mikromanage rejimində başqa cür yarada bilməyəcəyiniz əmlakınız üçün qiymətlər yaratmağa imkan verir. İstifadəsi daha zəhmətlidir, çünki siz hər bir tarifin qüvvədə olduğu tarixdən/tarixə mükəmməl uyğun gəldiyinə əmin olmalısınız, lakin bu, sizə daha mürəkkəb tariflər yaratmağa imkan verir.<br/>
 <br/>
-Normal və Micromanage rejimi, tarif rejiminin işləməsi üçün xüsusi otaqlar və tariflər tələb etdiyindən, sistem mövcud tarif konfiqurasiyalarını cari tarif tənzimləmə rejimi ilə uyğunlaşdırmaq üçün bəzi məlumatları sıfırlamalıdır. <br/>
-<br/>
-Normal -> Qabaqcıl. Dəyişiklik yoxdur. Mövcud tariflər saxlanılır. <br/>
-Normal -> Micromanage. Bütün mövcud tariflər silinir. <br/>
-Qabaqcıl -> Normal. Bütün mövcud tariflər silinir. <br/>
-Ətraflı -> Micromanage. Bütün mövcud tariflər silinir. <br/>
-Micromanage -> Qabaqcıl. Tariflər arasında mövcud olan bütün çarpaz istinadlar silinir, lakin tariflər özləri qalacaq. <br/>
-Micromanage -> Normal. Bütün mövcud arayışlar və tariflər silinir. <br/>");
+Qabaqcıldan Micromanage-ə keçsəniz, bütün mövcud tariflər silinəcək.<br/>
+<br/>");
 jr_define('_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS', 'Mülkiyyət detalları səhifəsində otaq siyahısı göstərilsin?');
 jr_define('JOMRES_PROPERTYTYPE', 'Evin növü');
 jr_define('JOMRES_MAXPEOPLEINROOM', 'Resurs başına maksimum adam');
