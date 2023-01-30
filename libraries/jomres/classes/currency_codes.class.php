@@ -240,7 +240,7 @@ class currency_codes
 			'CG' => 'XAF',
 			'CD' => 'XAF',
 			'CR' => 'CRC',
-			'HR' => 'HRK',
+			'HR' => 'EUR',
 			'CU' => 'CUC',
 			'DK' => 'DKK',
 			'DJ' => 'DJF',
