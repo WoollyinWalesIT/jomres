@@ -753,11 +753,13 @@ class dobooking
 				foreach ($this->allPropertyTariffs as $tariff) {
 					$mindays = $tariff['mindays'];
 					if (!isset($mindays_array[$mindays] )) {
-						$mindays_array[$mindays] = 1;
+						$mindays_array[] = $mindays;
 					}
 				}
 				if (count($mindays_array) == 1) {
 					$this->mininterval = (int) $mindays;
+				} else {
+					$this->mininterval = min($mindays_array);
 				}
 			}
 		}
