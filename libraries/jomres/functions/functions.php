@@ -2114,7 +2114,7 @@ function add_gmaps_source()
 		}
 
 
-		jomres_cmsspecific_addheaddata('javascript', 'https://maps.googleapis.com/maps/api/js?v=3.20&language='.$shortcode.$apikey, '&v=weekly&channel=2', $includeVersion = false, $async = true);
+		jomres_cmsspecific_addheaddata('javascript', 'https://maps.googleapis.com/maps/api/js?v=3.20&language='.$shortcode.$apikey, '&v=weekly&channel=2&callback=Function.prototype', $includeVersion = false, $async = true);
 	}
 }
 
