@@ -4507,6 +4507,9 @@ function JSCalmakeInputDates($inputDate, $siteCal = false)
 	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig = $siteConfig->get();
 
+	// Sometimes inputdates can be delivered with - instead of /, we'll str_replace to fix that
+	$inputDate = str_replace("-","/",$inputDate);
+	
 	// Lets make the calendar dates for display in the js calendar. will receive a Y/m/d formatted string &	output it in the desired format
 	// m d y. Probably unneccesary, but we'll do it anyway, to be on the safe side.
 	$date_elements = explode('/', $inputDate);

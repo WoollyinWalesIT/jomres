@@ -256,22 +256,29 @@ class jomres_sanity_check
 
 	public function check_occupancy_levels()
 	{
-		if ($this->mrConfig[ 'allow_children' ] == '1') {
-			jr_import('jomres_occupancy_levels');
-			$jomres_occupancy_levels = new jomres_occupancy_levels($this->property_uid);
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
 
-			$total_children_allowed = 0;
-			foreach ($jomres_occupancy_levels->occupancy_levels as $room) {
-				$total_children_allowed = $total_children_allowed + $room['max_children'];
-			}
-			if ($total_children_allowed == 0) {
-				$message = jr_gettext('_JOMRES_SANITYCHECK_OCCUPANCY_LEVELS', '_JOMRES_SANITYCHECK_OCCUPANCY_LEVELS', false);
-				$link = jomresURL(JOMRES_SITEPAGE_URL.'&task=list_occupancy_levels');
-				$button_text = jr_gettext('_JOMRES_SANITYCHECK_OCCUPANCY_LEVELS_BUTTON', '_JOMRES_SANITYCHECK_OCCUPANCY_LEVELS_BUTTON', false);
+		if (!isset($jrConfig[ 'secret_setting_use_old_guest_types' ]) || $jrConfig[ 'secret_setting_use_old_guest_types' ] === "0") {
+			if ($this->mrConfig[ 'allow_children' ] == '1') {
+				jr_import('jomres_occupancy_levels');
+				$jomres_occupancy_levels = new jomres_occupancy_levels($this->property_uid);
 
-				return $this->construct_warning(array('MESSAGE' => $message, 'LINK' => $link, 'BUTTON_TEXT' => $button_text , 'LABEL' => 'warning'));
+				$total_children_allowed = 0;
+				foreach ($jomres_occupancy_levels->occupancy_levels as $room) {
+					$total_children_allowed = $total_children_allowed + $room['max_children'];
+				}
+				if ($total_children_allowed == 0) {
+					$message = jr_gettext('_JOMRES_SANITYCHECK_OCCUPANCY_LEVELS', '_JOMRES_SANITYCHECK_OCCUPANCY_LEVELS', false);
+					$link = jomresURL(JOMRES_SITEPAGE_URL.'&task=list_occupancy_levels');
+					$button_text = jr_gettext('_JOMRES_SANITYCHECK_OCCUPANCY_LEVELS_BUTTON', '_JOMRES_SANITYCHECK_OCCUPANCY_LEVELS_BUTTON', false);
+
+					return $this->construct_warning(array('MESSAGE' => $message, 'LINK' => $link, 'BUTTON_TEXT' => $button_text , 'LABEL' => 'warning'));
+				}
 			}
+
 		}
+
 	}
 
 	/**
@@ -282,17 +289,23 @@ class jomres_sanity_check
 
 	public function check_child_rates()
 	{
-		if ($this->mrConfig[ 'allow_children' ] == '1') {
-			jr_import('jomres_child_rates');
-			$jomres_child_rates = new jomres_child_rates($this->property_uid);
-			if (!isset($jomres_child_rates->child_rates) || empty($jomres_child_rates->child_rates)) {
-				$message = jr_gettext('_JOMRES_SANITYCHECK_CHILD_RATES', '_JOMRES_SANITYCHECK_CHILD_RATES', false);
-				$link = jomresURL(JOMRES_SITEPAGE_URL.'&task=child_policies');
-				$button_text = jr_gettext('_JOMRES_SANITYCHECK_CHILD_RATES_BUTTON', '_JOMRES_SANITYCHECK_CHILD_RATES_BUTTON', false);
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
 
-				return $this->construct_warning(array('MESSAGE' => $message, 'LINK' => $link, 'BUTTON_TEXT' => $button_text , 'LABEL' => 'warning'));
+		if (!isset($jrConfig[ 'secret_setting_use_old_guest_types' ]) || $jrConfig[ 'secret_setting_use_old_guest_types' ] === "0") {
+			if ($this->mrConfig[ 'allow_children' ] == '1') {
+				jr_import('jomres_child_rates');
+				$jomres_child_rates = new jomres_child_rates($this->property_uid);
+				if (!isset($jomres_child_rates->child_rates) || empty($jomres_child_rates->child_rates)) {
+					$message = jr_gettext('_JOMRES_SANITYCHECK_CHILD_RATES', '_JOMRES_SANITYCHECK_CHILD_RATES', false);
+					$link = jomresURL(JOMRES_SITEPAGE_URL.'&task=child_policies');
+					$button_text = jr_gettext('_JOMRES_SANITYCHECK_CHILD_RATES_BUTTON', '_JOMRES_SANITYCHECK_CHILD_RATES_BUTTON', false);
+
+					return $this->construct_warning(array('MESSAGE' => $message, 'LINK' => $link, 'BUTTON_TEXT' => $button_text , 'LABEL' => 'warning'));
+				}
 			}
 		}
+
 	}
 
 	/**
