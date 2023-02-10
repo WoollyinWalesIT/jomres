@@ -2114,7 +2114,7 @@ function add_gmaps_source()
 		}
 
 
-		jomres_cmsspecific_addheaddata('javascript', 'https://maps.googleapis.com/maps/api/js?v=3.20&language='.$shortcode.$apikey, '&v=weekly&channel=2&callback=Function.prototype', $includeVersion = false, $async = true);
+		jomres_cmsspecific_addheaddata('javascript', 'https://maps.googleapis.com/maps/api/js?v=3.51&language='.$shortcode.$apikey, '&v=weekly&channel=2&callback=Function.prototype', $includeVersion = false, $async = true);
 	}
 }
 
@@ -4509,7 +4509,7 @@ function JSCalmakeInputDates($inputDate, $siteCal = false)
 
 	// Sometimes inputdates can be delivered with - instead of /, we'll str_replace to fix that
 	$inputDate = str_replace("-","/",$inputDate);
-	
+
 	// Lets make the calendar dates for display in the js calendar. will receive a Y/m/d formatted string &	output it in the desired format
 	// m d y. Probably unneccesary, but we'll do it anyway, to be on the safe side.
 	$date_elements = explode('/', $inputDate);
