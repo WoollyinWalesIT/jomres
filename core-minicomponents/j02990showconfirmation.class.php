@@ -484,8 +484,8 @@ class j02990showconfirmation
 			}
 		}
 
+		$extratext = array();
 		if ($mrConfig[ 'showExtras' ]) {
-			$extratext = array();
 			$extra_text[ 'AJAXFORM_EXTRAS' ] = jr_gettext('_JOMRES_AJAXFORM_EXTRAS', '_JOMRES_AJAXFORM_EXTRAS');
 			$extra_text[ 'EXTRASTOTAL' ] = output_price($bookingDeets[ 'extrasvalue' ]);
 			$extra_text[ 'HEXTRASTOTAL' ] = jr_gettext('_JOMRES_AJAXFORM_EXTRAS_TOTAL', '_JOMRES_AJAXFORM_EXTRAS_TOTAL');
