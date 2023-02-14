@@ -24,52 +24,55 @@ defined('_JOMRES_INITCHECK') or die('');
 * If passed, mode 1 expects 1 row with 1 element in it. Returns a string. mode 2 The calling function expects 1 row with elements in it. Returns an associative array
 *
 */
-function doSelectSql($query, $mode = false)
-{
-	$jomres_db = jomres_singleton_abstract::getInstance('jomres_database');
-	$jomres_db->setQuery($query);
-	$jomres_db->loadObjectList();
+	if (!function_exists('doSelectSql')) {
+		function doSelectSql($query, $mode = false)
+		{
+			$jomres_db = jomres_singleton_abstract::getInstance('jomres_database');
+			$jomres_db->setQuery($query);
+			$jomres_db->loadObjectList();
 
-	$num = count($jomres_db->result);
+			$num = count($jomres_db->result);
 
-	switch ($mode) {
-		case 1:
-			// Mode 1. The calling function expects 1 row with 1 element in it. Returns a string
-			if ($num == 1) {
-				foreach ($jomres_db->result[0] as $r) {
-					$result = $r;
-				}
+			switch ($mode) {
+				case 1:
+					// Mode 1. The calling function expects 1 row with 1 element in it. Returns a string
+					if ($num == 1) {
+						foreach ($jomres_db->result[0] as $r) {
+							$result = $r;
+						}
 
-				return $result;
-			} else {
-				return false;
-			}
-			break;
-		case 2:
-			// Mode 2. The calling function expects 1 row with elements in it. Returns an associative array
-			if ($num > 1) {
-				throw new Exception('Database error more than one result returned. One expected. Stop.');
-			}
-
-			if ($num == 1) {
-				if (empty($jomres_db->result[0])) {
-					return false;
-				} else {
-					foreach ($jomres_db->result[0] as $k => $v) {
-						$result[ $k ] = $v;
+						return $result;
+					} else {
+						return false;
+					}
+					break;
+				case 2:
+					// Mode 2. The calling function expects 1 row with elements in it. Returns an associative array
+					if ($num > 1) {
+						throw new Exception('Database error more than one result returned. One expected. Stop.');
 					}
 
-					return $result;
-				}
-			} else {
-				return false;
+					if ($num == 1) {
+						if (empty($jomres_db->result[0])) {
+							return false;
+						} else {
+							foreach ($jomres_db->result[0] as $k => $v) {
+								$result[ $k ] = $v;
+							}
+
+							return $result;
+						}
+					} else {
+						return false;
+					}
+					break;
+				default:
+					return $jomres_db->result;
+					break;
 			}
-			break;
-		default:
-			return $jomres_db->result;
-			break;
+		}
 	}
-}
+
 
 /**
  *
@@ -82,34 +85,37 @@ function doSelectSql($query, $mode = false)
 * This way we can call the audit directly from the insert internet booking function rather than logging EVERYTHING that's done by the function
 *
 */
-function doInsertSql($query, $op = '', $ignoreErrors = false)
-{
-	$jomres_db = jomres_singleton_abstract::getInstance('jomres_database');
-	$jomres_db->setQuery($query);
+	if (!function_exists('doInsertSql')) {
+		function doInsertSql($query, $op = '', $ignoreErrors = false)
+		{
+			$jomres_db = jomres_singleton_abstract::getInstance('jomres_database');
+			$jomres_db->setQuery($query);
 
-	if (!$jomres_db->query()) {
-		if (!$ignoreErrors) {
-			if (is_array($jomres_db->error)) {
-				$jomres_db->error = serialize($jomres_db->error);
+			if (!$jomres_db->query()) {
+				if (!$ignoreErrors) {
+					if (is_array($jomres_db->error)) {
+						$jomres_db->error = serialize($jomres_db->error);
+					}
+					error_logging('Do insert failed :: '.$jomres_db->error.' '.$query);
+				}
+
+				return false;
+			} else {
+				$thisID = $jomres_db->last_id;
+
+				if ($op != '') {
+					jomres_audit($query, $op);
+				}
+
+				if ($thisID) {
+					return $thisID;
+				} else {
+					return true;
+				}
 			}
-			error_logging('Do insert failed :: '.$jomres_db->error.' '.$query);
-		}
-
-		return false;
-	} else {
-		$thisID = $jomres_db->last_id;
-
-		if ($op != '') {
-			jomres_audit($query, $op);
-		}
-
-		if ($thisID) {
-			return $thisID;
-		} else {
-			return true;
 		}
 	}
-}
+
 
 /**
  *
@@ -118,8 +124,11 @@ function doInsertSql($query, $op = '', $ignoreErrors = false)
  * Closes the database connection
  *
  */
-function doDBClose()
-{
-	$jomres_db = jomres_singleton_abstract::getInstance('jomres_database');
-	$jomres_db->close();
-}
+	if (!function_exists('doDBClose')) {
+		function doDBClose()
+		{
+			$jomres_db = jomres_singleton_abstract::getInstance('jomres_database');
+			$jomres_db->close();
+		}
+	}
+

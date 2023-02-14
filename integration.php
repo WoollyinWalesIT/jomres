@@ -164,6 +164,7 @@ if (!file_exists(JOMRES_VENDOR_ABSPATH.'autoload.php')) {
 //includes
 require_once JOMRES_VENDOR_ABSPATH.'autoload.php';
 require_once JOMRESPATH_BASE.'detect_cms.php';
+require_once JOMRES_FUNCTIONS_ABSPATH.'load_custom_functions.php';
 require_once JOMRES_FUNCTIONS_ABSPATH.'database.php';
 require_once JOMRES_FUNCTIONS_ABSPATH.'input_filtering.php';
 require_once JOMRES_FUNCTIONS_ABSPATH.'output_filters.php';
