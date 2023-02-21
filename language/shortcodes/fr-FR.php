@@ -6,7 +6,7 @@
  *
  *  @version Jomres 10.6.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Translation to fr-FR by Stéphane Bernard, Valtari NumAgency, France - 03/07/2019 - https://www.valtari.fr
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/

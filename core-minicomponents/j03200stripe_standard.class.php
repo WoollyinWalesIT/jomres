@@ -6,7 +6,7 @@
  *
  * @version Jomres 9.22.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  *
  * This file is NOT open source and you are not allowed to distribute it, for any reason.
  **/
