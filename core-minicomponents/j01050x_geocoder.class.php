@@ -69,7 +69,14 @@ class j01050x_geocoder
 		$output = array();
 		$pageoutput = array();
 
-		$output['MAP_STYLE'] = file_get_contents(JOMRES_ASSETS_ABSPATH.'map_styles'.JRDS.$jrConfig['map_style'].'.style');
+		$override_directory = get_override_directory().JRDS.'custom_code'.JRDS;
+
+		if ( file_exists($override_directory.'custom_map_style.style') ) {
+			$output['MAP_STYLE'] = file_get_contents($override_directory.'custom_map_style.style');
+		} else {
+			$output['MAP_STYLE'] = file_get_contents(JOMRES_ASSETS_ABSPATH.'map_styles'.JRDS.$jrConfig['map_style'].'.style');
+		}
+
 		$output['ZOOMLEVEL'] = (int)$jrConfig['map_zoom'];
 		if (isset($_REQUEST['map_zoom'])) {
 			$output['ZOOMLEVEL'] = (int) $_REQUEST['map_zoom'];
