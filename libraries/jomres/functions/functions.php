@@ -139,7 +139,7 @@ use Joomla\CMS\Helper\ModuleHelper;
 			if (this_cms_is_joomla()) {
 				$app = JFactory::getApplication();
 				$joomla_templateName = $app->getTemplate('template')->template;
-				if (jomres_cmsspecific_areweinadminarea()) {
+				if ( function_exists('jomres_cmsspecific_areweinadminarea') && jomres_cmsspecific_areweinadminarea()) {
 					$path_to_template = JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ADMINISTRATORDIRECTORY . JRDS . "templates" .JRDS. $joomla_templateName ; // I don't think I've ever used this, don't know if it works
 				} else {
 					$path_to_template = JOMRESCONFIG_ABSOLUTE_PATH . "templates" .JRDS. $joomla_templateName ;
@@ -2866,6 +2866,8 @@ Previously just a feature of the add plugin script, it's usage has been moved to
 					}
 				}
 			}
+
+			$plugin_paths[ ] = get_override_directory().JRDS.'custom_code'.JRDS;
 
 			foreach ($plugin_paths as $directory) {
 				$d = @dir($directory);
