@@ -29,8 +29,7 @@
 		}
 	}
 
-	// Moved from older version of com_jomres/router/router.php into this file. Sets up the framework so that we can have custom routers
-	require_once dirname(__FILE__).'/../../'.JOMRES_ROOT_DIRECTORY.'/framework.php';
+
 
 	include_once __DIR__.DIRECTORY_SEPARATOR.'router'.DIRECTORY_SEPARATOR.'base.php';
 
@@ -79,7 +78,8 @@
 		include_once __DIR__.DIRECTORY_SEPARATOR.'router'.DIRECTORY_SEPARATOR.'router.php';
 	}
 
-
+	// Moved from older version of com_jomres/router/router.php into this file. Sets up the framework so that we can have custom routers
+	require_once dirname(__FILE__).'/../../'.JOMRES_ROOT_DIRECTORY.'/framework.php';
 
 	function JomresBuildRoute(&$query)
 	{
