@@ -47,8 +47,6 @@
 
 				$route_query = $query; // We need to work within this function with the $route_query variable, not $query. It seems to be that the assignation &$query on some servers means that once the property name query further down has been run, then Joomla's $query becomes whatever the sql query was. Don't know why, and I'm not going to dig around to find out. We'll work internally on $route_query, then set $query to $route_query at the end, that seems to fix it.
 
-				require_once dirname(dirname(dirname(dirname(__FILE__)))).DIRECTORY_SEPARATOR.JOMRES_ROOT_DIRECTORY.DIRECTORY_SEPARATOR.'framework.php';
-
 				$segments = array();
 
 				$menu = JFactory::getApplication()->getMenu();
@@ -221,7 +219,6 @@
 			{
 				$vars = array();
 
-				require_once dirname(dirname(dirname(dirname(__FILE__)))).DIRECTORY_SEPARATOR.JOMRES_ROOT_DIRECTORY.DIRECTORY_SEPARATOR.'framework.php';
 				if (!isset($segments[ 1 ])) {
 					$segments = array();
 					$vars[ 'task' ] = '';
