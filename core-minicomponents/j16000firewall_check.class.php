@@ -16,7 +16,7 @@ defined('_JOMRES_INITCHECK') or die('');
 
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Exception\ClientException;
-	
+	#[AllowDynamicProperties]
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *

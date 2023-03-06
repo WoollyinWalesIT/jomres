@@ -12,7 +12,7 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-
+	#[AllowDynamicProperties]
 class j06002publishcustomertype
 {
 	function __construct()

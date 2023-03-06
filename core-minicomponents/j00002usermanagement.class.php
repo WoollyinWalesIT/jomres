@@ -23,7 +23,7 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j00002usermanagement
 {
-
+	#[AllowDynamicProperties]
 	/**
 	 *
 	 * Constructor

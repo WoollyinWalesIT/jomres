@@ -11,7 +11,7 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.');
 // ################################################################
-
+	#[AllowDynamicProperties]
 class j00005data_sources
 {
 	function __construct($componentArgs)

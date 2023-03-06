@@ -13,8 +13,8 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-	
-	
+
+	#[AllowDynamicProperties]
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *

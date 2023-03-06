@@ -202,6 +202,7 @@ class minicomponent_registry
 ##################################################################
 defined( \'_JOMRES_INITCHECK\' ) or die( \'\' );
 ##################################################################
+#[AllowDynamicProperties]
 
 $this->registeredClasses = ' .var_export($this->registeredClasses, true).';
 $this->miniComponentDirectories = ' .var_export($this->miniComponentDirectories, true).';

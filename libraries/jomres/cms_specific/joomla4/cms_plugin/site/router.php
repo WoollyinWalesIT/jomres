@@ -28,7 +28,7 @@
 			define('JOMRES_ROOT_DIRECTORY', 'jomres');
 		}
 	}
-	
+
 	include_once __DIR__.DIRECTORY_SEPARATOR.'router'.DIRECTORY_SEPARATOR.'base.php';
 
 	// You can have a custom router.php script. If one isn't found then system will default back to the Core router.php script

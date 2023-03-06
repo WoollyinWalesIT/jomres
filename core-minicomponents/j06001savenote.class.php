@@ -13,7 +13,7 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-
+	#[AllowDynamicProperties]
 /*
 	** Webhook Details | savenote
 	** Description | Add a webhook note with the property uid, contract uid and note contents.

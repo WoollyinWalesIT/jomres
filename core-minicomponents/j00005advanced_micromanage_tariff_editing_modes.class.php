@@ -13,7 +13,7 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.');
 // ################################################################
-
+	#[AllowDynamicProperties]
 class j00005advanced_micromanage_tariff_editing_modes
 {
 	function __construct()

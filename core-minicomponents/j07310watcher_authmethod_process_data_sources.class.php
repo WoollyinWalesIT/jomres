@@ -13,7 +13,7 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-
+	#[AllowDynamicProperties]
 class j07310watcher_authmethod_process_data_sources
 {
 	public function __construct($componentArgs)

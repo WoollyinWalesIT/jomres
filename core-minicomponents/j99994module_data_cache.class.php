@@ -13,7 +13,7 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-
+	#[AllowDynamicProperties]
 class j99994module_data_cache
 {
 	public function __construct($componentArgs)

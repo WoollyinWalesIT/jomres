@@ -13,7 +13,7 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.');
 // ################################################################
-
+	#[AllowDynamicProperties]
 class j06002save_tariff_standard
 {
 	function __construct()

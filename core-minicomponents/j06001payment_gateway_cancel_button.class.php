@@ -11,7 +11,7 @@
 // ################################################################
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this file is not allowed.' );
 // ################################################################
-
+	#[AllowDynamicProperties]
 class j06001payment_gateway_cancel_button {
 	function __construct()
 		{

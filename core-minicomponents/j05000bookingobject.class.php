@@ -13,7 +13,7 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-	
+
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
@@ -22,7 +22,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 jr_import('dobooking');
-
+#[AllowDynamicProperties]
 class j05000bookingobject
 {
 

@@ -11,7 +11,7 @@
 // ################################################################
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this file is not allowed.' );
 // ################################################################
-
+	#[AllowDynamicProperties]
 class j00509stripe_standard {
 	function __construct($componentArgs)
 		{
