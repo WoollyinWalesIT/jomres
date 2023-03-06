@@ -2,6 +2,7 @@
 // ################################################################
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
+
 /**
  * patErrorManager main error management class used by pat tools for the
  * application-internal error management. Creates patError objects for
@@ -57,7 +58,7 @@ $GLOBALS[ '_pat_errorIgnores' ] = array ();
  */
 $GLOBALS[ '_pat_errorExpects' ] = array ();
 
-
+	#[AllowDynamicProperties]
 /**
  * patErrorManager main error management class used by pat tools for the
  * application-internal error management. Creates patError objects for

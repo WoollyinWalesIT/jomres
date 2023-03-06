@@ -2,6 +2,9 @@
 // ################################################################
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
+
+
+
 /**
  * Base class for patTemplate functions
  *
@@ -21,6 +24,8 @@ define( 'PATTEMPLATE_FUNCTION_COMPILE', 1 );
  * function is executed, when template parsed
  */
 define( 'PATTEMPLATE_FUNCTION_RUNTIME', 2 );
+
+#[AllowDynamicProperties]
 
 /**
  * Base class for patTemplate functions

@@ -56,6 +56,7 @@
 	 */
 	define( 'PATTEMPLATE_ERROR_RECURSION', 6010 );
 
+	#[AllowDynamicProperties]
 	/**
 	 * patTemplate
 	 *

@@ -2,6 +2,9 @@
 // ################################################################
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
+
+	#[AllowDynamicProperties]
+
 /**
  * patError error object used by the patFormsError manager as error messages
  * container for precise error management.
