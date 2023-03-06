@@ -29,16 +29,18 @@
 		}
 	}
 
+
+
 	include_once __DIR__.DIRECTORY_SEPARATOR.'router'.DIRECTORY_SEPARATOR.'base.php';
 
 	// You can have a custom router.php script. If one isn't found then system will default back to the Core router.php script
 	// Searches first in the current Joomla template's /html/com_jomres/custom_code directory, then the remote_plugins directory (houses 3rd party plugins) and then finally it will look in the core-plugins directory.
 
-	// Because we can't detect the current Joomla template when calling via api, we can't use getTemplate to find the current active template, so instead we'll check for router.php in cassiopeia_sunbearu and if it exists, we can load it. If not, then we'll let Jomres load the default router. This means that you can still have a custom router, but only in that hardcoded subdirectory. Not ideal, but at least we can make it so that you can have custom routers that are used by the rest api
+	// Because we can't detect the current Joomla template when calling via api, we can't use getTemplate to find the current active template, so instead we'll check for router.php in cassiopeia_sunbearu and if it exists, we can load it. If not, then we'll let Jomres load the default router. This means that you can still have a custom router, but only in that hardcoded subdirectory. Not ideal, but at least we can make it so that you can have custom routers still
 
 	$custom_router_found = false;
 	if (defined('API_STARTED')) {
-		$path_to_template = JOMRESCONFIG_ABSOLUTE_PATH . "templates" .DIRECTORY_SEPARATOR.'cassiopeia_sunbearu' ;
+		$path_to_template = JPATH_SITE . DIRECTORY_SEPARATOR . "templates" .DIRECTORY_SEPARATOR.'cassiopeia_sunbearu' ;
 		$override_path = $path_to_template .DIRECTORY_SEPARATOR . 'html' . DIRECTORY_SEPARATOR . 'com_jomres'.DIRECTORY_SEPARATOR.'custom_code'.DIRECTORY_SEPARATOR;
 		if (file_exists($override_path.'router.php')) {
 			$custom_router_found = true;
@@ -47,34 +49,34 @@
 	} else {
 		$app = JFactory::getApplication();
 		$joomla_templateName = $app->getTemplate('template')->template;
-		$path_to_template = JOMRESCONFIG_ABSOLUTE_PATH . "templates" .DIRECTORY_SEPARATOR. $joomla_templateName ;
+		$path_to_template = JPATH_SITE . "templates" .DIRECTORY_SEPARATOR. $joomla_templateName ;
 		$override_path = $path_to_template .DIRECTORY_SEPARATOR . 'html' . DIRECTORY_SEPARATOR . 'com_jomres'.DIRECTORY_SEPARATOR.'custom_code'.DIRECTORY_SEPARATOR;
 
-	$custom_router_found = false;
+
 		if (file_exists($override_path.'router.php')) {
 			$custom_router_found = true;
 			include_once $override_path.'router.php';
 		} else {
-			$files = load_custom_router_scanAllDir(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.DIRECTORY_SEPARATOR.'remote_plugins');
+			$files = load_custom_router_scanAllDir(JPATH_SITE.DIRECTORY_SEPARATOR.JOMRES_ROOT_DIRECTORY.DIRECTORY_SEPARATOR.'remote_plugins');
 			if (!empty($files)){
 				foreach ($files as $filename) {
 					$bang = explode(DIRECTORY_SEPARATOR , $filename);
 					if (end($bang) === 'router.php') {
 						$custom_router_found = true;
-						include_once (JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.DIRECTORY_SEPARATOR.'remote_plugins'.DIRECTORY_SEPARATOR.$filename);
+						include_once (JPATH_SITE.DIRECTORY_SEPARATOR.JOMRES_ROOT_DIRECTORY.DIRECTORY_SEPARATOR.'remote_plugins'.DIRECTORY_SEPARATOR.$filename);
 						break;
 					}
 				}
 			}
 
 			if (!$custom_router_found) {
-				$files = load_custom_router_scanAllDir(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.DIRECTORY_SEPARATOR.'core-plugins');
+				$files = load_custom_router_scanAllDir(JPATH_SITE.DIRECTORY_SEPARATOR.JOMRES_ROOT_DIRECTORY.DIRECTORY_SEPARATOR.'core-plugins');
 				if (!empty($files)){
 					foreach ($files as $filename) {
 						$bang = explode(DIRECTORY_SEPARATOR , $filename);
 						if (end($bang) === 'router.php') {
 							$custom_router_found = true;
-							include_once (JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.DIRECTORY_SEPARATOR.'core-plugins'.DIRECTORY_SEPARATOR.$filename);
+							include_once (JPATH_SITE.DIRECTORY_SEPARATOR.JOMRES_ROOT_DIRECTORY.DIRECTORY_SEPARATOR.'core-plugins'.DIRECTORY_SEPARATOR.$filename);
 							break;
 						}
 					}
@@ -82,6 +84,7 @@
 			}
 		}
 	}
+
 
 	if (!$custom_router_found) {
 		include_once __DIR__.DIRECTORY_SEPARATOR.'router'.DIRECTORY_SEPARATOR.'router.php';
