@@ -1545,7 +1545,7 @@ Previously just a feature of the add plugin script, it's usage has been moved to
 			}
 
 			if (jomres_cmsspecific_areweinadminarea() && _JOMRES_DETECTED_CMS == 'joomla4') {
-				// check to see if we are in admin area & bs version is not set. If so, it's a new installation so we'll auto configure our bs version templates to run bs4
+				// check to see if we are in admin area & bs version is not set. If so, it's a new installation so we'll auto configure our bs version templates to run bs5
 				if ($jrConfig[ 'bootstrap_version' ] == '') {
 					$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 					$siteConfig->update_setting('bootstrap_version', 5);
@@ -1553,11 +1553,12 @@ Previously just a feature of the add plugin script, it's usage has been moved to
 				}
 
 				// It's a site updated from BS3
-				if ($jrConfig[ 'bootstrap_version' ] == '3') {
+				// Commented out because users are updating to J4, but want to retain their BS3 Joomla templates. We can't auto-set the BS version, as a result.
+				/*if ($jrConfig[ 'bootstrap_version' ] == '3') {
 					$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 					$siteConfig->update_setting('bootstrap_version', 5);
 					$siteConfig->save_config();
-				}
+				}*/
 
 				$bootstrap_version = '5';
 			} elseif (jomres_cmsspecific_areweinadminarea() && _JOMRES_DETECTED_CMS == 'joomla3') {
@@ -1588,7 +1589,6 @@ Previously just a feature of the add plugin script, it's usage has been moved to
 	 *
 	 * For plugins to find the correct sub-directory for the template based on site settings.
 	 *
-	 * todo Add support for Bootstrap 4 in administrator area
 	 */
 	if (!function_exists('find_plugin_template_directory')) {
 		function find_plugin_template_directory()
