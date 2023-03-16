@@ -1611,7 +1611,7 @@ jr_define('_JOMRES_BOOTSTRAP_LOCATION_INVERSE', 'Inverted navbar (colour change)
 jr_define('_JOMRES_BOOKING_NUMBER', 'Rezervacija broj');
 jr_define('_JOMRES_HSTATUS_SHOW_GUESTS_FOR', 'Show guests for');
 jr_define('_JOMRES_BOOTSTRAP_VERSION', 'Bootstrap version');
-jr_define('_JOMRES_BOOTSTRAP_VERSION_DESC', "Jomres includes it's own template sets, one for each supported version of Bootstrap. Joomla and Wordpress templates/themes that are based on Bootstrap will offer a specific version of Bootstrap so you need to ensure that the option you choose here is compatible with your template/theme. If your theme does not provide any Bootstrap code set this option to No Bootstrap in Theme and then Jomres will automatically include Bootstrap 3 files for it's own use. ");
+jr_define('_JOMRES_BOOTSTRAP_VERSION_DESC', "Jomres includes it's own template sets, one for each supported version of Bootstrap. Joomla and Wordpress templates/themes that are based on Bootstrap will offer a specific version of Bootstrap so you need to ensure that the option you choose here is compatible with your template/theme. If your theme does not provide any Bootstrap code set this option to No Bootstrap in Theme and then Jomres will automatically include Bootstrap 5 files for it's own use. ");
 jr_define('_JOMRES_HSTATUS_SHOW_GUESTS_FOR', 'Prikaži goste za');
 jr_define('_JOMRES_HFIXED_PERIODS', 'Fiksni periodi');
 jr_define('_JOMRES_HDEPOSITS', 'Depoziti');
