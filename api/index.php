@@ -210,7 +210,7 @@ try {
 	}
 
 	if (!PRODUCTION) {
-		Flight::set('flight.handle_errors', false);
+		Flight::set('flight.handle_errors', true);
 	}
 	Flight::set('user_id', $token['user_id']);
 	Flight::set('scopes', explode(',', $token['scope']));
@@ -231,7 +231,7 @@ try {
             $response .= "The exception was created in file: " . $e->getFile();
             $response .= "The exception was created on line: " . $e->getLine();
 		}
-			
+
 	}
 	else {
 		$response = Flight::request_response();
