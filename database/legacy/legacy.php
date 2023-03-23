@@ -2872,6 +2872,9 @@ function installer_find_region_id($region)
 
     $jomres_regions = jomres_singleton_abstract::getInstance('jomres_regions');
     foreach ($jomres_regions->regions as $r) {
+		if (is_null($region)) {
+			$region =0;
+		}
         if (strcasecmp($r[ 'regionname' ], $region) == 0) {
             return (int) $r[ 'id' ];
         }
