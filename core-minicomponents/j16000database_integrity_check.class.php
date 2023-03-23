@@ -48,7 +48,12 @@ class j16000database_integrity_check
 		
 		$jomres_version = '<p>Jomres files version: '.$jrConfig['version'].'</p>';
 		$jomres_db_version = '<p>Jomres database version: '.$jrConfig['jomres_db_version'].'</p>';
-		
+
+		// If we're in dev mode it's ok to go right ahead and run the installer
+		if ($jrConfig[ 'development_production' ] == 'development') {
+			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=jomres_install'), '');
+		}
+
 		if ($jrConfig['version'] > $jrConfig['jomres_db_version']) {
 			echo '
 <div class="alert alert-warning">
