@@ -41,8 +41,20 @@ class j00001start
 		if ($MiniComponents->template_touch) {
 			$this->template_touchable = false;
 
-			return;
+
 		}
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
+
+		if ( (bool) $jrConfig['api_capable'] === true ) {
+			if (!$MiniComponents->eventSpecificlyExistsCheck('00005', 'api_feature_cmf')) {
+				$MiniComponents->specificEvent('16000', 'addplugin', array('plugin' => 'api_feature_cmf', 'autoupgrade' => true));
+			}
+			if (!$MiniComponents->eventSpecificlyExistsCheck('00005', 'channelmanagement_framework')) {
+				$MiniComponents->specificEvent('16000', 'addplugin', array('plugin' => 'channelmanagement_framework', 'autoupgrade' => true));
+			}
+		}
+
 	}
 
 /**
