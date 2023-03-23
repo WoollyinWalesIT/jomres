@@ -42,6 +42,9 @@ class jomres_occupancy_levels
 			$occupancy_levels = array();
 			if (isset($this->mrConfig['occupancy_levels'])) {
 				$this->occupancy_levels = unserialize(base64_decode($this->mrConfig['occupancy_levels']));
+				if (is_bool($this->occupancy_levels)) {
+					$this->occupancy_levels = array();
+				}
 				// We'll look for new room types that don't have occupancy levels added (maybe they were added after levels were first created
 				foreach ($current_property_details->room_types as $room_type_id => $room_type) {
 					if (!array_key_exists($room_type_id, $this->occupancy_levels)) {
