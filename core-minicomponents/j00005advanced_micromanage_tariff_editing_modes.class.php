@@ -53,7 +53,7 @@ class j00005advanced_micromanage_tariff_editing_modes
 						$task = 'list_tariffs_standard';
 						break;
 					default:
-						$task = 'edit_tariffs_normal';
+						$task = 'list_tariffs_micromanage';
 						break;
 				}
 

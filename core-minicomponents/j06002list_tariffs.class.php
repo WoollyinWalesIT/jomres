@@ -54,7 +54,7 @@ class j06002list_tariffs
 					$task = 'list_tariffs_standard';
 					break;
 				default:
-					$task = 'edit_tariffs_normal';
+					$task = 'list_tariffs_micromanage';
 					break;
 			}
 			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL . "&task=".$task), '' );
