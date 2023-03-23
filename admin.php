@@ -41,6 +41,10 @@ try {
 		request_log();
 	}
 
+	jr_import('jomres_api_capability_test');
+	$jomres_api_capability_test = new jomres_api_capability_test();
+	$jomres_api_capability_test->is_system_capable();
+
 	//get all properties in system.
 	$jomres_properties = jomres_singleton_abstract::getInstance('jomres_properties');
 	$jomres_properties->get_all_properties();
