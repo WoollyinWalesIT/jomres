@@ -563,8 +563,8 @@ class jomres_sanity_check
 				} elseif ($mrConfig['tariffmode'] == '2') {
 					$link = jomresURL(JOMRES_SITEPAGE_URL.'&task=list_tariffs_micromanage');
 					$button_text = jr_gettext('_JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK', '_JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK', false);
-				} else {
-					$link = jomresURL(JOMRES_SITEPAGE_URL.'&task=list_tariffs_standard');
+				} else { // Changed default tariff mode to micromanage Jomres 10.7
+					$link = jomresURL(JOMRES_SITEPAGE_URL.'&task=list_tariffs_micromanage');
 					$button_text = jr_gettext('_JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK', '_JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK', false);
 				}
 
