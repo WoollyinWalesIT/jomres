@@ -118,13 +118,9 @@ class jomres_local_tokens
 			}
 		} else {
 			// We need to check that the token is still valid. If not, we need to request a new one
-			$query = "SELECT client_id FROM #__jomres_oauth_access_tokens WHERE 
-            		access_token = '". $params[$token_name]."' 
-            		AND user_id = ".$this->user_id."
-            		AND expires >= CURRENT_TIMESTAMP";
-			$result = doSelectSql($query);
+			$expired = $this->check_token_expired($params[$token_name]);
 
-			if (empty($result)) { // The token is expired, we need to get a new one. First we'll find the client id and secret, and if they don't exist, we'll generate new ones
+			if ($expired) { // The token is expired, we need to get a new one. First we'll find the client id and secret, and if they don't exist, we'll generate new ones
 				$query = "SELECT client_id , client_secret FROM #__jomres_oauth_clients  WHERE scope = '".$scope."' AND user_id = ".$this->user_id ;
 				$client_select = doSelectSql($query,2);
 				$TOKEN_REQUEST_URL = get_showtime('live_site') . '/jomres/api/';
@@ -170,10 +166,33 @@ class jomres_local_tokens
 						return $json_decoded->access_token;
 					}
 				}
+			} else {
+				return $params[$token_name];
 			}
 		}
 	}
-	
+
+		/**
+		 *
+		 *
+		 *
+		 */
+
+	public function check_token_expired($token = '' )
+	{
+		$query = "SELECT client_id FROM #__jomres_oauth_access_tokens WHERE 
+            		access_token = '". $token."' 
+            		AND user_id = ".$this->user_id."
+            		AND expires >= CURRENT_TIMESTAMP";
+		$result = doSelectSql($query);
+
+		$expired = false;
+		if (empty($result)) {
+			$expired = true;
+		}
+		return $expired;
+		}
+
 	/**
 	 *
 	 *
