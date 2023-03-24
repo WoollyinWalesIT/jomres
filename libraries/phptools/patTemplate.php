@@ -2637,7 +2637,8 @@
 						for ( $i = 0; $i < $count; $i++ ) {
 							$check = str_replace(" " , "" , $matches[0][$i]);
 							$first_chars = substr($check, 0, 7);
-							if ($first_chars !== '{jomres') {
+							$all_characters_are_uppercase = !preg_match("/[a-z]/", $matches[0][$i]);
+							if ($first_chars !== '{jomres' && $all_characters_are_uppercase) {
 								$lang_def = substr($matches[0][$i], 1, -1);
 								$new_string = jr_gettext( $lang_def , '', false );
 								$this->_templates[ $template ][ 'result' ] = str_replace( $matches[0][$i] , $new_string , $this->_templates[ $template ][ 'result' ]);
