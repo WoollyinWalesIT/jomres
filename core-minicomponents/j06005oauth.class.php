@@ -110,14 +110,18 @@ class j06005oauth
 		$output['_OAUTH_SCOPE_TITLE']	= jr_gettext('_OAUTH_SCOPE_TITLE', '_OAUTH_SCOPE_TITLE', false);
 		$output['_OAUTH_SCOPE_TITLE']	= jr_gettext('_OAUTH_SCOPE_TITLE', '_OAUTH_SCOPE_TITLE', false);
 		$output['_OAUTH_SCOPE_TITLE']	= jr_gettext('_OAUTH_SCOPE_TITLE', '_OAUTH_SCOPE_TITLE', false);
-		
-		
+
+		$local_token_plugins = get_showtime('local_token_plugins');
+		if (!isset($local_token_plugins)) {
+			$local_token_plugins = array();
+		}
+
 		$query = "SELECT client_id,scope,identifier FROM #__jomres_oauth_clients WHERE user_id = ".(int)$thisJRUser->id;
 		$result = doSelectSql($query);
 
 		if (count($result)>0) {
 			foreach ($result as $client) {
-				if ($client->client_id != "system" && $client->client_id != $thisJRUser->username) {
+				if ($client->client_id != "system" && $client->client_id != $thisJRUser->username && !in_array($client->identifier , $local_token_plugins ) ) {
 					$r=array();
 					$r['CLIENT_ID']=$client->client_id;
 					$r['IDENTIFIER']=$client->identifier;
