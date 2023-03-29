@@ -536,7 +536,7 @@ use Joomla\CMS\Editor\Editor;
 	if (!function_exists('jomres_cmsspecific_getCMS_users_admin_getalladmins_ids')) {
 		function jomres_cmsspecific_getCMS_users_admin_getalladmins_ids()
 		{
-			$db = Factory::getDbo();
+			$db = Factory::getContainer()->get('DatabaseDriver');
 			$query = $db->getQuery(true);
 			$query
 				->select($db->quoteName(array('a.id', 'a.username', 'a.email')))
@@ -791,7 +791,8 @@ use Joomla\CMS\Editor\Editor;
 	if (!function_exists('jomres_cmsspecific_getcmslang')) {
 		function jomres_cmsspecific_getcmslang()
 		{
-			return JFactory::getLanguage()->getTag();
+			$app = JFactory::getApplication();
+			return $app->getLanguage()->getTag();
 		}
 	}
 //
