@@ -792,7 +792,11 @@ use Joomla\CMS\Editor\Editor;
 		function jomres_cmsspecific_getcmslang()
 		{
 			$app = JFactory::getApplication();
-			return $app->getLanguage()->getTag();
+			if (method_exists($app , 'getTag')) {
+				$app->getLanguage()->getTag();
+			} else {
+				return 'en-GB';
+			}
 		}
 	}
 //
