@@ -57,7 +57,7 @@ class call_self
         if (!isset($elements['headers'])) {
 			$elements['headers'] = array();
 		}
-
+		$response = new stdClass();
 		try {
 			$response = $this->jomres_call_api->send_request( $elements['method']  ,  $elements['request'] , $elements['data'] , $elements['headers']);
 		}
