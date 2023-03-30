@@ -27,3 +27,14 @@ defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.'
 if (AJAXCALL) {
 	JFactory::getApplication()->close();
 }
+
+// If Jomres is set to Development mode, it will set it's own error handler. Here we'll hand error handling back to the host CMS once Jomres has done it's thing.
+// Joomla's debug mode generates a lot of data and is slow, so during dev I've been enabling/disabling it as required, but I'd prefer to handle Jomres errors independently of Joomla or Wordpress
+$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+$jrConfig = $siteConfig->get();
+if ($jrConfig[ 'development_production' ] != 'production') {
+	//restore_error_handler();
+	//set_error_handler('errorHandler');
+}
+
+

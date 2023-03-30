@@ -304,6 +304,9 @@ if ($jrConfig[ 'development_production' ] == 'production') {
 } else {
 	error_reporting(-1);
 	ini_set('display_errors', 'On');
+
+	// Only enable the following line when digging for depreciations
+	//set_error_handler('output_fatal_error');
 }
 
 //TODO find a better place, maybe jomres.php and framework.php

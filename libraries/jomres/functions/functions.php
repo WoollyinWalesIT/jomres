@@ -1296,91 +1296,14 @@ Previously just a feature of the add plugin script, it's usage has been moved to
 	if (!function_exists('output_fatal_error')) {
 		function output_fatal_error($e, $extra_info = '')
 		{
-			$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-			$jrConfig = $siteConfig->get();
+			jr_import('jomres_error_handler');
+			$jomres_error_handler = new jomres_error_handler();
+			$jomres_error_handler->output_error($e, $extra_info);
 
-			$cms_files_we_are_not_interested_in = jomres_cmsspecific_error_logging_cms_files_to_not_backtrace();
-			$rows = array();
-			$backtrace = debug_backtrace();
-
-			foreach ($backtrace as $trace) {
-				$r = array();
-
-				if (isset($trace[ 'file' ]) && !isset($trace[ 'line' ])) {
-					$file = $trace[ 'file' ];
-					$bang = explode(JRDS, $file);
-					$filename = $bang[ count($bang) - 1 ];
-					if ($filename != 'patTemplate.php' && $filename != 'index.php' && !in_array($filename, $cms_files_we_are_not_interested_in)) {
-						$r['FILES'] = ' '.$filename.' on line '.$trace['line'].'<br/>';
-						$rows[] = $r;
-					}
-				}
-			}
-
-			$link = getCurrentUrl();
-			//$link =  "//$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-			$cleaned_link = jomres_sanitise_string($link);
-
-			if (is_object($e)) {
-				$output = array(
-					'URL' => $cleaned_link,
-					'MESSAGE' => $e->getMessage(),
-					'EXTRA_INFO' => $extra_info,
-					'FILE' => $e->getFile(),
-					'LINE' => $e->getLine(),
-					'TRACE' => nl2br($e->getTraceAsString()),
-					'_JOMRES_ERROR_DEBUGGING_MESSAGE' => jr_gettext('_JOMRES_ERROR_DEBUGGING_MESSAGE', '_JOMRES_ERROR_DEBUGGING_MESSAGE', false),
-					'_JOMRES_ERROR_DEBUGGING_FILE' => jr_gettext('_JOMRES_ERROR_DEBUGGING_FILE', '_JOMRES_ERROR_DEBUGGING_FILE', false),
-					'_JOMRES_ERROR_DEBUGGING_LINE' => jr_gettext('_JOMRES_ERROR_DEBUGGING_LINE', '_JOMRES_ERROR_DEBUGGING_LINE', false),
-					'_JOMRES_ERROR_DEBUGGING_TRACE' => jr_gettext('_JOMRES_ERROR_DEBUGGING_TRACE', '_JOMRES_ERROR_DEBUGGING_TRACE', false),
-				);
-			} else {
-				$output = array('MESSAGE' => $e);
-			}
-
-			$output['IP_NUMBER'] = jomres_get_client_ip();
-
-			$output['DATETIME'] = date('Y-m-d H:i:s');
-
-			$pageoutput[] = $output;
-			$tmpl = new patTemplate();
-			$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
-
-			$tmpl->readTemplatesFromInput('error_developer.html');
-			$tmpl->addRows('rows', $rows);
-			$tmpl->addRows('pageoutput', $pageoutput);
-			$error_html = $tmpl->getParsedTemplate();
-
-			if (!is_dir(JOMRES_SYSTEMLOG_PATH)) {
-				mkdir(JOMRES_SYSTEMLOG_PATH);
-			}
-
-			$filename = generateJomresRandomString(30).'.html';
-
-			file_put_contents(JOMRES_SYSTEMLOG_PATH.$filename, $error_html);
-
-			if ($jrConfig['development_production'] == 'development') {
-				echo $error_html;
-			} else {
-				$pageoutput = array(array('_JOMRES_ERROR' => jr_gettext('_JOMRES_ERROR', '_JOMRES_ERROR', false), '_JOMRES_ERROR_MESSAGE' =>  $e->getMessage() ));
-				$tmpl = new patTemplate();
-				$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
-				$tmpl->readTemplatesFromInput('error_production.html');
-				$tmpl->addRows('pageoutput', $pageoutput);
-				echo $tmpl->getParsedTemplate();
-			}
-
-			$url = '<a href = "'.JOMRES_SITEPAGE_URL_NOSEF.'&task=show_logfile&logfile='.$filename.'"> Logfile </a>'.
-				$error_html
-			;
-
-			if ($jrConfig[ 'sendErrorEmails' ] == '1') {
-				sendAdminEmail('Error logged '.$output['MESSAGE'], $url);
-			}
-
-			logging::log_message('Error logged '.$output['MESSAGE'].' '.$url, 'Core', 'ERROR');
 			$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
 			$MiniComponents->triggerEvent('00061');
+			//endrun();
+			//exit;
 		}
 	}
 

@@ -27,3 +27,9 @@ defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.'
 if (AJAXCALL) {
 	JFactory::getApplication()->close();
 }
+
+$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+$jrConfig = $siteConfig->get();
+if ($jrConfig[ 'development_production' ] != 'production') {
+	//restore_error_handler();
+}

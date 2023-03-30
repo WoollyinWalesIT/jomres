@@ -342,6 +342,10 @@ use Joomla\CMS\Editor\Editor;
 				return;
 			}
 
+			if (defined('API_STARTED')) {
+				return;
+			}
+
 			if (!defined('API_STARTED') && jomres_cmsspecific_areweinadminarea()) {
 				HTMLHelper::_('jquery.framework');
 				JHtml::_('bootstrap.framework');
@@ -355,11 +359,47 @@ use Joomla\CMS\Editor\Editor;
 			} else {
 				$in_admin_area = false;
 
-				$app = Factory::getApplication();
-				$app->loadDocument();
+				\Joomla\CMS\Factory::getApplication()->getDocument();
 				$wa = Factory::getApplication()->getDocument()->getWebAssetManager();
 				$wr = $wa->getRegistry();
+
+				// Throws a depreciated warning, but the following code doesn't work either so for now we'll continue to use this
 				HTMLHelper::_('bootstrap.framework');
+
+
+				// https://gist.github.com/dgrammatiko/efb3de4aa7cab4813a244f93f73cc0fd
+				// Link says that the following should work, but it throws a depreciated for J5 message for me. I'll leave it here for now, but will probably delete it at some point. Above also throws depreciated, see note.
+/*				\Joomla\CMS\HTML\HTMLHelper::_('bootstrap.alert', '.alert');
+				\Joomla\CMS\HTML\HTMLHelper::_('bootstrap.button', '.selector');
+				\Joomla\CMS\HTML\HTMLHelper::_('bootstrap.carousel', '.selector', []);
+				\Joomla\CMS\HTML\HTMLHelper::_('bootstrap.collapse', '.selector', []);
+				\Joomla\CMS\HTML\HTMLHelper::_('bootstrap.dropdown', '.selector', []);
+				\Joomla\CMS\HTML\HTMLHelper::_('bootstrap.modal', '.selector', []);
+				\Joomla\CMS\HTML\HTMLHelper::_('bootstrap.offcanvas', '.btn', []);
+				\Joomla\CMS\HTML\HTMLHelper::_('bootstrap.popover', '.btn', []);
+				\Joomla\CMS\HTML\HTMLHelper::_('bootstrap.popover', 'a', []);
+				\Joomla\CMS\HTML\HTMLHelper::_('bootstrap.scrollspy', '.selector', []);
+				\Joomla\CMS\HTML\HTMLHelper::_('bootstrap.tab', '.selector', []);
+				\Joomla\CMS\HTML\HTMLHelper::_('bootstrap.tooltip', '.btn', []);
+				\Joomla\CMS\HTML\HTMLHelper::_('bootstrap.tooltip', 'a', []);
+				\Joomla\CMS\HTML\HTMLHelper::_('bootstrap.toast', '.toast', []);
+
+				or https://gist.github.com/dgrammatiko/efb3de4aa7cab4813a244f93f73cc0fd?permalink_comment_id=4101117#gistcomment-4101117
+
+				Factory::getApplication()->getDocument()->getWebAssetManager()->useScript('bootstrap.alert');
+				Factory::getApplication()->getDocument()->getWebAssetManager()->useScript('bootstrap.button');
+				Factory::getApplication()->getDocument()->getWebAssetManager()->useScript('bootstrap.carousel');
+				Factory::getApplication()->getDocument()->getWebAssetManager()->useScript('bootstrap.collapse');
+				Factory::getApplication()->getDocument()->getWebAssetManager()->useScript('bootstrap.dropdown');
+				Factory::getApplication()->getDocument()->getWebAssetManager()->useScript('bootstrap.modal');
+				Factory::getApplication()->getDocument()->getWebAssetManager()->useScript('bootstrap.offcanvas');
+				Factory::getApplication()->getDocument()->getWebAssetManager()->useScript('bootstrap.popover');
+				Factory::getApplication()->getDocument()->getWebAssetManager()->useScript('bootstrap.scrollspy');
+				Factory::getApplication()->getDocument()->getWebAssetManager()->useScript('bootstrap.tabs');
+				Factory::getApplication()->getDocument()->getWebAssetManager()->useScript('bootstrap.tooltip');
+				Factory::getApplication()->getDocument()->getWebAssetManager()->useScript('bootstrap.toast');
+
+				*/
 			}
 
 
