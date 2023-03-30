@@ -42,7 +42,11 @@ class j09997menu
 
 			return;
 		}
-		
+
+		if (defined('API_STARTED')) {
+			return;
+		}
+
 		// Stops the main menu from being generated twice. TODO: is this still needed?
 		if (get_showtime('mainmenu_alreadyrun')) {
 			return;

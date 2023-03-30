@@ -47,6 +47,10 @@
 				return;
 			}
 
+			if (defined('API_STARTED')) {
+				return;
+			}
+
 			$menuoff = get_showtime('menuoff');
 			if ($menuoff === true) {
 				return;
