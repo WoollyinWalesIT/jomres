@@ -491,7 +491,9 @@ use Joomla\CMS\Helper\ModuleHelper;
 				return true;
 			}
 
-			$safe_tasks = array ( '' , 'new_property', 'save_new_property', 'dashboard' , 'business_settings' , 'dashboard_resources_ajax' , 'dashboard_events_ajax' , 'listyourproperties_ajax', 'cpanel' , 'publish_property' , 'listyourproperties' , 'preview' , 'webhooks_core', 'webhooks_core_documentation' , 'edit_integration' , 'save_integration' , 'edit_my_account', 'show_user_profile',  'muviewfavourites',  'logout',  'oauth',  'api_documentation',  'search',  'show_consent_form',  'gdpr_my_data' ,'toggle_jomres_widget_ajax' , 'delete_property' , 'viewproperty'); // We will not redirect on these tasks. Need to keep this list under review.
+			$viewproperty_url = get_property_details_url(get_showtime("property_uid"));
+
+			$safe_tasks = array ( '' , 'new_property', 'save_new_property', 'dashboard' , 'business_settings' , 'dashboard_resources_ajax' , 'dashboard_events_ajax' , 'listyourproperties_ajax', 'cpanel' , 'publish_property' , 'listyourproperties' , 'preview' , 'webhooks_core', 'webhooks_core_documentation' , 'edit_integration' , 'save_integration' , 'edit_my_account', 'show_user_profile',  'muviewfavourites',  'logout',  'oauth',  'api_documentation',  'search',  'show_consent_form',  'gdpr_my_data' ,'toggle_jomres_widget_ajax' , 'delete_property' , $viewproperty_url ); // We will not redirect on these tasks. Need to keep this list under review.
 
 			if (in_array($task, $safe_tasks) || substr($task, 0, 17) == "channelmanagement" || strstr($task, "ajax")) {
 				return true;
