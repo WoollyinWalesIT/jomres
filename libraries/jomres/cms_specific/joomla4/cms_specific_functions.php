@@ -359,7 +359,10 @@ use Joomla\CMS\Editor\Editor;
 			} else {
 				$in_admin_area = false;
 
-				\Joomla\CMS\Factory::getApplication()->getDocument();
+				// \Joomla\CMS\Factory::getApplication()->getDocument();
+				$app = Factory::getApplication();
+				$app->loadDocument();
+
 				$wa = Factory::getApplication()->getDocument()->getWebAssetManager();
 				$wr = $wa->getRegistry();
 
