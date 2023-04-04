@@ -121,12 +121,13 @@
 
 					set_showtime('menuitem_propertyname', $output[ 'PROPERTYNAME' ]);
 
-					jr_import('jomres_management_view');
-					$jomres_management_view = new jomres_management_view();
-					$management_dropdown = $jomres_management_view->get_dropdown();
-					$output[ 'MANAGEMENT_VIEW_DROPDOWN' ] = $management_dropdown;
-
-					set_showtime('menuitem_management_view_dropdown', $output[ 'MANAGEMENT_VIEW_DROPDOWN' ]);
+					if ( isset($jrConfig[ 'secret_setting_show_management_view' ]) && $jrConfig[ 'secret_setting_show_management_view' ] == "1" ) {
+						jr_import('jomres_management_view');
+						$jomres_management_view = new jomres_management_view();
+						$management_dropdown = $jomres_management_view->get_dropdown();
+						$output[ 'MANAGEMENT_VIEW_DROPDOWN' ] = $management_dropdown;
+						set_showtime('menuitem_management_view_dropdown', $output[ 'MANAGEMENT_VIEW_DROPDOWN' ]);
+					}
 				}
 			}
 

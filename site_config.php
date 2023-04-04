@@ -220,6 +220,7 @@ $jrConfig = array(
   'business_languages' => 'English,French,German,Spanish',
   'business_logo' => '',
  //	'secret_setting_use_old_guest_types' => '1',
+	'secret_setting_show_management_view' => '0',
 );
 
 
