@@ -44,7 +44,7 @@ class jomres_api_capability_test
 	{
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
-		if (!isset($jrConfig['api_capable'])) {
+		if (!isset($jrConfig['api_capable']) || (bool)$jrConfig['api_capable'] === false) {
 			$this->test_system_capable();
 		} else {
 			return true;
@@ -60,7 +60,7 @@ class jomres_api_capability_test
 		{
 			$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 			$jrConfig = $siteConfig->get();
-			if (!isset($jrConfig['api_capable'])) {
+			if (!isset($jrConfig['api_capable']) || (bool)$jrConfig['api_capable'] === false) {
 				jr_import('jomres_call_api');
 				$jomres_call_api = new jomres_call_api('system');
 				try {
