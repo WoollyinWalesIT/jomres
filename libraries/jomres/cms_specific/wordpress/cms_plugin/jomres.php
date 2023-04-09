@@ -210,26 +210,33 @@ if (!function_exists('run_jomres_installer')) {
 	/**
 	 * Jomres root directory.
 	 */
-if (! defined('JOMRES_ROOT_DIRECTORY')) {
-	if (file_exists(ABSPATH . 'jomres_root.php')) {
-		require_once ABSPATH . 'jomres_root.php';
-	} elseif (file_exists(ABSPATH.'jomres'.DIRECTORY_SEPARATOR.'configuration.php')) {
+	if (! defined('JOMRES_ROOT_DIRECTORY')) {
+		if (is_dir(ABSPATH.'jomres')) {
 			define_jomres_off_root_dir_as_root();
-	} else {
-		if (file_exists(JOMRES_WP_PLUGIN_PATH.DIRECTORY_SEPARATOR.'jomres'.DIRECTORY_SEPARATOR.'jomres.php')) {
-			define_jomres_sub_dir_in_plugins_dir_as_root();
+			if (!file_exists(ABSPATH.'jomres'.DIRECTORY_SEPARATOR.'configuration.php'))  {
+				run_jomres_installer();
+			}
 		} else {
-			if (!is_dir(JOMRES_WP_PLUGIN_PATH . DIRECTORY_SEPARATOR . 'jomres' . DIRECTORY_SEPARATOR)) { // Let's see if we can install Jomres in the jomres subdir of wp-content, instead of it's traditional location off root
-				if (mkdir(JOMRES_WP_PLUGIN_PATH . DIRECTORY_SEPARATOR . 'jomres' . DIRECTORY_SEPARATOR)) {
+			if (file_exists(ABSPATH . 'jomres_root.php')) {
+				require_once ABSPATH . 'jomres_root.php';
+			} elseif (file_exists(ABSPATH.'jomres'.DIRECTORY_SEPARATOR.'configuration.php')) {
+				define_jomres_off_root_dir_as_root();
+			} else {
+				if (file_exists(JOMRES_WP_PLUGIN_PATH.DIRECTORY_SEPARATOR.'jomres'.DIRECTORY_SEPARATOR.'jomres.php')) {
 					define_jomres_sub_dir_in_plugins_dir_as_root();
-					run_jomres_installer();
+				} else {
+					if (!is_dir(JOMRES_WP_PLUGIN_PATH . DIRECTORY_SEPARATOR . 'jomres' . DIRECTORY_SEPARATOR)) { // Let's see if we can install Jomres in the jomres subdir of wp-content, instead of it's traditional location off root
+						if (mkdir(JOMRES_WP_PLUGIN_PATH . DIRECTORY_SEPARATOR . 'jomres' . DIRECTORY_SEPARATOR)) {
+							define_jomres_sub_dir_in_plugins_dir_as_root();
+							run_jomres_installer();
+						}
+					} else { // fallback for updated installations
+						define('JOMRES_ROOT_DIRECTORY', 'jomres');
+					}
 				}
-			} else { // fallback for updated installations
-				define('JOMRES_ROOT_DIRECTORY', 'jomres');
 			}
 		}
 	}
-}
 
 	/**
 	 * The Jomres wp plugin functions.
