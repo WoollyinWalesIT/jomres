@@ -321,8 +321,6 @@ class j16000addplugin
 					fclose($file_handle);
 				}
 			} else {
-				echo "Oops, that key isn't valid";
-
 				return;
 			}
 		}
