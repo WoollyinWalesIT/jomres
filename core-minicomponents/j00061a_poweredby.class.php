@@ -58,6 +58,10 @@ class j00061a_poweredby
 			return;
 		}
 
+		if (!defined('JOMRES_TEMPLATEPATH_FRONTEND'))  {
+			define('JOMRES_TEMPLATEPATH_FRONTEND', JOMRESPATH_BASE.JRDS.'assets'.JRDS.'templates'.JRDS.'bootstrap5'.JRDS.'frontend');
+		}
+
 		if ($jrConfig[ 'show_powered_by' ] == '1') {
 			$tmpl = new patTemplate();
 			$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);

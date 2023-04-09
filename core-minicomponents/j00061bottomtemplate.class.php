@@ -82,6 +82,10 @@
 			</script>';
 			}
 
+			if (!defined('JOMRES_TEMPLATEPATH_FRONTEND'))  {
+				define('JOMRES_TEMPLATEPATH_FRONTEND', JOMRESPATH_BASE.JRDS.'assets'.JRDS.'templates'.JRDS.'bootstrap5'.JRDS.'frontend');
+			}
+
 			$pageoutput[ ] = $output;
 
 			$tmpl = new patTemplate();
