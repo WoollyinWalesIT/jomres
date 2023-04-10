@@ -2539,7 +2539,7 @@ jr_define('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE_DESC', 'Hvor mye skal de belaste
 
 jr_define('_JOMRES_SANITYCHECK_CHILD_RATES', 'You have not configured child rates yet.');
 jr_define('_JOMRES_SANITYCHECK_CHILD_RATES_BUTTON', 'Still child rate (s) now');
-jr_define('_JOMRES_SANITYCHECK_OCCUPANCY_LEVELS', 'You have configured your property to allow children but you have not set any occupancy levels for children yet.');
+jr_define('_JOMRES_SANITYCHECK_OCCUPANCY_LEVELS', 'You have configured your property to allow children but you have not set any occupancy levels for children yet. You can change this setting in Settings > Property Configuration > Bookings tab.');
 jr_define('_JOMRES_SANITYCHECK_OCCUPANCY_LEVELS_BUTTON', 'Still occupancy levels');
 jr_define('JOMRES_OCCUPANCY_LEVELS_INFO', 'Hver gang du redigerer et rom eller din eiendomstype, bør du kontrollere og oppdatere beleggsnivåene for eiendommen/rommene dine, da disse påvirker antall gjester som kan godtas i bestillingsskjemaet.');
 
