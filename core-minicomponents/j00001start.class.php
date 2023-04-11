@@ -46,7 +46,7 @@ class j00001start
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
 
-		if ( (bool) $jrConfig['api_capable'] === true ) {
+		if ( isset($jrConfig['api_capable']) && (bool) $jrConfig['api_capable'] === true ) {
 			if (!$MiniComponents->eventSpecificlyExistsCheck('00005', 'api_feature_cmf')) {
 				$MiniComponents->specificEvent('16000', 'addplugin', array('plugin' => 'api_feature_cmf', 'autoupgrade' => true));
 			}
