@@ -58,6 +58,9 @@
 		$override_path = $path_to_template . JRDS . 'html' . JRDS . 'com_jomres'.JRDS.'custom_code'.JRDS;
 	}
 
+	define('JOMRES_OVERRIDE_PATH',$override_path);
+
+
 	if (file_exists($override_path.'custom_functions.php')) {
 		require_once($override_path.'custom_functions.php');
 	}
