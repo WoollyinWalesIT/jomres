@@ -57,7 +57,7 @@
 					}
 				} else {
 					$override_template = false;
-					if ( !isset( $_REQUEST[ 'nocustomtemplate' ] ) )
+					if ( !isset( $_REQUEST[ 'nocustomtemplate' ] ) && !defined('API_STARTED') )
 						$override_template = $this->get_cms_template_override( $templatename);
 
 					if ( !$override_template )
