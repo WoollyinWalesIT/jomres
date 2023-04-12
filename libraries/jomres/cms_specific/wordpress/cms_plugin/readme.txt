@@ -3,7 +3,7 @@ Contributors: jomres
 Tags:  booking engine, hotel booking, channel manager, rest api, jomres, ical, hotel, reservations
 Donate link: https://www.jomres.net
 Requires at least: 4.3.1
-Tested up to: 6.0
+Tested up to: 6.0.2
 Stable tag: trunk
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -12,7 +12,13 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 = Build your own Online Travel Agency like Booking.com or AirBNB =
 
-Mature, intelligent, secure and powerful. Started in 2005 and maintained continuously for the last 17 years, Jomres is the most complete online booking engine available for WordPress.
+<blockquote>
+	<p>
+		<a href="https://www.jomres.net">Plugin website</a> | <a href="https://www.jomres.net/jomres-features-summary">Features</a> | <a href="https://www.jomres.net/documentation">Documentation</a> | <a href="https://www.jomres.net/download">Download for free</a>
+	</p>
+</blockquote>
+
+Mature, intelligent, secure and powerful. Started in 2005 and maintained continuously for the last 18 years, Jomres is the most complete online booking engine available for WordPress.
 
 Stripe payment gateway is built into the free Core, check out the step-by-step guide here that shows you how to [create a booking website in WordPress for free.](https://www.jomres.net/documentation/create-a-booking-website-in-wordpress-for-free)
 
@@ -20,11 +26,7 @@ Jomres is a commission-free, responsive, Open Source multi-vendor, multi-languag
 
 From basic features like secure frontend property administration, comprehensive and flexible [search features](http://www.jomres.net/manual/site-managers-guide-2/402-search-widgets), [iCal import and export](http://www.jomres.net/manual/property-managers-guide-2/41-your-toolbar/bookings/328-jomres-ical), through to powerful developer tools such as its built-in [REST API](http://www.jomres.net/manual/developers-guide-2/90-channel-management-framework) and  [Webhooks](http://www.jomres.net/manual/developers-guide-2/64-webhooks) functionality, there's something here for everybody. Whether you are looking for a booking engine for a single property site, or a complete portal, Jomres is where it's at.
 
-<blockquote>
-	<p>
-		<a href="https://www.jomres.net">Plugin website</a> | <a href="https://www.jomres.net/jomres-features-summary">Features</a> | <a href="https://www.jomres.net/manual/">Documentation</a>
-	</p>
-</blockquote>
+
 
 Jomres is created and maintained by me, Vince Wooll. I am not a designer or a marketer, I'm a software engineer who believes that there's still a place for the solo developer in today's internet. I think of Jomres as less a booking engine and more a toolkit, with a set of tools that my users can use to build their own unique online websites. Jomres follows that line of thinking with it's strong emphasis on giving you, the user, the [information and tools](http://www.jomres.net/manual/) you need to create something amazing.
 
