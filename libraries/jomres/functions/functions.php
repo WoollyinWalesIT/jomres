@@ -4214,6 +4214,10 @@ if (!function_exists('file_get_contents')) {
 			}
 			$lists[ 'cformat_strip_decimals' ] = jomresHTML::selectList($yesno, 'cfg_cformat_strip_decimals', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'cformat_strip_decimals' ]);
 
+			if (!isset( $mrConfig[ 'occupancy_levels_include_children' ])) {
+				$mrConfig[ 'occupancy_levels_include_children' ] = 0;
+			}
+			$lists[ 'occupancy_levels_include_children' ] = jomresHTML::selectList($yesno, 'cfg_occupancy_levels_include_children', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'occupancy_levels_include_children' ]);
 
 			$componentArgs = array();
 			$componentArgs[ 'mrConfig' ] = $mrConfig;

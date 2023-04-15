@@ -2722,3 +2722,11 @@ jr_define('JOMRES_TARGET_LANGUAGE', 'ターゲット言語');
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "テストモード");
 
 	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "開発モードが有効になっているため、この機能を使用すると Jomres のインストールを Nightly ブランチに更新することになります。これは Jomres の最新バージョンであり、安定している場合と安定していない場合があります。 Nightly に更新したくない場合は、[管理] > [Jomres] > [設定] > [サイトの構成] > [デバッグ] タブにアクセスし、[運用/開発] オプションを [運用] に設定してください。");
+
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN', "占有レベル チェックに子供を含めますか?");
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN_DESC_MRP', "ゲストが予約を行うと、客室には最大宿泊人数が設定されています。宿泊人数の合計が、選択した客室の宿泊人数を超える場合、予約フォームはその旨を伝えます。 より多くの部屋を選択する必要があります。
+ 
+  このオプションを [はい] に設定すると、子供の数がゲストの総数チェックに含まれます。 このオプションを [いいえ] に設定すると、子供の数はゲストの総数チェックに含まれません。 つまり、このオプションを [いいえ] に設定すると、大人 2 名と子供 2 名などの 4 名のパーティーで、大人 2 名が宿泊できるダブルルームを予約できることになります。 ");
+
+
+	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', '1 泊 1 人あたりの料金を請求する場合は [はい] を選択してください。');

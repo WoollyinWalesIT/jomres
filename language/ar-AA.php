@@ -2755,3 +2755,11 @@ jr_define ('_ JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR' , "وضع الاختبار
 
 
 	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "Development mode is enabled, therefore if you use this feature you will be updating your installation of Jomres to the Nightly branch. This is the most recent version of Jomres and may or may not be stable. If you do not want to update to Nightly please visit Admin > Jomres > Settings > Site Configuration > Debugging tab and set the Production/Development option to Production.");
+
+	jr_define ('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN' , "تضمين الأطفال في فحوصات مستوى الإشغال؟") ;
+jr_define ('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN_DESC_MRP' , 'عندما يقوم الضيوف بالحجز ، فإن الغرف بها أقصى عدد من الضيوف يمكنهم استيعابهم. إذا تجاوز العدد الإجمالي للضيوف عدد النزلاء الذي يمكن للغرف المحددة أن تستوعبه ، فسيخبرهم نموذج الحجز بذلك يحتاجون إلى تحديد المزيد من الغرف.
+ 
+  إذا قمت بتعيين هذا الخيار على "نعم" ، فسيتم إدراج عدد الأطفال في إجمالي عدد المدعوين. إذا قمت بتعيين هذا الخيار على "لا" ، فلن يتم تضمين عدد الأطفال في العدد الإجمالي للشيكات للضيوف. هذا يعني أنه إذا قمت بتعيين هذا الخيار على "لا" ، فسيكون بإمكان مجموعة مكونة من 4 أشخاص ، على سبيل المثال ، شخصان بالغان وطفلان ، حجز غرفة مزدوجة تتسع لشخصين بالغين. ');
+
+
+jr_define ('_ JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'حدد نعم إذا كنت تريد الشحن لكل شخص في الليلة.') ;

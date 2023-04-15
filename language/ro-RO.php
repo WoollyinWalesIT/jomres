@@ -2751,3 +2751,11 @@ Puteți lăsa limba țintă setată la limba dvs. curentă și puteți utiliza a
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Modul de testare");
 
 	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "Modul de dezvoltare este activat, prin urmare, dacă utilizați această caracteristică, veți actualiza instalarea Jomres la filiala Nightly. Aceasta este cea mai recentă versiune de Jomres și poate fi sau nu stabilă. Dacă o faceți nu doriți să actualizați la Nightly, vă rugăm să vizitați Administrator > Jomres > Setări > Configurare site > fila Depanare și setați opțiunea Producție/Dezvoltare la Producție.");
+
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN', "Includeți copiii în verificările nivelului de ocupare?");
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN_DESC_MRP', "Atunci când oaspeții fac rezervări, camerele au un număr maxim de oaspeți pe care îi pot găzdui. Dacă numărul total de oaspeți depășește numărul de oaspeți pe care camerele selectate îi pot găzdui, atunci formularul de rezervare le va comunica. trebuie să aleagă mai multe camere.
+ 
+  Dacă setați această opțiune la Da, atunci numărul de copii va fi inclus în numărul total de oaspeți. Dacă setați această opțiune la Nu, atunci numărul de copii nu va fi inclus în cecul pentru numărul total de oaspeți. Aceasta înseamnă că dacă setați această opțiune la Nu, atunci un grup de 4 persoane, de exemplu, 2 adulți și 2 copii, va putea rezerva o cameră dublă care poate găzdui 2 adulți. ");
+
+
+	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Selectați Da dacă doriți să taxați per-persoană-pe-noapte.');

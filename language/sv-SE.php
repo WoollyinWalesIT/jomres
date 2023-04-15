@@ -2723,3 +2723,11 @@ Du kan lämna målspråket inställt på ditt nuvarande språk och använda denn
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Testläge");
 
 	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "Utvecklingsläget är aktiverat, så om du använder den här funktionen kommer du att uppdatera din installation av Jomres till Nightly-grenen. Detta är den senaste versionen av Jomres och kanske inte är stabil. Om du gör det. inte vill uppdatera till Nightly, besök Admin > Jomres > Inställningar > Webbplatskonfiguration > fliken Felsökning och ställ in alternativet Produktion/Utveckling till Produktion.");
+
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN', "Inkludera barn i kontroller av beläggningsnivå?");
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN_DESC_MRP', "När gäster gör bokningar har rummen ett maximalt antal gäster som de kan ta emot. Om det totala antalet gäster överstiger antalet gäster som de valda rummen kan ta emot, kommer bokningsformuläret att berätta för dem att de måste välja fler rum.
+ 
+  Om du ställer in det här alternativet till Ja kommer antalet barn att inkluderas i det totala antalet gäster. Om du ställer in det här alternativet på Nej kommer antalet barn inte att inkluderas i det totala antalet gäster. Det betyder att om du ställer in det här alternativet till Nej så kommer ett sällskap på 4, till exempel 2 vuxna och 2 barn, att kunna boka ett dubbelrum som rymmer 2 vuxna. ");
+
+
+	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Välj Ja om du vill debitera per person per natt.');

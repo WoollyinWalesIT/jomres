@@ -94,7 +94,10 @@ class jomres_sanity_check
 				$this->warnings .= $this->checks_tariffs_exist();
 			}
 
-			$this->warnings .= $this->check_child_rates();
+			if ($this->mrConfig[ 'perPersonPerNight' ] == '1') {
+				$this->warnings .= $this->check_child_rates();
+			}
+
 			$this->warnings .= $this->check_occupancy_levels();
 
 

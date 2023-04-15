@@ -135,7 +135,13 @@ class j00501tariffs
 			} else {
 				$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_TARIFFS_PER', '_JOMRES_COM_A_TARIFFS_PER', false));
 				$configurationPanel->setmiddle($lists[ 'perPersonPerNight' ]);
-				$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_TARIFFS_PER_DESC', '_JOMRES_COM_A_TARIFFS_PER_DESC', false));
+
+				if ($mrConfig['singleRoomProperty'] == '1') {
+					$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', '_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', false));
+				} else {
+					$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_TARIFFS_PER_DESC', '_JOMRES_COM_A_TARIFFS_PER_DESC', false));
+				}
+
 				$configurationPanel->insertSetting();
 			}
 			//}

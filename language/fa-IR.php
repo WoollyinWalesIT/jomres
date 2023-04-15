@@ -2831,3 +2831,11 @@ jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "حالت آزمون");
 
 	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "Development mode is enabled, therefore if you use this feature you will be updating your installation of Jomres to the Nightly branch. This is the most recent version of Jomres and may or may not be stable. If you do not want to update to Nightly please visit Admin > Jomres > Settings > Site Configuration > Debugging tab and set the Production/Development option to Production.");
 
+
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN', "شامل کودکان در بررسی سطح اشغال شوند؟");
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN_DESC_MRP', 'زمانی که مهمانان رزرو می کنند، اتاق ها حداکثر تعداد مهمانی دارند که می توانند پذیرای آنها شوند. اگر تعداد کل مهمانان از تعداد مهمانانی که اتاق های انتخابی می توانند در خود جای دهند بیشتر باشد، فرم رزرو به آنها اعلام می کند آنها باید اتاق های بیشتری را انتخاب کنند.
+ 
+  اگر این گزینه را روی Yes تنظیم کنید، تعداد فرزندان در بررسی تعداد کل مهمانان لحاظ می شود. اگر این گزینه را روی No تنظیم کنید، تعداد فرزندان در بررسی تعداد کل مهمانان لحاظ نمی شود. این بدان معناست که اگر این گزینه را روی No تنظیم کنید، یک مهمانی 4 نفره، به عنوان مثال، 2 بزرگسال و 2 کودک، می توانند یک اتاق دو تخته که 2 بزرگسال را در خود جای دهد، رزرو کنند.؛');
+
+
+jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'اگر می‌خواهید به ازای هر نفر در شب شارژ کنید، بله را انتخاب کنید.');

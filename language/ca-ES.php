@@ -2744,3 +2744,12 @@ Podeu deixar l\'idioma d\'arribada configurat en el vostre idioma actual i utili
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Mode de prova");
 
 	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "El mode de desenvolupament està habilitat, per tant, si feu servir aquesta funció, actualitzareu la vostra instal·lació de Jomres a la branca de Nightly. Aquesta és la versió més recent de Jomres i pot ser estable o no. Si ho feu? no voleu actualitzar a Nightly, visiteu Admin > Jomres > Configuració > Configuració del lloc > pestanya Depuració i configureu l'opció Producció/Desenvolupament a Producció.");
+
+
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN', "Inclou els nens en els controls del nivell d'ocupació?");
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN_DESC_MRP', "Quan els clients fan reserves, les habitacions tenen un nombre màxim de convidats que poden allotjar. Si el nombre total de convidats supera el nombre de convidats que poden allotjar les habitacions seleccionades, el formulari de reserva els informarà han de seleccionar més habitacions.
+ 
+  Si configureu aquesta opció en Sí, el nombre de nens s'inclourà en el xec del nombre total de convidats. Si configureu aquesta opció a No, el nombre de nens no s'inclourà en el xec del nombre total de convidats. Això vol dir que si configureu aquesta opció a No, un grup de 4 persones, per exemple, 2 adults i 2 nens, podrà reservar una habitació doble amb capacitat per a 2 adults. ");
+
+
+	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Seleccioneu Sí si voleu cobrar per persona-per-nit.');

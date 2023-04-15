@@ -2729,3 +2729,11 @@ Varat atstāt mērķa valodu iestatītu uz savu pašreizējo valodu un izmantot 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Pārbaudes režīms");
 
 	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "Izstrādes režīms ir iespējots, tādēļ, ja izmantojat šo līdzekli, jūs atjaunināsiet savu Jomres instalāciju uz Nakts filiāli. Šī ir jaunākā Jomres versija un var būt vai nav stabila. Ja jūs to darāt nevēlaties atjaunināt uz Nightly, lūdzu, apmeklējiet Administrēšana > Jomres > Iestatījumi > Vietnes konfigurācija > cilne Atkļūdošana un iestatiet opciju Ražošana/izstrāde uz Ražošana.");
+
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN', "Iekļaut bērnus aizņemtības līmeņa pārbaudēs?");
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN_DESC_MRP', "Kad viesi veic rezervācijas, istabās ir maksimālais viesu skaits, ko viņi var izmitināt. Ja kopējais viesu skaits pārsniedz viesu skaitu, ko var izmitināt izvēlētajās istabās, tad rezervācijas veidlapa viņiem paziņos viņiem ir jāizvēlas vairāk istabu.
+ 
+  Ja iestatīsiet šo opciju uz Jā, bērnu skaits tiks iekļauts kopējā viesu skaita pārbaudē. Ja iestatīsiet šo opciju uz Nē, bērnu skaits netiks iekļauts kopējā viesu skaitā. Tas nozīmē, ka, ja iestatīsiet šo opciju uz Nē, tad 4 cilvēku grupa, piemēram, 2 pieaugušie un 2 bērni, varēs rezervēt divvietīgu numuru, kurā var nakšņot 2 pieaugušie. ");
+
+
+	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Atlasiet Jā, ja vēlaties iekasēt maksu par personu par nakti.');

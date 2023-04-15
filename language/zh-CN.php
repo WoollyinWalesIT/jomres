@@ -2734,3 +2734,11 @@ jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', '保存更改后，页面中�
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "测试模式");
 
 	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "开发模式已启用，因此如果您使用此功能，您将更新您的 Jomres 安装到 Nightly 分支。这是 Jomres 的最新版本，可能稳定也可能不稳定。如果您这样做 不想更新到 Nightly 请访问 Admin > Jomres > Settings > Site Configuration > Debugging 选项卡并将生产/开发选项设置为生产。");
+
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN', "在入住率检查中包括儿童？");
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN_DESC_MRP', "当客人进行预订时，房间有他们可以容纳的最大客人数。如果客人总数超过所选房间可以容纳的客人数，那么预订表格会告诉他们 他们需要选择更多的房间。
+ 
+  如果您将此选项设置为“是”，则儿童人数将包含在客人总数检查中。 如果您将此选项设置为“否”，则儿童人数将不会包含在客人总数检查中。 这意味着，如果您将此选项设置为否，则 4 人聚会（例如，2 名成人和 2 名儿童）将能够预订可容纳 2 名成人的双人间。 ");
+
+
+	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', '如果您想按每人每晚收费，请选择是。');

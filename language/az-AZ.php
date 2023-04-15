@@ -2733,3 +2733,11 @@ Siz hədəf dili təyin edilmiş cari dilinizə buraxa və onların fərdi səhi
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Sınaq rejimi");
 
 	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "İnkişaf rejimi aktivdir, ona görə də bu funksiyadan istifadə etsəniz, Jomres quraşdırmanızı Gecə şöbəsinə yeniləyəcəksiniz. Bu, Jomres-in ən son versiyasıdır və stabil ola bilər, ya da olmaya bilər. Əgər etsəniz Gecəyə yeniləmək istəmirsinizsə, lütfən, Admin > Jomres > Parametrlər > Sayt Konfiqurasiyası > Sazlama nişanına daxil olun və İstehsal/İnkişaf seçimini İstehsal olaraq təyin edin.");
+
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN', "Uşaqlar yaşayış səviyyəsinin yoxlanılmasına daxil edilsin?");
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN_DESC_MRP', "Qonaqlar rezervasiya etdikdə otaqlarda onların yerləşdirə biləcəyi maksimum sayda qonaq olur. Əgər qonaqların ümumi sayı seçilmiş otaqların yerləşdirə biləcəyi qonaqların sayından çox olarsa, rezervasiya forması onlara məlumat verəcəkdir. onlar daha çox otaq seçməlidirlər.
+ 
+  Bu seçimi Bəli olaraq təyin etsəniz, uşaqların sayı qonaqların ümumi sayına daxil ediləcək. Bu seçimi Xeyr olaraq təyin etsəniz, uşaqların sayı qonaqların yoxlanışının ümumi sayına daxil edilməyəcək. Bu o deməkdir ki, bu seçimi Xeyr olaraq təyin etsəniz, 4 nəfərdən ibarət bir partiya, məsələn, 2 böyük və 2 uşaq, 2 böyüklərin yerləşdiyi iki nəfərlik otaq sifariş edə biləcək. ");
+
+
+	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Bir nəfər üçün gecəlik ödəniş etmək istəyirsinizsə, Bəli seçin.');

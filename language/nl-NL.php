@@ -2690,3 +2690,11 @@ U kunt de doeltaal op uw huidige taal laten staan en deze pagina gebruiken om it
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Testmodus");
 
 	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "Ontwikkelingsmodus is ingeschakeld, dus als u deze functie gebruikt, werkt u uw installatie van Jomres bij naar de Nightly-tak. Dit is de meest recente versie van Jomres en kan al dan niet stabiel zijn. Als u dat doet niet wilt updaten naar Nightly, ga naar Beheer > Jomres > Instellingen > Siteconfiguratie > tabblad Foutopsporing en zet de optie Productie/Ontwikkeling op Productie.");
+
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN', "Kinderen opnemen in bezettingsgraadcontroles?");
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN_DESC_MRP', "Als gasten een boeking maken, hebben de kamers een maximum aantal gasten dat ze kunnen huisvesten. Als het totale aantal gasten groter is dan het aantal gasten dat de geselecteerde kamers kunnen herbergen, dan zal het boekingsformulier hen vertellen dat ze moeten meer kamers selecteren.
+ 
+  Als u deze optie op Ja zet, wordt het aantal kinderen meegenomen in het totaal aantal gasten. Als u deze optie op Nee zet, wordt het aantal kinderen niet meegeteld bij het totaal aantal gasten. Dit betekent dat als u deze optie instelt op Nee, een gezelschap van 4 personen, bijvoorbeeld 2 volwassenen en 2 kinderen, een tweepersoonskamer kan boeken voor 2 volwassenen. ");
+
+
+	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Selecteer Ja als u per persoon per nacht wilt rekenen.');

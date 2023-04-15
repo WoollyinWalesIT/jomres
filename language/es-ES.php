@@ -2760,3 +2760,11 @@ Puede dejar el idioma de destino establecido en su idioma actual y usar esta pá
 
 
 	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "El modo de desarrollo está habilitado, por lo tanto, si usa esta función, actualizará su instalación de Jomres a la rama Nightly. Esta es la versión más reciente de Jomres y puede o no ser estable. Si lo hace no desea actualizar a Nightly, visite Admin > Jomres > Configuración > Configuración del sitio > pestaña Depuración y establezca la opción Producción/Desarrollo en Producción.");
+
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN', "¿Incluir niños en las comprobaciones del nivel de ocupación?");
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN_DESC_MRP', "Cuando los huéspedes hacen reservas, las habitaciones tienen un número máximo de huéspedes que pueden alojar. Si el número total de huéspedes supera el número de huéspedes que pueden alojar las habitaciones seleccionadas, el formulario de reserva les indicará que necesitan seleccionar más habitaciones.
+ 
+  Si establece esta opción en Sí, la cantidad de niños se incluirá en la verificación de la cantidad total de invitados. Si establece esta opción en No, la cantidad de niños no se incluirá en la verificación de la cantidad total de invitados. Esto significa que si establece esta opción en No, entonces un grupo de 4, por ejemplo, 2 adultos y 2 niños, podrá reservar una habitación doble con capacidad para 2 adultos. ");
+
+
+	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Seleccione Sí si desea cobrar por persona por noche');

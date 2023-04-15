@@ -2735,3 +2735,11 @@ Ciljni jezik lahko pustite nastavljen na vaš trenutni jezik in uporabite to str
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Testni način");
 
 	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "Razvojni način je omogočen, zato boste, če uporabljate to funkcijo, posodobili svojo namestitev Jomresa na vejo Nightly. To je najnovejša različica Jomresa in je lahko stabilna ali pa ne. Če to storite ne želite posodobiti na Nightly, obiščite Admin > Jomres > Settings > Site Configuration > zavihek Debugging in nastavite možnost Production/Development na Production.");
+
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN', "Vključi otroke v preverjanje stopnje zasedenosti?");
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN_DESC_MRP', "Ko gostje opravijo rezervacijo, imajo sobe največje število gostov, ki jih lahko sprejmejo. Če skupno število gostov presega število gostov, ki jih izbrane sobe lahko sprejmejo, jim bo obrazec za rezervacijo povedal, da izbrati morajo več sob.
+ 
+  Če to možnost nastavite na Da, bo število otrok vključeno v skupno število gostov. Če to možnost nastavite na Ne, število otrok ne bo vključeno v skupno število gostov. To pomeni, da če to možnost nastavite na Ne, bo 4-članska skupina, na primer 2 odrasla in 2 otroka, lahko rezervirala dvoposteljno sobo za 2 odrasli osebi. ");
+
+
+	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Izberite Da, če želite zaračunati na osebo na noč.');

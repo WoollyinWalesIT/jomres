@@ -316,4 +316,6 @@
 		'last_invoice_number' => '1000',
 		'custom_invoice_pattern' => '{N}',
 		'allow_children' => '1',
+		'occupancy_levels_include_children' => '0',
+
 	);

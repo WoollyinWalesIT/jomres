@@ -72,10 +72,20 @@ class j00501booking_settings
 
 		$configurationPanel->startPanel(jr_gettext('_JOMRES_STATUS_BOOKINGS', '_JOMRES_STATUS_BOOKINGS', false));
 
-		$configurationPanel->setleft(jr_gettext('JOMRES_POLICY_ACCEPT_CHILDREN', 'JOMRES_POLICY_ACCEPT_CHILDREN', false));
-		$configurationPanel->setmiddle($lists['allow_children']);
-		$configurationPanel->setright(jr_gettext('JOMRES_POLICY_ACCEPT_CHILDREN_DESC', 'JOMRES_POLICY_ACCEPT_CHILDREN_DESC', false));
-		$configurationPanel->insertSetting();
+		if (!isset($jrConfig[ 'secret_setting_use_old_guest_types' ]) || $jrConfig[ 'secret_setting_use_old_guest_types' ] === "0") {
+			$configurationPanel->setleft(jr_gettext('JOMRES_POLICY_ACCEPT_CHILDREN', 'JOMRES_POLICY_ACCEPT_CHILDREN', false));
+			$configurationPanel->setmiddle($lists['allow_children']);
+			$configurationPanel->setright(jr_gettext('JOMRES_POLICY_ACCEPT_CHILDREN_DESC', 'JOMRES_POLICY_ACCEPT_CHILDREN_DESC', false));
+			$configurationPanel->insertSetting();
+
+			if ( $mrConfig[ 'singleRoomProperty' ] == 0) {
+				$configurationPanel->setleft(jr_gettext('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN', 'JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN', false));
+				$configurationPanel->setmiddle($lists[ 'occupancy_levels_include_children' ]);
+				$configurationPanel->setright(jr_gettext('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN_DESC_MRP', 'JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN_DESC_MRP', false));
+
+				$configurationPanel->insertSetting();
+			}
+		}
 
 		$configurationPanel->insertHeading(jr_gettext('JOMRES_CITY_TAX_HEADING', 'JOMRES_CITY_TAX_HEADING', false));
 
@@ -170,7 +180,7 @@ class j00501booking_settings
 			$configurationPanel->insertSetting();
 		}
 
-		if ($mrConfig['tariffmode'] != '5') {
+		if (isset($jrConfig[ 'secret_setting_use_old_guest_types' ]) && $jrConfig[ 'secret_setting_use_old_guest_types' ] === "1") {
 			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_DEFAULTNUMBEROFFIRSTGUESTTYPE', '_JOMRES_COM_A_DEFAULTNUMBEROFFIRSTGUESTTYPE', false));
 			$configurationPanel->setmiddle('<input type="number" class="inputbox form-control" name="cfg_defaultNumberOfFirstGuesttype" size="5" value="' . $mrConfig['defaultNumberOfFirstGuesttype'] . '" />');
 			$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_DEFAULTNUMBEROFFIRSTGUESTTYPEDESC', '_JOMRES_COM_A_DEFAULTNUMBEROFFIRSTGUESTTYPEDESC', false));

@@ -2782,3 +2782,11 @@ Sie können die Zielsprache auf Ihrer aktuellen Sprache belassen und diese Seite
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Testmodus");
 
 	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "Der Entwicklungsmodus ist aktiviert. Wenn Sie diese Funktion verwenden, aktualisieren Sie daher Ihre Installation von Jomres auf den Nightly-Zweig. Dies ist die neueste Version von Jomres und kann stabil sein oder nicht. Wenn Sie dies tun nicht auf Nightly aktualisieren möchten, besuchen Sie bitte Admin > Jomres > Einstellungen > Site-Konfiguration > Registerkarte Debugging und setzen Sie die Option Produktion/Entwicklung auf Produktion.");
+
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN', "Kinder in Belegungsprüfungen einbeziehen?");
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN_DESC_MRP', "Wenn Gäste eine Buchung vornehmen, haben die Zimmer eine maximale Anzahl von Gästen, die sie aufnehmen können. Wenn die Gesamtzahl der Gäste die Anzahl der Gäste übersteigt, die die ausgewählten Zimmer aufnehmen können, dann teilt ihnen das Buchungsformular dies mit Sie müssen mehr Zimmer auswählen.
+ 
+  Wenn Sie diese Option auf Ja setzen, wird die Anzahl der Kinder in die Überprüfung der Gesamtzahl der Gäste einbezogen. Wenn Sie diese Option auf Nein setzen, wird die Anzahl der Kinder nicht in die Überprüfung der Gesamtzahl der Gäste einbezogen. Das heißt, wenn Sie diese Option auf Nein setzen, kann eine Gruppe von 4 Personen, zum Beispiel 2 Erwachsene und 2 Kinder, ein Doppelzimmer für 2 Erwachsene buchen. ");
+
+
+	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Wählen Sie Ja, wenn Sie pro Person und Nacht abrechnen möchten.');

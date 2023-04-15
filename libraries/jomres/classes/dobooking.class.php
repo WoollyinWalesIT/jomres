@@ -5498,41 +5498,78 @@
 				// $this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_DEPARTUREDATE_INVALID',_JOMRES_BOOKINGFORM_MONITORING_DEPARTUREDATE_INVALID,false,false)));
 				// }
 
-				$numberOfGuestTypes = $this->getVariantsOfType('guesttype');
-
 				$requestedRoom_count = count($this->requestedRoom);
 
-				foreach ($numberOfGuestTypes as $r) {
-					if (!$this->checkGuestVariantIdAndQty($r[ 'id' ], $r[ 'qty' ])) {
+				if (isset($mrConfig['secret_setting_use_old_guest_types']) && $mrConfig['secret_setting_use_old_guest_types'] == '1') {
+					$numberOfGuestTypes = $this->getVariantsOfType('guesttype');
+
+					foreach ($numberOfGuestTypes as $r) {
+						if (!$this->checkGuestVariantIdAndQty($r[ 'id' ], $r[ 'qty' ])) {
+							$this->resetPricingOutput = true;
+							$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_GUEST_TYPE_INCORRECT', '_JOMRES_BOOKINGFORM_MONITORING_GUEST_TYPE_INCORRECT', false, false)));
+						}
+					}
+					if ($this->total_in_party < 1 && !empty($numberOfGuestTypes)) {
 						$this->resetPricingOutput = true;
-						$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_GUEST_TYPE_INCORRECT', '_JOMRES_BOOKINGFORM_MONITORING_GUEST_TYPE_INCORRECT', false, false)));
+						$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_SELECT_GUEST_NUMBERS', '_JOMRES_BOOKINGFORM_MONITORING_SELECT_GUEST_NUMBERS', false, false)));
+					}
+					if (!empty($numberOfGuestTypes) && !$this->tariffsCanHostTotalInParty()) {
+						$this->resetPricingOutput = true;
+						$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_TOO_MANY_IN_PARTY_FOR_TARIFFS', '_JOMRES_BOOKINGFORM_MONITORING_TOO_MANY_IN_PARTY_FOR_TARIFFS', false, false)));
+					}
+					if ($this->total_in_party < $requestedRoom_count && !empty($numberOfGuestTypes)) {
+						$this->resetPricingOutput = true;
+						$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_MORE_ROOMS_THAN_GUESTS', '_JOMRES_BOOKINGFORM_MONITORING_MORE_ROOMS_THAN_GUESTS', false, false)));
+					}
+					//if ($this->total_in_party > $this->beds_available && count($result)>0 && count($this->requestedRoom ) > 0)
+					if ($this->total_in_party > $this->beds_available && !empty($numberOfGuestTypes)) {
+						$this->resetPricingOutput = true;
+						if ($this->cfg_singleRoomProperty != '1') {
+							$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_TOO_MANY_GUESTS_FOR_BEDS', '_JOMRES_BOOKINGFORM_MONITORING_TOO_MANY_GUESTS_FOR_BEDS', false, false)));
+						} else {
+							$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_SRP_WEHAVENOVACANCIES', '_JOMRES_SRP_WEHAVENOVACANCIES', false, false)));
+						}
+					}
+					if (!empty($numberOfGuestTypes) && $requestedRoom_count > 0 && !$this->selectedRoomsCanHostTotalInParty()) {
+						$this->resetPricingOutput = true;
+						$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_CHOOSE_MORE_ROOMS', '_JOMRES_BOOKINGFORM_MONITORING_CHOOSE_MORE_ROOMS', false, false)));
+					}
+				} else {
+
+					// Check that the number of guests does not exceed the number of beds available
+					$basic_room_details = jomres_singleton_abstract::getInstance('basic_room_details');
+					$basic_room_details->get_all_rooms($this->property_uid);
+
+					if (!isset($this->mrConfig['occupancy_levels_include_children'])) {
+						$this->mrConfig['occupancy_levels_include_children'] = false;
+					}
+					$selected_rooms_max_adults = 0;
+					$selected_rooms_max_children = 0;
+					foreach ($this->requestedRoom as $roomandtariff) {
+						$bang = explode('^', $roomandtariff);
+						$room_uid = (int) $bang[ 0 ];
+						$selected_rooms_max_adults += $basic_room_details->rooms[$room_uid]['max_adults'];
+						if ( (bool)$this->mrConfig['occupancy_levels_include_children']===true){
+							$selected_rooms_max_children += $basic_room_details->rooms[$room_uid]['max_children'];
+						}
+					}
+
+					$selected_rooms_max_occupancy = $selected_rooms_max_adults + $selected_rooms_max_children;
+
+					$total_in_party = $this->total_in_party;
+					if ( (bool)$this->mrConfig['occupancy_levels_include_children'] == true && !empty($this->child_numbers)) {
+						foreach ($this->child_numbers as $child_number) {
+							$total_in_party += $child_number;
+						}
+					}
+
+					if ($total_in_party > $selected_rooms_max_occupancy) {
+						$this->resetPricingOutput = true;
+						$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_CHOOSE_MORE_ROOMS', '_JOMRES_BOOKINGFORM_MONITORING_CHOOSE_MORE_ROOMS', false, false)));
 					}
 				}
-				if ($this->total_in_party < 1 && !empty($numberOfGuestTypes)) {
-					$this->resetPricingOutput = true;
-					$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_SELECT_GUEST_NUMBERS', '_JOMRES_BOOKINGFORM_MONITORING_SELECT_GUEST_NUMBERS', false, false)));
-				}
-				if (!empty($numberOfGuestTypes) && !$this->tariffsCanHostTotalInParty()) {
-					$this->resetPricingOutput = true;
-					$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_TOO_MANY_IN_PARTY_FOR_TARIFFS', '_JOMRES_BOOKINGFORM_MONITORING_TOO_MANY_IN_PARTY_FOR_TARIFFS', false, false)));
-				}
-				if ($this->total_in_party < $requestedRoom_count && !empty($numberOfGuestTypes)) {
-					$this->resetPricingOutput = true;
-					$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_MORE_ROOMS_THAN_GUESTS', '_JOMRES_BOOKINGFORM_MONITORING_MORE_ROOMS_THAN_GUESTS', false, false)));
-				}
-				//if ($this->total_in_party > $this->beds_available && count($result)>0 && count($this->requestedRoom ) > 0)
-				if ($this->total_in_party > $this->beds_available && !empty($numberOfGuestTypes)) {
-					$this->resetPricingOutput = true;
-					if ($this->cfg_singleRoomProperty != '1') {
-						$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_TOO_MANY_GUESTS_FOR_BEDS', '_JOMRES_BOOKINGFORM_MONITORING_TOO_MANY_GUESTS_FOR_BEDS', false, false)));
-					} else {
-						$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_SRP_WEHAVENOVACANCIES', '_JOMRES_SRP_WEHAVENOVACANCIES', false, false)));
-					}
-				}
-				if (!empty($numberOfGuestTypes) && $requestedRoom_count > 0 && !$this->selectedRoomsCanHostTotalInParty()) {
-					$this->resetPricingOutput = true;
-					$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_CHOOSE_MORE_ROOMS', '_JOMRES_BOOKINGFORM_MONITORING_CHOOSE_MORE_ROOMS', false, false)));
-				}
+
+
 				if (empty($this->requestedRoom)) {
 					$this->resetPricingOutput = true;
 					if ($this->cfg_singleRoomProperty != '1') {

@@ -36,6 +36,7 @@ class booking_engine_calculate_child_prices
 		$this->property_uid		= $bkg->property_uid;
 		$this->child_numbers	= $bkg->child_numbers;
 		$this->stay_days		= $bkg->stayDays;
+		$this->cfg_perPersonPerNight = $bkg->cfg_perPersonPerNight;
 	}
 	
 	/**
@@ -51,7 +52,7 @@ class booking_engine_calculate_child_prices
 
 		$child_prices = array();
 		$child_prices['total_price'] = 0;
-		if (!empty($this->child_numbers)) {
+		if (!empty($this->child_numbers) && $this->cfg_perPersonPerNight == '1') {
 			foreach ($this->child_numbers as $id => $number_of_children) {
 				if (isset($jomres_child_rates->child_rates[$id])) {
 					if ($jomres_child_rates->child_rates[$id]['model'] == 'per_stay') {

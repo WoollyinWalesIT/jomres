@@ -2726,3 +2726,11 @@ Hedef dili mevcut dilinize ayarlı bırakabilir ve bu sayfayı, öğeleri tek te
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Test modu");
 
 	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "Geliştirme modu etkin, bu nedenle bu özelliği kullanırsanız Jomres kurulumunuzu Nightly şubesine güncelleyeceksiniz. Bu, Jomres'in en son sürümüdür ve kararlı olabilir veya olmayabilir. Bunu yaparsanız Nightly'ye güncellemek istemiyorsanız lütfen Yönetici > Jomres > Ayarlar > Site Yapılandırması > Hata Ayıklama sekmesini ziyaret edin ve Üretim/Geliştirme seçeneğini Üretim olarak ayarlayın.");
+
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN', "Doluluk seviyesi kontrollerine çocuklar dahil edilsin mi?");
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN_DESC_MRP', "Misafirler rezervasyon yaptığında, odalarda konaklayabilecekleri maksimum misafir sayısı vardır. Toplam misafir sayısı, seçilen odaların konaklayabileceği misafir sayısını aşarsa, rezervasyon formunda onlara şunu söyleyecektir: daha fazla oda seçmeleri gerekiyor.
+ 
+  Bu seçeneği Evet olarak ayarlarsanız çocuk sayısı, toplam misafir sayısı kontrolüne dahil edilecektir. Bu seçeneği Hayır olarak ayarlarsanız çocuk sayısı, toplam misafir sayısı kontrolüne dahil edilmeyecektir. Bu, bu seçeneği Hayır olarak ayarlarsanız, örneğin 2 yetişkin ve 2 çocuktan oluşan 4 kişilik bir grubun 2 yetişkinin kalabileceği çift kişilik bir oda rezerve edebileceği anlamına gelir. ");
+
+
+	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Kişi başı gecelik ücretlendirme yapmak istiyorsanız Evet\'i seçin.');

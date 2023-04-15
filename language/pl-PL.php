@@ -2754,3 +2754,11 @@ Możesz pozostawić język docelowy ustawiony na swój bieżący język i użyć
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Tryb testowy");
 
 	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "Tryb programistyczny jest włączony, dlatego jeśli użyjesz tej funkcji, zaktualizujesz swoją instalację Jomresa do gałęzi Nightly. Jest to najnowsza wersja Jomresa i może być stabilna lub nie. Jeśli to zrobisz nie chcesz aktualizować do Nightly, odwiedź Admin > Jomres > Ustawienia > Konfiguracja witryny > karta Debugowanie i ustaw opcję Produkcja/Rozwój na Produkcja.");
+
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN', "Czy uwzględniać dzieci w sprawdzaniu obłożenia?");
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN_DESC_MRP', "Kiedy goście dokonują rezerwacji, pokoje mają określoną maksymalną liczbę gości, których mogą pomieścić. Jeśli łączna liczba gości przekracza liczbę gości, które mogą pomieścić wybrane pokoje, wówczas formularz rezerwacji poinformuje ich, że muszą wybrać więcej pokoi.
+ 
+  Jeśli ustawisz tę opcję na Tak, liczba dzieci zostanie uwzględniona w czeku całkowitej liczby gości. Jeśli ustawisz tę opcję na Nie, liczba dzieci nie będzie uwzględniona w czeku całkowitej liczby gości. Oznacza to, że jeśli ustawisz tę opcję na Nie, grupa 4 osób, na przykład 2 osoby dorosłe i 2 dzieci, będzie mogła zarezerwować pokój dwuosobowy dla 2 osób dorosłych. ");
+
+
+	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Wybierz Tak, jeśli chcesz pobierać opłatę za osobę za noc.');

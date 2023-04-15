@@ -2716,3 +2716,11 @@ Můžete ponechat cílový jazyk nastavený na váš aktuální jazyk a použít
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Testovací režim");
 
 	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "Režim vývoje je povolen, takže pokud použijete tuto funkci, aktualizujete svou instalaci Jomres na větev Nightly. Toto je nejnovější verze Jomres a může, ale nemusí být stabilní. Pokud ano Nechcete aktualizovat na Nightly, navštivte Admin > Jomres > Nastavení > Konfigurace webu > karta Ladění a nastavte volbu Produkce/Vývoj na Produkci.");
+
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN', "Zahrnout děti do kontrol úrovně obsazenosti?");
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN_DESC_MRP', "Když hosté provádějí rezervace, mají pokoje maximální počet hostů, které mohou ubytovat. Pokud celkový počet hostů překročí počet hostů, které mohou ubytovat vybrané pokoje, pak jim rezervační formulář sdělí, že potřebují vybrat více místností.
+ 
+  Pokud tuto možnost nastavíte na Ano, počet dětí bude zahrnut do celkového počtu hostů. Pokud tuto možnost nastavíte na Ne, počet dětí nebude zahrnut do celkového počtu hostů. To znamená, že pokud nastavíte tuto možnost na Ne, pak si 4-členná skupina, například 2 dospělí a 2 děti, bude moci zarezervovat dvoulůžkový pokoj pro 2 dospělé. ");
+
+
+	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Zvolte Ano, pokud chcete účtovat za osobu a noc.');

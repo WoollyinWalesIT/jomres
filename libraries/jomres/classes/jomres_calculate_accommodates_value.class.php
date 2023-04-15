@@ -44,7 +44,7 @@ class jomres_calculate_accommodates_value
 	
 	/**
 	 *
-	 * 
+	 *
 	 *
 	 */
 
@@ -60,6 +60,12 @@ class jomres_calculate_accommodates_value
 		$current_property_details->gather_data_multi(array( $this->property_uid ));
 
 		$mrConfig = getPropertySpecificSettings($this->property_uid, true);
+
+		if (!isset($mrConfig['occupancy_levels_include_children'])) {
+			$mrConfig['occupancy_levels_include_children'] = '0';
+		}
+
+		$this->occupancy_levels_include_children = (bool) $mrConfig['occupancy_levels_include_children'];
 
 		$accommodates_adults = 0;
 		if (isset($current_property_details->multi_query_result[$this->property_uid][ 'rooms_max_adults' ])) {
@@ -79,6 +85,12 @@ class jomres_calculate_accommodates_value
 			}
 		}
 
+		if ($this->occupancy_levels_include_children) {
+			$accommodates_total = $accommodates_adults + $accommodates_children;
+		} else {
+			$accommodates_total = $accommodates_adults;
+		}
+
 		if (!isset($mrConfig['accommodates'])) {
 			$query = "INSERT INTO #__jomres_settings 
 			(
@@ -90,11 +102,12 @@ class jomres_calculate_accommodates_value
 			(
 			".(int) $this->property_uid.",
 			'accommodates',
-			".($accommodates_adults + $accommodates_children)."
+			".($accommodates_total)."
 			)";
 		} else {
-			$query = "UPDATE #__jomres_settings SET `value` = ".($accommodates_adults + $accommodates_children)." WHERE `property_uid` = ".(int) $this->property_uid." AND `akey` = 'accommodates' ";
+			$query = "UPDATE #__jomres_settings SET `value` = ".($accommodates_total)." WHERE `property_uid` = ".(int) $this->property_uid." AND `akey` = 'accommodates' ";
 		}
+
 		$mrConfig = getPropertySpecificSettings($this->property_uid, true);
 
 		if (!doInsertSql($query, jr_gettext('_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS', '_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS', false))) {

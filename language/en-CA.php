@@ -2762,3 +2762,11 @@ You can leave the target language set to your current language and use this page
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Test mode");
 
 	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "Development mode is enabled, therefore if you use this feature you will be updating your installation of Jomres to the Nightly branch. This is the most recent version of Jomres and may or may not be stable. If you do not want to update to Nightly please visit Admin > Jomres > Settings > Site Configuration > Debugging tab and set the Production/Development option to Production.");
+
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN', "Include children in occupancy level checks?");
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN_DESC_MRP', "When guests make bookings, the rooms have a maximum number of guests that they can accommodate.  If the total number of guests exceeds the number of guests the selected rooms can accommodate, then the booking form will tell them that they need to select more rooms.    
+ 
+ If you set this option to Yes then the number of children will be included in the total number of guests check. If you set this option to No then the number of children will not be included in the total number of guests check. This means that if you set this option to No then a party of 4, for example, 2 adults and 2 children, will be able to book a double room that occommodates 2 adults. ");
+
+
+	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Select Yes if you want to charge per-person-per-night.');

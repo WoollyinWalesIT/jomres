@@ -2722,3 +2722,11 @@ Meghagyhatja a célnyelvet az aktuális nyelven, és ezen az oldalon átnevezhet
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Tesztmód");
 
 	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "A Fejlesztési mód engedélyezve van, ezért ha ezt a funkciót használja, akkor frissíteni fogja a Jomres telepítését a Nightly ágra. Ez a Jomres legfrissebb verziója, és lehet, hogy stabil vagy nem. Ha igen nem szeretne Nightly-ra frissíteni, kérjük, keresse fel az Admin > Jomres > Beállítások > Webhely konfigurációja > Hibakeresés fület, és állítsa a Gyártás/Fejlesztés opciót Gyártás értékre.");
+
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN', "Bevonja a gyermekeket a foglaltsági ellenőrzésekbe?");
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN_DESC_MRP', "Amikor a vendégek foglalnak, a szobákban maximálisan elhelyezhető vendégek száma van. Ha a vendégek száma meghaladja a kiválasztott szobákban elhelyezhető vendégek számát, akkor a foglalási űrlap tájékoztatja őket több szobát kell kiválasztaniuk.
+ 
+  Ha ezt az opciót Igen értékre állítja, akkor a gyermekek száma beleszámít a teljes vendégszámba. Ha ezt az opciót Nem értékre állítja, akkor a gyermekek száma nem számít bele a teljes vendégszámba. Ez azt jelenti, hogy ha ezt az opciót Nem értékre állítja, akkor egy 4 fős társaság, például 2 felnőtt és 2 gyermek, 2 felnőtt elszállásolására alkalmas kétágyas szobát foglalhat. ");
+
+
+	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Válassza az Igen lehetőséget, ha személyenkénti éjszakánkénti díjat szeretne fizetni.');

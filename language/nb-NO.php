@@ -2692,3 +2692,11 @@ Du kan la målspråket settes til ditt nåværende språk og bruke denne siden t
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Testmodus");
 
 	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "Utviklingsmodus er aktivert, så hvis du bruker denne funksjonen vil du oppdatere installasjonen av Jomres til Nightly-avdelingen. Dette er den nyeste versjonen av Jomres og kan være stabil eller ikke. Hvis du gjør det ikke ønsker å oppdatere til Nightly, gå til Admin > Jomres > Innstillinger > Site Configuration > Debugging-fanen og sett Produksjon/Utvikling-alternativet til Produksjon.");
+
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN', "Inkludere barn i kontroller på beleggnivå?");
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN_DESC_MRP', "Når gjester foretar bestillinger, har rommene et maksimalt antall gjester som de kan ta imot. Hvis det totale antallet gjester overstiger antallet gjester de valgte rommene har plass til, vil bestillingsskjemaet fortelle dem at de må velge flere rom.
+ 
+  Hvis du setter dette alternativet til Ja, vil antall barn bli inkludert i det totale antallet gjestersjekker. Hvis du setter dette alternativet til Nei, vil ikke antall barn inkluderes i det totale antallet gjestersjekker. Dette betyr at hvis du setter dette alternativet til Nei, vil et parti på 4, for eksempel 2 voksne og 2 barn, kunne bestille et dobbeltrom som har plass til 2 voksne. ");
+
+
+	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Velg Ja hvis du vil belaste per person per natt.');
