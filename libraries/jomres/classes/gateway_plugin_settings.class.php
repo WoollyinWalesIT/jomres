@@ -14,10 +14,11 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-// Allows Jomres to determine gateway settings
 	/**
 	 *
 	 * @package Jomres\Core\Classes
+	 *
+	 * Allows Jomres to determine gateway settings
 	 *
 	 */
 	#[AllowDynamicProperties]
@@ -27,7 +28,7 @@ class gateway_plugin_settings
 
 	/**
 	 *
-	 *
+	 * constructor
 	 *
 	 */
 
@@ -37,7 +38,7 @@ class gateway_plugin_settings
 
 	/**
 	 *
-	 *
+	 * Gets the gateway settings for a specific property
 	 *
 	 */
 

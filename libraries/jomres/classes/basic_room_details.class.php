@@ -18,6 +18,9 @@ defined('_JOMRES_INITCHECK') or die('');
 	 *
 	 * @package Jomres\Core\Classes
 	 *
+	 * A basic class for pulling room information.
+	 *
+	 * Pass the get_all_rooms method a property uid and the $this->rooms array will be populated with all the rooms for that property.
 	 */
 
 	#[AllowDynamicProperties]
@@ -27,7 +30,7 @@ class basic_room_details
 
 	/**
 	 *
-	 *
+	 * Constructor
 	 *
 	 */
 
@@ -41,7 +44,7 @@ class basic_room_details
 	
 	/**
 	 *
-	 *
+	 * Will populate the $this->rooms array with all the rooms for the property uid passed to it.
 	 *
 	 */
 

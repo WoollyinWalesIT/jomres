@@ -27,7 +27,7 @@ class booking_engine_calculate_child_prices
 
 	/**
 	 *
-	 *
+	 * Constructor
 	 *
 	 */
 
@@ -40,7 +40,7 @@ class booking_engine_calculate_child_prices
 	
 	/**
 	 *
-	 *
+	 * Calculate child prices for the old booking engine (not NBE)
 	 *
 	 */
 

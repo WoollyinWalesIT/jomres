@@ -24,6 +24,15 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class currency_codes
 {
+	/**
+	 * constructor.
+	 *
+	 * Sets $this->>codes with an array of currency codes and their descriptions.
+	 * Sets $this->>country_codes_to_currency_codes with an array of country codes and their currency codes.
+	 * Sets $this->symbols with an array of currency codes and their symbols.
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->code = '';
@@ -550,7 +559,7 @@ class currency_codes
 
 	/**
 	 *
-	 *
+	 * Not currently used by Core, however several plugins use it to make a dropdown of currency codes.
 	 *
 	 */
 
@@ -592,7 +601,7 @@ class currency_codes
 
 	/**
 	 *
-	 *
+	 * Not currently used.
 	 *
 	 */
 
@@ -609,7 +618,7 @@ class currency_codes
 
 	/**
 	 *
-	 *
+	 * not used by core, but used by some plugins
 	 *
 	 */
 

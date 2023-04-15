@@ -28,7 +28,7 @@ class booking_engine_children_dropdown
 
 	/**
 	 *
-	 *
+	 * Constructor
 	 *
 	 */
 
@@ -46,7 +46,7 @@ class booking_engine_children_dropdown
 	
 	/**
 	 *
-	 *
+	 *	Builds the child dropdowns for the old booking engine (not NBE)
 	 *
 	 */
 

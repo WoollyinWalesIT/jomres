@@ -18,6 +18,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 *
 	 * @package Jomres\Core\Classes
 	 *
+	 * Used by the access control plugin to determine what tasks can be controlled by the user.
+	 *
+	 * Disabled tasks are removed from the main menu, and the user is redirected to the cpanel if they try to access them.
+	 *
 	 */
 	#[AllowDynamicProperties]
 class jomres_access_control
@@ -26,7 +30,7 @@ class jomres_access_control
 
 	/**
 	 *
-	 *
+	 * constructor
 	 *
 	 */
 
@@ -80,7 +84,7 @@ class jomres_access_control
 
 	/**
 	 *
-	 *
+	 * Sets the access level for a task
 	 *
 	 */
 
@@ -96,7 +100,7 @@ class jomres_access_control
 
 	/**
 	 *
-	 *
+	 * Gets the access level for a task
 	 *
 	 */
 
@@ -114,7 +118,7 @@ class jomres_access_control
 	
 	/**
 	 *
-	 *
+	 * sets the state of tasks based on stored data
 	 *
 	 */
 
@@ -132,7 +136,7 @@ class jomres_access_control
 
 	/**
 	 *
-	 *
+	 * Removes a task from the access control table
 	 *
 	 */
 
@@ -155,7 +159,7 @@ class jomres_access_control
 	
 	/**
 	 *
-	 *
+	 * Updates the access level for a task. Used by the access control plugin.
 	 *
 	 */
 
@@ -197,10 +201,9 @@ class jomres_access_control
 		return false;
 	}
 
-	//check if a user can access a specific task
 	/**
 	 *
-	 *
+	 * check if a user can access a specific task
 	 *
 	 */
 
@@ -264,10 +267,10 @@ class jomres_access_control
 		return $user_can_access;
 	}
 
-	//not used but here is somebody wants to do this for some reason..
+	//
 	/**
 	 *
-	 *
+	 * not used but here is somebody wants to do this for some reason..
 	 *
 	 */
 
@@ -279,7 +282,7 @@ class jomres_access_control
 	//access levels dropdown
 	/**
 	 *
-	 *
+	 * Used by the access control plugin to generate the access level dropdown
 	 *
 	 */
 
@@ -340,10 +343,9 @@ class jomres_access_control
 		return jomresHTML::selectList($options, '', ' autocomplete="off" class="inputbox" size="1" '.$javascript.'', 'value', 'text', $current_level);
 	}
 	
-	//check if a task is controllable (some tasks are not controllable)
 	/**
 	 *
-	 *
+	 * check if a task is controllable (some tasks are not controllable). Used by the access control plugin admin feature
 	 *
 	 */
 

@@ -28,7 +28,7 @@ class booking_engine_adults_dropdown
 
 	/**
 	 *
-	 *
+	 * Constructor
 	 *
 	 */
 
@@ -42,7 +42,7 @@ class booking_engine_adults_dropdown
 	
 	/**
 	 *
-	 *
+	 * Build the adults dropdown used in the booking engine (old booking form)
 	 *
 	 */
 

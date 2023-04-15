@@ -53,7 +53,7 @@ class custom_text
 
 	/**
 	 *
-	 *
+	 * Not currently used but left in for backward compatability
 	 *
 	 */
 
@@ -74,7 +74,7 @@ class custom_text
 
 	/**
 	 *
-	 *
+	 * Used as a singleton, returns true and maintains the properties_custom_text array. If the array is empty, it will gather the custom text for the property uids passed to it.
 	 *
 	 */
 
@@ -123,10 +123,10 @@ class custom_text
 		return true;
 	}
 
-	//Legacy function: we`ll keep it here because it`s used in various places
+	//
 	/**
 	 *
-	 *
+	 * Legacy function: we`ll keep it here because it`s used by various plugins
 	 *
 	 */
 
@@ -145,10 +145,14 @@ class custom_text
 		return true;
 	}
 	
-	//update custom text
+	//
 	/**
 	 *
+	 * Updates the custom text table with new definitions as they're applied.
 	 *
+	 * Used by both the frontend (manager) and the admin translation features.
+	 *
+	 * returns bool on success or failure
 	 *
 	 */
 

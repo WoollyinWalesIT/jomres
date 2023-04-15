@@ -25,7 +25,7 @@ class jomres_api_capability_test
 
 	/**
 	 *
-	 *
+	 * constructor
 	 *
 	 */
 

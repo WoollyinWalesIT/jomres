@@ -28,7 +28,7 @@ class core_package_management
 
 	/**
 	 *
-	 *
+	 * constructor
 	 *
 	 */
 
@@ -47,7 +47,7 @@ class core_package_management
 	
 	/**
 	 *
-	 *
+	 * This function checks to see if curl is installed (99% of the time it is nowadays) and if it is, it'll initialise installation checks.
 	 *
 	 */
 	public function check_basics()
@@ -71,7 +71,7 @@ class core_package_management
 
 	/**
 	 *
-	 *
+	 * public function that allows external services to force installation of packages
 	 *
 	 */
 	public function force_packages_reinstall()
@@ -79,10 +79,9 @@ class core_package_management
 		$this->install_packages();
 	}
 	
-	// Install all packages from github
 	/**
 	 *
-	 *
+	 * Install all packages from github
 	 *
 	 */
 	private function install_packages()
@@ -91,11 +90,12 @@ class core_package_management
 			$this->install_package($library, $repo);
 		}
 	}
-	
-	// Install an individual package
+
 	/**
 	 *
+	 * Install an individual package
 	 *
+	 * Compares the remote package size against the local library size, if they don't match, downloads the package and unzips it.
 	 *
 	 */
 	private function install_package($library, $repo)
@@ -128,7 +128,7 @@ class core_package_management
 	// Download the file from the repo
 	/**
 	 *
-	 *
+	 * Download a package from github
 	 *
 	 */
 	private function unzip_downloaded_package($library, $local_archive, $destination)
@@ -151,7 +151,7 @@ class core_package_management
 	
 	/**
 	 *
-	 *
+	 * Find the remote file's creation date
 	 *
 	 */
 

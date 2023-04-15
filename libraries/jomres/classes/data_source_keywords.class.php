@@ -16,6 +16,17 @@
 
 	#[AllowDynamicProperties]
 
+	/**
+	 *
+	 * @package Jomres\Core\Classes
+	 *
+	 * Class to build a list of keywords, in the current language.
+	 *
+	 * @since 9.9.4
+	 *
+	 * Data source functionality is regenerated when a property is updated. While it can be used by other features, it's primary purpose is to provide a list of keywords for the autocomplete search feature.
+	 *
+	 */
 class data_source_keywords extends jomres_data_source_base
 {
 	public function build_data_cache_file()

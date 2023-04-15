@@ -23,7 +23,9 @@ defined('_JOMRES_INITCHECK') or die('');
 
 #[AllowDynamicProperties]
 
-
+/*
+ *
+ */
 class basic_contract_details
 {
 

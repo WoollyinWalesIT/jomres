@@ -29,7 +29,7 @@ class jomres_calculate_accommodates_value
 
 	/**
 	 *
-	 *
+	 * constructor
 	 *
 	 */
 
@@ -44,7 +44,7 @@ class jomres_calculate_accommodates_value
 	
 	/**
 	 *
-	 *
+	 * 
 	 *
 	 */
 
