@@ -116,7 +116,7 @@ class mcHandler
 	 *
 	 */
 
-	// Acutally calls the triggered event.
+	// Actually calls the triggered event.
 	public function triggerEvent($eventPoint, $eventArgs = null)
 	{
 		$retVal = null;
