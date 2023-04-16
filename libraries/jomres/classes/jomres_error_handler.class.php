@@ -132,16 +132,18 @@ class jomres_error_handler extends Exception
 
 			//debug_print_backtrace();
 		} else {
-			if ($e->getMessage() != '' ) {
-				$response = $e->getMessage();
+			if (is_string($e)) {
+				$response = $e;
+			} else {
+				if ($e->getMessage() != '' ) {
+					$response = $e->getMessage();
 
-				$response .= "Exception: " . $response;
-				$response .= "The exception was created in file: " . $e->getFile();
-				$response .= "The exception was created on line: " . $e->getLine();
+					$response .= "Exception: " . $response;
+					$response .= "The exception was created in file: " . $e->getFile();
+					$response .= "The exception was created on line: " . $e->getLine();
+				}
 			}
 		}
-
-
 	}
 
 	private function output_production_mode_debugging($e, $extra_info)
