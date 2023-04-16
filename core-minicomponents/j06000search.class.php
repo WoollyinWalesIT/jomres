@@ -296,6 +296,13 @@ class j06000search
 			}
 		}
 
+		if (isset($_REQUEST[ 'pricerange_value_from' ]) && isset($_REQUEST[ 'pricerange_value_to' ] )) {
+			$rangefrom = jomresGetParam($_REQUEST, 'pricerange_value_from', 0);
+			$rangeto = jomresGetParam($_REQUEST, 'pricerange_value_to', 0);
+			$sch->filter[ 'priceranges' ] = array('from' => (int)$rangefrom , 'to' => (int)$rangeto, 'raw' => [] );
+		}
+
+
 		if (!empty($_REQUEST[ 'guestnumber' ])) {
 			if ($_REQUEST[ 'guestnumber' ] == $searchAll) {
 				$sch->filter[ 'guestnumber' ] = '%';
