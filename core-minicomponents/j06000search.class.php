@@ -864,6 +864,10 @@ class j06000search
 				if (!empty($sch->filter[ 'arrival' ])) {
 					$sch->jomSearch_availability();
 				}
+
+				if (isset($_REQUEST['autocomplete_field'])) {
+					$sch->jomSearch_autocomplete();
+				}
 			}
 		}
 		if ($showButton == true) {
