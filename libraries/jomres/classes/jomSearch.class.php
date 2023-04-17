@@ -443,7 +443,7 @@
 			}
 
 			$searchAll = jr_gettext('_JOMRES_SEARCH_ALL', '_JOMRES_SEARCH_ALL', false, false);
-			$this->prep[ 'stars' ][ ] = array('id' => 0, 'stars' => $searchAll);
+			$this->prep[ 'stars' ][ ] = array('id' => 0, 'stars' => 0);
 			$this->prep[ 'stars' ][ ] = array('id' => 1, 'stars' => 1);
 			$this->prep[ 'stars' ][ ] = array('id' => 2, 'stars' => 2);
 			$this->prep[ 'stars' ][ ] = array('id' => 3, 'stars' => 3);
@@ -774,7 +774,6 @@
 				$query = "SELECT propertys_uid FROM #__jomres_propertys WHERE published = '1' AND ptype_id LIKE '$filter'  $property_ors ";
 				$this->resultBucket = doSelectSql($query);
 			}
-			//var_dump($this->resultBucket);exit;
 			$this->sortResult();
 		}
 
@@ -790,7 +789,6 @@
 				$query = "SELECT propertys_uid FROM #__jomres_propertys WHERE published = '1' AND cat_id = $filter  $property_ors ";
 				$this->resultBucket = doSelectSql($query);
 			}
-			//var_dump($this->resultBucket);exit;
 			$this->sortResult();
 		}
 
@@ -928,11 +926,12 @@
 		 */
 		public function jomSearch_stars()
 		{
-			$filter = (int) $this->filter[ 'stars' ];
+			$filter = $this->filter[ 'stars' ];
+			$filter = genericOr($filter, 'stars');
 			$this->makeOrs();
 			$property_ors = $this->ors;
 			if (!empty($filter) && $property_ors) {
-				$query = "SELECT propertys_uid FROM #__jomres_propertys WHERE stars LIKE '$filter' $property_ors";
+				$query = "SELECT propertys_uid FROM #__jomres_propertys WHERE $filter $property_ors";
 				$this->resultBucket = doSelectSql($query);
 			}
 			$this->sortResult();

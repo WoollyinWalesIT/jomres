@@ -331,7 +331,12 @@ class j06000search
 			if ($_REQUEST[ 'stars' ] == $searchAll) {
 				$sch->filter[ 'stars' ] = '%';
 			} else {
-				$sch->filter[ 'stars' ] = (int) jomresGetParam($_REQUEST, 'stars', '');
+
+				foreach ($_REQUEST[ 'stars' ] as $k => $v) {
+					$sch->filter[ 'stars' ][]  = (int) $v;
+				}
+
+				//$sch->filter[ 'stars' ] = (int) jomresGetParam($_REQUEST, 'stars', '');
 			}
 		}
 
