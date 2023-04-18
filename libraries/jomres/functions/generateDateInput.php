@@ -22,7 +22,7 @@ defined('_JOMRES_INITCHECK') or die('');
  * Makes a javascript date input field. Creates a random name for the form element each time so that multiple javascript forms can be used on the same page without collision.
  */
 	if (!function_exists('generateDateInput')) {
-		function generateDateInput($fieldName, $dateValue = '', $myID = false, $siteConfig = false, $historic = false)
+		function generateDateInput($fieldName, $dateValue = '', $myID = false, $siteConfig = false, $historic = false , $options = [] )
 		{
 			// We need to give the javascript date function a random name because it will be called by both the component and modules
 			$uniqueID = '';
@@ -140,12 +140,17 @@ defined('_JOMRES_INITCHECK') or die('');
 			$output .= 'maxDate: "+5Y",
 		';
 
+
 			if ((using_bootstrap() && jomres_bootstrap_version() == '2') || !using_bootstrap()) {
 				$output .= 'buttonImage: \''.JOMRES_IMAGES_RELPATH.'calendar.png\',';
 				$bs3_icon = '';
 			} else {
 				$output .= 'buttonText: "",';
 				$bs3_icon = '<span class="input-group-addon input-group-text" id="dp_trigger_'.$uniqueID.'"><i class="fa fa-calendar"></i></span>';
+				if (isset($options['show_calendar']) && $options['show_calendar'] === false) {
+					$bs3_icon = '';
+
+				}
 			}
 
 			$output .= '
@@ -190,12 +195,19 @@ defined('_JOMRES_INITCHECK') or die('');
 			if (isset($calendar_z_index)  && $calendar_z_index != '') {
 				$z_index = 'z-index: '.$calendar_z_index.';';
 			}
-
-			$output .= '
+			if (isset($options['show_calendar']) && $options['show_calendar'] === false) {
+				$output .= '
+	</script>
+		<input type="text" readonly="readonly" style="cursor:pointer; background-color: #FFFFFF; position: relative;'.$z_index.'" ' .$size.' name="'.$fieldName.'" id="'.$uniqueID.'" value="'.$dateValue.'" placeholder="'.$placeholder.'" class="'.$input_class.' form-control" />'.$bs3_icon.'
+			';
+			} else {
+				$output .= '
 	</script>
 	<div class="input-group">
 		<input type="text" readonly="readonly" style="cursor:pointer; background-color: #FFFFFF; position: relative;'.$z_index.'" ' .$size.' name="'.$fieldName.'" id="'.$uniqueID.'" value="'.$dateValue.'" placeholder="'.$placeholder.'" class="'.$input_class.' form-control" />'.$bs3_icon.'
 	</div>';
+			}
+
 
 			$pageoutput[ ] = array('INPUT' => $output);
 			$tmpl = new patTemplate();
