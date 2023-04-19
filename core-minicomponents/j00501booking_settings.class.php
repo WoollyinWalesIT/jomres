@@ -87,6 +87,24 @@ class j00501booking_settings
 			}
 		}
 
+        if ($mrConfig[ 'wholeday_booking' ] == '1') {
+            $configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_TARIFFS_PER_WHOLEDAY', '_JOMRES_COM_A_TARIFFS_PER_WHOLEDAY', false));
+            $configurationPanel->setmiddle($lists[ 'perPersonPerNight' ]);
+            $configurationPanel->setright(jr_gettext('_JOMRES_COM_A_TARIFFS_PER_DESC_WHOLEDAY', '_JOMRES_COM_A_TARIFFS_PER_DESC_WHOLEDAY', false));
+            $configurationPanel->insertSetting();
+        } else {
+            $configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_TARIFFS_PER', '_JOMRES_COM_A_TARIFFS_PER', false));
+            $configurationPanel->setmiddle($lists[ 'perPersonPerNight' ]);
+
+            if ($mrConfig['singleRoomProperty'] == '1') {
+                $configurationPanel->setright(jr_gettext('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', '_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', false));
+            } else {
+                $configurationPanel->setright(jr_gettext('_JOMRES_COM_A_TARIFFS_PER_DESC', '_JOMRES_COM_A_TARIFFS_PER_DESC', false));
+            }
+
+            $configurationPanel->insertSetting();
+        }
+        
 		$configurationPanel->insertHeading(jr_gettext('JOMRES_CITY_TAX_HEADING', 'JOMRES_CITY_TAX_HEADING', false));
 
 		if (!isset($mrConfig[ 'city_tax_value' ])) {
