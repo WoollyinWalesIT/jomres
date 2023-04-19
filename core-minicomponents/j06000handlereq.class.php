@@ -434,9 +434,9 @@ class j06000handlereq
 					$bkg->setErrorLog('handlereq:: Dates passed');
 					$bkg->generateBilling();
 					$bkg->setErrorLog('handlereq::Show deposit: '.$showDeposit);
-					if ($bkg->getGuestVariantCount() > 0) {
-						echo '; populateDiv("totalinparty","'.$bkg->getTotalInParty().'")';
-					}
+				//	if ($bkg->getGuestVariantCount() > 0) {
+						echo '; populateDiv("totalinparty","'.$bkg->getTotalInParty().' '.$bkg->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_BILLING_TOTALINPARTY', '_JOMRES_AJAXFORM_BILLING_TOTALINPARTY', false, false)).'");';
+				//	}
 					
 					$staydays = $bkg->getStayDays();
 					$num_period = $bkg->get_part_of_stay_period($staydays);
