@@ -4217,18 +4217,23 @@
 		 */
 		public function getTotalInParty()
 		{
+            $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+            $jrConfig = $siteConfig->get();
 
-			$n = count($this->variancetypes);
-			// For older properties with guesttypes
-			if ($n > 0) {
-				$subtotal = 0;
-				for ($i = 0; $i < $n; ++$i) {
-					if (isset($this->variancetypes[ $i ]) && $this->variancetypes[ $i ] == 'guesttype') {
-						$subtotal = $subtotal + $this->varianceqty[ $i ];
-					}
-				}
-				$this->total_in_party = $subtotal;
-			} else { // For newer properties with Standard mode (hopefully soon to be retired, but retaining the guest numbers aspect) guest types
+            if (  isset( $jrConfig['secret_setting_use_old_guest_types'] ) && $jrConfig['secret_setting_use_old_guest_types'] == '1' ) {
+                $n = count($this->variancetypes);
+                // For older properties with guesttypes
+                if ($n > 0) {
+                    $subtotal = 0;
+                    for ($i = 0; $i < $n; ++$i) {
+                        if (isset($this->variancetypes[ $i ]) && $this->variancetypes[ $i ] == 'guesttype') {
+                            $subtotal = $subtotal + $this->varianceqty[ $i ];
+                            }
+                        }
+                    $this->total_in_party = $subtotal;
+                    }
+                }
+            else { // For newer properties with Standard mode guest types
 				$this->total_in_party = $this->standard_guest_numbers +	$this->extra_guest_numbers ;
 			}
 
@@ -5556,7 +5561,7 @@
 
 					$selected_rooms_max_occupancy = $selected_rooms_max_adults + $selected_rooms_max_children;
 
-					$total_in_party = $this->total_in_party;
+					$total_in_party = $this->getTotalInParty();
 					if ( (bool)$this->mrConfig['occupancy_levels_include_children'] == true && !empty($this->child_numbers)) {
 						foreach ($this->child_numbers as $child_number) {
 							$total_in_party += $child_number;
@@ -5618,7 +5623,7 @@
 		public function outputZeroPrices()
 		{
 			if ($this->getGuestVariantCount() > 0) {
-				$this->echo_populate_div('; populateDiv("totalinparty","'.$this->getTotalInParty().'")');
+				$this->echo_populate_div('; populateDiv("totalinparty","'.$this->getTotalInParty().' '.$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_BILLING_TOTALINPARTY', '_JOMRES_AJAXFORM_BILLING_TOTALINPARTY', false, false)).'")');
 			}
 
 			$staydays = $this->getStayDays();
