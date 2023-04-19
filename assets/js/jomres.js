@@ -1354,3 +1354,15 @@ document.addEventListener('DOMContentLoaded', function(){
 		});
 	});
 });
+
+const checkOffset = jomresJquery.datepicker._checkOffset;
+
+jomresJquery.extend(jomresJquery.datepicker, {
+	_checkOffset: function(inst, offset, isFixed) {
+		if(isFixed) {
+			return checkOffset.apply(this, arguments);
+		} else {
+			return offset;
+		}
+	}
+});
