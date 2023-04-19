@@ -234,6 +234,9 @@ class j00004b_init_javascript_css_files
 		$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'galleria/dist/themes/classic/', 'galleria.classic.min.js');
 		$css_files[] = array(JOMRES_CSS_RELPATH, 'galleria.classic.css');
 
+        // File does not exist, deliberately. Developers can create that file in the override directory and then override jquery-ui css
+        $css_files[] = array(JOMRES_CSS_RELPATH, 'custom_jquery_ui.css');
+
 		$ls = jomresGetDomain();
 		if (stristr($ls, '.xn--', $ls) && !jomres_cmsspecific_areweinadminarea()) { // We check to see if we're in the admin area because our one and only client with an umlat in the domain name has found that the redirect function doesn't work in the administrator area if the domain's been converted.
 			//require_once JOMRES_LIBRARIES_ABSPATH.'idna_converter'.JRDS.'idna_convert.class.php';
@@ -246,8 +249,15 @@ class j00004b_init_javascript_css_files
 			jomres_cmsspecific_addheaddata('javascript', $file[0], $file[1]);
 		}
 
+        $override_directory = get_override_directory();
+
 		foreach ($css_files as $file) {
-			jomres_cmsspecific_addheaddata('css', $file[0], $file[1]);
+            if (file_exists( $override_directory.'/'.$file[1])) {
+                 jomres_cmsspecific_addheaddata('css', jomres_get_relative_path_to_file($override_directory.JRDS).'/', $file[1]);
+            } else {
+                jomres_cmsspecific_addheaddata('css', $file[0], $file[1]);
+            }
+
 		}
 	}
 
