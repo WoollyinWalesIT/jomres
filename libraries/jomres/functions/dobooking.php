@@ -246,7 +246,10 @@ if (!empty($result)) {
 
 			$requiredIcons = $bkg->makeRequiredIcons();
 			$output = array_merge($output, $requiredIcons);
-			$guestTypes = $bkg->makeCustomerTypes($selectedProperty);
+
+            if (  isset( $jrConfig['secret_setting_use_old_guest_types'] ) && $jrConfig['secret_setting_use_old_guest_types'] == '1' ) {
+                $guestTypes = $bkg->makeCustomerTypes($selectedProperty);
+            }
 
 			$output[ 'UPDATEADDRESSBUTTON' ] = $bkg->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_UPDATEADDRESSBUTTON', '_JOMRES_BOOKINGFORM_UPDATEADDRESSBUTTON', false, false));
 			/*	if ($mrConfig[ 'singleRoomProperty' ] == '1') {
@@ -425,7 +428,7 @@ if (!empty($result)) {
 			$output[ 'DEPARTUREDATE' ] = $bkg->makeDepartureDateOutput($departureDate);
 
 			$counter = 0;
-			if (!$amend_contract) {
+			if (!$amend_contract && isset( $jrConfig['secret_setting_use_old_guest_types'] ) && $jrConfig['secret_setting_use_old_guest_types'] == '1' ) {
 				foreach ($guestTypes as $gst) {
 					$current = $bkg->getGuestVariantDetails($gst[ 'ID' ]);
 					if ($current == false) {
@@ -705,9 +708,8 @@ if (!empty($result)) {
 
 			$output['BOOKING_FORM_CHILD_SELECTORS'] = '';
 
-			if ( empty($bkg->variancetypes) ) {
+			if (  !isset( $jrConfig['secret_setting_use_old_guest_types'] ) || $jrConfig['secret_setting_use_old_guest_types'] == '0' ) {
 				$adults_dropdown = $bkg->build_adults_dropdown();
-
 				if ($mrConfig[ 'allow_children' ] == '1') {
 					$output['BOOKING_FORM_CHILD_SELECTORS'] = $bkg->build_children_selectors();
 				}

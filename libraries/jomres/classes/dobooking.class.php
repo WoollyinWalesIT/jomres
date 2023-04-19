@@ -5858,14 +5858,64 @@
 				}
 			}
 
-			if ( $this->cfg_perPersonPerNight == '1') {
-				$this->room_total = ($this->rate_pernight * $this->stayDays) *  $this->getTotalInParty();
-				$this->room_total_nodiscount = ($this->rate_pernight_nodiscount * $this->stayDays) * $this->getTotalInParty();
-			} else {
-				$this->room_total = ($this->rate_pernight * $this->stayDays) * count($this->requestedRoom);
-				$this->room_total_nodiscount = ($this->rate_pernight_nodiscount * $this->stayDays) * count($this->requestedRoom);
-			}
 
+            $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+            $jrConfig = $siteConfig->get();
+
+            if (isset( $jrConfig['secret_setting_use_old_guest_types'] ) && $jrConfig['secret_setting_use_old_guest_types'] == '1') {
+                $result = $this->getVariantsOfType('guesttype');
+                $total_nodiscount = 0;
+                if (!empty($result)) {
+
+                    foreach ($result as $r) {
+                        if ($this->cfg_perPersonPerNight == '1') {
+                            if ($this->allRoomsAreIgnorePPPN) {
+                                $val = $this->rate_pernight;
+                                $val_nodiscount = $this->rate_pernight_nodiscount;
+                            } else {
+                                $val = $r['qty'] * $r['val'];
+                                $val_nodiscount = $r['qty'] * $r['val_nodiscount'];
+                            }
+                        } else {
+                            if ($r['qty'] != 0) {
+                                $val = $r['val'];
+                                $val_nodiscount = $r['val'];
+                            } else {
+                                $val = 0;
+                                $val_nodiscount = 0;
+                            }
+                        }
+                        if ($this->cfg_perPersonPerNight == '1' && $this->allRoomsAreIgnorePPPN) {
+                            $total = $val * count($this->requestedRoom);
+                            $total_nodiscount = $val_nodiscount * count($this->requestedRoom);
+                        } else {
+                            if ($this->cfg_perPersonPerNight == '1') {
+                                $total += $val;
+                                $total_nodiscount += $val_nodiscount;
+                            } else {
+                                $total = $this->rate_pernight;
+                                $total_nodiscount = $this->rate_pernight_nodiscount;
+                            }
+                        }
+                        $this->setErrorLog('makeNightlyRoomCharges::Total: ' . $total);
+                    }
+                    if ($this->cfg_perPersonPerNight == '1') {
+                        $this->room_total = ($total * $this->stayDays);
+                        $this->room_total_nodiscount = ($total_nodiscount * $this->stayDays);
+                    } else {
+                        $this->room_total = ($total * $this->stayDays) * count($this->requestedRoom);
+                        $this->room_total_nodiscount = ($total_nodiscount * $this->stayDays) * count($this->requestedRoom);
+                    }
+                }
+            } else {
+                if ($this->cfg_perPersonPerNight == '1') {
+                    $this->room_total = ($this->rate_pernight * $this->stayDays) * $this->getTotalInParty();
+                    $this->room_total_nodiscount = ($this->rate_pernight_nodiscount * $this->stayDays) * $this->getTotalInParty();
+                } else {
+                    $this->room_total = ($this->rate_pernight * $this->stayDays) * count($this->requestedRoom);
+                    $this->room_total_nodiscount = ($this->rate_pernight_nodiscount * $this->stayDays) * count($this->requestedRoom);
+                }
+            }
 			$tmpBookingHandler = jomres_getSingleton('jomres_temp_booking_handler');
 
 			//Coupon discount
