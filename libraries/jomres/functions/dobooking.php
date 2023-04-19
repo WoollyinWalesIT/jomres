@@ -803,7 +803,10 @@ if (!empty($result)) {
 			$tmpl->addRows('coupons_totals', $coupons_totals);
 			$tmpl->addRows('customfields', $customFields);
 			$tmpl->addRows('pageoutput', $pageoutput);
-			$tmpl->addRows('guesttypes', $guestTypes);
+            if (isset($guestTypes)) {
+                $tmpl->addRows('guesttypes', $guestTypes);
+            }
+
 			if (isset($adults_dropdown) && !empty($adults_dropdown)) {
 				$tmpl->addRows('standard_guests', $adults_dropdown);
 			}
