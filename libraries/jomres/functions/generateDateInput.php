@@ -190,22 +190,22 @@ defined('_JOMRES_INITCHECK') or die('');
 		';
 			}
 
-			$z_index = '0';
+			$z_index = 'z-index: 0';
 			$calendar_z_index = get_showtime('calendar_z_index');
 			if (isset($calendar_z_index)  && $calendar_z_index != '') {
 				$z_index = 'z-index: '.$calendar_z_index.';';
 			}
 			if (isset($options['show_calendar']) && $options['show_calendar'] === false) {
 				$output .= '
-	</script>
-		<input type="text" readonly="readonly" style="cursor:pointer; background-color: #FFFFFF; position: relative;'.$z_index.'" ' .$size.' name="'.$fieldName.'" id="'.$uniqueID.'" value="'.$dateValue.'" placeholder="'.$placeholder.'" class="'.$input_class.' form-control" />'.$bs3_icon.'
-			';
-			} else {
-				$output .= '
-	</script>
-	<div class="input-group">
-		<input type="text" readonly="readonly" style="cursor:pointer; background-color: #FFFFFF; position: relative;'.$z_index.'" ' .$size.' name="'.$fieldName.'" id="'.$uniqueID.'" value="'.$dateValue.'" placeholder="'.$placeholder.'" class="'.$input_class.' form-control" />'.$bs3_icon.'
-	</div>';
+                    </script>
+                        <input type="text" readonly="readonly" style="cursor:pointer; background-color: transparent; border-left: 0; position: relative;'.$z_index.'" ' .$size.' name="'.$fieldName.'" id="'.$uniqueID.'" value="'.$dateValue.'" placeholder="'.$placeholder.'" class=" form-control shadow-none" />'.$bs3_icon.'
+                            ';
+            } else {
+                $output .= '
+                    </script>
+                    <div class="input-group">
+                        <input type="text" readonly="readonly" style="cursor:pointer; background-color: #FFFFFF; position: relative;'.$z_index.'" ' .$size.' name="'.$fieldName.'" id="'.$uniqueID.'" value="'.$dateValue.'" placeholder="'.$placeholder.'" class="'.$input_class.' form-control" />'.$bs3_icon.'
+                    </div>';
 			}
 
 
