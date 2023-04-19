@@ -709,6 +709,7 @@
 			AND DATE_FORMAT(`validto`, '%Y/%m/%d') >= DATE_FORMAT('".$this->today."', '%Y/%m/%d')
 			";
 
+            $this->absolute_max_guests_by_tariffs = 0;
 			$tariffs = doSelectSql($query);
 
 			//$this->setErrorLog("getAllTariffsData:: ".$query );
@@ -721,6 +722,10 @@
 				if (is_null($t->modifiers)) {
 					$t->modifiers = '';
 				}
+
+                if ( $t->maxpeople > $this->absolute_max_guests_by_tariffs ) {
+                    $this->absolute_max_guests_by_tariffs = $t->maxpeople;
+                }
 
 				$roomrate = $this->get_nett_price($t->roomrateperday, $this->accommodation_tax_rate);
 				$dates = $this->get_periods($t->validfrom, $t->validto.' 23:59:59', $interval);
@@ -7394,7 +7399,7 @@
 		{
 			jr_import('booking_engine_adults_dropdown');
 			$booking_engine_adults_dropdown = new booking_engine_adults_dropdown($this);
-			return $booking_engine_adults_dropdown->build_adults_dropdown();
+			return $booking_engine_adults_dropdown->build_adults_dropdown($this);
 		}
 
 		public function build_children_dropdowns()

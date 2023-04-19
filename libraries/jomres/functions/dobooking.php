@@ -709,7 +709,7 @@ if (!empty($result)) {
 			$output['BOOKING_FORM_CHILD_SELECTORS'] = '';
 
 			if (  !isset( $jrConfig['secret_setting_use_old_guest_types'] ) || $jrConfig['secret_setting_use_old_guest_types'] == '0' ) {
-				$adults_dropdown = $bkg->build_adults_dropdown();
+				$adults_dropdown = $bkg->build_adults_dropdown($bkg);
 				if ($mrConfig[ 'allow_children' ] == '1') {
 					$output['BOOKING_FORM_CHILD_SELECTORS'] = $bkg->build_children_selectors();
 				}

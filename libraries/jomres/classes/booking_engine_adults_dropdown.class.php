@@ -46,12 +46,13 @@ class booking_engine_adults_dropdown
 	 *
 	 */
 
-	public function build_adults_dropdown()
+	public function build_adults_dropdown($bkg)
 	{
 		if (!isset($this->mrConfig ["accommodates_adults"])) {
 			return array();
 		}
-		$guests_dropdown = jomresHTML::integerSelectList(1, $this->mrConfig ["accommodates_adults"], 1, 'standard_guests', 'size="1" class="input-mini  form-select"  autocomplete="off" onchange="getResponse_standardguests();"', 2, '%02d', $use_bootstrap_radios = false);
+
+		$guests_dropdown = jomresHTML::integerSelectList(1,  $bkg->absolute_max_guests_by_tariffs, 1, 'standard_guests', 'size="1" class="input-mini  form-select"  autocomplete="off" onchange="getResponse_standardguests();"', 2, '%02d', $use_bootstrap_radios = false);
 
 		$standard_guests[] = array (
 			"GUESTS_DROPDOWN" => $guests_dropdown ,
