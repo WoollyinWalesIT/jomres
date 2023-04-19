@@ -18,6 +18,24 @@
 
 use Joomla\CMS\Helper\ModuleHelper;
 
+if (!function_exists('jomres_get_relative_path_to_file')) {
+	function jomres_get_relative_path_to_file($file_path)
+	{
+		if (isset($_SERVER['HTTPS']) &&
+			($_SERVER['HTTPS'] == 'on' || $_SERVER['HTTPS'] == 1) ||
+			isset($_SERVER['HTTP_X_FORWARDED_PROTO']) &&
+			$_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') {
+			$protocol = 'https://';
+		}
+		else {
+			$protocol = 'http://';
+		}
+		return $protocol.str_replace($_SERVER['DOCUMENT_ROOT'], jomresGetDomain(), realpath($file_path));
+	}
+}
+
+
+
 	if (!function_exists('jomres_set_page_title')) {
 		function jomres_set_page_title( $property_uid = 0 , $title = '' )
 		{
