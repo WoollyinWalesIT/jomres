@@ -1,4 +1,4 @@
-<pattemplate:tmpl name="pageoutput" unusedvars="import">
+<pattemplate:tmpl name="pageoutput" xmlns:patTemplate="http://www.w3.org/1999/html" unusedvars="import">
 <div class="container">
 	<pattemplate:tmpl name="rows" type="simpleCondition" requiredvars="room_type_text">
 		<div class="row">
@@ -15,8 +15,14 @@
 				</div>
 			</div>
 			<div class="col-sm-3 d-none d-lg-block">
-				<strong>{_JOMRES_MAX_GUESTS_PER_ROOM}</strong>
-				<p>{GUESTPER_ROOM}</p>
+				<patTemplate:comment>
+					<strong>{_JOMRES_MAX_GUESTS_PER_ROOM}</strong>
+					<p>{GUESTPER_ROOM}</p>
+				</patTemplate:comment>
+
+				<i class="fas fa-user" aria-description="{_JOMRES_SEARCH_FORM_ADULTS}"></i>  {MAX_ADULTS}
+				<i class="fas fa-child" aria-description="{_JOMRES_SEARCH_FORM_CHILDREN}"></i> {MAX_CHILDREN}
+
 			</div>
 			<div class="col-sm-2 d-none d-lg-block">
 				<strong>{_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERDAY}</strong>
