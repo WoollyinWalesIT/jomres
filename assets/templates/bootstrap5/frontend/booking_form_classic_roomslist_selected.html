@@ -1,22 +1,30 @@
-<pattemplate:tmpl name="pageoutput" unusedvars="strip">
+<pattemplate:tmpl name="pageoutput" unusedvars="import">
+
 	<pattemplate:tmpl name="rows" unusedvars="strip" type="simpleCondition"
 					  requiredvars="roomtype">
-		<div class="card bg-light card-body mb-3 card bg-faded p-1 mb-3all">
+	<div class="card mb-3">
+		<div class="card-body bg-light">
+			<h5 class="card-title">{ROOMNAME} - {ROOMTYPE}</h5>
 			<div class="row">
-				<div class="col-lg-2">
+				<div class="col-sm-5">
 					<a href="#roomdetails{ROOMUID}_{TARIFFUID}" role="button" data-bs-toggle="modal">
-						<img src="{ROOM_IMAGE_LARGE}" alt="room image" class="img-fluid">
+						<div style="position:relative">
+							<i class="fas fa-hand-pointer fa-lg text-success" style="position: absolute;z-index: 1;top: 5%;left: 5%; opacity: 0.5;" aria-hidden="true"></i>
+							<img src="{ROOM_IMAGE_LARGE}" alt="room image" class="img-fluid" style="position: relative;">
+						</div>
 					</a>
 				</div>
-				<div class="col-lg-2 d-none d-lg-block">
-					<p class="big-price"><span>{FORMATTED_PRICE} </span></p>
+				<div class="col-sm-2">
+					<strong>{FORMATTED_PRICE} </strong></p>
 				</div>
-				<div class="mt-3 d-block d-lg-block d-md-block d-lg-none d-xl-none d-xxl-none text-center">
-					<p class="big-price"><span>{FORMATTED_PRICE} </span></p>
+				<div class="col-sm-3">
+					<i class="fas fa-user" aria-description="{_JOMRES_SEARCH_FORM_ADULTS}"></i>  {MAX_ADULTS}
+					<i class="fas fa-child" aria-description="{_JOMRES_SEARCH_FORM_CHILDREN}"></i> {MAX_CHILDREN}
 				</div>
-				<div class="col-lg-2 text-center p-1">
+
+				<div class="col-sm-2 text-center p-1">
 					<div id="{ROOMTARIFFOUTPUTID}"><a href="javascript:void(0);" onclick="getResponse_rooms(&apos;requestedRoom&apos;,&apos;{ROOMTARIFFOUTPUTID}&apos; );"
-													  class="btn {BUTTON_CLASS}"><i class="icon-minus-2 icon-white"></i> </a>
+													  class="btn {BUTTON_CLASS}"><i class="fas fa-minus"></i> </a>
 					</div>
 				</div>
 			</div>
@@ -163,16 +171,18 @@
 								</div>
 							</div>
 						</div>
-						
+
 						<p>{DESCRIPTION}</p>
 					</div>
 					<div class="modal-footer">	<a class="btn btn-secondary" data-bs-toggle="modal" aria-hidden="true">{COMMON_CLOSE}</a>
 						<a
-						 href="javascript:void(0);" onclick="getResponse_rooms(&apos;requestedRoom&apos;,&apos;{ROOMTARIFFOUTPUTID}&apos; );"
-						 class="btn {BUTTON_CLASS}" title="{CAPTION}" data-bs-toggle="modal" aria-hidden="true"><i class="{ICON} icon-white"></i> {CAPTION}</a>
+								href="javascript:void(0);" onclick="getResponse_rooms(&apos;requestedRoom&apos;,&apos;{ROOMTARIFFOUTPUTID}&apos; );"
+								class="btn {BUTTON_CLASS}" title="{CAPTION}" data-bs-toggle="modal" aria-hidden="true"><i class="{ICON} icon-white"></i> {CAPTION}</a>
 					</div>
 				</div>
 			</div>
 		</div>
+	</div>
 	</pattemplate:tmpl>
+
 </pattemplate:tmpl>

@@ -1,3 +1,49 @@
+<h3>Jomres 10.7.0 20/04/2023</h3>
+
+Lots of changes related to overrides in this version. A lot of scripts can be overridden by dropping a copy of the script into the template or theme directory, /html/com_jomres/custom_code sub directory.
+
+    Function overrides. Create a file called custom_functions.php and copy functions from the varies function files in /jomres/libraries/jomres/functions into this file to have custom Jomres functions.
+    Class overrides. Copy the class file into the custom_code directory and Jomres will automatically use that.
+    Map styles overrides. To customise map styles create a file custom_map_style.style into the custom_code dir.
+    Custom Jquery UI css file. Create a file called custom_jquery_ui in the custom_code directory and Jomres will use that. Due to when it's called Jquery UI css declarations here will override the defaults.
+    Joomla only : Custom copy of components/com_jomres/router/router.php can be put into the custom_code directory and Jomres will use that instead of the default.
+    Customised versions of /jomres/assets/css and /jomres/assets/javascript files can be put into custom_code directory and Jomres will use those instead of the default.
+
+
+Added setting which allows property managers to determine if the number of children can be used when checking the number of  guests in a booking v the number of selected rooms.
+Enabled/disabled a couple of settings based on an upcoming new "secret" setting that allows some sites to revert to the old guest types if required.
+If per person per night is not true (i.e. the property/rooms is/are booked per night instead) then child rates are not prompted for, and child prices aren't calculated. Likewise, prices aren't shown for children, but children can still be added to the booking if child rates are added to the booking. You can leave the rate set to zero to just record the ages of the children without charging for them.
+Added a new local tokens class, allows a plugin or core system to create tokens for the rest api for a specific purpose.
+This token is then stored in the user's parameters which can then be used elsewhere by the plugin's scripts to use the local rest api without needing the user to generate client id/secret and token themselves.
+Core app key management checks for local tokens array and excludes any api keys from display in the app key management page
+Old management view button that used BS2 for fullscreen viewing is now ditched by default, I don't feel it's necessary any more. Managers can re-enable the button, if they wish, by editing Jomres' configuration.php and adding the line demonstrated in site_config.php however I believe that it interferes with the rest of the Jomres UI in J4/BS5 to no strong benefit.
+Added a function to determine the relative path to a file when handed it's full path. Primarily used for overriding css and javascript files.
+Per person per night setting moved from Tariffs into Bookings tab of Property Configuration.
+Changed occupancy levels guest types so that the dropdown maximum adults is set to whatever the highest max adults from all tariffs can be.
+Generate date input now can accept an array of options. Currently uses this array to disable the calendar fontawesome icon.
+Modified Core so that it can use the autocomplete feature.
+Unselected heart for shortlists changed to grey so works better in cassiopeia.
+Add an automatic test that will check to see if the system is api capable. If it is, we'll install the CMF Features and Framework plugins automatically.
+Search by stars modified so that searching is done based on array of stars, not a single variable (like you would get from a dropdown). This allows Core searching to use the Stars rows previously found in Ajax search composite (ASC uses it's own search feature so should be unaffected by this change).
+If the image size of slideshow is set to large, we'll allow the "thumbnails" to be large too. With the full adoption of lazy loading, having large thumbs by default assures high quality images to be visible from the outset.
+Wordpress : Change how we detect the root directory and trigger the installation location, try our damnedest to install in /jomres not the plugin dir where possible.
+Modified new functionality that imports language strings from language definitions. Older functionality was attempting to match vuejs code like {{ message }} which was unwanted behaviour. This change checks to see if the matched string is all in uppercase. If it is, then it can attempt to import the language strings.
+On installation, ensure that the default tariff editing mode is 3 (Micromanage) for new properties.
+Update existing sites so that default tariff editing mode is 2 (micromanage)
+Added property switcher to BS3 top.html
+Add a secret setting to configuration.php that allows people who need to use old guest types.
+Croatian currency code changed to euro.
+Dynamically adjust minimum interval in the booking engine of possible.
+Set the departure date to be the arrival date + whatever the calculated min interval was found to be.
+Managers can now switch between Micromanage and Advanced.
+Prevent a new google map message about callbacks by adding &callback=Function.prototype to the api url used.
+Change the gmaps version to suppress a console warning.
+Allow Joomla 4 sites to change the Bootstrap setting because upgraded sites may still have the old setting which needs to be changed.
+Minor tweak to make BS3 payment gateway images responsive.
+
+Resolved an issue where database re-import of images would misbehave. One of those "Weird, that's been working fine for years, and now it's not?" bugs.
+Set max height of uploaded image to 150px (mainly so that the no-image svg doesn't appear too large)
+
 <h3>Jomres 10.6.0 08/11/2022</h3>
 
 <span class="label label-success">Feature</span> Property switching dropdown re-added to Jomres, and significantly updated. This allows us to switch properties quickly when administering properties. This is a useful older feature that has been reintroduced and updated to be context sensitive.

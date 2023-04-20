@@ -262,12 +262,12 @@
 															<pattemplate:tmpl name="roomfeaturesrow" type="simpleCondition" requiredvars="inputbox">
 																<div class="col">
 																	<div class="form-group">
-																		
+
 																		<label class="col-form-label"><div class="form-check form-switch">{INPUTBOX}</div>
-																		
+
 																			<img src="{IMAGE_RELATIVE}" class="img-fluid card-img-top" style="max-height: 100px" /> {DESCRIPTION}
 																		</label>
-																		
+
 																	</div>
 																</div>
 															</pattemplate:tmpl>
@@ -282,10 +282,11 @@
 
 								<div class="clearfix"></div>
 								<div class="row">
-									<div class="col-6">
-										<div id="availRooms">{AVAILABLEROOMS}</div>
+									<div class="col-6 d-flex">
+										<div id="availRooms"></div>
 									</div>
-									<div class="col-6">
+
+									<div class="col-6 d-flex">
 										<div id="selectedRooms">{SELECTEDROOM}</div>
 									</div>
 								</div>
