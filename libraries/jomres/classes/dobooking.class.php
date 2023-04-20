@@ -4806,9 +4806,6 @@
 					if ($this->cfg_singleRoomProperty == '0') {
 						if (empty($roomAndTariffArray) && empty($this->requestedRoom)) {
 							$highlight = "alert alert-danger";
-							if (!using_bootstrap()) {
-								$highlight = "ui-state-highlight";
-							}
 							$return_output = '<div class="'.$highlight.'">'.jr_gettext('_JOMRES_FRONT_MR_QUICKRES_STEP2_NOROOMSINRANGE', '_JOMRES_FRONT_MR_QUICKRES_STEP2_NOROOMSINRANGE', false).'</div>';
 						} else {
 							$return_output = '';
@@ -4837,6 +4834,7 @@
 
 			// We need to strip out rooms from the available arrays if they've already
 			// been selected in conjunction with another tariff
+
 			if (isset($this->room_type_style_output)) {
 				if (!empty($this->requestedRoom)) {
 					// Parse each of the already selected rooms
@@ -4899,6 +4897,8 @@
 					$dropdown_output[ $tariff_id ][ 'room_type' ] = $tariff_and_roomtypes[ 'room_type' ];
 					$dropdown_output[ $tariff_id ][ 'tariff_title' ] = $tariff_and_roomtypes[ 'tariff_title' ];
 					$dropdown_output[ $tariff_id ][ 'room_type_images' ] = $tariff_and_roomtypes[ 'room_type_images' ];
+                    $dropdown_output[ $tariff_id ][ 'max_adults' ] = $tariff_and_roomtypes[ 'max_adults' ];
+                    $dropdown_output[ $tariff_id ][ 'max_children' ] = $tariff_and_roomtypes[ 'max_children' ];
 
 					$dropdown_output[ $tariff_id ][ 'room_price_inc_tax' ] = output_price($tariff_and_roomtypes[ 'room_price_inc_tax' ]);
 
@@ -4943,8 +4943,14 @@
 			$output[ 'HRATE_TEXT' ] = $rate_text;
 
 			$rows = array();
+
 			foreach ($dropdown_output as $routput) {
 				$r = array();
+
+
+                $r[ 'MAX_ADULTS' ] = $routput[ 'max_adults' ];
+                $r[ 'MAX_CHILDREN' ] = $routput[ 'max_children' ];
+
 				$r[ 'GUESTPER_ROOM' ] = $routput[ 'max_guests_per_room' ];
 				$r[ 'GUESTPER_BOOKING' ] = $routput[ 'max_guests_per_booking' ];
 				$r[ 'NUMBEROFROOMS' ] = $routput[ 'dropdown' ];
@@ -5065,6 +5071,11 @@
 			$roomStuff[ 'ROOM_IMAGE' ] = $this->allPropertyRooms [ $roomUid ] [ 'small_room_image' ];
 			$roomStuff[ 'ROOM_IMAGE_MEDIUM' ] = $this->allPropertyRooms [ $roomUid ] [ 'medium_room_image' ];
 			$roomStuff[ 'ROOM_IMAGE_LARGE' ] = $this->allPropertyRooms [ $roomUid ] [ 'large_room_image' ];
+
+            $this->room_type_style_output[ $tariffUid ][ 'max_adults' ] = $basic_room_details->rooms[$roomUid]['max_adults'];
+            $this->room_type_style_output[ $tariffUid ][ 'max_children' ] = $basic_room_details->rooms[$roomUid]['max_children'];
+            $roomStuff[ 'MAX_ADULTS' ] = $basic_room_details->rooms[$roomUid]['max_adults'];
+            $roomStuff[ 'MAX_CHILDREN' ] = $basic_room_details->rooms[$roomUid]['max_children'];
 
 			$roomStuff[ 'TAGLINE' ] = $this->allPropertyRooms [ $roomUid ] [ 'tagline' ];
 			$roomStuff[ 'DESCRIPTION' ] = $this->allPropertyRooms [ $roomUid ] [ 'description' ];
