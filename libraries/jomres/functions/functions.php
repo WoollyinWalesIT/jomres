@@ -154,6 +154,11 @@ if (!function_exists('jomres_get_relative_path_to_file')) {
 	if (!function_exists('get_override_directory')) {
 		function get_override_directory()
 		{
+			$override_path = get_showtime('template_override_path');
+			if (isset($override_path) && (string)$override_path != '') {
+				return $override_path;
+			}
+
 			if (this_cms_is_joomla()) {
 				$app = JFactory::getApplication();
 				$joomla_templateName = $app->getTemplate('template')->template;
@@ -168,6 +173,7 @@ if (!function_exists('jomres_get_relative_path_to_file')) {
 				$override_path = $path_to_template . JRDS . 'html' . JRDS . 'com_jomres';
 			}
 
+			set_showtime('template_override_path',$override_path);
 			return $override_path;
 		}
 	}
