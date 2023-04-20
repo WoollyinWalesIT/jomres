@@ -695,6 +695,7 @@ class j06000handlereq
 
 				if (!empty($freeRoomsArray)) {
 					$output .= ";jomresJquery('#availRooms').fadeIn();";
+                    $output .= ";jomresJquery('#selectedRooms').fadeIn();";
 				} else {
 					//$output .= ";jomresJquery('#availRooms').fadeOut();"; // Don't use this as it hides the available rooms list, and thereby hides the no rooms available message.
 				}
