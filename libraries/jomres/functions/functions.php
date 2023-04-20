@@ -2738,7 +2738,14 @@ Previously just a feature of the add plugin script, it's usage has been moved to
 				return true;
 			}
 
-			//first check custom code dir
+			// The rest api, for performance reasons, doesn't load the CMS and Jomres' frameworks. Individual api functions can and do, but the API itself does not.  If we are running this function, however, then the framework has been loaded and we can safely perform the following function
+			$override_directory = get_override_directory().JRDS.'custom_code'.JRDS;
+			if (file_exists($override_directory.$class.'.class.php')) {
+				require_once $override_directory.$class.'.class.php';
+				return true;
+			}
+
+			//next check custom code dir
 			if (file_exists(JOMRES_REMOTEPLUGINS_ABSPATH.'custom_code'.JRDS.$class.'.class.php')) {
 				require_once JOMRES_REMOTEPLUGINS_ABSPATH.'custom_code'.JRDS.$class.'.class.php';
 
