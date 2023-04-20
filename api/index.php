@@ -52,6 +52,28 @@ require 'oauth/inc_configs.php';
 
 require_once(JOMRES_API_JOMRES_ROOT.DIRECTORY_SEPARATOR.'configuration.php');
 
+if (is_dir(JOMRES_API_CMS_ROOT.DIRECTORY_SEPARATOR.'wp-content'.DIRECTORY_SEPARATOR.'themes')) {
+    $templates_dir = JOMRES_API_CMS_ROOT.DIRECTORY_SEPARATOR.'wp-content'.DIRECTORY_SEPARATOR.'themes';
+} else {
+    $templates_dir = JOMRES_API_CMS_ROOT.DIRECTORY_SEPARATOR.'templates';
+}
+
+// We will try to find the template override directory. Because we can't call the CMS (for performance reasons) we'll have to do this the hard way. Disadvantage is that the overriding developer must ensure that there's only one instance of $target_pattern in the entire site, otherwise we'll get the wrong path. That's why the similar function in load_custom_functions goes to great lengths to call the CMS whever possible.
+$rii = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($templates_dir));
+
+$target_pattern = '/html/com_jomres/custom_code/';
+
+foreach ($rii as $file) {
+    if ($file->isDir()){
+        $path = $file->getPathname();
+        if (strstr($path, $target_pattern)) {
+            define('JOMRES_OVERRIDE_PATH',substr($path,0,-2));
+            break;
+        }
+    }
+}
+
+
 if ($jrConfig['development_production'] == 'development') {
 	define('PRODUCTION', false);
 } else {

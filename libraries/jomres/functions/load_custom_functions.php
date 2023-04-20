@@ -33,70 +33,71 @@
 	 */
 
 
+if (!defined('JOMRES_OVERRIDE_PATH')) {
+    if (_JOMRES_DETECTED_CMS !== 'wordpress') {
 
-	if (_JOMRES_DETECTED_CMS !== 'wordpress') {
+        if (!defined('API_STARTED')) {
+            $app = JFactory::getApplication();
+            $joomla_templateName = $app->getTemplate('template')->template;
+        } else { // Joomla will throw an error if we try to do this via the api, so on API calls, we'll have to search for the file "manually"
+            $files = load_custom_functions_scanAllDir(JPATH_ROOT.'templates');
+            if (!empty($files)){ // I'll be amazed if it is
+                foreach ($files as $filename) {
+                    $bang = explode(DIRECTORY_SEPARATOR , $filename);
+                    if (end($bang) === 'custom_functions.php') {
+                        array_pop($bang);
+                        $joomla_templateName = $bang[0];
+                    }
+                }
+            }
+        }
+        $path_to_template = JOMRESCONFIG_ABSOLUTE_PATH . "templates" .JRDS. $joomla_templateName ;
+        $override_path = $path_to_template .JRDS . 'html' . JRDS . 'com_jomres'.JRDS.'custom_code'.JRDS;
+    } else {
+        $path_to_template =  get_theme_file_path();
+        $override_path = $path_to_template . JRDS . 'html' . JRDS . 'com_jomres'.JRDS.'custom_code'.JRDS;
+    }
 
-		if (!defined('API_STARTED')) {
-			$app = JFactory::getApplication();
-			$joomla_templateName = $app->getTemplate('template')->template;
-		} else { // Joomla will throw an error if we try to do this via the api, so on API calls, we'll have to search for the file "manually"
-			$files = load_custom_functions_scanAllDir(JPATH_ROOT.'templates');
-			if (!empty($files)){ // I'll be amazed if it is
-				foreach ($files as $filename) {
-					$bang = explode(DIRECTORY_SEPARATOR , $filename);
-					if (end($bang) === 'custom_functions.php') {
-						array_pop($bang);
-						$joomla_templateName = $bang[0];
-					}
-				}
-			}
-		}
-		$path_to_template = JOMRESCONFIG_ABSOLUTE_PATH . "templates" .JRDS. $joomla_templateName ;
-		$override_path = $path_to_template .JRDS . 'html' . JRDS . 'com_jomres'.JRDS.'custom_code'.JRDS;
-	} else {
-		$path_to_template =  get_theme_file_path();
-		$override_path = $path_to_template . JRDS . 'html' . JRDS . 'com_jomres'.JRDS.'custom_code'.JRDS;
-	}
-
-	define('JOMRES_OVERRIDE_PATH',$override_path);
+    define('JOMRES_OVERRIDE_PATH',$override_path);
 
 
-	if (file_exists($override_path.'custom_functions.php')) {
-		require_once($override_path.'custom_functions.php');
-	}
+    if (file_exists($override_path.'custom_functions.php')) {
+        require_once($override_path.'custom_functions.php');
+    }
 
-	$files = load_custom_functions_scanAllDir(JOMRES_COREPLUGINS_ABSPATH);
-	if (!empty($files)){
-		foreach ($files as $filename) {
-			$bang = explode(DIRECTORY_SEPARATOR , $filename);
-			if (end($bang) === 'custom_functions.php') {
-				require_once ($filename);
-			}
-		}
-	}
+    $files = load_custom_functions_scanAllDir(JOMRES_COREPLUGINS_ABSPATH);
+    if (!empty($files)){
+        foreach ($files as $filename) {
+            $bang = explode(DIRECTORY_SEPARATOR , $filename);
+            if (end($bang) === 'custom_functions.php') {
+                require_once ($filename);
+            }
+        }
+    }
 
-	$files = load_custom_functions_scanAllDir(JOMRES_REMOTEPLUGINS_ABSPATH);
-	if (!empty($files)){
-		foreach ($files as $filename) {
-			$bang = explode(DIRECTORY_SEPARATOR , $filename);
-			if (end($bang) === 'custom_functions.php') {
-				require_once ($filename);
-			}
-		}
-	}
+    $files = load_custom_functions_scanAllDir(JOMRES_REMOTEPLUGINS_ABSPATH);
+    if (!empty($files)){
+        foreach ($files as $filename) {
+            $bang = explode(DIRECTORY_SEPARATOR , $filename);
+            if (end($bang) === 'custom_functions.php') {
+                require_once ($filename);
+            }
+        }
+    }
+}
 
-	function load_custom_functions_scanAllDir($dir) {
-		$result = array();
-		foreach(scandir($dir) as $filename) {
-			if ($filename[0] === '.') continue;
-			$filePath = $dir . DIRECTORY_SEPARATOR . $filename;
-			if (is_dir($filePath)) {
-				foreach (load_custom_functions_scanAllDir($filePath) as $childFilename) {
-					$result[] = $filename . DIRECTORY_SEPARATOR . $childFilename;
-				}
-			} else {
-				$result[] = $filename;
-			}
-		}
-		return $result;
-	}
+function load_custom_functions_scanAllDir($dir) {
+    $result = array();
+    foreach(scandir($dir) as $filename) {
+        if ($filename[0] === '.') continue;
+        $filePath = $dir . DIRECTORY_SEPARATOR . $filename;
+        if (is_dir($filePath)) {
+            foreach (load_custom_functions_scanAllDir($filePath) as $childFilename) {
+                $result[] = $filename . DIRECTORY_SEPARATOR . $childFilename;
+            }
+        } else {
+            $result[] = $filename;
+        }
+    }
+    return $result;
+}

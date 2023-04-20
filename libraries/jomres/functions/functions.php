@@ -154,6 +154,11 @@ if (!function_exists('jomres_get_relative_path_to_file')) {
 	if (!function_exists('get_override_directory')) {
 		function get_override_directory()
 		{
+
+			if (defined('JOMRES_OVERRIDE_PATH') && JOMRES_OVERRIDE_PATH != '') {
+				return JOMRES_OVERRIDE_PATH;
+			}
+
 			$override_path = get_showtime('template_override_path');
 			if (isset($override_path) && (string)$override_path != '') {
 				return $override_path;
@@ -2745,7 +2750,8 @@ Previously just a feature of the add plugin script, it's usage has been moved to
 			}
 
 			// The rest api, for performance reasons, doesn't load the CMS and Jomres' frameworks. Individual api functions can and do, but the API itself does not.  If we are running this function, however, then the framework has been loaded and we can safely perform the following function
-			$override_directory = get_override_directory().JRDS.'custom_code'.JRDS;
+			$override_directory = get_override_directory();
+
 			if (file_exists($override_directory.$class.'.class.php')) {
 				require_once $override_directory.$class.'.class.php';
 				return true;

@@ -69,7 +69,7 @@ class j01050x_geocoder
 		$output = array();
 		$pageoutput = array();
 
-		$override_directory = get_override_directory().JRDS.'custom_code'.JRDS;
+		$override_directory = get_override_directory();
 
 		if ( file_exists($override_directory.'custom_map_style.style') ) {
 			$output['MAP_STYLE'] = file_get_contents($override_directory.'custom_map_style.style');
