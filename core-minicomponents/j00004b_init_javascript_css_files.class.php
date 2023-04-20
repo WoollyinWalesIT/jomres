@@ -58,6 +58,10 @@ class j00004b_init_javascript_css_files
 			return true;
 		}
 
+        if (defined('API_STARTED')) {
+            return true;
+        }
+
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
 		
@@ -243,6 +247,7 @@ class j00004b_init_javascript_css_files
 			$IDN = new Mso\IdnaConvert\IdnaConvert();
 			$ls = $IDN->decode($ls);
 		}
+
 
         $override_directory = get_override_directory();
 
