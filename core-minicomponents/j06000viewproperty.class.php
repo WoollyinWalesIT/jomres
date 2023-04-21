@@ -45,13 +45,8 @@
 							0 => array(
 								'argument' => 'property_uid',
 								'arg_info' => '_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID',
-								'arg_example' => '5',
-							),
-							1 => array(
-								'argument' => 'view_property_template',
-								'arg_info' => '_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME',
-								'arg_example' => 'property_details_lux',
-							),
+								'arg_example' => '1',
+							)
 						)
 				);
 				return;
