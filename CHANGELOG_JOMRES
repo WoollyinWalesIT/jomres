@@ -5,7 +5,7 @@ Lots of changes related to overrides in this version. A lot of scripts can be ov
     Function overrides. Create a file called custom_functions.php and copy functions from the varies function files in /jomres/libraries/jomres/functions into this file to have custom Jomres functions.
     Class overrides. Copy the class file into the custom_code directory and Jomres will automatically use that.
     Map styles overrides. To customise map styles create a file custom_map_style.style into the custom_code dir.
-    Custom Jquery UI css file. Create a file called custom_jquery_ui in the custom_code directory and Jomres will use that. Due to when it's called Jquery UI css declarations here will override the defaults.
+    Custom Jquery UI css file. Create a file called custom_jquery_ui.css in the custom_code directory and Jomres will use that. Due to when it's called Jquery UI css declarations here will override the defaults.
     Joomla only : Custom copy of components/com_jomres/router/router.php can be put into the custom_code directory and Jomres will use that instead of the default.
     Customised versions of /jomres/assets/css and /jomres/assets/javascript files can be put into custom_code directory and Jomres will use those instead of the default.
 
