@@ -123,7 +123,7 @@
 				$tmpl->addRows('pageoutput', $pageoutput);
 				$tmpl->displayParsedTemplate();
 			} else {
-				echo ' <img src="'.JOMRES_IMAGES_RELPATH.'noimage.svg'.'" />';
+				echo ' <img src="'.JOMRES_IMAGES_RELPATH.'noimage.svg'.'" width="100px" height="200px" />';
 			}
 		}
 
