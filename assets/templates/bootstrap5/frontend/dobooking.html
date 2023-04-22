@@ -14,7 +14,6 @@
 		padding: 2px 8px;
 		margin-top: 2px;
 	}
-	
 
 </style>
 <script type="text/javascript">
@@ -424,7 +423,7 @@
 					</div>
 				</div>
 				<div class="col-lg-4" id="totalsWrapper">
-					<div id="totals" class="">
+					<div id="totals" class="sticky">
 						<pattemplate:tmpl name="coupons" type="simpleCondition" requiredvars="coupon_title">
 							<div class="card">
 								<div class="card-header">
@@ -451,6 +450,7 @@
 								</div>
 							</div>
 							<div class="card-body">
+								<div id="messages">&nbsp;</div>
 								<p><span id="staydays"></span> {ACCOMMODATION_NIGHTS} <span id="roompernight"></span> {ACCOMMODATION_PERROOM}</p>
 								<p><span id="totalinparty"></span> {BILLING_TOTALINPARTY}</p>
 								<p><span id="discount" class="jomres_message">&#xA0;</span>
