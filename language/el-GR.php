@@ -237,7 +237,7 @@ jr_define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AREAACTIVITIES', 'Δραστηρ�
 jr_define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_DRIVINGDIRECTIONS', 'Κατευθύνσεις όταν έρθετε οδηγώντας');
 jr_define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AIRPORTS', 'Αεροδρόμια');
 jr_define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_OTHERTRANSPORT', 'Αλλα μεταφορικά μέσα');
-jr_define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS', 'Policies & disclaimers');
+jr_define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS', 'Terms and conditions');
 jr_define('_JOMRES_COM_MR_PROPERTIESLISTING_THISPROPERTYADDRESS', 'Διεύθυνση');
 jr_define('_JOMRES_COM_A_VISITORSCANBOOKONLINE', 'Οι επισκέπτες μπορούν να κάνουν κράτηση online');
 jr_define('_JOMRES_COM_A_VISITORSCANBOOKONLINE_DESC', 'Επιλέξτε ΝΑΙ ώστε οι επισκέπτες να μπορούν να κάνουν κρατήσεις online');
