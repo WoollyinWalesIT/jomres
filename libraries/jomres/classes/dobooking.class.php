@@ -5521,7 +5521,7 @@
 
 				$requestedRoom_count = count($this->requestedRoom);
 
-				if (isset($mrConfig['secret_setting_use_old_guest_types']) && $mrConfig['secret_setting_use_old_guest_types'] == '1') {
+				if (isset($this->jrConfig['secret_setting_use_old_guest_types']) && $this->jrConfig['secret_setting_use_old_guest_types'] == '1') {
 					$numberOfGuestTypes = $this->getVariantsOfType('guesttype');
 
 					foreach ($numberOfGuestTypes as $r) {
