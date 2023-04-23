@@ -67,6 +67,10 @@
 
 			$jomres_menu = jomres_singleton_abstract::getInstance('jomres_menu');
 
+			jr_import('jomres_api_capability_test');
+			$jomres_api_capability_test = new jomres_api_capability_test();
+			$system_is_api_capable = $jomres_api_capability_test->is_system_capable();
+
 			$viewproperty_url = get_property_details_url($property_uid);
 			$dobooking_url = get_booking_url($property_uid);
 
@@ -150,7 +154,7 @@
 				$jrConfig[ 'api_core_show' ] =1;
 			}
 
-			if ($thisJRUser->accesslevel >= 1 && $jrConfig[ 'api_core_show' ] == '1') {
+			if ($thisJRUser->accesslevel >= 1 && $jrConfig[ 'api_core_show' ] == '1' && $system_is_api_capable === true ) {
 				$jomres_menu->add_item(10, jr_gettext('_OAUTH_TITLE', '_OAUTH_TITLE', false), 'oauth', 'fa-key');
 				$jomres_menu->add_item(10, jr_gettext('API_DOCUMENTATION_TITLE', 'API_DOCUMENTATION_TITLE', false), 'api_documentation', 'fa-book');
 			}
