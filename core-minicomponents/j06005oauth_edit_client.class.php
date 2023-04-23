@@ -98,6 +98,10 @@ class j06005oauth_edit_client
 				
 				$output['REDIRECT_URI']=$client->redirect_uri;
 
+				if ($output['REDIRECT_URI']=="") {
+					$output['REDIRECT_URI'] = jomresURL(JOMRES_SITEPAGE_URL.'&task=oauth');;
+				}
+
 				if (trim($client->scope) != "") {
 					$client_scopes= explode(",", $client->scope);
 				}
