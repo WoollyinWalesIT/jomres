@@ -52,18 +52,28 @@ if (!defined('JOMRES_OVERRIDE_PATH')) {
             }
         }
         $path_to_template = JOMRESCONFIG_ABSOLUTE_PATH . "templates" .JRDS. $joomla_templateName ;
-        $override_path = $path_to_template .JRDS . 'html' . JRDS . 'com_jomres'.JRDS.'custom_code'.JRDS;
+        $override_path = $path_to_template .JRDS . 'html' . JRDS . 'com_jomres'.JRDS;
     } else {
         $path_to_template =  get_theme_file_path();
-        $override_path = $path_to_template . JRDS . 'html' . JRDS . 'com_jomres'.JRDS.'custom_code'.JRDS;
+        $override_path = $path_to_template . JRDS . 'html' . JRDS . 'com_jomres'.JRDS;
     }
 
     define('JOMRES_OVERRIDE_PATH',$override_path);
 
 
-    if (file_exists($override_path.'custom_functions.php')) {
-        require_once($override_path.'custom_functions.php');
+    if (file_exists($override_path.JRDS.'custom_code'.JRDS.'custom_functions.php')) {
+        require_once($override_path.JRDS.'custom_code'.JRDS.'custom_functions.php');
     }
+
+	$files = load_custom_functions_scanAllDir(JOMRES_REMOTEPLUGINS_ABSPATH);
+	if (!empty($files)){
+		foreach ($files as $filename) {
+			$bang = explode(DIRECTORY_SEPARATOR , $filename);
+			if (end($bang) === 'custom_functions.php') {
+				require_once ($filename);
+			}
+		}
+	}
 
     $files = load_custom_functions_scanAllDir(JOMRES_COREPLUGINS_ABSPATH);
     if (!empty($files)){
@@ -75,15 +85,7 @@ if (!defined('JOMRES_OVERRIDE_PATH')) {
         }
     }
 
-    $files = load_custom_functions_scanAllDir(JOMRES_REMOTEPLUGINS_ABSPATH);
-    if (!empty($files)){
-        foreach ($files as $filename) {
-            $bang = explode(DIRECTORY_SEPARATOR , $filename);
-            if (end($bang) === 'custom_functions.php') {
-                require_once ($filename);
-            }
-        }
-    }
+
 }
 
 function load_custom_functions_scanAllDir($dir) {

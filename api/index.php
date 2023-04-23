@@ -61,7 +61,7 @@ if (is_dir(JOMRES_API_CMS_ROOT.DIRECTORY_SEPARATOR.'wp-content'.DIRECTORY_SEPARA
 // We will try to find the template override directory. Because we can't call the CMS (for performance reasons) we'll have to do this the hard way. Disadvantage is that the overriding developer must ensure that there's only one instance of $target_pattern in the entire site, otherwise we'll get the wrong path. That's why the similar function in load_custom_functions goes to great lengths to call the CMS whever possible.
 $rii = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($templates_dir));
 
-$target_pattern = '/html/com_jomres/custom_code/';
+$target_pattern = '/html/com_jomres/';
 
 foreach ($rii as $file) {
     if ($file->isDir()){

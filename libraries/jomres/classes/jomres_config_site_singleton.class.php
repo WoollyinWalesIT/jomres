@@ -280,11 +280,7 @@ $jrConfig = ' .var_export($jrConfig, true).';
 
 		public function init()
 		{
-			if (defined('JOMRES_OVERRIDE_PATH') && file_exists(JOMRES_OVERRIDE_PATH.'site_config.php')) {
-				include JOMRES_OVERRIDE_PATH.'site_config.php';
-			} else {
-				include JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'site_config.php';
-			}
+			include JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'site_config.php';
 
 			$tempConfigArr = $jrConfig;
 
