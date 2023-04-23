@@ -49,9 +49,8 @@
 	} else {
 		$app = JFactory::getApplication();
 		$joomla_templateName = $app->getTemplate('template')->template;
-		$path_to_template = JPATH_SITE . "templates" .DIRECTORY_SEPARATOR. $joomla_templateName ;
+		$path_to_template = JPATH_SITE .DIRECTORY_SEPARATOR. "templates" .DIRECTORY_SEPARATOR. $joomla_templateName ;
 		$override_path = $path_to_template .DIRECTORY_SEPARATOR . 'html' . DIRECTORY_SEPARATOR . 'com_jomres'.DIRECTORY_SEPARATOR.'custom_code'.DIRECTORY_SEPARATOR;
-
 
 		if (file_exists($override_path.'router.php')) {
 			$custom_router_found = true;
