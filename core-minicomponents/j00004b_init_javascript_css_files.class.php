@@ -252,9 +252,12 @@ class j00004b_init_javascript_css_files
         $override_directory = get_override_directory();
 
 		//now let`s add the js and css in the head
+
 		foreach ($javascript_files as $file) {
-            if (file_exists( $override_directory.JRDS.'custom_code'.JRDS.$file[1])) {
-                jomres_cmsspecific_addheaddata('javascript', jomres_get_relative_path_to_file($override_directory.JRDS.'custom_code').'/', $file[1]);
+
+
+            if (file_exists( $override_directory.JRDS.$file[1])) {
+                jomres_cmsspecific_addheaddata('javascript', jomres_get_relative_path_to_file($override_directory).'/', $file[1]);
             } else {
                 jomres_cmsspecific_addheaddata('javascript', $file[0], $file[1]);
             }
@@ -263,8 +266,8 @@ class j00004b_init_javascript_css_files
 
 
 		foreach ($css_files as $file) {
-            if (file_exists( $override_directory.JRDS.'custom_code'.JRDS.$file[1])) {
-                 jomres_cmsspecific_addheaddata('css', jomres_get_relative_path_to_file($override_directory.JRDS.'custom_code').'/', $file[1]);
+            if (file_exists( $override_directory.JRDS.$file[1])) {
+                 jomres_cmsspecific_addheaddata('css', jomres_get_relative_path_to_file($override_directory.JRDS).'/', $file[1]);
             } else {
                 jomres_cmsspecific_addheaddata('css', $file[0], $file[1]);
             }
