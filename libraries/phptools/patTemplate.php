@@ -2995,6 +2995,9 @@ Template row index <strong>'.$key.' </strong>
 
 						foreach ( $val['rows'][0] as $tag=>$text)
 						{
+							if (is_null($text)) {
+								$text = '';
+							}
 							//if (strpos($tag,"COMMON_") === FALSE)
 							//	{
 							$text = str_replace ( array ( "," , "#" , "\"" , "'") , " " , 	$text);
