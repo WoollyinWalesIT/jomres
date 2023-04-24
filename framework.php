@@ -238,7 +238,7 @@ function load_jomres_environment()
 		* trigger that sets up Core menu items
 		*
 		*/
-		$MiniComponents->specificEvent('09995', 'menu', array()); //core menu items
+		//$MiniComponents->specificEvent('09995', 'menu', array()); //core menu items
 	}
 
 	/**

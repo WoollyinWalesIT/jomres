@@ -287,7 +287,10 @@ try {
 		$MiniComponents->triggerEvent('00004');
 		
 		//core menu items
-		$MiniComponents->specificEvent('09995', 'menu', array()); //core menu items
+		// Older functionality, kept for backwards compatibility. Bootstrap 5 templates now use {jomres_script show_main_menu} to display the menu
+		if ( (int) jomres_bootstrap_version() < 5 ) {
+			$MiniComponents->specificEvent('09995', 'menu', array()); //core menu items
+		}
 	}
 
 	//TODO find a better place
