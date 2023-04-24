@@ -154,9 +154,15 @@
 	<div class="container-fluid p-5">
 		<pattemplate:comment><h2>{HFEATURES}</h2></pattemplate:comment>
 		<div class="row bg-transparent pt-3">
-			<div class="col-sm-12 bg-light rounded-1">
+			<div class="col-sm-9 bg-light rounded-1">
 				{jomres_script show_property_features PROPERTY_UID={UID}}
 			</div>
+			<div class="col-sm-3 bg-light rounded-1">
+				<div class="m-2 pb-4 ">{TABCONTENT_02_MAP_CONTENT}</div>
+			</div>
+			
+			
+			
 			<div class="col-sm-12 bg-light rounded-1">
 				<div class="lead">
 					{jomres_script show_property_description PROPERTY_UID=N}
@@ -164,29 +170,9 @@
 			</div>
 		</div>
 		
-		
-		<div class="row bg-transparent pt-3 ">
+		<div class="row bg-transparent pt-2 pb-2 ">
 			<div class="col-sm-12 bg-light rounded-1">
-				<pattemplate:comment><h2>{_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPDESCRIPTION}</h2></pattemplate:comment>
-				<div class="readmore-wrapper">
-					<h6>{HCHECKINTIMES}</h6>
-					{CHECKINTIMES}
-					<h6>{HAREAACTIVITIES}</h6>
-					{AREAACTIVITIES}
-					<h6>{HDRIVINGDIRECTIONS}</h6>
-					{DRIVINGDIRECTIONS}
-					<h6>{HAIRPORTS}</h6>
-					{AIRPORTS}
-					<h6>{HOTHERTRANSPORT}</h6>
-					{OTHERTRANSPORT}
-				</div>
-				</section>
-			</div>
-		</div>
-		
-		<div class="row bg-transparent pt-3 ">
-			<div class="col-sm-12 bg-light rounded-1">
-				{SLIDESHOW}
+				<div class="pt-2 pb-2">{SLIDESHOW}</div>
 			</div>
 		</div>
 		
@@ -255,6 +241,25 @@
 					</div>
 				</div>
 				
+				<div class="row bg-transparent pt-3 ">
+					<div class="col-sm-12 bg-light rounded-1">
+						<pattemplate:comment><h2>{_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPDESCRIPTION}</h2></pattemplate:comment>
+						<div class="readmore-wrapper">
+							<h6>{HCHECKINTIMES}</h6>
+							{CHECKINTIMES}
+							<h6>{HAREAACTIVITIES}</h6>
+							{AREAACTIVITIES}
+							<h6>{HDRIVINGDIRECTIONS}</h6>
+							{DRIVINGDIRECTIONS}
+							<h6>{HAIRPORTS}</h6>
+							{AIRPORTS}
+							<h6>{HOTHERTRANSPORT}</h6>
+							{OTHERTRANSPORT}
+						</div>
+						</section>
+					</div>
+				</div>
+				
 				<pattemplate:tmpl name="tariffs_output_content" type="simpleCondition" requiredvars="_jomres_front_tariffs" unusedvars="nbsp">
 					<div class="row bg-transparent pt-3 ">
 						<div class="col-sm-12 bg-light rounded-1">
@@ -284,14 +289,12 @@
 						</div>
 					</div>
 				</patTemplate:tmpl>
-			
 			</div>
 			<patTemplate:comment>Start right column</patTemplate:comment>
 			<div class="col-sm-3">
 				<div class="row alert alert-success m-1">
 					<div class="col-sm-12 pdetails-reviews ">{REVIEWS_SUMMARY} </div>
 				</div>
-				<div class="m-2 pb-4 ">{TABCONTENT_02_MAP_CONTENT}</div>
 				{SIDEBAR}
 			</div>
 		</div>
