@@ -980,7 +980,7 @@ jr_define('_JOMRES_REVIEWS_NOREVIEWS_BETHEFIRST', 'Would you like to be the firs
 jr_define('_JOMRES_REVIEWS_IAGREE', 'I agree with this review');
 jr_define('_JOMRES_REVIEWS_IDISAGREE', 'I disagree with this review');
 jr_define('_JOMRES_REVIEWS_AVERAGE_RATING', 'Orta reytinqi: ');
-jr_define('_JOMRES_REVIEWS_TOTAL_VOTES', 'Total Votes:');
+jr_define('_JOMRES_REVIEWS_TOTAL_VOTES', 'Reviews:');
 jr_define('_JOMRES_REVIEWS_ADD_REVIEW', 'məlumat əlavə edin.');
 jr_define('_JOMRES_REVIEWS_ADD_REVIEW_NOTLOGGEDIN', 'You need to be logged in to post a review.');
 jr_define('_JOMRES_REVIEWS_REVIEWBODY', 'Tell us what you think about this property : ');
