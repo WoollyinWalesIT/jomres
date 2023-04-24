@@ -42,7 +42,7 @@ class j09997menu
 
 			return;
 		}
-
+		$this->ret_vals = '';
 		if (defined('API_STARTED')) {
 			return;
 		}
@@ -53,7 +53,7 @@ class j09997menu
 		}
 		set_showtime('mainmenu_alreadyrun', true);
 
-		$this->ret_vals = '';
+
 		$menu_sections = array();
 		
 		$management_view = jomresGetParam($_REQUEST, 'tmpl', false);
