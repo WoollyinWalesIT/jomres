@@ -360,7 +360,7 @@ jr_define('_JOMRES_MR_AUDIT_ARCHIVE', 'Bütün qeydləri arivləşdirmək');
 jr_define('_JOMRES_FRONT_TARIFFS', 'Tariflərimiz');
 jr_define('_JOMRES_FRONT_TARIFFS_TITLE', 'Tarif adı');
 jr_define('_JOMRES_FRONT_TARIFFS_DESC', 'Tarif təsviri');
-jr_define('_JOMRES_FRONT_TARIFFS_ROOMTYPE', 'Resource/property type');
+jr_define('_JOMRES_FRONT_TARIFFS_ROOMTYPE', 'Type');
 jr_define('_JOMRES_FRONT_TARIFFS_STARTS', 'Qüvvədə');
 jr_define('_JOMRES_FRONT_TARIFFS_ENDS', 'Etibarlıdır');
 jr_define('_JOMRES_FRONT_TARIFFS_PPPN', 'Adam baı gecəsi');
