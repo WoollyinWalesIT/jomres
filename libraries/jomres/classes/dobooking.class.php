@@ -5453,11 +5453,13 @@
 
 				if ($this->stayDays < $this->mininterval && !$amend_contract && $this->mininterval < 1000 && empty($this->requestedRoom)) {
 					$this->resetPricingOutput = true;
-					if ($mrConfig[ 'wholeday_booking' ] == '1') {
+
+					// This section disabled as it produces a red error on page load, and the mininterval is used to set the allowed departure dates in the booking form on page load, which mostly (all?) negates the need for this message.
+					/*if ($mrConfig[ 'wholeday_booking' ] == '1') {
 						$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT1_WHOLEDAY', '_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT1_WHOLEDAY', false, false)).' '.$this->mininterval.' '.$this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT2', '_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT2', false).' '.($this->stayDays - 1)));
 					} else {
 						$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT1', '_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT1', false, false)).' '.$this->mininterval.' '.$this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT2', '_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT2', false).' '.$this->stayDays));
-					}
+					}*/
 
 					if ($this->jrConfig[ 'useJomresMessaging' ] == '1') {
 						$this->build_tariff_to_date_map();
@@ -5559,57 +5561,57 @@
 					}
 				} else {
 
-					// Check that the number of guests does not exceed the number of beds available
-					$basic_room_details = jomres_singleton_abstract::getInstance('basic_room_details');
-					$basic_room_details->get_all_rooms($this->property_uid);
+					if ( $this->cfg_singleRoomProperty != '1') {
+						// Check that the number of guests does not exceed the number of beds available
+						$basic_room_details = jomres_singleton_abstract::getInstance('basic_room_details');
+						$basic_room_details->get_all_rooms($this->property_uid);
 
-					if (!isset($this->mrConfig['occupancy_levels_include_children'])) {
-						$this->mrConfig['occupancy_levels_include_children'] = false;
-					}
-					$selected_rooms_max_adults = 0;
-					$selected_rooms_max_children = 0;
-					foreach ($this->requestedRoom as $roomandtariff) {
-						$bang = explode('^', $roomandtariff);
-						$room_uid = (int) $bang[ 0 ];
-						$selected_rooms_max_adults += $basic_room_details->rooms[$room_uid]['max_adults'];
-						if ( (bool)$this->mrConfig['occupancy_levels_include_children']==true){
-							$selected_rooms_max_children += $basic_room_details->rooms[$room_uid]['max_children'];
+						if (!isset($this->mrConfig['occupancy_levels_include_children'])) {
+							$this->mrConfig['occupancy_levels_include_children'] = false;
+						}
+						$selected_rooms_max_adults = 0;
+						$selected_rooms_max_children = 0;
+						foreach ($this->requestedRoom as $roomandtariff) {
+							$bang = explode('^', $roomandtariff);
+							$room_uid = (int) $bang[ 0 ];
+							$selected_rooms_max_adults += $basic_room_details->rooms[$room_uid]['max_adults'];
+							if ( (bool)$this->mrConfig['occupancy_levels_include_children']==true){
+								$selected_rooms_max_children += $basic_room_details->rooms[$room_uid]['max_children'];
+							}
+						}
+
+						$selected_rooms_max_occupancy = $selected_rooms_max_adults + $selected_rooms_max_children;
+
+						$total_in_party = $this->getTotalInParty();
+
+						if ( (bool)$this->mrConfig['occupancy_levels_include_children'] == true && !empty($this->child_numbers)) {
+							foreach ($this->child_numbers as $child_number) {
+								$total_in_party += $child_number;
+							}
+							if ($total_in_party > $selected_rooms_max_occupancy) {
+								$this->resetPricingOutput = true;
+								$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_CHOOSE_MORE_ROOMS', '_JOMRES_BOOKINGFORM_MONITORING_CHOOSE_MORE_ROOMS', false, false)));
+							}
+						} else {
+							if ($total_in_party > $selected_rooms_max_adults) {
+								$this->resetPricingOutput = true;
+								$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_CHOOSE_MORE_ROOMS', '_JOMRES_BOOKINGFORM_MONITORING_CHOOSE_MORE_ROOMS', false, false)));
+							}
+						}
+
+						if ($requestedRoom_count > $total_in_party ) {
+							$this->resetPricingOutput = true;
+							$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_MORE_ROOMS_THAN_GUESTS', '_JOMRES_BOOKINGFORM_MONITORING_MORE_ROOMS_THAN_GUESTS', false, false)));
 						}
 					}
 
-					$selected_rooms_max_occupancy = $selected_rooms_max_adults + $selected_rooms_max_children;
-
-					$total_in_party = $this->getTotalInParty();
-
-					if ( (bool)$this->mrConfig['occupancy_levels_include_children'] == true && !empty($this->child_numbers)) {
-						foreach ($this->child_numbers as $child_number) {
-							$total_in_party += $child_number;
-						}
-                        if ($total_in_party > $selected_rooms_max_occupancy) {
-                            $this->resetPricingOutput = true;
-                            $this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_CHOOSE_MORE_ROOMS', '_JOMRES_BOOKINGFORM_MONITORING_CHOOSE_MORE_ROOMS', false, false)));
-                        }
-					} else {
-                        if ($total_in_party > $selected_rooms_max_adults) {
-                            $this->resetPricingOutput = true;
-                            $this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_CHOOSE_MORE_ROOMS', '_JOMRES_BOOKINGFORM_MONITORING_CHOOSE_MORE_ROOMS', false, false)));
-                        }
-                    }
-
-					if ($requestedRoom_count > $total_in_party ) {
+					if (empty($this->requestedRoom)) {
 						$this->resetPricingOutput = true;
-						$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_MORE_ROOMS_THAN_GUESTS', '_JOMRES_BOOKINGFORM_MONITORING_MORE_ROOMS_THAN_GUESTS', false, false)));
-					}
-				}
-
-
-
-				if (empty($this->requestedRoom)) {
-					$this->resetPricingOutput = true;
-					if ($this->cfg_singleRoomProperty != '1') {
-						$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_SELECT_A_ROOM', '_JOMRES_BOOKINGFORM_MONITORING_SELECT_A_ROOM', false, false)));
-					} else {
-						$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP4_TITLE', '_JOMRES_COM_MR_QUICKRES_STEP4_TITLE', false, false)));
+						if ($this->cfg_singleRoomProperty != '1') {
+							$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_SELECT_A_ROOM', '_JOMRES_BOOKINGFORM_MONITORING_SELECT_A_ROOM', false, false)));
+						} else {
+							$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP4_TITLE', '_JOMRES_COM_MR_QUICKRES_STEP4_TITLE', false, false)));
+						}
 					}
 				}
 			}
