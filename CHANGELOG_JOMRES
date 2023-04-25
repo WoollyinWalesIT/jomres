@@ -48,6 +48,7 @@
 
 <span class="label label-important label-danger">Fix</span> Resolved an issue where database re-import of images would misbehave. One of those "Weird, that's been working fine for years, and now it's not?" bugs.
 <span class="label label-important label-danger">Fix</span> Set max height of uploaded image to 150px (mainly so that the no-image svg doesn't appear too large). Media centre.
+<span class="label label-important label-danger">Fix</span> Main menu navbar toggler fixed.
 
 <h3>Jomres 10.6.0 08/11/2022</h3>
 

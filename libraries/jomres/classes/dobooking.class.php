@@ -709,7 +709,7 @@
 			AND DATE_FORMAT(`validto`, '%Y/%m/%d') >= DATE_FORMAT('".$this->today."', '%Y/%m/%d')
 			";
 
-            $this->absolute_max_guests_by_tariffs = 0;
+			$this->absolute_max_guests_by_tariffs = 0;
 			$tariffs = doSelectSql($query);
 
 			//$this->setErrorLog("getAllTariffsData:: ".$query );
@@ -723,9 +723,9 @@
 					$t->modifiers = '';
 				}
 
-                if ( $t->maxpeople > $this->absolute_max_guests_by_tariffs ) {
-                    $this->absolute_max_guests_by_tariffs = $t->maxpeople;
-                }
+				if ( $t->maxpeople > $this->absolute_max_guests_by_tariffs ) {
+					$this->absolute_max_guests_by_tariffs = $t->maxpeople;
+				}
 
 				$roomrate = $this->get_nett_price($t->roomrateperday, $this->accommodation_tax_rate);
 				$dates = $this->get_periods($t->validfrom, $t->validto.' 23:59:59', $interval);
@@ -749,26 +749,26 @@
 					'weekendonly' => $t->weekendonly,
 					'dayofweek' => $t->dayofweek,
 					'minrooms_alreadyselected' => $t->minrooms_alreadyselected,
-				'maxrooms_alreadyselected' => $t->maxrooms_alreadyselected,
-				'tariff_dates' => $dates,
-			);
+					'maxrooms_alreadyselected' => $t->maxrooms_alreadyselected,
+					'tariff_dates' => $dates,
+				);
 
-			if (!empty($this->allPropertyTariffs)) {
-				$mindays_array = array();
-				foreach ($this->allPropertyTariffs as $tariff) {
-					$mindays = $tariff['mindays'];
-					if (!isset($mindays_array[$mindays] )) {
-						$mindays_array[] = $mindays;
+				if (!empty($this->allPropertyTariffs)) {
+					$mindays_array = array();
+					foreach ($this->allPropertyTariffs as $tariff) {
+						$mindays = $tariff['mindays'];
+						if (!isset($mindays_array[$mindays] )) {
+							$mindays_array[] = $mindays;
+						}
 					}
-				}
-				if (count($mindays_array) == 1) {
-					$this->mininterval = (int) $mindays;
-				} else {
-					$this->mininterval = min($mindays_array);
+					if (count($mindays_array) == 1) {
+						$this->mininterval = (int) $mindays;
+					} else {
+						$this->mininterval = min($mindays_array);
+					}
 				}
 			}
 		}
-	}
 
 		/**
 		 *
@@ -4222,23 +4222,23 @@
 		 */
 		public function getTotalInParty()
 		{
-            $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-            $jrConfig = $siteConfig->get();
+			$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+			$jrConfig = $siteConfig->get();
 
-            if (  isset( $jrConfig['secret_setting_use_old_guest_types'] ) && $jrConfig['secret_setting_use_old_guest_types'] == '1' ) {
-                $n = count($this->variancetypes);
-                // For older properties with guesttypes
-                if ($n > 0) {
-                    $subtotal = 0;
-                    for ($i = 0; $i < $n; ++$i) {
-                        if (isset($this->variancetypes[ $i ]) && $this->variancetypes[ $i ] == 'guesttype') {
-                            $subtotal = $subtotal + $this->varianceqty[ $i ];
-                            }
-                        }
-                    $this->total_in_party = $subtotal;
-                    }
-                }
-            else { // For newer properties with Standard mode guest types
+			if (  isset( $jrConfig['secret_setting_use_old_guest_types'] ) && $jrConfig['secret_setting_use_old_guest_types'] == '1' ) {
+				$n = count($this->variancetypes);
+				// For older properties with guesttypes
+				if ($n > 0) {
+					$subtotal = 0;
+					for ($i = 0; $i < $n; ++$i) {
+						if (isset($this->variancetypes[ $i ]) && $this->variancetypes[ $i ] == 'guesttype') {
+							$subtotal = $subtotal + $this->varianceqty[ $i ];
+						}
+					}
+					$this->total_in_party = $subtotal;
+				}
+			}
+			else { // For newer properties with Standard mode guest types
 				$this->total_in_party = $this->standard_guest_numbers +	$this->extra_guest_numbers ;
 			}
 
@@ -4897,8 +4897,8 @@
 					$dropdown_output[ $tariff_id ][ 'room_type' ] = $tariff_and_roomtypes[ 'room_type' ];
 					$dropdown_output[ $tariff_id ][ 'tariff_title' ] = $tariff_and_roomtypes[ 'tariff_title' ];
 					$dropdown_output[ $tariff_id ][ 'room_type_images' ] = $tariff_and_roomtypes[ 'room_type_images' ];
-                    $dropdown_output[ $tariff_id ][ 'max_adults' ] = $tariff_and_roomtypes[ 'max_adults' ];
-                    $dropdown_output[ $tariff_id ][ 'max_children' ] = $tariff_and_roomtypes[ 'max_children' ];
+					$dropdown_output[ $tariff_id ][ 'max_adults' ] = $tariff_and_roomtypes[ 'max_adults' ];
+					$dropdown_output[ $tariff_id ][ 'max_children' ] = $tariff_and_roomtypes[ 'max_children' ];
 
 					$dropdown_output[ $tariff_id ][ 'room_price_inc_tax' ] = output_price($tariff_and_roomtypes[ 'room_price_inc_tax' ]);
 
@@ -4948,8 +4948,8 @@
 				$r = array();
 
 
-                $r[ 'MAX_ADULTS' ] = $routput[ 'max_adults' ];
-                $r[ 'MAX_CHILDREN' ] = $routput[ 'max_children' ];
+				$r[ 'MAX_ADULTS' ] = $routput[ 'max_adults' ];
+				$r[ 'MAX_CHILDREN' ] = $routput[ 'max_children' ];
 
 				$r[ 'GUESTPER_ROOM' ] = $routput[ 'max_guests_per_room' ];
 				$r[ 'GUESTPER_BOOKING' ] = $routput[ 'max_guests_per_booking' ];
@@ -5072,10 +5072,10 @@
 			$roomStuff[ 'ROOM_IMAGE_MEDIUM' ] = $this->allPropertyRooms [ $roomUid ] [ 'medium_room_image' ];
 			$roomStuff[ 'ROOM_IMAGE_LARGE' ] = $this->allPropertyRooms [ $roomUid ] [ 'large_room_image' ];
 
-            $this->room_type_style_output[ $tariffUid ][ 'max_adults' ] = $basic_room_details->rooms[$roomUid]['max_adults'];
-            $this->room_type_style_output[ $tariffUid ][ 'max_children' ] = $basic_room_details->rooms[$roomUid]['max_children'];
-            $roomStuff[ 'MAX_ADULTS' ] = $basic_room_details->rooms[$roomUid]['max_adults'];
-            $roomStuff[ 'MAX_CHILDREN' ] = $basic_room_details->rooms[$roomUid]['max_children'];
+			$this->room_type_style_output[ $tariffUid ][ 'max_adults' ] = $basic_room_details->rooms[$roomUid]['max_adults'];
+			$this->room_type_style_output[ $tariffUid ][ 'max_children' ] = $basic_room_details->rooms[$roomUid]['max_children'];
+			$roomStuff[ 'MAX_ADULTS' ] = $basic_room_details->rooms[$roomUid]['max_adults'];
+			$roomStuff[ 'MAX_CHILDREN' ] = $basic_room_details->rooms[$roomUid]['max_children'];
 
 			$roomStuff[ 'TAGLINE' ] = $this->allPropertyRooms [ $roomUid ] [ 'tagline' ];
 			$roomStuff[ 'DESCRIPTION' ] = $this->allPropertyRooms [ $roomUid ] [ 'description' ];
@@ -5895,63 +5895,63 @@
 			}
 
 
-            $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-            $jrConfig = $siteConfig->get();
+			$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+			$jrConfig = $siteConfig->get();
 
-            if (isset( $jrConfig['secret_setting_use_old_guest_types'] ) && $jrConfig['secret_setting_use_old_guest_types'] == '1') {
-                $result = $this->getVariantsOfType('guesttype');
-                $total_nodiscount = 0;
-                if (!empty($result)) {
+			if (isset( $jrConfig['secret_setting_use_old_guest_types'] ) && $jrConfig['secret_setting_use_old_guest_types'] == '1') {
+				$result = $this->getVariantsOfType('guesttype');
+				$total_nodiscount = 0;
+				if (!empty($result)) {
 
-                    foreach ($result as $r) {
-                        if ($this->cfg_perPersonPerNight == '1') {
-                            if ($this->allRoomsAreIgnorePPPN) {
-                                $val = $this->rate_pernight;
-                                $val_nodiscount = $this->rate_pernight_nodiscount;
-                            } else {
-                                $val = $r['qty'] * $r['val'];
-                                $val_nodiscount = $r['qty'] * $r['val_nodiscount'];
-                            }
-                        } else {
-                            if ($r['qty'] != 0) {
-                                $val = $r['val'];
-                                $val_nodiscount = $r['val'];
-                            } else {
-                                $val = 0;
-                                $val_nodiscount = 0;
-                            }
-                        }
-                        if ($this->cfg_perPersonPerNight == '1' && $this->allRoomsAreIgnorePPPN) {
-                            $total = $val * count($this->requestedRoom);
-                            $total_nodiscount = $val_nodiscount * count($this->requestedRoom);
-                        } else {
-                            if ($this->cfg_perPersonPerNight == '1') {
-                                $total += $val;
-                                $total_nodiscount += $val_nodiscount;
-                            } else {
-                                $total = $this->rate_pernight;
-                                $total_nodiscount = $this->rate_pernight_nodiscount;
-                            }
-                        }
-                        $this->setErrorLog('makeNightlyRoomCharges::Total: ' . $total);
-                    }
-                    if ($this->cfg_perPersonPerNight == '1') {
-                        $this->room_total = ($total * $this->stayDays);
-                        $this->room_total_nodiscount = ($total_nodiscount * $this->stayDays);
-                    } else {
-                        $this->room_total = ($total * $this->stayDays) * count($this->requestedRoom);
-                        $this->room_total_nodiscount = ($total_nodiscount * $this->stayDays) * count($this->requestedRoom);
-                    }
-                }
-            } else {
-                if ($this->cfg_perPersonPerNight == '1') {
-                    $this->room_total = ($this->rate_pernight * $this->stayDays) * $this->getTotalInParty();
-                    $this->room_total_nodiscount = ($this->rate_pernight_nodiscount * $this->stayDays) * $this->getTotalInParty();
-                } else {
-                    $this->room_total = ($this->rate_pernight * $this->stayDays) * count($this->requestedRoom);
-                    $this->room_total_nodiscount = ($this->rate_pernight_nodiscount * $this->stayDays) * count($this->requestedRoom);
-                }
-            }
+					foreach ($result as $r) {
+						if ($this->cfg_perPersonPerNight == '1') {
+							if ($this->allRoomsAreIgnorePPPN) {
+								$val = $this->rate_pernight;
+								$val_nodiscount = $this->rate_pernight_nodiscount;
+							} else {
+								$val = $r['qty'] * $r['val'];
+								$val_nodiscount = $r['qty'] * $r['val_nodiscount'];
+							}
+						} else {
+							if ($r['qty'] != 0) {
+								$val = $r['val'];
+								$val_nodiscount = $r['val'];
+							} else {
+								$val = 0;
+								$val_nodiscount = 0;
+							}
+						}
+						if ($this->cfg_perPersonPerNight == '1' && $this->allRoomsAreIgnorePPPN) {
+							$total = $val * count($this->requestedRoom);
+							$total_nodiscount = $val_nodiscount * count($this->requestedRoom);
+						} else {
+							if ($this->cfg_perPersonPerNight == '1') {
+								$total += $val;
+								$total_nodiscount += $val_nodiscount;
+							} else {
+								$total = $this->rate_pernight;
+								$total_nodiscount = $this->rate_pernight_nodiscount;
+							}
+						}
+						$this->setErrorLog('makeNightlyRoomCharges::Total: ' . $total);
+					}
+					if ($this->cfg_perPersonPerNight == '1') {
+						$this->room_total = ($total * $this->stayDays);
+						$this->room_total_nodiscount = ($total_nodiscount * $this->stayDays);
+					} else {
+						$this->room_total = ($total * $this->stayDays) * count($this->requestedRoom);
+						$this->room_total_nodiscount = ($total_nodiscount * $this->stayDays) * count($this->requestedRoom);
+					}
+				}
+			} else {
+				if ($this->cfg_perPersonPerNight == '1') {
+					$this->room_total = ($this->rate_pernight * $this->stayDays) * $this->getTotalInParty();
+					$this->room_total_nodiscount = ($this->rate_pernight_nodiscount * $this->stayDays) * $this->getTotalInParty();
+				} else {
+					$this->room_total = ($this->rate_pernight * $this->stayDays) * count($this->requestedRoom);
+					$this->room_total_nodiscount = ($this->rate_pernight_nodiscount * $this->stayDays) * count($this->requestedRoom);
+				}
+			}
 			$tmpBookingHandler = jomres_getSingleton('jomres_temp_booking_handler');
 
 			//Coupon discount
