@@ -1,44 +1,89 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 	<patTemplate:tmpl name="show_tariffs" unusedvars="strip" type="simpleCondition" requiredVars="roomrateperday">
-	<table class="table table-striped table-hover table-sm">
-		<tr>
-			<td><strong>{HTITLE}</strong></td>
-			<td>{TITLE}</td>
-			<td colspan="2"></td>
-		</tr>
-		<tr>
-			<td><strong>{HROOMTYPE}</strong></td>
-			<td>{ROOMCLASSABBV}</td>
-			<td colspan="2"></td>
-		</tr>
-		<tr>
-			<td><strong>{HSTARTS}</strong></td>
-			<td>{VALIDFROM}</td>
-			<td><strong>{HENDS}</strong></td>
-			<td>{VALIDTO}</td>
-		</tr>
-		<tr>
-			<td><strong>{HMINDAYS}</strong></td>
-			<td>{MINDAYS}</td>
-			<td><strong>{HMAXDAYS}</strong></td>
-			<td>{MAXDAYS}</td>
-		</tr>
-		<tr>
-			<td><strong>{HMINPEEPS}</strong></td>
-			<td>{MINPEOPLE}</td>
-			<td><strong>{HMAXPEEPS}</strong></td>
-			<td>{MAXPEOPLE}</td>
-		</tr>
-		<tr>
-			<td colspan="4"><b>{ROOMRATEPERDAY}<b></td>
-		</tr>
-		<tr>
-			<td colspan="4"><strong>{NOTWEEKENDS}</strong></td>
-		</tr>
-		<tr>
-			<td colspan="4"><a href="{BOOKING_FORM_LINK}" class="btn btn-primary">{_JOMRES_FRONT_MR_MENU_BOOKAROOM}</a> </td>
-		</tr>
-	</table>
-	<br/>
+	<patTemplate:comment>
+	<div class="row">
+		<div class="col-sm-12">
+			<h2>{HTITLE}</h2>
+		</div>
+	</div>
+	</patTemplate:comment>
+	
+	<div class="row">
+		<div class="col-6">
+			<strong>{HTITLE}</strong>
+		</div>
+		<div class="col-6">
+			{TITLE}
+		</div>
+	</div>
+		
+
+		<div class="row">
+			<div class="col-6">
+				<strong>{HROOMTYPE}</strong>
+			</div>
+			<div class="col-6">
+				{ROOMCLASSABBV}
+			</div>
+		</div>
+		<div class="row pb-1">
+			<div class="col-6">
+				<strong>{HSTARTS}</strong>
+			</div>
+			<div class="col-6">
+				{VALIDFROM}
+			</div>
+		</div>
+		<div class="row pb-1">
+			<div class="col-6">
+				<strong>{HENDS}</strong>
+			</div>
+			<div class="col-6">
+				{VALIDTO}
+			</div>
+		</div>
+		
+		<div class="row pb-1">
+			<div class="col-3">
+				<strong>{HMINDAYS}</strong>
+			</div>
+			<div class="col-3">
+				{MINDAYS}
+			</div>
+			<div class="col-3">
+				<strong>{HMAXDAYS}</strong>
+			</div>
+			<div class="col-3">
+				{MAXDAYS}
+			</div>
+		</div>
+
+		<div class="row pb-1">
+			<div class="col-3">
+				<strong>{HMINPEEPS}</strong>
+			</div>
+			<div class="col-3">
+				{MINPEOPLE}
+			</div>
+			<div class="col-3">
+				<strong>{HMAXPEEPS}</strong>
+			</div>
+			<div class="col-3">
+				{MAXPEOPLE}
+			</div>
+		</div>
+
+		<div class="row pt-2 pb-1">
+			<div class="col-12">
+				<h5>{ROOMRATEPERDAY}</h5>
+			</div>
+		</div>
+
+		<div class="row pt-2">
+			<div class="col-12">
+				<a href="{BOOKING_FORM_LINK}" class="btn btn-primary">{_JOMRES_FRONT_MR_MENU_BOOKAROOM}</a>
+			</div>
+		</div>
+		<hr/>
 	</patTemplate:tmpl>
 </patTemplate:tmpl>
