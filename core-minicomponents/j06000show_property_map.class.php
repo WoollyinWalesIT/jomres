@@ -63,6 +63,11 @@ class j06000show_property_map
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
 
+		if (!isset($jrConfig['["google_maps_api_key"]']) || trim($jrConfig['["google_maps_api_key"]']) == '') {
+			echo "<div class='alert alert-danger'>Google maps api key is not set. Go to Administrator > Jomres > Settings > Site Configuration > Integrations tab and save your Google maps keys there.</div>";
+			return;
+		}
+
 		if (isset($componentArgs[ 'property_uid' ])) {
 			$property_uid = (int)$componentArgs[ 'property_uid' ];
 		} else {
