@@ -1472,7 +1472,7 @@ jr_define('_JOMRES_REGION_TRANSLATION_SWITCH_TITLE', 'Los nombres de las regione
 jr_define('_JOMRES_REGION_TRANSLATION_SWITCH_DESC', 'A menos que tenga un servidor muy rápido le aconsejamos dejar marcado esta opción como NO. Debido a el amplio número de nombres de regiones, la traducción de dichos nombres ocupa una gran cantidad de memorios que puede ralentizar sus resultados de búsqueda.');
 jr_define('_JOMRES_FRONT_MR_BOOKOUT_GUESTBOOKEDOUT', 'Pasajero ha hecho Chekout.');
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_EMAIL_ALREADY_IN_USE', 'Disculpe, esta dirección de correo ya se encuentra en uso. Si es su dirección de correo, por favor asegurese de haber iniciado sesión para reservar.');
-jr_define('JOMRES_TAPTOCALL', 'Tap to call');
+jr_define('JOMRES_TAPTOCALL', 'Call us');
 jr_define('JOMRES_NEWREVIEW_SUBJECT', 'Nuevo comentario para ');
 jr_define('JOMRES_NEWREVIEW_MESSAGE', 'Se ha hecho un nuevo comentario para ');
 jr_define('JOMRES_NEWREPORT_SUBJECT', 'Nuevo reporte');

@@ -1403,7 +1403,7 @@ jr_define('_JOMRES_REGION_TRANSLATION_SWITCH_TITLE', 'نام استان ها ق�
 jr_define('_JOMRES_REGION_TRANSLATION_SWITCH_DESC', 'بهتر است این گزینه را انتخاب نکنید چون سیستم شما برای ترجمه بسیار کند خواهد شد');
 jr_define('_JOMRES_FRONT_MR_BOOKOUT_GUESTBOOKEDOUT', 'Guest booked out.');
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_EMAIL_ALREADY_IN_USE', 'متاسفانه ایمیل وارد شده قبلا در این سیستم استفاده شده است, لطفا قبل از رزرو به حساب کاربری خود وارد شوید');
-jr_define('JOMRES_TAPTOCALL', 'Tap to call');
+jr_define('JOMRES_TAPTOCALL', 'Call us');
 jr_define('JOMRES_NEWREVIEW_SUBJECT', 'نظر جدید برای');
 jr_define('JOMRES_NEWREVIEW_MESSAGE', 'یک نظر جدید ثبت شده است برای');
 jr_define('JOMRES_NEWREPORT_SUBJECT', 'گزارش جدید');

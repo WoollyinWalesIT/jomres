@@ -1472,7 +1472,7 @@ jr_define('_JOMRES_REGION_TRANSLATION_SWITCH_TITLE', 'Regionnavne kan oversætte
 jr_define('_JOMRES_REGION_TRANSLATION_SWITCH_DESC', "Medmindre du kører en meget hurtig server, rådes du til at lade dette sæt stå til Nej. På grund af det store antal regionsnavne, tager regionnavneoversættelse meget hukommelse, som kan bremse dine søgeresultater ned.");
 jr_define('_JOMRES_FRONT_MR_BOOKOUT_GUESTBOOKEDOUT', 'Gæst reserveret.');
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_EMAIL_ALREADY_IN_USE', 'Beklager, denne e -mail -adresse er allerede i brug. Hvis dette er din e -mail -adresse, skal du sørge for at have logget ind, før du prøver at bestille.');
-jr_define('JOMRES_TAPTOCALL', 'Tap to call');
+jr_define('JOMRES_TAPTOCALL', 'Call us');
 jr_define('JOMRES_NEWREVIEW_SUBJECT', 'Ny anmeldelse for');
 jr_define('JOMRES_NEWREVIEW_MESSAGE', 'En ny anmeldelse er blevet efterladt for');
 jr_define('JOMRES_NEWREPORT_SUBJECT', 'Ny rapport');

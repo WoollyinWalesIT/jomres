@@ -1480,7 +1480,7 @@ jr_define('_JOMRES_REGION_TRANSLATION_SWITCH_TITLE', 'Region names are translata
 jr_define('_JOMRES_REGION_TRANSLATION_SWITCH_DESC', "Unless you're running a very fast server you are advised to leave this set to No. Due to the large number of region names, region name translation takes up a lot of memory which can slow your search results down.");
 jr_define('_JOMRES_FRONT_MR_BOOKOUT_GUESTBOOKEDOUT', 'Gost odjavljen.');
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_EMAIL_ALREADY_IN_USE', 'Žao nam je, ova email adresa je već u upotrebi. Ako je ovo vašae adresa e-pošte, uverite se da ste se prijavili pre nego što pokušate da rezervišete.');
-jr_define('JOMRES_TAPTOCALL', 'Tap to call');
+jr_define('JOMRES_TAPTOCALL', 'Call us');
 jr_define('JOMRES_NEWREVIEW_SUBJECT', 'Nova recenzija za objekat ');
 jr_define('JOMRES_NEWREVIEW_MESSAGE', 'Ostavljena je nova recenzija za ');
 jr_define('JOMRES_NEWREPORT_SUBJECT', 'Nova prijava');
