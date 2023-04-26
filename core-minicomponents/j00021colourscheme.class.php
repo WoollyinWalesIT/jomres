@@ -81,7 +81,13 @@ class j00021colourscheme
 			}
 		}
 
-		jomres_cmsspecific_addheaddata('css', JOMRES_CSS_RELPATH, $css_file);
+        $override_directory = get_override_directory().'custom_code'.JRDS;
+
+        if (file_exists( $override_directory.JRDS.$css_file)) {
+            jomres_cmsspecific_addheaddata('css', jomres_get_relative_path_to_file($override_directory).'/', $css_file);
+        } else {
+            jomres_cmsspecific_addheaddata('css', JOMRES_CSS_RELPATH, $css_file);
+        }
 	}
 
 	//Must be included in every mini-component.
