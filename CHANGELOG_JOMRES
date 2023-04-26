@@ -9,6 +9,8 @@
     Joomla only : Custom copy of components/com_jomres/router/router.php can be put into the custom_code directory and Jomres will use that instead of the default.
     Customised versions of /jomres/assets/css and /jomres/assets/javascript files can be put into custom_code directory and Jomres will use those instead of the default.
 
+NB: If you're already an experienced Jomres user, note that the custom_code directory referenced here is different to the one you're used to. Look in the Developer's and Designer's guide in the Documentation section of Jomres.net and find the Read This First section for more information.
+
 <span class="label label-success">Feature</span> Managers can now switch between Micromanage and Advanced. Advanced wasn't available in 10.6, but brought it back in to 10.7 as it still has it's uses.
 <span class="label label-success">Feature</span> Added setting which allows property managers to determine if the number of children can be used when checking the number of  guests in a booking v the number of selected rooms.
 <span class="label label-success">Feature</span> When an oauth client is now created, if a valid token doesn't exist we'll automatically create one for them, then redirect back to the edit client page. Quality of life improvement.
