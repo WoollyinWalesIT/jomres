@@ -903,6 +903,7 @@
 
 			jomres_set_page_title( $property_uid ,  '' );
 
+            $MiniComponents->specificEvent('06000', 'property_details_wrapper_top', array());
 			//all output is built by now, so let`s display the page
 			$pageoutput[] = $output;
 
@@ -997,6 +998,8 @@
 			}
 
 			$tmpl->displayParsedTemplate();
+
+            $MiniComponents->specificEvent('06000', 'property_details_bottom_top', array());
 
 			//trigger point after the property details
 			$MiniComponents->triggerEvent('00016', array('property_uid' => $property_uid));
