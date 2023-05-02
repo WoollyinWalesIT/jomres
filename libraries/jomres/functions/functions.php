@@ -1831,7 +1831,7 @@ Previously just a feature of the add plugin script, it's usage has been moved to
 
 			$dest_address = $current_property_details->property_name.','.$current_property_details->property_street.','.$current_property_details->property_town.','.$current_property_details->property_region.','.$current_property_details->property_country.','.$current_property_details->property_postcode;
 
-			return 'https://maps.google.com/maps?daddr='.$dest_address;
+			return 'https://maps.google.com/maps?daddr='.urlencode($dest_address);
 		}
 	}
 
@@ -3375,7 +3375,7 @@ if (!function_exists('file_get_contents')) {
 	/**
 	 * @package Jomres\Core\Functions
 	 *
-	 * Allows us to work independantly of Joomla, Wordpress or Mambo's emailers
+	 * Allows us to work independantly of Joomla or Wordpress emailers.
 	 */
 	if (!function_exists('jomresMailer')) {
 		function jomresMailer($from, $jomresConfig_sitename, $to, $subject, $body, $mode = 1, $attachments = array(), $debugging = true)
