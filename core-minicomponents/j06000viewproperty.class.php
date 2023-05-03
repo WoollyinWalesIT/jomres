@@ -564,6 +564,12 @@
 
 			if (isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate']) && $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'] != '') {
 				$bang = explode("/", $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate']);
+				if (!isset($bang[2])) {
+					$bang[2] = date("m" , );
+				}
+				if (!isset($bang[1])) {
+					$bang[1] = date("d");
+				}
 				$ui_calendar_requested_year = $bang[2];
 				$ui_calendar_requested_month = $bang[1];
 				$ui_calendar_requested_day = $bang[0];
