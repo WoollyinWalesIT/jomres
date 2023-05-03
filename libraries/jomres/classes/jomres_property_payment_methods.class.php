@@ -41,7 +41,7 @@ class jomres_property_payment_methods
 			$property_uids = array($property_uids);
 		}
 		$jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
-		$noimage = $jomres_media_centre_images->multi_query_images["noimage-small"];
+		$noimage = $jomres_media_centre_images->multi_query_images["noimage-medium"];
 
 		// First we need to extract those uids that are not already in the $this->multi_query_result var, this (may) reduce the number of properties we need to query
 		$temp_array = array();
@@ -64,17 +64,23 @@ class jomres_property_payment_methods
 					$gatewaydir = str_replace(JOMRESCONFIG_ABSOLUTE_PATH, get_showtime('live_site').'/', $tmpgatewaydir);
 					$gatewaydir = str_replace('\\', '/', $gatewaydir);
 
+
 					$this->multi_query_result[ $data->prid ][$data->plugin]['gateway'] = $data->plugin;
 					$this->multi_query_result[ $data->prid ][$data->plugin]['gateway_name'] = $result[ 'gatewayname' ];
 
 					$image = $noimage;
-					if (file_exists($tmpgatewaydir.'j00510'.$data->plugin.'.gif')) {
-						$image = $gatewaydir.'j00510'.$data->plugin.'.gif';
-					} elseif (file_exists($tmpgatewaydir.'j00510'.$data->plugin.'.png')) {
-						$image = $gatewaydir.'j00510'.$data->plugin.'.png';
-					} elseif (file_exists($tmpgatewaydir.'j00510'.$data->plugin.'.jpg')) {
-						$image = $gatewaydir.'j00510'.$data->plugin.'.jpg';
+					if ($data->plugin == 'stripe_standard') {
+						$image = JOMRES_IMAGES_RELPATH.'j00510'.$data->plugin.'.png';
+					} else {
+						if (file_exists($tmpgatewaydir.'j00510'.$data->plugin.'.gif')) {
+							$image = $gatewaydir.'j00510'.$data->plugin.'.gif';
+						} elseif (file_exists($tmpgatewaydir.'j00510'.$data->plugin.'.png')) {
+							$image = $gatewaydir.'j00510'.$data->plugin.'.png';
+						} elseif (file_exists($tmpgatewaydir.'j00510'.$data->plugin.'.jpg')) {
+							$image = $gatewaydir.'j00510'.$data->plugin.'.jpg';
+						}
 					}
+
 					$this->multi_query_result[ $data->prid ][$data->plugin]['gateway_image'] = $image;
 				}
 			}
