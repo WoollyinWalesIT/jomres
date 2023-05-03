@@ -13,8 +13,8 @@
 	</patTemplate:comment>
 	
 	<patTemplate:tmpl name="property_details" unusedvars="strip">
-		<div class="jomres_property_list_propertywrapper shadow mb-3 bg-body rounded  bg-secondary" id="{UID}">
-			<div class="card {BUDGET_BORDER_CLASS} {FEATURED_LISTINGS_CLASS} border-0">
+		<div class="jomres_property_list_propertywrapper mb-3 bg-body bg-secondary" id="{UID}">
+			<div class="card {BUDGET_BORDER_CLASS} {FEATURED_LISTINGS_CLASS} border-1">
 				<div class="card-body">
 					<div class="row">
 						<div class="col-10 card-header">
@@ -22,7 +22,7 @@
 								<a href="{MOREINFORMATIONLINK}" title="{PROPERTY_NAME_FULL}" itemprop="name" style="text-decoration: none;">{PROP_NAME}</a>
 							</h3>
 						</div>
-						<div class="col-2">
+						<div class="col-2 card-header">
 							<div class="hidden-xs hidden-sm plist-compare">
 								<label>
 									<input type="checkbox" name="compare" value="{UID}" autocomplete="off"/>
