@@ -174,7 +174,7 @@
 			}
 
 			//properties section menus
-			if ($thisJRUser->accesslevel >= 50) {
+			if ($thisJRUser->accesslevel >= 50 && get_showtime('numberOfPropertiesInSystem') > 1 ) {
 				$jomres_menu->add_item(20, jr_gettext('_JRPORTAL_CPANEL_LISTPROPERTIES', '_JRPORTAL_CPANEL_LISTPROPERTIES', false), 'listyourproperties', 'fa-list');
 			}
 
