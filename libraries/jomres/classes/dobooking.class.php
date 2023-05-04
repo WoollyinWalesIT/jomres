@@ -4810,7 +4810,7 @@
 						} else {
 							$return_output = '';
 						}
-					} else {
+					} elseif (!isset($_REQUEST['initialise_form'])) {
 						$return_output = '<div>'.jr_gettext('_JOMRES_SRP_WEHAVENOVACANCIES', '_JOMRES_SRP_WEHAVENOVACANCIES', false, false).'<font color="white">~</font><div></div id="availRooms" class="ui-state-error"></div>';
 					}
 				}
@@ -5584,25 +5584,28 @@
 
 						$total_in_party = $this->getTotalInParty();
 
-						if ( (bool)$this->mrConfig['occupancy_levels_include_children'] == true && !empty($this->child_numbers)) {
-							foreach ($this->child_numbers as $child_number) {
-								$total_in_party += $child_number;
+						if ($requestedRoom_count >0){
+							if ( (bool)$this->mrConfig['occupancy_levels_include_children'] == true && !empty($this->child_numbers)) {
+								foreach ($this->child_numbers as $child_number) {
+									$total_in_party += $child_number;
+								}
+								if ($total_in_party > $selected_rooms_max_occupancy) {
+									$this->resetPricingOutput = true;
+									$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_CHOOSE_MORE_ROOMS', '_JOMRES_BOOKINGFORM_MONITORING_CHOOSE_MORE_ROOMS', false, false)));
+								}
+							} else {
+								if ($total_in_party > $selected_rooms_max_adults) {
+									$this->resetPricingOutput = true;
+									$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_CHOOSE_MORE_ROOMS', '_JOMRES_BOOKINGFORM_MONITORING_CHOOSE_MORE_ROOMS', false, false)));
+								}
 							}
-							if ($total_in_party > $selected_rooms_max_occupancy) {
+
+							if ($requestedRoom_count > $total_in_party ) {
 								$this->resetPricingOutput = true;
-								$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_CHOOSE_MORE_ROOMS', '_JOMRES_BOOKINGFORM_MONITORING_CHOOSE_MORE_ROOMS', false, false)));
-							}
-						} else {
-							if ($total_in_party > $selected_rooms_max_adults) {
-								$this->resetPricingOutput = true;
-								$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_CHOOSE_MORE_ROOMS', '_JOMRES_BOOKINGFORM_MONITORING_CHOOSE_MORE_ROOMS', false, false)));
+								$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_MORE_ROOMS_THAN_GUESTS', '_JOMRES_BOOKINGFORM_MONITORING_MORE_ROOMS_THAN_GUESTS', false, false)));
 							}
 						}
 
-						if ($requestedRoom_count > $total_in_party ) {
-							$this->resetPricingOutput = true;
-							$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_MORE_ROOMS_THAN_GUESTS', '_JOMRES_BOOKINGFORM_MONITORING_MORE_ROOMS_THAN_GUESTS', false, false)));
-						}
 					}
 
 					if (empty($this->requestedRoom)) {
