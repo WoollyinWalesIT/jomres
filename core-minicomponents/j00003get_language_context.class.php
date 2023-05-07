@@ -35,9 +35,9 @@ class j00003get_language_context
      *
      * This may cause some confusion because subsequent ajax calls will not append language_context to subsequent urls, so the language context will revert to the default property type. This is inevitable and cannot be avoided.
      *
-     * Different property types, however, when called (e.g. when basic module output function is used) will still pull language strings that are appropriate to its property type (language context)
+     * Different property types, however, when called (e.g. when basic module output function is used) will still pull language strings that are appropriate to its property type (language context). This means that even with language_context set in the url, views of individual properties will still show strings that are relevant for that particular property type. So, you can't use this script to set the language context for a property type and then expect to see the same language strings for all properties.
      *
-     * 
+     *
      *
 	 */
 
@@ -67,7 +67,6 @@ class j00003get_language_context
         if (in_array($language_context , $valid_property_types)) {
             set_showtime('property_type', $language_context);
         }
-
 	}
 
 
