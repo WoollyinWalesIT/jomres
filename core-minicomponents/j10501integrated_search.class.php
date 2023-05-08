@@ -42,7 +42,9 @@ class j10501integrated_search
 
 			return;
 		}
-		
+
+        return;
+
 		if (!this_cms_is_wordpress()) {
 			return;
 		}
