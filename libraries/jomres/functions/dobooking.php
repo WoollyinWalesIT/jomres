@@ -851,13 +851,19 @@
 			}
 		}
 
-		if (!defined('DOBOOKING_IN_DETAILS')) {
-			$tmpl->displayParsedTemplate();
-			echo $login_modal;
-		} else {
-			$booking_form = $tmpl->getParsedTemplate().$login_modal;
-			define('BOOKING_FORM_FOR_PROPERTY_DETAILS', $booking_form);
-		}
+        $run_as_jomres_script = get_showtime('run_as_jomres_script');
+        if ($run_as_jomres_script === true) {
+            $tmpl->displayParsedTemplate();
+            echo $login_modal;
+        } else {
+            if (!defined('DOBOOKING_IN_DETAILS')) {
+
+            } else {
+                $booking_form = $tmpl->getParsedTemplate().$login_modal;
+                define('BOOKING_FORM_FOR_PROPERTY_DETAILS', $booking_form);
+            }
+        }
+
 	}
 
 

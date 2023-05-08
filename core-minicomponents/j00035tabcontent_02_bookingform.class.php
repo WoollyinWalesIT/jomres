@@ -42,6 +42,9 @@ class j00035tabcontent_02_bookingform
 
 			return;
 		}
+
+
+
 		$property_uid = (int) $componentArgs[ 'property_uid' ];
 		$mrConfig = getPropertySpecificSettings($property_uid);
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
@@ -49,6 +52,8 @@ class j00035tabcontent_02_bookingform
 		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 
 		$this->retVals = null;
+
+        return;
 
 		if ($mrConfig[ 'registeredUsersOnlyCanBook' ] == '1' && $thisJRUser->id == 0) {
 			return;
