@@ -55,12 +55,12 @@ class j10501booking_form
 
 		$configurationPanel->startPanel(jr_gettext('_JOMRES_PATHWAY_BOOKINGFORM', '_JOMRES_PATHWAY_BOOKINGFORM', false));
 
-		if ($jrConfig[ 'admin_options_level' ] > 1) {
+		/*if ($jrConfig[ 'admin_options_level' ] > 1) {
 			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_SHOWBOOKINGFORMINPROPERTYDETAILS', '_JOMRES_COM_A_SHOWBOOKINGFORMINPROPERTYDETAILS', false));
 			$configurationPanel->setmiddle($lists['show_booking_form_in_property_details']);
 			$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_SHOWBOOKINGFORMINPROPERTYDETAILS_DESC', '_JOMRES_COM_A_SHOWBOOKINGFORMINPROPERTYDETAILS_DESC', false));
 			$configurationPanel->insertSetting();
-		}
+		}*/
 
 		$configurationPanel->setleft(jr_gettext('SEND_EMAIL_COPIES_TO_SITE_ADMINS_TITLE', 'SEND_EMAIL_COPIES_TO_SITE_ADMINS_TITLE', false));
 		$configurationPanel->setmiddle($lists['send_email_copies_to_site_admins']);
