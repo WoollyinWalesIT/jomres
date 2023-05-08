@@ -1159,7 +1159,7 @@ jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD', '自动暂停�
 jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD_DESC', '这个阈值是经理在他们被暂停和他们的财产未公开之前必须支付发票的天数。');
 //4.7.2
 jr_define('_JOMRES_COM_LANGUAGE_CONTEXT', '语言环境');
-jr_define('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', '使用此选项更改站点的语言上下文。此功能允许 Jomres 使用适合您当前焦点的标签，因此如果您的焦点是游艇经纪，那么更改上下文将允许 Jomres 显示来自不同语言文件的标签。例如，如果您将上下文设置为"Yacht Brokerage"，则 Jomres 将首先查找当前语言，然后在 /'.JOMRES_ROOT_DIRECTORY.'/languages 目录中搜索子目录称为"yachtbrokerage"。如果当前语言的文件存在，则将使用该文件。如果不存在，则 Jomres 将在同一目录中搜索英文文件。如果找不到，Jomres 将使用/'.JOMRES_ROOT_DIRECTORY.'/languages 目录中当前所选语言的语言文件。');
+jr_define('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', '使用此选项更改站点的语言上下文。 此功能允许 Jomres 使用适合您使用 Jomres 的方式的标签，因此如果您的重点是作为游艇经纪，那么更改上下文将允许 Jomres 显示适合游艇的标签。 例如，如果您将上下文设置为“Yacht Brokerage”，那么 Jomres 将首先找到当前语言，然后在自定义文本数据库中搜索以“yachtbrokerage”的语言上下文保存的字符串。 如果存在当前语言和上下文的自定义字符串，则将使用它们。 如果不是，那么 Jomres 将回退到它的核心语言文件使用的语言定义。');
 // 4.7.3
 jr_define('_JOMRES_COM_ADVANCED_SITE_CONFIG', '高级站点配置');
 jr_define('_JOMRES_COM_ADVANCED_SITE_CONFIG_DESC', '如果您想使用高级站点配置选项，请将此选项设置为 Yes。如果您刚开始使用 Jomres，那么我们建议您暂时将其保留为 No，因为默认安装是足以让您入门，而您应该将 Jomres 添加到主菜单并以"管理员"身份登录前端并开始配置您的属性。请注意，如果您不这样做，许多高级选项可能不可用\'没有安装适当的插件。免费的核心系统的用户将无法充分利用他们启用的功能。');

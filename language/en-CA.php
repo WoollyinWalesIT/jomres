@@ -1,4 +1,4 @@
-4<?php
+<?php
 /**
  * Core file.
  *
@@ -1135,7 +1135,7 @@ jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD', 'Auto suspend 
 jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD_DESC', 'This threashold is the number of days that a manager has to pay an invoice before they are suspended and their businesses unpublished.');
 //4.7.2
 jr_define('_JOMRES_COM_LANGUAGE_CONTEXT', 'Language context');
-jr_define('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', 'Use this option to change the site\'s language context. This feature allows Jomres to use labels that are appropriate for your current focus, so if your focus is as a Yacht Brokerage, then changing the context will allow Jomres to present labels from a different language file. For example, if you set the context to "Yacht Brokerage" then Jomres will first find the current language, then search the /'.JOMRES_ROOT_DIRECTORY.'/languages directory for a sub-directory called "yachtbrokerage". If the file exists for the current language then that file will be used. If not, then Jomres will search for an english language file in that same directory. If that can\'t be found, Jomres will use the language file for the currently selected language in the /'.JOMRES_ROOT_DIRECTORY.'/languages directory. Note that if you create a new property type, then a copy of the current language file is made in a subdirectory under /'.JOMRES_ROOT_DIRECTORY.'/language with a name that reflects the new property type\'s description.');
+jr_define('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', "Use this option to change the site's language context. This feature allows Jomres to use labels that are appropriate for how you are using Jomres, so if your focus is as a Yacht Brokerage, then changing the context will allow Jomres to present labels appropriate to yachts. For example, if you set the context to Yacht Brokerage then Jomres will first find the current language, then search the custom text database for strings saved with a language context of yachtbrokerage. If custom strings for the current language and context exist then those will be used. If not, then Jomres will fall back to the language definitions used by it's Core language files.");
 // 4.7.3
 jr_define('_JOMRES_COM_ADVANCED_SITE_CONFIG', 'Advanced site config');
 jr_define('_JOMRES_COM_ADVANCED_SITE_CONFIG_DESC', 'Set this option to Yes if you want to use the advanced site configuration options. If you\'re just starting with Jomres, then we advise you to leave this to No for now, as the default installation is sufficient to get you started, instead you should add Jomres to the main menu and log into the frontend as "admin" and start configuring your property(s). Please note that many of the advanced options may not be available if you don\'t have the appropriate plugin(s) installed. Users of the free, core system will not be able to take full advantage of the features that they enable.');
