@@ -432,8 +432,22 @@ function switch_editing_mode(url, val) {
 
 function switch_language_context(val) {
 	var original_url = window.location.href;
-	window.location = original_url + '&language_context=' + val;
+	var new_url = replaceUrlParam(original_url, 'language_context', val)
+	window.location = new_url;
 };
+
+function replaceUrlParam(url, paramName, paramValue)
+{
+	if (paramValue == null) {
+		paramValue = '';
+	}
+	var pattern = new RegExp('\\b('+paramName+'=).*?(&|#|$)');
+	if (url.search(pattern)>=0) {
+		return url.replace(pattern,'$1' + paramValue + '$2');
+	}
+	url = url.replace(/[?#]$/,'');
+	return url + (url.indexOf('?')>0 ? '&' : '?') + paramName + '=' + paramValue;
+}
 
 function switch_exchange_rate(url, val) {
 	var original_url = window.location.href;
