@@ -123,12 +123,12 @@ class j10501a_misc
 			$configurationPanel->insertSetting();
 		}
 
-/*		if ( $jrConfig[ 'admin_options_level' ] > 1 ) {
+		if ( $jrConfig[ 'admin_options_level' ] > 1 ) {
 			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_LANGUAGE_CONTEXT', '_JOMRES_COM_LANGUAGE_CONTEXT', false));
 			$configurationPanel->setmiddle($language_context_dropdown);
 			$configurationPanel->setright(jr_gettext('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', '_JOMRES_COM_LANGUAGE_CONTEXT_DESC', false));
 			$configurationPanel->insertSetting();
-		}*/
+		}
 
 		if ($jrConfig[ 'admin_options_level' ] > 1) {
 			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_LABEL_PRIORITY_TITLE', '_JOMRES_COM_LABEL_PRIORITY_TITLE', false));
