@@ -1,27 +1,27 @@
 <?php
-/**
- * Core file.
- *
- * @author Vince Wooll <sales@jomres.net>
- *
- *  @version Jomres 10.7.0
- *
- * @copyright	2005-2023 Vince Wooll
- * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
- **/
+	/**
+	 * Core file.
+	 *
+	 * @author Vince Wooll <sales@jomres.net>
+	 *
+	 *  @version Jomres 10.7.0
+	 *
+	 * @copyright	2005-2023 Vince Wooll
+	 * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
+	 **/
 
 // ################################################################
-defined('_JOMRES_INITCHECK') or die('');
+	defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-/**
- * @package Jomres\Core\Functions
- *
- * Define a string
- *
- *          In the past Jomres used Constants in language files. That's not the case now, however the variable name remains the same.
- *
- */
+	/**
+	 * @package Jomres\Core\Functions
+	 *
+	 * Define a string
+	 *
+	 *          In the past Jomres used Constants in language files. That's not the case now, however the variable name remains the same.
+	 *
+	 */
 	if (!function_exists('jr_define')) {
 		function jr_define($constant, $string)
 		{
@@ -31,12 +31,12 @@ defined('_JOMRES_INITCHECK') or die('');
 	}
 
 
-/**
- * @package Jomres\Core\Functions
- *
- *          What's the string value stored against the (originally, but not now) constant.
- *
- */
+	/**
+	 * @package Jomres\Core\Functions
+	 *
+	 *          What's the string value stored against the (originally, but not now) constant.
+	 *
+	 */
 	if (!function_exists('jr_get_defined')) {
 		function jr_get_defined($constant, $default = '')
 		{
@@ -56,20 +56,20 @@ defined('_JOMRES_INITCHECK') or die('');
 	}
 
 
-/**
- *
- * @package Jomres\Core\Functions
- *
- *          All output strings are passed through this function for processing.
- *
- *          Performs several functions.
- *
- *          theConstant and theValue are normally one and the same, nowadays
- *          If oktoedit, then editinplace can be used
- *          If is link is largely defunct, but if set to True then don't offer editinplace
- *
- *          Gets language definitions, finds relevant strings, and if required fires up the editinplace javascript that allows property managers to customise strings just for their properties
- */
+	/**
+	 *
+	 * @package Jomres\Core\Functions
+	 *
+	 *          All output strings are passed through this function for processing.
+	 *
+	 *          Performs several functions.
+	 *
+	 *          theConstant and theValue are normally one and the same, nowadays
+	 *          If oktoedit, then editinplace can be used
+	 *          If is link is largely defunct, but if set to True then don't offer editinplace
+	 *
+	 *          Gets language definitions, finds relevant strings, and if required fires up the editinplace javascript that allows property managers to customise strings just for their properties
+	 */
 	if (!function_exists('jr_gettext')) {
 		function jr_gettext($theConstant, $theValue, $okToEdit = true, $isLink = false)
 		{
@@ -116,11 +116,13 @@ defined('_JOMRES_INITCHECK') or die('');
 				$br = '<br />';
 			}
 
+			$language_context = get_showtime('property_type');
 			if (isset($jrConfig[ 'prioritise_sitewide_label_definitions' ]) && $jrConfig[ 'prioritise_sitewide_label_definitions' ] == "1") {
-				if (isset($customTextObj->global_custom_text[$jomres_language_definitions->ptype][$theConstant])) {
-					$theText = $customTextObj->global_custom_text[$jomres_language_definitions->ptype][$theConstant];
+				if (isset($customTextObj->global_custom_text[$language_context][$theConstant])) {
+					$theText = $customTextObj->global_custom_text[$language_context][$theConstant];
 				} elseif (isset($customTextObj->global_custom_text['0'][$theConstant])) {
 					$theText = $customTextObj->global_custom_text['0'][$theConstant];
+
 				} else {
 					if (!isset($customTextObj->properties_custom_text[$property_uid])) {
 						$customTextObj->get_custom_text_for_property($property_uid);
@@ -138,8 +140,8 @@ defined('_JOMRES_INITCHECK') or die('');
 				if (isset($customTextObj->properties_custom_text[$property_uid][$theConstant])) {
 					$theText = $customTextObj->properties_custom_text[$property_uid][$theConstant];
 				} else {
-					if (isset($customTextObj->global_custom_text[$jomres_language_definitions->ptype][$theConstant])) {
-						$theText = $customTextObj->global_custom_text[$jomres_language_definitions->ptype][$theConstant];
+					if (isset($customTextObj->global_custom_text[$language_context][$theConstant])) {
+						$theText = $customTextObj->global_custom_text[$language_context][$theConstant];
 					} else {
 						if (isset($customTextObj->global_custom_text['0'][$theConstant])) {
 							$theText = $customTextObj->global_custom_text['0'][$theConstant];

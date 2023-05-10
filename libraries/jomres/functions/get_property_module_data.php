@@ -128,7 +128,7 @@
 						$res[ $property_uid ][ 'data' ] = $cache_contents['data'];
 					} else {
 						$property_data = $current_property_details->multi_query_result[ $property_uid ];
-
+						set_showtime('property_type', $property_data['property_type']);
 						$property_data[ 'RANDOM_IDENTIFIER' ] = generateJomresRandomString(10);
 
 						if (!in_array($property_uid, $shortlist_items)) {
