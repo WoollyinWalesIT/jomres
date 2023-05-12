@@ -43,6 +43,11 @@ class j06000animation_library
 			return;
 		}
 
+		$disable_animations = (bool)get_showtime('disable_animations');
+		if ($disable_animations) {
+			return;
+		}
+
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
 
