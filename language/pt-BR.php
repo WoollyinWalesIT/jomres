@@ -646,7 +646,7 @@ jr_define('_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', ' foi descontado de ');
 jr_define('_JOMCOMP_WISEPRICE_TO', ' para ');
 jr_define('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', ' Preço de quarto não descontado ');
 jr_define('JOMRES_COM_A_MAPSKEY', 'Chave API Google maps');
-jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'Pode obter uma chave API do Google Maps em <a href="https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key" target="_blank">Google maps</a>. Depois de a ter obtido e inserido aqui, o Jomres mostrará o mapa na página de pormenores da sua propriedade.');
+jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'Pode obter uma chave API do Google Maps em <a href="https://console.cloud.google.com/projectselector2/google/maps-apis/credentials" target="_blank">Google maps</a>. Depois de a ter obtido e inserido aqui, o Jomres mostrará o mapa na página de pormenores da sua propriedade.');
 jr_define('_JOMCOMP_LASTMINUTE_CPANEL', '<i>Last minute</i>');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE', 'Activo?');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE_DESC', 'Defina Sim se quiser realizar negócios <i>last minute</i>.');

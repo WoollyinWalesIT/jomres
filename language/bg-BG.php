@@ -654,7 +654,7 @@ jr_define('_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', ' е намалена от ');
 jr_define('_JOMCOMP_WISEPRICE_TO', ' на ');
 jr_define('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', ' Няма динамично конфигуриране на цените ');
 jr_define('JOMRES_COM_A_MAPSKEY', 'Google maps API ключ');
-jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'Генерирайте ключ от <a href="https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key" target="_blank">Google maps</a>. Сложете генерирания ключ тук и системата ще изобрази картата при детайлите за обекта.');
+jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'Генерирайте ключ от <a href="https://console.cloud.google.com/projectselector2/google/maps-apis/credentials" target="_blank">Google maps</a>. Сложете генерирания ключ тук и системата ще изобрази картата при детайлите за обекта.');
 jr_define('_JOMCOMP_LASTMINUTE_CPANEL', 'В последня момент');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE', 'Активен?');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE_DESC', 'Изберете Да, ако искате да използвате оферта в последния момент.');

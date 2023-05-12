@@ -656,7 +656,7 @@ jr_define('_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', ' تم تخفيضها من  ')
 jr_define('_JOMCOMP_WISEPRICE_TO', ' الى ');
 jr_define('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', ' السعر المعقول لا ينطبق  ');
 jr_define('JOMRES_COM_A_MAPSKEY', 'مفتاح API خرائط قوقل');
-jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'يمكنك الحصول على مفتاح API لخرائط جوجل من <a href="https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key" target="_blank">Google maps</a>. بمجرد إدخال مفتاح الخريطة هنا , سيعرض جومريس الخريطة في صفحة تفاصيل العمل الخاصة بك.');
+jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'يمكنك الحصول على مفتاح API لخرائط جوجل من <a href="https://console.cloud.google.com/projectselector2/google/maps-apis/credentials" target="_blank">Google maps</a>. بمجرد إدخال مفتاح الخريطة هنا , سيعرض جومريس الخريطة في صفحة تفاصيل العمل الخاصة بك.');
 jr_define('_JOMCOMP_LASTMINUTE_CPANEL', 'آخر فرصة');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE', 'فعال؟');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE_DESC', 'إضبط هذه بنعم في حال اردت استخدام اخر فرصة ');

@@ -670,7 +670,7 @@ jr_define('_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', 'er blevet nedsat fra');
 jr_define('_JOMCOMP_WISEPRICE_TO', 'til');
 jr_define('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', 'Room price not discounted');
 jr_define('JOMRES_COM_A_MAPSKEY', 'Google maps API -nøgle');
-jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'Du kan få en Google maps API-nøgle fra <a href = "https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key" target="_blank"> Google maps </a>. Når du har indtastet din kortnøgle her, viser Jomres kortet på din ejendomsoplysningsside. ');
+jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'Du kan få en Google maps API-nøgle fra <a href = "https://console.cloud.google.com/projectselector2/google/maps-apis/credentials" target="_blank"> Google maps </a>. Når du har indtastet din kortnøgle her, viser Jomres kortet på din ejendomsoplysningsside. ');
 jr_define('_JOMCOMP_LASTMINUTE_CPANEL', 'Last minute');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE', 'Aktiv?');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE_DESC', 'Indstil dette til Ja, hvis du vil tilbyde tilbud i sidste øjeblik.');

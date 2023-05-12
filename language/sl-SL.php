@@ -658,7 +658,7 @@ jr_define('_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', 'je znižano');
 jr_define('_JOMCOMP_WISEPRICE_TO', 'do');
 jr_define('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', 'Cena sobe ni znižana');
 jr_define('JOMRES_COM_A_MAPSKEY', 'Ključ API -ja za Google zemljevide');
-jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'Ključ API-ja google maps lahko dobite na <a href = "https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key" target="_blank"> Google zemljevidi </a>. Ko tukaj vnesete ključ zemljevida, bo Jomres prikazal zemljevid na strani s podrobnostmi o nepremičnini. ');
+jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'Ključ API-ja google maps lahko dobite na <a href = "https://console.cloud.google.com/projectselector2/google/maps-apis/credentials" target="_blank"> Google zemljevidi </a>. Ko tukaj vnesete ključ zemljevida, bo Jomres prikazal zemljevid na strani s podrobnostmi o nepremičnini. ');
 jr_define('_JOMCOMP_LASTMINUTE_CPANEL', 'Last minute');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE', 'Aktivno?');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE_DESC', 'Nastavite na Da, če želite ponuditi last minute ponudbe.');

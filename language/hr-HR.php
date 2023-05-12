@@ -666,7 +666,7 @@ Ako prijeđete s Naprednog na Micromanage, sve postojeće tarife bit će uklonje
 	jr_define('_JOMCOMP_WISEPRICE_TO', ' na ');
 	jr_define('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', ' Cijena sobe bez popusta ');
 	jr_define('JOMRES_COM_A_MAPSKEY', 'Google mape API key');
-	jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'Nije moguće dopiti google karte API ključ od <ahref="https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key" target="_blank">Google maps</a>. Upišite google mape ključ ovdje i tada će se vaše karte prikazivati ispravno');
+	jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'Nije moguće dopiti google karte API ključ od <ahref="https://console.cloud.google.com/projectselector2/google/maps-apis/credentials" target="_blank">Google maps</a>. Upišite google mape ključ ovdje i tada će se vaše karte prikazivati ispravno');
 	jr_define('_JOMCOMP_LASTMINUTE_CPANEL', 'Last minute');
 	jr_define('_JOMCOMP_LASTMINUTE_ACTIVE', 'Aktiviraj?');
 	jr_define('_JOMCOMP_LASTMINUTE_ACTIVE_DESC', 'Postavite na Da ukoliko želite aktivirati Last minute ponude.');

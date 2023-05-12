@@ -659,7 +659,7 @@ jr_define('_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', ' à été remisé à partir d
 jr_define('_JOMCOMP_WISEPRICE_TO', ' vers ');
 jr_define('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', ' Tarif de la chambre sans remise ');
 jr_define('JOMRES_COM_A_MAPSKEY', 'Clé API Google maps');
-jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'Vous pouvez créer une clé Google Maps API sur <a href=\"https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key\" target=\"_blank\">Google Maps</a>. Un fois votre clé copiée ici, le logiciel affichera la carte dans la page Descriptif de l\'établissement.');
+jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'Vous pouvez créer une clé Google Maps API sur <a href=\"https://console.cloud.google.com/projectselector2/google/maps-apis/credentials\" target=\"_blank\">Google Maps</a>. Un fois votre clé copiée ici, le logiciel affichera la carte dans la page Descriptif de l\'établissement.');
 jr_define('_JOMCOMP_LASTMINUTE_CPANEL', 'Dernière minute');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE', 'Active ?');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE_DESC', 'Activer cette option, si vous voulez offrir des remises de dernière minute.');

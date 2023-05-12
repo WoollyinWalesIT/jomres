@@ -652,7 +652,7 @@ jr_define('_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', " lastminute korting ");
 jr_define('_JOMCOMP_WISEPRICE_TO', " naar ");
 jr_define('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', " Korting niet toegepast ");
 jr_define('JOMRES_COM_A_MAPSKEY', "Google Maps API-key ");
-jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'U kunt een Google Maps API-sleutel krijgen van <a href="https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key" target="_blank"> Google Maps </a>. Zodra u uw kaartcode hier hebt ingevoerd, zal Jomres de kaart tonen op uw pagina voor verhuuurobject details. ');
+jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'U kunt een Google Maps API-sleutel krijgen van <a href="https://console.cloud.google.com/projectselector2/google/maps-apis/credentials" target="_blank"> Google Maps </a>. Zodra u uw kaartcode hier hebt ingevoerd, zal Jomres de kaart tonen op uw pagina voor verhuuurobject details. ');
 jr_define('_JOMCOMP_LASTMINUTE_CPANEL', "Last minute");
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE', "Actief?");
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE_DESC', "Stel dit in op Ja als u lastminute aanbiedingen wilt aanbieden. ");

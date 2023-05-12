@@ -652,7 +652,7 @@ jr_define('_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', 'ціну знижено з');
 jr_define('_JOMCOMP_WISEPRICE_TO', 'до');
 jr_define('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', 'Знижки немає');
 jr_define('JOMRES_COM_A_MAPSKEY', 'Ключ API карт Google');
-jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'Ви можете отримати ключ API Google Maps з <a href = "https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key" target="_blank"> Карти Google </a>. Після того, як ви введете тут ключ своєї карти, Джомрес покаже карту на вашій сторінці" Подробиці власності ". ');
+jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'Ви можете отримати ключ API Google Maps з <a href = "https://console.cloud.google.com/projectselector2/google/maps-apis/credentials" target="_blank"> Карти Google </a>. Після того, як ви введете тут ключ своєї карти, Джомрес покаже карту на вашій сторінці" Подробиці власності ". ');
 jr_define('_JOMCOMP_LASTMINUTE_CPANEL', 'Остання хвилина');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE', 'Активувати?');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE_DESC', 'Так, якщо активувати last minute пропозиції.');

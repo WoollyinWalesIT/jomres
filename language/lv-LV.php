@@ -653,7 +653,7 @@ jr_define('_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', ' atlaide tiek piemērota no '
 jr_define('_JOMCOMP_WISEPRICE_TO', ' līdz ');
 jr_define('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', ' Dinamiskā atlaide nav piemērota ');
 jr_define('JOMRES_COM_A_MAPSKEY', 'Google maps API key');
-jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'You can get a google maps API key from <a href="https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key" target="_blank">Google maps</a>. Once you have input your map key here, Jomres will show the map in your Business Details page.');
+jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'You can get a google maps API key from <a href="https://console.cloud.google.com/projectselector2/google/maps-apis/credentials" target="_blank">Google maps</a>. Once you have input your map key here, Jomres will show the map in your Business Details page.');
 jr_define('_JOMCOMP_LASTMINUTE_CPANEL', 'Pēdējā brīža atlaide');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE', 'Aktīva?');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE_DESC', 'Atzīmējiet Jā, ja vēlaties piešķirt pēdējā brīža atlaides. ');

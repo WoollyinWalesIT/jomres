@@ -663,7 +663,7 @@ jr_define('_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', 'έχει μειωθεί απ�
 jr_define('_JOMCOMP_WISEPRICE_TO', 'to');
 jr_define('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', 'Η τιμή δωματίου δεν έχει έκπτωση');
 jr_define('JOMRES_COM_A_MAPSKEY', 'Google maps API key');
-jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'Μπορείτε να λάβετε κλειδί API για χάρτες Google από <a href = "https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key" target ="_blank"> Χάρτες Google </a>. Μόλις εισαγάγετε το κλειδί του χάρτη σας εδώ, ο Jomres θα εμφανίσει τον χάρτη στη σελίδα Λεπτομέρειες ιδιοκτησίας. ');
+jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'Μπορείτε να λάβετε κλειδί API για χάρτες Google από <a href = "https://console.cloud.google.com/projectselector2/google/maps-apis/credentials" target ="_blank"> Χάρτες Google </a>. Μόλις εισαγάγετε το κλειδί του χάρτη σας εδώ, ο Jomres θα εμφανίσει τον χάρτη στη σελίδα Λεπτομέρειες ιδιοκτησίας. ');
 jr_define('_JOMCOMP_LASTMINUTE_CPANEL', 'Τελευταία στιγμή');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE', 'Ενεργό;');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE_DESC', 'Ορίστε το σε Ναι εάν θέλετε να προσφέρετε προσφορές τελευταίας στιγμής.');

@@ -669,7 +669,7 @@ jr_define('_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', 'bolo zľavnené z');
 jr_define('_JOMCOMP_WISEPRICE_TO', 'do');
 jr_define('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', 'cena za izbu nie je zľavnená');
 jr_define('JOMRES_COM_A_MAPSKEY', 'kľúč API služby Google Maps');
-jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'Kľúč rozhrania API služby Mapy Google môžete získať z <a href = "https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key" target="_blank"> Mapy Google </a>. Keď sem zadáte kľúč mapy, Jomres zobrazí mapu na vašej stránke s podrobnosťami o vlastníctve. ');
+jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'Kľúč rozhrania API služby Mapy Google môžete získať z <a href = "https://console.cloud.google.com/projectselector2/google/maps-apis/credentials" target="_blank"> Mapy Google </a>. Keď sem zadáte kľúč mapy, Jomres zobrazí mapu na vašej stránke s podrobnosťami o vlastníctve. ');
 jr_define('_JOMCOMP_LASTMINUTE_CPANEL', 'Last minute');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE', 'aktívny?');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE_DESC', 'Nastavte túto možnosť na Áno, ak chcete ponúkať ponuky na poslednú chvíľu.');

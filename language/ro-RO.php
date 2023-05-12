@@ -671,7 +671,7 @@ jr_define('_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', ' a fost redus de la ');
 jr_define('_JOMCOMP_WISEPRICE_TO', ' la ');
 jr_define('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', ' Pretul camerei nu include discount ');
 jr_define('JOMRES_COM_A_MAPSKEY', 'Cheie API Google');
-jr_define("JOMRES_COM_A_MAPSKEY_DESC", "Puteți obține o cheie API Google Maps de la <a href =\"https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key\" target=\"_blank\"> Google maps </a>. Odată ce ați introdus cheia hartă aici, Jomres va afișa harta în pagina Detalii proprietate. ");
+jr_define("JOMRES_COM_A_MAPSKEY_DESC", "Puteți obține o cheie API Google Maps de la <a href =\"https://console.cloud.google.com/projectselector2/google/maps-apis/credentials\" target=\"_blank\"> Google maps </a>. Odată ce ați introdus cheia hartă aici, Jomres va afișa harta în pagina Detalii proprietate. ");
 jr_define('_JOMCOMP_LASTMINUTE_CPANEL', 'Ultimul moment');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE', 'Activ?');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE_DESC', 'Seteaza Da daca vrei sa oferi oefrte de ultim moment.');

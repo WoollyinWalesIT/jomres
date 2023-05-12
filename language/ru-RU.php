@@ -668,7 +668,7 @@ jr_define('_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', 'Была предоставл
 jr_define('_JOMCOMP_WISEPRICE_TO', 'Предел разумной цены');
 jr_define('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', ' Цена номера без скидки');
 jr_define('JOMRES_COM_A_MAPSKEY', 'API Ключ Google');
-jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'Получить ключ на гугл карту https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key<a href="https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key" target="_blank">Google maps</a>.');
+jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'Получить ключ на гугл карту https://console.cloud.google.com/projectselector2/google/maps-apis/credentials<a href="https://console.cloud.google.com/projectselector2/google/maps-apis/credentials" target="_blank">Google maps</a>.');
 jr_define('_JOMCOMP_LASTMINUTE_CPANEL', 'Панель управления');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE', 'Активно');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE_DESC', 'Описание режима активно');

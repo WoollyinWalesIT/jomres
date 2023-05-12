@@ -650,7 +650,7 @@ jr_define('_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', 'قبل از تخفیف');
 jr_define('_JOMCOMP_WISEPRICE_TO', 'به');
 jr_define('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', 'تخفیفی محاسبه نشده');
 jr_define('JOMRES_COM_A_MAPSKEY', 'کد نقشه گوگل');
-jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'می توانید یک کلید API نقشه google از <a href="https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key" target="_blank"> دریافت کنید نقشه های Google </a>. هنگامی که کلید نقشه خود را در اینجا وارد کردید , Jomres نقشه را در صفحه جزئیات ویژگی شما نشان می دهد.');
+jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'می توانید یک کلید API نقشه google از <a href="https://console.cloud.google.com/projectselector2/google/maps-apis/credentials" target="_blank"> دریافت کنید نقشه های Google </a>. هنگامی که کلید نقشه خود را در اینجا وارد کردید , Jomres نقشه را در صفحه جزئیات ویژگی شما نشان می دهد.');
 jr_define('_JOMCOMP_LASTMINUTE_CPANEL', 'لحظه آخر');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE', 'فعال؟');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE_DESC', 'اگر میخواهید پیشنهاد های لحظه آخر را فعال کنید این گزینه را انتخاب کنید');

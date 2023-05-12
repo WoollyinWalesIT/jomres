@@ -668,7 +668,7 @@ jr_define('_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', ' 已经实施打折自');
 jr_define('_JOMCOMP_WISEPRICE_TO', ' 至');
 jr_define('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', ' 房价未打折 ');
 jr_define('JOMRES_COM_A_MAPSKEY', '谷歌地图 API 密钥');
-jr_define('JOMRES_COM_A_MAPSKEY_DESC', '您可以从 <a href="https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key 获取谷歌地图 API 密钥 " target="_blank">Google 地图</a>。在此处输入地图密钥后，Jomres 将在您的房产详情页面中显示地图。');
+jr_define('JOMRES_COM_A_MAPSKEY_DESC', '您可以从 <a href="https://console.cloud.google.com/projectselector2/google/maps-apis/credentials 获取谷歌地图 API 密钥 " target="_blank">Google 地图</a>。在此处输入地图密钥后，Jomres 将在您的房产详情页面中显示地图。');
 jr_define('_JOMCOMP_LASTMINUTE_CPANEL', '最后截止期');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE', '最后时刻有效?');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE_DESC', '设此为是表明您允许签署最后时刻合同.');

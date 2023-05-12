@@ -673,7 +673,7 @@ jr_define('_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', ' אחרי הנחה מ - ');
 jr_define('_JOMCOMP_WISEPRICE_TO', ' אל ');
 jr_define('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', ' מחיר החדר ללא הנחה ');
 jr_define('JOMRES_COM_A_MAPSKEY', 'מפתח למפת גוגל');
-jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'פקודת GET יכולה לקבל ממשק למפת גוגל מהאתר<a href="https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key" target="_blank">Google maps</a>. לאחר שהכנסת את מפתח המפה שלך במקום זה, גומרס יראה את המפה בדף פרטי הנכס שלך');
+jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'פקודת GET יכולה לקבל ממשק למפת גוגל מהאתר<a href="https://console.cloud.google.com/projectselector2/google/maps-apis/credentials" target="_blank">Google maps</a>. לאחר שהכנסת את מפתח המפה שלך במקום זה, גומרס יראה את המפה בדף פרטי הנכס שלך');
 jr_define('_JOMCOMP_LASTMINUTE_CPANEL', 'רגע אחרון');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE', 'פעיל?');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE_DESC', 'בחר כן אם ברצונך להציע עסקאות רגע אחרון');

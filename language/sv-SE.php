@@ -654,7 +654,7 @@ jr_define('_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', 'har rabatterats från');
 jr_define('_JOMCOMP_WISEPRICE_TO', 'till');
 jr_define('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', 'Dynamisk prisrabatt tillämpas inte');
 jr_define('JOMRES_COM_A_MAPSKEY', 'Google Maps API-nyckel');
-jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'Du kan få en Google Maps API nyckel från <a href="https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key" target="_blank">Google maps</a>. När du har matat in din kartnyckel här kommer Jomres att visa kartan i verksamhetens informationssida.');
+jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'Du kan få en Google Maps API nyckel från <a href="https://console.cloud.google.com/projectselector2/google/maps-apis/credentials" target="_blank">Google maps</a>. När du har matat in din kartnyckel här kommer Jomres att visa kartan i verksamhetens informationssida.');
 jr_define('_JOMCOMP_LASTMINUTE_CPANEL', 'Sista minuten');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE', 'Aktiv?');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE_DESC', 'Välj Ja om du vill erbjuda sista minuten-erbjudanden.');

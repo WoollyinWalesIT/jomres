@@ -667,7 +667,7 @@ jr_define('_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', ' ha sigut descomptat de  ');
 jr_define('_JOMCOMP_WISEPRICE_TO', ' a ');
 jr_define('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', " Preu d'habitació no descomptat ");
 jr_define('JOMRES_COM_A_MAPSKEY', 'Google maps API key');
-jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'Pots obtenir google maps API key desde <a href="https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key" target="_blank">Google maps</a>. Un cop tingui introduït el seu map key aquí, Jomres mostrar el mapa en la seva pàgina de detall de la propietat.');
+jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'Pots obtenir google maps API key desde <a href="https://console.cloud.google.com/projectselector2/google/maps-apis/credentials" target="_blank">Google maps</a>. Un cop tingui introduït el seu map key aquí, Jomres mostrar el mapa en la seva pàgina de detall de la propietat.');
 jr_define('_JOMCOMP_LASTMINUTE_CPANEL', 'Últim minut');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE', 'Actiu?');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE_DESC', "Posar a Sí si vol oferir ofertes d'últim minut.");
