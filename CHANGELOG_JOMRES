@@ -11,12 +11,29 @@
 
 NB: If you're already an experienced Jomres user, note that the custom_code directory referenced here is different to the one you're used to. Look in the Developer's and Designer's guide in the Documentation section of Jomres.net and find the Read This First section for more information.
 
+<span class="label label-success">Feature</span> Reviewed and reworked the old property specific language strings feature called Language Context. Also added the ability for urls and shortcodes to set the language context.
+
+In the Translate Language file strings page you will see a new dropdown called Language Context. When you change this dropdown the page will reload. Now any changes you make to language strings will be specific to that property type. To find the correct language context for a property type visit the administrator > Jomres > Settings > Property types page. The contexts are shown in the table.
+
+A use case example :
+
+In the Translate lang file strings page change the Language Context dropdown to Camp Site. Now search the page for _JOMRES_SEARCH_BUTTON. Under that line you will see the string "Search". Change that string to "Find a camp site". Now you can create a Search Form Elements custom module with the shortcode {jomres search_form_button &language_context=campsite} and now the text for the button will change to "Find a camp site".
+
+Another use case :
+
+Search the translate lang file strings page for _JOMRES_COM_MR_QUICKRES_STEP2_TITLE. The row below it shows "Our rooms". Again, change the language context at the top of the page to Camp site. Now search for _JOMRES_COM_MR_QUICKRES_STEP2_TITLE again. Change the row below it from "Our Rooms" to "Our pitches". Now when somebody views the property details page of a camp site type property, instead of saying "Our rooms" it will say "Our pitches".
+
+In previous versions of Jomres this feature used alternate language files to achieve the same thing. This new feature is much more flexible and allows you to change the language context via shortcode arguments, allowing you to have different strings in shortcodes without needing to change any files. As always the changes are saved to the database so they are update-safe.
+
+<span class="label label-success">Feature</span> Added Animation Library for animating display of properties (doesn't yet work with live scrolled properties)
 <span class="label label-success">Feature</span> Managers can now switch between Micromanage and Advanced. Advanced wasn't available in 10.6, but brought it back in to 10.7 as it still has it's uses.
 <span class="label label-success">Feature</span> Added setting which allows property managers to determine if the number of children can be used when checking the number of  guests in a booking v the number of selected rooms.
 <span class="label label-success">Feature</span> When an oauth client is now created, if a valid token doesn't exist we'll automatically create one for them, then redirect back to the edit client page. Quality of life improvement.
 <span class="label label-success">Feature</span> If per person per night is not true (i.e. the property/rooms is/are booked per night instead) then child rates are not prompted for, and child prices aren't calculated. Likewise, prices aren't shown for children, but children can still be added to the booking if child rates are added to the booking. You can leave the rate set to zero to just record the ages of the children without charging for them.
 <span class="label label-success">Feature</span> Added a new local tokens class, allows a plugin or core system to create tokens for the rest api for a specific purpose. This token is then stored in the user's parameters which can then be used elsewhere by the plugin's scripts to use the local rest api without needing the user to generate client id/secret and token themselves.
 <span class="label label-success">Feature</span> Changed occupancy levels adults dropdown so that the dropdown maximum adults is set to whatever the highest max adults from all tariffs can be.
+<span class="label label-success">Feature</span> Added 4 new scripts + corresponding template files, which are called before and after search results and property details scripts are run.  In Core they don't do anything, but they provide a unified mechanism by which plugins can add elements like columns/widgets etc to wrap search results and the property details page. The new "Search Composite Sidebar" plugin uses this to add a search form to the side of the search results page.
+
 
 <span class="label label-warning">Change</span> Reworked property details in BS4. Header area, image is now parallax and full width of available space (in Cassiopeia there's still some margin, even with the template style set to fluid, not static.). Other layout related tweaks and improvements.
 <span class="label label-warning">Change</span> Removed container class div from top.html & bottom.html. Where the theme/template allows, then content can be full width. Moved the container instead to wrap the menu position div.
@@ -47,10 +64,17 @@ NB: If you're already an experienced Jomres user, note that the custom_code dire
 <span class="label label-warning">Change</span> Change the gmaps version to suppress a console warning.
 <span class="label label-warning">Change</span> Allow Joomla 4 sites to change the Bootstrap setting because upgraded sites may still have the old setting which needs to be changed.
 <span class="label label-warning">Change</span> Minor tweak to make BS3 payment gateway images responsive.
+<span class="label label-warning">Change</span> Accepting children is off by default in new properties.
+<span class="label label-warning">Change</span> Improved show rooms and show room template markup
+<span class="label label-warning">Change</span> Don't show list properties page if site is set to single property only.
+<span class="label label-warning">Change</span> Add a new script to show the property schema independently.
 
 <span class="label label-important label-danger">Fix</span> Resolved an issue where database re-import of images would misbehave. One of those "Weird, that's been working fine for years, and now it's not?" bugs.
 <span class="label label-important label-danger">Fix</span> Set max height of uploaded image to 150px (mainly so that the no-image svg doesn't appear too large). Media centre.
 <span class="label label-important label-danger">Fix</span> Main menu navbar toggler fixed.
+<span class="label label-important label-danger">Fix</span> Improved address url for qr codes
+<span class="label label-important label-danger">Fix</span> Make sure that the Stripe logo is included correctly by the payment methods class.
+
 
 <h3>Jomres 10.6.0 08/11/2022</h3>
 
