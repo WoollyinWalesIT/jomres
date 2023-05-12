@@ -108,6 +108,13 @@ class jomres_local_tokens
 				$json_decoded = json_decode($token_request_response);
 
 				if ($json_decoded != false) {
+					$query = "SELECT  `params` FROM #__jomres_guest_profile WHERE `cms_user_id` = " . (int)$this->user_id;
+					$user_params_check = doSelectSql($query);
+					if (empty($user_params_check)) {
+						$query = "INSERT INTO #__jomres_guest_profile (`cms_user_id`) VALUES ( '".(int) $this->user_id."' )";
+						doInsertSql($query , '' );
+					}
+
 					$params[$token_name] = $json_decoded->access_token;
 					$query = "UPDATE #__jomres_guest_profile SET `params` = '".json_encode($params)."' WHERE `cms_user_id` = " . (int)$this->user_id;
 					if (!doInsertSql($query, '')) {
@@ -140,6 +147,13 @@ class jomres_local_tokens
 						$token_request_response = $this->request_access_token($data);
 						$json_decoded = json_decode($token_request_response);
 						if ($json_decoded != false) {
+							$query = "SELECT  `params` FROM #__jomres_guest_profile WHERE `cms_user_id` = " . (int)$this->user_id;
+							$user_params_check = doSelectSql($query);
+							if (empty($user_params_check)) {
+								$query = "INSERT INTO #__jomres_guest_profile (`cms_user_id`) VALUES ( '".(int) $this->user_id."' )";
+								doInsertSql($query , '' );
+							}
+
 							$params[$token_name] = $json_decoded->access_token;
 							$query = "UPDATE #__jomres_guest_profile SET `params` = '".json_encode($params)."' WHERE `cms_user_id` = " . (int)$this->user_id;
 							if (!doInsertSql($query, '')) {
@@ -149,6 +163,13 @@ class jomres_local_tokens
 						}
 					}
 				} else {
+					$query = "SELECT  `params` FROM #__jomres_guest_profile WHERE `cms_user_id` = " . (int)$this->user_id;
+					$user_params_check = doSelectSql($query);
+					if (empty($user_params_check)) {
+						$query = "INSERT INTO #__jomres_guest_profile (`cms_user_id`) VALUES ( '".(int) $this->user_id."' )";
+						doInsertSql($query , '' );
+					}
+
 					$CLIENT_ID = $client_select['client_id'];
 					$CLIENT_SECRET = $client_select['client_secret'];
 
