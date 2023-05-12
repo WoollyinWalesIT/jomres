@@ -1,26 +1,26 @@
 <?php
-/**
- *
- * Core file.
- *
- * @author Vince Wooll <sales@jomres.net>
- *
- *  @version Jomres 10.7.0
- *
- * @copyright	2005-2023 Vince Wooll
- * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
- **/
+	/**
+	 *
+	 * Core file.
+	 *
+	 * @author Vince Wooll <sales@jomres.net>
+	 *
+	 *  @version Jomres 10.7.0
+	 *
+	 * @copyright	2005-2023 Vince Wooll
+	 * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
+	 **/
 
 // ################################################################
-defined('_JOMRES_INITCHECK') or die('');
+	defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-/**
- *
- * @package Jomres\Core\Functions
- *
- * Makes a javascript date input field. Creates a random name for the form element each time so that multiple javascript forms can be used on the same page without collision.
- */
+	/**
+	 *
+	 * @package Jomres\Core\Functions
+	 *
+	 * Makes a javascript date input field. Creates a random name for the form element each time so that multiple javascript forms can be used on the same page without collision.
+	 */
 	if (!function_exists('generateDateInput')) {
 		function generateDateInput($fieldName, $dateValue = '', $myID = false, $siteConfig = false, $historic = false , $options = [] )
 		{
@@ -126,6 +126,12 @@ defined('_JOMRES_INITCHECK') or die('');
 				$input_class = ' input-small ';
 			}
 
+			if (isset($options['input_classes']) && !empty($options['input_classes']) ) {
+				foreach ($options['input_classes'] as $class) {
+					$input_class .= ' '.$class;
+				}
+			}
+
 			$output .= '<script type="text/javascript">
 	jomresJquery(function() {
 		jomresJquery("#' .$uniqueID.'").datepicker( {
@@ -198,10 +204,10 @@ defined('_JOMRES_INITCHECK') or die('');
 			if (isset($options['show_calendar']) && $options['show_calendar'] === false) {
 				$output .= '
                     </script>
-                        <input type="text" readonly="readonly" style="cursor:pointer; background-color: transparent; border-left: 0; position: relative;'.$z_index.'" ' .$size.' name="'.$fieldName.'" id="'.$uniqueID.'" value="'.$dateValue.'" placeholder="'.$placeholder.'" class=" form-control shadow-none" />'.$bs3_icon.'
+                        <input type="text" readonly="readonly" style="cursor:pointer; background-color: transparent; border-left: 0; position: relative;'.$z_index.'" ' .$size.' name="'.$fieldName.'" id="'.$uniqueID.'" value="'.$dateValue.'" placeholder="'.$placeholder.'" class=" form-control shadow-none '.$input_class.'" />'.$bs3_icon.'
                             ';
-            } else {
-                $output .= '
+			} else {
+				$output .= '
                     </script>
                     <div class="input-group">
                         <input type="text" readonly="readonly" style="cursor:pointer; background-color: #FFFFFF; position: relative;'.$z_index.'" ' .$size.' name="'.$fieldName.'" id="'.$uniqueID.'" value="'.$dateValue.'" placeholder="'.$placeholder.'" class="'.$input_class.' form-control" />'.$bs3_icon.'
