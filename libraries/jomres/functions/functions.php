@@ -367,6 +367,10 @@ if (!function_exists('jomres_get_relative_path_to_file')) {
 	if (!function_exists('output_ribbon_styling')) {
 		function output_ribbon_styling()
 		{
+			if (AJAXCALL) {
+				return;
+			}
+
 			if (jomres_bootstrap_version() == 5 && !defined('RIBBON_STYLING_DONE')) {
 				define('RIBBON_STYLING_DONE', 1);
 				$tmpl = new patTemplate();
