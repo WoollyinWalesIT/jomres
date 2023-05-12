@@ -250,9 +250,7 @@
 					$jomres_menu->add_item(80, jr_gettext('_JOMRES_COM_MR_LISTTARIFF_TITLE', '_JOMRES_COM_MR_LISTTARIFF_TITLE', false).' &amp; '.jr_gettext('_JOMRES_COM_MR_VRCT_TAB_ROOM', '_JOMRES_COM_MR_VRCT_TAB_ROOM', false), 'edit_tariffs_normal', $font_awesome_tariffs);
 				}
 
-				if ($mrConfig[ 'is_real_estate_listing' ] != '1') {
-
-
+				if ($mrConfig[ 'is_real_estate_listing' ] == 0 && !get_showtime('is_jintour_property')) {
 					// This secret setting will not be modifyable through site config, but by adding it to /jomres/configuration.php admins will be able to use old guest types and not be forced to use new occupancies
 					if (isset($jrConfig[ 'secret_setting_use_old_guest_types' ]) && $jrConfig[ 'secret_setting_use_old_guest_types' ] === "1") {
 						$jomres_menu->add_item(80, jr_gettext('_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES', '_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES', false), 'listcustomertypes', 'fa-users');
