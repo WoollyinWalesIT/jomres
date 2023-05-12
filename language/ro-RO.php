@@ -2759,3 +2759,5 @@ Puteți lăsa limba țintă setată la limba dvs. curentă și puteți utiliza a
 
 
 	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Selectați Da dacă doriți să taxați per-persoană-pe-noapte.');
+
+	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"Prezentate");

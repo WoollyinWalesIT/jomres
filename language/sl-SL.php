@@ -2743,3 +2743,5 @@ Ciljni jezik lahko pustite nastavljen na vaš trenutni jezik in uporabite to str
 
 
 	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Izberite Da, če želite zaračunati na osebo na noč.');
+
+	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"Predstavljeno");

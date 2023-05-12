@@ -2724,3 +2724,5 @@ Můžete ponechat cílový jazyk nastavený na váš aktuální jazyk a použít
 
 
 	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Zvolte Ano, pokud chcete účtovat za osobu a noc.');
+
+	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"Vybrané");

@@ -2839,3 +2839,5 @@ jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "حالت آزمون");
 
 
 jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'اگر می‌خواهید به ازای هر نفر در شب شارژ کنید، بله را انتخاب کنید.');
+
+	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"ویژه");

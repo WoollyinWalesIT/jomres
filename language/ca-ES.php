@@ -2753,3 +2753,5 @@ Podeu deixar l\'idioma d\'arribada configurat en el vostre idioma actual i utili
 
 
 	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Seleccioneu Sí si voleu cobrar per persona-per-nit.');
+
+	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"Destacat");

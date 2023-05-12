@@ -2719,3 +2719,5 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES', "Изоб�
 
 
 	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Изберете Да, ако искате да таксувате на човек на вечер.');
+
+	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"Представени");

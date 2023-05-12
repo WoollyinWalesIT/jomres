@@ -2764,3 +2764,5 @@ jr_define('JOMRES_UPDATES_INFO', "דף זה יכול להוריד ולהתקין
 
 
 	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'בחר כן אם ברצונך לגבות תשלום לאדם ללילה.');
+
+	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"מוצגים");

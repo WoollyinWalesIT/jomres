@@ -2742,3 +2742,5 @@ jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', '保存更改后，页面中�
 
 
 	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', '如果您想按每人每晚收费，请选择是。');
+
+	jr_define('_JRPORTAL_FEATUREDISTINGS_WORD_FEATURED',"精选");

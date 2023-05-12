@@ -2698,3 +2698,5 @@ U kunt de doeltaal op uw huidige taal laten staan en deze pagina gebruiken om it
 
 
 	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Selecteer Ja als u per persoon per nacht wilt rekenen.');
+
+	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"Aanbevolen");

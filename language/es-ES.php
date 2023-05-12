@@ -2768,3 +2768,5 @@ Puede dejar el idioma de destino establecido en su idioma actual y usar esta pá
 
 
 	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Seleccione Sí si desea cobrar por persona por noche');
+
+	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"Destacado");

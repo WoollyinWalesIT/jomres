@@ -2786,3 +2786,7 @@ Sie können die Zielsprache auf Ihrer aktuellen Sprache belassen und diese Seite
 
 
 	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Wählen Sie Ja, wenn Sie pro Person und Nacht abrechnen möchten.');
+
+
+	jr_define('_JRPORTAL_FEATUREDLISTE_WORD_FEATURED',"Empfohlen");
+

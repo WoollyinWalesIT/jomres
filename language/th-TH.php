@@ -2708,3 +2708,5 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES', "รูป
 
 
 	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'เลือกใช่ หากคุณต้องการเรียกเก็บเงินต่อคนต่อคืน');
+
+	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"แนะนำ");
