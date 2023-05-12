@@ -21,7 +21,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	 *
 	 */
 
-class j06000animation_library_start
+class j06000animation_library
 {
 
 	/**
@@ -92,7 +92,7 @@ class j06000animation_library_start
 
 		$tmpl = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
-		$tmpl->readTemplatesFromInput( 'animation_library_start.html' );
+		$tmpl->readTemplatesFromInput( 'animation_library.html' );
 		$tmpl->addRows( 'pageoutput',$pageoutput);
 		$tmpl->displayParsedTemplate();
 
