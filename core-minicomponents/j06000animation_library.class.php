@@ -43,13 +43,6 @@ class j06000animation_library
 			return;
 		}
 
-		if (AJAXCALL) {
-			return;
-		}
-
-		if (defined('API_STARTED')) {
-			return;
-		}
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
 
@@ -60,9 +53,6 @@ class j06000animation_library
 		if ($jrConfig['animation_library_enabled'] != 1 ) {
 			return;
 		}
-
-		jomres_cmsspecific_addheaddata('css', 'https://unpkg.com/aos@2.3.1/dist/','aos.css');
-		jomres_cmsspecific_addheaddata('javascript', 'https://unpkg.com/aos@2.3.1/dist/', 'aos.js');
 
 		if (!isset($jrConfig['animation_library_animation'])) {
 			$jrConfig['animation_library_animation'] = 'fade';
