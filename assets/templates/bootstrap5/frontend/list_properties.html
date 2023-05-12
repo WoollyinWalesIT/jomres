@@ -13,7 +13,8 @@
 	</patTemplate:comment>
 	
 	<patTemplate:tmpl name="property_details" unusedvars="strip">
-		<div class="jomres_property_list_propertywrapper mb-3 bg-body bg-secondary" id="{UID}">
+		
+		<div class="jomres_property_list_propertywrapper mb-3 bg-body bg-secondary" {jomres_script animation_library_start} id="{UID}">
 			<div class="card {BUDGET_BORDER_CLASS} {FEATURED_LISTINGS_CLASS} border-1">
 				<div class="card-body">
 					<div class="row">
@@ -106,6 +107,7 @@
 				</div>
 			</div>
 		</div>
+		
 		<script>
             document.addEventListener('DOMContentLoaded', function(){
                 jomresJquery('#module_{RANDOM_IDENTIFIER}_popup', '#property_reviews{UID}').appendTo("body");
