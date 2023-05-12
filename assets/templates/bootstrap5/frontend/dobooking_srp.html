@@ -231,16 +231,16 @@
 				<div id="extrascontainer">
 					<div class="card">
 						<div class="card-header">
-							<div class="card-title">{EXTRAS_HEADER}</div>
+							<div class="card-title"><strong>{EXTRAS_HEADER}</strong></div>
 						</div>
 						<div class="card-body">
-							<pattemplate:tmpl name="third_party_extras" type="simpleCondition" requiredvars="third_party_extra">{THIRD_PARTY_EXTRA}</pattemplate:tmpl>
 							<div id="core_extras" class="row">
 								<pattemplate:tmpl name="extras">{EXTRAS_TEMPLATE}</pattemplate:tmpl>
 							</div>
 						</div>
 					</div>
 				</div>
+				<pattemplate:tmpl name="third_party_extras" type="simpleCondition" requiredvars="third_party_extra">{THIRD_PARTY_EXTRA}</pattemplate:tmpl>
 			</pattemplate:tmpl>
 			<div class="row" id="bookingform_address">
 				<div class="col-lg-7">
