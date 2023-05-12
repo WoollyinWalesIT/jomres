@@ -72,7 +72,7 @@ class j00501booking_settings
 
 		$configurationPanel->startPanel(jr_gettext('_JOMRES_STATUS_BOOKINGS', '_JOMRES_STATUS_BOOKINGS', false));
 
-		if (!isset($jrConfig[ 'secret_setting_use_old_guest_types' ]) || $jrConfig[ 'secret_setting_use_old_guest_types' ] === "0") {
+		if (!isset($jrConfig[ 'secret_setting_use_old_guest_types' ]) || $jrConfig[ 'secret_setting_use_old_guest_types' ] === "0" && $mrConfig[ 'is_real_estate_listing' ] == 0 && !get_showtime('is_jintour_property')) {
 			$configurationPanel->setleft(jr_gettext('JOMRES_POLICY_ACCEPT_CHILDREN', 'JOMRES_POLICY_ACCEPT_CHILDREN', false));
 			$configurationPanel->setmiddle($lists['allow_children']);
 			$configurationPanel->setright(jr_gettext('JOMRES_POLICY_ACCEPT_CHILDREN_DESC', 'JOMRES_POLICY_ACCEPT_CHILDREN_DESC', false));
