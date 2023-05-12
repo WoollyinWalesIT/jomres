@@ -51,6 +51,9 @@ class j99999animation_library_init
 			return;
 		}
 
+		if (jomres_cmsspecific_areweinadminarea()) {
+			return;
+		}
 
 
 		if (!defined('AOS_INITIALISED')) {
