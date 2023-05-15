@@ -90,7 +90,7 @@ class data_source_towns extends jomres_data_source_base
                     }
 
                     if ($town->language == $lang) {
-                        $data[$lang][] = array( 'countrycode' => strtoupper($town->property_country), 'regionname' => $region_name , 'region_id' => $town->property_region,'townname' => $town->property_town );
+                        $data[$lang][$town->property_town] = array( 'countrycode' => strtoupper($town->property_country), 'regionname' => $region_name , 'region_id' => $town->property_region,'townname' => $town->property_town );
                     }
 
                 }
