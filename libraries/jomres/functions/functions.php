@@ -2241,7 +2241,7 @@ Previously just a feature of the add plugin script, it's usage has been moved to
 				}
 
 
-				jomres_cmsspecific_addheaddata('javascript', 'https://maps.googleapis.com/maps/api/js?v=3.51&language='.$shortcode.$apikey, '&v=weekly&channel=2&callback=Function.prototype', $includeVersion = false, $async = true);
+				jomres_cmsspecific_addheaddata('javascript', 'https://maps.googleapis.com/maps/api/js?v=3.51&v=beta&libraries=marker&language='.$shortcode.$apikey, '&v=weekly&channel=2&callback=Function.prototype', $includeVersion = false, $async = true);
 			}
 		}
 	}
