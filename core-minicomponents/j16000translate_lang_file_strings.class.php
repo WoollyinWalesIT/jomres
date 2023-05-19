@@ -75,12 +75,17 @@ class j16000translate_lang_file_strings
 
 		$output = array();
 
-        foreach ($jomres_language_definitions->definitions[$language_context] as $const => $def) {
-			if ( $const != '_JOMRES_COM_MR_YES ' && $const != '_JOMRES_COM_MR_NO ' && $const != '_JOMRES_COM_TRANSLATE_LANGUAGEFILES_INFO ') {
-				$output[] = $const." <br/><br/>".jr_gettext($const, $def)."<br/>";
-			}
+        foreach ($jomres_language_definitions->definitions[$jrConfig['language_context']] as $const => $def) {
+            if ( $const != '_JOMRES_COM_MR_YES ' && $const != '_JOMRES_COM_MR_NO ' && $const != '_JOMRES_COM_TRANSLATE_LANGUAGEFILES_INFO ') {
+                $output[$const] = $const." <br/><br/>".jr_gettext($const, $def)."<br/>";
+            }
+        }
 
-		}
+        foreach ($jomres_language_definitions->definitions[$language_context] as $const => $def) {
+            if ( $const != '_JOMRES_COM_MR_YES ' && $const != '_JOMRES_COM_MR_NO ' && $const != '_JOMRES_COM_TRANSLATE_LANGUAGEFILES_INFO ') {
+                $output[$const] = $const." <br/><br/>".jr_gettext($const, $def)."<br/>";
+            }
+        }
 
 		foreach ($output as $o) {
 			echo $o;
