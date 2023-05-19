@@ -2896,7 +2896,7 @@ class dobooking
     public function getDayOfWeek($date)
     {
         $date_elements = explode('/', $date);
-        $unixCurrentDate = mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ]);
+        $unixCurrentDate = mktime(0, 0, 0, (int)$date_elements[ 1 ], (int)$date_elements[ 2 ], (int)$date_elements[ 0 ]);
         $dateArray = getdate($unixCurrentDate);
 
         return $dateArray[ 'wday' ];
