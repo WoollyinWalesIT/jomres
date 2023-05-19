@@ -707,7 +707,7 @@ jr_define('_JRPORTAL_LISTBOOKINGS_HEADER_INVOICE_ID', '請求書ID');
 jr_define('_JRPORTAL_LISTBOOKINGS_HEADER_BOOKINGTOTAL', '予約合計');
 jr_define('_JRPORTAL_LISTBOOKINGS_HEADER_DATEARCHIVED', 'アーカイブ日');
 jr_define('_JRPORTAL_ADD_ADHOC_ITEM_DESCRIPTION', 'Description');
-jr_define('_JOMRES_COM_PTYPES_PTYPE_DESC_FURTHER', 'You can have property type specific language files by setting the description to the name of a sub folder, e.g. "yachtbrokerage" and copying a language file to that subfolder. You can then modify that language file for this property type so rooms become, for example, DVDs, etc.');
+jr_define('_JOMRES_COM_PTYPES_PTYPE_DESC_FURTHER', 'You can have property type specific languages and then converting  " yachtbrokerage" and copying a language file to that subfolder. You can then modify that language file for this property type so rooms become, for example, DVDs, etc.');
 jr_define('_JOMRES_EDITPROPERTY_CONNOTDELETE1', '唯一の登録ビッジネスであるため,削除できません。公開しない場合には,「非公開」に変更してください。');
 jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_TOTAL', '宿泊料金の合計');
 jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_NIGHTS', '/泊');

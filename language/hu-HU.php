@@ -695,7 +695,7 @@ jr_define('_JRPORTAL_LISTBOOKINGS_HEADER_INVOICE_ID', 'Invoice id');
 jr_define('_JRPORTAL_LISTBOOKINGS_HEADER_BOOKINGTOTAL', 'Booking total');
 jr_define('_JRPORTAL_LISTBOOKINGS_HEADER_DATEARCHIVED', 'Date archived');
 jr_define('_JRPORTAL_ADD_ADHOC_ITEM_DESCRIPTION', 'Leírás');
-jr_define('_JOMRES_COM_PTYPES_PTYPE_DESC_FURTHER', 'You can have property type specific language files by setting the description to the name of a sub folder, e.g. "yachtbrokerage" and copying a language file to that subfolder. You can then modify that language file for this property type so rooms become, for example, DVDs, etc.');
+jr_define('_JOMRES_COM_PTYPES_PTYPE_DESC_FURTHER', 'You can have property type specific language strings which are adjusted in the Translate Labels page. Set the language context to something like "toolhire" (no spaces or special characters) to use them.');
 jr_define('_JOMRES_EDITPROPERTY_CONNOTDELETE1', 'You cannot delete this property as it is the only property that you have access to. If you want to disable it, please use the un-publish feature in your toolbar. ');
 jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_TOTAL', 'Szállás végösszege');
 jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_NIGHTS', 'éjszakák a');
