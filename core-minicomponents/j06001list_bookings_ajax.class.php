@@ -291,26 +291,7 @@ class j06001list_bookings_ajax
 				$thisProperty = '&thisProperty='.$p->property_uid;
 			}
 
-			if (!using_bootstrap()) {
-				$jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
-				$jrtb = $jrtbar->startTable();
-				$jrtb .= $jrtbar->toolbarItem('edit', jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_booking'.'&contract_uid='.$p->contract_uid.$thisProperty), jr_gettext('COMMON_EDIT', 'COMMON_EDIT', false));
-				if ($p->cancelled == 0) {
-					if ($p->booked_in == 0 && isset($MiniComponents->registeredClasses['06001']['checkin'])) {
-						if ($p->approved == 1) {
-							$jrtb .= $jrtbar->toolbarItem('bookGuestIn', jomresURL(JOMRES_SITEPAGE_URL.'&task=checkin'.'&contract_uid='.$p->contract_uid.$thisProperty), jr_gettext('_JOMRES_FRONT_MR_BOOKIN_TITLE', '_JOMRES_FRONT_MR_BOOKIN_TITLE', false));
-						}
-					} elseif ($p->bookedout == 0) {
-						$jrtb .= $jrtbar->toolbarItem('bookGuestOut', jomresURL(JOMRES_SITEPAGE_URL.'&task=checkout'.'&contract_uid='.$p->contract_uid.$thisProperty), jr_gettext('_JOMRES_FRONT_MR_BOOKOUT_TITLE', '_JOMRES_FRONT_MR_BOOKOUT_TITLE', false));
-						$jrtb .= $jrtbar->toolbarItem('mark_booking_noshow', jomresURL(JOMRES_SITEPAGE_URL.'&task=mark_booking_noshow'.'&contract_uid='.$p->contract_uid.$thisProperty), jr_gettext('BOOKING_NOSHOW_MENU', 'BOOKING_NOSHOW_MENU', false));
-					}
-				}
-				if ($p->approved == 0 && isset($MiniComponents->registeredClasses['00005']['booking_enquiries'])) {
-					$jrtb .= $jrtbar->toolbarItem('publish', jomresURL(JOMRES_SITEPAGE_URL.'&task=approve_enquiry'.'&contractUid='.$p->contract_uid.$thisProperty), jr_gettext('_JOMRES_BOOKING_APPROVE_INQUIRY', '_JOMRES_BOOKING_APPROVE_INQUIRY', false));
-					$jrtb .= $jrtbar->toolbarItem('unpublish', jomresURL(JOMRES_SITEPAGE_URL.'&task=reject_enquiry'.'&contractUid='.$p->contract_uid.$thisProperty), jr_gettext('_JOMRES_BOOKING_REJECT_INQUIRY', '_JOMRES_BOOKING_REJECT_INQUIRY', false));
-				}
-				$r[] = $jrtb .= $jrtbar->endTable();
-			} else {
+
 				$toolbar = jomres_singleton_abstract::getInstance('jomresItemToolbar');
 				$toolbar->newToolbar();
 				$toolbar->addSecondaryItem('fa fa-pencil-square-o', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_booking&contract_uid='.$p->contract_uid.$thisProperty), jr_gettext('_JOMRES_COM_CONFIRMATION_RESERVATION_DETAILS', '_JOMRES_COM_CONFIRMATION_RESERVATION_DETAILS', false));
@@ -354,7 +335,7 @@ class j06001list_bookings_ajax
 				$toolbar->addSecondaryItem('fa fa-file-text', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=view_invoice&id='.$p->invoice_uid.$thisProperty), jr_gettext('_JOMRES_MANAGER_SHOWINVOICE', '_JOMRES_MANAGER_SHOWINVOICE', false));
 				$toolbar->addSecondaryItem('fa fa-pencil-square-o', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=addnote&contract_uid='.$p->contract_uid.$thisProperty), jr_gettext('_JOMCOMP_BOOKINGNOTES_ADD', '_JOMCOMP_BOOKINGNOTES_ADD', false));
 				$r[] = $toolbar->getToolbar();
-			}
+
 
 			$r[] = $p->contract_uid;
 
