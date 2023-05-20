@@ -8,6 +8,7 @@
     Custom Jquery UI css file. Create a file called custom_jquery_ui.css in the custom_code directory and Jomres will use that. Due to when it's called Jquery UI css declarations here will override the defaults.
     Joomla only : Custom copy of components/com_jomres/router/router.php can be put into the custom_code directory and Jomres will use that instead of the default.
     Customised versions of /jomres/assets/css and /jomres/assets/javascript files can be put into custom_code directory and Jomres will use those instead of the default.
+    Property Specific Minicomponents (Joomla only, at this time). In the override directory you can create subdirectories numbered according to property type IDs. Now you can put copies of minicomponents in those directories and if the property type being shown is of that type then the customised version of that minicomponent will be used. Previously you could use this feature for template files, and it has now been extended to support minicomponents too.
 
 NB: If you're already an experienced Jomres user, note that the custom_code directory referenced here is different to the one you're used to. Look in the Developer's and Designer's guide in the Documentation section of Jomres.net and find the Read This First section for more information.
 
