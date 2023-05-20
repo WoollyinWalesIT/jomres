@@ -369,11 +369,11 @@ class j06001list_bookings_ajax
 			$r[] = $p->last_changed;
 
 			if ((int) $p->approved == 1) {
-				$r[] = '<span class="label label-green">'.jr_gettext('_JOMRES_STATUS_APPROVED', '_JOMRES_STATUS_APPROVED', false).'</span>';
+				$r[] = '<span class="label label-green badge bg-success ">'.jr_gettext('_JOMRES_STATUS_APPROVED', '_JOMRES_STATUS_APPROVED', false).'</span>';
 			} elseif ((int) $p->approved == 0) {
-				$r[] = '<span class="label label-orange">'.jr_gettext('_JOMRES_STATUS_INQUIRY', '_JOMRES_STATUS_INQUIRY', false).'</span>';
+				$r[] = '<span class="label label-orange badge bg-warning text-dark">'.jr_gettext('_JOMRES_STATUS_INQUIRY', '_JOMRES_STATUS_INQUIRY', false).'</span>';
 			} else {
-				$r[] = '<span class="label label-red">'.jr_gettext('_JOMRES_STATUS_REJECTED', '_JOMRES_STATUS_REJECTED', false).'</span>';
+				$r[] = '<span class="label label-red badge bg-danger">'.jr_gettext('_JOMRES_STATUS_REJECTED', '_JOMRES_STATUS_REJECTED', false).'</span>';
 			}
 			
 			$r[] = $p->username;
