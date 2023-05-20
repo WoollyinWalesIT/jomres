@@ -149,6 +149,7 @@ class jomres_config_property_singleton
             $jomres_property_types->get_property_type($property_type);
 
             if ($jomres_property_types->property_type['mrp_srp_flag'] == 5) {
+                $this->property_config['singleRoomProperty'] = false;
                 $this->property_config['item_hire_property'] = true;
             }
         }
