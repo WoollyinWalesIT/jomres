@@ -2696,3 +2696,5 @@ jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Якщо ви збереже
 	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Виберіть Так, якщо ви хочете стягувати плату з особи за ніч.');
 
 	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"Рекомендовані");
+
+jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', 'Оренда речей');

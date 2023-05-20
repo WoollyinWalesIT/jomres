@@ -2684,3 +2684,5 @@ jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Select Yes if you want to charg
 
 
 	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"Featured");
+
+jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', 'Item Hire');

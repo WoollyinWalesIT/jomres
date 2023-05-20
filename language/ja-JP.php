@@ -2732,3 +2732,5 @@ jr_define('JOMRES_TARGET_LANGUAGE', 'ターゲット言語');
 	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', '1 泊 1 人あたりの料金を請求する場合は [はい] を選択してください。');
 
 	jr_define('_ JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED', "注目");
+
+jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', 'アイテムレンタル');

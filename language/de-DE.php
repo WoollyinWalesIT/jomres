@@ -2790,3 +2790,4 @@ Sie können die Zielsprache auf Ihrer aktuellen Sprache belassen und diese Seite
 
 	jr_define('_JRPORTAL_FEATUREDLISTE_WORD_FEATURED',"Empfohlen");
 
+jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', 'Item Hire');

@@ -2770,3 +2770,5 @@ jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_HIDEFILTERS' , "Απόκρυψη φίλ
 	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Επιλέξτε Ναι εάν θέλετε να χρεώνετε ανά άτομο ανά διανυκτέρευση.');
 
 	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"Επιλεγμένα");
+
+jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', 'Ενοικίαση αντικειμένου');

@@ -2761,3 +2761,5 @@ Môžete ponechať cieľový jazyk nastavený na váš aktuálny jazyk a použi�
 	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Vyberte Áno, ak chcete účtovať za osobu a noc.');
 
 	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"Odporúčané");
+
+jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', 'Prenájom položky');

@@ -421,8 +421,9 @@
 
 				$ajrq = 'show_log';
 				$bkg->setErrorLog('handlereq::Generating billing data');
-
-				echo '; populateDiv("totalinparty","'.$bkg->getTotalInParty().' '.$bkg->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_BILLING_TOTALINPARTY', '_JOMRES_AJAXFORM_BILLING_TOTALINPARTY', false, false)).'");';
+                if (!$mrConfig['item_hire_property']) {
+                    echo '; populateDiv("totalinparty","' . $bkg->getTotalInParty() . ' ' . $bkg->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_BILLING_TOTALINPARTY', '_JOMRES_AJAXFORM_BILLING_TOTALINPARTY', false, false)) . '");';
+                }
 
 				$arrivalDate = $bkg->getArrivalDate();
 				$departureDate = $bkg->getDepartureDate();
@@ -445,14 +446,18 @@
 						$num_period = $bkg->get_part_of_stay_period($staydays);
 						echo '; populateDiv("staydays","'.$num_period.'")';
 
-						if (get_showtime('include_room_booking_functionality')) {
-							if ($mrConfig[ 'allow_children' ] == '1' && $field != 'addressstring' && empty($bkg->variancetypes) ) {
-								echo '; populateDiv("child_selectors","' . $bkg->sanitise_for_eval($bkg->build_children_selectors()). '")';
-								$bkg->calculate_child_prices();
-								if (isset($bkg->child_prices['total_price'])) {
-									echo '; populateDiv("child_price","' . output_price($bkg->child_prices['total_price']). '")';
-								}
-							}
+						if (get_showtime('include_room_booking_functionality') ) {
+                            if( !$mrConfig['item_hire_property']){
+                                if ($mrConfig[ 'allow_children' ] == '1' && $field != 'addressstring' && empty($bkg->variancetypes) ) {
+                                    echo '; populateDiv("child_selectors","' . $bkg->sanitise_for_eval($bkg->build_children_selectors()). '")';
+                                    $bkg->calculate_child_prices();
+                                    if (isset($bkg->child_prices['total_price'])) {
+                                        echo '; populateDiv("child_price","' . output_price($bkg->child_prices['total_price']). '")';
+                                    }
+                                }
+                            }
+
+
 
 							$room_per_night = $bkg->getRoompernight();
 							$room_per_night = $bkg->calculateRoomPriceIncVat($room_per_night);
@@ -460,6 +465,8 @@
 								$room_per_night = $room_per_night * 7;
 							}
 							$room_per_night = $bkg->get_rate_per_night_converted_to_output_period($room_per_night);
+
+
 							if (get_showtime('include_room_booking_functionality')) {
 								echo '; populateDiv("roompernight","'.output_price($room_per_night).'")';
 							}

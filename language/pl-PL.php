@@ -2764,3 +2764,5 @@ Możesz pozostawić język docelowy ustawiony na swój bieżący język i użyć
 	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Wybierz Tak, jeśli chcesz pobierać opłatę za osobę za noc.');
 
 	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"Polecane");
+
+jr_define('_JOMRES_PROPERTYPE_FLAG_HIRE', 'Wypożyczenie przedmiotu');

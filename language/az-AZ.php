@@ -2743,3 +2743,5 @@ Siz hədəf dili təyin edilmiş cari dilinizə buraxa və onların fərdi səhi
 	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Bir nəfər üçün gecəlik ödəniş etmək istəyirsinizsə, Bəli seçin.');
 
 	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"Seçilmiş");
+
+jr_define('_JOMRES_PROPERTYPE_FLAG_HIRE', 'Eşyanın icarəsi');

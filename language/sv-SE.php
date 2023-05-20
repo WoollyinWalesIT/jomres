@@ -2733,3 +2733,5 @@ Du kan lämna målspråket inställt på ditt nuvarande språk och använda denn
 	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Välj Ja om du vill debitera per person per natt.');
 
 	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"Utvald");
+
+jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', 'Artikeluthyrning');

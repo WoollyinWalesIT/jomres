@@ -2765,3 +2765,5 @@ jr_define ('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN_DESC_MRP' , 'عند�
 jr_define ('_ JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'حدد نعم إذا كنت تريد الشحن لكل شخص في الليلة.') ;
 
 	jr_define ('_ JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED', "مميز") ;
+
+jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', "استئجار عنصر");

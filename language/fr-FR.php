@@ -2551,3 +2551,5 @@ Vous pouvez laisser la langue cible définie sur votre langue actuelle et utilis
 jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Sélectionnez Oui si vous souhaitez facturer par personne et par nuit.');
 
 	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"En vedette");
+
+jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', 'Location d\'article');

@@ -2761,3 +2761,5 @@ Du kan lade målsproget være indstillet til dit nuværende sprog og bruge denne
 	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Vælg Ja, hvis du vil opkræve pr. person-per-nat.');
 
 	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"Udvalgt");
+
+jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', 'Vareudlejning');

@@ -106,6 +106,9 @@ class j16000list_property_types
 				case 4:
 					$r[ 'MRP_SRP_FLAG' ] = jr_gettext('_JOMRES_PROPERTYTYPE_FLAG_REALESTATE', '_JOMRES_PROPERTYTYPE_FLAG_REALESTATE', false);
 					break;
+                case 5:
+                    $r[ 'MRP_SRP_FLAG' ] = jr_gettext('_JOMRES_PROPERTYTYPE_FLAG_HIRE', '_JOMRES_PROPERTYTYPE_FLAG_HIRE', false);
+                    break;
 				default:
 					$r[ 'MRP_SRP_FLAG' ] = jr_gettext('_JOMRES_PROPERTYTYPE_FLAG_HOTEL', '_JOMRES_PROPERTYTYPE_FLAG_HOTEL', false);
 					break;

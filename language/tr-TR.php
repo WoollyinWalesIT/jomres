@@ -2736,3 +2736,5 @@ Hedef dili mevcut dilinize ayarlı bırakabilir ve bu sayfayı, öğeleri tek te
 	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Kişi başı gecelik ücretlendirme yapmak istiyorsanız Evet\'i seçin.');
 
 	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"Öne Çıkanlar");
+
+jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', 'Öğe Kiralama');

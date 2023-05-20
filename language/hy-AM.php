@@ -3427,3 +3427,5 @@ jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN_DESC_MRP', "Երբ հ
 jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Ընտրեք Այո, եթե ցանկանում եք գանձել մեկ անձի համար մեկ գիշերվա համար:');
 
 	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"Առաջարկված");
+
+jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', 'Նյութերի վարձույթ');

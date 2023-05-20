@@ -2774,3 +2774,4 @@ Možete ostaviti ciljni jezik postavljen na vaš trenutni jezik i koristiti ovu 
 	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Odaberite Da ako želite naplaćivati po osobi po noći.');
 
 	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"Istaknuto");
+jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', 'Unajmljivanje predmeta');

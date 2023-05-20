@@ -2769,3 +2769,5 @@ Você pode deixar o idioma de destino definido para seu idioma atual e usar esta
 	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Selecione Sim se deseja cobrar por pessoa por noite.');
 
 	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"Destaque");
+
+jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', 'Aluguer de item');

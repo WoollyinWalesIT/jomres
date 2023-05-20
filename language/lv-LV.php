@@ -2739,3 +2739,5 @@ Varat atstāt mērķa valodu iestatītu uz savu pašreizējo valodu un izmantot 
 	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Atlasiet Jā, ja vēlaties iekasēt maksu par personu par nakti.');
 
 	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"Piedāvātie");
+
+jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', 'Preces noma');

@@ -2795,3 +2795,5 @@ Puoi lasciare la lingua di destinazione impostata sulla tua lingua corrente e ut
 	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Seleziona Sì se vuoi addebitare per persona per notte.');
 
 	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"In primo piano");
+
+jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', 'Articolo a Noleggio');

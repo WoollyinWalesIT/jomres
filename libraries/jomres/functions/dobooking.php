@@ -201,6 +201,7 @@
 		$MiniComponents->triggerEvent('00102'); // First-form generation
 		$bkg = $MiniComponents->triggerEvent('05000'); // Create the booking object
 
+
 		$bkg->setStandardGuests(2);
 
 		if (get_showtime('include_room_booking_functionality')) {
@@ -237,6 +238,14 @@
 		$guest = $bkg->makeGuestData();
 
 		$output = array_merge($text, $guest);
+
+
+        $output[ 'GUEST_INPUTS_HIDDEN' ] = '';
+        if ($mrConfig['item_hire_property']) {
+            $output[ 'GUEST_INPUTS_HIDDEN' ] = ' style="display:none;" ';
+        }
+
+
 		$output[ 'REGION_DROPDOWN' ] = setupRegions($bkg->country, $bkg->region);
 		if ($bkg->cfg_showdepartureinput == '0') {
 			$output[ 'HDEPARTUREDATE' ] = '';

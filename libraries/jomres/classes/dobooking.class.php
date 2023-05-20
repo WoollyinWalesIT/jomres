@@ -344,6 +344,11 @@ class dobooking
 
         $mrConfig = getPropertySpecificSettings($this->property_uid);
 
+        $this->ignore_guest_number_checks = false;
+        if ($mrConfig['item_hire_property']) {
+            $this->ignore_guest_number_checks = true;
+        }
+
         jr_import('jomres_occupancy_levels');
         $this->jomres_occupancy_levels = new jomres_occupancy_levels($this->property_uid);
 
@@ -1624,7 +1629,9 @@ class dobooking
         $output[ '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_CELLPHONE' ] = $this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_CELLPHONE', '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_CELLPHONE', false, false));
         $output[ '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_EMAIL' ] = $this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_EMAIL', '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_EMAIL', false, false));
 
-        $output[ 'JOMRES_CHILDREN_BOOKING_FORM_LABEL' ] = $this->sanitiseOutput(jr_gettext('JOMRES_CHILDREN_BOOKING_FORM_LABEL', 'JOMRES_CHILDREN_BOOKING_FORM_LABEL', false, false));
+        if (!$mrConfig['item_hire_property']) {
+            $output['JOMRES_CHILDREN_BOOKING_FORM_LABEL'] = $this->sanitiseOutput(jr_gettext('JOMRES_CHILDREN_BOOKING_FORM_LABEL', 'JOMRES_CHILDREN_BOOKING_FORM_LABEL', false, false));
+        }
         $output[ 'JOMRES_GUEST_BOOKING_FORM_LABEL' ] = $this->sanitiseOutput(jr_gettext('JOMRES_GUEST_BOOKING_FORM_LABEL', 'JOMRES_GUEST_BOOKING_FORM_LABEL', false, false));
         $output[ 'JOMRES_GUEST_BOOKING_FORM_LABELINFO' ] = $this->sanitiseOutput(jr_gettext('JOMRES_GUEST_BOOKING_FORM_LABELINFO', 'JOMRES_GUEST_BOOKING_FORM_LABELINFO', false, false));
 
@@ -4331,8 +4338,15 @@ class dobooking
                     $datesValid = $this->filter_tariffs_on_dates($tariff, $unixArrivalDate, $unixDepartureDate); // Does the tariff's from/to dates fall within the booking's dates? There will be some overlap here if we use Advanced or Micromanage mode. That's where the tariff_to_date_map will come into play
                     $stayDaysValid = $this->filter_tariffs_staydays($tariff); // This will also use the map, it'll help to calculate also the minimum interval
                     $roomsAlreadySelectedTests = $this->filter_tariffs_alreadyselectedcheck($tariff); // If the tariff can only be selected when N number of rooms have already been selected?
-                    $numberPeopleValid = $this->filter_tariffs_peoplenumbercheck($tariff); // If the total number of people in the booking fall within the tariff's min/max people range?
+                    if ($this->ignore_guest_number_checks) {
+                        $numberPeopleValid = true;
+                    } else {
+                        $numberPeopleValid = $this->filter_tariffs_peoplenumbercheck($tariff); // If the total number of people in the booking fall within the tariff's min/max people range?
+                    }
+
+                    $numberPeopleValid =
                     $dowCheck = $this->filter_tariffs_dowcheck($tariff); // Does the tariff allow selections on the arrival date's day of week?
+
 
                     $rates_uid = $tariff->rates_uid;
                     $this->setErrorLog('getTariffsForRoomUids:: Checking tariff id '.$rates_uid.' ');

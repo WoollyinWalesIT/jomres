@@ -428,6 +428,9 @@ class jomres_property_types
 						case 4:
 							$ptype .= ' - '.jr_gettext('_JOMRES_PROPERTYTYPE_FLAG_REALESTATE', '_JOMRES_PROPERTYTYPE_FLAG_REALESTATE', false);
 							break;
+                        case 5:
+                            $ptype .= ' - '.jr_gettext('_JOMRES_PROPERTYTYPE_FLAG_HIRE', '_JOMRES_PROPERTYTYPE_FLAG_HIRE', false);
+                            break;
 						default:
 							$ptype .= ' - '.jr_gettext('_JOMRES_PROPERTYTYPE_FLAG_HOTEL', '_JOMRES_PROPERTYTYPE_FLAG_HOTEL', false);
 							break;

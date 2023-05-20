@@ -47,12 +47,12 @@ class j00501booking_settings
 		if ($componentArgs['is_channel_property']) {
 			return;
 		}
-
+        $defaultProperty = getDefaultProperty();
 		$configurationPanel = $componentArgs[ 'configurationPanel' ];
 
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
-		$mrConfig = getPropertySpecificSettings();
+		$mrConfig = getPropertySpecificSettings($defaultProperty);
 		if ($mrConfig[ 'is_real_estate_listing' ] == 1) {
 			return;
 		}
@@ -72,38 +72,43 @@ class j00501booking_settings
 
 		$configurationPanel->startPanel(jr_gettext('_JOMRES_STATUS_BOOKINGS', '_JOMRES_STATUS_BOOKINGS', false));
 
-		if (!isset($jrConfig[ 'secret_setting_use_old_guest_types' ]) || $jrConfig[ 'secret_setting_use_old_guest_types' ] === "0" && $mrConfig[ 'is_real_estate_listing' ] == 0 && !get_showtime('is_jintour_property')) {
-			$configurationPanel->setleft(jr_gettext('JOMRES_POLICY_ACCEPT_CHILDREN', 'JOMRES_POLICY_ACCEPT_CHILDREN', false));
-			$configurationPanel->setmiddle($lists['allow_children']);
-			$configurationPanel->setright(jr_gettext('JOMRES_POLICY_ACCEPT_CHILDREN_DESC', 'JOMRES_POLICY_ACCEPT_CHILDREN_DESC', false));
-			$configurationPanel->insertSetting();
+        if (!$mrConfig['item_hire_property']){
+            if (!isset($jrConfig[ 'secret_setting_use_old_guest_types' ]) || $jrConfig[ 'secret_setting_use_old_guest_types' ] === "0" && $mrConfig[ 'is_real_estate_listing' ] == 0 && !get_showtime('is_jintour_property')) {
+                $configurationPanel->setleft(jr_gettext('JOMRES_POLICY_ACCEPT_CHILDREN', 'JOMRES_POLICY_ACCEPT_CHILDREN', false));
+                $configurationPanel->setmiddle($lists['allow_children']);
+                $configurationPanel->setright(jr_gettext('JOMRES_POLICY_ACCEPT_CHILDREN_DESC', 'JOMRES_POLICY_ACCEPT_CHILDREN_DESC', false));
+                $configurationPanel->insertSetting();
 
-			if ( $mrConfig[ 'singleRoomProperty' ] == 0) {
-				$configurationPanel->setleft(jr_gettext('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN', 'JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN', false));
-				$configurationPanel->setmiddle($lists[ 'occupancy_levels_include_children' ]);
-				$configurationPanel->setright(jr_gettext('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN_DESC_MRP', 'JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN_DESC_MRP', false));
+                if ( $mrConfig[ 'singleRoomProperty' ] == 0) {
+                    $configurationPanel->setleft(jr_gettext('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN', 'JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN', false));
+                    $configurationPanel->setmiddle($lists[ 'occupancy_levels_include_children' ]);
+                    $configurationPanel->setright(jr_gettext('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN_DESC_MRP', 'JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN_DESC_MRP', false));
 
-				$configurationPanel->insertSetting();
-			}
-		}
-
-        if ($mrConfig[ 'wholeday_booking' ] == '1') {
-            $configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_TARIFFS_PER_WHOLEDAY', '_JOMRES_COM_A_TARIFFS_PER_WHOLEDAY', false));
-            $configurationPanel->setmiddle($lists[ 'perPersonPerNight' ]);
-            $configurationPanel->setright(jr_gettext('_JOMRES_COM_A_TARIFFS_PER_DESC_WHOLEDAY', '_JOMRES_COM_A_TARIFFS_PER_DESC_WHOLEDAY', false));
-            $configurationPanel->insertSetting();
-        } else {
-            $configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_TARIFFS_PER', '_JOMRES_COM_A_TARIFFS_PER', false));
-            $configurationPanel->setmiddle($lists[ 'perPersonPerNight' ]);
-
-            if ($mrConfig['singleRoomProperty'] == '1') {
-                $configurationPanel->setright(jr_gettext('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', '_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', false));
-            } else {
-                $configurationPanel->setright(jr_gettext('_JOMRES_COM_A_TARIFFS_PER_DESC', '_JOMRES_COM_A_TARIFFS_PER_DESC', false));
+                    $configurationPanel->insertSetting();
+                }
             }
+            
+            if ($mrConfig[ 'wholeday_booking' ] == '1') {
+                $configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_TARIFFS_PER_WHOLEDAY', '_JOMRES_COM_A_TARIFFS_PER_WHOLEDAY', false));
+                $configurationPanel->setmiddle($lists[ 'perPersonPerNight' ]);
+                $configurationPanel->setright(jr_gettext('_JOMRES_COM_A_TARIFFS_PER_DESC_WHOLEDAY', '_JOMRES_COM_A_TARIFFS_PER_DESC_WHOLEDAY', false));
+                $configurationPanel->insertSetting();
+            } else {
+                $configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_TARIFFS_PER', '_JOMRES_COM_A_TARIFFS_PER', false));
+                $configurationPanel->setmiddle($lists[ 'perPersonPerNight' ]);
 
-            $configurationPanel->insertSetting();
+                if ($mrConfig['singleRoomProperty'] == '1') {
+                    $configurationPanel->setright(jr_gettext('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', '_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', false));
+                } else {
+                    $configurationPanel->setright(jr_gettext('_JOMRES_COM_A_TARIFFS_PER_DESC', '_JOMRES_COM_A_TARIFFS_PER_DESC', false));
+                }
+
+                $configurationPanel->insertSetting();
+            }
         }
+
+
+
         
 		$configurationPanel->insertHeading(jr_gettext('JOMRES_CITY_TAX_HEADING', 'JOMRES_CITY_TAX_HEADING', false));
 
