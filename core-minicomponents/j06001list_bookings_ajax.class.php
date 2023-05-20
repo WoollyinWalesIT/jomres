@@ -57,14 +57,14 @@ class j06001list_bookings_ajax
 		$tag = (int) jomresGetParam($_GET, 'tag', '0');
 		$guest_uid = (int) jomresGetParam($_GET, 'guest_uid', '0');
 
-		$img_pending = 'label label-grey';
-		$img_arrivetoday = 'label label-orange';
-		$img_resident = 'label label-green';
-		$img_late = 'label label-red';
-		$img_departtoday = 'label label-blue';
-		$img_stillhere = 'label label-purple';
-		$img_bookedout = 'label label-teal';
-		$img_cancelled = 'label label-black';
+		$img_pending = 'label label-grey badge bg-secondary';
+		$img_arrivetoday = 'label label-orange badge bg-warning text-dark';
+		$img_resident = 'label label-green badge bg-success';
+		$img_late = 'label label-red badge bg-danger';
+		$img_departtoday = 'label label-blue badge bg-info text-dark';
+		$img_stillhere = 'label label-purple badge bg-success text-dark';
+		$img_bookedout = 'label label-teal badge bg-light text-dark';
+		$img_cancelled = 'label label-black badge bg-dark';
 
 		$rows = array();
 

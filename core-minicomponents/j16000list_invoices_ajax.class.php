@@ -206,19 +206,19 @@ class j16000list_invoices_ajax
 
 			switch ($p->status) {
 				case 0:
-					$label_class = 'label-red';
+					$label_class = 'label-red badge bg-danger';
 					break;
 				case 1:
-					$label_class = 'label-green';
+					$label_class = 'label-green badge bg-success';
 					break;
 				case 2:
-					$label_class = 'label-black';
+					$label_class = 'label-black badge bg-dark';
 					break;
 				case 3:
-					$label_class = 'label-orange';
+					$label_class = 'label-orange badge bg-warning text-dark';
 					break;
 				default:
-					$label_class = 'label-grey';
+					$label_class = 'label-grey badge bg-secondary';
 					break;
 			}
 
