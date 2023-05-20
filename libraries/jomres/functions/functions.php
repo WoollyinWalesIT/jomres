@@ -5152,13 +5152,15 @@ if (!function_exists('file_get_contents')) {
 			}
 
             $mrConfig['item_hire_property'] = false;
-            if ($property_uid >0) {
-                $basic_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
-                $basic_property_details->gather_data($property_uid);
-                $jomres_property_types = jomres_singleton_abstract::getInstance('jomres_property_types');
-                $jomres_property_types->get_property_type($basic_property_details->ptype_id);
-                if ($jomres_property_types->property_type['mrp_srp_flag'] == 5) {
-                    $mrConfig['item_hire_property'] = true;
+            if (!jomres_cmsspecific_areweinadminarea()) {
+                if ($property_uid >0) {
+                    $basic_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
+                    $basic_property_details->gather_data($property_uid);
+                    $jomres_property_types = jomres_singleton_abstract::getInstance('jomres_property_types');
+                    $jomres_property_types->get_property_type($basic_property_details->ptype_id);
+                    if ($jomres_property_types->property_type['mrp_srp_flag'] == 5) {
+                        $mrConfig['item_hire_property'] = true;
+                    }
                 }
             }
 
