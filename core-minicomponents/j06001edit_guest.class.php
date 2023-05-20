@@ -76,7 +76,7 @@ class j06001edit_guest
 			$output[ 'DISCOUNT' ] = jomresHTML::integerSelectList(0, 99, 1, 'discount', 'class="inputbox" size="1"', $jrportal_guests->discount);
 
 			//validation message
-			if (trim($jrportal_guests->vat_number_validation_response) != '') {
+			if (trim( (string) $jrportal_guests->vat_number_validation_response) != '') {
 				$vat_validation[0][ 'VAT_NUMBER_VALIDATION_STATUS'] = $jrportal_guests->vat_number_validation_response;
 				if ($jrportal_guests->vat_number_validated) {
 					if (using_bootstrap()) {
