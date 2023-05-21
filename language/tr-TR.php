@@ -2738,3 +2738,5 @@ Hedef dili mevcut dilinize ayarlı bırakabilir ve bu sayfayı, öğeleri tek te
 	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"Öne Çıkanlar");
 
 jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', 'Öğe Kiralama');
+
+jr_define('SHORTCODE_INFO_JOMRES_V_JOMRES_SCRIPT',"Kısa kodların Joomla'da &#123;&#125; veya Wordpress'te (BRAKETLER) [] içine alınması gerekir. Kısa kodlar tarafından oluşturulan sayfaların görüntülenmesinin üç yolu vardır. Birincisi, BRACKETjomres kısa kod argümanlarıBRAKET biçiminde bir makaleye/sayfaya/modüle bir kısa kod ekleyin. İkincisi, Jomres şablon dosyaları içindedir, burada BRACKETjomres_script kısa kod argümanlarınıBRAKET koyarsınız. Son yol url'dir, yani örneğin Joomla'da www koyacaksınız www.domain.com/index.php?option=com_jomres&task=SHORTCODE&ARGUMENTS=ARGUMENTS. ");

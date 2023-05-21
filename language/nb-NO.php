@@ -2704,3 +2704,5 @@ Du kan la målspråket settes til ditt nåværende språk og bruke denne siden t
 	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"Utvalgt");
 
 jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', 'Vareleie');
+
+jr_define('SHORTCODE_INFO_JOMRES_V_JOMRES_SCRIPT',"Shortcodes må pakkes inn i &#123;&#125; i Joomla, eller [] i Wordpress (BRACKETS). Det er tre måter sidene generert av kortkoder kan vises på. Den første er å legg til en kortkode til en artikkel/side/modul i formatet BRACKETjomres shortcode argumentsBRACKET. Den andre er innenfor Jomres malfiler, hvor du vil sette BRACKETjomres_script shortcode argumentsBRACKET. Den siste måten er via url, så for eksempel i Joomla vil du sette www.domain.com/index.php?option=com_jomres&task=SHORTCODE&ARGUMENTS=ARGUMENTS. ");

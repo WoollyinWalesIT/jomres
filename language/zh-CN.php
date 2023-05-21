@@ -2746,3 +2746,5 @@ jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', '保存更改后，页面中�
 	jr_define('_JRPORTAL_FEATUREDISTINGS_WORD_FEATURED',"精选");
 
 jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', '物品租用');
+
+jr_define('SHORTCODE_INFO_JOMRES_V_JOMRES_SCRIPT',"简码在Joomla中需要用&#123;&#125;包裹，在Wordpress中需要用[]包裹(BRACKETS)。简码生成的页面可以通过三种方式查看，第一种是 以 BRACKETjomres shortcode argumentsBRACKET 格式向文章/页面/模块添加短代码。第二种是在 Jomres 模板文件中，您可以在其中放置 BRACKETjomres_script shortcode argumentsBRACKET。最后一种方法是通过 url，例如在 Joomla 中，您可以放置 www.domain.com/index.php?option=com_jomres&task=SHORTCODE&ARGUMENTS=ARGUMENTS。");

@@ -2553,3 +2553,5 @@ jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Sélectionnez Oui si vous souha
 	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"En vedette");
 
 jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', 'Location d\'article');
+
+jr_define('SHORTCODE_INFO_JOMRES_V_JOMRES_SCRIPT',"Les codes courts doivent être enveloppés dans &#123;&#125; dans Joomla, ou [] dans Wordpress (ACCORDS). Il y a trois façons d'afficher les pages générées par les codes courts. La première consiste à ajouter un shortcode à un article/page/module au format BRACKETjomres shortcode argumentsBRACKET. Le second se trouve dans les fichiers de modèle Jomres, où vous placeriez BRACKETjomres_script shortcode argumentsBRACKET. La dernière façon est via l'url, donc par exemple dans Joomla vous mettriez www.domain.com/index.php?option=com_jomres&task=SHORTCODE&ARGUMENTS=ARGUMENTS. ");

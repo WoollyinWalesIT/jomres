@@ -2757,3 +2757,5 @@ Podeu deixar l\'idioma d\'arribada configurat en el vostre idioma actual i utili
 	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"Destacat");
 
 jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', 'Lloguer d\'articles');
+
+jr_define('SHORTCODE_INFO_JOMRES_V_JOMRES_SCRIPT',"Els codis curts s'han d'embolicar a &#123;&#125; a Joomla, o [] a Wordpress (PARÈNCULAS). Hi ha tres maneres de veure les pàgines generades pels codis curts. La primera és afegiu un codi curt a un article/pàgina/mòdul en el format PARÈNCULASjomres shortcode argumentsPARÈNCULAS. El segon es troba dins dels fitxers de plantilla de Jomres, on posareu PARÈNCULASjomres_script shortcode argumentsPARÈNCULAS. L'última manera és a través de l'url, així que, per exemple, a Joomla posareu www. /domain.com/index.php?option=com_jomres&task=SHORTCODE&ARGUMENTS=ARGUMENTS. ");

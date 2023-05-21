@@ -2768,3 +2768,5 @@ jr_define('JOMRES_UPDATES_INFO', "דף זה יכול להוריד ולהתקין
 	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"מוצגים");
 
 jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', 'השכרת פריט');
+
+jr_define('SHORTCODE_INFO_JOMRES_V_JOMRES_SCRIPT',"קודים קצרים צריכים להיות עטופים ב-&#123;&#125; בג'ומלה, או ב-[] ב-Wordpress (BRACKETS). ישנן שלוש דרכים בהן ניתן לצפות בדפים שנוצרו על ידי קודי קצר. הראשונה היא הוסף קוד קצר למאמר/עמוד/מודול בפורמט BRACKETjomres shortcode argumentsBRACKET. השני נמצא בתוך קבצי תבנית Jomres, שם היית מכניס BRACKETjomres_script shortcode argumentsBRACKET. הדרך האחרונה היא דרך ה-url, כך למשל בג'ומלה תשים את www.domain.com/index.php?option=com_jomres&task=SHORTCODE&ARGUMENTS=ARGUMENTS. ");

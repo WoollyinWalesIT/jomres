@@ -2791,3 +2791,5 @@ Sie können die Zielsprache auf Ihrer aktuellen Sprache belassen und diese Seite
 	jr_define('_JRPORTAL_FEATUREDLISTE_WORD_FEATURED',"Empfohlen");
 
 jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', 'Item Hire');
+
+jr_define('SHORTCODE_INFO_JOMRES_V_JOMRES_SCRIPT',"Shortcodes müssen in &#123;&#125; in Joomla oder [] in Wordpress (Klammern) eingeschlossen werden. Es gibt drei Möglichkeiten, die durch Shortcodes generierten Seiten anzuzeigen. Die erste ist: Fügen Sie einem Artikel/einer Seite/einem Modul einen Shortcode im Format BRACKETjomres Shortcode-ArgumenteBRACKET hinzu. Der zweite Weg befindet sich in den Jomres-Vorlagendateien, wo Sie BRACKETjomres_script Shortcode-ArgumenteBRACKET einfügen würden. Der letzte Weg ist über die URL, also würden Sie zum Beispiel in Joomla www eingeben /domain.com/index.php?option=com_jomres&task=SHORTCODE&ARGUMENTS=ARGUMENTS. ");

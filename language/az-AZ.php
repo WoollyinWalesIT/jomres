@@ -2745,3 +2745,5 @@ Siz hədəf dili təyin edilmiş cari dilinizə buraxa və onların fərdi səhi
 	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"Seçilmiş");
 
 jr_define('_JOMRES_PROPERTYPE_FLAG_HIRE', 'Eşyanın icarəsi');
+
+jr_define('SHORTCODE_INFO_JOMRES_V_JOMRES_SCRIPT',"Qısa kodlar Joomla-da &#123;&#125; və ya Wordpress-də [] ilə bükülməlidir (BRACKETS). Qısa kodlar tərəfindən yaradılan səhifələrə üç yolla baxa bilərsiniz. Birincisi BRACKETjomres shortcode argumentsBRACKET formatında məqaləyə/səhifəyə/modula qısa kod əlavə edin.İkincisi Jomres şablon faylları içərisindədir, burada siz BRACKETjomres_script qısa kod argumentsBRACKET yerləşdirəcəksiniz. Son yol url vasitəsilədir, məsələn Joomla-da www. /domain.com/index.php?option=com_jomres&task=SHORTCODE&ARGUMENTS=ARQUMENTLƏR. ");

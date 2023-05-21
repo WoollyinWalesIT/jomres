@@ -2698,3 +2698,5 @@ jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Якщо ви збереже
 	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"Рекомендовані");
 
 jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', 'Оренда речей');
+
+jr_define('SHORTCODE_INFO_JOMRES_V_JOMRES_SCRIPT',"Шорткоди потрібно загорнути в &#123;&#125; в Joomla або [] в Wordpress (ДУЖКИ). Є три способи перегляду сторінок, згенерованих шорткодами. Перший - додайте короткий код до статті/сторінки/модуля у форматі BRACKETjomres аргументи короткого коду BRACKET. Другий – у файлах шаблонів Jomres, де ви розмістите BRACKETjomres_script аргументи короткого коду BRACKET. Останній спосіб – через URL-адресу, тому, наприклад, у Joomla ви розмістите www.domain.com/index.php?option=com_jomres&task=SHORTCODE&ARGUMENTS=ARGUMENTS. ");

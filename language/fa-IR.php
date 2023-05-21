@@ -2843,3 +2843,5 @@ jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'اگر می‌خواهید به
 	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"ویژه");
 
 jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', "اجاره آیتم");
+
+jr_define('SHORTCODE_INFO_JOMRES_V_JOMRES_SCRIPT',"کدهای کوتاه باید در &#123;&#125; در جوملا، یا [] در وردپرس (براکت). سه راه برای مشاهده صفحات ایجاد شده توسط کدهای کوتاه وجود دارد. اولین مورد این است که یک کد کوتاه به مقاله/صفحه/ماژول در قالب BRACKETjomres آرگومان های کد کوتاهBRACKET اضافه کنید. دومی در فایل های قالب Jomres است، جایی که شما می توانید آرگومان های کوتاه BRACKETjomres_script BRACKET را قرار دهید. آخرین راه از طریق url است، بنابراین برای مثال در جوملا www.domain.com.com/index.php?option=com_jomres&task=SHORTCODE&ARGUMENTS=ARGUMENTS را قرار می دهید.");

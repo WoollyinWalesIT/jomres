@@ -2702,3 +2702,5 @@ U kunt de doeltaal op uw huidige taal laten staan en deze pagina gebruiken om it
 	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"Aanbevolen");
 
 jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', 'Artikelverhuur');
+
+jr_define('SHORTCODE_INFO_JOMRES_V_JOMRES_SCRIPT',"Shortcodes moeten worden ingepakt in &#123;&#125; in Joomla, of [] in Wordpress (BRACKETS). Er zijn drie manieren waarop de door shortcodes gegenereerde pagina's kunnen worden bekeken. De eerste is om voeg een shortcode toe aan een artikel/pagina/module in het formaat BRACKETjomres shortcode argumentsBRACKET.De tweede is binnen Jomres sjabloonbestanden, waar je BRACKETjomres_script shortcode argumentenBRACKET zou plaatsen.De laatste manier is via de url, dus in Joomla zou je bijvoorbeeld www plaatsen /domain.com/index.php?option=com_jomres&task=SHORTCODE&ARGUMENTS=ARGUMENTEN. ");

@@ -2767,3 +2767,6 @@ jr_define ('_ JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'حدد نعم إذا كنت �
 	jr_define ('_ JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED', "مميز") ;
 
 jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', "استئجار عنصر");
+
+
+jr_define('SHORTCODE_INFO_JOMRES_V_JOMRES_SCRIPT',"يجب تغليف الرموز القصيرة بـ & # 123 ؛ & # 125 ؛ في جملة ، أو [] في Wordpress (BRACKETS). هناك ثلاث طرق يمكن من خلالها عرض الصفحات التي تم إنشاؤها بواسطة الرموز القصيرة. الأول هو إضافة رمز قصير إلى مقالة / صفحة / وحدة بتنسيق BRACKETjomres وسيطات الرمز القصير BRACKET. والثاني داخل ملفات قالب Jomres ، حيث يمكنك وضع وسيطات الرمز القصير BRACKETjomres_script BRACKET. الطريقة الأخيرة هي عبر عنوان url ، لذلك على سبيل المثال في Joomla يمكنك وضع www / domain.com / index.php؟ option = com_jomres & task = SHORTCODE & ARGUMENTS = ARGUMENTS. ");

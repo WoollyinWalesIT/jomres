@@ -2763,3 +2763,5 @@ Puteți lăsa limba țintă setată la limba dvs. curentă și puteți utiliza a
 	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"Prezentate");
 
 jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', 'Închiriere articole');
+
+jr_define('SHORTCODE_INFO_JOMRES_V_JOMRES_SCRIPT',"Codurile scurte trebuie să fie împachetate în &#123;&#125; în Joomla sau [] în Wordpress (PARENTELE). Există trei moduri în care paginile generate de codurile scurte pot fi vizualizate. Prima este să adăugați un shortcode la un articol/pagină/modul în formatul BRACKETjomres shortcode argumentsBRACKET. Al doilea se află în fișierele șablon Jomres, unde ați pune BRACKETjomres_script shortcode argumentsBRACKET. Ultima modalitate este prin adresa URL, deci, de exemplu, în Joomla ați pune www. /domain.com/index.php?option=com_jomres&task=SHORTCODE&ARGUMENTS=ARGUMENTS. ");

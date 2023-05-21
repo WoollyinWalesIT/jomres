@@ -2712,3 +2712,5 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES', "รูป
 	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"แนะนำ");
 
 jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', 'เช่าไอเทม');
+
+jr_define('SHORTCODE_INFO_JOMRES_V_JOMRES_SCRIPT',"รหัสย่อต้องอยู่ใน &#123;&#125; ใน Joomla หรือ [] ใน Wordpress (BRACKETS) สามารถดูหน้าเว็บที่สร้างโดยรหัสย่อได้สามวิธี วิธีแรกคือการ เพิ่มรหัสย่อให้กับบทความ/หน้า/โมดูลในรูปแบบ BRACKETjomres shortcode argumentsBRACKET วิธีที่สองอยู่ในไฟล์เทมเพลต Jomres ซึ่งคุณจะใส่ BRACKETjomres_script shortcode argumentsBRACKET วิธีสุดท้ายคือผ่าน url ตัวอย่างเช่น ใน Joomla คุณจะใส่ www.domain.com/index.php?option=com_jomres&task=SHORTCODE&ARGUMENTS=ARGUMENTS. ");

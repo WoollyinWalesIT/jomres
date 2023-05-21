@@ -2766,3 +2766,5 @@ Możesz pozostawić język docelowy ustawiony na swój bieżący język i użyć
 	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"Polecane");
 
 jr_define('_JOMRES_PROPERTYPE_FLAG_HIRE', 'Wypożyczenie przedmiotu');
+
+jr_define('SHORTCODE_INFO_JOMRES_V_JOMRES_SCRIPT',"Skróty muszą być opakowane w &#123;&#125; w Joomla lub [] w Wordpressie (NAWIATY). Istnieją trzy sposoby przeglądania stron generowanych przez skróty. Pierwszy to dodaj krótki kod do artykułu/strony/modułu w formacie BRACKETjomres shortcode argumentsBRACKET. Drugi znajduje się w plikach szablonów Jomres, w których umieściłbyś BRACKETjomres_script shortcode argumentsBRACKET. Ostatnim sposobem jest adres URL, więc na przykład w Joomla umieściłbyś www.domain.com/index.php?option=com_jomres&task=SHORTCODE&ARGUMENTS=ARGUMENTY. ");

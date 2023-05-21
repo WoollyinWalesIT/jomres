@@ -2747,3 +2747,5 @@ Ciljni jezik lahko pustite nastavljen na vaš trenutni jezik in uporabite to str
 	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"Predstavljeno");
 
 jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', 'Najem predmeta');
+
+jr_define('SHORTCODE_INFO_JOMRES_V_JOMRES_SCRIPT',"Kratke kode je treba zaviti v &#123;&#125; v Joomli ali [] v Wordpressu (OKOLAJJI). Strani, ustvarjene s kratkimi kodami, si lahko ogledate na tri načine. Prvi je, da dodajte kratko kodo v članek/stran/modul v formatu BRACKETjomres argumenti kratke kode BRACKET. Drugi način je v datotekah s predlogo Jomres, kamor bi vstavili BRACKETjomres_script argumente kratke kode BRACKET. Zadnji način je prek URL-ja, tako da bi na primer v Joomli postavili www.domain.com/index.php?option=com_jomres&task=SHORTCODE&ARGUMENTS=ARGUMENTS. ");

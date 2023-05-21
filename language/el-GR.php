@@ -2772,3 +2772,5 @@ jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_HIDEFILTERS' , "Απόκρυψη φίλ
 	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"Επιλεγμένα");
 
 jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', 'Ενοικίαση αντικειμένου');
+
+jr_define('SHORTCODE_INFO_JOMRES_V_JOMRES_SCRIPT',"Οι σύντομοι κώδικες πρέπει να αναδιπλωθούν σε &#123;&#125; στο Joomla ή [] στο Wordpress (BRACKETS). Υπάρχουν τρεις τρόποι προβολής των σελίδων που δημιουργούνται από συντομότερους κωδικούς. Ο πρώτος είναι να προσθέστε έναν σύντομο κώδικα σε ένα άρθρο/σελίδα/ενότητα με τη μορφή BRACKETjomres shortcode argumentsBRACKET. Το δεύτερο είναι μέσα στα αρχεία προτύπου Jomres, όπου θα βάζατε BRACKETjomres_script shortcode argumentsBRACKET. Ο τελευταίος τρόπος είναι μέσω του url, έτσι για παράδειγμα στο Joomla θα βάλετε www.domain.com/index.php?option=com_jomres&task=SHORTCODE&ARGUMENTS=ARGUMENTS. ");

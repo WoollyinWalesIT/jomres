@@ -2772,3 +2772,5 @@ Puede dejar el idioma de destino establecido en su idioma actual y usar esta pá
 	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"Destacado");
 
 jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', 'Alquiler de artículo');
+
+jr_define('SHORTCODE_INFO_JOMRES_V_JOMRES_SCRIPT',"Los códigos cortos deben estar envueltos en &#123;&#125; en Joomla, o [] en Wordpress (BRACKETS). Hay tres formas en que se pueden ver las páginas generadas por los códigos cortos. La primera es agrega un shortcode a un artículo/página/módulo en el formato BRACKETjomres shortcode argumentsBRACKET. El segundo está dentro de los archivos de plantilla de Jomres, donde pondrías BRACKETjomres_script shortcode argumentsBRACKET. La última forma es a través de la url, así que por ejemplo en Joomla pondrías www /dominio.com/index.php?option=com_jomres&task=CÓDIGO CORTO&ARGUMENTOS=ARGUMENTOS. ");

@@ -2734,3 +2734,5 @@ Meghagyhatja a célnyelvet az aktuális nyelven, és ezen az oldalon átnevezhet
 	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"Kiemelt");
 
 jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', 'Tételbérlés');
+
+jr_define('SHORTCODE_INFO_JOMRES_V_JOMRES_SCRIPT',"Joomlában a rövid kódokat &#123;&#125;-be, Wordpressben []-be kell csomagolni (BRACKETS). A rövid kódok által generált oldalak háromféleképpen tekinthetők meg. Az első adjunk hozzá egy rövid kódot egy cikkhez/oldalhoz/modulhoz BRACKETjomres shortcode argumentsBRACKET formátumban. A második a Jomres sablonfájlokon belül található, ahol a BRACKETjomres_script shortcode argumentsBRACKET parancsot kell elhelyezni. Az utolsó mód az url-en keresztül történik, így például a Joomlában a www-t kell tenni /domain.com/index.php?option=com_jomres&task=SHORTCODE&ARGUMENTS=ARGUMENTS. ");

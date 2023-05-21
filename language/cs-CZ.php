@@ -2728,3 +2728,5 @@ Můžete ponechat cílový jazyk nastavený na váš aktuální jazyk a použít
 	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"Vybrané");
 
 jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', 'Pronájem položky');
+
+jr_define('SHORTCODE_INFO_JOMRES_V_JOMRES_SCRIPT',"Krátké kódy je třeba zabalit do &#123;&#125; v Joomle nebo [] ve Wordpressu (BRACKETS). Existují tři způsoby, jak lze prohlížet stránky generované krátkými kódy. První je přidat krátký kód do článku/stránky/modulu ve formátu BRACKETjomres shortcode argumentsBRACKET. Druhý je v souborech šablon Jomres, kam byste vložili BRACKETjomres_script shortcode argumentsBRACKET. Poslední způsob je přes url, takže například v Joomle byste dali www.domain.com/index.php?option=com_jomres&task=SHORTCODE&ARGUMENTS=ARGUMENTS. ");

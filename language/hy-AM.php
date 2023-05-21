@@ -3429,3 +3429,5 @@ jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Ընտրեք Այո, եթե ց�
 	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"Առաջարկված");
 
 jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', 'Նյութերի վարձույթ');
+
+jr_define('SHORTCODE_INFO_JOMRES_V_JOMRES_SCRIPT',"Կարճ կոդերը պետք է փաթաթվեն &#123;&#125; Joomla-ում կամ [] Wordpress-ում (ԲՐԱԿԵՏՍ): Կարճ կոդերով ստեղծված էջերը կարելի է դիտել երեք եղանակով: Առաջինն այն է. ավելացնել կարճ կոդ հոդվածին/էջին/մոդուլին BRACKETjomres shortcode argumentsBRACKET ձևաչափով: Երկրորդը Jomres կաղապարի ֆայլերի մեջ է, որտեղ դուք պետք է տեղադրեք BRACKETjomres_script shortcode argumentsBRACKET: Վերջին ճանապարհը url-ի միջոցով է, այսպիսով, օրինակ Joomla-ում տեղադրեք www. /domain.com/index.php?option=com_jomres&task=SHORTCODE&ARGUMENTS=ARGUMENTS. ");

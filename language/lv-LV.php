@@ -2741,3 +2741,5 @@ Varat atstāt mērķa valodu iestatītu uz savu pašreizējo valodu un izmantot 
 	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"Piedāvātie");
 
 jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', 'Preces noma');
+
+jr_define('SHORTCODE_INFO_JOMRES_V_JOMRES_SCRIPT',"Īskodiem ir jābūt aplauztiem ar &#123;&#125; programmā Joomla vai [] programmā Wordpress (BRACKETS). Ir trīs veidi, kā skatīt īskodu ģenerētās lapas. Pirmais ir pievienojiet rakstam/lapai/modulim īskodu formātā BRACKETjomres shortcode argumentsBRACKET. Otrais ir Jomres veidņu failos, kur jāievieto BRACKETjomres_script shortcode argumentsBRACKET. Pēdējais veids ir caur url, tāpēc, piemēram, Joomla jūs ievietojat www.domain.com/index.php?option=com_jomres&task=SHORTCODE&ARGUMENTS=ARGUMENTI. ");

@@ -2734,3 +2734,5 @@ jr_define('JOMRES_TARGET_LANGUAGE', 'ターゲット言語');
 	jr_define('_ JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED', "注目");
 
 jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', 'アイテムレンタル');
+
+jr_define('SHORTCODE_INFO_JOMRES_V_JOMRES_SCRIPT',"ショートコードは、Joomla では &#123;&#125;、Wordpress では [] (BRACKETS) で囲む必要があります。ショートコードによって生成されたページを表示するには 3 つの方法があります。1 つ目は、 BRACKETjomres ショートコード引数BRACKET の形式で記事/ページ/モジュールにショートコードを追加します。2 つ目は Jomres テンプレート ファイル内にあり、BRACKETjomres_script ショートコード引数BRACKET を配置します。最後の方法は URL を使用するため、たとえば Joomla では www を入力します。 /domain.com/index.php?option=com_jomres&task=SHORTCODE&ARGUMENTS=ARGUMENTS. ");
