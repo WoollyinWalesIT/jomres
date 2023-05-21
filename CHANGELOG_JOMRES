@@ -26,6 +26,7 @@ Search the translate lang file strings page for _JOMRES_COM_MR_QUICKRES_STEP2_TI
 
 In previous versions of Jomres this feature used alternate language files to achieve the same thing. This new feature is much more flexible and allows you to change the language context via shortcode arguments, allowing you to have different strings in shortcodes without needing to change any files. As always the changes are saved to the database so they are update-safe.
 
+<span class="label label-success">Feature</span> Added a new Property type setting that sets a property type to be an Item Hire property type. This will automatically disable showing selection of guest numbers in the booking form, and a few property config settings. Properties set with this setting are essentially MRPs. To prevent us being burdened with significant more template files, some templates will still refer to guest numbers so they'll need to be copied and placed in property type specific override directories.
 <span class="label label-success">Feature</span> Added Animation Library for animating display of properties (doesn't yet work with live scrolled properties)
 <span class="label label-success">Feature</span> Managers can now switch between Micromanage and Advanced. Advanced wasn't available in 10.6, but brought it back in to 10.7 as it still has it's uses.
 <span class="label label-success">Feature</span> Added setting which allows property managers to determine if the number of children can be used when checking the number of  guests in a booking v the number of selected rooms.
