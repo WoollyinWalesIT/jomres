@@ -44,7 +44,6 @@ class j06000jomres_word
 		}
 
         $word = jomresGetParam($_REQUEST, 'word', '');
-        var_dump($word);exit;
         echo jr_gettext( $word, $word, false , false );
 	}
 
