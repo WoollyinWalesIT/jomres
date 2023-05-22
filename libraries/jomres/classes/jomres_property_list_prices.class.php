@@ -161,6 +161,13 @@ class jomres_property_list_prices
                     $this->departureDate = $tomorrow;
                 }
 
+				if ( $this->arrivalDate > $today + "2 years" ) {
+					$this->arrivalDate = $today;
+				}
+				if ( $this->departureDate > $tomorrow + "2 years" ) {
+					$this->departureDate = $tomorrow;
+				}
+
                 $this->stayDays = dateDiff('d', $this->arrivalDate, $this->departureDate);
 
                 $clause = '';
