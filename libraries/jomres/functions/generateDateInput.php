@@ -204,7 +204,7 @@
 			if (isset($options['show_calendar']) && $options['show_calendar'] === false) {
 				$output .= '
                     </script>
-                        <input type="text" readonly="readonly" style="cursor:pointer; background-color: transparent; border-left: 0; position: relative;'.$z_index.'" ' .$size.' name="'.$fieldName.'" id="'.$uniqueID.'" value="'.$dateValue.'" placeholder="'.$placeholder.'" class=" form-control shadow-none '.$input_class.'" />'.$bs3_icon.'
+                        <input type="text" readonly="readonly" style="cursor:pointer; background-color: transparent; border-left: none; position: relative;'.$z_index.'" ' .$size.' name="'.$fieldName.'" id="'.$uniqueID.'" value="'.$dateValue.'" placeholder="'.$placeholder.'" class=" form-control shadow-none '.$input_class.'" />'.$bs3_icon.'
                             ';
 			} else {
 				$output .= '
