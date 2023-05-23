@@ -36,7 +36,7 @@ In previous versions of Jomres this feature used alternate language files to ach
 <span class="label label-success">Feature</span> Changed occupancy levels adults dropdown so that the dropdown maximum adults is set to whatever the highest max adults from all tariffs can be.
 <span class="label label-success">Feature</span> Added 4 new scripts + corresponding template files, which are called before and after search results and property details scripts are run.  In Core they don't do anything, but they provide a unified mechanism by which plugins can add elements like columns/widgets etc to wrap search results and the property details page. The new "Search Composite Sidebar" plugin uses this to add a search form to the side of the search results page.
 
-
+<span class="label label-warning">Change</span> Weekly percentages widget updated (BS5 only).
 <span class="label label-warning">Change</span> Reworked property details in BS4. Header area, image is now parallax and full width of available space (in Cassiopeia there's still some margin, even with the template style set to fluid, not static.). Other layout related tweaks and improvements.
 <span class="label label-warning">Change</span> Removed container class div from top.html & bottom.html. Where the theme/template allows, then content can be full width. Moved the container instead to wrap the menu position div.
 <span class="label label-warning">Change</span> Added a new disable_main_menu script that the main menu will obey, if it has been run then the menu will not be shown anywhere in the page. This allows us to use a simple shortcode {jomres_script disable_main_menu} in any Jomres template and we can disable the menu only on those pages that the template has been rendered.
