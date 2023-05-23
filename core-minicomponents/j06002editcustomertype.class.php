@@ -85,19 +85,19 @@ class j06002editcustomertype
 			$output['TYPE'] 		= $jrportal_guest_types->type;
 			$output['NOTES']		= $jrportal_guest_types->notes;
 			$output['MAXIMUM']		= $jrportal_guest_types->maximum;
-			$output['ISPERCENTAGE']	= jomresHTML::selectList($yesno, 'is_percentage', 'class="inputbox" size="1"', 'value', 'text', $jrportal_guest_types->is_percentage);
-			$output['POSNEG']		= jomresHTML::selectList($posneg, 'posneg', 'class="inputbox" size="1"', 'value', 'text', $jrportal_guest_types->posneg);
+			$output['ISPERCENTAGE']	= jomresHTML::selectList($yesno, 'is_percentage', '', 'value', 'text', $jrportal_guest_types->is_percentage);
+			$output['POSNEG']		= jomresHTML::selectList($posneg, 'posneg', '', 'value', 'text', $jrportal_guest_types->posneg);
 			$output['VARIANCE']		= number_format($jrportal_guest_types->variance, 2, '.', '');
-			$output['ISCHILD']		= jomresHTML::selectList($yesno, 'is_child', 'class="inputbox" size="1"', 'value', 'text', $jrportal_guest_types->is_child);
+			$output['ISCHILD']		= jomresHTML::selectList($yesno, 'is_child', '', 'value', 'text', $jrportal_guest_types->is_child);
 		} else {
 			$output['ID'] 			= 0;
 			$output['TYPE']			= "";
 			$output['NOTES']		= "";
 			$output['MAXIMUM']		= "10";
-			$output['ISPERCENTAGE']	= jomresHTML::selectList($yesno, 'is_percentage', 'class="inputbox" size="1"', 'value', 'text', "0");
-			$output['POSNEG']		= jomresHTML::selectList($posneg, 'posneg', 'class="inputbox" size="1"', 'value', 'text', "0");
+			$output['ISPERCENTAGE']	= jomresHTML::selectList($yesno, 'is_percentage', '', 'value', 'text', "0");
+			$output['POSNEG']		= jomresHTML::selectList($posneg, 'posneg', '', 'value', 'text', "0");
 			$output['VARIANCE']		= number_format(0, 2);
-			$output['ISCHILD']		= jomresHTML::selectList($yesno, 'is_child', 'class="inputbox" size="1"', 'value', 'text', '0');
+			$output['ISCHILD']		= jomresHTML::selectList($yesno, 'is_child', '', 'value', 'text', '0');
 		}
 
 		$jrtbar =jomres_singleton_abstract::getInstance('jomres_toolbar');

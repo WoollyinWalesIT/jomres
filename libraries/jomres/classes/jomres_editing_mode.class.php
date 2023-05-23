@@ -115,6 +115,6 @@ class jomres_editing_mode
 		$mode_options[ ] = jomresHTML::makeOption('1', $on_text);
 		$javascript = 'onchange="switch_editing_mode(\''.JOMRES_SITEPAGE_URL_AJAX.'\',this.value);"';
 
-		return jomresHTML::selectList($mode_options, 'jomres_editing_mode', ' autocomplete="off" class="inputbox" size="1" '.$javascript.'', 'value', 'text', $this->editing);
+		return jomresHTML::selectList($mode_options, 'jomres_editing_mode', ' autocomplete="off" '.$javascript.'', 'value', 'text', $this->editing);
 	}
 }

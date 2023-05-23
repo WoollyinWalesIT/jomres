@@ -52,7 +52,7 @@ class j00510stripe_standard {
 		$output['LOGO'] = JOMRES_IMAGES_RELPATH."j00510".$plugin.".png";
 
 		$output['JR_GATEWAY_CONFIG_ACTIVE']	= jr_gettext('_JOMRES_CUSTOMTEXT_GATEWAY_CONFIG_ACTIVE'.$plugin,"Active");
-		$output['ACTIVE']					= jomresHTML::selectList( $yesno, 'active', 'class="inputbox form-control" size="1"', 'value', 'text', $settingArray['active'] );
+		$output['ACTIVE']					= jomresHTML::selectList( $yesno, 'active', '', 'value', 'text', $settingArray['active'] );
 
 		$output['TEST_PUBLISHABLE_KEY']		= $settingArray['test_publishable_key'];
 		$output['TEST_SECRET_KEY']			= $settingArray['test_secret_key'];
@@ -62,7 +62,7 @@ class j00510stripe_standard {
 		$output['LIVE_SIGNING_SECRET']			= $settingArray['live_signing_secret'];
 		$output['TEST_SIGNING_SECRET']			= $settingArray['test_signing_secret'];
 
-		$output['TEST_MODE']				= jomresHTML::selectList( $yesno, 'test_mode', 'class="inputbox form-control" size="1"', 'value', 'text', $settingArray['test_mode']);
+		$output['TEST_MODE']				= jomresHTML::selectList( $yesno, 'test_mode', '', 'value', 'text', $settingArray['test_mode']);
 
 		$output['STRIPE_STANDARD_TITLE']					= jr_gettext('STRIPE_STANDARD_TITLE','STRIPE_STANDARD_TITLE');
 		$output['STRIPE_STANDARD_MARKETING']				= jr_gettext('STRIPE_STANDARD_MARKETING','STRIPE_STANDARD_MARKETING');

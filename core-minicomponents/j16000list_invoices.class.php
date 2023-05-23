@@ -115,7 +115,7 @@ class j16000list_invoices
 		$options[] = jomresHTML::makeOption('1', jr_gettext('_JOMRES_STATUS_COMMISSIONS', '_JOMRES_STATUS_COMMISSIONS', false));
 		$options[] = jomresHTML::makeOption('2', jr_gettext('_JOMRES_STATUS_SUBSCRIPTIONS', '_JOMRES_STATUS_SUBSCRIPTIONS', false));
 		$options[] = jomresHTML::makeOption('3', jr_gettext('_JOMRES_STATUS_UNISSUED', '_JOMRES_STATUS_UNISSUED', false));
-		$output['INVOICE_TYPE'] = jomresHTML::selectList($options, 'invoice_type', 'class="inputbox" size="1"', 'value', 'text', $invoice_type);
+		$output['INVOICE_TYPE'] = jomresHTML::selectList($options, 'invoice_type', '', 'value', 'text', $invoice_type);
 
 		$options = array();
 		$options[] = jomresHTML::makeOption('4', jr_gettext('_JOMRES_FRONT_ROOMSMOKING_EITHER', '_JOMRES_FRONT_ROOMSMOKING_EITHER', false));
@@ -123,7 +123,7 @@ class j16000list_invoices
 		$options[] = jomresHTML::makeOption('1', $output[ 'HPAID' ]);
 		$options[] = jomresHTML::makeOption('2', $output[ 'HCANCELLED' ]);
 		$options[] = jomresHTML::makeOption('3', $output[ 'HPENDING' ]);
-		$output['INVOICE_STATUS'] = jomresHTML::selectList($options, 'invoice_status', 'class="inputbox" size="1"', 'value', 'text', $invoice_status);
+		$output['INVOICE_STATUS'] = jomresHTML::selectList($options, 'invoice_status', '', 'value', 'text', $invoice_status);
 
 		$output['CMS_USER_ID'] = $cms_user_id;
 

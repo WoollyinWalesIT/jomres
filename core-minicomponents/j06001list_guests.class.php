@@ -98,12 +98,12 @@ class j06001list_guests
 		$options[] = jomresHTML::makeOption('2', jr_gettext('_JOMRES_STATUS_ANY', '_JOMRES_STATUS_ANY', false));
 		$options[] = jomresHTML::makeOption('0', jr_gettext('_JOMRES_STATUS_GUEST_BOOKINGS_ACTIVE', '_JOMRES_STATUS_GUEST_BOOKINGS_ACTIVE', false));
 		$options[] = jomresHTML::makeOption('1', jr_gettext('_JOMRES_STATUS_GUEST_BOOKINGS_PAST', '_JOMRES_STATUS_GUEST_BOOKINGS_PAST', false));
-		$output['GUEST_STATUS'] = jomresHTML::selectList($options, 'historic', 'class="inputbox" size="1"', 'value', 'text', $historic);
+		$output['GUEST_STATUS'] = jomresHTML::selectList($options, 'historic', '', 'value', 'text', $historic);
 
 		$options = array();
 		$options[] = jomresHTML::makeOption('0', jr_gettext('_JOMRES_HSTATUS_CURRENT', '_JOMRES_HSTATUS_CURRENT', false));
 		$options[] = jomresHTML::makeOption('1', jr_gettext('_JOMRES_STATUS_ALL_PROPERTIES', '_JOMRES_STATUS_ALL_PROPERTIES', false));
-		$output['SHOW_ALL'] = jomresHTML::selectList($options, 'show_all', 'class="inputbox" size="1"', 'value', 'text', $show_all);
+		$output['SHOW_ALL'] = jomresHTML::selectList($options, 'show_all', '', 'value', 'text', $show_all);
 
 		$output['AJAX_URL'] = JOMRES_SITEPAGE_URL_AJAX.'&task=listguests_ajax&historic='.$historic.'&guest_id='.$guest_id.'&show_all='.$show_all;
 

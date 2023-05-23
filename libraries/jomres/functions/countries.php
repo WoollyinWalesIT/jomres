@@ -86,7 +86,7 @@ defined('_JOMRES_INITCHECK') or die('');
 				$options[] = jomresHTML::makeOption($country['countrycode'], $country['countryname']);
 			}
 
-			$countryDropdown = jomresHTML::selectList($options, 'cfg_defaultcountry', 'class="inputbox"', 'value', 'text', $selectedCountry);
+			$countryDropdown = jomresHTML::selectList($options, 'cfg_defaultcountry', '', 'value', 'text', $selectedCountry);
 
 			return $countryDropdown;
 		}
@@ -151,7 +151,7 @@ defined('_JOMRES_INITCHECK') or die('');
 				$options[] = jomresHTML::makeOption($country['countrycode'], $country['countryname']);
 			}
 
-			$countryDropdown = jomresHTML::selectList($options, 'cfg_limit_property_country_country', 'class="inputbox" ', 'value', 'text', $jrConfig[ 'limit_property_country_country' ]);
+			$countryDropdown = jomresHTML::selectList($options, 'cfg_limit_property_country_country', ' ', 'value', 'text', $jrConfig[ 'limit_property_country_country' ]);
 
 			return $countryDropdown;
 		}
@@ -240,7 +240,7 @@ defined('_JOMRES_INITCHECK') or die('');
 				foreach ($regionArray as $k => $v) {
 					$regions[ ] = jomresHTML::makeOption($k, $v);
 				}
-				$regionDropdown = jomresHTML::selectList($regions, $input_name, 'class="inputbox"', 'value', 'text', $currentRegion);
+				$regionDropdown = jomresHTML::selectList($regions, $input_name, '', 'value', 'text', $currentRegion);
 			}
 
 			return $regionDropdown;

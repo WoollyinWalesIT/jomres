@@ -59,7 +59,7 @@ defined('_JOMRES_INITCHECK') or die('');
 			$sortArray[ ] = jomresHTML::makeOption('3', jr_gettext('_JOMRES_SORTORDER_PROPERTYREGION', '_JOMRES_SORTORDER_PROPERTYREGION', false, false));
 			$sortArray[ ] = jomresHTML::makeOption('4', jr_gettext('_JOMRES_SORTORDER_PROPERTYTOWN', '_JOMRES_SORTORDER_PROPERTYTOWN', false, false));
 			$sortArray[ ] = jomresHTML::makeOption('5', jr_gettext('_JOMRES_SORTORDER_STARS', '_JOMRES_SORTORDER_STARS', false, false));
-			$sortArrayDropdown = jomresHTML::selectList($sortArray, 'cfg_search_order_default', 'id="sortby" size="1"', 'value', 'text', $jrConfig[ 'search_order_default' ]);
+			$sortArrayDropdown = jomresHTML::selectList($sortArray, 'cfg_search_order_default', ' id="sortby" ', 'value', 'text', $jrConfig[ 'search_order_default' ]);
 
 			$jsInputDateFormats[ ] = jomresHTML::makeOption('%d/%m/%Y', '01/02/2006 - 1st February 2006');
 			$jsInputDateFormats[ ] = jomresHTML::makeOption('%Y/%m/%d', '2006/02/01');
@@ -67,7 +67,7 @@ defined('_JOMRES_INITCHECK') or die('');
 			$jsInputDateFormats[ ] = jomresHTML::makeOption('%d-%m-%Y', '01-02-2006');
 			$jsInputDateFormats[ ] = jomresHTML::makeOption('%Y-%m-%d', '2006-02-01');
 			$jsInputDateFormats[ ] = jomresHTML::makeOption('%m-%d-%Y', '02-01-2006');
-			$jsInputFormatDropdownList = jomresHTML::selectList($jsInputDateFormats, 'cfg_cal_input', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'cal_input' ]);
+			$jsInputFormatDropdownList = jomresHTML::selectList($jsInputDateFormats, 'cfg_cal_input', '', 'value', 'text', $jrConfig[ 'cal_input' ]);
 
 			$jqueryUIthemes = array();
 			$cssFiles = searchCSSThemesDirForCSSFiles();
@@ -79,7 +79,7 @@ defined('_JOMRES_INITCHECK') or die('');
 				$jrConfig[ 'jquery_ui_theme' ] = 'base';
 			}
 
-			$jqueryUIthemesDropdownList = jomresHTML::selectList($jqueryUIthemes, 'cfg_jquery_ui_theme', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'jquery_ui_theme' ]);
+			$jqueryUIthemesDropdownList = jomresHTML::selectList($jqueryUIthemes, 'cfg_jquery_ui_theme', '', 'value', 'text', $jrConfig[ 'jquery_ui_theme' ]);
 
 			if (!isset($jrConfig[ 'cssColourScheme' ])) {
 				$jrConfig[ 'cssColourScheme' ] = 'blue';
@@ -93,30 +93,30 @@ defined('_JOMRES_INITCHECK') or die('');
 			foreach ($jrportal_commissions->crates as $c) {
 				$crateOptions[ ] = jomresHTML::makeOption($c[ 'id' ], $c[ 'title' ]);
 			}
-			$lists[ 'defaultCrate' ] = jomresHTML::selectList($crateOptions, 'cfg_defaultCrate', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'defaultCrate' ]);
-			$lists[ 'errorChecking' ] = jomresHTML::selectList($yesno, 'cfg_errorChecking', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'errorChecking' ]);
-			$lists[ 'useGlobalCurrency' ] = jomresHTML::selectList($yesno, 'cfg_useGlobalCurrency', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'useGlobalCurrency' ]);
-			$lists[ 'editingModeAffectsAllProperties' ] = jomresHTML::selectList($yesno, 'cfg_editingModeAffectsAllProperties', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'editingModeAffectsAllProperties' ]);
-			$lists[ 'useGlobalPFeatures' ] = jomresHTML::selectList($yesno, 'cfg_useGlobalPFeatures', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'useGlobalPFeatures' ]);
-			$lists[ 'useGlobalRoomTypes' ] = jomresHTML::selectList($yesno, 'cfg_useGlobalRoomTypes', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'useGlobalRoomTypes' ]);
-			$lists[ 'selfRegistrationAllowed' ] = jomresHTML::selectList($yesno, 'cfg_selfRegistrationAllowed', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'selfRegistrationAllowed' ]);
-			$lists[ 'allowHTMLeditor' ] = jomresHTML::selectList($editoryesno, 'cfg_allowHTMLeditor', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'allowHTMLeditor' ]);
-			$lists[ 'dumpTemplate' ] = jomresHTML::selectList($yesno, 'cfg_dumpTemplate', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'dumpTemplate' ]);
-			$lists[ 'emailErrors' ] = jomresHTML::selectList($yesno, 'cfg_emailErrors', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'emailErrors' ]);
-			$lists[ 'composite_property_details' ] = jomresHTML::selectList($yesno, 'cfg_composite_property_details', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'composite_property_details' ]);
+			$lists[ 'defaultCrate' ] = jomresHTML::selectList($crateOptions, 'cfg_defaultCrate', '', 'value', 'text', $jrConfig[ 'defaultCrate' ]);
+			$lists[ 'errorChecking' ] = jomresHTML::selectList($yesno, 'cfg_errorChecking', '', 'value', 'text', $jrConfig[ 'errorChecking' ]);
+			$lists[ 'useGlobalCurrency' ] = jomresHTML::selectList($yesno, 'cfg_useGlobalCurrency', '', 'value', 'text', $jrConfig[ 'useGlobalCurrency' ]);
+			$lists[ 'editingModeAffectsAllProperties' ] = jomresHTML::selectList($yesno, 'cfg_editingModeAffectsAllProperties', '', 'value', 'text', $jrConfig[ 'editingModeAffectsAllProperties' ]);
+			$lists[ 'useGlobalPFeatures' ] = jomresHTML::selectList($yesno, 'cfg_useGlobalPFeatures', '', 'value', 'text', $jrConfig[ 'useGlobalPFeatures' ]);
+			$lists[ 'useGlobalRoomTypes' ] = jomresHTML::selectList($yesno, 'cfg_useGlobalRoomTypes', '', 'value', 'text', $jrConfig[ 'useGlobalRoomTypes' ]);
+			$lists[ 'selfRegistrationAllowed' ] = jomresHTML::selectList($yesno, 'cfg_selfRegistrationAllowed', '', 'value', 'text', $jrConfig[ 'selfRegistrationAllowed' ]);
+			$lists[ 'allowHTMLeditor' ] = jomresHTML::selectList($editoryesno, 'cfg_allowHTMLeditor', '', 'value', 'text', $jrConfig[ 'allowHTMLeditor' ]);
+			$lists[ 'dumpTemplate' ] = jomresHTML::selectList($yesno, 'cfg_dumpTemplate', '', 'value', 'text', $jrConfig[ 'dumpTemplate' ]);
+			$lists[ 'emailErrors' ] = jomresHTML::selectList($yesno, 'cfg_emailErrors', '', 'value', 'text', $jrConfig[ 'emailErrors' ]);
+			$lists[ 'composite_property_details' ] = jomresHTML::selectList($yesno, 'cfg_composite_property_details', '', 'value', 'text', $jrConfig[ 'composite_property_details' ]);
 
-			$lists[ 'show_booking_form_in_property_details' ] = jomresHTML::selectList($yesno, 'cfg_show_booking_form_in_property_details', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'show_booking_form_in_property_details' ]);
+			$lists[ 'show_booking_form_in_property_details' ] = jomresHTML::selectList($yesno, 'cfg_show_booking_form_in_property_details', '', 'value', 'text', $jrConfig[ 'show_booking_form_in_property_details' ]);
 
 			$geosearchList = array();
 			$geosearchList[ ] = jomresHTML::makeOption('', '');
 			$geosearchList[ ] = jomresHTML::makeOption('town', jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', false));
 			$geosearchList[ ] = jomresHTML::makeOption('region', jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', false));
-			$geosearchDropdownList = jomresHTML::selectList($geosearchList, 'cfg_integratedSearch_geosearchtype', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_geosearchtype' ]);
+			$geosearchDropdownList = jomresHTML::selectList($geosearchList, 'cfg_integratedSearch_geosearchtype', '', 'value', 'text', $jrConfig[ 'integratedSearch_geosearchtype' ]);
 
 			$calendarStartDays = array();
 			$calendarStartDays[ ] = jomresHTML::makeOption('1', jr_gettext('_JOMRES_COM_MR_WEEKDAYS_SUNDAY', '_JOMRES_COM_MR_WEEKDAYS_SUNDAY', false));
 			$calendarStartDays[ ] = jomresHTML::makeOption('2', jr_gettext('_JOMRES_COM_MR_WEEKDAYS_MONDAY', '_JOMRES_COM_MR_WEEKDAYS_MONDAY', false));
-			$calendarStartDaysDropdownList = jomresHTML::selectList($calendarStartDays, 'cfg_calendarstartofweekday', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'calendarstartofweekday' ]);
+			$calendarStartDaysDropdownList = jomresHTML::selectList($calendarStartDays, 'cfg_calendarstartofweekday', '', 'value', 'text', $jrConfig[ 'calendarstartofweekday' ]);
 
 			if (!isset($jrConfig[ 'guestnumbersearch' ])) {
 				$jrConfig[ 'guestnumbersearch' ] = 'equal';
@@ -126,7 +126,7 @@ defined('_JOMRES_INITCHECK') or die('');
 			$guestnumbersearchList[ ] = jomresHTML::makeOption('lessthan', '<=');
 			$guestnumbersearchList[ ] = jomresHTML::makeOption('equal', '=');
 			$guestnumbersearchList[ ] = jomresHTML::makeOption('greaterthan', '>=');
-			$guestnumbersearchDropdownList = jomresHTML::selectList($guestnumbersearchList, 'cfg_guestnumbersearch', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'guestnumbersearch' ]);
+			$guestnumbersearchDropdownList = jomresHTML::selectList($guestnumbersearchList, 'cfg_guestnumbersearch', '', 'value', 'text', $jrConfig[ 'guestnumbersearch' ]);
 
 			$currency_codes = jomres_singleton_abstract::getInstance('currency_codes');
 			$currency_codes_dropdown = $currency_codes->makeCodesDropdown($jrConfig[ 'globalCurrencyCode' ], true);
@@ -137,12 +137,12 @@ defined('_JOMRES_INITCHECK') or die('');
 			$filtering_level = array();
 			$filtering_level[ ] = jomresHTML::makeOption('weak', jr_gettext('_JOMRES_INPUTFILTERING_LEVEL_WEAK', '_JOMRES_INPUTFILTERING_LEVEL_WEAK', false));
 			$filtering_level[ ] = jomresHTML::makeOption('strong', jr_gettext('_JOMRES_INPUTFILTERING_LEVEL_STRONG', '_JOMRES_INPUTFILTERING_LEVEL_STRONG', false));
-			$filtering_level_dropdown = jomresHTML::selectList($filtering_level, 'cfg_input_filtering', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'input_filtering' ]);
+			$filtering_level_dropdown = jomresHTML::selectList($filtering_level, 'cfg_input_filtering', '', 'value', 'text', $jrConfig[ 'input_filtering' ]);
 
 			$production_development = array();
 			$production_development[ ] = jomresHTML::makeOption('production', jr_gettext('_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_SETTING_PRODUCTION', '_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_SETTING_PRODUCTION', false));
 			$production_development[ ] = jomresHTML::makeOption('development', jr_gettext('_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_SETTING_DEVELOPMENT', '_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_SETTING_DEVELOPMENT', false));
-			$production_development_dropdown = jomresHTML::selectList($production_development, 'cfg_development_production', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'development_production' ]);
+			$production_development_dropdown = jomresHTML::selectList($production_development, 'cfg_development_production', '', 'value', 'text', $jrConfig[ 'development_production' ]);
 
 			if (!isset($jrConfig[ 'navbar_location' ])) {
 				$jrConfig[ 'navbar_location' ] = 'component_area';
@@ -152,7 +152,7 @@ defined('_JOMRES_INITCHECK') or die('');
 			$navbar_location[ ] = jomresHTML::makeOption('navbar-fixed-top', jr_gettext('_JOMRES_BOOTSTRAP_LOCATION_TOP', '_JOMRES_BOOTSTRAP_LOCATION_TOP', false));
 			// Disabled as looks like pants in BS3
 			//$navbar_location[ ] = jomresHTML::makeOption('navbar-fixed-bottom', jr_gettext('_JOMRES_BOOTSTRAP_LOCATION_BOTTOM', '_JOMRES_BOOTSTRAP_LOCATION_BOTTOM', false));
-			$navbar_location_dropdown = jomresHTML::selectList($navbar_location, 'cfg_navbar_location', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'navbar_location' ]);
+			$navbar_location_dropdown = jomresHTML::selectList($navbar_location, 'cfg_navbar_location', '', 'value', 'text', $jrConfig[ 'navbar_location' ]);
 
 			if (!isset($jrConfig[ 'admin_options_level' ])) {
 				$jrConfig[ 'admin_options_level' ] = 0;
@@ -161,7 +161,7 @@ defined('_JOMRES_INITCHECK') or die('');
 			$admin_options_level[ ] = jomresHTML::makeOption(0, jr_gettext('_JOMRES_CONFIG_LEVEL_BASIC', '_JOMRES_CONFIG_LEVEL_BASIC', false));
 			$admin_options_level[ ] = jomresHTML::makeOption(1, jr_gettext('_JOMRES_CONFIG_LEVEL_COMMON', '_JOMRES_CONFIG_LEVEL_COMMON', false));
 			$admin_options_level[ ] = jomresHTML::makeOption(2, jr_gettext('_JOMRES_CONFIG_LEVEL_EVERYTHING', '_JOMRES_CONFIG_LEVEL_EVERYTHING', false));
-			$admin_options_level_dropdown = jomresHTML::selectList($admin_options_level, 'cfg_admin_options_level', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'admin_options_level' ]);
+			$admin_options_level_dropdown = jomresHTML::selectList($admin_options_level, 'cfg_admin_options_level', '', 'value', 'text', $jrConfig[ 'admin_options_level' ]);
 
 
 
@@ -174,7 +174,7 @@ defined('_JOMRES_INITCHECK') or die('');
 			$bootstrap_ver_opt[ ] = jomresHTML::makeOption('', 'Bootstrap 2');
 			$bootstrap_ver_opt[ ] = jomresHTML::makeOption('3', 'Bootstrap 3');
 			$bootstrap_ver_opt[ ] = jomresHTML::makeOption('5', 'Bootstrap 5');
-			$bootstrap_ver_dropdown = jomresHTML::selectList($bootstrap_ver_opt, 'cfg_bootstrap_version', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'bootstrap_version' ], false);
+			$bootstrap_ver_dropdown = jomresHTML::selectList($bootstrap_ver_opt, 'cfg_bootstrap_version', '', 'value', 'text', $jrConfig[ 'bootstrap_version' ], false);
 
 			$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
 			$MiniComponents->triggerEvent('01004', array()); // optional
@@ -184,17 +184,17 @@ defined('_JOMRES_INITCHECK') or die('');
 			foreach ($property_list_layouts as $key => $val) {
 				$layout[ ] = jomresHTML::makeOption($key, $val[ 'title' ]);
 			}
-			$layouts = jomresHTML::selectList($layout, 'cfg_property_list_layout_default', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'property_list_layout_default' ]);
+			$layouts = jomresHTML::selectList($layout, 'cfg_property_list_layout_default', '', 'value', 'text', $jrConfig[ 'property_list_layout_default' ]);
 
-			$lists[ 'integratedSearch_enable' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_enable', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_enable' ]);
-			$lists[ 'integratedSearch_useCols' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_useCols', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_useCols' ]);
-			$lists[ 'integratedSearch_selectcombo' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_selectcombo', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_selectcombo' ]);
-			$lists[ 'integratedSearch_propertyname' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_propertyname', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_propertyname' ]);
-			$lists[ 'integratedSearch_propertyname_dropdown' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_propertyname_dropdown', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_propertyname_dropdown' ]);
-			$lists[ 'integratedSearch_ptype' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_ptype', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_ptype' ]);
-			$lists[ 'integratedSearch_category' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_category', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_category' ]);
-			$lists[ 'integratedSearch_ptype_dropdown' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_ptype_dropdown', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_ptype_dropdown' ]);
-			$lists[ 'integratedSearch_geosearchtype_dropdown' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_geosearchtype_dropdown', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_geosearchtype_dropdown' ]);
+			$lists[ 'integratedSearch_enable' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_enable', '', 'value', 'text', $jrConfig[ 'integratedSearch_enable' ]);
+			$lists[ 'integratedSearch_useCols' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_useCols', '', 'value', 'text', $jrConfig[ 'integratedSearch_useCols' ]);
+			$lists[ 'integratedSearch_selectcombo' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_selectcombo', '', 'value', 'text', $jrConfig[ 'integratedSearch_selectcombo' ]);
+			$lists[ 'integratedSearch_propertyname' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_propertyname', '', 'value', 'text', $jrConfig[ 'integratedSearch_propertyname' ]);
+			$lists[ 'integratedSearch_propertyname_dropdown' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_propertyname_dropdown', '', 'value', 'text', $jrConfig[ 'integratedSearch_propertyname_dropdown' ]);
+			$lists[ 'integratedSearch_ptype' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_ptype', '', 'value', 'text', $jrConfig[ 'integratedSearch_ptype' ]);
+			$lists[ 'integratedSearch_category' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_category', '', 'value', 'text', $jrConfig[ 'integratedSearch_category' ]);
+			$lists[ 'integratedSearch_ptype_dropdown' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_ptype_dropdown', '', 'value', 'text', $jrConfig[ 'integratedSearch_ptype_dropdown' ]);
+			$lists[ 'integratedSearch_geosearchtype_dropdown' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_geosearchtype_dropdown', '', 'value', 'text', $jrConfig[ 'integratedSearch_geosearchtype_dropdown' ]);
 
 			if (!isset($jrConfig[ 'integratedSearch_town' ])) {
 				$jrConfig[ 'integratedSearch_town' ] = '';
@@ -203,101 +203,101 @@ defined('_JOMRES_INITCHECK') or die('');
 				$jrConfig[ 'integratedSearch_town_dropdown' ] = '';
 			}
 
-			$lists[ 'integratedSearch_town' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_town', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_town' ]);
-			$lists[ 'integratedSearch_town_dropdown' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_town_dropdown', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_town_dropdown' ]);
+			$lists[ 'integratedSearch_town' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_town', '', 'value', 'text', $jrConfig[ 'integratedSearch_town' ]);
+			$lists[ 'integratedSearch_town_dropdown' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_town_dropdown', '', 'value', 'text', $jrConfig[ 'integratedSearch_town_dropdown' ]);
 
-			$lists[ 'integratedSearch_room_type' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_room_type', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_room_type' ]);
-			$lists[ 'integratedSearch_room_type_dropdown' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_room_type_dropdown', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_room_type_dropdown' ]);
-			$lists[ 'integratedSearch_features' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_features', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_features' ]);
-			$lists[ 'integratedSearch_features_dropdown' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_features_dropdown', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_features_dropdown' ]);
-			$lists[ 'integratedSearch_description' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_description', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_description' ]);
-			$lists[ 'integratedSearch_availability' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_availability', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_availability' ]);
-			$lists[ 'integratedSearch_priceranges' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_priceranges', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_priceranges' ]);
+			$lists[ 'integratedSearch_room_type' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_room_type', '', 'value', 'text', $jrConfig[ 'integratedSearch_room_type' ]);
+			$lists[ 'integratedSearch_room_type_dropdown' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_room_type_dropdown', '', 'value', 'text', $jrConfig[ 'integratedSearch_room_type_dropdown' ]);
+			$lists[ 'integratedSearch_features' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_features', '', 'value', 'text', $jrConfig[ 'integratedSearch_features' ]);
+			$lists[ 'integratedSearch_features_dropdown' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_features_dropdown', '', 'value', 'text', $jrConfig[ 'integratedSearch_features_dropdown' ]);
+			$lists[ 'integratedSearch_description' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_description', '', 'value', 'text', $jrConfig[ 'integratedSearch_description' ]);
+			$lists[ 'integratedSearch_availability' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_availability', '', 'value', 'text', $jrConfig[ 'integratedSearch_availability' ]);
+			$lists[ 'integratedSearch_priceranges' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_priceranges', '', 'value', 'text', $jrConfig[ 'integratedSearch_priceranges' ]);
 
-			$lists[ 'integratedSearch_guestnumber' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_guestnumber', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_guestnumber' ]);
-			$lists[ 'integratedSearch_stars' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_stars', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_stars' ]);
+			$lists[ 'integratedSearch_guestnumber' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_guestnumber', '', 'value', 'text', $jrConfig[ 'integratedSearch_guestnumber' ]);
+			$lists[ 'integratedSearch_stars' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_stars', '', 'value', 'text', $jrConfig[ 'integratedSearch_stars' ]);
 
-			$lists[ 'showLangDropdown' ] = jomresHTML::selectList($yesno, 'cfg_showLangDropdown', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'showLangDropdown' ]);
+			$lists[ 'showLangDropdown' ] = jomresHTML::selectList($yesno, 'cfg_showLangDropdown', '', 'value', 'text', $jrConfig[ 'showLangDropdown' ]);
 
 			$jrConfig[ 'useNewusers' ] = '1'; // For Jomres v9.11 and GDPR compliance we are now forcing the system to create new users whenever a booking is made. Leaving this here to clarify this point, however site config will no longer offer this option to be changed
-			$lists[ 'useNewusers' ] = jomresHTML::selectList($yesno, 'cfg_useNewusers', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'useNewusers' ]);
+			$lists[ 'useNewusers' ] = jomresHTML::selectList($yesno, 'cfg_useNewusers', '', 'value', 'text', $jrConfig[ 'useNewusers' ]);
 
-			$lists[ 'is_single_property_installation' ] = jomresHTML::selectList($yesno, 'cfg_is_single_property_installation', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'is_single_property_installation' ]);
-			$lists[ 'use_html_purifier' ] = jomresHTML::selectList($yesno, 'cfg_use_html_purifier', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'use_html_purifier' ]);
-			$lists[ 'limit_property_country' ] = jomresHTML::selectList($yesno, 'cfg_limit_property_country', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'limit_property_country' ]);
+			$lists[ 'is_single_property_installation' ] = jomresHTML::selectList($yesno, 'cfg_is_single_property_installation', '', 'value', 'text', $jrConfig[ 'is_single_property_installation' ]);
+			$lists[ 'use_html_purifier' ] = jomresHTML::selectList($yesno, 'cfg_use_html_purifier', '', 'value', 'text', $jrConfig[ 'use_html_purifier' ]);
+			$lists[ 'limit_property_country' ] = jomresHTML::selectList($yesno, 'cfg_limit_property_country', '', 'value', 'text', $jrConfig[ 'limit_property_country' ]);
 
-			$lists[ 'use_reviews' ] = jomresHTML::selectList($yesno, 'cfg_use_reviews', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'use_reviews' ]);
-			$lists[ 'autopublish_reviews' ] = jomresHTML::selectList($yesno, 'cfg_autopublish_reviews', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'autopublish_reviews' ]);
-			$lists[ 'reviews_test_mode' ] = jomresHTML::selectList($yesno, 'cfg_reviews_test_mode', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'reviews_test_mode' ]);
-			$lists[ 'show_search_order' ] = jomresHTML::selectList($yesno, 'cfg_show_search_order', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'show_search_order' ]);
+			$lists[ 'use_reviews' ] = jomresHTML::selectList($yesno, 'cfg_use_reviews', '', 'value', 'text', $jrConfig[ 'use_reviews' ]);
+			$lists[ 'autopublish_reviews' ] = jomresHTML::selectList($yesno, 'cfg_autopublish_reviews', '', 'value', 'text', $jrConfig[ 'autopublish_reviews' ]);
+			$lists[ 'reviews_test_mode' ] = jomresHTML::selectList($yesno, 'cfg_reviews_test_mode', '', 'value', 'text', $jrConfig[ 'reviews_test_mode' ]);
+			$lists[ 'show_search_order' ] = jomresHTML::selectList($yesno, 'cfg_show_search_order', '', 'value', 'text', $jrConfig[ 'show_search_order' ]);
 
-			$lists[ 'only_guests_can_review' ] = jomresHTML::selectList($yesno, 'cfg_only_guests_can_review', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'only_guests_can_review' ]);
-			$lists[ 'use_timezone_switcher' ] = jomresHTML::selectList($yesno, 'cfg_use_timezone_switcher', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'use_timezone_switcher' ]);
-			$lists[ 'load_jquery' ] = jomresHTML::selectList($yesno, 'cfg_load_jquery', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'load_jquery' ]);
-			$lists[ 'use_commission' ] = jomresHTML::selectList($yesno, 'cfg_use_commission', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'use_commission' ]);
-			$lists[ 'manager_bookings_trigger_commission' ] = jomresHTML::selectList($yesno, 'cfg_manager_bookings_trigger_commission', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'manager_bookings_trigger_commission' ]);
-			$lists[ 'commission_autosuspend_on_overdue' ] = jomresHTML::selectList($yesno, 'cfg_commission_autosuspend_on_overdue', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'commission_autosuspend_on_overdue' ]);
-			$lists[ 'load_jquery_ui' ] = jomresHTML::selectList($yesno, 'cfg_load_jquery_ui', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'load_jquery_ui' ]);
-			$lists[ 'load_jquery_ui_css' ] = jomresHTML::selectList($yesno, 'cfg_load_jquery_ui_css', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'load_jquery_ui_css' ]);
-			$lists[ 'use_conversion_feature' ] = jomresHTML::selectList($yesno, 'cfg_use_conversion_feature', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'use_conversion_feature' ]);
-			$lists[ 'booking_form_modal_popup' ] = jomresHTML::selectList($yesno, 'cfg_booking_form_modal_popup', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'booking_form_modal_popup' ]);
-			$lists[ 'useNewusers_sendemail' ] = jomresHTML::selectList($yesno, 'cfg_useNewusers_sendemail', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'useNewusers_sendemail' ]);
-			$lists[ 'show_tax_in_totals_summary' ] = jomresHTML::selectList($yesno, 'cfg_show_tax_in_totals_summary', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'show_tax_in_totals_summary' ]);
-			$lists[ 'alternate_smtp_use_settings' ] = jomresHTML::selectList($yesno, 'cfg_alternate_smtp_use_settings', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'alternate_smtp_use_settings' ]);
-			$lists[ 'alternate_smtp_authentication' ] = jomresHTML::selectList($yesno, 'cfg_alternate_smtp_authentication', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'alternate_smtp_authentication' ]);
-			$lists[ 'alternate_mainmenu' ] = jomresHTML::selectList($yesno, 'cfg_alternate_mainmenu', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'alternate_mainmenu' ]);
-			$lists[ 'safe_mode' ] = jomresHTML::selectList($yesno, 'cfg_safe_mode', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'safe_mode' ]);
-			$lists[ 'use_jomres_own_editor' ] = jomresHTML::selectList($yesno, 'cfg_use_jomres_own_editor', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'use_jomres_own_editor' ]);
-			$lists[ 'property_details_in_tabs' ] = jomresHTML::selectList($yesno, 'cfg_property_details_in_tabs', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'property_details_in_tabs' ]);
+			$lists[ 'only_guests_can_review' ] = jomresHTML::selectList($yesno, 'cfg_only_guests_can_review', '', 'value', 'text', $jrConfig[ 'only_guests_can_review' ]);
+			$lists[ 'use_timezone_switcher' ] = jomresHTML::selectList($yesno, 'cfg_use_timezone_switcher', '', 'value', 'text', $jrConfig[ 'use_timezone_switcher' ]);
+			$lists[ 'load_jquery' ] = jomresHTML::selectList($yesno, 'cfg_load_jquery', '', 'value', 'text', $jrConfig[ 'load_jquery' ]);
+			$lists[ 'use_commission' ] = jomresHTML::selectList($yesno, 'cfg_use_commission', '', 'value', 'text', $jrConfig[ 'use_commission' ]);
+			$lists[ 'manager_bookings_trigger_commission' ] = jomresHTML::selectList($yesno, 'cfg_manager_bookings_trigger_commission', '', 'value', 'text', $jrConfig[ 'manager_bookings_trigger_commission' ]);
+			$lists[ 'commission_autosuspend_on_overdue' ] = jomresHTML::selectList($yesno, 'cfg_commission_autosuspend_on_overdue', '', 'value', 'text', $jrConfig[ 'commission_autosuspend_on_overdue' ]);
+			$lists[ 'load_jquery_ui' ] = jomresHTML::selectList($yesno, 'cfg_load_jquery_ui', '', 'value', 'text', $jrConfig[ 'load_jquery_ui' ]);
+			$lists[ 'load_jquery_ui_css' ] = jomresHTML::selectList($yesno, 'cfg_load_jquery_ui_css', '', 'value', 'text', $jrConfig[ 'load_jquery_ui_css' ]);
+			$lists[ 'use_conversion_feature' ] = jomresHTML::selectList($yesno, 'cfg_use_conversion_feature', '', 'value', 'text', $jrConfig[ 'use_conversion_feature' ]);
+			$lists[ 'booking_form_modal_popup' ] = jomresHTML::selectList($yesno, 'cfg_booking_form_modal_popup', '', 'value', 'text', $jrConfig[ 'booking_form_modal_popup' ]);
+			$lists[ 'useNewusers_sendemail' ] = jomresHTML::selectList($yesno, 'cfg_useNewusers_sendemail', '', 'value', 'text', $jrConfig[ 'useNewusers_sendemail' ]);
+			$lists[ 'show_tax_in_totals_summary' ] = jomresHTML::selectList($yesno, 'cfg_show_tax_in_totals_summary', '', 'value', 'text', $jrConfig[ 'show_tax_in_totals_summary' ]);
+			$lists[ 'alternate_smtp_use_settings' ] = jomresHTML::selectList($yesno, 'cfg_alternate_smtp_use_settings', '', 'value', 'text', $jrConfig[ 'alternate_smtp_use_settings' ]);
+			$lists[ 'alternate_smtp_authentication' ] = jomresHTML::selectList($yesno, 'cfg_alternate_smtp_authentication', '', 'value', 'text', $jrConfig[ 'alternate_smtp_authentication' ]);
+			$lists[ 'alternate_mainmenu' ] = jomresHTML::selectList($yesno, 'cfg_alternate_mainmenu', '', 'value', 'text', $jrConfig[ 'alternate_mainmenu' ]);
+			$lists[ 'safe_mode' ] = jomresHTML::selectList($yesno, 'cfg_safe_mode', '', 'value', 'text', $jrConfig[ 'safe_mode' ]);
+			$lists[ 'use_jomres_own_editor' ] = jomresHTML::selectList($yesno, 'cfg_use_jomres_own_editor', '', 'value', 'text', $jrConfig[ 'use_jomres_own_editor' ]);
+			$lists[ 'property_details_in_tabs' ] = jomresHTML::selectList($yesno, 'cfg_property_details_in_tabs', '', 'value', 'text', $jrConfig[ 'property_details_in_tabs' ]);
 
-			$lists[ 'gmap_layer_weather' ] = jomresHTML::selectList($yesno, 'cfg_gmap_layer_weather', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'gmap_layer_weather' ]);
-			$lists[ 'gmap_layer_panoramio' ] = jomresHTML::selectList($yesno, 'cfg_gmap_layer_panoramio', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'gmap_layer_panoramio' ]);
-			$lists[ 'gmap_layer_transit' ] = jomresHTML::selectList($yesno, 'cfg_gmap_layer_transit', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'gmap_layer_transit' ]);
-			$lists[ 'gmap_layer_traffic' ] = jomresHTML::selectList($yesno, 'cfg_gmap_layer_traffic', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'gmap_layer_traffic' ]);
-			$lists[ 'gmap_layer_bicycling' ] = jomresHTML::selectList($yesno, 'cfg_gmap_layer_bicycling', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'gmap_layer_bicycling' ]);
-			$lists[ 'gmap_pois' ] = jomresHTML::selectList($yesno, 'cfg_gmap_pois', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'gmap_pois' ]);
+			$lists[ 'gmap_layer_weather' ] = jomresHTML::selectList($yesno, 'cfg_gmap_layer_weather', '', 'value', 'text', $jrConfig[ 'gmap_layer_weather' ]);
+			$lists[ 'gmap_layer_panoramio' ] = jomresHTML::selectList($yesno, 'cfg_gmap_layer_panoramio', '', 'value', 'text', $jrConfig[ 'gmap_layer_panoramio' ]);
+			$lists[ 'gmap_layer_transit' ] = jomresHTML::selectList($yesno, 'cfg_gmap_layer_transit', '', 'value', 'text', $jrConfig[ 'gmap_layer_transit' ]);
+			$lists[ 'gmap_layer_traffic' ] = jomresHTML::selectList($yesno, 'cfg_gmap_layer_traffic', '', 'value', 'text', $jrConfig[ 'gmap_layer_traffic' ]);
+			$lists[ 'gmap_layer_bicycling' ] = jomresHTML::selectList($yesno, 'cfg_gmap_layer_bicycling', '', 'value', 'text', $jrConfig[ 'gmap_layer_bicycling' ]);
+			$lists[ 'gmap_pois' ] = jomresHTML::selectList($yesno, 'cfg_gmap_pois', '', 'value', 'text', $jrConfig[ 'gmap_pois' ]);
 
-			$lists[ 'review_nag' ] = jomresHTML::selectList($yesno, 'cfg_review_nag', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'review_nag' ]);
-			$lists[ 'optimize_images' ] = jomresHTML::selectList($yesno, 'cfg_optimize_images', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'optimize_images' ]);
+			$lists[ 'review_nag' ] = jomresHTML::selectList($yesno, 'cfg_review_nag', '', 'value', 'text', $jrConfig[ 'review_nag' ]);
+			$lists[ 'optimize_images' ] = jomresHTML::selectList($yesno, 'cfg_optimize_images', '', 'value', 'text', $jrConfig[ 'optimize_images' ]);
 
-			$lists[ 'frontend_room_type_editing_allowed' ] = jomresHTML::selectList($yesno, 'cfg_frontend_room_type_editing_allowed', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'frontend_room_type_editing_allowed' ]);
+			$lists[ 'frontend_room_type_editing_allowed' ] = jomresHTML::selectList($yesno, 'cfg_frontend_room_type_editing_allowed', '', 'value', 'text', $jrConfig[ 'frontend_room_type_editing_allowed' ]);
 
-			$lists[ 'frontend_room_type_editing_show_property_room_types_in_search_options' ] = jomresHTML::selectList($yesno, 'cfg_frontend_room_type_editing_show_property_room_types_in_search_options', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'frontend_room_type_editing_show_property_room_types_in_search_options' ]);
+			$lists[ 'frontend_room_type_editing_show_property_room_types_in_search_options' ] = jomresHTML::selectList($yesno, 'cfg_frontend_room_type_editing_show_property_room_types_in_search_options', '', 'value', 'text', $jrConfig[ 'frontend_room_type_editing_show_property_room_types_in_search_options' ]);
 
-			$lists[ 'useSyndication' ] = jomresHTML::selectList($yesno, 'cfg_useSyndication', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'useSyndication' ]);
+			$lists[ 'useSyndication' ] = jomresHTML::selectList($yesno, 'cfg_useSyndication', '', 'value', 'text', $jrConfig[ 'useSyndication' ]);
 
 			if (!isset($jrConfig[ 'compatability_property_configuration' ])) { // New installations will automatically set this to Yes, therefore if it's not set this was an updated installation and we should by default set this to No and allow the site managers to decide if they want to enable the setting
 				$jrConfig[ 'compatability_property_configuration' ] = 0;
 			}
-			$lists[ 'compatability_property_configuration' ] = jomresHTML::selectList($yesno, 'cfg_compatability_property_configuration', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'compatability_property_configuration' ]);
+			$lists[ 'compatability_property_configuration' ] = jomresHTML::selectList($yesno, 'cfg_compatability_property_configuration', '', 'value', 'text', $jrConfig[ 'compatability_property_configuration' ]);
 
 			if (!isset($jrConfig[ 'collect_analytics_allowed' ])) {
 				$jrConfig[ 'collect_analytics_allowed' ] = 0;
 			}
-			$lists[ 'collect_analytics_allowed' ] = jomresHTML::selectList($yesno, 'cfg_collect_analytics_allowed', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'collect_analytics_allowed' ]);
+			$lists[ 'collect_analytics_allowed' ] = jomresHTML::selectList($yesno, 'cfg_collect_analytics_allowed', '', 'value', 'text', $jrConfig[ 'collect_analytics_allowed' ]);
 
 
 
 			if (!isset($jrConfig['show_powered_by'])) {
 				$jrConfig['show_powered_by'] = '0';
 			}
-			$lists[ 'show_powered_by' ] = jomresHTML::selectList($yesno, 'cfg_show_powered_by', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'show_powered_by' ]);
+			$lists[ 'show_powered_by' ] = jomresHTML::selectList($yesno, 'cfg_show_powered_by', '', 'value', 'text', $jrConfig[ 'show_powered_by' ]);
 
-			$lists[ 'use_budget_feature' ] = jomresHTML::selectList($yesno, 'cfg_use_budget_feature', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'use_budget_feature' ]);
+			$lists[ 'use_budget_feature' ] = jomresHTML::selectList($yesno, 'cfg_use_budget_feature', '', 'value', 'text', $jrConfig[ 'use_budget_feature' ]);
 
 			if (!isset($jrConfig[ 'navbar_inverse' ])) {
 				$jrConfig[ 'navbar_inverse' ] = 0;
 			}
 
-			$lists[ 'navbar_inverse' ] = jomresHTML::selectList($yesno, 'cfg_navbar_inverse', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'navbar_inverse' ]);
+			$lists[ 'navbar_inverse' ] = jomresHTML::selectList($yesno, 'cfg_navbar_inverse', '', 'value', 'text', $jrConfig[ 'navbar_inverse' ]);
 
 			if (!isset($jrConfig[ 'automatically_approve_new_properties' ])) {
 				$jrConfig[ 'automatically_approve_new_properties' ] = '1';
 			}
 
-			$lists[ 'region_names_are_translatable' ] = jomresHTML::selectList($yesno, 'cfg_region_names_are_translatable', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'region_names_are_translatable' ]);
+			$lists[ 'region_names_are_translatable' ] = jomresHTML::selectList($yesno, 'cfg_region_names_are_translatable', '', 'value', 'text', $jrConfig[ 'region_names_are_translatable' ]);
 
-			$lists[ 'automatically_approve_new_properties' ] = jomresHTML::selectList($yesno, 'cfg_automatically_approve_new_properties', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'automatically_approve_new_properties' ]);
+			$lists[ 'automatically_approve_new_properties' ] = jomresHTML::selectList($yesno, 'cfg_automatically_approve_new_properties', '', 'value', 'text', $jrConfig[ 'automatically_approve_new_properties' ]);
 
 			if (!isset($jrConfig[ 'use_bootstrap_in_frontend' ])) {
 				if (this_cms_is_joomla()) {
@@ -307,49 +307,49 @@ defined('_JOMRES_INITCHECK') or die('');
 				}
 			}
 
-			$lists[ 'use_bootstrap_in_frontend' ] = jomresHTML::selectList($yesno, 'cfg_use_bootstrap_in_frontend', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'use_bootstrap_in_frontend' ]);
+			$lists[ 'use_bootstrap_in_frontend' ] = jomresHTML::selectList($yesno, 'cfg_use_bootstrap_in_frontend', '', 'value', 'text', $jrConfig[ 'use_bootstrap_in_frontend' ]);
 
 			if (!isset($jrConfig['live_scrolling_enabled'])) {
 				$jrConfig['live_scrolling_enabled'] = '1';
 			}
 
-			$lists[ 'live_scrolling_enabled' ] = jomresHTML::selectList($yesno, 'cfg_live_scrolling_enabled', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'live_scrolling_enabled' ]);
+			$lists[ 'live_scrolling_enabled' ] = jomresHTML::selectList($yesno, 'cfg_live_scrolling_enabled', '', 'value', 'text', $jrConfig[ 'live_scrolling_enabled' ]);
 
 			if (!isset($jrConfig[ 'load_font_awesome' ])) {
 				$jrConfig[ 'load_font_awesome' ] = '0';
 			}
-			$lists[ 'load_font_awesome' ] = jomresHTML::selectList($yesno, 'cfg_load_font_awesome', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'load_font_awesome' ]);
-			$lists[ 'override_property_contact_details' ] = jomresHTML::selectList($yesno, 'cfg_override_property_contact_details', 'class="inputbox" size="1"', 'value', 'text', (int) $jrConfig[ 'override_property_contact_details' ]);
+			$lists[ 'load_font_awesome' ] = jomresHTML::selectList($yesno, 'cfg_load_font_awesome', '', 'value', 'text', $jrConfig[ 'load_font_awesome' ]);
+			$lists[ 'override_property_contact_details' ] = jomresHTML::selectList($yesno, 'cfg_override_property_contact_details', '', 'value', 'text', (int) $jrConfig[ 'override_property_contact_details' ]);
 
-			$lists[ 'currency_symbol_swap' ] = jomresHTML::selectList($yesno, 'cfg_currency_symbol_swap', 'class="inputbox" size="1"', 'value', 'text', (int) $jrConfig[ 'currency_symbol_swap' ]);
+			$lists[ 'currency_symbol_swap' ] = jomresHTML::selectList($yesno, 'cfg_currency_symbol_swap', '', 'value', 'text', (int) $jrConfig[ 'currency_symbol_swap' ]);
 
 			$map_styles = array();
 			$map_style_files = get_map_styles();
 			foreach ($map_style_files as $style_file) {
 				$map_styles[ ] = jomresHTML::makeOption($style_file, $style_file);
 			}
-			$map_styles_dropdown = jomresHTML::selectList($map_styles, 'cfg_map_style', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'map_style' ]);
+			$map_styles_dropdown = jomresHTML::selectList($map_styles, 'cfg_map_style', '', 'value', 'text', $jrConfig[ 'map_style' ]);
 
-			$lists[ 'sendErrorEmails' ] = jomresHTML::selectList($yesno, 'cfg_sendErrorEmails', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'sendErrorEmails' ]);
-			$lists[ 'plist_images_as_slideshow' ] = jomresHTML::selectList($yesno, 'cfg_plist_images_as_slideshow', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'plist_images_as_slideshow' ]);
-			$lists[ 'delete_all_data_on_uninstall' ] = jomresHTML::selectList($yesno, 'cfg_delete_all_data_on_uninstall', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'delete_all_data_on_uninstall' ]);
+			$lists[ 'sendErrorEmails' ] = jomresHTML::selectList($yesno, 'cfg_sendErrorEmails', '', 'value', 'text', $jrConfig[ 'sendErrorEmails' ]);
+			$lists[ 'plist_images_as_slideshow' ] = jomresHTML::selectList($yesno, 'cfg_plist_images_as_slideshow', '', 'value', 'text', $jrConfig[ 'plist_images_as_slideshow' ]);
+			$lists[ 'delete_all_data_on_uninstall' ] = jomresHTML::selectList($yesno, 'cfg_delete_all_data_on_uninstall', '', 'value', 'text', $jrConfig[ 'delete_all_data_on_uninstall' ]);
 
 			$options = array();
 			$options[ ] = jomresHTML::makeOption('Minicomponent', 'Minicomponent');
 			$options[ ] = jomresHTML::makeOption('Cron', 'Cron job');
-			$lists[ 'cron_method' ] = jomresHTML::selectList($options, 'cfg_cron_method', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'cron_method' ]);
+			$lists[ 'cron_method' ] = jomresHTML::selectList($options, 'cfg_cron_method', '', 'value', 'text', $jrConfig[ 'cron_method' ]);
 
 			$options = array();
 			$options[ ] = jomresHTML::makeOption('file', 'File');
 			$options[ ] = jomresHTML::makeOption('database', 'Database');
-			$lists[ 'session_handler' ] = jomresHTML::selectList($options, 'cfg_session_handler', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'session_handler' ]);
+			$lists[ 'session_handler' ] = jomresHTML::selectList($options, 'cfg_session_handler', '', 'value', 'text', $jrConfig[ 'session_handler' ]);
 
 			$options = array();
 			$options[] = jomresHTML::makeOption('ROADMAP', 'Roadmap');
 			$options[] = jomresHTML::makeOption('SATELLITE', 'Satellite');
 			$options[] = jomresHTML::makeOption('HYBRID', 'Hybrid');
 			$options[] = jomresHTML::makeOption('TERRAIN', 'Terrain');
-			$lists[ 'map_type' ] = jomresHTML::selectList($options, 'cfg_map_type', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'map_type' ]);
+			$lists[ 'map_type' ] = jomresHTML::selectList($options, 'cfg_map_type', '', 'value', 'text', $jrConfig[ 'map_type' ]);
 
 			//frontend cpanel home page grid options
 			$options = array();
@@ -357,24 +357,24 @@ defined('_JOMRES_INITCHECK') or die('');
 			$options[ ] = jomresHTML::makeOption('1/3 2/3', '1/3 | 2/3');
 			$options[ ] = jomresHTML::makeOption('1/3 1/3 1/3', '1/3 | 1/3 | 1/3');
 			$options[ ] = jomresHTML::makeOption('1/4 1/4 1/4 1/4', '1/4 | 1/4 | 1/4 | 1/4');
-			$lists[ 'front_cpanel_home_grid' ] = jomresHTML::selectList($options, 'cfg_front_cpanel_home_grid', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'front_cpanel_home_grid' ]);
+			$lists[ 'front_cpanel_home_grid' ] = jomresHTML::selectList($options, 'cfg_front_cpanel_home_grid', '', 'value', 'text', $jrConfig[ 'front_cpanel_home_grid' ]);
 
 			$options = array();
 			for ($i=1; $i<=23; $i++) {
 				$options[] = jomresHTML::makeOption($i, $i);
 			}
-			$lists[ 'map_zoom' ] = jomresHTML::selectList($options, 'cfg_map_zoom', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'map_zoom' ]);
+			$lists[ 'map_zoom' ] = jomresHTML::selectList($options, 'cfg_map_zoom', '', 'value', 'text', $jrConfig[ 'map_zoom' ]);
 
-			$lists[ 'send_email_copies_to_site_admins' ] = jomresHTML::selectList($yesno, 'cfg_send_email_copies_to_site_admins', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'send_email_copies_to_site_admins' ]);
+			$lists[ 'send_email_copies_to_site_admins' ] = jomresHTML::selectList($yesno, 'cfg_send_email_copies_to_site_admins', '', 'value', 'text', $jrConfig[ 'send_email_copies_to_site_admins' ]);
 
-			$lists[ 'enable_gdpr_compliant_fucntionality' ] = jomresHTML::selectList($yesno, 'cfg_enable_gdpr_compliant_fucntionality', 'class="inputbox" size="1"', 'value', 'text', (int) $jrConfig[ 'enable_gdpr_compliant_fucntionality' ]);
+			$lists[ 'enable_gdpr_compliant_fucntionality' ] = jomresHTML::selectList($yesno, 'cfg_enable_gdpr_compliant_fucntionality', '', 'value', 'text', (int) $jrConfig[ 'enable_gdpr_compliant_fucntionality' ]);
 
 
-			$lists[ 'prioritise_sitewide_label_definitions' ] = jomresHTML::selectList($yesno, 'cfg_prioritise_sitewide_label_definitions', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'prioritise_sitewide_label_definitions' ]);
+			$lists[ 'prioritise_sitewide_label_definitions' ] = jomresHTML::selectList($yesno, 'cfg_prioritise_sitewide_label_definitions', '', 'value', 'text', $jrConfig[ 'prioritise_sitewide_label_definitions' ]);
 
-			$lists[ 'generate_random_emails' ] = jomresHTML::selectList($yesno, 'cfg_generate_random_emails', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'generate_random_emails' ]);
+			$lists[ 'generate_random_emails' ] = jomresHTML::selectList($yesno, 'cfg_generate_random_emails', '', 'value', 'text', $jrConfig[ 'generate_random_emails' ]);
 
-			$lists[ 'use_groupby_fix' ] = jomresHTML::selectList($yesno, 'cfg_use_groupby_fix', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'use_groupby_fix' ]);
+			$lists[ 'use_groupby_fix' ] = jomresHTML::selectList($yesno, 'cfg_use_groupby_fix', '', 'value', 'text', $jrConfig[ 'use_groupby_fix' ]);
 
 			$componentArgs = array();
 			$componentArgs[ 'lists' ] = $lists;

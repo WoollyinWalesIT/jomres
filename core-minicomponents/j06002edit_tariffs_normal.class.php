@@ -163,10 +163,10 @@ class j06002edit_tariffs_normal
 				
 				$rw[ 'ROOM_CLASS_ABBV' ] = $r['abbv'];
 				
-				$rw[ 'ROOMNUMBERDROPDOWN' ] = jomresHTML::integerSelectList(00, 300, 1, "numberofRooms[$roomtype_id]", 'class="input-mini"', $this_roomtype_count, '%02d');
+				$rw[ 'ROOMNUMBERDROPDOWN' ] = jomresHTML::integerSelectList(00, 300, 1, "numberofRooms[$roomtype_id]", '', $this_roomtype_count, '%02d');
 				$rw[ 'ROOMRATEPERDAY' ] = '<input class="input-mini" type="number" name="roomrateperday['.$roomtype_id.']" value="'.$existing_tariffs[ $roomtype_id ][ 'roomrateperday' ].'" />';
-				$rw[ 'MAX_PEOPLE_ROOM' ] = jomresHTML::integerSelectList(01, 100, 1, "max_people[$roomtype_id]", 'class="input-mini"', $existing_rooms[ $roomtype_id ][ 'max_people' ], '%02d');
-				$rw[ 'MAX_PEOPLE_TARIFF' ] = jomresHTML::integerSelectList(01, 100, 1, "maxpeople_tariff[$roomtype_id]", 'class="input-mini"', $existing_tariffs[ $roomtype_id ][ 'maxpeople_tariff' ], '%02d');
+				$rw[ 'MAX_PEOPLE_ROOM' ] = jomresHTML::integerSelectList(01, 100, 1, "max_people[$roomtype_id]", '', $existing_rooms[ $roomtype_id ][ 'max_people' ], '%02d');
+				$rw[ 'MAX_PEOPLE_TARIFF' ] = jomresHTML::integerSelectList(01, 100, 1, "maxpeople_tariff[$roomtype_id]", '', $existing_tariffs[ $roomtype_id ][ 'maxpeople_tariff' ], '%02d');
 
 				$rw[ 'EXISTINGROOMS' ] = '<input type="hidden" name="existingrooms['.$roomtype_id.']" value="'.implode(',', $existing_rooms[ $roomtype_id ][ 'room_uids' ]).'" />';
 				$rw[ 'TARIFFTYPEID' ] = '<input type="hidden" name="tarifftypeid['.$roomtype_id.']" value="'.$existing_tariffs[ $roomtype_id ][ 'tarifftype_id' ].'" />';

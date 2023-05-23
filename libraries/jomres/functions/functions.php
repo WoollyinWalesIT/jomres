@@ -4054,7 +4054,7 @@ if (!function_exists('propertyConfiguration')) {
         $tariffModels = array();
         $tariffModels[ ] = jomresHTML::makeOption(1, jr_gettext('_JOMRES_COM_A_TARIFFS_MODEL_SINGLETARIFF', '_JOMRES_COM_A_TARIFFS_MODEL_SINGLETARIFF', false));
         $tariffModels[ ] = jomresHTML::makeOption(2, jr_gettext('_JOMRES_COM_A_TARIFFS_MODEL_AVERAGES', '_JOMRES_COM_A_TARIFFS_MODEL_AVERAGES', false));
-        $tariffModelsDropdown = jomresHTML::selectList($tariffModels, 'cfg_newTariffModels', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'newTariffModels' ]);
+        $tariffModelsDropdown = jomresHTML::selectList($tariffModels, 'cfg_newTariffModels', '', 'value', 'text', $mrConfig[ 'newTariffModels' ]);
 
         $weekDays = array();
         $weekDays[ ] = jomresHTML::makeOption(1, jr_gettext('_JOMRES_COM_MR_WEEKDAYS_MONDAY', '_JOMRES_COM_MR_WEEKDAYS_MONDAY', false));
@@ -4084,16 +4084,16 @@ if (!function_exists('propertyConfiguration')) {
         $jsInputDateFormats[ ] = jomresHTML::makeOption('%Y-%m-%d', '2006-02-01');
         $jsInputDateFormats[ ] = jomresHTML::makeOption('%m-%d-%Y', '02-01-2006');
         //$jsInputDateFormats[] =	jomresHTML::makeOption("%d.%m.%Y", "01.02.2006");
-        $jsInputFormatDropdownList = jomresHTML::selectList($jsInputDateFormats, 'cfg_cal_input', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'cal_input' ]);
+        $jsInputFormatDropdownList = jomresHTML::selectList($jsInputDateFormats, 'cfg_cal_input', '', 'value', 'text', $mrConfig[ 'cal_input' ]);
 
-        //$slideshowDropdownList= jomresHTML::selectList($slideshowNames, 'cfg_slideshow', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['slideshow']);
-        $weekdayDropdown = jomresHTML::selectList($weekDays, 'cfg_fixedArrivalDay', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'fixedArrivalDay' ]);
-        $weekenddayDropdown = jomresHTML::selectList($weekendDays, 'cfg_weekenddays', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'weekenddays' ]);
+        //$slideshowDropdownList= jomresHTML::selectList($slideshowNames, 'cfg_slideshow', '', 'value', 'text', $mrConfig['slideshow']);
+        $weekdayDropdown = jomresHTML::selectList($weekDays, 'cfg_fixedArrivalDay', '', 'value', 'text', $mrConfig[ 'fixedArrivalDay' ]);
+        $weekenddayDropdown = jomresHTML::selectList($weekendDays, 'cfg_weekenddays', '', 'value', 'text', $mrConfig[ 'weekenddays' ]);
 
         $depAmounts = array();
         $depAmounts[ ] = jomresHTML::makeOption('0', jr_gettext('_JOMRES_COM_CHARGING_DEPOSIT', '_JOMRES_COM_CHARGING_DEPOSIT', false));
         $depAmounts[ ] = jomresHTML::makeOption('1', jr_gettext('_JOMRES_COM_CHARGING_FULLAMT', '_JOMRES_COM_CHARGING_FULLAMT', false));
-        $paymentAmounts = jomresHTML::selectList($depAmounts, 'cfg_depAmount', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'depAmount' ]);
+        $paymentAmounts = jomresHTML::selectList($depAmounts, 'cfg_depAmount', '', 'value', 'text', $mrConfig[ 'depAmount' ]);
 
         if (!isset($mrConfig[ 'tariffmode' ])) {
             $mrConfig[ 'tariffmode' ] = 1;
@@ -4106,12 +4106,12 @@ if (!function_exists('propertyConfiguration')) {
             $tariffMode[ ] = jomresHTML::makeOption('1', jr_gettext('JOMRES_COM_A_TARIFFMODE_ADVANCED', 'JOMRES_COM_A_TARIFFMODE_ADVANCED', false));
             //$tariffMode[ ] = jomresHTML::makeOption('5', jr_gettext('JOMRES_COM_A_TARIFFMODE_STANDARD', 'JOMRES_COM_A_TARIFFMODE_STANDARD', false));
         }
-        $tariffModeDD = jomresHTML::selectList($tariffMode, 'cfg_tariffmode', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'tariffmode' ] , false );
+        $tariffModeDD = jomresHTML::selectList($tariffMode, 'cfg_tariffmode', '', 'value', 'text', $mrConfig[ 'tariffmode' ] , false );
 
         $iconsizes = array();
         $iconsizes[ ] = jomresHTML::makeOption('small', 'small');
         $iconsizes[ ] = jomresHTML::makeOption('large', 'large');
-        $editIconSize = jomresHTML::selectList($iconsizes, 'cfg_editiconsize', 'size="1" class="inputbox"', 'value', 'text', $mrConfig[ 'editiconsize' ]);
+        $editIconSize = jomresHTML::selectList($iconsizes, 'cfg_editiconsize', '', 'value', 'text', $mrConfig[ 'editiconsize' ]);
 
         if (!isset($mrConfig[ 'booking_form_rooms_list_style' ])) {
             $mrConfig[ 'booking_form_rooms_list_style' ] = '1';
@@ -4119,9 +4119,9 @@ if (!function_exists('propertyConfiguration')) {
         $booking_form_rooms_list = array();
         $booking_form_rooms_list[ ] = jomresHTML::makeOption('1', jr_gettext('_JOMRES_ROOMMSLIST_STYLE_CLASSIC', '_JOMRES_ROOMMSLIST_STYLE_CLASSIC', false));
         $booking_form_rooms_list[ ] = jomresHTML::makeOption('2', jr_gettext('_JOMRES_ROOMMSLIST_STYLE_ROOMTYPES', '_JOMRES_ROOMMSLIST_STYLE_ROOMTYPES', false));
-        $booking_form_rooms_list_style = jomresHTML::selectList($booking_form_rooms_list, 'cfg_booking_form_rooms_list_style', 'size="1" class="inputbox"', 'value', 'text', $mrConfig[ 'booking_form_rooms_list_style' ]);
+        $booking_form_rooms_list_style = jomresHTML::selectList($booking_form_rooms_list, 'cfg_booking_form_rooms_list_style', '', 'value', 'text', $mrConfig[ 'booking_form_rooms_list_style' ]);
 
-        $fixedArrivalDatesRecurring = jomresHTML::integerSelectList(01, 208, 1, 'cfg_fixedArrivalDatesRecurring', 'size="1" class="inputbox"', $mrConfig[ 'fixedArrivalDatesRecurring' ], '%02d');
+        $fixedArrivalDatesRecurring = jomresHTML::integerSelectList(01, 208, 1, 'cfg_fixedArrivalDatesRecurring', '', $mrConfig[ 'fixedArrivalDatesRecurring' ], '%02d');
 
         if (!isset($mrConfig[ 'booking_form_daily_weekly_monthly' ])) {
             $mrConfig[ 'booking_form_daily_weekly_monthly' ] = 'D';
@@ -4134,7 +4134,7 @@ if (!function_exists('propertyConfiguration')) {
         }
         $pricingOutput[ ] = jomresHTML::makeOption('W', jr_gettext('_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY', '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY', false));
         $pricingOutput[ ] = jomresHTML::makeOption('M', jr_gettext('_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY', '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY', false));
-        $booking_form_daily_weekly_monthly = jomresHTML::selectList($pricingOutput, 'cfg_booking_form_daily_weekly_monthly', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'booking_form_daily_weekly_monthly' ]);
+        $booking_form_daily_weekly_monthly = jomresHTML::selectList($pricingOutput, 'cfg_booking_form_daily_weekly_monthly', '', 'value', 'text', $mrConfig[ 'booking_form_daily_weekly_monthly' ]);
 
 
 
@@ -4149,117 +4149,117 @@ if (!function_exists('propertyConfiguration')) {
         $city_tax_models[ ] = jomresHTML::makeOption('perguestpernight', jr_gettext('JOMRES_CITY_TAX_MODEL_PER_GUEST_PER_NIGHT', 'JOMRES_CITY_TAX_MODEL_PER_GUEST_PER_NIGHT', false));
         $city_tax_models[ ] = jomresHTML::makeOption('percentbookingtotal', jr_gettext('JOMRES_CITY_TAX_MODEL_PERCENTAGE_OF_BOOKING_TOTAL', 'JOMRES_CITY_TAX_MODEL_PERCENTAGE_OF_BOOKING_TOTAL', false));
 
-        $city_tax_models_dropdown = jomresHTML::selectList($city_tax_models, 'cfg_city_tax_models', 'size="1" class="inputbox"', 'value', 'text', $mrConfig[ 'city_tax_models' ]);
+        $city_tax_models_dropdown = jomresHTML::selectList($city_tax_models, 'cfg_city_tax_models', '', 'value', 'text', $mrConfig[ 'city_tax_models' ]);
 
-        $lists[ 'showRoomImageInBookingFormOverlib' ] = jomresHTML::selectList($yesno, 'cfg_showRoomImageInBookingFormOverlib', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'showRoomImageInBookingFormOverlib' ]);
-        $lists[ 'singlePersonSuppliment' ] = jomresHTML::selectList($yesno, 'cfg_singlePersonSuppliment', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'singlePersonSuppliment' ]);
-        $lists[ 'perPersonPerNight' ] = jomresHTML::selectList($yesno, 'cfg_perPersonPerNight', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'perPersonPerNight' ]);
-        $lists[ 'depositIsPercentage' ] = jomresHTML::selectList($yesno, 'cfg_depositIsPercentage', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'depositIsPercentage' ]);
-        $lists[ 'errorChecking' ] = jomresHTML::selectList($yesno, 'cfg_errorChecking', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'errorChecking' ]);
-        $lists[ 'visitorscanbookonline' ] = jomresHTML::selectList($yesno, 'cfg_visitorscanbookonline', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'visitorscanbookonline' ]);
-        $lists[ 'fixedPeriodBookings' ] = jomresHTML::selectList($yesno, 'cfg_fixedPeriodBookings', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'fixedPeriodBookings' ]);
-        $lists[ 'singleRoomProperty' ] = jomresHTML::selectList($yesno, 'cfg_singleRoomProperty', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'singleRoomProperty' ]);
-        $lists[ 'fixedArrivalDateYesNo' ] = jomresHTML::selectList($yesno, 'cfg_fixedArrivalDateYesNo', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'fixedArrivalDateYesNo' ]);
-        $lists[ 'showAvailabilityCalendar' ] = jomresHTML::selectList($yesno, 'cfg_showAvailabilityCalendar', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'showAvailabilityCalendar' ]);
-        $lists[ 'fixedPeriodBookingsShortYesNo' ] = jomresHTML::selectList($yesno, 'cfg_fixedPeriodBookingsShortYesNo', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'fixedPeriodBookingsShortYesNo' ]);
-        $lists[ 'showExtras' ] = jomresHTML::selectList($yesno, 'cfg_showExtras', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'showExtras' ]);
-        $lists[ 'limitAdvanceBookingsYesNo' ] = jomresHTML::selectList($yesno, 'cfg_limitAdvanceBookingsYesNo', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'limitAdvanceBookingsYesNo' ]);
-        $lists[ 'roomTaxYesNo' ] = jomresHTML::selectList($yesno, 'cfg_roomTaxYesNo', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'roomTaxYesNo' ]);
-        $lists[ 'euroTaxYesNo' ] = jomresHTML::selectList($yesno, 'cfg_euroTaxYesNo', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'euroTaxYesNo' ]);
-        $lists[ 'editingOn' ] = jomresHTML::selectList($yesno, 'cfg_editingOn', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'editingOn' ]);
-        //$lists['popupsAllowed'] = jomresHTML::selectList( $yesno, 'cfg_popupsAllowed', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['popupsAllowed'] );
-        $lists[ 'showSlideshowLink' ] = jomresHTML::selectList($yesno, 'cfg_showSlideshowLink', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'showSlideshowLink' ]);
-        $lists[ 'showSlideshowInline' ] = jomresHTML::selectList($yesno, 'cfg_showSlideshowInline', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'showSlideshowInline' ]);
-        $lists[ 'showTariffsInline' ] = jomresHTML::selectList($yesno, 'cfg_showTariffsInline', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'showTariffsInline' ]);
-        $lists[ 'showTariffsLink' ] = jomresHTML::selectList($yesno, 'cfg_showTariffsLink', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'showTariffsLink' ]);
-        $lists[ 'useOnlinepayment' ] = jomresHTML::selectList($yesno, 'cfg_useOnlinepayment', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'useOnlinepayment' ]);
-        $lists[ 'showdepartureinput' ] = jomresHTML::selectList($yesno, 'cfg_showdepartureinput', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'showdepartureinput' ]);
-        $lists[ 'dateFormatStyle' ] = jomresHTML::selectList($yesno, 'cfg_dateFormatStyle', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'dateFormatStyle' ]);
-        $lists[ 'calstartfrombeginningofyear' ] = jomresHTML::selectList($yesno, 'cfg_calstartfrombeginningofyear', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'calstartfrombeginningofyear' ]);
-        $lists[ 'showGoogleCurrencyLink' ] = jomresHTML::selectList($yesno, 'cfg_showGoogleCurrencyLink', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'showGoogleCurrencyLink' ]);
-        $lists[ 'showRoomsInPropertyDetails' ] = jomresHTML::selectList($yesno, 'cfg_showRoomsInPropertyDetails', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'showRoomsInPropertyDetails' ]);
-        $lists[ 'showRoomsListingLink' ] = jomresHTML::selectList($yesno, 'cfg_showRoomsListingLink', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'showRoomsListingLink' ]);
-        $lists[ 'showOnlyAvailabilityCalendar' ] = jomresHTML::selectList($yesno, 'cfg_showOnlyAvailabilityCalendar', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'showOnlyAvailabilityCalendar' ]);
-        $lists[ 'registeredUsersOnlyCanBook' ] = jomresHTML::selectList($yesno, 'cfg_registeredUsersOnlyCanBook', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'registeredUsersOnlyCanBook' ]);
-        $lists[ 'roundupDepositYesNo' ] = jomresHTML::selectList($yesno, 'cfg_roundupDepositYesNo', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'roundupDepositYesNo' ]);
-        $lists[ 'chargeDepositYesNo' ] = jomresHTML::selectList($yesno, 'cfg_chargeDepositYesNo', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'chargeDepositYesNo' ]);
-        $lists[ 'tariffChargesStoredWeeklyYesNo' ] = jomresHTML::selectList($yesno, 'cfg_tariffChargesStoredWeeklyYesNo', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'tariffChargesStoredWeeklyYesNo' ]);
-        $lists[ 'roomslistinpropertydetails' ] = jomresHTML::selectList($yesno, 'cfg_roomslistinpropertydetails', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'roomslistinpropertydetails' ]);
-        $lists[ 'verbosetariffinfo' ] = jomresHTML::selectList($yesno, 'cfg_verbosetariffinfo', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'verbosetariffinfo' ]);
+        $lists[ 'showRoomImageInBookingFormOverlib' ] = jomresHTML::selectList($yesno, 'cfg_showRoomImageInBookingFormOverlib', '', 'value', 'text', $mrConfig[ 'showRoomImageInBookingFormOverlib' ]);
+        $lists[ 'singlePersonSuppliment' ] = jomresHTML::selectList($yesno, 'cfg_singlePersonSuppliment', '', 'value', 'text', $mrConfig[ 'singlePersonSuppliment' ]);
+        $lists[ 'perPersonPerNight' ] = jomresHTML::selectList($yesno, 'cfg_perPersonPerNight', '', 'value', 'text', $mrConfig[ 'perPersonPerNight' ]);
+        $lists[ 'depositIsPercentage' ] = jomresHTML::selectList($yesno, 'cfg_depositIsPercentage', '', 'value', 'text', $mrConfig[ 'depositIsPercentage' ]);
+        $lists[ 'errorChecking' ] = jomresHTML::selectList($yesno, 'cfg_errorChecking', '', 'value', 'text', $mrConfig[ 'errorChecking' ]);
+        $lists[ 'visitorscanbookonline' ] = jomresHTML::selectList($yesno, 'cfg_visitorscanbookonline', '', 'value', 'text', $mrConfig[ 'visitorscanbookonline' ]);
+        $lists[ 'fixedPeriodBookings' ] = jomresHTML::selectList($yesno, 'cfg_fixedPeriodBookings', '', 'value', 'text', $mrConfig[ 'fixedPeriodBookings' ]);
+        $lists[ 'singleRoomProperty' ] = jomresHTML::selectList($yesno, 'cfg_singleRoomProperty', '', 'value', 'text', $mrConfig[ 'singleRoomProperty' ]);
+        $lists[ 'fixedArrivalDateYesNo' ] = jomresHTML::selectList($yesno, 'cfg_fixedArrivalDateYesNo', '', 'value', 'text', $mrConfig[ 'fixedArrivalDateYesNo' ]);
+        $lists[ 'showAvailabilityCalendar' ] = jomresHTML::selectList($yesno, 'cfg_showAvailabilityCalendar', '', 'value', 'text', $mrConfig[ 'showAvailabilityCalendar' ]);
+        $lists[ 'fixedPeriodBookingsShortYesNo' ] = jomresHTML::selectList($yesno, 'cfg_fixedPeriodBookingsShortYesNo', '', 'value', 'text', $mrConfig[ 'fixedPeriodBookingsShortYesNo' ]);
+        $lists[ 'showExtras' ] = jomresHTML::selectList($yesno, 'cfg_showExtras', '', 'value', 'text', $mrConfig[ 'showExtras' ]);
+        $lists[ 'limitAdvanceBookingsYesNo' ] = jomresHTML::selectList($yesno, 'cfg_limitAdvanceBookingsYesNo', '', 'value', 'text', $mrConfig[ 'limitAdvanceBookingsYesNo' ]);
+        $lists[ 'roomTaxYesNo' ] = jomresHTML::selectList($yesno, 'cfg_roomTaxYesNo', '', 'value', 'text', $mrConfig[ 'roomTaxYesNo' ]);
+        $lists[ 'euroTaxYesNo' ] = jomresHTML::selectList($yesno, 'cfg_euroTaxYesNo', '', 'value', 'text', $mrConfig[ 'euroTaxYesNo' ]);
+        $lists[ 'editingOn' ] = jomresHTML::selectList($yesno, 'cfg_editingOn', '', 'value', 'text', $mrConfig[ 'editingOn' ]);
+        //$lists['popupsAllowed'] = jomresHTML::selectList( $yesno, 'cfg_popupsAllowed', '', 'value', 'text', $mrConfig['popupsAllowed'] );
+        $lists[ 'showSlideshowLink' ] = jomresHTML::selectList($yesno, 'cfg_showSlideshowLink', '', 'value', 'text', $mrConfig[ 'showSlideshowLink' ]);
+        $lists[ 'showSlideshowInline' ] = jomresHTML::selectList($yesno, 'cfg_showSlideshowInline', '', 'value', 'text', $mrConfig[ 'showSlideshowInline' ]);
+        $lists[ 'showTariffsInline' ] = jomresHTML::selectList($yesno, 'cfg_showTariffsInline', '', 'value', 'text', $mrConfig[ 'showTariffsInline' ]);
+        $lists[ 'showTariffsLink' ] = jomresHTML::selectList($yesno, 'cfg_showTariffsLink', '', 'value', 'text', $mrConfig[ 'showTariffsLink' ]);
+        $lists[ 'useOnlinepayment' ] = jomresHTML::selectList($yesno, 'cfg_useOnlinepayment', '', 'value', 'text', $mrConfig[ 'useOnlinepayment' ]);
+        $lists[ 'showdepartureinput' ] = jomresHTML::selectList($yesno, 'cfg_showdepartureinput', '', 'value', 'text', $mrConfig[ 'showdepartureinput' ]);
+        $lists[ 'dateFormatStyle' ] = jomresHTML::selectList($yesno, 'cfg_dateFormatStyle', '', 'value', 'text', $mrConfig[ 'dateFormatStyle' ]);
+        $lists[ 'calstartfrombeginningofyear' ] = jomresHTML::selectList($yesno, 'cfg_calstartfrombeginningofyear', '', 'value', 'text', $mrConfig[ 'calstartfrombeginningofyear' ]);
+        $lists[ 'showGoogleCurrencyLink' ] = jomresHTML::selectList($yesno, 'cfg_showGoogleCurrencyLink', '', 'value', 'text', $mrConfig[ 'showGoogleCurrencyLink' ]);
+        $lists[ 'showRoomsInPropertyDetails' ] = jomresHTML::selectList($yesno, 'cfg_showRoomsInPropertyDetails', '', 'value', 'text', $mrConfig[ 'showRoomsInPropertyDetails' ]);
+        $lists[ 'showRoomsListingLink' ] = jomresHTML::selectList($yesno, 'cfg_showRoomsListingLink', '', 'value', 'text', $mrConfig[ 'showRoomsListingLink' ]);
+        $lists[ 'showOnlyAvailabilityCalendar' ] = jomresHTML::selectList($yesno, 'cfg_showOnlyAvailabilityCalendar', '', 'value', 'text', $mrConfig[ 'showOnlyAvailabilityCalendar' ]);
+        $lists[ 'registeredUsersOnlyCanBook' ] = jomresHTML::selectList($yesno, 'cfg_registeredUsersOnlyCanBook', '', 'value', 'text', $mrConfig[ 'registeredUsersOnlyCanBook' ]);
+        $lists[ 'roundupDepositYesNo' ] = jomresHTML::selectList($yesno, 'cfg_roundupDepositYesNo', '', 'value', 'text', $mrConfig[ 'roundupDepositYesNo' ]);
+        $lists[ 'chargeDepositYesNo' ] = jomresHTML::selectList($yesno, 'cfg_chargeDepositYesNo', '', 'value', 'text', $mrConfig[ 'chargeDepositYesNo' ]);
+        $lists[ 'tariffChargesStoredWeeklyYesNo' ] = jomresHTML::selectList($yesno, 'cfg_tariffChargesStoredWeeklyYesNo', '', 'value', 'text', $mrConfig[ 'tariffChargesStoredWeeklyYesNo' ]);
+        $lists[ 'roomslistinpropertydetails' ] = jomresHTML::selectList($yesno, 'cfg_roomslistinpropertydetails', '', 'value', 'text', $mrConfig[ 'roomslistinpropertydetails' ]);
+        $lists[ 'verbosetariffinfo' ] = jomresHTML::selectList($yesno, 'cfg_verbosetariffinfo', '', 'value', 'text', $mrConfig[ 'verbosetariffinfo' ]);
 
-        $lists[ 'bookingform_overlib_tariff_title_show' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_overlib_tariff_title_show', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_overlib_tariff_title_show' ]);
-        $lists[ 'bookingform_overlib_tariff_desc_show' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_overlib_tariff_desc_show', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_overlib_tariff_desc_show' ]);
-        $lists[ 'bookingform_overlib_tariff_rate_show' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_overlib_tariff_rate_show', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_overlib_tariff_rate_show' ]);
-        $lists[ 'bookingform_overlib_tariff_starts_show' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_overlib_tariff_starts_show', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_overlib_tariff_starts_show' ]);
-        $lists[ 'bookingform_overlib_tariff_ends_show' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_overlib_tariff_ends_show', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_overlib_tariff_ends_show' ]);
-        $lists[ 'bookingform_overlib_tariff_mindays_show' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_overlib_tariff_mindays_show', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_overlib_tariff_mindays_show' ]);
-        $lists[ 'bookingform_overlib_tariff_maxdays_show' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_overlib_tariff_maxdays_show', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_overlib_tariff_maxdays_show' ]);
-        $lists[ 'bookingform_overlib_tariff_minpeeps_show' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_overlib_tariff_minpeeps_show', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_overlib_tariff_minpeeps_show' ]);
-        $lists[ 'bookingform_overlib_tariff_maxpeeps_show' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_overlib_tariff_maxpeeps_show', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_overlib_tariff_maxpeeps_show' ]);
+        $lists[ 'bookingform_overlib_tariff_title_show' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_overlib_tariff_title_show', '', 'value', 'text', $mrConfig[ 'bookingform_overlib_tariff_title_show' ]);
+        $lists[ 'bookingform_overlib_tariff_desc_show' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_overlib_tariff_desc_show', '', 'value', 'text', $mrConfig[ 'bookingform_overlib_tariff_desc_show' ]);
+        $lists[ 'bookingform_overlib_tariff_rate_show' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_overlib_tariff_rate_show', '', 'value', 'text', $mrConfig[ 'bookingform_overlib_tariff_rate_show' ]);
+        $lists[ 'bookingform_overlib_tariff_starts_show' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_overlib_tariff_starts_show', '', 'value', 'text', $mrConfig[ 'bookingform_overlib_tariff_starts_show' ]);
+        $lists[ 'bookingform_overlib_tariff_ends_show' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_overlib_tariff_ends_show', '', 'value', 'text', $mrConfig[ 'bookingform_overlib_tariff_ends_show' ]);
+        $lists[ 'bookingform_overlib_tariff_mindays_show' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_overlib_tariff_mindays_show', '', 'value', 'text', $mrConfig[ 'bookingform_overlib_tariff_mindays_show' ]);
+        $lists[ 'bookingform_overlib_tariff_maxdays_show' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_overlib_tariff_maxdays_show', '', 'value', 'text', $mrConfig[ 'bookingform_overlib_tariff_maxdays_show' ]);
+        $lists[ 'bookingform_overlib_tariff_minpeeps_show' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_overlib_tariff_minpeeps_show', '', 'value', 'text', $mrConfig[ 'bookingform_overlib_tariff_minpeeps_show' ]);
+        $lists[ 'bookingform_overlib_tariff_maxpeeps_show' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_overlib_tariff_maxpeeps_show', '', 'value', 'text', $mrConfig[ 'bookingform_overlib_tariff_maxpeeps_show' ]);
 
-        $lists[ 'bookingform_overlib_room_number_show' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_overlib_room_number_show', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_overlib_room_number_show' ]);
-        $lists[ 'bookingform_overlib_room_name_show' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_overlib_room_name_show', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_overlib_room_name_show' ]);
-        $lists[ 'bookingform_overlib_room_type_show' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_overlib_room_type_show', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_overlib_room_type_show' ]);
-        $lists[ 'bookingform_overlib_room_floor_show' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_overlib_room_floor_show', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_overlib_room_floor_show' ]);
-        $lists[ 'bookingform_overlib_room_maxpeople_show' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_overlib_room_maxpeople_show', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_overlib_room_maxpeople_show' ]);
-        $lists[ 'bookingform_overlib_room_features_show' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_overlib_room_features_show', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_overlib_room_features_show' ]);
+        $lists[ 'bookingform_overlib_room_number_show' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_overlib_room_number_show', '', 'value', 'text', $mrConfig[ 'bookingform_overlib_room_number_show' ]);
+        $lists[ 'bookingform_overlib_room_name_show' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_overlib_room_name_show', '', 'value', 'text', $mrConfig[ 'bookingform_overlib_room_name_show' ]);
+        $lists[ 'bookingform_overlib_room_type_show' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_overlib_room_type_show', '', 'value', 'text', $mrConfig[ 'bookingform_overlib_room_type_show' ]);
+        $lists[ 'bookingform_overlib_room_floor_show' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_overlib_room_floor_show', '', 'value', 'text', $mrConfig[ 'bookingform_overlib_room_floor_show' ]);
+        $lists[ 'bookingform_overlib_room_maxpeople_show' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_overlib_room_maxpeople_show', '', 'value', 'text', $mrConfig[ 'bookingform_overlib_room_maxpeople_show' ]);
+        $lists[ 'bookingform_overlib_room_features_show' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_overlib_room_features_show', '', 'value', 'text', $mrConfig[ 'bookingform_overlib_room_features_show' ]);
 
-        $lists[ 'bookingform_roomlist_showroomno' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_roomlist_showroomno', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_roomlist_showroomno' ]);
-        $lists[ 'bookingform_roomlist_showroomname' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_roomlist_showroomname', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_roomlist_showroomname' ]);
-        $lists[ 'bookingform_roomlist_showtarifftitle' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_roomlist_showtarifftitle', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_roomlist_showtarifftitle' ]);
-        $lists[ 'supplimentChargeIsPercentage' ] = jomresHTML::selectList($yesno, 'cfg_supplimentChargeIsPercentage', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'supplimentChargeIsPercentage' ]);
+        $lists[ 'bookingform_roomlist_showroomno' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_roomlist_showroomno', '', 'value', 'text', $mrConfig[ 'bookingform_roomlist_showroomno' ]);
+        $lists[ 'bookingform_roomlist_showroomname' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_roomlist_showroomname', '', 'value', 'text', $mrConfig[ 'bookingform_roomlist_showroomname' ]);
+        $lists[ 'bookingform_roomlist_showtarifftitle' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_roomlist_showtarifftitle', '', 'value', 'text', $mrConfig[ 'bookingform_roomlist_showtarifftitle' ]);
+        $lists[ 'supplimentChargeIsPercentage' ] = jomresHTML::selectList($yesno, 'cfg_supplimentChargeIsPercentage', '', 'value', 'text', $mrConfig[ 'supplimentChargeIsPercentage' ]);
 
-        $lists[ 'bookingform_requiredfields_name' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_requiredfields_name', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_requiredfields_name' ]);
-        $lists[ 'bookingform_requiredfields_surname' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_requiredfields_surname', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_requiredfields_surname' ]);
-        $lists[ 'bookingform_requiredfields_houseno' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_requiredfields_houseno', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_requiredfields_houseno' ]);
-        $lists[ 'bookingform_requiredfields_street' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_requiredfields_street', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_requiredfields_street' ]);
-        $lists[ 'bookingform_requiredfields_town' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_requiredfields_town', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_requiredfields_town' ]);
-        $lists[ 'bookingform_requiredfields_postcode' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_requiredfields_postcode', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_requiredfields_postcode' ]);
-        $lists[ 'bookingform_requiredfields_region' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_requiredfields_region', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_requiredfields_region' ]);
-        $lists[ 'bookingform_requiredfields_country' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_requiredfields_country', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_requiredfields_country' ]);
-        $lists[ 'bookingform_requiredfields_tel' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_requiredfields_tel', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_requiredfields_tel' ]);
-        $lists[ 'bookingform_requiredfields_mobile' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_requiredfields_mobile', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_requiredfields_mobile' ]);
+        $lists[ 'bookingform_requiredfields_name' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_requiredfields_name', '', 'value', 'text', $mrConfig[ 'bookingform_requiredfields_name' ]);
+        $lists[ 'bookingform_requiredfields_surname' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_requiredfields_surname', '', 'value', 'text', $mrConfig[ 'bookingform_requiredfields_surname' ]);
+        $lists[ 'bookingform_requiredfields_houseno' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_requiredfields_houseno', '', 'value', 'text', $mrConfig[ 'bookingform_requiredfields_houseno' ]);
+        $lists[ 'bookingform_requiredfields_street' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_requiredfields_street', '', 'value', 'text', $mrConfig[ 'bookingform_requiredfields_street' ]);
+        $lists[ 'bookingform_requiredfields_town' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_requiredfields_town', '', 'value', 'text', $mrConfig[ 'bookingform_requiredfields_town' ]);
+        $lists[ 'bookingform_requiredfields_postcode' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_requiredfields_postcode', '', 'value', 'text', $mrConfig[ 'bookingform_requiredfields_postcode' ]);
+        $lists[ 'bookingform_requiredfields_region' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_requiredfields_region', '', 'value', 'text', $mrConfig[ 'bookingform_requiredfields_region' ]);
+        $lists[ 'bookingform_requiredfields_country' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_requiredfields_country', '', 'value', 'text', $mrConfig[ 'bookingform_requiredfields_country' ]);
+        $lists[ 'bookingform_requiredfields_tel' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_requiredfields_tel', '', 'value', 'text', $mrConfig[ 'bookingform_requiredfields_tel' ]);
+        $lists[ 'bookingform_requiredfields_mobile' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_requiredfields_mobile', '', 'value', 'text', $mrConfig[ 'bookingform_requiredfields_mobile' ]);
 
         $mrConfig[ 'bookingform_requiredfields_email' ] = "1"; // For GDPR compliance, bookings will always require an email address and the property manager will not be allowed to change this setting
-        $lists[ 'bookingform_requiredfields_email' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_requiredfields_email', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_requiredfields_email' ]);
+        $lists[ 'bookingform_requiredfields_email' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_requiredfields_email', '', 'value', 'text', $mrConfig[ 'bookingform_requiredfields_email' ]);
 
-        $lists[ 'bookingform_roomlist_showdisabled' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_roomlist_showdisabled', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_roomlist_showdisabled' ]);
-        $lists[ 'bookingform_roomlist_showmaxpeople' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_roomlist_showmaxpeople', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_roomlist_showmaxpeople' ]);
+        $lists[ 'bookingform_roomlist_showdisabled' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_roomlist_showdisabled', '', 'value', 'text', $mrConfig[ 'bookingform_roomlist_showdisabled' ]);
+        $lists[ 'bookingform_roomlist_showmaxpeople' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_roomlist_showmaxpeople', '', 'value', 'text', $mrConfig[ 'bookingform_roomlist_showmaxpeople' ]);
 
-        $lists[ 'use_variable_deposits' ] = jomresHTML::selectList($yesno, 'cfg_use_variable_deposits', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'use_variable_deposits' ]);
+        $lists[ 'use_variable_deposits' ] = jomresHTML::selectList($yesno, 'cfg_use_variable_deposits', '', 'value', 'text', $mrConfig[ 'use_variable_deposits' ]);
 
-        $lists[ 'prices_inclusive' ] = jomresHTML::selectList($yesno, 'cfg_prices_inclusive', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'prices_inclusive' ]);
-        $lists[ 'wholeday_booking' ] = jomresHTML::selectList($yesno, 'cfg_wholeday_booking', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'wholeday_booking' ]);
-        $lists[ 'depositIsOneNight' ] = jomresHTML::selectList($yesno, 'cfg_depositIsOneNight', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'depositIsOneNight' ]);
+        $lists[ 'prices_inclusive' ] = jomresHTML::selectList($yesno, 'cfg_prices_inclusive', '', 'value', 'text', $mrConfig[ 'prices_inclusive' ]);
+        $lists[ 'wholeday_booking' ] = jomresHTML::selectList($yesno, 'cfg_wholeday_booking', '', 'value', 'text', $mrConfig[ 'wholeday_booking' ]);
+        $lists[ 'depositIsOneNight' ] = jomresHTML::selectList($yesno, 'cfg_depositIsOneNight', '', 'value', 'text', $mrConfig[ 'depositIsOneNight' ]);
 
-        $lists[ 'requireApproval' ] = jomresHTML::selectList($yesno, 'cfg_requireApproval', 'class="inputbox" size="1"', 'value', 'text', (int) $mrConfig[ 'requireApproval' ]);
-        $lists[ 'hide_local_address' ] = jomresHTML::selectList($yesno, 'cfg_hide_local_address', 'class="inputbox" size="1"', 'value', 'text', (int) $mrConfig[ 'hide_local_address' ]);
+        $lists[ 'requireApproval' ] = jomresHTML::selectList($yesno, 'cfg_requireApproval', '', 'value', 'text', (int) $mrConfig[ 'requireApproval' ]);
+        $lists[ 'hide_local_address' ] = jomresHTML::selectList($yesno, 'cfg_hide_local_address', '', 'value', 'text', (int) $mrConfig[ 'hide_local_address' ]);
 
         if (!isset($mrConfig[ 'auto_detect_country_for_booking_form' ])) {
             $mrConfig[ 'auto_detect_country_for_booking_form' ] = '1';
         }
 
-        $lists[ 'auto_detect_country_for_booking_form' ] = jomresHTML::selectList($yesno, 'cfg_auto_detect_country_for_booking_form', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'auto_detect_country_for_booking_form' ]);
+        $lists[ 'auto_detect_country_for_booking_form' ] = jomresHTML::selectList($yesno, 'cfg_auto_detect_country_for_booking_form', '', 'value', 'text', $mrConfig[ 'auto_detect_country_for_booking_form' ]);
 
-        $lists[ 'showPfeaturesCategories' ] = jomresHTML::selectList($yesno, 'cfg_showPfeaturesCategories', 'class="inputbox" size="1"', 'value', 'text', (int) $mrConfig[ 'showPfeaturesCategories' ]);
-        $lists[ 'currency_symbol_swap' ] = jomresHTML::selectList($yesno, 'cfg_currency_symbol_swap', 'class="inputbox" size="1"', 'value', 'text', (int) $mrConfig[ 'currency_symbol_swap' ]);
+        $lists[ 'showPfeaturesCategories' ] = jomresHTML::selectList($yesno, 'cfg_showPfeaturesCategories', '', 'value', 'text', (int) $mrConfig[ 'showPfeaturesCategories' ]);
+        $lists[ 'currency_symbol_swap' ] = jomresHTML::selectList($yesno, 'cfg_currency_symbol_swap', '', 'value', 'text', (int) $mrConfig[ 'currency_symbol_swap' ]);
 
-        $lists[ 'use_custom_invoice_numbers' ] = jomresHTML::selectList($yesno, 'cfg_use_custom_invoice_numbers', 'class="inputbox" size="1"', 'value', 'text', (int) $mrConfig[ 'use_custom_invoice_numbers' ]);
+        $lists[ 'use_custom_invoice_numbers' ] = jomresHTML::selectList($yesno, 'cfg_use_custom_invoice_numbers', '', 'value', 'text', (int) $mrConfig[ 'use_custom_invoice_numbers' ]);
 
         if (!isset($mrConfig[ 'allow_children' ])) {
             $mrConfig[ 'allow_children' ] = 1;
         }
-        $lists[ 'allow_children' ] = jomresHTML::selectList($yesno, 'cfg_allow_children', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'allow_children' ]);
+        $lists[ 'allow_children' ] = jomresHTML::selectList($yesno, 'cfg_allow_children', '', 'value', 'text', $mrConfig[ 'allow_children' ]);
 
         if (!isset($mrConfig[ 'cformat_strip_decimals' ])) {
             $mrConfig[ 'cformat_strip_decimals' ] = 0;
         }
-        $lists[ 'cformat_strip_decimals' ] = jomresHTML::selectList($yesno, 'cfg_cformat_strip_decimals', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'cformat_strip_decimals' ]);
+        $lists[ 'cformat_strip_decimals' ] = jomresHTML::selectList($yesno, 'cfg_cformat_strip_decimals', '', 'value', 'text', $mrConfig[ 'cformat_strip_decimals' ]);
 
         if (!isset( $mrConfig[ 'occupancy_levels_include_children' ])) {
             $mrConfig[ 'occupancy_levels_include_children' ] = 0;
         }
-        $lists[ 'occupancy_levels_include_children' ] = jomresHTML::selectList($yesno, 'cfg_occupancy_levels_include_children', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'occupancy_levels_include_children' ]);
+        $lists[ 'occupancy_levels_include_children' ] = jomresHTML::selectList($yesno, 'cfg_occupancy_levels_include_children', '', 'value', 'text', $mrConfig[ 'occupancy_levels_include_children' ]);
 
         $componentArgs = array();
         $componentArgs[ 'mrConfig' ] = $mrConfig;

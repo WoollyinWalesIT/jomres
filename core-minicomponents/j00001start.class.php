@@ -55,6 +55,10 @@ class j00001start
 			}
 		}
 
+		$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
+		if( isset($_REQUEST["calledByModule"]) && isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections'])) {
+			unset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']);
+		}
 	}
 
 /**

@@ -1372,7 +1372,7 @@ class dobooking
                     if ($ex->maxquantity > 1) {
                         $extra_deets[ 'INPUTBOX' ] =
                             $extra_deets[ 'INPUTBOX' ].'&nbsp;&nbsp;'.
-                            jomresHTML::integerSelectList(01, $ex->maxquantity, 1, 'quantity'.$ex->uid, 'size="1" class="input-mini"  autocomplete="off" '.$extra_quantity_dropdown_disabled.' onchange="getResponse_extrasquantity(\'extrasquantity\',this.value,'.$ex->uid.');"', $extraDefaultQuantity, '%02d', $use_bootstrap_radios = false);
+                            jomresHTML::integerSelectList(01, $ex->maxquantity, 1, 'quantity'.$ex->uid, ' autocomplete="off" '.$extra_quantity_dropdown_disabled.' onchange="getResponse_extrasquantity(\'extrasquantity\',this.value,'.$ex->uid.');"', $extraDefaultQuantity, '%02d', $use_bootstrap_radios = false);
                     }
 
                     $extra_deets[ 'AJAXFORM_EXTRAS' ] = $this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_EXTRAS', '_JOMRES_AJAXFORM_EXTRAS'));
@@ -2171,7 +2171,7 @@ class dobooking
                 $default_start = 0;
             }
 
-            $customerTypes[ 'DROPDOWN' ] = jomresHTML::integerSelectList($default_start, $ct->maximum, 1, 'guesttype'.$ct->id, 'size="1" onchange="getResponse_guesttype(\''.$ct->id.'\',this.value);"', $defNo, '0', $use_bootstrap_radios = false);
+            $customerTypes[ 'DROPDOWN' ] = jomresHTML::integerSelectList($default_start, $ct->maximum, 1, 'guesttype'.$ct->id, ' onchange="getResponse_guesttype(\''.$ct->id.'\',this.value);"', $defNo, '0', $use_bootstrap_radios = false);
             $customerTypes[ 'FIELDNAME' ] = 'guesttype'.$ct->id;
             $cust[ ] = $customerTypes;
         }
@@ -2825,7 +2825,7 @@ class dobooking
                 $step = $i * $this->cfg_fixedPeriodBookingsNumberOfDays;
                 $periods[ ] = jomresHTML::makeOption($step, $step);
             }
-            $fixedPeriodDropdown = jomresHTML::selectList($periods, 'fixedPeriod_periodsRequested', 'size="1" class="input-medium" onchange="getResponse_particulars(\'departure_period\',this.value)";', 'value', 'text', $defaultPeriod);
+            $fixedPeriodDropdown = jomresHTML::selectList($periods, 'fixedPeriod_periodsRequested', ' onchange="getResponse_particulars(\'departure_period\',this.value)";', 'value', 'text', $defaultPeriod);
 
             return $fixedPeriodDropdown;
         }
@@ -3675,7 +3675,7 @@ class dobooking
                     $ec[ ] = jomresHTML::makeOption($customer['guests_uid'], $customer['surname'].', '.$customer['firstname']);
                 }
             }
-            $dropDownList = jomresHTML::selectList($ec, 'existingCustomers', ' onchange="getResponse_existing(\'existingCustomers\',this.value);" size="1" class="input-medium"', 'value', 'text', 0);
+            $dropDownList = jomresHTML::selectList($ec, 'existingCustomers', ' onchange="getResponse_existing(\'existingCustomers\',this.value);" ', 'value', 'text', 0);
         }
 
         return $dropDownList;
@@ -3714,7 +3714,7 @@ class dobooking
         foreach ($countryCodes as $k => $v) {
             $thecountryCodes[ ] = jomresHTML::makeOption($k, jr_gettext('_JOMRES_CUSTOMTEXT_COUNTRYNAMES_'.$v, $v, false, false));
         }
-        $countryDropdown = jomresHTML::selectList($thecountryCodes, 'country', ' class="input-medium" ', 'value', 'text', $selectedCountry);
+        $countryDropdown = jomresHTML::selectList($thecountryCodes, 'country', ' ', 'value', 'text', $selectedCountry);
 
         return $countryDropdown;
     }
@@ -4908,7 +4908,7 @@ class dobooking
                     $room_and_tariff_outputIds_string .= $tariff_and_roomtypes[ 'roomTariffOutputId' ][ $i - 1 ].',';
                     $rooms_list_style_dropdown[ ] = jomresHTML::makeOption($room_and_tariff_outputIds_string, sprintf('%02d', $i));
                 }
-                $dropdown_output[ $tariff_id ][ 'dropdown' ] = jomresHTML::selectList($rooms_list_style_dropdown, 'fred', 'class="input-medium form-control form-select" size="1"  autocomplete="off" onchange="getResponse_multiroom_select(\'multiroom_select\',this.value);"', 'value', 'text', $already_selected_string);
+                $dropdown_output[ $tariff_id ][ 'dropdown' ] = jomresHTML::selectList($rooms_list_style_dropdown, 'fred', ' autocomplete="off" onchange="getResponse_multiroom_select(\'multiroom_select\',this.value);"', 'value', 'text', $already_selected_string);
                 $dropdown_output[ $tariff_id ][ 'room_type' ] = $tariff_and_roomtypes[ 'room_type' ];
                 $dropdown_output[ $tariff_id ][ 'tariff_title' ] = $tariff_and_roomtypes[ 'tariff_title' ];
                 $dropdown_output[ $tariff_id ][ 'room_type_images' ] = $tariff_and_roomtypes[ 'room_type_images' ];

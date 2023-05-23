@@ -75,7 +75,7 @@ class jomres_timezones
 			$zone_options[ ] = jomresHTML::makeOption($zone[ 'zone' ], $zone[ 'text' ]);
 		}
 		$javascript = 'onchange="this.form.submit();"';
-		$dropdown = jomresHTML::selectList($zone_options, 'user_timezone', 'class="inputbox" size="1" '.$javascript.'', 'value', 'text', $this->users_timezone);
+		$dropdown = jomresHTML::selectList($zone_options, 'user_timezone', ' '.$javascript.' ', 'value', 'text', $this->users_timezone);
 
 		$selecthtml = '<form action="" method="post" name="user_timezone">';
 		$selecthtml .= $dropdown;

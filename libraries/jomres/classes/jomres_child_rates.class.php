@@ -116,6 +116,6 @@ class jomres_child_rates
 		$options = array();
 		$options[] = jomresHTML::makeOption('per_night', jr_gettext('JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_NIGHT', 'JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_NIGHT', false));
 		$options[] = jomresHTML::makeOption('per_stay', jr_gettext('JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_STAY', 'JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_STAY', false));
-		return jomresHTML::selectList($options, 'model', 'class="inputbox" size="1"', 'value', 'text', $current_model, true);
+		return jomresHTML::selectList($options, 'model', '', 'value', 'text', $current_model, true);
 	}
 }

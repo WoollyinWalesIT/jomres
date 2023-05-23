@@ -127,7 +127,7 @@ class jomres_currency_conversion
 			$tmpl->addRows('rows', $rows);
 			$dropdown = $tmpl->getParsedTemplate();
 		} else {
-			$dropdown = jomresHTML::selectList($fmts, 'user_current_currency_code', 'class="inputbox" size="1" '.$javascript, 'value', 'text', $base);
+			$dropdown = jomresHTML::selectList($fmts, 'user_current_currency_code', ' '.$javascript, 'value', 'text', $base);
 		}
 
 		return $dropdown;

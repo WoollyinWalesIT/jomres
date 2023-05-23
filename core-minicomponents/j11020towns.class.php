@@ -65,7 +65,7 @@ class j11020towns
                 $resource_options[ ] = jomresHTML::makeOption(jomres_cmsspecific_stringURLSafe($v), jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_TOWN', jomres_decode($v), ENT_QUOTES));
             }
             $use_bootstrap_radios = false;
-            $dropdown = jomresHTML::selectList($resource_options, 'resource_id', ' autocomplete="off" class="btn btn-success btn-lg" size="1" ', 'value', 'text', '', $use_bootstrap_radios);
+            $dropdown = jomresHTML::selectList($resource_options, 'resource_id', ' autocomplete="off" ', 'value', 'text', '', $use_bootstrap_radios);
         }
         $this->ret_vals = $dropdown;
     }

@@ -71,9 +71,9 @@ class j06001edit_guest
 			$yesno = array();
 			$yesno[] = jomresHTML::makeOption('0', jr_gettext('_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false));
 			$yesno[] = jomresHTML::makeOption('1', jr_gettext('_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES', false));
-			$output[ 'BLACKLISTED' ] = jomresHTML::selectList($yesno, 'blacklisted', 'class="inputbox" size="1"', 'value', 'text', $jrportal_guests->blacklisted);
+			$output[ 'BLACKLISTED' ] = jomresHTML::selectList($yesno, 'blacklisted', '', 'value', 'text', $jrportal_guests->blacklisted);
 
-			$output[ 'DISCOUNT' ] = jomresHTML::integerSelectList(0, 99, 1, 'discount', 'class="inputbox" size="1"', $jrportal_guests->discount);
+			$output[ 'DISCOUNT' ] = jomresHTML::integerSelectList(0, 99, 1, 'discount', '', $jrportal_guests->discount);
 
 			//validation message
 			if (trim( (string) $jrportal_guests->vat_number_validation_response) != '') {
@@ -96,7 +96,7 @@ class j06001edit_guest
 			$id = 0;
 			$output[ 'REGION' ] = setupRegions('GB');
 			$output[ 'COUNTRY' ] = createSimpleCountriesDropdown('GB');
-			$output[ 'DISCOUNT' ] = jomresHTML::integerSelectList(0, 99, 1, 'discount', 'class="inputbox" size="1"', 0);
+			$output[ 'DISCOUNT' ] = jomresHTML::integerSelectList(0, 99, 1, 'discount', '', 0);
 		}
 
 		$output[ 'HFIRSTNAME' ] = jr_gettext('_JOMRES_COM_MR_DISPGUEST_FIRSTNAME', '_JOMRES_COM_MR_DISPGUEST_FIRSTNAME');

@@ -152,40 +152,34 @@
 				$selected = 'selected="selected"';
 			}
 			$sortArray[ ] = jomresHTML::makeOption('1', jr_gettext('_JOMRES_SORTORDER_DEFAULT', '_JOMRES_SORTORDER_DEFAULT', false, false));
-			$rows[] = [ 'SELECTED' => $selected , 'KEY' => 1 , 'VALUE'  => jr_gettext('_JOMRES_SORTORDER_DEFAULT', '_JOMRES_SORTORDER_DEFAULT', false, false)];
 
 			$selected = '';
 			if ( $sortid ==2) {
 				$selected = 'selected="selected"';
 			}
 			$sortArray[ ] = jomresHTML::makeOption('2', jr_gettext('_JOMRES_SORTORDER_PROPERTYNAME', '_JOMRES_SORTORDER_PROPERTYNAME', false, false));
-			$rows[] = [ 'SELECTED' => $selected ,'KEY' => 2 ,'VALUE'  => jr_gettext('_JOMRES_SORTORDER_PROPERTYNAME', '_JOMRES_SORTORDER_PROPERTYNAME', false, false)];
 
 			$selected = '';
 			if ( $sortid ==3) {
 				$selected = 'selected="selected"';
 			}
 			$sortArray[ ] = jomresHTML::makeOption('3', jr_gettext('_JOMRES_SORTORDER_PROPERTYREGION', '_JOMRES_SORTORDER_PROPERTYREGION', false, false));
-			$rows[] = [ 'SELECTED' => $selected , 'KEY' => 3 ,'VALUE'  => jr_gettext('_JOMRES_SORTORDER_PROPERTYREGION', '_JOMRES_SORTORDER_PROPERTYREGION', false, false)];
 
 			$selected = '';
 			if ( $sortid ==4) {
 				$selected = 'selected="selected"';
 			}
 			$sortArray[ ] = jomresHTML::makeOption('4', jr_gettext('_JOMRES_SORTORDER_PROPERTYTOWN', '_JOMRES_SORTORDER_PROPERTYTOWN', false, false));
-			$rows[] = ['SELECTED' => $selected , 'KEY' => 4 ,'VALUE'  =>  jr_gettext('_JOMRES_SORTORDER_PROPERTYTOWN', '_JOMRES_SORTORDER_PROPERTYTOWN', false, false)];
 
 			$selected = '';
 			if ( $sortid ==5) {
 				$selected = 'selected="selected"';
 			}
 			$sortArray[ ] = jomresHTML::makeOption('5', jr_gettext('_JOMRES_SORTORDER_STARS', '_JOMRES_SORTORDER_STARS', false, false));
-			$rows[] = [ 'SELECTED' => $selected , 'KEY' => 5 ,'VALUE'  => jr_gettext('_JOMRES_SORTORDER_STARS', '_JOMRES_SORTORDER_STARS', false, false) ];
-
 
 			$order[ 'HORDER' ] = jr_gettext('_JOMRES_ORDER', '_JOMRES_ORDER');
 
-			$order[ 'ORDER' ] = jomresHTML::selectList($sortArray, 'sortby', 'onchange="generic_reload(\'jomsearch_sortby\',this.value);" size="1"', 'value', 'text', $sortid);
+			$order[ 'ORDER' ] = jomresHTML::selectList($sortArray, 'sortby', ' onchange="generic_reload(\'jomsearch_sortby\',this.value); " ', 'value', 'text', $sortid);
 			$sortorder = array();
 			$sortorder[ ] = $order;
 
@@ -193,7 +187,6 @@
 				$tmpl = new patTemplate();
 				$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
 				$tmpl->readTemplatesFromInput('order.html');
-				$tmpl->addRows('rows', $rows);
 				$tmpl->addRows('sort_order', $sortorder);
 				set_showtime('order_dropdown', $tmpl->getParsedTemplate());
 			}

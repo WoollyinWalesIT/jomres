@@ -215,7 +215,7 @@ class j16000edit_gateway
 		$yesno[] = jomresHTML::makeOption('0', jr_gettext('_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false));
 		$yesno[] = jomresHTML::makeOption('1', jr_gettext('_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES', false));
 
-		$input = jomresHTML::selectList($yesno, $index, 'class="inputbox" size="1"', 'value', 'text', $setting['default']);
+		$input = jomresHTML::selectList($yesno, $index, '', 'value', 'text', $setting['default']);
 
 		$output = array();
 		$pageoutput = array();
@@ -244,7 +244,7 @@ class j16000edit_gateway
 				$options[] = jomresHTML::makeOption($selection, $text);
 			}
 
-			$input = jomresHTML::selectList($options, $index, 'class="inputbox" size="1"', 'value', 'text', $setting['default']);
+			$input = jomresHTML::selectList($options, $index, '', 'value', 'text', $setting['default']);
 
 			$output = array();
 			$pageoutput = array();

@@ -90,7 +90,7 @@ class j16000edit_user
 		$access_levels[] = jomresHTML::makeOption('50', 'Receptionist');
 		$access_levels[] = jomresHTML::makeOption('70', 'Property manager');
 		$access_levels[] = jomresHTML::makeOption('90', 'Super Property Manager');
-		$output[ 'ACCESSLEVEL' ] = jomresHTML::selectList($access_levels, 'access_level', 'class="inputbox" size="1"', 'value', 'text', $access_level);
+		$output[ 'ACCESSLEVEL' ] = jomresHTML::selectList($access_levels, 'access_level', '', 'value', 'text', $access_level);
 
 		foreach ($all_properties_in_system as $i) {
 			$r = array ();

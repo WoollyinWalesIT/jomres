@@ -143,23 +143,23 @@ class j10501animation_library
 		$configurationPanel->startPanel('Animation Library');
 
 		$configurationPanel->setleft('Enabled?');
-		$configurationPanel->setmiddle( jomresHTML::selectList( $yesno, 'cfg_animation_library_enabled', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['animation_library_enabled'] ) );
+		$configurationPanel->setmiddle( jomresHTML::selectList( $yesno, 'cfg_animation_library_enabled', '', 'value', 'text', $jrConfig['animation_library_enabled'] ) );
 		$configurationPanel->setright('');
 		$configurationPanel->insertSetting();
 
 
 		$configurationPanel->setleft('Animation');
-		$configurationPanel->setmiddle( jomresHTML::selectList( $animation, 'cfg_animation_library_animation', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['animation_library_animation'] ) );
+		$configurationPanel->setmiddle( jomresHTML::selectList( $animation, 'cfg_animation_library_animation', '', 'value', 'text', $jrConfig['animation_library_animation'] ) );
 		$configurationPanel->setright('');
 		$configurationPanel->insertSetting();
 
 		$configurationPanel->setleft('Duration');
-		$configurationPanel->setmiddle( jomresHTML::selectList( $duration, 'cfg_animation_library_duration', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['animation_library_duration'] ) );
+		$configurationPanel->setmiddle( jomresHTML::selectList( $duration, 'cfg_animation_library_duration', '', 'value', 'text', $jrConfig['animation_library_duration'] ) );
 		$configurationPanel->setright('');
 		$configurationPanel->insertSetting();
 
 		$configurationPanel->setleft('Easing');
-		$configurationPanel->setmiddle( jomresHTML::selectList( $easing, 'cfg_animation_library_easing', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['animation_library_easing'] ) );
+		$configurationPanel->setmiddle( jomresHTML::selectList( $easing, 'cfg_animation_library_easing', '', 'value', 'text', $jrConfig['animation_library_easing'] ) );
 		$configurationPanel->setright('');
 		$configurationPanel->insertSetting();
 		$configurationPanel->endPanel();

@@ -369,7 +369,7 @@ class jomres_access_control
 
         $javascript = 'onChange="change_access_level(\''.$task.'\',this.value)";';
 
-        return jomresHTML::selectList($options, '', ' autocomplete="off" class="inputbox" size="1" '.$javascript.'', 'value', 'text', $current_level);
+        return jomresHTML::selectList($options, '', ' autocomplete="off" '.$javascript.'', 'value', 'text', $current_level);
     }
 
     /**

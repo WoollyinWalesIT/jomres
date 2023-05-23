@@ -147,25 +147,25 @@ class j06001list_bookings
 		$options[] = jomresHTML::makeOption('2', jr_gettext('_JOMRES_STATUS_ANY', '_JOMRES_STATUS_ANY', false));
 		$options[] = jomresHTML::makeOption('1', jr_gettext('_JOMRES_STATUS_PAID', '_JOMRES_STATUS_PAID', false));
 		$options[] = jomresHTML::makeOption('0', jr_gettext('_JOMRES_STATUS_NOTPAID', '_JOMRES_STATUS_NOTPAID', false));
-		$output['DEPOSIT_STATUS'] = jomresHTML::selectList($options, 'deposit_status', 'class="inputbox" size="1"', 'value', 'text', $deposit_status);
+		$output['DEPOSIT_STATUS'] = jomresHTML::selectList($options, 'deposit_status', '', 'value', 'text', $deposit_status);
 
 		$options = array();
 		$options[] = jomresHTML::makeOption('2', jr_gettext('_JOMRES_STATUS_ANY', '_JOMRES_STATUS_ANY', false));
 		$options[] = jomresHTML::makeOption('3', jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_PENDING', '_JOMRES_COM_MR_VIEWBOOKINGS_PENDING', false));
 		$options[] = jomresHTML::makeOption('1', jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT', '_JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT', false));
 		$options[] = jomresHTML::makeOption('0', jr_gettext('_JOMRES_STATUS_CHECKEDOUT', '_JOMRES_STATUS_CHECKEDOUT', false));
-		$output['RESIDENT_STATUS'] = jomresHTML::selectList($options, 'resident_status', 'class="inputbox" size="1"', 'value', 'text', $resident_status);
+		$output['RESIDENT_STATUS'] = jomresHTML::selectList($options, 'resident_status', '', 'value', 'text', $resident_status);
 
 		$options = array();
 		$options[] = jomresHTML::makeOption('2', jr_gettext('_JOMRES_STATUS_ANY', '_JOMRES_STATUS_ANY', false));
 		$options[] = jomresHTML::makeOption('0', jr_gettext('_JOMRES_STATUS_ACTIVE', '_JOMRES_STATUS_ACTIVE', false));
 		$options[] = jomresHTML::makeOption('1', jr_gettext('_JOMRES_STATUS_CANCELLED', '_JOMRES_STATUS_CANCELLED', false));
-		$output['BOOKING_STATUS'] = jomresHTML::selectList($options, 'booking_status', 'class="inputbox" size="1"', 'value', 'text', $booking_status);
+		$output['BOOKING_STATUS'] = jomresHTML::selectList($options, 'booking_status', '', 'value', 'text', $booking_status);
 
 		$options = array();
 		$options[] = jomresHTML::makeOption('0', jr_gettext('_JOMRES_HSTATUS_CURRENT', '_JOMRES_HSTATUS_CURRENT', false));
 		$options[] = jomresHTML::makeOption('1', jr_gettext('_JOMRES_STATUS_ALL_PROPERTIES', '_JOMRES_STATUS_ALL_PROPERTIES', false));
-		$output['SHOW_ALL'] = jomresHTML::selectList($options, 'show_all', 'class="inputbox" size="1"', 'value', 'text', $show_all);
+		$output['SHOW_ALL'] = jomresHTML::selectList($options, 'show_all', '', 'value', 'text', $show_all);
 
 		$output['AJAX_URL'] = JOMRES_SITEPAGE_URL_AJAX.'&task=list_bookings_ajax&startDate='.$startDate.'&endDate='.$endDate.'&deposit_status='.$deposit_status.'&resident_status='.$resident_status.'&booking_status='.$booking_status.'&show_all='.$show_all.'&tag='.$tag.'&guest_uid='.$guest_uid;
 

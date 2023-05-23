@@ -71,7 +71,7 @@ class j16000edit_taxrate
 		$yesno = array();
 		$yesno[ ] = jomresHTML::makeOption('0', jr_gettext('_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false));
 		$yesno[ ] = jomresHTML::makeOption('1', jr_gettext('_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES', false));
-		$output[ 'IS_EU_COUNTRY' ] = jomresHTML::selectList($yesno, 'is_eu_country', 'class="inputbox" size="1"', 'value', 'text', $selected);
+		$output[ 'IS_EU_COUNTRY' ] = jomresHTML::selectList($yesno, 'is_eu_country', '', 'value', 'text', $selected);
 
 		$jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
 		$jrtb = $jrtbar->startTable();

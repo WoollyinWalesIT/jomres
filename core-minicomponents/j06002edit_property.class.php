@@ -308,13 +308,13 @@ class j06002edit_property
 			for ($i = 0, $n = 7; $i <= $n; ++$i) {
 				$stars_arr[] = jomresHTML::makeOption($i, $i);
 			}
-			$s[ 'STARSDROPDOWN' ] = jomresHTML::selectList($stars_arr, 'stars', 'size="1" class="inputbox"', 'value', 'text', $current_property_details->stars);
+			$s[ 'STARSDROPDOWN' ] = jomresHTML::selectList($stars_arr, 'stars', '', 'value', 'text', $current_property_details->stars);
 
 			//superior dropdown
 			$yesno = array();
 			$yesno[] = jomresHTML::makeOption('0', jr_gettext('_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false));
 			$yesno[] = jomresHTML::makeOption('1', jr_gettext('_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES', false));
-			$s[ 'SUPERIOR_DROPDOWN' ] = jomresHTML::selectList($yesno, 'superior', 'class="inputbox" size="1"', 'value', 'text', $current_property_details->superior);
+			$s[ 'SUPERIOR_DROPDOWN' ] = jomresHTML::selectList($yesno, 'superior', '', 'value', 'text', $current_property_details->superior);
 			$s[ 'HSUPERIOR' ] = jr_gettext('JOMRES_SUPERIOR', 'JOMRES_SUPERIOR');
 			
 			$stars[] = $s;

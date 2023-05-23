@@ -68,7 +68,7 @@ class j10521api_core
 		$configurationPanel->insertHeading(jr_gettext("_OAUTH_CONFIG", '_OAUTH_CONFIG', false));
 			
 		$configurationPanel->setleft(jr_gettext('_OAUTH_CONFIG_SHOW', '_OAUTH_CONFIG_SHOW', false));
-		$configurationPanel->setmiddle(jomresHTML::selectList($yesno, 'cfg_api_core_show', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'api_core_show' ]));
+		$configurationPanel->setmiddle(jomresHTML::selectList($yesno, 'cfg_api_core_show', '', 'value', 'text', $jrConfig[ 'api_core_show' ]));
 		$configurationPanel->setright(jr_gettext('_OAUTH_CONFIG_SHOW_DESC', '_OAUTH_CONFIG_SHOW_DESC', false));
 		$configurationPanel->insertSetting();
 		

@@ -96,13 +96,13 @@ class j16000listproperties
 		$options[] = jomresHTML::makeOption('2', jr_gettext('_JOMRES_STATUS_ANY', '_JOMRES_STATUS_ANY', false));
 		$options[] = jomresHTML::makeOption('1', jr_gettext('_JOMRES_STATUS_PUBLISHED', '_JOMRES_STATUS_PUBLISHED', false));
 		$options[] = jomresHTML::makeOption('0', jr_gettext('_JOMRES_STATUS_NOT_PUBLISHED', '_JOMRES_STATUS_NOT_PUBLISHED', false));
-		$output['PUBLISHED_STATUS'] = jomresHTML::selectList($options, 'published', 'class="inputbox" size="1"', 'value', 'text', $published);
+		$output['PUBLISHED_STATUS'] = jomresHTML::selectList($options, 'published', '', 'value', 'text', $published);
 
 		$options = array();
 		$options[] = jomresHTML::makeOption('2', jr_gettext('_JOMRES_STATUS_ANY', '_JOMRES_STATUS_ANY', false));
 		$options[] = jomresHTML::makeOption('1', jr_gettext('_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES', false));
 		$options[] = jomresHTML::makeOption('0', jr_gettext('_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false));
-		$output['APPROVED_STATUS'] = jomresHTML::selectList($options, 'approved', 'class="inputbox" size="1"', 'value', 'text', $approved);
+		$output['APPROVED_STATUS'] = jomresHTML::selectList($options, 'approved', '', 'value', 'text', $approved);
 
 		//property type filter
 		$options = array();
@@ -114,7 +114,7 @@ class j16000listproperties
 			$options[] = jomresHTML::makeOption($k, $v);
 		}
 
-		$output['PTYPE'] = jomresHTML::selectList($options, 'ptype', 'class="inputbox" size="1"', 'value', 'text', $ptype_id);
+		$output['PTYPE'] = jomresHTML::selectList($options, 'ptype', '', 'value', 'text', $ptype_id);
 
 		$output['AJAX_URL'] = JOMRES_SITEPAGE_URL_ADMIN_AJAX.'&task=listproperties_ajax&published='.$published.'&approved='.$approved.'&ptype='.$ptype_id;
 

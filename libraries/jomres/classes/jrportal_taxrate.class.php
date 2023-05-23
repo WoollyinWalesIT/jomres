@@ -247,7 +247,7 @@ class jrportal_taxrate
 			foreach ($this->taxrates as $r) {
 				$ratesOptions[ ] = jomresHTML::makeOption($r[ 'id' ], $r[ 'code' ].' '.$r[ 'description' ]);
 			}
-			$ratesDropdown = jomresHTML::selectList($ratesOptions, $name, 'class="inputbox" size="1"', 'value', 'text', $selected);
+			$ratesDropdown = jomresHTML::selectList($ratesOptions, $name, '', 'value', 'text', $selected);
 		}
 
 		return $ratesDropdown;

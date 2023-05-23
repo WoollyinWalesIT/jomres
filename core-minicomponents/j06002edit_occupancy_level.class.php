@@ -70,8 +70,8 @@ class j06002edit_occupancy_level
 
 		$output['ROOM_TYPE_NAME'] = $jomres_occupancy_levels->occupancy_levels[$id]['room_type_name'];
 
-		$output['MAX_ADULTS'] = jomresHTML::integerSelectList(0, 100, 1, 'max_adults', 'class="inputbox" size="1"', (int)  $jomres_occupancy_levels->occupancy_levels[$id]['max_adults']);
-		$output['MAX_CHILDREN'] = jomresHTML::integerSelectList(0, 100, 1, 'max_children', 'class="inputbox" size="1"', (int) $jomres_occupancy_levels->occupancy_levels[$id]['max_children']);
+		$output['MAX_ADULTS'] = jomresHTML::integerSelectList(0, 100, 1, 'max_adults', '', (int)  $jomres_occupancy_levels->occupancy_levels[$id]['max_adults']);
+		$output['MAX_CHILDREN'] = jomresHTML::integerSelectList(0, 100, 1, 'max_children', '', (int) $jomres_occupancy_levels->occupancy_levels[$id]['max_children']);
 
 
 		$jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');

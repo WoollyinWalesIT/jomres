@@ -478,6 +478,6 @@ class JomresPage
 		$link = $link."&amp;limit=' + this.options[selectedIndex].value + '&amp;page=".$this->page;
 		$link = jomresURL($link);
 
-		return jomresHTML::selectList($limits, 'limit', 'class="inputbox" size="1" onchange="document.location.href=\''.$link.'\';"', 'value', 'text', $this->limit);
+		return jomresHTML::selectList($limits, 'limit', ' onchange="document.location.href=\''.$link.'\';"', 'value', 'text', $this->limit);
 	}
 }

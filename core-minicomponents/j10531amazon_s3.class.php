@@ -63,15 +63,15 @@ class j10531amazon_s3
 		$options[] = jomresHTML::makeOption('eu-west-1', 'EU (Ireland)');
 		$options[] = jomresHTML::makeOption('eu-west-2', 'EU (London)');
 		$options[] = jomresHTML::makeOption('sa-east-1', 'South America (São Paulo)');
-		$s3_region = jomresHTML::selectList($options, 'cfg_amazon_s3_region', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'amazon_s3_region' ]);
+		$s3_region = jomresHTML::selectList($options, 'cfg_amazon_s3_region', '', 'value', 'text', $jrConfig[ 'amazon_s3_region' ]);
 		
 		$yesno = array();
 		$yesno[] = jomresHTML::makeOption('0', jr_gettext("_JOMRES_COM_MR_NO", '_JOMRES_COM_MR_NO', false));
 		$yesno[] = jomresHTML::makeOption('1', jr_gettext("_JOMRES_COM_MR_YES", '_JOMRES_COM_MR_YES', false));
 		
-		$active = jomresHTML::selectList($yesno, 'cfg_amazon_s3_active', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'amazon_s3_active' ]);
-		$remove_local_copies = jomresHTML::selectList($yesno, 'cfg_amazon_s3_remove_local_copies', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'amazon_s3_remove_local_copies' ]);
-		$use_tls = jomresHTML::selectList($yesno, 'cfg_amazon_s3_use_tls', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'amazon_s3_use_tls' ]);
+		$active = jomresHTML::selectList($yesno, 'cfg_amazon_s3_active', '', 'value', 'text', $jrConfig[ 'amazon_s3_active' ]);
+		$remove_local_copies = jomresHTML::selectList($yesno, 'cfg_amazon_s3_remove_local_copies', '', 'value', 'text', $jrConfig[ 'amazon_s3_remove_local_copies' ]);
+		$use_tls = jomresHTML::selectList($yesno, 'cfg_amazon_s3_use_tls', '', 'value', 'text', $jrConfig[ 'amazon_s3_use_tls' ]);
 
 		$configurationPanel->insertHeading('Amazon S3');
 		

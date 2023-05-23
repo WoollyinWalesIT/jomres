@@ -305,7 +305,7 @@ class jrportal_commissions // Functions supplied as a class so that they can be 
 			$options[] = jomresHTML::makeOption($k, $v);
 		}
 
-		return jomresHTML::selectList($options, 'type', 'class="inputbox" size="1"', 'value', 'text', $selected);
+		return jomresHTML::selectList($options, 'type', '', 'value', 'text', $selected);
 	}
 	
 	/**

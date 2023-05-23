@@ -78,8 +78,8 @@ class j06002edit_child_rate
 
 		$output[ 'PAGE_TITLE' ] = jr_gettext('JOMRES_POLICIES_CHILDREN_CHILD_RATES', 'JOMRES_POLICIES_CHILDREN_CHILD_RATES', false);
 
-		$output['AGE_FROM'] = jomresHTML::integerSelectList(0, 17, 1, 'age_from', 'class="inputbox" size="1"', (int)  $age_from_selected);
-		$output['AGE_TO'] = jomresHTML::integerSelectList(0, 17, 1, 'age_to', 'class="inputbox" size="1"', (int) $age_to_selected);
+		$output['AGE_FROM'] = jomresHTML::integerSelectList(0, 17, 1, 'age_from', '', (int)  $age_from_selected);
+		$output['AGE_TO'] = jomresHTML::integerSelectList(0, 17, 1, 'age_to', '', (int) $age_to_selected);
 
 		$output['model'] = $jomres_child_rates->build_rate_model_dropdown($id);
 

@@ -58,7 +58,7 @@ class j11020property_types
 				$resource_options[ ] = jomresHTML::makeOption($ptype['id'], $ptype['ptype']);
 			}
 			$use_bootstrap_radios = false;
-			$dropdown = jomresHTML::selectList($resource_options, 'resource_id', ' autocomplete="off" class="btn btn-success btn-lg" size="1" ', 'value', 'text', '', $use_bootstrap_radios);
+			$dropdown = jomresHTML::selectList($resource_options, 'resource_id', ' autocomplete="off" ', 'value', 'text', '', $use_bootstrap_radios);
 		}
 		$this->ret_vals = $dropdown;
 	}

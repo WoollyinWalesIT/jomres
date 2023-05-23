@@ -447,7 +447,7 @@ class jomres_property_types
 			$disabled = '';
 		}
 
-		$dropdown = jomresHTML::selectList($options, $input_name, 'class="inputbox" size="1"'.$disabled, 'value', 'text', $selected);
+		$dropdown = jomresHTML::selectList($options, $input_name, ''.$disabled, 'value', 'text', $selected);
 
 		return $dropdown;
 	}
@@ -485,7 +485,7 @@ class jomres_property_types
 			}
 		}
 
-		$dropdown = jomresHTML::selectList($options, $input_name, 'class="inputbox" size="1" '.$javascript, 'value', 'text', $selected);
+		$dropdown = jomresHTML::selectList($options, $input_name, ' '.$javascript, 'value', 'text', $selected);
 
 		return $dropdown;
 	}

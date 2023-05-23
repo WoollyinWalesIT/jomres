@@ -56,7 +56,7 @@ class j06002child_policies
 		$output[ 'JOMRES_POLICIES_CHILDREN_CHILD_RATE_MODEL' ] = jr_gettext('JOMRES_POLICIES_CHILDREN_CHILD_RATE_MODEL', 'JOMRES_POLICIES_CHILDREN_CHILD_RATE_MODEL', false);
 		$output[ 'JOMRES_POLICIES_CHILDREN_CHILD_RATE_PRICE' ] = jr_gettext('JOMRES_POLICIES_CHILDREN_CHILD_RATE_PRICE', 'JOMRES_POLICIES_CHILDREN_CHILD_RATE_PRICE', false);
 
-		$output[ 'CHILD_MIN_AGE' ] = jomresHTML::integerSelectList(0, 17, 1, 'child_min_age', 'class="input-mini form-control"', $jomres_child_policies->child_policies['child_min_age'], '');
+		$output[ 'CHILD_MIN_AGE' ] = jomresHTML::integerSelectList(0, 17, 1, 'child_min_age', '', $jomres_child_policies->child_policies['child_min_age'], '');
 		$output[ 'NEW_RATE_URL' ] = JOMRES_SITEPAGE_URL_NOSEF.'&task=edit_child_rate&id=0';
 
 		jr_import('jomres_child_rates');

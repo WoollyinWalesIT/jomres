@@ -766,8 +766,8 @@ class j06000search
 			$output[ 'sleeps_adults_selected' ] = $sleeps_adults_selected;
 			$output[ 'sleeps_children_selected' ] = $sleeps_children_selected;
 
-			$output[ 'sleeps_adults_dropdown' ] = jomresHTML::integerSelectList(0, $output[ 'highest_adults' ], 1, 'sleeps_adults', 'class="inputbox" size="1"', $sleeps_adults_selected);
-			$output[ 'sleeps_children_dropdown' ] = jomresHTML::integerSelectList(0, $output[ 'highest_children' ], 1, 'sleeps_children', 'class="inputbox" size="1"', $sleeps_children_selected);
+			$output[ 'sleeps_adults_dropdown' ] = jomresHTML::integerSelectList(0, $output[ 'highest_adults' ], 1, 'sleeps_adults', '', $sleeps_adults_selected);
+			$output[ 'sleeps_children_dropdown' ] = jomresHTML::integerSelectList(0, $output[ 'highest_children' ], 1, 'sleeps_children', '', $sleeps_children_selected);
 		}
 
 		// -------------------------------------------------------------------------------------------------------------------------------------------

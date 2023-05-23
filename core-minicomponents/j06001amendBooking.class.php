@@ -85,7 +85,7 @@ class j06001amendBooking
 				$propertyOptions[ ] = jomresHTML::makeOption($property->propertys_uid, stripslashes($pname));
 			}
 
-			$propertyDropdown = jomresHTML::selectList($propertyOptions, 'selectedProperty', 'class="inputbox" size="1"', 'value', 'text', $defaultProperty);
+			$propertyDropdown = jomresHTML::selectList($propertyOptions, 'selectedProperty', '', 'value', 'text', $defaultProperty);
 
 			$output[ 'PROPERTYDROPDOWN' ] = ''.$propertyDropdown.'';
 

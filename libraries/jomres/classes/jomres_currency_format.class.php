@@ -174,7 +174,7 @@ class jomres_currency_format
 		foreach ($this->currency_formats as $key => $format) {
 			$fmts[ ] = jomresHTML::makeOption($key, $format);
 		}
-		$dropdown = jomresHTML::selectList($fmts, 'cfg_cformat', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'cformat' ]);
+		$dropdown = jomresHTML::selectList($fmts, 'cfg_cformat', '', 'value', 'text', $mrConfig[ 'cformat' ]);
 
 		return $dropdown;
 	}

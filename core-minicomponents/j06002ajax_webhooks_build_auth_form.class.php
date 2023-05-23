@@ -234,7 +234,7 @@ class j06002ajax_webhooks_build_auth_form
 		$yesno[] = jomresHTML::makeOption('0', jr_gettext('_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false));
 		$yesno[] = jomresHTML::makeOption('1', jr_gettext('_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES', false));
 
-		$input = jomresHTML::selectList($yesno, $index, 'class="inputbox" size="1"', 'value', 'text', $webhook_setting);
+		$input = jomresHTML::selectList($yesno, $index, '', 'value', 'text', $webhook_setting);
 
 		$output = array();
 		$pageoutput = array();
@@ -263,7 +263,7 @@ class j06002ajax_webhooks_build_auth_form
 				$options[] = jomresHTML::makeOption($selection, $text);
 			}
 
-			$input = jomresHTML::selectList($options, $index, 'class="inputbox" size="1"', 'value', 'text', $webhook_setting);
+			$input = jomresHTML::selectList($options, $index, '', 'value', 'text', $webhook_setting);
 
 			$output = array();
 			$pageoutput = array();

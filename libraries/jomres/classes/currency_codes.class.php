@@ -595,8 +595,8 @@ class currency_codes
 				$options[] = jomresHTML::makeOption($k, $v);
 			}
 		}
-//var_dump($options);exit;
-		return jomresHTML::selectList($options, $this->input_name, 'class="inputbox" size="1"', 'value', 'text', $this->code);
+
+		return jomresHTML::selectList($options, $this->input_name, '', 'value', 'text', $this->code);
 	}
 
 	/**

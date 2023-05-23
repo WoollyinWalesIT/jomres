@@ -1,0 +1,7 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+		<select name="{NAME}" id="{ID}" {ATTRIBS} class="form-select">
+			<patTemplate:tmpl name="rows" unusedvars="import">
+				<option value="{KEY}" {SELECTED}>{TEXT}</option>
+			</patTemplate:tmpl>
+		</select>
+</patTemplate:tmpl>

@@ -77,14 +77,14 @@ class j16000charts
 		foreach ($all_jomres_charts as $k) {
 			$options[] = jomresHTML::makeOption($k['id'], $k['title'].' - '.$k['description']);
 		}
-		$output['CHARTS_DROPDOWN'] = jomresHTML::selectList($options, 'jr_chart', 'class="inputbox" size="1"', 'value', 'text', get_showtime('jr_chart'));
+		$output['CHARTS_DROPDOWN'] = jomresHTML::selectList($options, 'jr_chart', '', 'value', 'text', get_showtime('jr_chart'));
 
 		//chart types dropdown
 		$options = array();
 		$options[] = jomresHTML::makeOption('line', 'Line');
 		$options[] = jomresHTML::makeOption('bar', 'Bar');
 		$options[] = jomresHTML::makeOption('radar', 'Radar');
-		$output['CHART_TYPES_DROPDOWN'] = jomresHTML::selectList($options, 'jr_chart_type', 'class="inputbox" size="1"', 'value', 'text', $chart_type);
+		$output['CHART_TYPES_DROPDOWN'] = jomresHTML::selectList($options, 'jr_chart_type', '', 'value', 'text', $chart_type);
 
 		//get selected jr chart
 		if (get_showtime('jr_chart') == '0') {

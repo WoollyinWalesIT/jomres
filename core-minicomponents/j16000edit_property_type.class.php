@@ -107,12 +107,12 @@ class j16000edit_property_type
         $mrp_srp_flag_options[ ] = jomresHTML::makeOption('5', jr_gettext('_JOMRES_PROPERTYTYPE_FLAG_HIRE', '_JOMRES_PROPERTYTYPE_FLAG_HIRE', false));
 
 
-        $output[ '_JOMRES_PROPERTYTYPE_FLAG_DROPDOWN' ] = jomresHTML::selectList($mrp_srp_flag_options, 'mrp_srp_flag', 'class="inputbox" size="1"', 'value', 'text', $mrp_srp_flag);
+        $output[ '_JOMRES_PROPERTYTYPE_FLAG_DROPDOWN' ] = jomresHTML::selectList($mrp_srp_flag_options, 'mrp_srp_flag', '', 'value', 'text', $mrp_srp_flag);
 
         $has_stars_options = array();
         $has_stars_options[ ] = jomresHTML::makeOption('0', jr_gettext('_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false));
         $has_stars_options[ ] = jomresHTML::makeOption('1', jr_gettext('_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES', false));
-        $output[ 'HAS_STARS' ] = jomresHTML::selectList($has_stars_options, 'has_stars', 'class="inputbox" size="1"', 'value', 'text', $jomres_property_types->property_type['has_stars']);
+        $output[ 'HAS_STARS' ] = jomresHTML::selectList($has_stars_options, 'has_stars', '', 'value', 'text', $jomres_property_types->property_type['has_stars']);
 
         $output[ 'ID' ] = $id;
 

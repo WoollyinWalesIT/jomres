@@ -68,7 +68,7 @@ class j10521webhooks_core
 		$configurationPanel->insertHeading(jr_gettext("WEBHOOKS_CORE", 'WEBHOOKS_CORE', false));
 			
 		$configurationPanel->setleft(jr_gettext('_WEBHOOKS_CONFIG_SHOW', '_WEBHOOKS_CONFIG_SHOW', false));
-		$configurationPanel->setmiddle(jomresHTML::selectList($yesno, 'cfg_webhooks_core_show', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'webhooks_core_show' ]));
+		$configurationPanel->setmiddle(jomresHTML::selectList($yesno, 'cfg_webhooks_core_show', '', 'value', 'text', $jrConfig[ 'webhooks_core_show' ]));
 		$configurationPanel->setright(jr_gettext('_WEBHOOKS_CONFIG_SHOW_DESC', '_WEBHOOKS_CONFIG_SHOW_DESC', false));
 		$configurationPanel->insertSetting();
 	}
