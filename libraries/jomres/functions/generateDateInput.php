@@ -146,17 +146,20 @@
 			$output .= 'maxDate: "+5Y",
 		';
 
-
-			if ((using_bootstrap() && jomres_bootstrap_version() == '2') || !using_bootstrap()) {
-				$output .= 'buttonImage: \''.JOMRES_IMAGES_RELPATH.'calendar.png\',';
-				$bs3_icon = '';
-			} else {
-				$output .= 'buttonText: "",';
-				$bs3_icon = '<span class="input-group-addon input-group-text" id="dp_trigger_'.$uniqueID.'"><i class="fa fa-calendar"></i></span>';
-				if (isset($options['show_calendar']) && $options['show_calendar'] === false) {
-					$bs3_icon = '';
-
+			$jquery_ui_calendar_icon_styles = get_showtime('jquery_ui_calendar_icon_styles');
+			$styles = '';
+			if (isset($jquery_ui_calendar_icon_styles)  && is_array($jquery_ui_calendar_icon_styles)) {
+				foreach ($jquery_ui_calendar_icon_styles as $style) {
+					$styles .= $style.' ';
 				}
+			} else {
+				$styles = 'input-group-addon input-group-text';
+			}
+
+			$output .= 'buttonText: "",';
+			$bs3_icon = '<span class="'.$styles.'" id="dp_trigger_'.$uniqueID.'"><i class="fa fa-calendar"></i></span>';
+			if (isset($options['show_calendar']) && $options['show_calendar'] === false) {
+				$bs3_icon = '';
 			}
 
 			$output .= '
@@ -201,16 +204,26 @@
 			if (isset($calendar_z_index)  && $calendar_z_index != '') {
 				$z_index = 'z-index: '.$calendar_z_index.';';
 			}
+			$calendar_styles = get_showtime('jquery_ui_calendar_styles');
+			$styles = '';
+			if (isset($calendar_styles)  && is_array($calendar_styles)) {
+				foreach ($calendar_styles as $style) {
+					$styles .= $style.' ';
+				}
+			} else {
+				$styles = 'form-control shadow-none';
+			}
+
 			if (isset($options['show_calendar']) && $options['show_calendar'] === false) {
 				$output .= '
                     </script>
-                        <input type="text" readonly="readonly" style="cursor:pointer; background-color: transparent; border-left: none; position: relative;'.$z_index.'" ' .$size.' name="'.$fieldName.'" id="'.$uniqueID.'" value="'.$dateValue.'" placeholder="'.$placeholder.'" class=" form-control shadow-none '.$input_class.'" />'.$bs3_icon.'
+                        <input type="text" readonly="readonly" style="cursor:pointer; background-color: transparent; border-left: none; position: relative;'.$z_index.'" ' .$size.' name="'.$fieldName.'" id="'.$uniqueID.'" value="'.$dateValue.'" placeholder="'.$placeholder.'" class="'.$styles.$input_class.'" />'.$bs3_icon.'
                             ';
 			} else {
 				$output .= '
                     </script>
                     <div class="input-group">
-                        <input type="text" readonly="readonly" style="cursor:pointer; background-color: #FFFFFF; position: relative;'.$z_index.'" ' .$size.' name="'.$fieldName.'" id="'.$uniqueID.'" value="'.$dateValue.'" placeholder="'.$placeholder.'" class="'.$input_class.' form-control" />'.$bs3_icon.'
+                        <input type="text" readonly="readonly" style="cursor:pointer; background-color: #FFFFFF; position: relative;'.$z_index.'" ' .$size.' name="'.$fieldName.'" id="'.$uniqueID.'" value="'.$dateValue.'" placeholder="'.$placeholder.'" class="'.$styles.$input_class.'" />'.$bs3_icon.'
                     </div>';
 			}
 

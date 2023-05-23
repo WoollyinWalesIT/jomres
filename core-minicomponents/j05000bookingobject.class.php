@@ -176,12 +176,22 @@ if (!class_exists('booking')) {
 
 			$output .= 'maxDate: "+5Y",';
 
+			$jquery_ui_calendar_icon_styles = get_showtime('jquery_ui_calendar_icon_styles');
+			$styles = '';
+			if (isset($jquery_ui_calendar_icon_styles)  && is_array($jquery_ui_calendar_icon_styles)) {
+				foreach ($jquery_ui_calendar_icon_styles as $style) {
+					$styles .= $style.' ';
+				}
+			} else {
+				$styles = 'input-group-addon input-group-text';
+			}
+			
 			if ((using_bootstrap() && jomres_bootstrap_version() == '2') || !using_bootstrap()) {
 				$output .= 'buttonImage: \''.JOMRES_IMAGES_RELPATH.'calendar.png\',';
 				$bs3_icon = '';
 			} else {
 				$output .= 'buttonText: "",';
-				$bs3_icon = '<span class="input-group-addon input-group-text" id="dp_trigger_'.$uniqueID.'"><span class="fa fa-calendar"></span></span>';
+				$bs3_icon = '<span class="'.$styles.'" id="dp_trigger_'.$uniqueID.'"><span class="fa fa-calendar"></span></span>';
 			}
 			$output .= '
 					autoSize:true,
@@ -225,9 +235,19 @@ if (!class_exists('booking')) {
 				';
 			}
 
+			$calendar_styles = get_showtime('jquery_ui_calendar_styles');
+			$styles = '';
+			if (isset($calendar_styles)  && is_array($calendar_styles)) {
+				foreach ($calendar_styles as $style) {
+					$styles .= $style.' ';
+				}
+			} else {
+				$styles = 'form-control shadow-none';
+			}
+
 			$output .= '
 			</script>
-			<input type="text" readonly="readonly" style="cursor:pointer; background-color: #FFFFFF;" ' .$size.' class="'.$input_class.' form-control input-group" name="'.$fieldName.'" id="'.$uniqueID.'" value="'.$dateValue.'" autocomplete="off" />'.$bs3_icon.'
+			<input type="text" readonly="readonly" style="cursor:pointer; background-color: #FFFFFF;" ' .$size.' class="'.$styles.$input_class.'" name="'.$fieldName.'" id="'.$uniqueID.'" value="'.$dateValue.'" autocomplete="off" />'.$bs3_icon.'
 			';
 
 			return $output;
