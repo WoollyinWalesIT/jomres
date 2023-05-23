@@ -154,17 +154,25 @@ class jomres_property_list_prices
                     }
                 }
 
-                if ( $this->arrivalDate < $today ) {
+				$arrival_date_test = strtotime($this->arrivalDate);
+				$departure_date_test = strtotime($this->departureDate);
+
+				$today_test = date('Y-m-d H:i:s', strtotime($today));
+				$tomorrow_test = date('Y-m-d H:i:s', strtotime($tomorrow));
+				$two_years_from_now_test = date('Y-m-d H:i:s', strtotime('+2 years', strtotime($today)));;
+
+
+                if ( $arrival_date_test < $today_test ) {
                     $this->arrivalDate = $today;
                 }
-                if ( $this->departureDate < $tomorrow ) {
+                if ($departure_date_test < $tomorrow_test ) {
                     $this->departureDate = $tomorrow;
                 }
 
-				if ( $this->arrivalDate > $today + "2 years" ) {
+				if ( $arrival_date_test > $two_years_from_now_test ) {
 					$this->arrivalDate = $today;
 				}
-				if ( $this->departureDate > $tomorrow + "2 years" ) {
+				if ( $departure_date_test > $two_years_from_now_test ) {
 					$this->departureDate = $tomorrow;
 				}
 
