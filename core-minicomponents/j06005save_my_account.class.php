@@ -85,7 +85,7 @@ class j06005save_my_account
 		$about_me = $this->convert_lessgreaterthans(jomresGetParam($_REQUEST, 'about_me', ''));
 		$about_me = $this->jomres_encryption->encrypt(strip_tags($about_me, '<p><br>'));
 		
-		$vat_number = trim(filter_var($_REQUEST[ 'vat_number' ], FILTER_SANITIZE_STRING));
+		$vat_number = trim(filter_var($_REQUEST[ 'vat_number' ], FILTER_SANITIZE_FULL_SPECIAL_CHARS));
 		$return_url = (string) jomresGetParam($_REQUEST, 'return_url', '');
 		$delete_image = (int)jomresGetParam($_REQUEST, 'delete', 0);
 

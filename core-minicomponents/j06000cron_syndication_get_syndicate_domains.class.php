@@ -66,7 +66,7 @@ class j06000cron_syndication_get_syndicate_domains
 					if ($domain) {
 						$now = date("Y-m-d H:i:s");
 						$new_site_domain					= $domain['host'];
-						$new_site_api_url					= $domain['scheme']."://".$domain['host'].filter_var($domain['path'], FILTER_SANITIZE_STRING);
+						$new_site_api_url					= $domain['scheme']."://".$domain['host'].filter_var($domain['path'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 						$new_site_datetime_added			= $now;
 						$new_site_datetime_last_checked		= $now;
 						
