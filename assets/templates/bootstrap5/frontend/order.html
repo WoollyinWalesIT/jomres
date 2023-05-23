@@ -1,10 +1,7 @@
 <patTemplate:tmpl name="sort_order" unusedvars="strip">
 	<form method="post" name="sortForm" action="{JOMRES_SITEPAGE_URL_NOSEF}" role="form">
-		<select name="sortby" id="sortby" onchange="generic_reload('jomsearch_sortby',this.value);" size="1" class="inputbox form-select rounded-0">
-			<patTemplate:tmpl name="rows" unusedvars="strip">
-				<option value="{KEY}" {SELECTED}>{VALUE}</option>
-			</patTemplate:tmpl>
-			{CSRF_TOKEN}
-		</select>
+		<!--<label for="sortid">{HORDER}</label>-->
+		{ORDER}
+		{CSRF_TOKEN}
 	</form>
 </patTemplate:tmpl>
