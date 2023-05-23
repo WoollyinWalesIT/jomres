@@ -112,7 +112,7 @@ if (strpos($bang[1], '?') !== false) { // Has the client appended the token to t
 	$pop = explode('?', $bang[1]);
 	$route = $pop[0];
 } else {
-	$route = filter_var($bang[1], FILTER_SANITIZE_STRING);
+	$route = filter_var($bang[1], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 }
 
 //
