@@ -1141,6 +1141,7 @@
 		 */
 		public function jomSearch_autocomplete()
 		{
+			return;
 			$this->makeOrs();
 			$property_ors = $this->ors;
 
