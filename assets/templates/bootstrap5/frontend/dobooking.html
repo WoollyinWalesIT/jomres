@@ -1,21 +1,4 @@
 <patTemplate:tmpl name="pageoutput">
-	<style type="text/css">
-		label.valid {
-			width: 24px;
-			height: 24px;
-			background: url({JOMRES_IMAGES_RELPATH}valid.png) center center no-repeat;
-			display: inline-block;
-			text-indent: -9999px;
-		}
-
-		label.error {
-			font-weight: bold;
-			color: red;
-			padding: 2px 8px;
-			margin-top: 2px;
-		}
-
-	</style>
 	<script type="text/javascript">
 		{BOOKEDDATES}
 		var isSRP = false;
@@ -132,13 +115,15 @@
 							remote: "{EMAIL_ALREADY_INUSE}"
 				}
 			},
-
-			highlight: function (label) {
-				jomresJquery(label).closest('.form-group').removeClass('has-success').addClass('has-error');
-			},
-			success: function (label) {
-				jomresJquery(label).closest('.form-group').removeClass('has-error').addClass('has-success');
-			}
+            highlight: function (label) {
+                jomresJquery(label).closest('.form-group').removeClass('alert alert-success').addClass('alert alert-danger mt-3');
+                jomresJquery('html, body').animate({
+                    scrollTop: jomresJquery(label).offset().top
+                }, 2000);
+            },
+            success: function (label) {
+                jomresJquery(label).closest('.form-group').removeClass('alert alert-danger').addClass('alert alert-success');
+            }
 		});
 
 
