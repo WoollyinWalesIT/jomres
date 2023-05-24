@@ -137,7 +137,7 @@
 		{
 			$attribs = str_replace(' class="inputbox" ', '', $attribs);
 			$attribs = str_replace(' class="input-medium" ', '', $attribs);
-			$attribs .= ' class="input-small form-control form-select"';
+			$attribs .= ' ';
 
 			$arry = array();
 			for ($i = (int) $start; $i <= (int) $end; $i += (int) $increment) {
