@@ -278,7 +278,7 @@
 					if ($bkg->extraAlreadySelected($theId)) {
 						$retText = 'Extra added to booking';
 						$bkg->setExtras($theId);
-						echo 'jomresJquery(theId).prop("checked", true);';
+						echo 'jomresJquery("#quantity"+theId).prop("checked", true);';
 						$bkg->modifyExtraQuantity($value, $theId);
 					}
 
