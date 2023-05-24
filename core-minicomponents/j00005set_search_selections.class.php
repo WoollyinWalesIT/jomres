@@ -123,16 +123,18 @@
 					$autocomplete_value = jomresGetParam($_REQUEST, 'autocomplete_value', '' );
 
 					$bang= explode('_', $autocomplete_value);
-					$search_form_field = $bang[1];
+					if (isset($bang[1])){
+						$search_form_field = $bang[1];
 
-					if ($search_form_field == 'countries') {
-						$_REQUEST[ 'country' ] = $bang[0];
-					}
-					if ($search_form_field == 'regions') {
-						$_REQUEST[ 'region' ] = $bang[0];
-					}
-					if ($search_form_field == 'towns') {
-						$_REQUEST[ 'town' ] = $bang[0];
+						if ($search_form_field == 'countries') {
+							$_REQUEST[ 'country' ] = $bang[0];
+						}
+						if ($search_form_field == 'regions') {
+							$_REQUEST[ 'region' ] = $bang[0];
+						}
+						if ($search_form_field == 'towns') {
+							$_REQUEST[ 'town' ] = $bang[0];
+						}
 					}
 				}
 			}
