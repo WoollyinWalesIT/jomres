@@ -1362,14 +1362,18 @@ class dobooking
                         $this->setExtras($ex->uid);
                         $extra_deets[ 'INPUTBOX' ] = '<input id="extras_'.$ex->uid.'" type="checkbox" class="form-check-input" checked disabled=" " onclick="return false;" name="extras['.$ex->uid.']" value="'.$ex->uid.'" />';
                     }
-                    $extra_deets[ 'FIELDNAME' ] = 'extras['.$ex->uid.']';
 
+                    $extra_deets[ 'FIELDNAME' ] = 'extras['.$ex->uid.']';
+					$extra_deets[ 'SWITCH' ] = $extra_deets[ 'INPUTBOX' ];
                     $extra_quantity_dropdown_disabled = ' disabled=" " ';
                     if ($this->extraAlreadySelected($ex->uid)) {
                         $extra_quantity_dropdown_disabled = ' ';
                     }
 
                     if ($ex->maxquantity > 1) {
+
+						$extra_deets[ 'DROPDOWN' ] = jomresHTML::integerSelectList(01, $ex->maxquantity, 1, 'quantity'.$ex->uid, ' autocomplete="off" '.$extra_quantity_dropdown_disabled.' onchange="getResponse_extrasquantity(\'extrasquantity\',this.value,'.$ex->uid.');"', $extraDefaultQuantity, '%02d', $use_bootstrap_radios = false);
+
                         $extra_deets[ 'INPUTBOX' ] =
                             $extra_deets[ 'INPUTBOX' ].'&nbsp;&nbsp;'.
                             jomresHTML::integerSelectList(01, $ex->maxquantity, 1, 'quantity'.$ex->uid, ' autocomplete="off" '.$extra_quantity_dropdown_disabled.' onchange="getResponse_extrasquantity(\'extrasquantity\',this.value,'.$ex->uid.');"', $extraDefaultQuantity, '%02d', $use_bootstrap_radios = false);
