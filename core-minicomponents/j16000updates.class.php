@@ -91,10 +91,16 @@ class j16000updates
 				$tmpl->displayParsedTemplate();
 			}
 		} else {
+			//emptyDir(JOMRES_LIBRARIES_ABSPATH.'packages');
+			//rmdir(JOMRES_LIBRARIES_ABSPATH.'packages');
+
 			$this->do_download_and_unzip($local_archive);
 			if (!$this->test_download) {
 				$this->do_dir_move();
 			}
+
+
+
 			unlink($local_archive);
 
 			if (!$this->test_download) {
