@@ -1,4 +1,4 @@
-<h3>Jomres 10.7.0 21/05/2023</h3>
+<h3>Jomres 10.7.0 25/05/2023</h3>
 
 <span class="label label-success">Feature</span> Lots of changes related to overrides in this version. A lot of scripts can be overridden by dropping a copy of the script into the template or theme directory, /html/com_jomres/custom_code sub directory.
 
