@@ -1179,7 +1179,7 @@ jr_define('_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED', 'Anzahl der Unter
 // 4.6.1
 jr_define('_JOMRES_CONFIG_JQUERY', 'Lade Jomres jQuery Bibliothek?');
 jr_define('_JOMRES_CONFIG_JQUERY_DESC', 'Sie k&ouml;nnen dies auf NEIN setzten, wenn Sie eine Vorlage (Template) verwenden die jquery verwendet. Dies K&Ouml;NNTE jquery Konflikte bei einigen Vorlagen l&ouml;sen, aber nicht bei allen.');
-jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'Enabling this option allows you to see the language switcher in the Fullscreen view in the frontend.');
+jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'Enabling this option allows you to see the language switcher in the Jomres Administrator area pages.');
 jr_define('_JOMRES_COM_A_UPLOADS_IMAGES_WIDTH_LARGE_DESC', 'Vorschaubilder von hochgeladenen Bildern werden automatisch erstellt.');
 // 4.7.1
 jr_define('_JOMRES_COM_THUMBNAIL_SMALL_WIDTH', 'Kleine Vorschaubilder max. Breite (px).');

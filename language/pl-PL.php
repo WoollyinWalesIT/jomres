@@ -1141,7 +1141,7 @@ jr_define('_JOMRES_SEARCH_STARS', 'Liczba gwiazdek');
 jr_define('_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED', 'Liczba ofert');
 jr_define('_JOMRES_CONFIG_JQUERY', 'Obciążenie Jomres biblioteki jQuery');
 jr_define('_JOMRES_CONFIG_JQUERY_DESC', 'Można ustawić na Nie jeśli masz szablon, który używa jQuery. Może to rozwiązać problemy z jQuery i konflikty na niektórych szablonach, ale nie wszystkie.');
-jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'Enabling this option allows you to see the language switcher in the Fullscreen view in the frontend.');
+jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'Enabling this option allows you to see the language switcher in the Jomres Administrator area pages.');
 jr_define('_JOMRES_COM_A_UPLOADS_IMAGES_WIDTH_LARGE_DESC', 'Miniatury są tworzone automatycznie dla przesyłanych zdjęć.');
 jr_define('_JOMRES_COM_THUMBNAIL_SMALL_WIDTH', 'Małe miniaturki (szerokość maks px)');
 jr_define('_JOMRES_COM_THUMBNAIL_SMALL_WIDTH_DESC', 'Małe miniaturki są używane w wykazie ofert, podczas gdy średnie miniatury są używane w nagłówku ofert.');

@@ -1109,7 +1109,7 @@ jr_define('_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED', 'アサインさ�
 //4.6.1
 jr_define('_JOMRES_CONFIG_JQUERY', 'Load Jomres jQuery library?');
 jr_define('_JOMRES_CONFIG_JQUERY_DESC', 'jqueryを活かすテンプレートを利用している場合,「NO」に設定できます。This MAY resolve jquery conflict issues on some templates, but not all.');
-jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'Enabling this option allows you to see the language switcher in the Fullscreen view in the frontend.');
+jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'Enabling this option allows you to see the language switcher in the Jomres Administrator area pages.');
 //4.7.1
 jr_define('_JOMRES_COM_THUMBNAIL_SMALL_WIDTH', '小サームネールのMAX幅員(px)');
 jr_define('_JOMRES_COM_THUMBNAIL_SMALL_WIDTH_DESC', '小サームネールは事業・プロパティ一覧に使用されます。中サームネールは事業・プロパティのヘッダーに使用されます。');

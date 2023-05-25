@@ -1154,7 +1154,7 @@ jr_define('_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED', 'Numero di propri
 // 4.6.1
 jr_define('_JOMRES_CONFIG_JQUERY', 'Caricare la libreria jQuery Jomres?');
 jr_define('_JOMRES_CONFIG_JQUERY_DESC', 'È possibile impostare questo su NO se si dispone di un modello che utilizza jQuery. Questo può risolvere i problemi di conflitto jQuery su alcuni modelli, ma non tutti.');
-jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', "Enabling this option allows you to see the language switcher in the Fullscreen view in the frontend.");
+jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', "Enabling this option allows you to see the language switcher in the Jomres Administrator area pages.");
 jr_define('_JOMRES_COM_A_UPLOADS_IMAGES_WIDTH_LARGE_DESC', 'Le miniature vengono creati automaticamente per le immagini caricate.');
 // 4.7.1
 jr_define('_JOMRES_COM_THUMBNAIL_SMALL_WIDTH', 'Piccole miniature larghezza massima (px).');
