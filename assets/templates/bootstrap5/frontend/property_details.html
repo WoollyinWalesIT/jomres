@@ -1,134 +1,345 @@
 <pattemplate:tmpl name="pageoutput" unusedvars="strip">
+	{jomres_script disable_main_menu}
 
 	<patTemplate:comment>
-		I don't like adding css to html but ultimately this was the most reliable way of getting the jquery ui calendar to resize properly in composite property details in J4/BS5
+
+		Over the nearly 2 decades I've been doing Jomres, I have learned that it's far easier for both of us for me to
+		tell you how to remove something from a template than to tell you how to add something that doesn't exist.
+
+		If I were building a site I would not use everything that's on this page, however some will want X and some will want Y
+		therefore it makes sense for me to include X, Y and the kitchen sink too, and you just remove what you don't want.
+
 	</patTemplate:comment>
-	<style>
-		.ui-datepicker{
-			font-size: 100% !important;
-		}
-	</style>
-	
-<patTemplate:comment>
-	
-	Over the nearly 2 decades I've been doing Jomres, I have learned that it's far easier for both of us for me to
-	tell you how to remove something from a template than to tell you how to add something that doesn't exist.
-	
-	If I were building a site I would not use everything that's on this page, however some will want X and some will want Y
-	therefore it makes sense for me to include X, Y and the kitchen sink too, and you just remove what you don't want.
-	
-</patTemplate:comment>
+	<patTemplate:comment> ------------------------------- PROPERTY HEADER ---------------------------------- </patTemplate:comment>
 
-{SLIDESHOW}
-<div class="container">
-	<div class="row">
-		<div class="col-sm-9">
-			<div style="margin-top: 5px">
+	<pattemplate:tmpl name="property_header_pageoutput" unusedvars="strip">
 
-				<div class="pdetails-price">{REAL_ESTATE_PROPERTY_PRICE}</div>
+		<style>
+			.ui-datepicker{
+				font-size: 100% !important;
+			}
+
+			.parallax {
+				/* The image used */
+				background-image: url("{IMAGELARGE}");
+
+				/* Set a specific height */
+				min-height: 500px;
+
+				/* Create the parallax scrolling effect */
+				background-attachment: fixed;
+				background-position: center;
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+
+			.fixedElement {
+				background-color: #c0c0c0;
+				position:fixed;
+				top:0;
+				width:100%;
+				z-index:100;
+			}
+		</style>
+		<div class="parallax p-lg-5">
+			<div class="row bg-transparent">
+				<div class="col-sm-12 ">
+					<div class="container-fluid">
+						<div class="row bg-light rounded-1">
+							<div class="col-sm-12 ">
+								<div class="property-header text-dark" {jomres_script animation_library} >
+									<div class="row">
+										<div class="col-sm-12">
+											<h1>{PROPERTY_NAME} </h1>
+										</div>
+									</div>
+									<div class="row pb-1">
+										<div class="col-sm-2">
+											<img alt="{PROPERTY_NAME}" src="{IMAGELARGE}" class="img-fluid">
+										</div>
+										<div class="col-sm-10">
+											<div class="container">
+												<div class="row">
+													<div class="col-sm-12">
+											<span>
+												<div style="color:#FFD700" class="ml-auto">
+													{STARS}
+													{SUPERIOR}
+												</div>
+											</span>
+													</div>
+												</div>
+											</div>
+											<pattemplate:tmpl name="property_header_permit" type="simpleCondition" requiredvars="permit_number">
+												<p class="badge bg-info">{_JOMRES_PERMIT_NUMBER_TITLE} {PERMIT_NUMBER}</p>
+											</pattemplate:tmpl>
+											<div class="row">
+
+												<div class="col-lg-8">{STREET}, {TOWN}, {REGION} {POSTCODE}, {COUNTRY}
+													<span class="hidden-xs d-none d-sm-block">
+											{HTELEPHONE}<span>{TELEPHONE}</span>, {HFAX}{FAX}</span>
+													<span class="d-block d-sm-none">
+											<br>
+												<a href="tel:{TELEPHONE}" class="btn btn-success"><i class="fa fa-phone"></i>
+													{JOMRES_TAPTOCALL} {TELEPHONE}
+												</a>
+												<a href="whatsapp://send?phone={WHATSAPP_TELEPHONE}" class="btn btn-success d-none d-lg-block"><i class="fa fa-whatsapp"></i></a>
+											</span>
+													<div>
+														<a href="{GALLERYLINK}" target="_blank">{GALLERYDOMAIN}</a>
+													</div>
+													<div class="row">
+														<div class="col-sm-12">
+															<div class="property-header-buttons float-left" id="scroller-anchor">
+																<pattemplate:tmpl name="property_header_bookinglink" type="simpleCondition" requiredvars="link" unusedvars="nbsp">
+																	<a href="{LINK}" class="btn btn-primary btn-sm" id="scroller" style="z-index:100;"><i class="fa fa-shopping-cart"></i> {TEXT}</a>
+																</pattemplate:tmpl>
+																<a href="http://maps.google.com/maps?q=loc:{PROPERTY_LAT},{PROPERTY_LONG}&navigate=yes" class="btn btn-secondary btn-sm" target="_blank"><i class="fa fa-map-marker"></i> {HMAP}</a>
+																{HOST_LINK}
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="col-lg-4 d-none d-md-block">
+													<div class="row">
+														<div class="col-12">
+													<span class="label {REQUIRE_APPROVAL_CLASS}  float-end">
+														{REQUIRE_APPROVAL}
+													</span>
+														</div>
+													</div>
+													<div class="row pt-1">
+														<div class="col-12">
+													<span class="badge bg-info  float-end">
+														{PRE_TEXT}
+														<span itemprop="priceRange">
+															{PRICE}
+														</span>
+														{POST_TEXT}
+													</span>
+														</div>
+													</div>
+													<div class="row pt-1">
+														<div class="col-12">
+															<span class="badge bg-dark float-end">{PRICE_CUMULATIVE} {FOR} {STAY_DAYS} {NIGHTS_TEXT}</span>
+														</div>
+													</div>
+													<div class="row pt-lg-3">
+														<div class="col-12">
+															<span class="float-end"><a href="javascript:void(0);" id="shortlist_{PROPERTY_UID}" onclick="shortlist(&apos;{PROPERTY_UID}&apos;, &apos;1&apos;)" class="btn btn-secondary btn-sm">{SHORTLIST}</a></span>
+														</div>
+													</div>
+													<div class="row pt-1">
+														<div class="col-12">
+															<span class="float-end"><a href="{SHORTLIST_LINK}" class="btn btn-secondary btn-sm"><i class="fa fa-heart"></i> {HSHORTLIST}</a></span>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-			<pattemplate:comment><h2>{HFEATURES}</h2></pattemplate:comment>
-			<section class="pt-5">
+
+			<script>
+				function moveScroller() {
+					var enabled = {STICKY_BOOKING_BUTTON_ENABLED};
+					var $anchor = jomresJquery("#scroller-anchor");
+					var $scroller = jomresJquery('#scroller');
+
+					if ( enabled === false ) {
+						return;
+					}
+
+					var move = function() {
+						var st = jomresJquery(window).scrollTop();
+						var ot = $anchor.offset().top;
+						if(st > ot) {
+							$scroller.css({
+								position: "fixed",
+								top: "0px"
+							});
+						} else {
+							$scroller.css({
+								position: "relative",
+								top: ""
+							});
+						}
+					};
+					jomresJquery(window).scroll(move);
+					move();
+				}
+
+				jomresJquery(function() {
+					moveScroller();
+				});
+
+			</script>
+
+	</pattemplate:tmpl>
+
+	<patTemplate:comment> ------------------------------- END PROPERTY HEADER ---------------------------------- </patTemplate:comment>
+	<div class="container-fluid p-lg-5">
+		<pattemplate:comment><h2>{HFEATURES}</h2></pattemplate:comment>
+		<div class="row bg-transparent pt-lg-3" {jomres_script animation_library} >
+			<div class="col-sm-9 bg-light rounded-1">
 				{jomres_script show_property_features PROPERTY_UID={UID}}
-			</section>
-
-			<div class="pt-5">
-				<pattemplate:comment><h2>{_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPDESCRIPTION}</h2></pattemplate:comment>
-				<section>
-					<div class="lead">
-						{jomres_script show_property_description PROPERTY_UID=N}
-					</div>
-					
-					<div class="readmore-wrapper">
-						<h6>{HCHECKINTIMES}</h6>
-						{CHECKINTIMES}
-						<h6>{HAREAACTIVITIES}</h6>
-						{AREAACTIVITIES}
-						<h6>{HDRIVINGDIRECTIONS}</h6>
-						{DRIVINGDIRECTIONS}
-						<h6>{HAIRPORTS}</h6>
-						{AIRPORTS}
-						<h6>{HOTHERTRANSPORT}</h6>
-						{OTHERTRANSPORT}
-					</div>
-				</section>
 			</div>
-			
-			<pattemplate:comment><h2>{_JOMRES_REVIEWS}</h2></pattemplate:comment>
-			<section class="pt-5 pb-2">
-				{jomres_script show_property_reviews PROPERTY_UID=N &reviews_limit=10}
-			</section>
-			
-			<pattemplate:tmpl name="availability_output" type="simpleCondition" requiredvars="_jomres_front_mr_submitbutton_checkavailability" unusedvars="nbsp">
-				<h2 class="pt-5 pb-2">{_JOMRES_FRONT_MR_SUBMITBUTTON_CHECKAVAILABILITY}</h2>
-			</pattemplate:tmpl>
-			<pattemplate:tmpl name="availability_output_content" type="simpleCondition" requiredvars="_jomres_front_mr_submitbutton_checkavailability" unusedvars="nbsp">
-				<section>
-					{jomres_script show_property_calendar PROPERTY_UID=N}
-				</section>
-			</pattemplate:tmpl>
-			
-			<section class="pt-5 pb-5 pb-2">
-				{TABCONTENT_03_CONTACT_TAB_CONTENT}
-			</section>
-			
-			<h2 class="pt-5 pb-2">{_JOMRES_COM_MR_EXTRA_TITLE}</h2>
-			<section>
-				{jomres_script show_property_extras PROPERTY_UID=N}
-			</section>
-			
-			<pattemplate:tmpl name="weather_output" type="simpleCondition" requiredvars="title" unusedvars="nbsp">
-				<h2 class="pt-5 pb-2">{TITLE}</h2>
-			</pattemplate:tmpl>
-			<pattemplate:tmpl name="weather_output_content" type="simpleCondition" requiredvars="title" unusedvars="nbsp">
-				<section>
-					{jomres_script show_property_weather PROPERTY_UID=N}
-				</section>
-			</pattemplate:tmpl>
-			
-			<h2 class="pt-5 pb-2">{HPOLICIESDISCLAIMERS}</h2>
-			<section>
-				{jomres_script terms PROPERTY_UID=N}
-			</section>
-			
-			<pattemplate:tmpl name="tariffs_output" type="simpleCondition" requiredvars="_jomres_front_tariffs" unusedvars="nbsp">
-				<h2 class="pt-5 pb-2">{_JOMRES_FRONT_TARIFFS}</h2>
-			</pattemplate:tmpl>
-			<pattemplate:tmpl name="tariffs_output_content" type="simpleCondition" requiredvars="_jomres_front_tariffs" unusedvars="nbsp">
-				<section>
-					{jomres_script show_property_tariffs PROPERTY_UID=N}
-				</section>
-			</pattemplate:tmpl>
-			
-			<pattemplate:tmpl name="rooms_output" type="simpleCondition" requiredvars="_jomres_com_mr_quickres_step2_title" unusedvars="nbsp">
-				<h2 class="pt-5 pb-2">{_JOMRES_COM_MR_QUICKRES_STEP2_TITLE}</h2>
-			</pattemplate:tmpl>
-			<pattemplate:tmpl name="rooms_output_content" type="simpleCondition" requiredvars="_jomres_com_mr_quickres_step2_title" unusedvars="nbsp">
-				<section>
-					{jomres_script show_property_rooms PROPERTY_UID=N}
-				</section>
-			</pattemplate:tmpl>
-			
+			<div class="col-sm-3 bg-light rounded-1">
+				<div class="m-2 pb-4 ">{TABCONTENT_02_MAP_CONTENT}</div>
+			</div>
 
-			
-			<patTemplate:tmpl name="tabs_content">
-				{TAB_CONTENT}
-			</patTemplate:tmpl>
+			<div class="col-sm-12 bg-light rounded-1">
+				<div class="lead">
+					{jomres_script show_property_description PROPERTY_UID=N}
+				</div>
+			</div>
 		</div>
-		<div class="col-sm-3">
-			<div class="row alert alert-success">
-				<div class="col-sm-12 pdetails-reviews ">{REVIEWS_SUMMARY} </div>
+
+		<div class="row bg-transparent pt-2 pb-2 " {jomres_script animation_library} >
+			<div class="col-sm-12 bg-light rounded-1">
+				<div class="pt-2 pb-2">{SLIDESHOW}</div>
 			</div>
-			
-			<div class="m-2 pb-4">{TABCONTENT_02_MAP_CONTENT}</div>
-			<hr/>
-			{SIDEBAR}
+		</div>
+
+		<div class="row bg-transparent ">
+			<patTemplate:comment>Start left column</patTemplate:comment>
+			<div class="col-sm-9 ">
+				<div style="margin-top: 5px">
+					<div class="pdetails-price">{REAL_ESTATE_PROPERTY_PRICE}</div>
+				</div>
+
+				<div class="row bg-transparent " {jomres_script animation_library} >
+					<div class="col-sm-12 bg-light rounded-1">
+						<pattemplate:comment><h2>{_JOMRES_REVIEWS}</h2></pattemplate:comment>
+						<section class="pt-5">
+							{jomres_script show_property_reviews PROPERTY_UID=N &reviews_limit=10}
+						</section>
+					</div>
+				</div>
+
+
+				<pattemplate:tmpl name="availability_output_content" type="simpleCondition" requiredvars="_jomres_front_mr_submitbutton_checkavailability" unusedvars="nbsp">
+					<div class="row bg-transparent pt-lg-3 " {jomres_script animation_library} >
+						<div class="col-sm-12 bg-light rounded-1">
+							<pattemplate:tmpl name="availability_output" type="simpleCondition" requiredvars="_jomres_front_mr_submitbutton_checkavailability" unusedvars="nbsp">
+								<h2 class="pt-5 pb-2">{_JOMRES_FRONT_MR_SUBMITBUTTON_CHECKAVAILABILITY}</h2>
+							</pattemplate:tmpl>
+							{jomres_script show_property_calendar PROPERTY_UID=N}
+						</div>
+					</div>
+				</pattemplate:tmpl>
+
+				<div class="row bg-transparent pt-lg-3 " {jomres_script animation_library} >
+					<div class="col-sm-12 bg-light rounded-1">
+						<section class="">
+							{TABCONTENT_03_CONTACT_TAB_CONTENT}
+						</section>
+					</div>
+				</div>
+
+				<div class="row bg-transparent pt-lg-3 ">
+					<div class="col-sm-12 bg-light rounded-1" {jomres_script animation_library} >
+						<h2 class="pt-5 pb-2">{_JOMRES_COM_MR_EXTRA_TITLE}</h2>
+						<section>
+							{jomres_script show_property_extras PROPERTY_UID=N}
+						</section>
+					</div>
+				</div>
+
+
+				<div class="row bg-transparent pt-lg-3 " {jomres_script animation_library} >
+					<div class="col-sm-12 bg-light rounded-1">
+						{jomres_script property_faqs PROPERTY_UID=N}
+					</div>
+				</div>
+
+
+				<pattemplate:tmpl name="weather_output_content" type="simpleCondition" requiredvars="title" unusedvars="nbsp">
+					<div class="row bg-transparent pt-lg-3 ">
+						<div class="col-sm-12 bg-light rounded-1">
+							<pattemplate:tmpl name="weather_output" type="simpleCondition" requiredvars="title" unusedvars="nbsp">
+								<h2 class="pt-5 pb-2">{TITLE}</h2>
+							</pattemplate:tmpl>
+							{jomres_script show_property_weather PROPERTY_UID=N}
+						</div>
+					</div>
+				</pattemplate:tmpl>
+
+				<div class="row bg-transparent pt-lg-3 " {jomres_script animation_library} >
+					<div class="col-sm-12 bg-light rounded-1">
+						<h2 class="pt-5 pb-2">{HPOLICIESDISCLAIMERS}</h2>
+						<section>
+							{jomres_script terms PROPERTY_UID=N}
+						</section>
+					</div>
+				</div>
+
+				<div class="row bg-transparent pt-lg-3 " {jomres_script animation_library} >
+					<div class="col-sm-12 bg-light rounded-1">
+						<pattemplate:comment><h2>{_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPDESCRIPTION}</h2></pattemplate:comment>
+						<div class="readmore-wrapper">
+							<h6>{HCHECKINTIMES}</h6>
+							{CHECKINTIMES}
+							<h6>{HAREAACTIVITIES}</h6>
+							{AREAACTIVITIES}
+							<h6>{HDRIVINGDIRECTIONS}</h6>
+							{DRIVINGDIRECTIONS}
+							<h6>{HAIRPORTS}</h6>
+							{AIRPORTS}
+							<h6>{HOTHERTRANSPORT}</h6>
+							{OTHERTRANSPORT}
+						</div>
+					</div>
+				</div>
+
+				<pattemplate:tmpl name="tariffs_output_content" type="simpleCondition" requiredvars="_jomres_front_tariffs" unusedvars="nbsp">
+					<div class="row bg-transparent pt-lg-3 " {jomres_script animation_library} >
+						<div class="col-sm-12 bg-light rounded-1">
+							<pattemplate:tmpl name="tariffs_output" type="simpleCondition" requiredvars="_jomres_front_tariffs" unusedvars="nbsp">
+								<h2 class="pt-5 pb-2">{_JOMRES_FRONT_TARIFFS}</h2>
+							</pattemplate:tmpl>
+							{jomres_script show_property_tariffs PROPERTY_UID=N}
+						</div>
+					</div>
+				</pattemplate:tmpl>
+
+				<pattemplate:tmpl name="rooms_output_content" type="simpleCondition" requiredvars="_jomres_com_mr_quickres_step2_title" unusedvars="nbsp">
+					<div class="row bg-transparent pt-lg-3 " {jomres_script animation_library} >
+						<div class="col-sm-12 bg-light rounded-1">
+							<pattemplate:tmpl name="rooms_output" type="simpleCondition" requiredvars="_jomres_com_mr_quickres_step2_title" unusedvars="nbsp">
+								<h2 class="pt-5 pb-2">{_JOMRES_COM_MR_QUICKRES_STEP2_TITLE}</h2>
+							</pattemplate:tmpl>
+							{jomres_script show_property_rooms PROPERTY_UID=N}
+						</div>
+					</div>
+				</pattemplate:tmpl>
+
+				<patTemplate:tmpl name="tabs_content" {jomres_script animation_library} >
+					<div class="row bg-transparent pt-lg-3 ">
+						<div class="col-sm-12 bg-light rounded-1">
+							{TAB_CONTENT}
+						</div>
+					</div>
+				</patTemplate:tmpl>
+			</div>
+			<patTemplate:comment>Start right column</patTemplate:comment>
+			<div class="col-sm-3">
+				<div class="row alert alert-success m-1" {jomres_script animation_library} >
+					<div class="col-sm-12 pdetails-reviews ">{REVIEWS_SUMMARY} </div>
+				</div>
+				{SIDEBAR}
+			</div>
 		</div>
 	</div>
-</div>
+	</div>
 
 
-						
 
 	<pattemplate:comment>
 		<div class="row">
@@ -174,4 +385,6 @@
 		<div class="clearfix"></div>
 		<p>&#xA0;</p>
 	</pattemplate:comment>
+
+	{jomres_script show_property_schema PROPERTY_UID=N}
 </pattemplate:tmpl>

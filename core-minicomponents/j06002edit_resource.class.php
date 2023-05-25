@@ -4,16 +4,16 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-	
+	#[AllowDynamicProperties]
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
@@ -102,7 +102,7 @@ class j06002edit_resource
 					$classOptions[] = jomresHTML::makeOption($key, $roomClass[ 'abbv' ]);
 				}
 			}
-			$output[ 'TYPEDROPDOWN' ] = jomresHTML::selectList($classOptions, 'roomClasses', 'class="inputbox" size="1"', 'value', 'text', $room_classes_uid);
+			$output[ 'TYPEDROPDOWN' ] = jomresHTML::selectList($classOptions, 'roomClasses', '', 'value', 'text', $room_classes_uid);
 
 			//room features TODO: build a class for room features
 			$ptype_id = $basic_property_details->ptype_id;
@@ -224,7 +224,7 @@ class j06002edit_resource
 					$classOptions[] = jomresHTML::makeOption($key, $roomClass[ 'abbv' ]);
 				}
 			}
-			$output[ 'DROPDOWNLIST' ] = jomresHTML::selectList($classOptions, 'roomClasses', 'class="inputbox" size="1"', 'value', 'text', $room_classes_uid);
+			$output[ 'DROPDOWNLIST' ] = jomresHTML::selectList($classOptions, 'roomClasses', '', 'value', 'text', $room_classes_uid);
 
 			$output[ 'MAXPEOPLE_DROPDOWN' ] = jomresHTML::integerSelectList(1, $max_max_people, 1, 'max_people', '', $max_people);
 

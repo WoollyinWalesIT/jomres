@@ -4,9 +4,9 @@
 	 *
 	 * @author Vince Wooll <sales@jomres.net>
 	 *
-	 *  @version Jomres 10.6.0
+	 *  @version Jomres 10.7.0
 	 *
-	 * @copyright	2005-2022 Vince Wooll
+	 * @copyright	2005-2023 Vince Wooll
 	 * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
 	 **/
 
@@ -443,7 +443,7 @@
 			}
 
 			$searchAll = jr_gettext('_JOMRES_SEARCH_ALL', '_JOMRES_SEARCH_ALL', false, false);
-			$this->prep[ 'stars' ][ ] = array('id' => 0, 'stars' => $searchAll);
+			$this->prep[ 'stars' ][ ] = array('id' => 0, 'stars' => 0);
 			$this->prep[ 'stars' ][ ] = array('id' => 1, 'stars' => 1);
 			$this->prep[ 'stars' ][ ] = array('id' => 2, 'stars' => 2);
 			$this->prep[ 'stars' ][ ] = array('id' => 3, 'stars' => 3);
@@ -774,7 +774,6 @@
 				$query = "SELECT propertys_uid FROM #__jomres_propertys WHERE published = '1' AND ptype_id LIKE '$filter'  $property_ors ";
 				$this->resultBucket = doSelectSql($query);
 			}
-			//var_dump($this->resultBucket);exit;
 			$this->sortResult();
 		}
 
@@ -790,7 +789,6 @@
 				$query = "SELECT propertys_uid FROM #__jomres_propertys WHERE published = '1' AND cat_id = $filter  $property_ors ";
 				$this->resultBucket = doSelectSql($query);
 			}
-			//var_dump($this->resultBucket);exit;
 			$this->sortResult();
 		}
 
@@ -928,11 +926,12 @@
 		 */
 		public function jomSearch_stars()
 		{
-			$filter = (int) $this->filter[ 'stars' ];
+			$filter = $this->filter[ 'stars' ];
+			$filter = genericOr($filter, 'stars');
 			$this->makeOrs();
 			$property_ors = $this->ors;
 			if (!empty($filter) && $property_ors) {
-				$query = "SELECT propertys_uid FROM #__jomres_propertys WHERE stars LIKE '$filter' $property_ors";
+				$query = "SELECT propertys_uid FROM #__jomres_propertys WHERE $filter $property_ors";
 				$this->resultBucket = doSelectSql($query);
 			}
 			$this->sortResult();
@@ -975,10 +974,12 @@
 					}
 					$result = doSelectSql($query);
 
+					$result2 = array();
 					if (is_array($filter)) {
 						$property_ors = str_replace('property_uid', 'propertys_uid', $property_ors);
-						$query = 'SELECT propertys_uid FROM #__jomres_propertys WHERE property_key >= '.$filter[ 'from' ].' AND property_key <= '.$filter[ 'to' ]."  $property_ors ";
+						$query = 'SELECT propertys_uid FROM #__jomres_propertys WHERE property_key > '.$filter[ 'from' ].' AND property_key <= '.$filter[ 'to' ]."  $property_ors ";
 						$result2 = doSelectSql($query);
+
 					}
 
 					// We need to create a new result array with classes called propertys_uid in, cos that's what resultBucket needs. Annoying fiddly stuff because we've not consistently named the property uids column in various tables, but there you have it. It's not going to change now.
@@ -990,6 +991,7 @@
 							$res[ ] = $resultObj;
 						}
 					}
+
 					if (!empty($result2)) {
 						foreach ($result2 as $r) {
 							$resultObj = new stdClass();
@@ -1139,6 +1141,7 @@
 		 */
 		public function jomSearch_autocomplete()
 		{
+			return;
 			$this->makeOrs();
 			$property_ors = $this->ors;
 
@@ -1601,6 +1604,11 @@
 		sort($allTariffs);
 
 		if (isset($allTariffs[ 0 ])) {
+
+			if ($increments ==0) {
+				$increments = 10;
+			}
+
 			$highest = end($allTariffs);
 			$lowest = reset($allTariffs);
 			// Found during testing, when one property has the price 100,000,000 and the increments is left to the default 20, you'll get an out of memory error.

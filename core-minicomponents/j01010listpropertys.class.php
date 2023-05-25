@@ -4,16 +4,16 @@
 	 *
 	 * @author Vince Wooll <sales@jomres.net>
 	 *
-	 *  @version Jomres 10.6.0
+	 *  @version Jomres 10.7.0
 	 *
-	 * @copyright	2005-2022 Vince Wooll
+	 * @copyright	2005-2023 Vince Wooll
 	 * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
 	 **/
 
 // ################################################################
 	defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-
+	#[AllowDynamicProperties]
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
@@ -840,7 +840,7 @@
 						}
 
 						//property image or slideshow
-						$property_deets[ 'PROPERTY_IMAGE_OR_SLIDESHOW' ] = $MiniComponents->specificEvent('06000', 'show_property_main_image', array('output_now' => false, 'property_uid' => $propertys_uid));
+						$property_deets[ 'PROPERTY_IMAGE_OR_SLIDESHOW' ] = $MiniComponents->specificEvent('06000', 'show_property_main_image', array('output_now' => false, 'property_uid' => $propertys_uid , 'image_size' => 'large'));
 
 						$jomres_media_centre_images->get_images($propertys_uid, array('property'));
 
@@ -915,6 +915,7 @@
 						$output[ 'HEADER' ] = $tmpl->getParsedTemplate();
 					}
 
+                    $MiniComponents->specificEvent('06000', 'search_results_wrapper_top', array());
 
 					$pageoutput[ ] = $output;
 					$tmpl = new patTemplate();
@@ -928,6 +929,7 @@
 					$tmpl->readTemplatesFromInput($layout_template);
 					$tmpl->displayParsedTemplate();
 
+                    $MiniComponents->specificEvent('06000', 'search_results_wrapper_bottom', array());
 
 					//set back the initial property type and property uid
 					set_showtime('property_uid', $original_property_uid);

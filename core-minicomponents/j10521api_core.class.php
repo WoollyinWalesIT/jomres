@@ -4,16 +4,16 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-	
+	#[AllowDynamicProperties]
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
@@ -68,7 +68,7 @@ class j10521api_core
 		$configurationPanel->insertHeading(jr_gettext("_OAUTH_CONFIG", '_OAUTH_CONFIG', false));
 			
 		$configurationPanel->setleft(jr_gettext('_OAUTH_CONFIG_SHOW', '_OAUTH_CONFIG_SHOW', false));
-		$configurationPanel->setmiddle(jomresHTML::selectList($yesno, 'cfg_api_core_show', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'api_core_show' ]));
+		$configurationPanel->setmiddle(jomresHTML::selectList($yesno, 'cfg_api_core_show', '', 'value', 'text', $jrConfig[ 'api_core_show' ]));
 		$configurationPanel->setright(jr_gettext('_OAUTH_CONFIG_SHOW_DESC', '_OAUTH_CONFIG_SHOW_DESC', false));
 		$configurationPanel->insertSetting();
 		

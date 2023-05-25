@@ -8,9 +8,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  *
  *
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -52,6 +52,28 @@ require 'oauth/inc_configs.php';
 
 require_once(JOMRES_API_JOMRES_ROOT.DIRECTORY_SEPARATOR.'configuration.php');
 
+if (is_dir(JOMRES_API_CMS_ROOT.DIRECTORY_SEPARATOR.'wp-content'.DIRECTORY_SEPARATOR.'themes')) {
+    $templates_dir = JOMRES_API_CMS_ROOT.DIRECTORY_SEPARATOR.'wp-content'.DIRECTORY_SEPARATOR.'themes';
+} else {
+    $templates_dir = JOMRES_API_CMS_ROOT.DIRECTORY_SEPARATOR.'templates';
+}
+
+// We will try to find the template override directory. Because we can't call the CMS (for performance reasons) we'll have to do this the hard way. Disadvantage is that the overriding developer must ensure that there's only one instance of $target_pattern in the entire site, otherwise we'll get the wrong path. That's why the similar function in load_custom_functions goes to great lengths to call the CMS whever possible.
+$rii = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($templates_dir));
+
+$target_pattern = '/html/com_jomres/';
+
+foreach ($rii as $file) {
+    if ($file->isDir()){
+        $path = $file->getPathname();
+        if (strstr($path, $target_pattern)) {
+            define('JOMRES_OVERRIDE_PATH',substr($path,0,-2));
+            break;
+        }
+    }
+}
+
+
 if ($jrConfig['development_production'] == 'development') {
 	define('PRODUCTION', false);
 } else {
@@ -90,7 +112,7 @@ if (strpos($bang[1], '?') !== false) { // Has the client appended the token to t
 	$pop = explode('?', $bang[1]);
 	$route = $pop[0];
 } else {
-	$route = filter_var($bang[1], FILTER_SANITIZE_STRING);
+	$route = filter_var($bang[1], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 }
 
 //
@@ -210,7 +232,7 @@ try {
 	}
 
 	if (!PRODUCTION) {
-		Flight::set('flight.handle_errors', false);
+		Flight::set('flight.handle_errors', true);
 	}
 	Flight::set('user_id', $token['user_id']);
 	Flight::set('scopes', explode(',', $token['scope']));
@@ -231,7 +253,7 @@ try {
             $response .= "The exception was created in file: " . $e->getFile();
             $response .= "The exception was created on line: " . $e->getLine();
 		}
-			
+
 	}
 	else {
 		$response = Flight::request_response();

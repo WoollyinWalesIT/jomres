@@ -4,16 +4,16 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-	
+	#[AllowDynamicProperties]
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
@@ -119,12 +119,12 @@ class j06000cron_syndication_get_syndicate_properties
 															'".$property->view_property_url."',
 															'".$property->booking_form_url."',
 															".(int)$property->propertys_uid.",
-															'".filter_var($property->name, FILTER_SANITIZE_STRING)."',
+															'".filter_var($property->name, FILTER_SANITIZE_FULL_SPECIAL_CHARS)."',
 															".(int)$property->multi_room_property.",
-															'".filter_var($property->lat, FILTER_SANITIZE_STRING)."',
-															'".filter_var($property->long, FILTER_SANITIZE_STRING)."',
-															'".filter_var($property->metadescription, FILTER_SANITIZE_STRING)."',
-															'".filter_var($property->thumbnail_location, FILTER_SANITIZE_STRING)."',
+															'".filter_var($property->lat, FILTER_SANITIZE_FULL_SPECIAL_CHARS)."',
+															'".filter_var($property->long, FILTER_SANITIZE_FULL_SPECIAL_CHARS)."',
+															'".filter_var($property->metadescription, FILTER_SANITIZE_FULL_SPECIAL_CHARS)."',
+															'".filter_var($property->thumbnail_location, FILTER_SANITIZE_FULL_SPECIAL_CHARS)."',
 															'".$now."',
 															'".$now."',
 															'1'),";

@@ -4,16 +4,16 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-	
+	#[AllowDynamicProperties]
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
@@ -56,7 +56,7 @@ class j06002child_policies
 		$output[ 'JOMRES_POLICIES_CHILDREN_CHILD_RATE_MODEL' ] = jr_gettext('JOMRES_POLICIES_CHILDREN_CHILD_RATE_MODEL', 'JOMRES_POLICIES_CHILDREN_CHILD_RATE_MODEL', false);
 		$output[ 'JOMRES_POLICIES_CHILDREN_CHILD_RATE_PRICE' ] = jr_gettext('JOMRES_POLICIES_CHILDREN_CHILD_RATE_PRICE', 'JOMRES_POLICIES_CHILDREN_CHILD_RATE_PRICE', false);
 
-		$output[ 'CHILD_MIN_AGE' ] = jomresHTML::integerSelectList(0, 17, 1, 'child_min_age', 'class="input-mini form-control"', $jomres_child_policies->child_policies['child_min_age'], '');
+		$output[ 'CHILD_MIN_AGE' ] = jomresHTML::integerSelectList(0, 17, 1, 'child_min_age', '', $jomres_child_policies->child_policies['child_min_age'], '');
 		$output[ 'NEW_RATE_URL' ] = JOMRES_SITEPAGE_URL_NOSEF.'&task=edit_child_rate&id=0';
 
 		jr_import('jomres_child_rates');

@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -478,6 +478,6 @@ class JomresPage
 		$link = $link."&amp;limit=' + this.options[selectedIndex].value + '&amp;page=".$this->page;
 		$link = jomresURL($link);
 
-		return jomresHTML::selectList($limits, 'limit', 'class="inputbox" size="1" onchange="document.location.href=\''.$link.'\';"', 'value', 'text', $this->limit);
+		return jomresHTML::selectList($limits, 'limit', ' onchange="document.location.href=\''.$link.'\';"', 'value', 'text', $this->limit);
 	}
 }

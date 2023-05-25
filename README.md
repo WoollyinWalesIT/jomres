@@ -1,3 +1,5 @@
+![](https://img.shields.io/badge/Coded%20By%20Human-100%25-brightgreen)
+
 # Jomres Core - Online Booking Engine for WordPress and Joomla
 
 Jomres is the only Joomla & WordPress Online Booking engine with PMS features and built-in REST API. 

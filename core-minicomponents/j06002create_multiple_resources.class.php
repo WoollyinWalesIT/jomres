@@ -4,16 +4,16 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-	
+	#[AllowDynamicProperties]
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
@@ -68,15 +68,15 @@ class j06002create_multiple_resources
 					$classOptions[] = jomresHTML::makeOption($key, $roomClass[ 'abbv' ]);
 				}
 			}
-			$output['RESOURCES_OF_TYPE'] = jomresHTML::selectList($classOptions, 'resourcesType', 'class="inputbox" size="1"', 'value', 'text', false);
+			$output['RESOURCES_OF_TYPE'] = jomresHTML::selectList($classOptions, 'resourcesType', '', 'value', 'text', false);
 		} else {
 			echo 'This property type doesn`t have any room types assigned yet. Please assign some room types to this property type.';
 
 			return;
 		}
 
-		$output[ 'NUMBER_OF_RESOURCES' ] = jomresHTML::integerSelectList(1, 1000, 1, 'numberOfResources', 'class="input-mini form-control"', '1', '');
-		$output[ 'RESOURCES_MAXGUESTS' ] = jomresHTML::integerSelectList(1, 100, 1, 'maxGuests', 'class="input-mini form-control"', '1', '');
+		$output[ 'NUMBER_OF_RESOURCES' ] = jomresHTML::integerSelectList(1, 1000, 1, 'numberOfResources', '', '1', '');
+		$output[ 'RESOURCES_MAXGUESTS' ] = jomresHTML::integerSelectList(1, 100, 1, 'maxGuests', '', '1', '');
  
 		$options = array();
 		$options[] = jomresHTML::makeOption('0', jr_gettext('_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false));

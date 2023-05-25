@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 //#################################################################
@@ -360,7 +360,7 @@ jr_define('_JOMRES_MR_AUDIT_ARCHIVE', 'Bütün qeydləri arivləşdirmək');
 jr_define('_JOMRES_FRONT_TARIFFS', 'Tariflərimiz');
 jr_define('_JOMRES_FRONT_TARIFFS_TITLE', 'Tarif adı');
 jr_define('_JOMRES_FRONT_TARIFFS_DESC', 'Tarif təsviri');
-jr_define('_JOMRES_FRONT_TARIFFS_ROOMTYPE', 'Resource/property type');
+jr_define('_JOMRES_FRONT_TARIFFS_ROOMTYPE', 'Type');
 jr_define('_JOMRES_FRONT_TARIFFS_STARTS', 'Qüvvədə');
 jr_define('_JOMRES_FRONT_TARIFFS_ENDS', 'Etibarlıdır');
 jr_define('_JOMRES_FRONT_TARIFFS_PPPN', 'Adam baı gecəsi');
@@ -613,26 +613,17 @@ jr_define('JOMRES_COM_A_TARIFFMODE_NORMAL', 'Normal');
 jr_define('JOMRES_COM_A_TARIFFMODE_ADVANCED', 'Qabaqcıl');
 jr_define('JOMRES_COM_A_TARIFFMODE_TARIFFTYPES', 'Micromanage');
 jr_define('JOMRES_COM_A_TARIFFMODE', 'Tarif Konfiqurasiya Rejimi');
-jr_define('JOMRES_COM_A_TARIFFMODE_DESC', "<b> Xəbərdarlıq: Fərqli tarif növləri arasında keçid məlumatların itirilməsi ilə nəticələnə bilər. Bu </b> ilə əlaqədar aşağıdakı nota baxın.
-<br/> <br/>
-Tariflərinizi necə konfiqurasiya etməyinizə dair üç seçiminiz var. <br/>
-Normal rejim: Növbəti 10 il ərzində qüvvədə olan hər bir resurs növü üçün bir tarifiniz olacaq. <br/>
-Micromanage: Hər bir qaynaq/mülk növü üçün hər gün üçün qiyməti dəyişə bilərsiniz. <br/>
-Ətraflı: Tarifləri idarə etmək üçün \"köhnə\" Jomres üsulu. <br/>
+jr_define('JOMRES_COM_A_TARIFFMODE_DESC', "<b>Xəbərdarlıq: Müxtəlif tarif redaktə rejimləri arasında keçid məlumat itkisi ilə nəticələnə bilər. Bununla bağlı aşağıdakı qeydə baxın.</b>.
+<br/><br/>
+Tariflərinizi necə konfiqurasiya etməyinizlə bağlı iki seçiminiz var.<br/>
+Micromanage: Siz hər otaq/əmlak növü üçün hər gün üçün qiyməti dəyişə bilərsiniz. <br/>
+Qabaqcıl: Siz bir-biri ilə əlaqəli olmayan tariflər dəsti yarada bilərsiniz. <br/>
 <br/>
-Fərqli tarif rejimi sizə ən uyğun tarifləri konfiqurasiya etmək üsulunu seçməyə imkan verir. <br/>
-Normal rejim ən sadədir, lakin başa düşmək ən asandır, çünki istinad otaqlarını və tarifləri resurs/əmlak növlərinə keçir və otaqları və qiymətləri eyni səhifədə konfiqurasiya etməyə imkan verir. <br/>
-Mikro idarəetmə, tariflərin reamsını idarə etmədən gündəlik olaraq dərəcələri dəyişməyə imkan verir, bu bir çox fərqli tarifləri bir -biri ilə əlaqələndirməklə edilir. Bu, bir müddət ərzində sizin üçün bir çox tariflərin yaradılmasına gətirib çıxarır, ancaq tarifləri bir -birinin üstünə qoya bilməzsiniz. <br/>
-Qabaqcıl rejim bir qaynaq yaratmağa və onu bir qaynaq növü ilə əlaqələndirməyə imkan verir. Sonra bir tarif yaradın və bunu bir qaynaq növü ilə əlaqələndirin. Bu üsuldan istifadə edərək tarifləri bir -birinin üstünə \"qat\" qoymaq mümkündür, məsələn, bir qaynaq növü \"İki nəfərlik yataq\" yataq və səhər yeməyi üçün bir tarifə, digər yataq, səhər yeməyi və axşam yeməyi tarifinə malik ola bilər. Qabaqcıl metod bir az daha çox diqqət tələb edir, çünki bir qaynağı/tarifi bir resurs/mülkiyyət növündən ayırmaq və ya tarixdən etibarən səhv təyin etmək mümkündür, ancaq digər rejimlərin konfiqurasiya seçimlərini verir. təklif etmə. <br/>
+Micromanage bir çox tarifləri idarə etmədən tarifləri gündən-günə dəyişməyə imkan verir, bu, çoxlu müxtəlif tarifləri bir-biri ilə çarpazlaşdırmaqla həyata keçirilir. Bu, sizin üçün müəyyən bir dövrü əhatə edən bir sıra tariflərin yaradılması ilə nəticələnir, lakin siz tarifləri bir-birinizin üzərinə qoya bilməzsiniz.<br/>
+Qabaqcıl rejim sizə digər tariflərlə əlaqəli olmayan tariflər yaratmağa imkan verir. Bu, Mikromanage rejimində başqa cür yarada bilməyəcəyiniz əmlakınız üçün qiymətlər yaratmağa imkan verir. İstifadəsi daha zəhmətlidir, çünki siz hər bir tarifin qüvvədə olduğu tarixdən/tarixə mükəmməl uyğun gəldiyinə əmin olmalısınız, lakin bu, sizə daha mürəkkəb tariflər yaratmağa imkan verir.<br/>
 <br/>
-Normal və Micromanage rejimi, tarif rejiminin işləməsi üçün xüsusi otaqlar və tariflər tələb etdiyindən, sistem mövcud tarif konfiqurasiyalarını cari tarif tənzimləmə rejimi ilə uyğunlaşdırmaq üçün bəzi məlumatları sıfırlamalıdır. <br/>
-<br/>
-Normal -> Qabaqcıl. Dəyişiklik yoxdur. Mövcud tariflər saxlanılır. <br/>
-Normal -> Micromanage. Bütün mövcud tariflər silinir. <br/>
-Qabaqcıl -> Normal. Bütün mövcud tariflər silinir. <br/>
-Ətraflı -> Micromanage. Bütün mövcud tariflər silinir. <br/>
-Micromanage -> Qabaqcıl. Tariflər arasında mövcud olan bütün çarpaz istinadlar silinir, lakin tariflər özləri qalacaq. <br/>
-Micromanage -> Normal. Bütün mövcud arayışlar və tariflər silinir. <br/>");
+Qabaqcıldan Micromanage-ə keçsəniz, bütün mövcud tariflər silinəcək.<br/>
+<br/>");
 jr_define('_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS', 'Mülkiyyət detalları səhifəsində otaq siyahısı göstərilsin?');
 jr_define('JOMRES_PROPERTYTYPE', 'Evin növü');
 jr_define('JOMRES_MAXPEOPLEINROOM', 'Resurs başına maksimum adam');
@@ -664,7 +655,7 @@ jr_define('_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', ' has been discounted from ');
 jr_define('_JOMCOMP_WISEPRICE_TO', ' to ');
 jr_define('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', ' Wiseprice discount not applied ');
 jr_define('JOMRES_COM_A_MAPSKEY', 'Google maps API key');
-jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'You can get a google maps API key from <a href="https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key" target="_blank">Google maps</a>. Once you have input your map key here, Jomres will show the map in your Property Details page.');
+jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'You can get a google maps API key from <a href="https://console.cloud.google.com/projectselector2/google/maps-apis/credentials" target="_blank">Google maps</a>. Once you have input your map key here, Jomres will show the map in your Property Details page.');
 jr_define('_JOMCOMP_LASTMINUTE_CPANEL', 'Son dəqiqə');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE', 'Active?');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE_DESC', 'Set this to Yes if you want to offer last minute deals.');
@@ -711,7 +702,7 @@ jr_define('_JRPORTAL_LISTBOOKINGS_HEADER_INVOICE_ID', 'Faktura id');
 jr_define('_JRPORTAL_LISTBOOKINGS_HEADER_BOOKINGTOTAL', 'Cəmi Bronlar');
 jr_define('_JRPORTAL_LISTBOOKINGS_HEADER_DATEARCHIVED', 'Arxivləşdirilmə tarixi');
 jr_define('_JRPORTAL_ADD_ADHOC_ITEM_DESCRIPTION', 'İzzah');
-jr_define('_JOMRES_COM_PTYPES_PTYPE_DESC_FURTHER', 'You can have property type specific language files by setting the description to the name of a sub folder, e.g. "yachtbrokerage" and copying a language file to that subfolder. You can then modify that language file for this property type so rooms become, for example, DVDs, etc.');
+jr_define('_JOMRES_COM_PTYPES_PTYPE_DESC_FURTHER', 'You can have property type specific language strings which are adjusted in the Translate Labels page. Set the language context to something like "toolhire" (no spaces or special characters) to use them.');
 jr_define('_JOMRES_EDITPROPERTY_CONNOTDELETE1', 'You cannot delete this property as it is the only property that you have access to. If you want to disable it, please use the un-publish feature in your toolbar. ');
 jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_TOTAL', 'Accommodation Total');
 jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_NIGHTS', 'night(s) at');
@@ -989,7 +980,7 @@ jr_define('_JOMRES_REVIEWS_NOREVIEWS_BETHEFIRST', 'Would you like to be the firs
 jr_define('_JOMRES_REVIEWS_IAGREE', 'I agree with this review');
 jr_define('_JOMRES_REVIEWS_IDISAGREE', 'I disagree with this review');
 jr_define('_JOMRES_REVIEWS_AVERAGE_RATING', 'Orta reytinqi: ');
-jr_define('_JOMRES_REVIEWS_TOTAL_VOTES', 'Total Votes:');
+jr_define('_JOMRES_REVIEWS_TOTAL_VOTES', 'Reviews:');
 jr_define('_JOMRES_REVIEWS_ADD_REVIEW', 'məlumat əlavə edin.');
 jr_define('_JOMRES_REVIEWS_ADD_REVIEW_NOTLOGGEDIN', 'You need to be logged in to post a review.');
 jr_define('_JOMRES_REVIEWS_REVIEWBODY', 'Tell us what you think about this property : ');
@@ -1127,7 +1118,7 @@ jr_define('_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED', 'Number of busine
 // 4.6.1
 jr_define('_JOMRES_CONFIG_JQUERY', 'Load Jomres jQuery library?');
 jr_define('_JOMRES_CONFIG_JQUERY_DESC', 'You can set this to NO if you have a template that uses jquery. This MAY resolve jquery conflict issues on some templates, but not all.');
-jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'Enabling this option allows you to see the language switcher in the Fullscreen view in the frontend.');
+jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'Enabling this option allows you to see the language switcher in the Jomres Administrator area pages.');
 jr_define('_JOMRES_COM_A_UPLOADS_IMAGES_WIDTH_LARGE_DESC', 'Thumbnails are created automatically for uploaded images.');
 // 4.7.1
 jr_define('_JOMRES_COM_THUMBNAIL_SMALL_WIDTH', 'Small thumbnails max width (px).');
@@ -1145,7 +1136,7 @@ jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD', 'Auto suspend 
 jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD_DESC', 'This threashold is the number of days that a manager has to pay an invoice before they are suspended and their businesses unpublished.');
 //4.7.2
 jr_define('_JOMRES_COM_LANGUAGE_CONTEXT', 'Language context');
-jr_define('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', 'Use this option to change the site\'s language context. This feature allows Jomres to use labels that are appropriate for your current focus, so if your focus is as a Yacht Brokerage, then changing the context will allow Jomres to present labels from a different language file. For example, if you set the context to "Yacht Brokerage" then Jomres will first find the current language, then search the /'.JOMRES_ROOT_DIRECTORY.'/languages directory for a sub-directory called "yachtbrokerage". If the file exists for the current language then that file will be used. If not, then Jomres will search for an english language file in that same directory. If that can\'t be found, Jomres will use the language file for the currently selected language in the /'.JOMRES_ROOT_DIRECTORY.'/languages directory. Note that if you create a new property type, then a copy of the current language file is made in a subdirectory under /'.JOMRES_ROOT_DIRECTORY.'/language with a name that reflects the new property type\'s description.');
+jr_define('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', "Use this option to change the site's language context. This feature allows Jomres to use labels that are appropriate for how you are using Jomres, so if your focus is as a Yacht Brokerage, then changing the context will allow Jomres to present labels appropriate to yachts. For example, if you set the context to Yacht Brokerage then Jomres will first find the current language, then search the custom text database for strings saved with a language context of yachtbrokerage. If custom strings for the current language and context exist then those will be used. If not, then Jomres will fall back to the language definitions used by it's Core language files.");
 // 4.7.3
 jr_define('_JOMRES_COM_ADVANCED_SITE_CONFIG', 'Advanced site config');
 jr_define('_JOMRES_COM_ADVANCED_SITE_CONFIG_DESC', 'Set this option to Yes if you want to use the advanced site configuration options. If you\'re just starting with Jomres, then we advise you to leave this to No for now, as the default installation is sufficient to get you started, instead you should add Jomres to the main menu and log into the frontend as "admin" and start configuring your property(s). Please note that many of the advanced options will only be applicable to installations of Jomres Zero, Silver or Silver Plus. Users of the free, core system will not be able to take full advantage of the features that they enable.');
@@ -2742,3 +2733,17 @@ Siz hədəf dili təyin edilmiş cari dilinizə buraxa və onların fərdi səhi
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Sınaq rejimi");
 
 	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "İnkişaf rejimi aktivdir, ona görə də bu funksiyadan istifadə etsəniz, Jomres quraşdırmanızı Gecə şöbəsinə yeniləyəcəksiniz. Bu, Jomres-in ən son versiyasıdır və stabil ola bilər, ya da olmaya bilər. Əgər etsəniz Gecəyə yeniləmək istəmirsinizsə, lütfən, Admin > Jomres > Parametrlər > Sayt Konfiqurasiyası > Sazlama nişanına daxil olun və İstehsal/İnkişaf seçimini İstehsal olaraq təyin edin.");
+
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN', "Uşaqlar yaşayış səviyyəsinin yoxlanılmasına daxil edilsin?");
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN_DESC_MRP', "Qonaqlar rezervasiya etdikdə otaqlarda onların yerləşdirə biləcəyi maksimum sayda qonaq olur. Əgər qonaqların ümumi sayı seçilmiş otaqların yerləşdirə biləcəyi qonaqların sayından çox olarsa, rezervasiya forması onlara məlumat verəcəkdir. onlar daha çox otaq seçməlidirlər.
+ 
+  Bu seçimi Bəli olaraq təyin etsəniz, uşaqların sayı qonaqların ümumi sayına daxil ediləcək. Bu seçimi Xeyr olaraq təyin etsəniz, uşaqların sayı qonaqların yoxlanışının ümumi sayına daxil edilməyəcək. Bu o deməkdir ki, bu seçimi Xeyr olaraq təyin etsəniz, 4 nəfərdən ibarət bir partiya, məsələn, 2 böyük və 2 uşaq, 2 böyüklərin yerləşdiyi iki nəfərlik otaq sifariş edə biləcək. ");
+
+
+	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Bir nəfər üçün gecəlik ödəniş etmək istəyirsinizsə, Bəli seçin.');
+
+	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"Seçilmiş");
+
+jr_define('_JOMRES_PROPERTYPE_FLAG_HIRE', 'Eşyanın icarəsi');
+
+jr_define('SHORTCODE_INFO_JOMRES_V_JOMRES_SCRIPT',"Qısa kodlar Joomla-da &#123;&#125; və ya Wordpress-də [] ilə bükülməlidir (BRACKETS). Qısa kodlar tərəfindən yaradılan səhifələrə üç yolla baxa bilərsiniz. Birincisi BRACKETjomres shortcode argumentsBRACKET formatında məqaləyə/səhifəyə/modula qısa kod əlavə edin.İkincisi Jomres şablon faylları içərisindədir, burada siz BRACKETjomres_script qısa kod argumentsBRACKET yerləşdirəcəksiniz. Son yol url vasitəsilədir, məsələn Joomla-da www. /domain.com/index.php?option=com_jomres&task=SHORTCODE&ARGUMENTS=ARQUMENTLƏR. ");

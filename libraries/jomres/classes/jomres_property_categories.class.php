@@ -3,9 +3,9 @@
  * Core file
  *
  * @author Vince Wooll <sales@jomres.net>
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  * @package Jomres
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
  **/
 
@@ -220,6 +220,6 @@ class jomres_property_categories
 			$category_options[] = jomresHTML::makeOption($c['id'], $c['title']);
 		}
 		
-		return jomresHTML::selectList($category_options, 'cat_id', 'class="inputbox" size="1"', 'value', 'text', $selected, false);
+		return jomresHTML::selectList($category_options, 'cat_id', '', 'value', 'text', $selected, false);
 	}
 }

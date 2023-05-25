@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Translated to pt-PT by Mario Oliveira, Camara de Lobos, Madeira Island, Portugal, 17Set2010 - www.marioliveira.net - Updated 21Jun2011 for ver 5.1
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
@@ -604,27 +604,17 @@ jr_define('JOMRES_COM_A_TARIFFMODE_NORMAL', 'Normal');
 jr_define('JOMRES_COM_A_TARIFFMODE_ADVANCED', 'Avançado');
 jr_define('JOMRES_COM_A_TARIFFMODE_TARIFFTYPES', 'Micromanage');
 jr_define('JOMRES_COM_A_TARIFFMODE', 'Modo de configuração de tarifa');
-jr_define('JOMRES_COM_A_TARIFFMODE_DESC', '<b>Aviso: Alternar entre tipos diferentes de tipos de tarifa pode resultar em perda de dados.<br /> Veja a nota abaixo sobre isto</b>.
+jr_define('JOMRES_COM_A_TARIFFMODE_DESC', '<b>Aviso: Alternar entre diferentes modos de edição de tarifas pode resultar em perda de dados. Veja a nota abaixo sobre isso.</b>.
+<br/><br/>
+Você tem duas opções para configurar suas tarifas.<br/>
+Micromanage: Você pode modificar o preço de cada dia para cada tipo de quarto/propriedade. <br/>
+Avançado: Você pode criar um conjunto de tarifas que não estão vinculadas entre si. <br/>
 <br/>
-Tem três opções para configurar as suas tarifas.<br/>
-Modo normal: Terá uma tarifa para cada tipo de quarto, válida para os próximos 10 anos.<br/>
-Micromanage: Pode modificar o valor de cada e em cada dia diferente para cada tipo de quarto/propriedade. <br/>
-Avançado: O "velho" método Jomres de gerir tarifas. <br/>
+O Micromanage permite que você varie as tarifas diariamente sem ter que gerenciar resmas de tarifas, isso é feito cruzando várias tarifas diferentes umas com as outras. Isso resulta na criação de uma série de tarifas para você cobrindo um período de tempo, mas você não pode sobrepor as tarifas umas às outras.<br/>
+O modo avançado permite criar tarifas que não estão vinculadas a outras tarifas. Isso permite que você crie preços para sua propriedade que você não pode criar no modo Micromanage. É mais trabalhoso de usar, porque você precisa garantir que as datas válidas de/até de cada tarifa correspondam perfeitamente, mas permite criar tarifas mais complicadas.<br/>
 <br/>
-Os diferentes modos permitem escolher o método e configurar tarifas que melhor se adapte à sua preferência.<br/>
-O modo Normal é o mais simples e fácil de entender porque cruza referências de quartos e tarifas com tipos de quarto/propriedade e permite configurar quartos e preços na mesma página.<br/>
-O Micro manage permite variar as tarifas numa base diária sem ter que gerir quartos ou tarifas; é feito por cruzamento de referências de muitas tarifas diferentes entre si. isto resulta num certo número de tarifas que são criadas para si cobrindo um determinado período de tempo, mas não pode sobrepor tarifas umas em relação às outras.<br/>
-O modo Avançado deixa-o criar um quarto e associá-lo com um tipo de quarto. Cria então uma tarifa e associa essa tarifa com um tipo de quarto. Utilizando este método é possível "sobrepor" tarifas umas sobre as outras, por exemplo um quarto do tipo "Cama dupla" pode ter uma tarifa para <i>bed & breakfast</i> (dormida e pequeno almoço) e outra para dormida, pequeno almoço e jantar. O m
-etodo avançado requer um pouco mais de atenção ao pormenor, porque é possível dissociar um quarto ou tarifa de um tipo de quarto/propriedade, ou incorrectamente definir datas De e PARA, mas dá-lhe opções de configuração que os outros modos não proporcionam. <br/>
-<br/>
-Porque os modos Normal e Micromanage requerem uma definição específica de quartos e tarifas, para que o modo tarifa funcione o sistema pode necessitar de reiniciar alguns dados para tornar as configurações actuais de tarifas compatíveis com o presente modo de edição de tarifa.<br/>
-<br/>
-Normal -> Avançado. Não muda. As tarifas existentes são mantidas.<br/>
-Normal -> Micromanage. Todas as tarifas existentes são removidas.<br/>
-Avançado -> Normal. Todas as tarifas existentes são removidas.<br/>
-Avançado -> Micromanage. Todas as tarifas existentes são removidas.<br/>
-Micromanage -> Avançado. Todas as referências cruzadas existentes entre tarifas são removidas, mas as próprias tarifas permanecem inalteradas.<br/>
-Micromanage -> Normal. Todas as referências cruzadas e tarifas são removidas.<br/>');
+Se você mudar de Advanced para Micromanage, todas as tarifas existentes serão removidas.<br/>
+<br/>');
 jr_define('_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS', 'Mostrar lista de quartos na página de pormenores da propriedade?');
 jr_define('JOMRES_PROPERTYTYPE', 'Tipo de propriedade');
 jr_define('JOMRES_MAXPEOPLEINROOM', 'Máx pessoas por quarto');
@@ -656,7 +646,7 @@ jr_define('_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', ' foi descontado de ');
 jr_define('_JOMCOMP_WISEPRICE_TO', ' para ');
 jr_define('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', ' Preço de quarto não descontado ');
 jr_define('JOMRES_COM_A_MAPSKEY', 'Chave API Google maps');
-jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'Pode obter uma chave API do Google Maps em <a href="https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key" target="_blank">Google maps</a>. Depois de a ter obtido e inserido aqui, o Jomres mostrará o mapa na página de pormenores da sua propriedade.');
+jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'Pode obter uma chave API do Google Maps em <a href="https://console.cloud.google.com/projectselector2/google/maps-apis/credentials" target="_blank">Google maps</a>. Depois de a ter obtido e inserido aqui, o Jomres mostrará o mapa na página de pormenores da sua propriedade.');
 jr_define('_JOMCOMP_LASTMINUTE_CPANEL', '<i>Last minute</i>');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE', 'Activo?');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE_DESC', 'Defina Sim se quiser realizar negócios <i>last minute</i>.');
@@ -1160,7 +1150,7 @@ jr_define('_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED', 'Número de propr
 // 4.6.1
 jr_define('_JOMRES_CONFIG_JQUERY', 'Carregar a biblioteca Jomres jQuery?');
 jr_define('_JOMRES_CONFIG_JQUERY_DESC', 'Pode definir NÃO se tiver um tema que utilize jquery. Isto PODE resolver alguns problemas de conflitos jquery nalguns temas, mas não em todos.');
-jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'Enabling this option allows you to see the language switcher in the Fullscreen view in the frontend.');
+jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'Enabling this option allows you to see the language switcher in the Jomres Administrator area pages.');
 jr_define('_JOMRES_COM_A_UPLOADS_IMAGES_WIDTH_LARGE_DESC', 'São automaticamente criadas imagens de referência (<i>thumbnails</i>) para as imagens carregadas.');
 // 4.7.1
 jr_define('_JOMRES_COM_THUMBNAIL_SMALL_WIDTH', 'Larg. máx. imagens de referência (px).');
@@ -1178,7 +1168,7 @@ jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD', 'Prazo para au
 jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD_DESC', 'O número de dias até ao limite dos quais o gerente tem de pagar uma factura antes de ser auto-suspenso e as suas propriedades despublicadas.');
 //4.7.2
 jr_define('_JOMRES_COM_LANGUAGE_CONTEXT', 'Contexto de linguagem');
-jr_define('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', 'Use esta opção para modificar o contexto de linguagem do site. Isto permite que o Jomres utilize etiquetas apropriadas para o que de mais adequado está em foco; portanto, se as suas preferências forem, por exemplo, aluguer de iates, nesse caso mudar o contexto permite ao Jomres, primeiramente procurar antes de mais na língua corrente, depois pesquisar o directório /'.JOMRES_ROOT_DIRECTORY.'/languages/ por um subdirectório designado "yachtbrokerage". Se o ficheiro existir para a língua corrente, será então usado esse ficheiro. Caso contrário, o Jomres pesquisará por um ficheiro em língua inglesa no mesmo directório. Se não o puder encontrar, utilizará o ficheiro de linguagem para a que tiver sido seleccionada, no directório /'.JOMRES_ROOT_DIRECTORY.'/languages.');
+jr_define('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', 'Use esta opção para alterar o contexto de idioma do site. Este recurso permite que o Jomres use rótulos apropriados para o modo como você está usando o Jomres, portanto, se seu foco for uma corretora de iates, a alteração do contexto permitirá que o Jomres apresente rótulos apropriados para iates. Por exemplo, se você definir o contexto como "Iate Brokerage", o Jomres primeiro encontrará o idioma atual e, em seguida, pesquisará no banco de dados de texto personalizado as strings salvas com um contexto de idioma "yachtbrokerage". Se existirem strings personalizadas para o idioma e o contexto atuais, elas serão usadas. Caso contrário, o Jomres retornará às definições de idioma usadas por seus arquivos de idioma do Core.');
 // 4.7.3
 jr_define('_JOMRES_COM_ADVANCED_SITE_CONFIG', 'Configuração avançada do site');
 jr_define('_JOMRES_COM_ADVANCED_SITE_CONFIG_DESC', 'Defina Sim se quer utilizar as opções avançadas de configuração. Se está a iniciar-se no Jomres, aconselha-se a que defina Não por enquanto, dado que a instalação por defeito é suficiente para começar; em vez de definir Sim neste caso, deve adicionar o Jomres ao menu principal, fazer login como "admin" no <i>frontend</i> e começar a configurar a(s) sua(s) propriedade(s). Note que muitas das opções avançadas somente serão aplicáveis em instalações Jomres Silver, pelo que os utilizadores de Jomres Lite não poderão usufruir totalmente das características que a opção avançada permite.');
@@ -2769,3 +2759,17 @@ Você pode deixar o idioma de destino definido para seu idioma atual e usar esta
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Modo de teste");
 
 	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "O modo de desenvolvimento está habilitado, portanto se você usar este recurso você estará atualizando sua instalação do Jomres para o ramo Nightly. Esta é a versão mais recente do Jomres e pode ou não ser estável. Se você fizer isso não deseja atualizar para Nightly, visite Admin > Jomres > Configurações > Configuração do Site > guia Depuração e defina a opção Produção/Desenvolvimento para Produção.");
+
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN', "Incluir crianças nas verificações de nível de ocupação?");
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN_DESC_MRP', "Quando os hóspedes fazem reservas, os quartos têm um número máximo de hóspedes que podem acomodar. Se o número total de hóspedes exceder o número de hóspedes que os quartos selecionados podem acomodar, o formulário de reserva informará a eles que eles precisam selecionar mais quartos.
+ 
+  Se você definir esta opção como Sim, o número de filhos será incluído na verificação do número total de convidados. Se você definir esta opção como Não, o número de crianças não será incluído na verificação do número total de convidados. Isso significa que, se você definir esta opção como Não, um grupo de 4 pessoas, por exemplo, 2 adultos e 2 crianças, poderá reservar um quarto duplo que acomode 2 adultos. ");
+
+
+	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Selecione Sim se deseja cobrar por pessoa por noite.');
+
+	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"Destaque");
+
+jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', 'Aluguer de item');
+
+jr_define('SHORTCODE_INFO_JOMRES_V_JOMRES_SCRIPT',"Shortcodes precisam ser encapsulados em &#123;&#125; no Joomla, ou [] no Wordpress (BRACKETS). Existem três maneiras pelas quais as páginas geradas pelos shortcodes podem ser visualizadas. A primeira é para adicione um shortcode a um artigo/página/módulo no formato BRACKETjomres shortcode argumentsBRACKET. O segundo é dentro dos arquivos de modelo do Jomres, onde você colocaria BRACKETjomres_script shortcode argumentsBRACKET. A última maneira é através do url, então por exemplo no Joomla você colocaria www.domain.com/index.php?option=com_jomres&task=SHORTCODE&ARGUMENTS=ARGUMENTS. ");

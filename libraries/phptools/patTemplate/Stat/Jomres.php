@@ -2,6 +2,9 @@
 // ################################################################
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
+
+	#[AllowDynamicProperties]
+
 /**
  * Base class for patTemplate Stat
  *

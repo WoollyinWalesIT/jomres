@@ -4,16 +4,16 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-	
+	#[AllowDynamicProperties]
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
@@ -42,6 +42,9 @@ class j00035tabcontent_02_bookingform
 
 			return;
 		}
+
+
+
 		$property_uid = (int) $componentArgs[ 'property_uid' ];
 		$mrConfig = getPropertySpecificSettings($property_uid);
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
@@ -49,6 +52,8 @@ class j00035tabcontent_02_bookingform
 		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 
 		$this->retVals = null;
+
+        return;
 
 		if ($mrConfig[ 'registeredUsersOnlyCanBook' ] == '1' && $thisJRUser->id == 0) {
 			return;

@@ -1,30 +1,39 @@
-<pattemplate:tmpl name="pageoutput" unusedvars="import">
+<pattemplate:tmpl name="pageoutput" xmlns:patTemplate="http://www.w3.org/1999/html" unusedvars="import">
 <div class="container">
 	<pattemplate:tmpl name="rows" type="simpleCondition" requiredvars="room_type_text">
 		<div class="row">
-			<div class="col-sm-3 d-none d-lg-block">
+			<div class="col-sm-2 d-none d-lg-block">
 				<img src="{ROOM_TYPE_IMAGE}" class="img-fluid" />
 			</div>
 			<div class="col-sm-2">
-				<strong>{_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK}</strong>
+				<patTemplate:comment><strong>{_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK}</strong></patTemplate:comment>
 				<p> {ROOM_TYPE_TEXT}</p>
+				<patTemplate:comment>
 				<div class="d-none d-lg-block">
 					<p>{TARIFF_NAME_TEXT}
-						<br><span class="badge badge-warning">{NUMBER_OF_ROOMS_PRE} {NUMBER_OF_ROOMS} {NUMBER_OF_ROOMS_POST}</span>
+						<br><span class="badge bg-warning">{NUMBER_OF_ROOMS_PRE} {NUMBER_OF_ROOMS} {NUMBER_OF_ROOMS_POST}</span>
 					</p>
 				</div>
-			</div>
-			<div class="col-sm-3 d-none d-lg-block">
-				<strong>{_JOMRES_MAX_GUESTS_PER_ROOM}</strong>
-				<p>{GUESTPER_ROOM}</p>
+				</patTemplate:comment>
 			</div>
 			<div class="col-sm-2 d-none d-lg-block">
-				<strong>{_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERDAY}</strong>
-				<p class="big-price">{RATE_TEXT}</p>
+				<patTemplate:comment>
+					<strong>{_JOMRES_MAX_GUESTS_PER_ROOM}</strong>
+					<p>{GUESTPER_ROOM}</p>
+				</patTemplate:comment>
+
+				<i class="fas fa-user" aria-description="{_JOMRES_SEARCH_FORM_ADULTS}"></i>  {MAX_ADULTS}
+				<i class="fas fa-child" aria-description="{_JOMRES_SEARCH_FORM_CHILDREN}"></i> {MAX_CHILDREN}
+
 			</div>
-			<div class="col-sm-2">
-				<strong>{_JOMRES_NUMBEROFROOMSAVAILABLE}</strong>
-				<p>{NUMBEROFROOMS}</p>
+			<div class="col-sm-2 d-none d-lg-block">
+				<patTemplate:comment><strong>{_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERDAY}</strong></patTemplate:comment>
+				<strong	>{RATE_TEXT}</strong>
+			</div>
+			<div class="col-sm-4">
+				<span><i class="fas fa-bed"></i> <i class="fas fa-plus"></i></span>
+				<patTemplate:comment><strong>{_JOMRES_NUMBEROFROOMSAVAILABLE}</strong></patTemplate:comment>
+				{NUMBEROFROOMS}
 			</div>
 		</div>
 		<hr/>

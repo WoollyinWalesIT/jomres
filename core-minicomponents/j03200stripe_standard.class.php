@@ -6,7 +6,7 @@
  *
  * @version Jomres 9.22.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  *
  * This file is NOT open source and you are not allowed to distribute it, for any reason.
  **/
@@ -14,7 +14,7 @@
 // ################################################################
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this file is not allowed.' );
 // ################################################################
-
+	#[AllowDynamicProperties]
 class j03200stripe_standard
 {
 	function __construct($componentArgs)

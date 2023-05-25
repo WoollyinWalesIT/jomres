@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 //#################################################################
@@ -612,26 +612,17 @@ jr_define('JOMRES_COM_A_TARIFFMODE_NORMAL', 'Normal');
 jr_define('JOMRES_COM_A_TARIFFMODE_ADVANCED', 'Avancerad');
 jr_define('JOMRES_COM_A_TARIFFMODE_TARIFFTYPES', 'Detaljstyra');
 jr_define('JOMRES_COM_A_TARIFFMODE', 'Konfigurationsläge för prislistor');
-jr_define('JOMRES_COM_A_TARIFFMODE_DESC', '<b>Varning: Att växla mellan olika prislistetyper kan resultera i förlust av data. Se anmärkning nedan om detta.</b>
+jr_define('JOMRES_COM_A_TARIFFMODE_DESC', '<b>Varning: Växling mellan olika tariffredigeringslägen kan resultera i förlust av data. Se anmärkningen nedan angående detta.</b>.
 <br/><br/>
-Du har tre alternativ för hur du kan konfigurera prislistor. <br/>
-Normalläge:. Du kommer att ha en prislista för varje inkvarteringstyp som gäller för de kommande 10 åren <br/>
-Detaljstyra: Du kan ändra priset för varje dag och för varje inkvarterings/verksamhetstyp. <br/>
-Avancerat: Den "gamla" Jomres metoden att hantera prislistor. <br/>
+Du har två alternativ för hur du konfigurerar dina tariffer.<br/>
+Micromanage: Du kan ändra priset för varje dag för varje rum/fastighetstyp. <br/>
+Avancerat: Du kan skapa en uppsättning tariffer som inte är kopplade till varandra. <br/>
 <br/>
-De olika prislistlägena gör att du kan välja metod för att konfigurera prislistor på det sätt som passar dig bäst.<br/>
-Normalläge är den enklaste, men den är också den enklaste att förstå eftersom det görs en korsreferens mellan inkvarteringer och prislistor samt inkvarterings/verksamhetstyper och ger dig möjlighet att konfigurera inkvarteringer och priser på samma sida. <br/>
-Detaljstyrning tillåter dig att variera priserna på en daglig basis utan att behöva hantera mängder av prislistor, det sker genom att det görs korsreferenser mellan massor av olika prislistor med varandra. Detta resulterar i att ett antal prislistor skapas för dig som omfattar en period, men du kan inte lägga prislistor över varandra.<br/>
-Avancerat läge tillåter dig att skapa en inkvartering och koppla det till en inkvarteringstyp. Du skapar då en prislista och associerar den med en inkvarteringstyp. Med denna metod är det möjligt att lägga ett lager av prislistor på varandra, t.ex. inkvarteringstypen "Dubbelsäng" kan ha ett pris, "bed and breakfast" en annan och "bed and breakfast och kvällsmåltid" ytterligare en. Den avancerade metoden kräver lite mer kontroll på detaljerna eftersom det är möjligt att disassociera en inkvartering eller prislista från en inkvarterings/verksamhetstyp eller felaktigt ange giltiga från och till datum, men det ger dig konfigurationsalternativ som de andra lägena inte erbjuder.<br/>
+Micromanage låter dig variera priserna från dag till dag utan att behöva hantera mängder av tariffer, det görs genom att korshänvisa massor av olika tariffer med varandra. Detta resulterar i att ett antal tariffer skapas för dig som täcker en tidsperiod, men du kan inte lägga tariffer över varandra.<br/>
+Avancerat läge låter dig skapa tariffer som inte är kopplade till andra tariffer. Detta gör att du kan skapa priser för din fastighet som du annars inte kan skapa i Micromanage-läge. Det är mer mödosamt att använda, eftersom du måste se till att varje taxa är giltig från/till datum perfekt matchar, men det låter dig skapa mer komplicerade tariffer.<br/>
 <br/>
-Eftersom Normal och Detaljstyrningslägena behöver en särskild uppsättning inkvarteringar och prislistor för att prislistläget ska fungera kan systemet behöva återställa vissa data för att göra de nuvarande prislistkonfigurationerna kompatibla med det nuvarande prislistredigeringsläget. <br/>
-<br/>
-Normal -> Avancerat. Ingen förändring. Befintliga prislistor behålls. <br/>
-Normal -> Detaljstyra. Alla befintliga prislistor tas bort. <br/>
-Avancerat -> Normal. Alla befintliga prislistor tas bort. <br/>
-Avancerat -> Detaljstyra. Alla befintliga prislistor tas bort. <br/>
-Detaljstyra -> Avancerat. Alla befintliga korshänvisningar mellan prislistorna tas bort, men prislistorna själva kommer att finnas kvar. <br/>
-Detaljstyra -> Normal. Alla befintliga korshänvisningar och prislistor tas bort <br/>');
+Om du byter från Advanced till Micromanage kommer alla befintliga tariffer att tas bort.<br/>
+<br/>');
 jr_define('_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS', 'Visa inkvarteringslista på verksamhetens informationssida?');
 jr_define('JOMRES_PROPERTYTYPE', 'Verksamhetstyp');
 jr_define('JOMRES_MAXPEOPLEINROOM', 'Max antal personer per inkvartering');
@@ -663,7 +654,7 @@ jr_define('_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', 'har rabatterats från');
 jr_define('_JOMCOMP_WISEPRICE_TO', 'till');
 jr_define('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', 'Dynamisk prisrabatt tillämpas inte');
 jr_define('JOMRES_COM_A_MAPSKEY', 'Google Maps API-nyckel');
-jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'Du kan få en Google Maps API nyckel från <a href="https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key" target="_blank">Google maps</a>. När du har matat in din kartnyckel här kommer Jomres att visa kartan i verksamhetens informationssida.');
+jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'Du kan få en Google Maps API nyckel från <a href="https://console.cloud.google.com/projectselector2/google/maps-apis/credentials" target="_blank">Google maps</a>. När du har matat in din kartnyckel här kommer Jomres att visa kartan i verksamhetens informationssida.');
 jr_define('_JOMCOMP_LASTMINUTE_CPANEL', 'Sista minuten');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE', 'Aktiv?');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE_DESC', 'Välj Ja om du vill erbjuda sista minuten-erbjudanden.');
@@ -1126,7 +1117,7 @@ jr_define('_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED', 'Antal verksamhet
 // 4.6.1
 jr_define('_JOMRES_CONFIG_JQUERY', 'Ladda Jomres jquery bibliotek?');
 jr_define('_JOMRES_CONFIG_JQUERY_DESC', 'Välj NEJ om du har en mall som använder jquery. Detta kan lösa konflikter med jquery på vissa mallar, men inte alla.');
-jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'Enabling this option allows you to see the language switcher in the Fullscreen view in the frontend.');
+jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'Enabling this option allows you to see the language switcher in the Jomres Administrator area pages.');
 jr_define('_JOMRES_COM_A_UPLOADS_IMAGES_WIDTH_LARGE_DESC', 'Minibilder skapas automatiskt för uppladdade bilder.');
 // 4.7.1
 jr_define('_JOMRES_COM_THUMBNAIL_SMALL_WIDTH', 'Minibilder maxbredd (px).');
@@ -1144,7 +1135,7 @@ jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD', 'Tröskelvärd
 jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD_DESC', 'Det här tröskelvärdet är de antalet dagar en faktura måste betalas av administratören innan de spärras och deras verksamheter avpubliceras.');
 //4.7.2
 jr_define('_JOMRES_COM_LANGUAGE_CONTEXT', 'Språksammanhang');
-jr_define('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', 'Om etiketten "Yacht Brokerage" (Mäklare för lustjakter) är i fokus kam etiketten hämtas från en annan språkfil. Jomres kommer först att söka i aktuell språkfil, sedan söka i en underkatalog som heter "yachtbrokerage". Om språkfilen finns för det aktuella språket så kommer den att användas. Om den inte finns så söker Jomres efter en engelsk språkfil i samma katalog. Om den inte finns kommer Jomres att använda språkfilen för det valda språket i mappen /'.JOMRES_ROOT_DIRECTORY.'/language. Observera att om du skapar en ny verksamhetstyp så skapas en kopia av den aktuella språkfilen görs i en underkatalog under /'.JOMRES_ROOT_DIRECTORY.'/language med samma namn som den nya verksamhetstypens beskrivning.');
+jr_define('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', 'Använd det här alternativet för att ändra webbplatsens språkkontext. Den här funktionen gör att Jomres kan använda etiketter som är lämpliga för hur du använder Jomres, så om ditt fokus är som en Yachtmäklare, då ändrar du sammanhanget kommer Jomres att presentera etiketter som är lämpliga för yachter. Till exempel, om du ställer in sammanhanget till "Yacht Brokerage" så kommer Jomres först att hitta det aktuella språket och sedan söka i den anpassade textdatabasen efter strängar som sparats med språkkontexten "yachtbrokerage". Om det finns anpassade strängar för det aktuella språket och sammanhanget kommer de att användas. Om inte, kommer Jomres att falla tillbaka till språkdefinitionerna som används av dess Core-språkfiler.');
 // 4.7.3
 jr_define('_JOMRES_COM_ADVANCED_SITE_CONFIG', 'Avancerad webbplatskonfiguration');
 jr_define('_JOMRES_COM_ADVANCED_SITE_CONFIG_DESC', 'Välj Ja för att använda de avancerade alternativen i webbplatskonfigurationen. Om du är ny i Jomres så är det rekommenderat välja Nej eftersom standardkonfigurationen är tillräcklig för att komma igång, istället bör du lägga Jomres till webbplatsens huvudmeny och logga in i frontend som administratör och börja konfigurera din verksamhet. Observera att många av de avancerade alternativen endast är tillämplig på Jomres Silver-versionen och Jomres Lite-användare kommer inte att kunna utnyttja dessa funktioner.');
@@ -2732,3 +2723,17 @@ Du kan lämna målspråket inställt på ditt nuvarande språk och använda denn
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Testläge");
 
 	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "Utvecklingsläget är aktiverat, så om du använder den här funktionen kommer du att uppdatera din installation av Jomres till Nightly-grenen. Detta är den senaste versionen av Jomres och kanske inte är stabil. Om du gör det. inte vill uppdatera till Nightly, besök Admin > Jomres > Inställningar > Webbplatskonfiguration > fliken Felsökning och ställ in alternativet Produktion/Utveckling till Produktion.");
+
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN', "Inkludera barn i kontroller av beläggningsnivå?");
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN_DESC_MRP', "När gäster gör bokningar har rummen ett maximalt antal gäster som de kan ta emot. Om det totala antalet gäster överstiger antalet gäster som de valda rummen kan ta emot, kommer bokningsformuläret att berätta för dem att de måste välja fler rum.
+ 
+  Om du ställer in det här alternativet till Ja kommer antalet barn att inkluderas i det totala antalet gäster. Om du ställer in det här alternativet på Nej kommer antalet barn inte att inkluderas i det totala antalet gäster. Det betyder att om du ställer in det här alternativet till Nej så kommer ett sällskap på 4, till exempel 2 vuxna och 2 barn, att kunna boka ett dubbelrum som rymmer 2 vuxna. ");
+
+
+	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Välj Ja om du vill debitera per person per natt.');
+
+	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"Utvald");
+
+jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', 'Artikeluthyrning');
+
+jr_define('SHORTCODE_INFO_JOMRES_V_JOMRES_SCRIPT',"Kortkoder måste lindas in i &#123;&#125; i Joomla, eller [] i Wordpress (HAMMER). Det finns tre sätt som sidorna som genereras av kortkoder kan visas. Det första är att lägg till en kortkod till en artikel/sida/modul i formatet BRACKETjomres shortcode argumentsBRACKET. Den andra är inom Jomres mallfiler, där du skulle lägga BRACKETjomres_script shortcode argumentsBRACKET. Det sista sättet är via url, så till exempel i Joomla skulle du lägga www.domain.com/index.php?option=com_jomres&task=SHORTCODE&ARGUMENTS=ARGUMENTS. ");

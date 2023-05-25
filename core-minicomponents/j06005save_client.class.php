@@ -4,16 +4,16 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-	
+	#[AllowDynamicProperties]
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
@@ -76,7 +76,6 @@ class j06005save_client
 			}
 			$requested_scopes = rtrim($requested_scopes, ",");
 
-
 			if ($client_id == "" || $client_secret == "") {
 				jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL . "&task=oauth_edit_client&client_id=".$client_id), "");
 			}
@@ -96,9 +95,42 @@ class j06005save_client
 			if (!doInsertSql($query, jr_gettext('_OAUTH_CREATED', '_OAUTH_CREATED', false))) {
 				trigger_error("Unable to update oauth client details, mysql db failure", E_USER_ERROR);
 			}
+
+
+
+			jr_import('jomres_api_capability_test');
+			$jomres_api_capability_test = new jomres_api_capability_test();
+			$capability_test = $jomres_api_capability_test->is_system_capable();
+			if ($capability_test === true ) {
+
+				$query = "SELECT `client_id` FROM #__jomres_oauth_access_tokens WHERE 
+            		`client_id` = '". $client_id."' 
+            		AND expires >= CURRENT_TIMESTAMP";
+				$result = doSelectSql($query);
+
+				if (empty($result)) { // The client doesn't currently have any valid tokens, let's give 'em one
+					$token_request_url = get_showtime('live_site') . '/jomres/api/';
+
+					$data = array('grant_type' => 'client_credentials', 'client_id' => $client_id, 'client_secret' => $client_secret, 'token_url' => $token_request_url);
+
+					$ch = curl_init($data['token_url']);
+					curl_setopt($ch, CURLINFO_HEADER_OUT, true);
+					curl_setopt($ch, CURLOPT_TIMEOUT, 60);
+					curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+					curl_setopt($ch, CURLOPT_POST, true);
+					curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+					curl_setopt($ch,CURLOPT_VERBOSE,true);
+					curl_setopt($ch, CURLINFO_HEADER_OUT, true);
+					$result = curl_exec($ch);
+					curl_close($ch);
+				}
+
+
+			}
+
 		}
 		
-		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL . "&task=oauth"), "");
+		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL . "&task=oauth_edit_client&client_id=".$client_id), "");
 	}
 
 	/**

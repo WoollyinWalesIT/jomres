@@ -4,16 +4,16 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-	
+	#[AllowDynamicProperties]
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
@@ -153,19 +153,19 @@ class j16000view_invoice
 		// 3 pending
 		switch ($invoice->status) {
 			case 0:
-				$output[ 'LABEL_CLASS' ] = 'label-red';
+				$output[ 'LABEL_CLASS' ] = 'label-red badge bg-danger';
 				$output[ 'STATUS' ] = jr_gettext('_JRPORTAL_INVOICES_STATUS_UNPAID', '_JRPORTAL_INVOICES_STATUS_UNPAID');
 				break;
 			case 1:
-				$output[ 'LABEL_CLASS' ] = 'label-green';
+				$output[ 'LABEL_CLASS' ] = 'label-green badge bg-success';
 				$output[ 'STATUS' ] = jr_gettext('_JRPORTAL_INVOICES_STATUS_PAID', '_JRPORTAL_INVOICES_STATUS_PAID');
 				break;
 			case 2:
-				$output[ 'LABEL_CLASS' ] = 'label-black';
+				$output[ 'LABEL_CLASS' ] = 'label-black badge bg-dark';
 				$output[ 'STATUS' ] = jr_gettext('_JRPORTAL_INVOICES_STATUS_CANCELLED', '_JRPORTAL_INVOICES_STATUS_CANCELLED');
 				break;
 			default:
-				$output[ 'LABEL_CLASS' ] = 'label-orange';
+				$output[ 'LABEL_CLASS' ] = 'label-orange badge bg-warning text-dark';
 				$output[ 'STATUS' ] = jr_gettext('_JRPORTAL_INVOICES_STATUS_PENDING', '_JRPORTAL_INVOICES_STATUS_PENDING', false);
 		}
 

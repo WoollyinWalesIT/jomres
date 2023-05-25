@@ -4,16 +4,16 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-	
+	#[AllowDynamicProperties]
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
@@ -91,7 +91,7 @@ class j06002edit_integration
 			}
 		}
 		
-		$output['AUTHMETHODSDROPDOWN'] = jomresHTML::selectList($authMethods, 'authmethod', 'class="inputbox"  onchange=get_auth_form(this.value); size="1"', 'value', 'text', $output['AUTHMETHOD'], false);
+		$output['AUTHMETHODSDROPDOWN'] = jomresHTML::selectList($authMethods, 'authmethod', ' onchange=get_auth_form(this.value); size="1"', 'value', 'text', $output['AUTHMETHOD'], false);
 		
 		$output['AUTH_FORM'] = $MiniComponents->specificEvent('06002', 'ajax_webhooks_build_auth_form', array('output_now' => false, 'integration_id' => $output['INTEGRATION_ID'], 'auth_method' => $output['AUTHMETHOD']));
 

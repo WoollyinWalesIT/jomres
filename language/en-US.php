@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 //#################################################################
@@ -44,7 +44,7 @@ jr_define('_JOMRES_COM_MR_EDITBOOKING_TAB_PAYMENT', 'Payment');
 jr_define('_JOMRES_COM_MR_EB_ARRIVALFIRSTNAME_EXPL', 'First Name');
 jr_define('_JOMRES_COM_MR_EB_ARRIVALSURNAME_EXPL', 'Surname');
 jr_define('_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ', 'Special requirements');
-jr_define('_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ_DISCLAIMER', 'Please note that some special requirements may incur extra charges.');
+jr_define('_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ_DISCLAIMER', 'Please note that some special requirements may incur extra charges. If so, we will contact you.');
 jr_define('_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING', 'Cancel booking');
 jr_define('_JOMRES_COM_MR_EB_GUEST_JOMRES_HOUSE_EXPL', 'Number');
 jr_define('_JOMRES_COM_MR_EB_GUEST_JOMRES_STREET_EXPL', 'Street');
@@ -142,7 +142,7 @@ jr_define('_JOMRES_COM_MR_LISTTARIFF_MINDAYS', 'Min days');
 jr_define('_JOMRES_COM_MR_LISTTARIFF_MAXDAYS', 'Max days');
 jr_define('_JOMRES_COM_MR_LISTTARIFF_MINPEOPLE', 'Min people');
 jr_define('_JOMRES_COM_MR_LISTTARIFF_MAXPEOPLE', 'Max people');
-jr_define('_JOMRES_COM_MR_LISTTARIFF_ROOMCLASS', 'Resource/property type');
+jr_define('_JOMRES_COM_MR_LISTTARIFF_ROOMCLASS', 'Type');
 jr_define('_JOMRES_COM_MR_LISTTARIFF_IGNOREPPN', 'Ignore PPPN');
 jr_define('_JOMRES_COM_MR_LISTTARIFF_ALLOWWE', 'Allow weekends');
 jr_define('_JOMRES_COM_MR_LISTTARIFF_LINKTEXT', 'Edit item');
@@ -228,7 +228,7 @@ jr_define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AREAACTIVITIES', 'Area activities
 jr_define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_DRIVINGDIRECTIONS', 'Driving directions');
 jr_define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AIRPORTS', 'Airports');
 jr_define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_OTHERTRANSPORT', 'Other transport');
-jr_define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS', 'Policies & disclaimers');
+jr_define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS', 'Terms and conditions');
 jr_define('_JOMRES_COM_MR_PROPERTIESLISTING_THISPROPERTYADDRESS', 'Address');
 jr_define('_JOMRES_COM_A_VISITORSCANBOOKONLINE', 'Visitors can book online');
 jr_define('_JOMRES_COM_A_VISITORSCANBOOKONLINE_DESC', 'Set this to Yes to ensure that visitors can book rooms online.');
@@ -360,14 +360,14 @@ jr_define('_JOMRES_MR_AUDIT_ARCHIVE', 'Archive all records');
 jr_define('_JOMRES_FRONT_TARIFFS', 'Accommodation prices');
 jr_define('_JOMRES_FRONT_TARIFFS_TITLE', 'Tariff name');
 jr_define('_JOMRES_FRONT_TARIFFS_DESC', 'Tariff description');
-jr_define('_JOMRES_FRONT_TARIFFS_ROOMTYPE', 'Resource/property type');
+jr_define('_JOMRES_FRONT_TARIFFS_ROOMTYPE', 'Type');
 jr_define('_JOMRES_FRONT_TARIFFS_STARTS', 'Valid from');
 jr_define('_JOMRES_FRONT_TARIFFS_ENDS', 'Valid til');
-jr_define('_JOMRES_FRONT_TARIFFS_PPPN', 'Per person per night');
-jr_define('_JOMRES_FRONT_TARIFFS_PN', 'Per night');
+jr_define('_JOMRES_FRONT_TARIFFS_PPPN', ' /PPPN');
+jr_define('_JOMRES_FRONT_TARIFFS_PN', ' /PN');
 jr_define('_JOMRES_FRONT_TARIFFS_NOTWEEKEND', 'Not including weekends');
-jr_define('_JOMRES_FRONT_TARIFFS_MINDAYS', 'Minimum days');
-jr_define('_JOMRES_FRONT_TARIFFS_MAXDAYS', 'Maximum days');
+jr_define('_JOMRES_FRONT_TARIFFS_MINDAYS', 'Min days');
+jr_define('_JOMRES_FRONT_TARIFFS_MAXDAYS', 'Max days');
 jr_define('_JOMRES_FRONT_TARIFFS_MINPEEPS', 'Min people');
 jr_define('_JOMRES_FRONT_TARIFFS_MAXPEEPS', 'Max people');
 jr_define('_JOMRES_FRONT_PREVIEW', 'Preview');
@@ -461,7 +461,7 @@ jr_define('_JOMRES_CURRENCYCONVERSIONTEXT', 'Convert rate');
 jr_define('_JOMRES_COM_ALLOWHTMLEDITOR', 'Allow users to edit using html editors?');
 jr_define('_JOMRES_AJAXFORM_INSTRUCTIONS', 'Use this form to place your booking. Modify your booking particulars like arrival and departure dates & guest numbers, then select the resource(s) you require from the list of those available. Click any available rooms to add them to your booking. When done, you can add any optional extras you may require and provide your address details. When the form has enough information it will then give you a submit button so that you can confirm your booking.');
 jr_define('_JOMRES_AJAXFORM_INSTRUCTIONS_SRP', 'Use this form to place your booking. Modify your booking particulars like arrival and departure dates & guest numbers. When done, you can add any optional extras you may require and provide your address details. When the form has enough information it will then give you a submit button so that you can confirm your booking.');
-jr_define('_JOMRES_AJAXFORM_PARTICULARS', 'Booking particulars');
+jr_define('_JOMRES_AJAXFORM_PARTICULARS', 'Booking details');
 jr_define('_JOMRES_AJAXFORM_PARTICULARS_DESC', 'When do you want to go?');
 jr_define('_JOMRES_AJAXFORM_AVAILABLE', 'Availability ');
 jr_define('_JOMRES_AJAXFORM_AVAILABLE_DESC', 'Select the rooms that you require');
@@ -469,7 +469,7 @@ jr_define('_JOMRES_AJAXFORM_AVAILABLE_DESC_SRP', 'Look here to see if the proper
 jr_define('_JOMRES_AJAXFORM_EXTRAS', 'Services');
 jr_define('_JOMRES_AJAXFORM_EXTRAS_DESC', 'Services');
 jr_define('_JOMRES_COM_PERDAY', 'Per night');
-jr_define('_JOMRES_AJAXFORM_ADDRESS', 'Your Details');
+jr_define('_JOMRES_AJAXFORM_ADDRESS', 'Your details');
 jr_define('_JOMRES_AJAXFORM_ADDRESS_DESC', 'Please enter your details. Note that all fields with a red star are required.');
 jr_define('_JOMRES_AJAXFORM_AVAILABLEROOMS', 'Available rooms');
 jr_define('_JOMRES_AJAXFORM_SELECTEDROOMS', 'Selected rooms');
@@ -537,7 +537,7 @@ jr_define('_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT2', 'Your interval is
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_GUEST_TYPE_INCORRECT', 'Guesttype variant incorrect');
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_SELECT_GUEST_NUMBERS', 'Select your guest numbers/type');
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_TOO_MANY_IN_PARTY_FOR_TARIFFS', 'You have too many in the party for the available tariffs');
-jr_define('_JOMRES_BOOKINGFORM_MONITORING_MORE_ROOMS_THAN_GUESTS', 'You have chosen more rooms than you have guests, click on a room to remove it from your selection');
+jr_define('_JOMRES_BOOKINGFORM_MONITORING_MORE_ROOMS_THAN_GUESTS', 'You have chosen more rooms than you have guests');
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_TOO_MANY_GUESTS_FOR_BEDS', 'Too many guests for the available beds');
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_CHOOSE_MORE_ROOMS', 'You need to choose more rooms');
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_SELECT_A_ROOM', 'Select a room');
@@ -576,7 +576,7 @@ jr_define('_JOMRES_COM_WEEKENDDAYS', 'Weekend days');
 jr_define('_JOMRES_COM_WEEKENDDAYS_DESC', 'Set your weekend days. Tariffs that allow or disallow weekends will take this setting into account when generating the rooms list.');
 jr_define('_JOMRES_EDITPROPERTY_SELECTCOUNTRY', 'Select your country before adding any property information');
 jr_define('_JOMRES_EDITPROPERTY_SAVEBEFOREUPLOAD', 'Save your property changes before uploading a property image');
-jr_define('_JOMRES_TARIFFSFROM', 'Prices from ');
+jr_define('_JOMRES_TARIFFSFROM', 'from ');
 jr_define('_JOMRES_SEARCH_ALL', 'All');
 jr_define('_JOMRES_SEARCH_GEO_COUNTRYSEARCH', 'Country');
 jr_define('_JOMRES_SEARCH_GEO_REGIONSEARCH', 'Region');
@@ -612,26 +612,17 @@ jr_define('JOMRES_COM_A_TARIFFMODE_NORMAL', 'Normal');
 jr_define('JOMRES_COM_A_TARIFFMODE_ADVANCED', 'Advanced');
 jr_define('JOMRES_COM_A_TARIFFMODE_TARIFFTYPES', 'Micromanage');
 jr_define('JOMRES_COM_A_TARIFFMODE', 'Tariff Configuration Mode');
-jr_define('JOMRES_COM_A_TARIFFMODE_DESC', "<b>Warning: Switching between different tariff types may result in loss of data. See the note below regarding this</b>.
+jr_define('JOMRES_COM_A_TARIFFMODE_DESC', "<b>Warning: Switching between different tariff editing modes may result in loss of data. See the note below regarding this.</b>.
 <br/><br/>
-You have three options as to how you configure your tariffs.<br/>
-Normal mode: You will have one tariff for each room type that is valid for the next 10 years.<br/>
-Micromanage: You can modify the price for each and every day for each resource/property type. <br/>
-Advanced: The \"old\" Jomres method of managing tariffs. <br/>
+You have two options as to how you configure your tariffs.<br/>
+Micromanage: You can modify the price for each and every day for each room/property type. <br/>
+Advanced: You can create a set of tariffs that are not linked to each other. <br/>
 <br/>
-The different tariff modes allow you to choose the method of configuring tariffs that suits you best.<br/>
-Normal mode is the most simplistic but it's the easiest to understand because it will cross reference rooms and tariffs to resource/property types and allows you to configure rooms and prices on the same page.<br/>
-Micro manage allows you to vary the rates on a day to day basis without having to manage reams of tariffs, it is done by cross referencing lots of different tariffs with each other. This results in a number of tariffs being created for you covering a period of time, but you can not layer tariffs over each other.<br/>
-Advanced mode lets you create a resource and associate it with a resource type. You then create a tariff and associate THAT with a resource type. Using this method it is possible to \"layer\" tariffs over each other, for example a resource type \"Double bed\" can have one tariff for bed and breakfast, and another for bed, breakfast and evening meal. The advanced method requires a little more attention to detail because it is possible to dis-associate a resource or tariff from a resource/property type, or to incorrectly set valid from and to dates, but it does give you configuration options that the other modes do not offer. <br/>
+Micromanage allows you to vary the rates on a day to day basis without having to manage reams of tariffs, it is done by cross referencing lots of different tariffs with each other. This results in a number of tariffs being created for you covering a period of time, but you can not layer tariffs over each other.<br/>
+Advanced mode lets you create tariffs that are not linked with other tariffs. This allows you to create prices for your property that you cannot otherwise create in Micromanage mode. It is more laborious to use, because you need to ensure that each tariff's valid from/to dates perfectly match, but it allows you to create more complicated tariffs.<br/>
 <br/>
-Because Normal and Micromanage modes require a specific set up of rooms and tariffs for the tariff mode to work the system may need to reset some data to make the current tariff configurations compatible with the current tariff editing mode.<br/>
-<br/>
-Normal -> Advanced. No change. Existing tariffs are retained.<br/>
-Normal -> Micromanage. All existing tariffs are removed.<br/>
-Advanced -> Normal. All existing tariffs are removed.<br/>
-Advanced -> Micromanage. All existing tariffs are removed.<br/>
-Micromanage -> Advanced. All existing cross references between tariffs are removed, but the tariffs themselves will remain.<br/>
-Micromanage -> Normal. All existing cross references and tariffs are removed.<br/>");
+If you switch from Advanced to Micromanage, all existing tariffs will be removed.<br/>
+<br/>");
 jr_define('_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS', 'Show rooms list in property details page?');
 jr_define('JOMRES_PROPERTYTYPE', 'Property type');
 jr_define('JOMRES_MAXPEOPLEINROOM', 'Max people per room');
@@ -663,7 +654,7 @@ jr_define('_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', ' has been discounted from ');
 jr_define('_JOMCOMP_WISEPRICE_TO', ' to ');
 jr_define('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', ' Wiseprice discount not applied ');
 jr_define('JOMRES_COM_A_MAPSKEY', 'Google maps API key');
-jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'You can get a google maps API key from <a href="https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key" target="_blank">Google maps</a>. Once you have input your map key here, Jomres will show the map in your Property Details page.');
+jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'You can get a google maps API key from <a href="https://console.cloud.google.com/projectselector2/google/maps-apis/credentials" target="_blank">Google maps</a>. Once you have input your map key here, Jomres will show the map in your Property Details page.');
 jr_define('_JOMCOMP_LASTMINUTE_CPANEL', 'Last minute');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE', 'Active?');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE_DESC', 'Set this to Yes if you want to offer last minute deals.');
@@ -710,7 +701,7 @@ jr_define('_JRPORTAL_LISTBOOKINGS_HEADER_INVOICE_ID', 'Invoice id');
 jr_define('_JRPORTAL_LISTBOOKINGS_HEADER_BOOKINGTOTAL', 'Booking total');
 jr_define('_JRPORTAL_LISTBOOKINGS_HEADER_DATEARCHIVED', 'Date archived');
 jr_define('_JRPORTAL_ADD_ADHOC_ITEM_DESCRIPTION', 'Description');
-jr_define('_JOMRES_COM_PTYPES_PTYPE_DESC_FURTHER', 'You can have property type specific language files by setting the description to the name of a sub folder, e.g. "yachtbrokerage" and copying a language file to that subfolder. You can then modify that language file for this property type so rooms become, for example, DVDs, etc.');
+jr_define('_JOMRES_COM_PTYPES_PTYPE_DESC_FURTHER', 'You can have property type specific language strings which are adjusted in the Translate Labels page. Set the language context to something like "toolhire" (no spaces or special characters) to use them.');
 jr_define('_JOMRES_EDITPROPERTY_CONNOTDELETE1', 'You cannot delete this property as it is the only property that you have access to. If you want to disable it, please use the un-publish feature in your toolbar. ');
 jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_TOTAL', 'Accommodation Total');
 jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_NIGHTS', 'night(s) at');
@@ -720,7 +711,7 @@ jr_define('_JOMRES_AJAXFORM_PRICE_SUMMARY', 'Price Summary ');
 jr_define('_JOMRES_CONFIRMATION_ALERT', 'Please read and agree to ');
 jr_define('_JOMRES_CONFIRMATION_HEADER', 'A summary of your booking is shown below.<br /> To make any changes, please click on the Amend Reservation button. ');
 jr_define('_JOMRES_CONFIRMATION_AMENDTEXT', 'If you need to change any of the above information then please click here');
-jr_define('_JOMRES_CONFIRMATION_AMEND', 'Amend Reservation');
+jr_define('_JOMRES_CONFIRMATION_AMEND', 'Change reservation details');
 jr_define('_JOMRES_CONFIRMATION_SPECIALS', 'Please enter any special requests in the box below.');
 jr_define('_JOMRES_CONFIRMATION_TERMS_PRETEXT', 'I confirm that the above information is correct and agree to the ');
 jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_PERPERSON', 'per person per night ');
@@ -988,7 +979,7 @@ jr_define('_JOMRES_REVIEWS_NOREVIEWS_BETHEFIRST', 'Would you like to be the firs
 jr_define('_JOMRES_REVIEWS_IAGREE', 'I agree with this review');
 jr_define('_JOMRES_REVIEWS_IDISAGREE', 'I disagree with this review');
 jr_define('_JOMRES_REVIEWS_AVERAGE_RATING', 'Average Rating: ');
-jr_define('_JOMRES_REVIEWS_TOTAL_VOTES', 'Total Votes:');
+jr_define('_JOMRES_REVIEWS_TOTAL_VOTES', 'Reviews:');
 jr_define('_JOMRES_REVIEWS_ADD_REVIEW', 'Add a new review.');
 jr_define('_JOMRES_REVIEWS_ADD_REVIEW_NOTLOGGEDIN', 'You need to be logged in to post a review.');
 jr_define('_JOMRES_REVIEWS_REVIEWBODY', 'Tell us what you think about this property : ');
@@ -1126,7 +1117,7 @@ jr_define('_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED', 'Number of busine
 // 4.6.1
 jr_define('_JOMRES_CONFIG_JQUERY', 'Load Jomres jQuery library?');
 jr_define('_JOMRES_CONFIG_JQUERY_DESC', 'You can set this to NO if you have a template that uses jquery. This MAY resolve jquery conflict issues on some templates, but not all.');
-jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'Enabling this option allows you to see the language switcher in the Fullscreen view in the frontend.');
+jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'Enabling this option allows you to see the language switcher in the Jomres Administrator area pages.');
 jr_define('_JOMRES_COM_A_UPLOADS_IMAGES_WIDTH_LARGE_DESC', 'Thumbnails are created automatically for uploaded images.');
 // 4.7.1
 jr_define('_JOMRES_COM_THUMBNAIL_SMALL_WIDTH', 'Small thumbnails max width (px).');
@@ -1142,10 +1133,10 @@ jr_define('_JRPORTAL_INVOICES_COMMISSION_MANAGER_TRIGGERS_DESC', 'If a manager m
 jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND', 'Auto suspend managers where invoices are marked as Pending?');
 jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD', 'Auto suspend threashold');
 jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD_DESC', 'This threashold is the number of days that a manager has to pay an invoice before they are suspended and their businesses unpublished.');
-//4.7.2
+
 jr_define('_JOMRES_COM_LANGUAGE_CONTEXT', 'Language context');
-jr_define('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', 'Use this option to change the site\'s language context. This feature allows Jomres to use labels that are appropriate for your current focus, so if your focus is as a Yacht Brokerage, then changing the context will allow Jomres to present labels from a different language file. For example, if you set the context to "Yacht Brokerage" then Jomres will first find the current language, then search the /'.JOMRES_ROOT_DIRECTORY.'/languages directory for a sub-directory called "yachtbrokerage". If the file exists for the current language then that file will be used. If not, then Jomres will search for an english language file in that same directory. If that can\'t be found, Jomres will use the language file for the currently selected language in the /'.JOMRES_ROOT_DIRECTORY.'/languages directory. Note that if you create a new property type, then a copy of the current language file is made in a subdirectory under /'.JOMRES_ROOT_DIRECTORY.'/language with a name that reflects the new property type\'s description.');
-// 4.7.3
+jr_define('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', "Use this option to change the site's language context. This feature allows Jomres to use labels that are appropriate for how you are using Jomres, so if your focus is as a Yacht Brokerage, then changing the context will allow Jomres to present labels appropriate to yachts. For example, if you set the context to Yacht Brokerage then Jomres will first find the current language, then search the custom text database for strings saved with a language context of yachtbrokerage. If custom strings for the current language and context exist then those will be used. If not, then Jomres will fall back to the language definitions used by it's Core language files.");
+
 jr_define('_JOMRES_COM_ADVANCED_SITE_CONFIG', 'Advanced site config');
 jr_define('_JOMRES_COM_ADVANCED_SITE_CONFIG_DESC', 'Set this option to Yes if you want to use the advanced site configuration options. If you\'re just starting with Jomres, then we advise you to leave this to No for now, as the default installation is sufficient to get you started, instead you should add Jomres to the main menu and log into the frontend as "admin" and start configuring your property(s). Please note that many of the advanced options may not be available if you don\'t have the appropriate plugin(s) installed. Users of the free, core system will not be able to take full advantage of the features that they enable.');
 jr_define('_JOMRES_CONFIG_JQUERY_UI', 'Load Jomres jQuery UI library?');
@@ -1457,7 +1448,7 @@ jr_define('_JOMRES_REGION_TRANSLATION_SWITCH_TITLE', 'Region names are translata
 jr_define('_JOMRES_REGION_TRANSLATION_SWITCH_DESC', "Unless you're running a very fast server you are advised to leave this set to No. Due to the large number of region names, region name translation takes up a lot of memory which can slow your search results down.");
 jr_define('_JOMRES_FRONT_MR_BOOKOUT_GUESTBOOKEDOUT', 'Guest booked out.');
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_EMAIL_ALREADY_IN_USE', 'Sorry, that email address is already in use. If this is your email address, please ensure you have logged in before attempting to book.');
-jr_define('JOMRES_TAPTOCALL', 'Tap to call');
+jr_define('JOMRES_TAPTOCALL', 'Call us');
 jr_define('JOMRES_NEWREVIEW_SUBJECT', 'New review for ');
 jr_define('JOMRES_NEWREVIEW_MESSAGE', 'A new review has been left for ');
 jr_define('JOMRES_NEWREPORT_SUBJECT', 'New Report');
@@ -1587,7 +1578,7 @@ jr_define('_JOMRES_BOOTSTRAP_LOCATION_BOTTOM', 'Fixed to bottom');
 jr_define('_JOMRES_BOOTSTRAP_LOCATION_INVERSE', 'Inverted navbar (colour change)');
 jr_define('_JOMRES_BOOKING_NUMBER', 'Booking number');
 jr_define('_JOMRES_BOOTSTRAP_VERSION', 'Bootstrap version');
-jr_define('_JOMRES_BOOTSTRAP_VERSION_DESC', "Jomres includes it's own template sets, one for each supported version of Bootstrap. Joomla and Wordpress templates/themes that are based on Bootstrap will offer a specific version of Bootstrap so you need to ensure that the option you choose here is compatible with your template/theme. If your theme does not provide any Bootstrap code set this option to No Bootstrap in Theme and then Jomres will automatically include Bootstrap 3 files for it's own use. ");
+jr_define('_JOMRES_BOOTSTRAP_VERSION_DESC', "Jomres includes it's own template sets, one for each supported version of Bootstrap. Joomla and Wordpress templates/themes that are based on Bootstrap will offer a specific version of Bootstrap so you need to ensure that the option you choose here is compatible with your template/theme. If your theme does not provide any Bootstrap code set this option to No Bootstrap in Theme and then Jomres will automatically include Bootstrap 5 files for it's own use. ");
 jr_define('_JOMRES_HSTATUS_SHOW_GUESTS_FOR', 'Show guests for');
 jr_define('_JOMRES_HFIXED_PERIODS', 'Fixed periods');
 jr_define('_JOMRES_HDEPOSITS', 'Deposits');
@@ -2600,7 +2591,7 @@ jr_define('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE_DESC', 'For each additional adul
 
 jr_define('_JOMRES_SANITYCHECK_CHILD_RATES', 'You have not configured child rates yet.');
 jr_define('_JOMRES_SANITYCHECK_CHILD_RATES_BUTTON', 'Set child rate(s) now');
-jr_define('_JOMRES_SANITYCHECK_OCCUPANCY_LEVELS', 'You have configured your property to allow children but you have not set any occupancy levels for children yet.');
+jr_define('_JOMRES_SANITYCHECK_OCCUPANCY_LEVELS', 'You have configured your property to allow children but you have not set any occupancy levels for children yet. You can change this setting in Settings > Property Configuration > Bookings tab.');
 jr_define('_JOMRES_SANITYCHECK_OCCUPANCY_LEVELS_BUTTON', 'Set occupancy levels');
 jr_define('JOMRES_OCCUPANCY_LEVELS_INFO', 'Any time you edit a room or your property type you should check and update the occupancy levels for your property/rooms as these affect the number of guests who can be accepted in the booking form.');
 
@@ -2761,3 +2752,16 @@ You can leave the target language set to your current language and use this page
 
 	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "Development mode is enabled, therefore if you use this feature you will be updating your installation of Jomres to the Nightly branch. This is the most recent version of Jomres and may or may not be stable. If you do not want to update to Nightly please visit Admin > Jomres > Settings > Site Configuration > Debugging tab and set the Production/Development option to Production.");
 
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN', "Include children in occupancy level checks?");
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN_DESC_MRP', "When guests make bookings, the rooms have a maximum number of guests that they can accommodate.  If the total number of guests exceeds the number of guests the selected rooms can accommodate, then the booking form will tell them that they need to select more rooms.    
+ 
+ If you set this option to Yes then the number of children will be included in the total number of guests check. If you set this option to No then the number of children will not be included in the total number of guests check. This means that if you set this option to No then a party of 4, for example, 2 adults and 2 children, will be able to book a double room that occommodates 2 adults. ");
+
+
+	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Select Yes if you want to charge per-person-per-night.');
+
+	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"Featured");
+
+jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', 'Item Hire');
+
+jr_define('SHORTCODE_INFO_JOMRES_V_JOMRES_SCRIPT',"Shortcodes need to be wrapped in &#123;&#125; in Joomla, or [] in Wordpress (BRACKETS). There are three ways the pages generated by shortcodes can be viewed. The first is to add a shortcode to an article/page/module in the format BRACKETjomres shortcode argumentsBRACKET. The second is within Jomres template files, where you would put BRACKETjomres_script shortcode argumentsBRACKET. The last way is via the url, so for example in Joomla you would put www.domain.com.com/index.php?option=com_jomres&task=SHORTCODE&ARGUMENTS=ARGUMENTS. ");

@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 //#################################################################
@@ -628,26 +628,17 @@ jr_define('JOMRES_COM_A_TARIFFMODE_NORMAL', 'Normal');
 jr_define('JOMRES_COM_A_TARIFFMODE_ADVANCED', 'Avanceret');
 jr_define('JOMRES_COM_A_TARIFFMODE_TARIFFTYPES', 'Micromanage');
 jr_define('JOMRES_COM_A_TARIFFMODE', 'Tariff Configuration Mode');
-jr_define('JOMRES_COM_A_TARIFFMODE_DESC', "<b> Advarsel: Skift mellem forskellige tariftyper kan resultere i tab af data. Se bemærkning herunder angående dette </b>.
-<br/> <br/>
-Du har tre muligheder for, hvordan du konfigurerer dine takster. <br/>
-Normal tilstand: Du vil have en takst for hver værelsestype, der er gyldig i de næste 10 år. <br/>
-Mikromanage: Du kan ændre prisen for hver dag for hvert værelse/ejendomstype. <br/>
-Avanceret: Den \gamle \" Jomres -metode til håndtering af takster. <br/>
+jr_define('JOMRES_COM_A_TARIFFMODE_DESC', "<b>Advarsel: Skift mellem forskellige takstredigeringstilstande kan resultere i tab af data. Se bemærkningen nedenfor om dette.</b>.
+<br/><br/>
+Du har to muligheder for, hvordan du konfigurerer dine takster.<br/>
+Micromanage: Du kan ændre prisen for hver dag for hver værelse/ejendomstype. <br/>
+Avanceret: Du kan oprette et sæt takster, der ikke er knyttet til hinanden. <br/>
 <br/>
-De forskellige taksttilstande giver dig mulighed for at vælge den metode til konfiguration af takster, der passer bedst til dig. <br/>
-Normal tilstand er den mest forenklede, men det er den letteste at forstå, fordi den krydser referencerum og takster til værelsestype/ejendomstyper og giver dig mulighed for at konfigurere værelser og priser på samme side. <br/>
-Mikrostyring giver dig mulighed for at variere satserne dagligt uden at skulle styre mængder af takster, det gøres ved at krydshenvise mange forskellige takster med hinanden. Dette resulterer i, at der oprettes en række takster for dig over en periode, men du kan ikke lægge takster over hinanden. <br/>
-Avanceret tilstand lader dig oprette et værelse og knytte det til en værelsestype. Du opretter derefter en takst og forbinder DET med en værelsestype. Ved hjælp af denne metode er det muligt at \"lagre \" takster over hinanden, f.eks. Kan en værelsestype \"Dobbeltseng \" have en takst for bed and breakfast og en anden for seng, morgenmad og aftensmad. Den avancerede metode kræver lidt mere opmærksomhed på detaljer, fordi det er muligt at adskille et værelse eller en tarif fra en værelse/ejendomstype, eller at forkert angive gyldig fra og til datoer, men det giver dig konfigurationsmuligheder, som de andre tilstande ikke tilbyde. <br/>
+Micromanage giver dig mulighed for at variere satserne fra dag til dag uden at skulle administrere bunker af takster, det gøres ved at krydshenvise en masse forskellige takster med hinanden. Dette resulterer i, at der oprettes en række takster for dig, der dækker en periode, men du kan ikke lægge tariffer over hinanden.<br/>
+Avanceret tilstand lader dig oprette takster, der ikke er forbundet med andre takster. Dette giver dig mulighed for at oprette priser for din ejendom, som du ellers ikke kan oprette i Micromanage-tilstand. Det er mere besværligt at bruge, fordi du skal sikre, at hver tarifs gyldige fra/til datoer passer perfekt, men det giver dig mulighed for at oprette mere komplicerede takster.<br/>
 <br/>
-Fordi normale og mikromanage -tilstande kræver et specifikt opsætning af lokaler og takster for at tarifftilstanden skal fungere, kan det være nødvendigt at nulstille nogle data for at gøre de aktuelle tarifkonfigurationer kompatible med den aktuelle tarifredigeringsfunktion. <br/>
-<br/>
-Normal -> Avanceret. Ingen ændring. Eksisterende takster bevares. <br/>
-Normal -> Mikromanage. Alle eksisterende takster fjernes. <br/>
-Avanceret -> Normal. Alle eksisterende takster fjernes. <br/>
-Avanceret -> Micromanage. Alle eksisterende takster fjernes. <br/>
-Mikromanage -> Avanceret. Alle eksisterende krydshenvisninger mellem takster fjernes, men selve taksterne forbliver. <br/>
-Mikromanage -> Normal. Alle eksisterende krydshenvisninger og takster fjernes. <br/> ");
+Hvis du skifter fra Advanced til Micromanage, vil alle eksisterende takster blive fjernet.<br/>
+<br/>");
 jr_define('_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS', 'Show rooms list in property details page?');
 jr_define('JOMRES_PROPERTYTYPE', 'Egenskabstype');
 jr_define('JOMRES_MAXPEOPLEINROOM', 'Max people per room');
@@ -679,7 +670,7 @@ jr_define('_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', 'er blevet nedsat fra');
 jr_define('_JOMCOMP_WISEPRICE_TO', 'til');
 jr_define('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', 'Room price not discounted');
 jr_define('JOMRES_COM_A_MAPSKEY', 'Google maps API -nøgle');
-jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'Du kan få en Google maps API-nøgle fra <a href = "https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key" target="_blank"> Google maps </a>. Når du har indtastet din kortnøgle her, viser Jomres kortet på din ejendomsoplysningsside. ');
+jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'Du kan få en Google maps API-nøgle fra <a href = "https://console.cloud.google.com/projectselector2/google/maps-apis/credentials" target="_blank"> Google maps </a>. Når du har indtastet din kortnøgle her, viser Jomres kortet på din ejendomsoplysningsside. ');
 jr_define('_JOMCOMP_LASTMINUTE_CPANEL', 'Last minute');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE', 'Aktiv?');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE_DESC', 'Indstil dette til Ja, hvis du vil tilbyde tilbud i sidste øjeblik.');
@@ -1168,7 +1159,7 @@ jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD', 'Automatisk su
 jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD_DESC', 'Denne grænse er det antal dage, en leder skal betale en faktura, før de suspenderes, og deres ejendomme ikke offentliggøres.');
 //4.7.2
 jr_define('_JOMRES_COM_LANGUAGE_CONTEXT', 'Sproglig kontekst');
-jr_define('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', 'Brug denne indstilling til at ændre webstedets sprogkontekst. Denne funktion gør det muligt for Jomres at bruge etiketter, der passer til dit aktuelle fokus, så hvis dit fokus er som en yachtmægler, ændres konteksten tillade Jomres at præsentere etiketter fra en anden sprogfil. Hvis du f.eks. indstiller konteksten til "Yacht Brokerage", finder Jomres først det aktuelle sprog, derefter søger i mappen /'.JOMRES_ROOT_DIRECTORY.'/languages ​​efter et underkatalog kaldet "yachtbrokerage". Hvis filen findes for det aktuelle sprog, vil den fil blive brugt. Hvis ikke, vil Jomres søge efter en engelsk sprogfil i det samme bibliotek. Hvis den ikke kan findes, vil Jomres bruge sprogfil for det aktuelt valgte sprog i biblioteket /'.JOMRES_ROOT_DIRECTORY.'/languages. ');
+jr_define('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', 'Brug denne indstilling til at ændre webstedets sprogkontekst. Denne funktion gør det muligt for Jomres at bruge etiketter, der passer til den måde, du bruger Jomres på, så hvis dit fokus er som en Yacht-mæglervirksomhed, vil en ændring af konteksten give Jomres mulighed for at præsentere etiketter, der passer til yachter. For eksempel, hvis du indstiller konteksten til "Yacht Brokerage", vil Jomres først finde det aktuelle sprog og derefter søge i den tilpassede tekstdatabase for strenge, der er gemt med en sprogkontekst "yachtbrokerage". Hvis der findes tilpassede strenge til det aktuelle sprog og kontekst, vil disse blive brugt. Hvis ikke, vil Jomres falde tilbage til de sprogdefinitioner, der bruges af dets kernesprogfiler. ');
 // 4.7.3
 jr_define('_JOMRES_COM_ADVANCED_SITE_CONFIG', 'Avanceret webstedskonfiguration');
 jr_define('_JOMRES_COM_ADVANCED_SITE_CONFIG_DESC', 'Indstil denne indstilling til Ja, hvis du vil bruge de avancerede konfigurationsmuligheder for webstedet. Hvis du lige starter med Jomres, anbefaler vi dig at overlade dette til Nej for øjeblikket, da standardinstallationen er tilstrækkeligt til at komme i gang, i stedet skal du tilføje Jomres til hovedmenuen og logge på frontend som "admin" og begynde at konfigurere dine ejendomme. Bemærk, at mange af de avancerede muligheder muligvis ikke er tilgængelige, hvis du ikke gør det t have de eller de relevante plugins installeret. Brugere af det gratis kernesystem vil ikke være i stand til at drage fuld fordel af de funktioner, de aktiverer. ');
@@ -1481,7 +1472,7 @@ jr_define('_JOMRES_REGION_TRANSLATION_SWITCH_TITLE', 'Regionnavne kan oversætte
 jr_define('_JOMRES_REGION_TRANSLATION_SWITCH_DESC', "Medmindre du kører en meget hurtig server, rådes du til at lade dette sæt stå til Nej. På grund af det store antal regionsnavne, tager regionnavneoversættelse meget hukommelse, som kan bremse dine søgeresultater ned.");
 jr_define('_JOMRES_FRONT_MR_BOOKOUT_GUESTBOOKEDOUT', 'Gæst reserveret.');
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_EMAIL_ALREADY_IN_USE', 'Beklager, denne e -mail -adresse er allerede i brug. Hvis dette er din e -mail -adresse, skal du sørge for at have logget ind, før du prøver at bestille.');
-jr_define('JOMRES_TAPTOCALL', 'Tap to call');
+jr_define('JOMRES_TAPTOCALL', 'Call us');
 jr_define('JOMRES_NEWREVIEW_SUBJECT', 'Ny anmeldelse for');
 jr_define('JOMRES_NEWREVIEW_MESSAGE', 'En ny anmeldelse er blevet efterladt for');
 jr_define('JOMRES_NEWREPORT_SUBJECT', 'Ny rapport');
@@ -2760,3 +2751,17 @@ Du kan lade målsproget være indstillet til dit nuværende sprog og bruge denne
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Testtilstand");
 
 	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "Udviklingstilstand er aktiveret, så hvis du bruger denne funktion, opdaterer du din installation af Jomres til Nightly-grenen. Dette er den seneste version af Jomres og er muligvis ikke stabil. Hvis du gør det. ikke ønsker at opdatere til Nightly, besøg venligst Admin > Jomres > Indstillinger > Site Configuration > Debugging fanen og indstil Produktion/Udviklingsindstillingen til Produktion.");
+
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN', "Inkluder børn i belægningskontrol?");
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN_DESC_MRP', "Når gæster foretager reservationer, har værelserne et maksimalt antal gæster, som de kan indkvartere. Hvis det samlede antal gæster overstiger antallet af gæster, de valgte værelser kan rumme, vil reservationsformularen fortælle dem, at de skal vælge flere værelser.
+ 
+  Hvis du indstiller denne mulighed til Ja, vil antallet af børn blive inkluderet i det samlede antal gæster check. Hvis du indstiller denne mulighed til Nej, vil antallet af børn ikke blive inkluderet i det samlede antal gæster check. Det betyder, at hvis du indstiller denne mulighed til Nej, så vil et selskab på 4, for eksempel 2 voksne og 2 børn, kunne booke et dobbeltværelse med plads til 2 voksne. ");
+
+
+	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Vælg Ja, hvis du vil opkræve pr. person-per-nat.');
+
+	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"Udvalgt");
+
+jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', 'Vareudlejning');
+
+jr_define('SHORTCODE_INFO_JOMRES_V_JOMRES_SCRIPT',"Shortcodes skal pakkes ind i &#123;&#125; i Joomla eller [] i Wordpress (BRACKETS). Der er tre måder, sider genereret af shortcodes kan ses på. Den første er at tilføje en shortcode til en artikel/side/modul i formatet BRACKETjomres shortcode argumentsBRACKET. Den anden er inden for Jomres skabelonfiler, hvor du ville sætte BRACKETjomres_script shortcode argumentsBRACKET. Den sidste måde er via url'en, så for eksempel i Joomla ville du sætte www.domain.com/index.php?option=com_jomres&task=SHORTCODE&ARGUMENTS=ARGUMENTS. ");

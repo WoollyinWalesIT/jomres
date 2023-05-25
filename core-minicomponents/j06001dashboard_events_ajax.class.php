@@ -4,16 +4,16 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-	
+	#[AllowDynamicProperties]
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
@@ -73,15 +73,15 @@ class j06001dashboard_events_ajax
 		$guest_contacts = array();
 		$result = array();
 
-		if (jomres_bootstrap_version() == 4) {
-			$img_pending = 'badge badge-info';
-			$img_arrivetoday = 'badge badge-primary';
-			$img_resident = 'badge badge-success';
-			$img_departtoday = 'badge badge-secondary';
-			$img_stillhere = 'badge badge-warning';
-			$img_late = 'badge badge-danger';
-			$img_bookedout = 'badge badge-light';
-			$img_black = 'badge badge-dark';
+		if (jomres_bootstrap_version() > 4) {
+			$img_pending = 'badge bg-info';
+			$img_arrivetoday = 'badge bg-primary';
+			$img_resident = 'badge bg-success';
+			$img_departtoday = 'badge bg-secondary';
+			$img_stillhere = 'badge bg-warning';
+			$img_late = 'badge bg-danger';
+			$img_bookedout = 'badge bg-light';
+			$img_black = 'badge bg-dark';
 		} else {
 			$img_pending = 'label label-grey';
 			$img_arrivetoday = 'label label-orange';

@@ -6,14 +6,14 @@
 	 *
 	 *  @version Jomres 10.2.2
 	 *
-	 * @copyright	2005-2022 Vince Wooll
+	 * @copyright	2005-2023 Vince Wooll
 	 * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
 	 **/
 
 // ################################################################
 	defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-
+	#[AllowDynamicProperties]
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 */
@@ -91,10 +91,16 @@ class j16000updates
 				$tmpl->displayParsedTemplate();
 			}
 		} else {
+			//emptyDir(JOMRES_LIBRARIES_ABSPATH.'packages');
+			//rmdir(JOMRES_LIBRARIES_ABSPATH.'packages');
+
 			$this->do_download_and_unzip($local_archive);
 			if (!$this->test_download) {
 				$this->do_dir_move();
 			}
+
+
+
 			unlink($local_archive);
 
 			if (!$this->test_download) {

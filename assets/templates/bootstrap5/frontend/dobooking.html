@@ -1,183 +1,167 @@
 <patTemplate:tmpl name="pageoutput">
-<style type="text/css">
-	label.valid {
-		width: 24px;
-		height: 24px;
-		background: url({JOMRES_IMAGES_RELPATH}valid.png) center center no-repeat;
-		display: inline-block;
-		text-indent: -9999px;
-	}
+	<script type="text/javascript">
+		{BOOKEDDATES}
+		var isSRP = false;
+		/*var x*/
+		var mininterval = {MININTERVAL};
+		var rel_path = "{RELPATH}";
+		var livesite = "{SUBMITURL}";
+		var ajaxurl = "{JOMRES_SITEPAGE_URL_AJAX}&room_type_filter={ROOM_TYPE_FILTER}";
 
-	label.error {
-		font-weight: bold;
-		color: red;
-		padding: 2px 8px;
-		margin-top: 2px;
-	}
-	
+		var noroomsselectedyetmessage = "{NOROOMSSELECTEDYETMESSAGE}";
 
-</style>
-<script type="text/javascript">
-	{BOOKEDDATES}
-	var isSRP = false;
-	/*var x*/
-	var mininterval = {MININTERVAL};
-	var rel_path = "{RELPATH}";
-	var livesite = "{SUBMITURL}";
-	var ajaxurl = "{JOMRES_SITEPAGE_URL_AJAX}&room_type_filter={ROOM_TYPE_FILTER}";
+		var validation_firstname = {VALIDATION_FIRSTNAME};
+		var validation_surname = {VALIDATION_SURNAME};
+		var validation_houseno = {VALIDATION_HOUSENO};
+		var validation_street = {VALIDATION_STREET};
+		var validation_town = {VALIDATION_TOWN};
+		var validation_postcode = {VALIDATION_POSTCODE};
+		var validation_country = {VALIDATION_COUNTRY};
+		var validation_landline = {VALIDATION_LANDLINE};
+		var validation_cellmobile = {VALIDATION_CELLMOBILE};
+		var validation_email = {VALIDATION_EMAIL};
 
-	var noroomsselectedyetmessage = "{NOROOMSSELECTEDYETMESSAGE}";
+		var show_extras = {SHOWEXTRAS};
+		var rooms_list_enabled = {JOMRES_ROOMSLISTENABLED};
 
-	var validation_firstname = {VALIDATION_FIRSTNAME};
-	var validation_surname = {VALIDATION_SURNAME};
-	var validation_houseno = {VALIDATION_HOUSENO};
-	var validation_street = {VALIDATION_STREET};
-	var validation_town = {VALIDATION_TOWN};
-	var validation_postcode = {VALIDATION_POSTCODE};
-	var validation_country = {VALIDATION_COUNTRY};
-	var validation_landline = {VALIDATION_LANDLINE};
-	var validation_cellmobile = {VALIDATION_CELLMOBILE};
-	var validation_email = {VALIDATION_EMAIL};
+		var error_class = "alert alert-danger";
+		var highlight_class = "alert alert-warning";
 
-	var show_extras = {SHOWEXTRAS};
-	var rooms_list_enabled = {JOMRES_ROOMSLISTENABLED};
+		function dateStatus(date) {
+			var min = new Date({EARLIESTYEAR}, {EARLIESTMON}, {EARLIESTDAY});
+			//var max = new Date(2050,10,05);
+			if (date.getTime() < min.getTime())
+				return true; // true says "disable"
+			else
+				return false; // leave other dates enabled
+			//if (date.getTime() < min.getTime() || date.getTime() > max.getTime())
+		}
 
-	var error_class = "alert alert-danger";
-	var highlight_class = "alert alert-warning";
+		var success_class = "alert alert-success";
 
-	function dateStatus(date) {
-		var min = new Date({EARLIESTYEAR}, {EARLIESTMON}, {EARLIESTDAY});
-		//var max = new Date(2050,10,05);
-		if (date.getTime() < min.getTime())
-			return true; // true says "disable"
-		else
-			return false; // leave other dates enabled
-		//if (date.getTime() < min.getTime() || date.getTime() > max.getTime())
-	}
+		var running_bootstrap = {BOOTSTRAP_JS_VAR};
 
-	var success_class = "alert alert-success";
+		document.addEventListener('DOMContentLoaded', function(){
 
-	var running_bootstrap = {BOOTSTRAP_JS_VAR};
+			jomresJquery('#ajaxform').attr('novalidate', 'novalidate'); // Disable html5 validation
 
-	document.addEventListener('DOMContentLoaded', function(){
-
-		jomresJquery('#ajaxform').attr('novalidate', 'novalidate'); // Disable html5 validation
-
-		jomresJquery('#ajaxform').validate(
-			{
-			rules: {
-				firstname: {
-					minlength: 1,
-					required: {VALIDATION_FIRSTNAME}
-				},
-				surname: {
-					minlength: 1,
-					required: {VALIDATION_SURNAME}
-				},
-				house: {
-					minlength: 1,
-					required: {VALIDATION_HOUSENO}
-				},
-				street: {
-					minlength: 1,
-					required: {VALIDATION_STREET}
-				},
-				town: {
-					minlength: 1,
-					required: {VALIDATION_TOWN}
-				},
-				postcode: {
-					minlength: 1,
-					required: {VALIDATION_POSTCODE}
-				},
-				tel_landline: {
-					minlength: 1,
-					required: {VALIDATION_LANDLINE}
-				},
-				tel_mobile: {
-					minlength: 1,
-					required: {VALIDATION_CELLMOBILE}
-				},
-				eemail: {
-					email: true,
-					required: {VALIDATION_EMAIL},
-					remote: {
-						url: ajaxurl + '&task=handlereq',
-						type: "get",
-						data: {
-							field: 'email_usage_check',
-							value: function () {
-								return jomresJquery('#ajaxform :input[name="eemail"]').val();
+			jomresJquery('#ajaxform').validate(
+					{
+						rules: {
+							firstname: {
+								minlength: 1,
+								required: {VALIDATION_FIRSTNAME}
 							},
-							property_uid_check: function () {
-								return jomresJquery('#booking_form_property_uid').val();
+							surname: {
+								minlength: 1,
+								required: {VALIDATION_SURNAME}
 							},
-						}
-					}
-				}
-				{CUSTOMFIELD_JAVASCRIPT}
+							house: {
+								minlength: 1,
+								required: {VALIDATION_HOUSENO}
+							},
+							street: {
+								minlength: 1,
+								required: {VALIDATION_STREET}
+							},
+							town: {
+								minlength: 1,
+								required: {VALIDATION_TOWN}
+							},
+							postcode: {
+								minlength: 1,
+								required: {VALIDATION_POSTCODE}
+							},
+							tel_landline: {
+								minlength: 1,
+								required: {VALIDATION_LANDLINE}
+							},
+							tel_mobile: {
+								minlength: 1,
+								required: {VALIDATION_CELLMOBILE}
+							},
+							eemail: {
+								email: true,
+								required: {VALIDATION_EMAIL},
+								remote: {
+									url: ajaxurl + '&task=handlereq',
+									type: "get",
+									data: {
+										field: 'email_usage_check',
+										value: function () {
+											return jomresJquery('#ajaxform :input[name="eemail"]').val();
+										},
+										property_uid_check: function () {
+											return jomresJquery('#booking_form_property_uid').val();
+										},
+									}
+								}
+							}
+			{CUSTOMFIELD_JAVASCRIPT}
 
-			},
+		},
 
 			messages: {
 				firstname: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_FIRSTNAME}",
-				surname: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_SURNAME}",
-				house: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_HOUSENO}",
-				street: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_STREET}",
-				town: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_TOWN}",
-				postcode: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_POSTCODE}",
-				tel_landline: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_LANDLINE}",
-				tel_mobile: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_CELLPHONE}",
-				eemail: {
+						surname: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_SURNAME}",
+						house: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_HOUSENO}",
+						street: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_STREET}",
+						town: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_TOWN}",
+						postcode: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_POSTCODE}",
+						tel_landline: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_LANDLINE}",
+						tel_mobile: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_CELLPHONE}",
+						eemail: {
 					required: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_EMAIL}",
-					remote: "{EMAIL_ALREADY_INUSE}"
-					}
-				},
-
-			highlight: function (label) {
-				jomresJquery(label).closest('.form-group').removeClass('has-success').addClass('has-error');
+							remote: "{EMAIL_ALREADY_INUSE}"
+				}
 			},
-			success: function (label) {
-				jomresJquery(label).closest('.form-group').removeClass('has-error').addClass('has-success');
-			}
+            highlight: function (label) {
+                jomresJquery(label).closest('.form-group').removeClass('alert alert-success').addClass('alert alert-danger mt-3');
+                jomresJquery('html, body').animate({
+                    scrollTop: jomresJquery(label).offset().top
+                }, 2000);
+            },
+            success: function (label) {
+                jomresJquery(label).closest('.form-group').removeClass('alert alert-danger').addClass('alert alert-success');
+            }
 		});
 
 
-		{MODAL}
-		jomresJquery.jheartbeat.set({
-			url: ajaxurl + "&task=handlereq&no_html=1&field=heartbeat&property_uid={PROPERTYUID}",
-			delay: 30000
-		});
-		<patTemplate:tmpl name="onload">{ONLOAD}</patTemplate:tmpl>
-	}, false);
+			{MODAL}
+			jomresJquery.jheartbeat.set({
+				url: ajaxurl + "&task=handlereq&no_html=1&field=heartbeat&property_uid={PROPERTYUID}",
+				delay: 30000
+			});
+			<patTemplate:tmpl name="onload">{ONLOAD}</patTemplate:tmpl>
+		}, false);
 
-	function open_booking_form() {
-		jomresJquery("#booking_form").dialog("open");
-	}
-	;
+		function open_booking_form() {
+			jomresJquery("#booking_form").dialog("open");
+		}
+		;
 
-	document.addEventListener('DOMContentLoaded', function() {
-		jomresJquery("#country").change(function(){
-			populateDiv("guest_region_div" , '<div class="spinner-border text-info" role="status">\n' +
-					'  <span class="visually-hidden">Loading...</span>\n' +
-					'</div>');
-			var selectedValue = jomresJquery(this).find(":selected").val();
-			clause = "&task=get_region_dropdown_for_country_code&country="+selectedValue;
-			jomresJquery.get(live_site_ajax + clause, function (data) {
-				populateDiv("guest_region_div",data);
+		document.addEventListener('DOMContentLoaded', function() {
+			jomresJquery("#country").change(function(){
+				populateDiv("guest_region_div" , '<div class="spinner-border text-info" role="status">\n' +
+						'  <span class="visually-hidden">Loading...</span>\n' +
+						'</div>');
+				var selectedValue = jomresJquery(this).find(":selected").val();
+				clause = "&task=get_region_dropdown_for_country_code&country="+selectedValue;
+				jomresJquery.get(live_site_ajax + clause, function (data) {
+					populateDiv("guest_region_div",data);
 				});
 			});
 		});
 
-	document.addEventListener('DOMContentLoaded', function() {
-		jomresJquery('[data-bs-toggle="tooltip"]').tooltip()
-	})
-</script>
+		document.addEventListener('DOMContentLoaded', function() {
+			jomresJquery('[data-bs-toggle="tooltip"]').tooltip()
+		})
+	</script>
 
-{OPENBOOKINGOFRM_BUTTON} {BUTTON_BACK_TO_PROPERTY_DETAILS}
+	{OPENBOOKINGOFRM_BUTTON} {BUTTON_BACK_TO_PROPERTY_DETAILS}
 	<div id="booking_form" {HIDDENSTYLE}>
 		<form action="javascript:dobooking_validate();" name="ajaxform" id="ajaxform"
-		      method="post" role="form">
+			  method="post" role="form">
 			<!--<p>{AJAXFORM_INSTRUCTIONS}</p>-->
 			<div class="row">
 				<div class="col-lg-8">
@@ -212,7 +196,7 @@
 										</div>
 									</pattemplate:tmpl>
 								</div>
-								<div class="row">
+								<div class="row" {GUEST_INPUTS_HIDDEN}>
 									<pattemplate:tmpl name="guesttypes" type="simpleCondition" requiredvars="fieldname">
 										<div class="col-md-12">
 											<div class="form-group">
@@ -225,9 +209,9 @@
 											<p class="form-text">{INFO}</p>
 										</div>
 									</pattemplate:tmpl>
-										<div class="col-9">
-											<div id="child_selectors" class="row">{BOOKING_FORM_CHILD_SELECTORS}</div>
-										</div>
+									<div class="col-9">
+										<div id="child_selectors" class="row">{BOOKING_FORM_CHILD_SELECTORS}</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -235,19 +219,15 @@
 					<pattemplate:comment>---------------------------------------- Classic rooms list ----------------------------------------</pattemplate:comment>
 					<pattemplate:tmpl
 							name="classic_rooms_list" type="simpleCondition" requiredvars="ajaxform_available_desc">
-						
+
 						<div class="card">
 							<div class="card-header">
 								<div class="card-title"><strong>{AJAXFORM_AVAILABLE_DESC}</strong></div>
 							</div>
 							<div class="card-body">
 
-								<pattemplate:comment>
-									<p>{LOOKRIGHT}</p>
-									<p class="alert alert-warning">{ESTIMATEWARNING}</p>
-								</pattemplate:comment>
 								<pattemplate:tmpl name="roomfeaturesrowheader" type="simpleCondition"
-								                  requiredvars="_jomres_bookingorm_roomfeature_filter">
+												  requiredvars="_jomres_bookingorm_roomfeature_filter">
 									<div class="pb-2">
 										<div class="accordion" id="accordionRoomFeatureFilter">
 											<div class="accordion-item">
@@ -262,12 +242,12 @@
 															<pattemplate:tmpl name="roomfeaturesrow" type="simpleCondition" requiredvars="inputbox">
 																<div class="col">
 																	<div class="form-group">
-																		
+
 																		<label class="col-form-label"><div class="form-check form-switch">{INPUTBOX}</div>
-																		
+
 																			<img src="{IMAGE_RELATIVE}" class="img-fluid card-img-top" style="max-height: 100px" /> {DESCRIPTION}
 																		</label>
-																		
+
 																	</div>
 																</div>
 															</pattemplate:tmpl>
@@ -280,11 +260,12 @@
 
 								</pattemplate:tmpl>
 
-								<div class="clearfix"></div>
+
 								<div class="row">
 									<div class="col-6">
-										<div id="availRooms">{AVAILABLEROOMS}</div>
+										<div id="availRooms"></div>
 									</div>
+
 									<div class="col-6">
 										<div id="selectedRooms">{SELECTEDROOM}</div>
 									</div>
@@ -299,7 +280,9 @@
 								<div class="card-title">{AJAXFORM_AVAILABLE_DESC}</div>
 							</div>
 							<div class="card-body">{AMENDBOOKING_SELECTEDROOMSDIV}
-								<p class="alert alert-warning">{ESTIMATEWARNING}</p>
+								<pattemplate:comment>
+									<p class="alert alert-warning">{ESTIMATEWARNING}</p>
+								</pattemplate:comment>
 								<div id="availRooms">{AVAILABLEROOMS}</div>
 							</div>
 						</div>
@@ -311,13 +294,13 @@
 									<div class="card-title"><strong>{EXTRAS_HEADER}</strong></div>
 								</div>
 								<div class="card-body">
-									<pattemplate:tmpl name="third_party_extras" type="simpleCondition" requiredvars="third_party_extra">{THIRD_PARTY_EXTRA}</pattemplate:tmpl>
 									<div id="core_extras" class="row">
 										<pattemplate:tmpl name="extras">{EXTRAS_TEMPLATE}</pattemplate:tmpl>
 									</div>
 								</div>
 							</div>
 						</div>
+						<pattemplate:tmpl name="third_party_extras" type="simpleCondition" requiredvars="third_party_extra">{THIRD_PARTY_EXTRA}</pattemplate:tmpl>
 					</pattemplate:tmpl>
 					<div class="row" id="bookingform_address">
 						<div class="col-lg-12">
@@ -347,7 +330,7 @@
 													</div>
 												</div>
 											</div>
-											
+
 											<div class="form-group  {BOOTSTRAP_HOUSENO_WARNING}" {INPUT_FORM_REQUIRED_FIELD_HIDDEN_FIELD_HOUSENO}>
 												<label class="col-form-label" for="house">{HHOUSENO}</label>
 												<input type="text" name="house" id="house" value="{HOUSENO}"
@@ -381,8 +364,8 @@
 													</div>
 												</div>
 											</div>
-											
-											
+
+
 											<div class="row">
 												<div class="col">
 													<div class="form-group {BOOTSTRAP_CELLMOBILE_WARNING} " {INPUT_FORM_REQUIRED_FIELD_HIDDEN_FIELD_MOBILE}>
@@ -390,7 +373,7 @@
 														<input type="tel" name="tel_mobile" id="tel_mobile" value="{MOBILE}"
 															   class="form-control" placeholder="{COMMON_PLACEHOLDER_MOBILE}">
 													</div>
-													
+
 												</div>
 												<div class="col">
 													<div class="form-group {BOOTSTRAP_LANDLINE_WARNING} " {INPUT_FORM_REQUIRED_FIELD_HIDDEN_FIELD_TEL}>
@@ -400,11 +383,11 @@
 													</div>
 												</div>
 											</div>
-											
+
 											<div class="form-group {BOOTSTRAP_EMAIL_WARNING}">
 												<label class="col-form-label" for="eemail">{HEMAIL}</label>
 												<input type="email" name="eemail" id="eemail" value="{EMAIL}"
-													   class="form-control" {email_input_disabled}="">
+													   class="form-control" {EMAIL_INPUT_DISABLED}="" />
 											</div>
 											<pattemplate:tmpl name="customfields" type="simpleCondition" requiredvars="fieldname">
 												<div class="form-group {WARNING}">
@@ -421,7 +404,7 @@
 					</div>
 				</div>
 				<div class="col-lg-4" id="totalsWrapper">
-					<div id="totals" class="">
+					<div id="totals" class="sticky-top" style="z-index:1;">
 						<pattemplate:tmpl name="coupons" type="simpleCondition" requiredvars="coupon_title">
 							<div class="card">
 								<div class="card-header">
@@ -432,7 +415,7 @@
 									<div class="form-group">
 										<!--<label class="col-form-label" for="coupon">{COUPON_TITLE}</label>-->
 										<input class="form-control ignore" size="25" type="text" name="coupon"
-										       id="coupon" value="{COUPON_CODE}" placeholder="{COUPON_TITLE}">
+											   id="coupon" value="{COUPON_CODE}" placeholder="{COUPON_TITLE}">
 										<div id="coupon_response" class="jomres_message form-text"></div>
 									</div>
 								</div>
@@ -440,15 +423,14 @@
 								</div>
 							</div>
 						</pattemplate:tmpl>
-						<div id="messages">&nbsp;</div>
-
 						<div class="card">
 							<div class="card-header">
 								<div class="card-title">	<strong>{PRICE_SUMMARY}</strong>
 								</div>
 							</div>
 							<div class="card-body">
-								<p><span id="staydays"></span> {ACCOMMODATION_NIGHTS} <span id="roompernight"></span>{ACCOMMODATION_PERROOM}</p>
+								<div id="messages">&nbsp;</div>
+								<p><span id="staydays"></span> {ACCOMMODATION_NIGHTS} <span id="roompernight"></span> {ACCOMMODATION_PERROOM}</p>
 								<p><span id="totalinparty"></span> {BILLING_TOTALINPARTY}</p>
 								<p><span id="discount" class="jomres_message">&#xA0;</span>
 								</p>
@@ -536,22 +518,22 @@
 										<div class="form-group ">
 											<label class="col-form-label" for="override_room_total">{_JOMCOMP_AMEND_OVERRIDE_ACCOMMODATION_TOTAL}</label>
 											<input class="form-control ignore"
-											       name="override_room_total" id="override_room_total" value="" type="number"
-											       pattern="[0-9]+([\,|\.][0-9]+)?" step="0.01">
+												   name="override_room_total" id="override_room_total" value="" type="number"
+												   pattern="[0-9]+([\,|\.][0-9]+)?" step="0.01">
 										</div>
 									</div>
 									<div class="col-lg-12">
 										<div class="form-group">
 											<label class="col-form-label" for="override_deposit">{_JOMCOMP_AMEND_OVERRIDE_DEPOSIT}</label>
 											<input class="form-control ignore"
-											       name="override_deposit" id="override_deposit" value="" type="number" pattern="[0-9]+([\,|\.][0-9]+)?"
-											       step="0.01">
+												   name="override_deposit" id="override_deposit" value="" type="number" pattern="[0-9]+([\,|\.][0-9]+)?"
+												   step="0.01">
 										</div>
 									</div>
 									<div id="override_response" class="jomres_message"></div>
 								</div>
 								<div class="card-footer">	<a href="javascript:void(0);" onclick="getResponse_override(&apos;override&apos;,jomresJquery(&apos;#override_room_total&apos;).val()+&apos;^&apos;+jomresJquery(&apos;#override_deposit&apos;).val())"
-								                                class="btn btn-secondary">{_JOMCOMP_AMEND_OVERRIDE_SAVE}</a>
+																class="btn btn-secondary">{_JOMCOMP_AMEND_OVERRIDE_SAVE}</a>
 								</div>
 							</div>
 						</pattemplate:tmpl>
@@ -566,7 +548,7 @@
 				</div>
 			</div>
 			<input type="hidden" id="booking_form_property_uid" name="property_uid"
-			       value="{PROPERTYUID}">{CSRF_TOKEN}</form>
+				   value="{PROPERTYUID}">{CSRF_TOKEN}</form>
 	</div>
 	<div id="availability_calendar_model" class="modal fade modal-dialog-scrollable" tabindex="-1" role="dialog">
 		<div class="modal-dialog modal-xl">

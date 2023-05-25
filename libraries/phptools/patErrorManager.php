@@ -2,6 +2,7 @@
 // ################################################################
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
+
 /**
  * patErrorManager main error management class used by pat tools for the
  * application-internal error management. Creates patError objects for
@@ -57,7 +58,7 @@ $GLOBALS[ '_pat_errorIgnores' ] = array ();
  */
 $GLOBALS[ '_pat_errorExpects' ] = array ();
 
-
+	#[AllowDynamicProperties]
 /**
  * patErrorManager main error management class used by pat tools for the
  * application-internal error management. Creates patError objects for
@@ -112,7 +113,7 @@ class patErrorManager
 	 * @see        raise()
 	 * @see        patError
 	 */
-	function &raiseError( $code, $msg, $info = null )
+	static function &raiseError( $code, $msg, $info = null )
 		{
 		output_fatal_error('Error triggered in patTemplate '.$msg);
 		return patErrorManager::raise( E_ERROR, $code, $msg, $info );
@@ -131,7 +132,7 @@ class patErrorManager
 	 * @see        raise()
 	 * @see        patError
 	 */
-	function &raiseWarning( $code, $msg, $info = null )
+	static function &raiseWarning( $code, $msg, $info = null )
 		{
 		return patErrorManager::raise( E_WARNING, $code, $msg, $info );
 		}
@@ -149,7 +150,7 @@ class patErrorManager
 	 * @see        raise()
 	 * @see        patError
 	 */
-	function &raiseNotice( $code, $msg, $info = null )
+		static function &raiseNotice( $code, $msg, $info = null )
 		{
 		return patErrorManager::raise( E_NOTICE, $code, $msg, $info );
 		}
@@ -167,7 +168,7 @@ class patErrorManager
 	 * @todo        implement 'simple' mode that returns just false (BC for patConfiguration)
 	 * @todo        either remove HTML tags and entities from output or test for enviroment!!! <b></b> in shell is ugly!
 	 */
-	function &raise( $level, $code, $msg, $info = null )
+		static function &raise( $level, $code, $msg, $info = null )
 		{
 		// ignore this error?
 		if ( in_array( $code, $GLOBALS[ '_pat_errorIgnores' ] ) )
@@ -226,7 +227,7 @@ class patErrorManager
 	 * @see        raise(), setErrorHandling()
 	 * @link        http://www.php.net/manual/en/function.error-reporting.php
 	 */
-	function registerErrorLevel( $level, $name )
+		static function registerErrorLevel( $level, $name )
 		{
 		if ( isset( $GLOBALS[ '_pat_errorLevels' ][ $level ] ) )
 			{
@@ -264,7 +265,7 @@ class patErrorManager
 	 * @return    mixed    $result        True on success, or a patError object if failed.
 	 * @see        getErrorHandling()
 	 */
-	function setErrorHandling( $level, $mode, $options = null )
+		static function setErrorHandling( $level, $mode, $options = null )
 		{
 		$levels = $GLOBALS[ '_pat_errorLevels' ];
 
@@ -325,7 +326,7 @@ class patErrorManager
 	 * @param    int $level        The error level to retrieve. This can be any of PHP's own error levels, e.g. E_ALL, E_NOTICE...
 	 * @return    array    $handling    All error handling details
 	 */
-	function getErrorHandling( $level )
+		static function getErrorHandling( $level )
 		{
 		return $GLOBALS[ '_pat_errorHandling' ][ $level ];
 		}
@@ -340,7 +341,7 @@ class patErrorManager
 	 * @param    integer        error level
 	 * @return    string        human-readable representation
 	 */
-	function translateErrorLevel( $level )
+		static function translateErrorLevel( $level )
 		{
 		if ( isset( $GLOBALS[ '_pat_errorLevels' ][ $level ] ) )
 			{
@@ -361,7 +362,7 @@ class patErrorManager
 	 * @param string $name classname
 	 * @return boolean $result true on success
 	 */
-	function setErrorClass( $name )
+		static function setErrorClass( $name )
 		{
 		// include old error-class
 		if ( $name !== $GLOBALS[ '_pat_errorClass' ] && !class_exists( $GLOBALS[ '_pat_errorClass' ] ) )
@@ -615,7 +616,7 @@ class patErrorManager
 	 * @return object $error error-object
 	 * @see raise()
 	 */
-	function &handleErrorDie( &$error, $options )
+		static function &handleErrorDie( &$error, $options )
 		{
 		$level_human = patErrorManager::translateErrorLevel( $error->getLevel() );
 

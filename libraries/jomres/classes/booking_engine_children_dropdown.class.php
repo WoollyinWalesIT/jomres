@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -28,7 +28,7 @@ class booking_engine_children_dropdown
 
 	/**
 	 *
-	 *
+	 * Constructor
 	 *
 	 */
 
@@ -42,11 +42,12 @@ class booking_engine_children_dropdown
 
 		$this->property_uid		= $bkg->property_uid;
 		$this->child_numbers	= $bkg->child_numbers;
+		$this->cfg_perPersonPerNight = $bkg->cfg_perPersonPerNight;
 	}
 	
 	/**
 	 *
-	 *
+	 *	Builds the child dropdowns for the old booking engine (not NBE)
 	 *
 	 */
 
@@ -97,10 +98,14 @@ class booking_engine_children_dropdown
 
 					$guests_dropdown = jomresHTML::integerSelectList(0, $remaining_slots_not_selected + $selected, 1, 'child_dropdown['.$id.']', 'size="1" class="input-mini form-select"  autocomplete="off" onchange="getResponse_children('.$id.');"', $selected, '%02d', $use_bootstrap_radios = false);
 
-					if ($rate['model'] == 'per_stay') {
-						$price_text = output_price($rate['price'])." ".jr_gettext('JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_STAY', 'JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_STAY');
+					if( $this->cfg_perPersonPerNight == '1' ) {
+						if ($rate['model'] == 'per_stay') {
+							$price_text = output_price($rate['price'])." ".jr_gettext('JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_STAY', 'JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_STAY');
+						} else {
+							$price_text = output_price($rate['price'])." ".jr_gettext('JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_NIGHT', 'JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_NIGHT');
+						}
 					} else {
-						$price_text = output_price($rate['price'])." ".jr_gettext('JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_NIGHT', 'JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_NIGHT');
+						$price_text = '';
 					}
 
 					$child_dropdowns[] = array (

@@ -4,16 +4,16 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.');
 // ################################################################
-
+	#[AllowDynamicProperties]
 class j06002edit_tariff_advanced
 {
 	function __construct()
@@ -80,8 +80,8 @@ class j06002edit_tariff_advanced
 				$output['MAXDAYS'] = $r['maxdays'];
 				$output['MINPEOPLE'] = $r['minpeople'];
 				$output['MAXPEOPLE'] = $r['maxpeople'];
-				$already_selected['MINROOMS_ALREADYSELECTED'] = jomresHTML::integerSelectList(0, 100, 1, 'minrooms_alreadyselected', 'class="inputbox" size="1"', $r['minrooms_alreadyselected']);
-				$already_selected['MAXROOMS_ALREADYSELECTED'] = jomresHTML::integerSelectList(0, 100, 1, 'maxrooms_alreadyselected', 'class="inputbox" size="1"', $r['maxrooms_alreadyselected']);
+				$already_selected['MINROOMS_ALREADYSELECTED'] = jomresHTML::integerSelectList(0, 100, 1, 'minrooms_alreadyselected', '', $r['minrooms_alreadyselected']);
+				$already_selected['MAXROOMS_ALREADYSELECTED'] = jomresHTML::integerSelectList(0, 100, 1, 'maxrooms_alreadyselected', '', $r['maxrooms_alreadyselected']);
 				
 				$ignore_pppn = $r['ignore_pppn'];
 				$allow_we = $r['allow_we'];
@@ -99,8 +99,8 @@ class j06002edit_tariff_advanced
 			$output['MAXDAYS'] = $jrportal_rates->rates_defaults['maxdays'];
 			$output['MINPEOPLE'] = $jrportal_rates->rates_defaults['minpeople'];
 			$output['MAXPEOPLE'] = $jrportal_rates->rates_defaults['maxpeople'];
-			$already_selected['MINROOMS_ALREADYSELECTED'] = jomresHTML::integerSelectList(0, $jrportal_rates->rates_defaults['maxrooms_alreadyselected'], 1, 'minrooms_alreadyselected', 'class="inputbox" size="1"', $jrportal_rates->rates_defaults['minrooms_alreadyselected']);
-			$already_selected['MAXROOMS_ALREADYSELECTED'] = jomresHTML::integerSelectList(0, $jrportal_rates->rates_defaults['maxrooms_alreadyselected'], 1, 'maxrooms_alreadyselected', 'class="inputbox" size="1"', $jrportal_rates->rates_defaults['maxrooms_alreadyselected']);
+			$already_selected['MINROOMS_ALREADYSELECTED'] = jomresHTML::integerSelectList(0, $jrportal_rates->rates_defaults['maxrooms_alreadyselected'], 1, 'minrooms_alreadyselected', '', $jrportal_rates->rates_defaults['minrooms_alreadyselected']);
+			$already_selected['MAXROOMS_ALREADYSELECTED'] = jomresHTML::integerSelectList(0, $jrportal_rates->rates_defaults['maxrooms_alreadyselected'], 1, 'maxrooms_alreadyselected', '', $jrportal_rates->rates_defaults['maxrooms_alreadyselected']);
 			
 			$ignore_pppn = $jrportal_rates->rates_defaults['ignore_pppn'];
 			$allow_we = $jrportal_rates->rates_defaults['allow_we'];
@@ -118,9 +118,9 @@ class j06002edit_tariff_advanced
 		$yesno[] = jomresHTML::makeOption('0', jr_gettext('_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false));
 		$yesno[] = jomresHTML::makeOption('1', jr_gettext('_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES', false));
 		
-		$output['IGNOREPPPNDROPDOWN'] = jomresHTML::selectList($yesno, 'ignore_pppn', 'class="inputbox" size="1"', 'value', 'text', $ignore_pppn);
-		$output['ALLOWWEEKENDSDROPDOWN'] = jomresHTML::selectList($yesno, 'allow_we', 'class="inputbox" size="1"', 'value', 'text', $allow_we);
-		$output['WEEKENDONLY'] = jomresHTML::selectList($yesno, 'weekendonly', 'class="inputbox" size="1"', 'value', 'text', $weekendonly);
+		$output['IGNOREPPPNDROPDOWN'] = jomresHTML::selectList($yesno, 'ignore_pppn', '', 'value', 'text', $ignore_pppn);
+		$output['ALLOWWEEKENDSDROPDOWN'] = jomresHTML::selectList($yesno, 'allow_we', '', 'value', 'text', $allow_we);
+		$output['WEEKENDONLY'] = jomresHTML::selectList($yesno, 'weekendonly', '', 'value', 'text', $weekendonly);
 		
 		//room classes for this property
 		if (!empty($basic_property_details->this_property_room_classes)) {
@@ -146,7 +146,7 @@ class j06002edit_tariff_advanced
 				}
 			}
 			
-			$output['ROOMTYPEDROPDOWN'] = jomresHTML::selectList($options, 'roomClass', 'class="inputbox" size="1"', 'value', 'text', $roomclassid);
+			$output['ROOMTYPEDROPDOWN'] = jomresHTML::selectList($options, 'roomClass', '', 'value', 'text', $roomclassid);
 		}
 
 		$options = array();
@@ -159,7 +159,7 @@ class j06002edit_tariff_advanced
 		$options[] = jomresHTML::makeOption(6, jr_gettext("_JOMRES_COM_MR_WEEKDAYS_SATURDAY", '_JOMRES_COM_MR_WEEKDAYS_SATURDAY'));
 		$options[] = jomresHTML::makeOption(0, jr_gettext("_JOMRES_COM_MR_WEEKDAYS_SUNDAY", '_JOMRES_COM_MR_WEEKDAYS_SUNDAY'));
 		
-		$output['DAYOFWEEK'] = jomresHTML::selectList($options, 'fixed_dayofweek', 'class="inputbox" size="1"', 'value', 'text', $fixed_dayofweek);
+		$output['DAYOFWEEK'] = jomresHTML::selectList($options, 'fixed_dayofweek', '', 'value', 'text', $fixed_dayofweek);
 
 		//labels
 		$output['HTARIFFTITLE']=jr_gettext('_JOMRES_COM_MR_LISTTARIFF_RATETITLE', '_JOMRES_COM_MR_LISTTARIFF_RATETITLE', false);

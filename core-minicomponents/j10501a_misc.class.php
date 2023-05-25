@@ -4,16 +4,16 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-	
+	#[AllowDynamicProperties]
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
@@ -104,20 +104,10 @@ class j10501a_misc
 		$configurationPanel->setright(jr_gettext('_JOMRES_SUPPORTKEY_DESC', '_JOMRES_SUPPORTKEY_DESC', false).' '.$support_key_message);
 		$configurationPanel->insertSetting();
 
-		// Joomla 4 site's can't use the BS3 template sets, so there's no point in allowing admins to change this setting
-		if (_JOMRES_DETECTED_CMS != 'joomla4') {	
-			$configurationPanel->setleft(jr_gettext('_JOMRES_BOOTSTRAP_VERSION', '_JOMRES_BOOTSTRAP_VERSION', false));
-			$configurationPanel->setmiddle($bootstrap_ver_dropdown);
-			$configurationPanel->setright(jr_gettext('_JOMRES_BOOTSTRAP_VERSION_DESC', '_JOMRES_BOOTSTRAP_VERSION_DESC', false));
-			$configurationPanel->insertSetting();
-		}
-
-		if ($jrConfig[ 'admin_options_level' ] > 1) {
-			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN', '_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN', false));
-			$configurationPanel->setmiddle($lists[ 'showLangDropdown' ]);
-			$configurationPanel->setright(jr_gettext('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', '_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', false));
-			$configurationPanel->insertSetting();
-		}
+		$configurationPanel->setleft(jr_gettext('_JOMRES_BOOTSTRAP_VERSION', '_JOMRES_BOOTSTRAP_VERSION', false));
+		$configurationPanel->setmiddle($bootstrap_ver_dropdown);
+		$configurationPanel->setright(jr_gettext('_JOMRES_BOOTSTRAP_VERSION_DESC', '_JOMRES_BOOTSTRAP_VERSION_DESC', false));
+		$configurationPanel->insertSetting();
 
 		if ($jrConfig[ 'admin_options_level' ] > 1) {
 			$configurationPanel->setleft(jr_gettext('_JOMRES_REGION_TRANSLATION_SWITCH_TITLE', '_JOMRES_REGION_TRANSLATION_SWITCH_TITLE', false));
@@ -126,12 +116,12 @@ class j10501a_misc
 			$configurationPanel->insertSetting();
 		}
 
-/*		if ( $jrConfig[ 'admin_options_level' ] > 1 ) {
+		if ( $jrConfig[ 'admin_options_level' ] > 1 ) {
 			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_LANGUAGE_CONTEXT', '_JOMRES_COM_LANGUAGE_CONTEXT', false));
 			$configurationPanel->setmiddle($language_context_dropdown);
 			$configurationPanel->setright(jr_gettext('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', '_JOMRES_COM_LANGUAGE_CONTEXT_DESC', false));
 			$configurationPanel->insertSetting();
-		}*/
+		}
 
 		if ($jrConfig[ 'admin_options_level' ] > 1) {
 			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_LABEL_PRIORITY_TITLE', '_JOMRES_COM_LABEL_PRIORITY_TITLE', false));

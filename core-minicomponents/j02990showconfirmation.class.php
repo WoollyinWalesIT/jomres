@@ -4,16 +4,16 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-	
+	#[AllowDynamicProperties]
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
@@ -484,8 +484,8 @@ class j02990showconfirmation
 			}
 		}
 
+		$extratext = array();
 		if ($mrConfig[ 'showExtras' ]) {
-			$extratext = array();
 			$extra_text[ 'AJAXFORM_EXTRAS' ] = jr_gettext('_JOMRES_AJAXFORM_EXTRAS', '_JOMRES_AJAXFORM_EXTRAS');
 			$extra_text[ 'EXTRASTOTAL' ] = output_price($bookingDeets[ 'extrasvalue' ]);
 			$extra_text[ 'HEXTRASTOTAL' ] = jr_gettext('_JOMRES_AJAXFORM_EXTRAS_TOTAL', '_JOMRES_AJAXFORM_EXTRAS_TOTAL');

@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -17,18 +17,21 @@ defined('_JOMRES_INITCHECK') or die('');
 /**
  * @package Jomres\Core\Functions
  *
- * Where possible us mb_string functionality for substr.
+ * Where possible use mb_string functionality for substr.
  */
-function jr_substr($str, $arg1, $arg2)
-{
-	if (!function_exists('mb_substr')) {
-		$result = substr($str, $arg1, $arg2);
-	} else {
-		$result = mb_substr($str, $arg1, $arg2, 'UTF-8');
+	if (!function_exists('jr_substr')) {
+		function jr_substr($str, $arg1, $arg2)
+		{
+			if (!function_exists('mb_substr')) {
+				$result = substr($str, $arg1, $arg2);
+			} else {
+				$result = mb_substr($str, $arg1, $arg2, 'UTF-8');
+			}
+
+			return $result;
+		}
 	}
 
-	return $result;
-}
 
 /**
  * @package Jomres\Core\Functions
@@ -37,16 +40,19 @@ function jr_substr($str, $arg1, $arg2)
  *
  *
  */
-function jr_strtolower($str)
-{
-	if (!function_exists('mb_strtolower')) {
-		$result = strtolower($str);
-	} else {
-		$result = mb_strtolower($str);
+	if (!function_exists('jr_strtolower')) {
+		function jr_strtolower($str)
+		{
+			if (!function_exists('mb_strtolower')) {
+				$result = strtolower($str);
+			} else {
+				$result = mb_strtolower($str);
+			}
+
+			return $result;
+		}
 	}
 
-	return $result;
-}
 
 /**
  * @package Jomres\Core\Functions
@@ -54,10 +60,13 @@ function jr_strtolower($str)
  *          Where possible use mb_string functionality to return uppercase words
  *
  */
-function jr_ucwords($str)
-{
-	return mb_ucwords($str);
-}
+	if (!function_exists('jr_ucwords')) {
+		function jr_ucwords($str)
+		{
+			return mb_ucwords($str);
+		}
+	}
+
 
 /**
  *

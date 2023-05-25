@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 // German Translation since Jomres V2: Roger Perren (http://www.blueforce.ch)
@@ -659,27 +659,17 @@ jr_define('JOMRES_COM_A_TARIFFMODE_NORMAL', 'Normal');
 jr_define('JOMRES_COM_A_TARIFFMODE_ADVANCED', 'Erweitert');
 jr_define('JOMRES_COM_A_TARIFFMODE_TARIFFTYPES', 'Microverwaltung');
 jr_define('JOMRES_COM_A_TARIFFMODE', 'Tarif-Konfiguration-Modus');
-jr_define('JOMRES_COM_A_TARIFFMODE_DESC', '<b>Warnung: Der Wechsel zwischen den verschiedenen Tariftypen kann zu Datenverlust f&uuml;hren. Bitte folgende Hinweise beachten.</b>.
+jr_define('JOMRES_COM_A_TARIFFMODE_DESC', '<b>Warnung: Das Umschalten zwischen verschiedenen Tarifbearbeitungsmodi kann zu Datenverlust führen. Siehe dazu den Hinweis unten.</b>.
 <br/><br/>
-Es gibt drei M&ouml;glichkeiten die Preisberechnung zu konfigurieren.<br/>
-Normal: Ein f&uuml;r die n&auml;chsten 10 Jahre g&uuml;ltiger Preis f&uuml;r jeden Raumtyp.<br/>
-Microverwaltung: F&uuml;r jeden Tag, jeden Raum-/Unterkunftstyp und alle Kombinationen daraus kann ein modifizierter Preis ausgegeben werden. <br/>
-Erweitert: Die \"alte" Methode mit der Jomres die Preise berechnete. <br/>
+Sie haben zwei Möglichkeiten, wie Sie Ihre Tarife konfigurieren.<br/>
+Mikromanagement: Sie können den Preis für jeden Tag für jeden Zimmer-/Unterkunftstyp ändern. <br/>
+Erweitert: Sie können eine Reihe von Tarifen erstellen, die nicht miteinander verknüpft sind. <br/>
 <br/>
-Die verschiedenen Preismodi erlauben eine Methode zur Preisgestaltung zu w&auml;hlen die die eigenen Anforderungen am besten umsetzt.<br/>
-Der Normalmodus ist die einfachste und leicht verst&auml;ndlichste Methode, da sie nur Kreuzreferenzen zwischen Preisen und Raum-/Unterkunftstypen erstellt und erlaubt R&auml;ume und Preise auf der selben Seite zu konfigurieren.<br/>
-Microverwaltung erlaubt die Preise auf einer t&auml;glichen Basis zu variieren ohne Unmengen von Tarifen zu erstellen. Es werden Kreuzreferenzen zwischen verschiedenen Tarifen erstellt. Daraus resultiert eine Anzahl von Tarifen die zur Abdeckung einer Zeitperiode dienen, sich aber nicht &uuml;berlappen k&ouml;nnen.<br/>
-Der erweiterte Modus erlaubt einen Raum zu erstellen und mit einem Raumtyp zu verbinden. Es wird dann ein Tarif erstellt und DIESER mit einem Raumtyp verbunden. Diese Methode erlaubt jeden anderen Tarif zu "&uuml;berlagern", z.B. ein Raumtyp "Doppelbett" kann einen Preis f&uuml;r &Uuml;bernachtung und Fr&uuml;hst&uuml;ck haben und einen anderen Preis f&uuml;r &Uuml;bernachtung, Fr&uuml;hst&uuml;ck und Abendessen. Die erweiterte Methode erfordert etwas mehr Sorgfalt im Detail weil es m&ouml;glich ist einen Raum oder Tarif vom Raum-/Unterkunftstyp zu entkoppeln, oder ung&uuml;ltige G&uuml;ltigkeitszeitr&auml;ume zu erstellen. Sie bietet aber Konfigurationsm&ouml;glichkeiten die in den anderen Modi nicht gegeben sind.<br/>
+Mit Micromanage können Sie die Tarife von Tag zu Tag ändern, ohne Unmengen von Tarifen verwalten zu müssen, indem Sie viele verschiedene Tarife miteinander referenzieren. Dadurch werden mehrere Tarife über einen Zeitraum für Sie erstellt, Sie können Tarife aber nicht übereinander schichten.<br/>
+Im erweiterten Modus können Sie Tarife erstellen, die nicht mit anderen Tarifen verknüpft sind. Auf diese Weise können Sie Preise für Ihre Immobilie erstellen, die Sie sonst im Micromanage-Modus nicht erstellen können. Es ist umständlicher zu bedienen, da Sie sicherstellen müssen, dass die Gültigkeitsdaten von/bis jedes Tarifs perfekt übereinstimmen, aber es ermöglicht Ihnen, kompliziertere Tarife zu erstellen.<br/>
 <br/>
-Da Normalmodus und Microverwaltung eine spezielle Konfiguration der R&auml;ume und Tarife ben&ouml;tigen um die Berechnungen durchzuf&uuml;hren kann es sein, dass das System einige Daten zur&uuml;cksetzen muss um die augenblickliche Konfiguration der Tarife mit dem aktiven Tarif-Editor kompatibel zu machen.
-<br/>
-<br/>
-Normal -> Erweitert. Keine &Auml;nderung. Die vorhandenen Preise bleiben erhalten.<br/>
-Normal -> Microverwaltung. Alle vorhandenen Preise werden gel&ouml;scht.<br/>
-Erweitert -> Normal. Alle vorhandenen Preise werden gel&ouml;scht.<br/>
-Erweitert -> Microverwaltung. Alle vorhandenen Preise werden gel&ouml;scht.<br/>
-Microverwaltung -> Erweitert. Alle vorhandenen Referenzen zu den Preisen werden entfernt, aber die Preise selber bleiben bestehen.<br/>
-Microverwaltung -> Normal. Alle vorhandenen Referenzen und Preise werden gel&ouml;scht.<br/>');
+Bei einem Wechsel von Advanced zu Micromanage werden alle bestehenden Tarife entfernt.<br/>
+<br/>');
 jr_define('_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS', 'Zimmerliste in Unterkunfsdetailsseite anzeigen?');
 jr_define('JOMRES_PROPERTYTYPE', 'Unterkunftstyp');
 jr_define('JOMRES_MAXPEOPLEINROOM', 'Max Personen pro Zimmer');
@@ -711,7 +701,7 @@ jr_define('_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', ' ist erm&auml;ßigt ab ');
 jr_define('_JOMCOMP_WISEPRICE_TO', ' bis ');
 jr_define('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', ' Raumpreis ist nicht erm&auml;ßigt ');
 jr_define('JOMRES_COM_A_MAPSKEY', 'Google Map API Schl&uuml;ssel');
-jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'Google-Key verf&uuml;gbar auf <a href="https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key" target="_blank">Google maps</a>. Wenn hier der Google-Key eingegeben ist zeigt Jomres eine Karte in den Unterkunftsdetails.');
+jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'Google-Key verf&uuml;gbar auf <a href="https://console.cloud.google.com/projectselector2/google/maps-apis/credentials" target="_blank">Google maps</a>. Wenn hier der Google-Key eingegeben ist zeigt Jomres eine Karte in den Unterkunftsdetails.');
 jr_define('_JOMCOMP_LASTMINUTE_CPANEL', 'Last Minute');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE', 'Aktiv?');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE_DESC', 'Falls Ja sind Last Minute Angebote m&ouml;glich.');
@@ -1189,7 +1179,7 @@ jr_define('_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED', 'Anzahl der Unter
 // 4.6.1
 jr_define('_JOMRES_CONFIG_JQUERY', 'Lade Jomres jQuery Bibliothek?');
 jr_define('_JOMRES_CONFIG_JQUERY_DESC', 'Sie k&ouml;nnen dies auf NEIN setzten, wenn Sie eine Vorlage (Template) verwenden die jquery verwendet. Dies K&Ouml;NNTE jquery Konflikte bei einigen Vorlagen l&ouml;sen, aber nicht bei allen.');
-jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'Enabling this option allows you to see the language switcher in the Fullscreen view in the frontend.');
+jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'Enabling this option allows you to see the language switcher in the Jomres Administrator area pages.');
 jr_define('_JOMRES_COM_A_UPLOADS_IMAGES_WIDTH_LARGE_DESC', 'Vorschaubilder von hochgeladenen Bildern werden automatisch erstellt.');
 // 4.7.1
 jr_define('_JOMRES_COM_THUMBNAIL_SMALL_WIDTH', 'Kleine Vorschaubilder max. Breite (px).');
@@ -1207,7 +1197,7 @@ jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD', 'Automatischer
 jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD_DESC', 'Dieser Grenzwert betr&auml;gt die Anzahl an Tagen, die ein Manager Zeit hat um eine Rechnung zu bezahlen, bevor er gesperrt wird und seine Unterk&uuml;nfte deaktiviert werden.');
 //4.7.2
 jr_define('_JOMRES_COM_LANGUAGE_CONTEXT', 'Sprachkontext');
-jr_define('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', 'Benutzen Sie diese Option um den Sprachenkontext der Site zu &auml;ndern. Diese Funktionalit&auml;t erlaubt es Jomres Etiketten zu benutzen die dem aktuellen Fokus entsprechen. Wenn Sie z.B. ein Makler von Yachten sind, so erlaubt eine &Auml;nderung des Kontextes Jomres, das anzeigen von Etiketten aus einer anderen Sprachen-Datei. Zum Beispiel, wenn Sie den Kontext auf Yacht-Makler &auml;ndern, so wird Jomres zuerst versuchen die aktuelle Sprache zu finden, danach im Ordner /'.JOMRES_ROOT_DIRECTORY.'/languages nach einem Unterverzeichnis mit dem Namen "yachtmakler" suchen. Wenn die Datei der aktuellen Sprache existiert, so wird diese verwendet. Falls nicht, so versucht Jomres die englische Sprachdatei aus dem gleichen Verzeichnis zu verwenden. Falls dies fehlschl&auml;gt, so verwendet Jomres die Sprach-Datei der aktuell ausgew&auml;hlten Sprache aus dem Ordner /'.JOMRES_ROOT_DIRECTORY.'/languages.');
+jr_define('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', 'Verwenden Sie diese Option, um den Sprachkontext der Site zu ändern. Diese Funktion ermöglicht es Jomres, Etiketten zu verwenden, die für Ihre Verwendung von Jomres geeignet sind. Wenn Sie sich also auf einen Yachtmakler konzentrieren, kann Jomres durch Ändern des Kontexts Etiketten präsentieren, die für Yachten geeignet sind. Wenn Sie den Kontext beispielsweise auf „Yachtmakler“ festlegen, findet Jomres zuerst die aktuelle Sprache und durchsucht dann die benutzerdefinierte Textdatenbank nach Zeichenfolgen, die mit dem Sprachkontext „yachtmakler“ gespeichert sind. Wenn benutzerdefinierte Zeichenfolgen für die aktuelle Sprache und den aktuellen Kontext vorhanden sind, werden diese verwendet. Wenn nicht, greift Jomres auf die Sprachdefinitionen zurück, die von seinen Core-Sprachdateien verwendet werden.');
 // 4.7.3
 jr_define('_JOMRES_COM_ADVANCED_SITE_CONFIG', 'Erweiterte Site Konfiguration');
 jr_define('_JOMRES_COM_ADVANCED_SITE_CONFIG_DESC', 'Setzen Sie diese Option auf Ja, wenn Sie die erweiterten Website Konfigurationsm&ouml;glichkeiten nutzen m&ouml;chten. Wenn Sie gerade erst damit beginnen mit Jomres zu arbeiten, empfehlen wir Ihnen f&uuml;r das erste die Einstellung auf Nein zu belassen, da die Standard-Installation ausreichend genug ist um damit zu starten. Stattdessen sollten Sie Jomres dem Hauptmen&uuml; hinzuf&uuml;gen und sich als "admin" im Frontend anmelden und beginnen Ihre Unterk&uuml;nfte zu konfigurieren. Bitte beachten Sie, dass viele der erweiterten Optionen nur Jomres Silver Installationen zur Verf&uuml;gung stehen. Jomres Lite Benutzer sind deshalb nicht in der Lage, den vollen Nutzen aus den Funktionen zu erhalten, die sie aktivieren.');
@@ -2792,3 +2782,17 @@ Sie können die Zielsprache auf Ihrer aktuellen Sprache belassen und diese Seite
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Testmodus");
 
 	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "Der Entwicklungsmodus ist aktiviert. Wenn Sie diese Funktion verwenden, aktualisieren Sie daher Ihre Installation von Jomres auf den Nightly-Zweig. Dies ist die neueste Version von Jomres und kann stabil sein oder nicht. Wenn Sie dies tun nicht auf Nightly aktualisieren möchten, besuchen Sie bitte Admin > Jomres > Einstellungen > Site-Konfiguration > Registerkarte Debugging und setzen Sie die Option Produktion/Entwicklung auf Produktion.");
+
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN', "Kinder in Belegungsprüfungen einbeziehen?");
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN_DESC_MRP', "Wenn Gäste eine Buchung vornehmen, haben die Zimmer eine maximale Anzahl von Gästen, die sie aufnehmen können. Wenn die Gesamtzahl der Gäste die Anzahl der Gäste übersteigt, die die ausgewählten Zimmer aufnehmen können, dann teilt ihnen das Buchungsformular dies mit Sie müssen mehr Zimmer auswählen.
+ 
+  Wenn Sie diese Option auf Ja setzen, wird die Anzahl der Kinder in die Überprüfung der Gesamtzahl der Gäste einbezogen. Wenn Sie diese Option auf Nein setzen, wird die Anzahl der Kinder nicht in die Überprüfung der Gesamtzahl der Gäste einbezogen. Das heißt, wenn Sie diese Option auf Nein setzen, kann eine Gruppe von 4 Personen, zum Beispiel 2 Erwachsene und 2 Kinder, ein Doppelzimmer für 2 Erwachsene buchen. ");
+
+
+	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Wählen Sie Ja, wenn Sie pro Person und Nacht abrechnen möchten.');
+
+	jr_define('_JRPORTAL_FEATUREDLISTE_WORD_FEATURED',"Empfohlen");
+
+jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', 'Item Hire');
+
+jr_define('SHORTCODE_INFO_JOMRES_V_JOMRES_SCRIPT',"Shortcodes müssen in &#123;&#125; in Joomla oder [] in Wordpress (Klammern) eingeschlossen werden. Es gibt drei Möglichkeiten, die durch Shortcodes generierten Seiten anzuzeigen. Die erste ist: Fügen Sie einem Artikel/einer Seite/einem Modul einen Shortcode im Format BRACKETjomres Shortcode-ArgumenteBRACKET hinzu. Der zweite Weg befindet sich in den Jomres-Vorlagendateien, wo Sie BRACKETjomres_script Shortcode-ArgumenteBRACKET einfügen würden. Der letzte Weg ist über die URL, also würden Sie zum Beispiel in Joomla www eingeben /domain.com/index.php?option=com_jomres&task=SHORTCODE&ARGUMENTS=ARGUMENTS. ");

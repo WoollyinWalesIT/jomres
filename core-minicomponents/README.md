@@ -11,7 +11,7 @@ The scripts in this file are not called directly, instead they are called by oth
 00012 Currently used to build pathways for the host CMS to display. Joomla only is supported, primarily used to interface with routing functionality to build SEO friendly routes  
 00021 Used to insert Jomres specific css files into the system.  
 
-00035 These scripts are used to build tab contents in the property details pages.
+00035 These scripts are used to build tab contents in the property details pages. In Bootstrap 5 these are not much used, however the remain for lower versions of Bootstrap.
 
 00060 This is used to build the top template, which is at the very top of every page and used to output many different things such as logos, sanity checks etc.  
 00061 This is used to build the footer template(s).

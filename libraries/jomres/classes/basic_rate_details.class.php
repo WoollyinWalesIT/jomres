@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -18,6 +18,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 *
 	 * @package Jomres\Core\Classes
 	 *
+	 * A basic class for pulling rate information, populates the multi_query_rates array with all rates for all properties in one query
+	 *
+	 * Any previously found rates are skipped, so multiple instances of Jomres (e.g. shortcodes constantly calling the same property) will not cause multiple queries to be run
+	 *
 	 */
 
 	#[AllowDynamicProperties]
@@ -25,11 +29,7 @@ defined('_JOMRES_INITCHECK') or die('');
 class basic_rate_details
 {
 
-	/**
-	 *
-	 *
-	 *
-	 */
+
 
 	public function __construct()
 	{
@@ -39,13 +39,12 @@ class basic_rate_details
 	}
 	
 	/**
+	 * get rates for property uid
 	 *
-	 *
+	 * returns an array like $this->rates[roomclass_uid][tarifftype_id][rates_uid][]
 	 *
 	 */
 
-	//get rates for property uid
-	//returns an array like $this->rates[roomclass_uid][tarifftype_id][rates_uid][]
 	public function get_rates($property_uid = 0)
 	{
 		if ($property_uid == 0) {
@@ -70,11 +69,12 @@ class basic_rate_details
 	
 	/**
 	 *
+	 * get all rates details for multiple property uids array
 	 *
+	 * populates multi_query_rates array
 	 *
 	 */
 
-	//get all rates details for multiple property uids array
 	public function get_rates_multi($property_uids = array())
 	{
 		//if the property uids passed are not an array, we`ll make it one

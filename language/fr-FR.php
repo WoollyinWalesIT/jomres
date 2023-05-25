@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Translation to fr-FR by Stéphane Bernard, Valtari NumAgency, France - last update : 19/11/2019 - https://www.valtari.fr
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
@@ -617,7 +617,17 @@ jr_define('JOMRES_COM_A_TARIFFMODE_NORMAL', 'Mode normal');
 jr_define('JOMRES_COM_A_TARIFFMODE_ADVANCED', 'Mode avancé');
 jr_define('JOMRES_COM_A_TARIFFMODE_TARIFFTYPES', 'Mode journalier');
 jr_define('JOMRES_COM_A_TARIFFMODE', 'Mode de configuration tarifaire');
-jr_define('JOMRES_COM_A_TARIFFMODE_DESC', 'Attention ! Changer les différents types de tarification peut entraîner une perte de données. Lisez les explications ci-dessous.</b>.<br/><br/>Vous avez trois options pour configurer vos tarifs.<br/>Mode normal : vous aurez un tarif pour chaque type de chambre, qui sera valide pour les dix prochaines années.<br/>Mode journalier : vous pouvez modifier les prix jour à jour pour chaque type de chambre/établissement.<br/> Mode avancé: ancienne méthode de tarification du logiciel.<br/><br/>Les différents modes de tarification vous permettent de choisir la méthode qui convient le mieux à chaque type d\'établissement.<br/>Le mode normal est le plus simple et il est le plus facile à comprendre : il crééra des références croisées entre chambres et tarifs vers les types de chambres/établissement et vous permettra de configurer les chambres et les prix sur la même page.<br/>Le mode journalier vous permet de faire varier les tarifs jour à jour sans devoir gérer beaucoup de tarifs différents : il crée des références croisées entre un grand nombre de tarifs. Le résultat est un nombre de tarifs créés couvrant une certaine période, mais vous ne pouvez pas \'empiler\' les tarifs.<br/>Le mode avancé vous permet de créer une chambre et de l\'associer à un type de chambre. Vous pouvez alors créér un tarif et l\'associer au type de chambre. Utiliser cette méthode permet d\'empiler les tarifs les uns sur les autres. Par exemple, un type de chambre Lit double peut avoir un tarif pour lit + petit déjeuner, et un autre pour lit + petit déjeuner + dîner. La méthode avancée demande un peu plus d\'attention, car il est possible de dissocier une chambre ou un tarif d\'un type de chambre/établissement, ou de définir des dates valides mais incorrectes. Il offre cependant des options de configuration que les autres modes n\'offrent pas.<br/><br/>Comme les modes Normal et Journalier demandent un paramétrage spécifique des chambres et tarifs pour le mode tarifaire, le système peut devoir réinitialiser certaines données pour rendre les configurations tarifaires existantes compatibles avec le nouveau mode tarifaire choisi.<br/><br/>Normal -> Avancé. Pas de changement. Les tarifs existants sont conservés.<br/>Normal -> Journalier. Tous les tarifs existants sont effacés.<br/>Avancé -> Normal. Tous les tarifs existants sont effacés.<br/>Avancé -> Journalier. Tous les tarifs existants sont effacés.<br/>Journalier -> Avancé. Toutes les références croisées entre les tarifs sont effacées, mais les tarifs eux mêmes sont conservés.<br/>Journalier -> Normal. Toutes les références croisées et les tarifs sont effacés.<br/>');
+jr_define('JOMRES_COM_A_TARIFFMODE_DESC', "<b>Avertissement : Le passage d'un mode d'édition à l'autre des tarifs peut entraîner une perte de données. Voir la note ci-dessous à ce sujet.</b>.
+<br/><br/>
+Vous avez deux options pour configurer vos tarifs.<br/>
+Microgestion : Vous pouvez modifier le prix de chaque jour pour chaque type de chambre/propriété. <br/>
+Avancé : Vous pouvez créer un ensemble de tarifs qui ne sont pas liés les uns aux autres. <br/>
+<br/>
+Micromanage vous permet de faire varier les tarifs au jour le jour sans avoir à gérer des tas de tarifs, cela se fait en croisant de nombreux tarifs différents les uns avec les autres. Cela se traduit par la création d'un certain nombre de tarifs couvrant une période donnée, mais vous ne pouvez pas superposer les tarifs les uns sur les autres.<br/>
+Le mode avancé permet de créer des tarifs non liés à d'autres tarifs. Cela vous permet de créer des prix pour votre propriété que vous ne pouvez pas créer autrement en mode Micromanage. Il est plus laborieux à utiliser, car vous devez vous assurer que les dates de validité de chaque tarif correspondent parfaitement, mais cela vous permet de créer des tarifs plus compliqués.<br/>
+<br/>
+Si vous passez d'Advanced à Micromanage, tous les tarifs existants seront supprimés.<br/>
+<br/>");
 jr_define('_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS', 'Afficher la liste des chambres dans la page Descriptif de l\'établissement ?');
 jr_define('JOMRES_PROPERTYTYPE', 'Type d\'établissement');
 jr_define('JOMRES_MAXPEOPLEINROOM', 'Max de personnes par chambre');
@@ -649,7 +659,7 @@ jr_define('_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', ' à été remisé à partir d
 jr_define('_JOMCOMP_WISEPRICE_TO', ' vers ');
 jr_define('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', ' Tarif de la chambre sans remise ');
 jr_define('JOMRES_COM_A_MAPSKEY', 'Clé API Google maps');
-jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'Vous pouvez créer une clé Google Maps API sur <a href=\"https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key\" target=\"_blank\">Google Maps</a>. Un fois votre clé copiée ici, le logiciel affichera la carte dans la page Descriptif de l\'établissement.');
+jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'Vous pouvez créer une clé Google Maps API sur <a href=\"https://console.cloud.google.com/projectselector2/google/maps-apis/credentials\" target=\"_blank\">Google Maps</a>. Un fois votre clé copiée ici, le logiciel affichera la carte dans la page Descriptif de l\'établissement.');
 jr_define('_JOMCOMP_LASTMINUTE_CPANEL', 'Dernière minute');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE', 'Active ?');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE_DESC', 'Activer cette option, si vous voulez offrir des remises de dernière minute.');
@@ -1121,7 +1131,7 @@ jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD', 'Limite de sus
 jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD_DESC', 'Cette limite est le nombre de jours qu\'un partenaire (Gestionnaire d\'établissements) a pour payer une facture avant qu\'il ne soit suspendu et ses établissements cessent d\'être publiés.');
 //4.7.2
 jr_define('_JOMRES_COM_LANGUAGE_CONTEXT', 'Multilinguisme contextuel');
-jr_define('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', 'Utilisez cette option pour modifier la gestion du multilinguisme. Ceci permet au logiciel d\'utiliser des chaînes de traduction pertinentes ; par exemple si l\'activité est Location de yachts, changer le contexte permet au logiciel de montrer des des chaînes de traductions d\'un fichier de langue différent. Dans cet exemple, si vous définissez l\'activité comme Location de yachts, le logiciel cherche premièrement la langue courante, après recherche le dossier /jomres/language par son nom. Si ce fichier existe pour la langue en cours, ce fichier sera utilisé. Sinon, le logiciel cherche le fichier de langue anglaise. S\'il ne peut pas être trouvé, le logiciel utilisera le fichier de langue pour la langue choisie dans le dossier /jomres/languages.');
+jr_define('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', "Utilisez cette option pour modifier le contexte linguistique du site. Cette fonctionnalité permet à Jomres d'utiliser des étiquettes adaptées à la façon dont vous utilisez Jomres. Par conséquent, si vous vous concentrez sur le courtage de yachts, la modification du contexte permettra à Jomres de présenter des étiquettes adaptées aux yachts. Par exemple, si vous définissez le contexte sur Yacht Brokerage, Jomres trouvera d'abord la langue actuelle, puis recherchera dans la base de données de texte personnalisée les chaînes enregistrées avec un contexte de langue de yachtbrokerage. Si des chaînes personnalisées pour la langue et le contexte actuels existent, elles seront utilisées. Si ce n'est pas le cas, Jomres reviendra aux définitions de langage utilisées par ses fichiers de langage Core.");
 // 4.7.3
 jr_define('_JOMRES_COM_ADVANCED_SITE_CONFIG', 'Configuration avancée du site');
 jr_define('_JOMRES_COM_ADVANCED_SITE_CONFIG_DESC', 'Choisissez Oui si vous voulez utiliser les options avancées de configuration. Si vous débuter, il est conseillé de laisser l\'option Non, car l\'installation par défaut est suffisante pour débuter : il suffira d\'ajouter le logiciel (jomres) au menu principal et vous connecter comme admin pour gérer vos établissements. Plusieurs options de la configuration avancée sont applicables seulement à l\'installation de Jomres Silver, et les utilisateurs Jomres Lite ne pourront bénéficier de toutes les options de gestion.');
@@ -2531,3 +2541,17 @@ Vous pouvez laisser la langue cible définie sur votre langue actuelle et utilis
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Mode test");
 
 	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "Le mode de développement est activé, donc si vous utilisez cette fonctionnalité, vous mettrez à jour votre installation de Jomres vers la branche Nightly. Il s'agit de la version la plus récente de Jomres et peut être stable ou non. Si vous le faites ne souhaitez pas mettre à jour vers Nightly, veuillez visiter Admin > Jomres > Paramètres > Configuration du site > onglet Débogage et définissez l'option Production/Développement sur Production.");
+
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN', "Inclure les enfants dans les vérifications du niveau d'occupation ?");
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN_DESC_MRP', "Lorsque les clients effectuent des réservations, les chambres ont un nombre maximum d'invités qu'elles peuvent accueillir. Si le nombre total d'invités dépasse le nombre d'invités que les chambres sélectionnées peuvent accueillir, le formulaire de réservation leur indiquera que ils doivent sélectionner plus de chambres.
+ 
+  Si vous définissez cette option sur Oui, le nombre d'enfants sera inclus dans le nombre total d'invités. Si vous définissez cette option sur Non, le nombre d'enfants ne sera pas inclus dans le nombre total d'invités. Cela signifie que si vous définissez cette option sur Non, un groupe de 4 personnes, par exemple 2 adultes et 2 enfants, pourra réserver une chambre double pouvant accueillir 2 adultes. ");
+
+
+jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Sélectionnez Oui si vous souhaitez facturer par personne et par nuit.');
+
+	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"En vedette");
+
+jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', 'Location d\'article');
+
+jr_define('SHORTCODE_INFO_JOMRES_V_JOMRES_SCRIPT',"Les codes courts doivent être enveloppés dans &#123;&#125; dans Joomla, ou [] dans Wordpress (ACCORDS). Il y a trois façons d'afficher les pages générées par les codes courts. La première consiste à ajouter un shortcode à un article/page/module au format BRACKETjomres shortcode argumentsBRACKET. Le second se trouve dans les fichiers de modèle Jomres, où vous placeriez BRACKETjomres_script shortcode argumentsBRACKET. La dernière façon est via l'url, donc par exemple dans Joomla vous mettriez www.domain.com/index.php?option=com_jomres&task=SHORTCODE&ARGUMENTS=ARGUMENTS. ");

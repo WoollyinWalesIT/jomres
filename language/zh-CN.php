@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 //#################################################################
@@ -626,26 +626,17 @@ jr_define('JOMRES_COM_A_TARIFFMODE_NORMAL', '正常');
 jr_define('JOMRES_COM_A_TARIFFMODE_ADVANCED', '高级');
 jr_define('JOMRES_COM_A_TARIFFMODE_TARIFFTYPES', '细微管理');
 jr_define('JOMRES_COM_A_TARIFFMODE', '价目设置模式');
-jr_define('JOMRES_COM_A_TARIFFMODE_DESC', '<b>警告: 在不同价目类型之间转换将丢失某些数据. 查看下面的说明</b>.
+jr_define('JOMRES_COM_A_TARIFFMODE_DESC', '<b>警告：在不同的关税编辑模式之间切换可能会导致数据丢失。 请参阅下面关于此的注释。</b>。
 <br/><br/>
-你有三个选项来设置您的价目表.<br/>
-正常模式: 您可以为每个房间类型确定一个10年不变的价目表.<br/>
-细微模式: 您可以为每个房间/寓所在每天进行价格调整. <br/>
-高级模式:  "早期" Jomres 方法来管理价目信息. <br/>
+关于如何配置关税，您有两种选择。<br/>
+微观管理：您可以修改每个房间/物业类型每天的价格。 <br/>
+高级：您可以创建一组彼此不相关的关税。 <br/>
 <br/>
-不同的价目模式使得您能够根据实际需要提供满意服务.<br/>
-正常模式是最简单的,但是它最容易理解,因为它将参考的房间和价目和房间/寓所类型结合起来,允许您可在同一页面设置房间和价格.<br/>
-细微模式允许您基于每日方式来修改费率,而不需要去调整价目表, 它实际上捆绑了很多不同的价目表. 这导致了在这个阶段您创建了很多价目表, 但是您在同一天里面不可以重叠使用不同价目表.<br/>
-高级模式允许您创建一个房间并关联一个房间类型. 您然后创建一个价目表并关联一个房间类型. 用这个方法你可以 "层叠" 不同的价目表, 比如一个房间类型 "双人床" 可以有一个价目表针对床位和早餐, 而另一个针对床位, 早餐和晚餐. 高级模式需要留心因为这可能会拆开某个房间或者价目表和房间/寓所的关联, 或者在日期设置中产生错误, 但是它确实提供了其他模式没有的设置. <br/>
+微观管理允许您每天更改费率，而无需管理大量关税，这是通过相互交叉引用许多不同的关税来完成的。 这会导致在一段时间内为您创建多个关税，但您不能将关税相互叠加。<br/>
+高级模式允许您创建不与其他关税关联的关税。 这允许您为您的财产创建价格，而这些价格在微观管理模式下是无法创建的。 使用起来比较费力，因为您需要确保每个关税的有效起始/截止日期完全匹配，但它允许您创建更复杂的关税。<br/>
 <br/>
-因为正常模式和细微模式要求房间/价目特别建立,因此价目设置可能因为系统转换而导致重新整合.<br/>
-<br/>
-正常 -> 高级. 没有变化. 所有存在的价目将保留.<br/>
-正常 -> 细微. 所有已存在的价目将被移除.<br/>
-高级 -> 正常. 所有已存在的价目将被移除.<br/>
-高级 -> 细微. 所有已存在的价目将被移除.<br/>
-细微 -> 高级. 所有已存在的在价目之间的相互关联被移除,但是价目本身仍然保留.<br/>
-细微 -> 正常. 所有已存在的在价目之间的相互关联被移除.<br/>');
+如果您从 Advanced 切换到 Micromanage，所有现有关税将被取消。<br/>
+<br/>');
 jr_define('_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS', '在寓所资料页面显示房间列表?');
 jr_define('JOMRES_PROPERTYTYPE', '寓所类型');
 jr_define('JOMRES_MAXPEOPLEINROOM', '每房间最多人数');
@@ -677,7 +668,7 @@ jr_define('_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', ' 已经实施打折自');
 jr_define('_JOMCOMP_WISEPRICE_TO', ' 至');
 jr_define('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', ' 房价未打折 ');
 jr_define('JOMRES_COM_A_MAPSKEY', '谷歌地图 API 密钥');
-jr_define('JOMRES_COM_A_MAPSKEY_DESC', '您可以从 <a href="https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key 获取谷歌地图 API 密钥 " target="_blank">Google 地图</a>。在此处输入地图密钥后，Jomres 将在您的房产详情页面中显示地图。');
+jr_define('JOMRES_COM_A_MAPSKEY_DESC', '您可以从 <a href="https://console.cloud.google.com/projectselector2/google/maps-apis/credentials 获取谷歌地图 API 密钥 " target="_blank">Google 地图</a>。在此处输入地图密钥后，Jomres 将在您的房产详情页面中显示地图。');
 jr_define('_JOMCOMP_LASTMINUTE_CPANEL', '最后截止期');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE', '最后时刻有效?');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE_DESC', '设此为是表明您允许签署最后时刻合同.');
@@ -1168,7 +1159,7 @@ jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD', '自动暂停�
 jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD_DESC', '这个阈值是经理在他们被暂停和他们的财产未公开之前必须支付发票的天数。');
 //4.7.2
 jr_define('_JOMRES_COM_LANGUAGE_CONTEXT', '语言环境');
-jr_define('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', '使用此选项更改站点的语言上下文。此功能允许 Jomres 使用适合您当前焦点的标签，因此如果您的焦点是游艇经纪，那么更改上下文将允许 Jomres 显示来自不同语言文件的标签。例如，如果您将上下文设置为"Yacht Brokerage"，则 Jomres 将首先查找当前语言，然后在 /'.JOMRES_ROOT_DIRECTORY.'/languages 目录中搜索子目录称为"yachtbrokerage"。如果当前语言的文件存在，则将使用该文件。如果不存在，则 Jomres 将在同一目录中搜索英文文件。如果找不到，Jomres 将使用/'.JOMRES_ROOT_DIRECTORY.'/languages 目录中当前所选语言的语言文件。');
+jr_define('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', '使用此选项更改站点的语言上下文。 此功能允许 Jomres 使用适合您使用 Jomres 的方式的标签，因此如果您的重点是作为游艇经纪，那么更改上下文将允许 Jomres 显示适合游艇的标签。 例如，如果您将上下文设置为“Yacht Brokerage”，那么 Jomres 将首先找到当前语言，然后在自定义文本数据库中搜索以“yachtbrokerage”的语言上下文保存的字符串。 如果存在当前语言和上下文的自定义字符串，则将使用它们。 如果不是，那么 Jomres 将回退到它的核心语言文件使用的语言定义。');
 // 4.7.3
 jr_define('_JOMRES_COM_ADVANCED_SITE_CONFIG', '高级站点配置');
 jr_define('_JOMRES_COM_ADVANCED_SITE_CONFIG_DESC', '如果您想使用高级站点配置选项，请将此选项设置为 Yes。如果您刚开始使用 Jomres，那么我们建议您暂时将其保留为 No，因为默认安装是足以让您入门，而您应该将 Jomres 添加到主菜单并以"管理员"身份登录前端并开始配置您的属性。请注意，如果您不这样做，许多高级选项可能不可用\'没有安装适当的插件。免费的核心系统的用户将无法充分利用他们启用的功能。');
@@ -2743,3 +2734,17 @@ jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', '保存更改后，页面中�
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "测试模式");
 
 	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "开发模式已启用，因此如果您使用此功能，您将更新您的 Jomres 安装到 Nightly 分支。这是 Jomres 的最新版本，可能稳定也可能不稳定。如果您这样做 不想更新到 Nightly 请访问 Admin > Jomres > Settings > Site Configuration > Debugging 选项卡并将生产/开发选项设置为生产。");
+
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN', "在入住率检查中包括儿童？");
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN_DESC_MRP', "当客人进行预订时，房间有他们可以容纳的最大客人数。如果客人总数超过所选房间可以容纳的客人数，那么预订表格会告诉他们 他们需要选择更多的房间。
+ 
+  如果您将此选项设置为“是”，则儿童人数将包含在客人总数检查中。 如果您将此选项设置为“否”，则儿童人数将不会包含在客人总数检查中。 这意味着，如果您将此选项设置为否，则 4 人聚会（例如，2 名成人和 2 名儿童）将能够预订可容纳 2 名成人的双人间。 ");
+
+
+	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', '如果您想按每人每晚收费，请选择是。');
+
+	jr_define('_JRPORTAL_FEATUREDISTINGS_WORD_FEATURED',"精选");
+
+jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', '物品租用');
+
+jr_define('SHORTCODE_INFO_JOMRES_V_JOMRES_SCRIPT',"简码在Joomla中需要用&#123;&#125;包裹，在Wordpress中需要用[]包裹(BRACKETS)。简码生成的页面可以通过三种方式查看，第一种是 以 BRACKETjomres shortcode argumentsBRACKET 格式向文章/页面/模块添加短代码。第二种是在 Jomres 模板文件中，您可以在其中放置 BRACKETjomres_script shortcode argumentsBRACKET。最后一种方法是通过 url，例如在 Joomla 中，您可以放置 www.domain.com/index.php?option=com_jomres&task=SHORTCODE&ARGUMENTS=ARGUMENTS。");

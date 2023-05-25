@@ -4,16 +4,16 @@
 	 *
 	 * @author Vince Wooll <sales@jomres.net>
 	 *
-	 *  @version Jomres 10.6.0
+	 *  @version Jomres 10.7.0
 	 *
-	 * @copyright	2005-2022 Vince Wooll
+	 * @copyright	2005-2023 Vince Wooll
 	 * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
 	 **/
 
 // ################################################################
 	defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-
+	#[AllowDynamicProperties]
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
@@ -140,7 +140,12 @@
 					$fr = [];
 					if ($f != '') {
 						if (jomres_bootstrap_version() == '5') {
-							$p = [ 0 => [ 'IMAGE' => $basic_room_details->all_room_features[$f]['image'] , 'FEATURE_DESCRIPTION' => $basic_room_details->all_room_features[$f]['feature_description'] ] ];
+							$p = [ 0 => [
+								'IMAGE' => $basic_room_details->all_room_features[$f]['image'] ,
+								'SMALL' => $basic_room_details->all_room_features[$f]['small'] ,
+								'MEDIUM' => $basic_room_details->all_room_features[$f]['medium'] ,
+								'LARGE' => $basic_room_details->all_room_features[$f]['large'] ,
+								'FEATURE_DESCRIPTION' => $basic_room_details->all_room_features[$f]['feature_description'] ] ];
 
 							$tmpl = new patTemplate();
 							$tmpl->addRows('pageoutput', $p);

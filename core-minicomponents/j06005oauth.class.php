@@ -4,16 +4,16 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-	
+	#[AllowDynamicProperties]
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
@@ -110,14 +110,18 @@ class j06005oauth
 		$output['_OAUTH_SCOPE_TITLE']	= jr_gettext('_OAUTH_SCOPE_TITLE', '_OAUTH_SCOPE_TITLE', false);
 		$output['_OAUTH_SCOPE_TITLE']	= jr_gettext('_OAUTH_SCOPE_TITLE', '_OAUTH_SCOPE_TITLE', false);
 		$output['_OAUTH_SCOPE_TITLE']	= jr_gettext('_OAUTH_SCOPE_TITLE', '_OAUTH_SCOPE_TITLE', false);
-		
-		
+
+		$local_token_plugins = get_showtime('local_token_plugins');
+		if (!isset($local_token_plugins)) {
+			$local_token_plugins = array();
+		}
+
 		$query = "SELECT client_id,scope,identifier FROM #__jomres_oauth_clients WHERE user_id = ".(int)$thisJRUser->id;
 		$result = doSelectSql($query);
 
 		if (count($result)>0) {
 			foreach ($result as $client) {
-				if ($client->client_id != "system" && $client->client_id != $thisJRUser->username) {
+				if ($client->client_id != "system" && $client->client_id != $thisJRUser->username && !in_array($client->identifier , $local_token_plugins ) ) {
 					$r=array();
 					$r['CLIENT_ID']=$client->client_id;
 					$r['IDENTIFIER']=$client->identifier;

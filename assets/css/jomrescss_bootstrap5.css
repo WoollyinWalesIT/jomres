@@ -149,46 +149,12 @@ fieldset.radio.btn-group {
 	padding-left: 0;
 }
 
-/* Custom labels */
-.label-grey {background-color: #bdbdbd !important;}
-.label-black {background-color: #212121 !important;}
-.label-orange {background-color: #ffa726 !important;}
-.label-red {background-color: #ef5350 !important;}
-.label-green {background-color: #66bb6a !important;}
-.label-blue {background-color: #29b6f6 !important;}
-.label-purple {background-color: #ab47bc !important;}
-.label-teal {background-color: #26a69a !important;}
 
 .property-list-overbudget-properties {
 	opacity: .3;
 }
 
 
-.price-tag {
-	background: url("../images/price-tag.png") no-repeat scroll left top rgba(0, 0, 0, 0);
-	height: 41px;
-	padding: 2px 15px 8px 30px;
-	position: absolute;
-	right: 0;
-	text-align: right;
-	top: 10px;
-	width: auto;
-}
-.price-tag small {
-	color: #fff;
-	font-size: 11px;
-}
-.price-tag small a {
-	color: #fff;
-}
-.price-tag small a:hover {
-	color: #fff;
-	text-decoration: underline;
-}
-.price-tag h4 {
-	color: #fff;
-	font-size: 18px;
-}
 
 /*Datepicker overrides*/
 img.ui-datepicker-trigger {

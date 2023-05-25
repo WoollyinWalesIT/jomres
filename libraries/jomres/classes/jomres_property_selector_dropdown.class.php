@@ -4,9 +4,9 @@
 	 *
 	 * @author Vince Wooll <sales@jomres.net>
 	 *
-	 *  @version Jomres 10.6.0
+	 *  @version Jomres 10.7.0
 	 *
-	 * @copyright	2005-2022 Vince Wooll
+	 * @copyright	2005-2023 Vince Wooll
 	 * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
 	 **/
 
@@ -138,6 +138,6 @@
 
 			$javascript = 'onchange="window.location=this.value;"';
 			$selected_property_url = str_replace ( "?%3F" , "?" , $selected_property_url );
-			return jomresHTML::selectList($options, 'switch_property', ' autocomplete="off" class="inputbox form-select" '.$javascript.'', 'value', 'text', $selected_property_url, false);
+			return jomresHTML::selectList($options, 'switch_property', ' autocomplete="off" '.$javascript.'', 'value', 'text', $selected_property_url, false);
 		}
 	}

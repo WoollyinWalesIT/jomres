@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 //#################################################################
@@ -625,26 +625,17 @@ jr_define('JOMRES_COM_A_TARIFFMODE_NORMAL', 'Normal');
 jr_define('JOMRES_COM_A_TARIFFMODE_ADVANCED', 'Avançat');
 jr_define('JOMRES_COM_A_TARIFFMODE_TARIFFTYPES', 'Micro gestió');
 jr_define('JOMRES_COM_A_TARIFFMODE', 'Mode configuració tarifes');
-jr_define('JOMRES_COM_A_TARIFFMODE_DESC', "<b>Compte: Canviar entre diferents tipus de tarifes pot originar pèrdua de dades. Vegi les notes a continuació respecte a això</b>.
+jr_define('JOMRES_COM_A_TARIFFMODE_DESC', "<b>Avís: canviar entre diferents modes d'edició de tarifes pot provocar la pèrdua de dades. Consulteu la nota següent sobre això.</b>.
 <br/><br/>
-Té tres opcions per a configurar les tarifes.<br/>
-Mode Normal: Pots tenir una tarifa per cada tipus d'habitació, això és vàlid per als següents 10 anys.<br/>
-Micro gestió: Pots canviar el preu per cada día i habitació/propietat<br/>
-Avançat: L'antic mètode Jomres de generar tarifes<br/>
+Teniu dues opcions sobre com configureu les vostres tarifes.<br/>
+Micromanage: Podeu modificar el preu de cada dia per a cada tipus d'habitació/immoble. <br/>
+Avançat: podeu crear un conjunt de tarifes que no estiguin vinculades entre si. <br/>
 <br/>
-Els diferents modes de tarifes li permeten escollir el mètode de configuració de les tarifes que més li convingui. <br/>
-El mode normal és el més simplista, però és més fàcil d'entendre, ja que creuarà referència d'habitacions i tarifes a tipus d'habitació/propietat i li permet configurar les habitacions i els preus en la mateixa pàgina. <br/>
-Micro gestió li permet variar els tipus en el día a día sense haver de gestionar un munt de tarifes, que es realitza per lots de referències creuades de tarifes diferents entre sí. Això dóna lloc a una sèrie de tarifes que s'han creat per a que abarquin un període de temps, però no es poden aplicar una tarifa sobre una altra. <br/>
-Mode avançat li permet crear una habitació i asociar-la amb un tipus d'habitació. A continuació, crea una tarifa que s'associa amb un tipus d'habitació. L'ús d'aquest mètode és possible aplicar una tarifa sobre una altra, per exemple, un tipus d'habitació \"Doble llit\" pot tenir una tarifa d'allotjament i esmorzar, y una altra per al llit, esmorzar i sopar. El mètode avançat requereix una mica més d'atenció als detalls, ja que és posible desassociar una habitació o tarifa d'un tipus d'habitació/propietat o configurar-la incorrectament vàlida desde i fins les dates, però dóna opcions de configuració que els altres modes no ofereixen. <br/>
+Micromanage us permet variar les tarifes dia a dia sense haver de gestionar munts de tarifes, es fa fent referència creuada a moltes tarifes diferents entre si. Això fa que es creïn una sèrie de tarifes que cobreixen un període de temps, però no podeu superposar les tarifes les unes a les altres.<br/>
+El mode avançat us permet crear tarifes que no estan enllaçades amb altres tarifes. Això us permet crear preus per a la vostra propietat que d'una altra manera no podeu crear en mode Micromanage. És més laboriós d'utilitzar, perquè cal assegurar-se que les dates vàlides de cada tarifa coincideixen perfectament des de/fins, però permet crear tarifes més complicades.<br/>
 <br/>
-Degut a que els modes Normal i Micro gestió requereixen una posada a punt específica d'habitacions i tarifes per al mode de treballar el sistema pot ser necessari tornar a situar algunes dades per a fer les configuracions de l'actual compatible amb el mode d'edició actual tarifa. <br/>
-<br/>
-Normal -> Avançat. Sense canvis. Les tarifes vigents es mantenen. <br/>
-Normal -> Micro gestió. Totes les tarifes existents s'eliminen. <br/>
-Avançat -> Normal. Totes les tarifes existents s'eliminen. <br/>
-Avançat -> Micro gestió. Totes les tarifes existents s'eliminen. <br/>
-Micro gestió -> Avançat. Totes les referències creuades existents entre les tarifes s'eliminen, però les tarifes es mantenen. <br/>
-Micro gestió -> Normal. Totes les referpencies creuades existents i les tarifes s'eliminen.<br/>");
+Si canvieu d'Advanced a Micromanage, s'eliminaran totes les tarifes existents.<br/>
+<br/>");
 jr_define('_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS', "Mostrar la llista d'habitacions en el full de detall?");
 jr_define('JOMRES_PROPERTYTYPE', 'Tipus de propietat');
 jr_define('JOMRES_MAXPEOPLEINROOM', 'Persones màximes per habitació');
@@ -676,7 +667,7 @@ jr_define('_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', ' ha sigut descomptat de  ');
 jr_define('_JOMCOMP_WISEPRICE_TO', ' a ');
 jr_define('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', " Preu d'habitació no descomptat ");
 jr_define('JOMRES_COM_A_MAPSKEY', 'Google maps API key');
-jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'Pots obtenir google maps API key desde <a href="https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key" target="_blank">Google maps</a>. Un cop tingui introduït el seu map key aquí, Jomres mostrar el mapa en la seva pàgina de detall de la propietat.');
+jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'Pots obtenir google maps API key desde <a href="https://console.cloud.google.com/projectselector2/google/maps-apis/credentials" target="_blank">Google maps</a>. Un cop tingui introduït el seu map key aquí, Jomres mostrar el mapa en la seva pàgina de detall de la propietat.');
 jr_define('_JOMCOMP_LASTMINUTE_CPANEL', 'Últim minut');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE', 'Actiu?');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE_DESC', "Posar a Sí si vol oferir ofertes d'últim minut.");
@@ -1152,7 +1143,7 @@ jr_define('_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED', 'Número de propi
 // 4.6.1
 jr_define('_JOMRES_CONFIG_JQUERY', 'Carregar Jomres jQuery library?');
 jr_define('_JOMRES_CONFIG_JQUERY_DESC', 'Pot establir això a NO si vostè té una plantilla que utilitza jQuery. Això pot resoldre els problemes de conflicte jquery en algunes plantilles, però no tots.');
-jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', "Enabling this option allows you to see the language switcher in the Fullscreen view in the frontend.");
+jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', "Enabling this option allows you to see the language switcher in the Jomres Administrator area pages.");
 jr_define('_JOMRES_COM_A_UPLOADS_IMAGES_WIDTH_LARGE_DESC', 'Les miniatures es creen automàticament per a les imatges carregadas.');
 // 4.7.1
 jr_define('_JOMRES_COM_THUMBNAIL_SMALL_WIDTH', 'Ample màxim de miniatures petites (px).');
@@ -1170,7 +1161,7 @@ jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD', 'Umbral per a 
 jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD_DESC', 'Aquest umbral és el número de dies que un administrador té per pagar una factura abans de que sigui suspès i no publicades les seves propietats.');
 //4.7.2
 jr_define('_JOMRES_COM_LANGUAGE_CONTEXT', 'Idioma de context');
-jr_define('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', "Aquesta característica permet a Jomres l'ús d'etiquetes que són apropiades per al seu enfocament actual, pel que si el seu interès es centra en una Yacht Brokerage (Venta de yats), canviar el context permetrà Jomres presentar les etiquetes d'un arxiu d'idioma diferent. Per exemple, si estableix el context per a 'Yacht Brokerage', llavors Jomres primer es troba el llenguatge actual, a continuació, buscarà en /'.JOMRES_ROOT_DIRECTORY.'/languages un sub-directori anomenat 'yachtbrokerage'. Si l'arxiu existeix en el llenguatge actual, l'arxiu serà utilitzat. Si no, llavors Jomres buscarà un arxiu d'idioma Inglés en aquest mateix directori. Si no es troba, Jomres utilitzarà l'arxiu d'idioma per l'idioma seleccionat en el directori /'.JOMRES_ROOT_DIRECTORY.'/languages.");
+jr_define('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', "Utilitzeu aquesta opció per canviar el context lingüístic del lloc. Aquesta característica permet que Jomres utilitzi etiquetes adequades per a com esteu utilitzant Jomres, de manera que si el vostre objectiu és una intermediació de iots, canviar el context permetrà a Jomres presentar etiquetes adequades als iots. Per exemple, si configureu el context a Cortatge de iots, llavors Jomres trobarà primer l'idioma actual i, a continuació, cercarà a la base de dades de text personalitzada les cadenes desades amb un context d'idioma de cortatge de iots. Si existeixen cadenes personalitzades per a l'idioma i el context actuals, s'utilitzaran. Si no, Jomres tornarà a utilitzar les definicions d'idioma utilitzades pels seus fitxers d'idioma Core.");
 // 4.7.3
 jr_define('_JOMRES_COM_ADVANCED_SITE_CONFIG', 'Configuració avançada del lloc');
 jr_define('_JOMRES_COM_ADVANCED_SITE_CONFIG_DESC', "Estableixi aquesta opció a Sí si desitja utilitzar les opcions avançades de configuració del lloc. Si vostè acaba de començar amb Jomres, llavors li recomanem, que per ara deixi això en No, ja que la instal·lació per defecte és suficient per a començar, ha d'afegir Jomres al menú principal i accedir a l'interfaç com 'admin' i començar a configurar la seva propietat(s). Tingui en compte que moltes de les opcions avançades només seran aplicables a les instal·lacions de Jomres Silver, els usuaris Jomres Lite no seran capaços de treure el màxim profit de la totalitat de les característiques permeses.");
@@ -2753,3 +2744,18 @@ Podeu deixar l\'idioma d\'arribada configurat en el vostre idioma actual i utili
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Mode de prova");
 
 	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "El mode de desenvolupament està habilitat, per tant, si feu servir aquesta funció, actualitzareu la vostra instal·lació de Jomres a la branca de Nightly. Aquesta és la versió més recent de Jomres i pot ser estable o no. Si ho feu? no voleu actualitzar a Nightly, visiteu Admin > Jomres > Configuració > Configuració del lloc > pestanya Depuració i configureu l'opció Producció/Desenvolupament a Producció.");
+
+
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN', "Inclou els nens en els controls del nivell d'ocupació?");
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN_DESC_MRP', "Quan els clients fan reserves, les habitacions tenen un nombre màxim de convidats que poden allotjar. Si el nombre total de convidats supera el nombre de convidats que poden allotjar les habitacions seleccionades, el formulari de reserva els informarà han de seleccionar més habitacions.
+ 
+  Si configureu aquesta opció en Sí, el nombre de nens s'inclourà en el xec del nombre total de convidats. Si configureu aquesta opció a No, el nombre de nens no s'inclourà en el xec del nombre total de convidats. Això vol dir que si configureu aquesta opció a No, un grup de 4 persones, per exemple, 2 adults i 2 nens, podrà reservar una habitació doble amb capacitat per a 2 adults. ");
+
+
+	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Seleccioneu Sí si voleu cobrar per persona-per-nit.');
+
+	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"Destacat");
+
+jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', 'Lloguer d\'articles');
+
+jr_define('SHORTCODE_INFO_JOMRES_V_JOMRES_SCRIPT',"Els codis curts s'han d'embolicar a &#123;&#125; a Joomla, o [] a Wordpress (PARÈNCULAS). Hi ha tres maneres de veure les pàgines generades pels codis curts. La primera és afegiu un codi curt a un article/pàgina/mòdul en el format PARÈNCULASjomres shortcode argumentsPARÈNCULAS. El segon es troba dins dels fitxers de plantilla de Jomres, on posareu PARÈNCULASjomres_script shortcode argumentsPARÈNCULAS. L'última manera és a través de l'url, així que, per exemple, a Joomla posareu www. /domain.com/index.php?option=com_jomres&task=SHORTCODE&ARGUMENTS=ARGUMENTS. ");

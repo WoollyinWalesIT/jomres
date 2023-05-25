@@ -4,16 +4,16 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-	
+	#[AllowDynamicProperties]
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
@@ -77,14 +77,14 @@ class j16000charts
 		foreach ($all_jomres_charts as $k) {
 			$options[] = jomresHTML::makeOption($k['id'], $k['title'].' - '.$k['description']);
 		}
-		$output['CHARTS_DROPDOWN'] = jomresHTML::selectList($options, 'jr_chart', 'class="inputbox" size="1"', 'value', 'text', get_showtime('jr_chart'));
+		$output['CHARTS_DROPDOWN'] = jomresHTML::selectList($options, 'jr_chart', '', 'value', 'text', get_showtime('jr_chart'));
 
 		//chart types dropdown
 		$options = array();
 		$options[] = jomresHTML::makeOption('line', 'Line');
 		$options[] = jomresHTML::makeOption('bar', 'Bar');
 		$options[] = jomresHTML::makeOption('radar', 'Radar');
-		$output['CHART_TYPES_DROPDOWN'] = jomresHTML::selectList($options, 'jr_chart_type', 'class="inputbox" size="1"', 'value', 'text', $chart_type);
+		$output['CHART_TYPES_DROPDOWN'] = jomresHTML::selectList($options, 'jr_chart_type', '', 'value', 'text', $chart_type);
 
 		//get selected jr chart
 		if (get_showtime('jr_chart') == '0') {

@@ -4,16 +4,16 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-	
+	#[AllowDynamicProperties]
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
@@ -46,7 +46,7 @@ class j16000save_template_override
 		
 		$template_name			= (string) jomresGetParam($_POST, 'template_name', '');
 		$template_path			= (string) jomresGetParam($_POST, 'template_path', '');
-		
+
 		// Older template override plugins had templates in the template root. We are extending here to allow copies of the files to exist in bootstrap specific version directories.
 		if (!file_exists($template_path.$template_name)) {
 			$bs_version = jomres_bootstrap_version();

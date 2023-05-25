@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 //#################################################################
@@ -624,26 +624,17 @@ defined('_JOMRES_INITCHECK') or die('');
 	jr_define('JOMRES_COM_A_TARIFFMODE_ADVANCED', 'Advanced');
 	jr_define('JOMRES_COM_A_TARIFFMODE_TARIFFTYPES', 'Micromanage');
 	jr_define('JOMRES_COM_A_TARIFFMODE', 'Način postavki tarife');
-	jr_define('JOMRES_COM_A_TARIFFMODE_DESC', "<b>Warning: Switching between different tariff types may result in loss of data. See the note below regarding this</b>.
+	jr_define('JOMRES_COM_A_TARIFFMODE_DESC', "<b>Upozorenje: Prebacivanje između različitih načina uređivanja tarifa može dovesti do gubitka podataka. Pogledajte napomenu u nastavku u vezi s tim.</b>.
 <br/><br/>
-You have three options as to how you configure your tariffs.<br/>
-Normal mode: You will have one tariff for each room type that is valid for the next 10 years.<br/>
-Micromanage: You can modify the price for each and every day for each room/property type. <br/>
-Advanced: The \"old\" Jomres method of managing tariffs. <br/>
+Imate dvije opcije kako konfigurirati svoje tarife.<br/>
+Micromanage: Možete mijenjati cijenu za svaki dan za svaku vrstu sobe/nekretnine. <br/>
+Napredno: Možete kreirati skup tarifa koje nisu međusobno povezane. <br/>
 <br/>
-The different tariff modes allow you to choose the method of configuring tariffs that suits you best.<br/>
-Normal mode is the most simplistic but it's the easiest to understand because it will cross reference rooms and tariffs to room/property types and allows you to configure rooms and prices on the same page.<br/>
-Micro manage allows you to vary the rates on a day to day basis without having to manage reams of tariffs, it is done by cross referencing lots of different tariffs with each other. This results in a number of tariffs being created for you covering a period of time, but you can not layer tariffs over each other.<br/>
-Advanced mode lets you create a room and associate it with a room type. You then create a tariff and associate THAT with a room type. Using this method it is possible to \"layer\" tariffs over each other, for example a room type \"Double bed\" can have one tariff for bed and breakfast, and another for bed, breakfast and evening meal. The advanced method requires a little more attention to detail because it is possible to dis-associate a room or tariff from a room/property type, or to incorrectly set valid from and to dates, but it does give you configuration options that the other modes do not offer. <br/>
+Micromanage vam omogućuje da mijenjate stope iz dana u dan bez potrebe za upravljanjem hrpama tarifa, to se radi međusobnim upoređivanjem mnogo različitih tarifa. To rezultira izradom većeg broja tarifa koje pokrivaju određeno vremensko razdoblje, ali tarife ne možete stavljati jedna preko druge.<br/>
+Napredni način rada omogućuje kreiranje tarifa koje nisu povezane s drugim tarifama. To vam omogućuje stvaranje cijena za vašu nekretninu koje inače ne možete stvoriti u načinu rada Micromanage. Zahtjevniji je za korištenje, jer morate osigurati da datumi valjanosti svake tarife od/do savršeno odgovaraju, ali vam omogućuje stvaranje kompliciranijih tarifa.<br/>
 <br/>
-Because Normal and Micromanage modes require a specific set up of rooms and tariffs for the tariff mode to work the system may need to reset some data to make the current tariff configurations compatible with the current tariff editing mode.<br/>
-<br/>
-Normal -> Advanced. No change. Existing tariffs are retained.<br/>
-Normal -> Micromanage. All existing tariffs are removed.<br/>
-Advanced -> Normal. All existing tariffs are removed.<br/>
-Advanced -> Micromanage. All existing tariffs are removed.<br/>
-Micromanage -> Advanced. All existing cross references between tariffs are removed, but the tariffs themselves will remain.<br/>
-Micromanage -> Normal. All existing cross references and tariffs are removed.<br/>");
+Ako prijeđete s Naprednog na Micromanage, sve postojeće tarife bit će uklonjene.<br/>
+<br/>");
 	jr_define('_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS', 'Prikaži popis soba na stranici sa podacima objekta?');
 	jr_define('JOMRES_PROPERTYTYPE', 'Vrsta objekta');
 	jr_define('JOMRES_MAXPEOPLEINROOM', 'Maksimalan broj osoba po sobi');
@@ -675,7 +666,7 @@ Micromanage -> Normal. All existing cross references and tariffs are removed.<br
 	jr_define('_JOMCOMP_WISEPRICE_TO', ' na ');
 	jr_define('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', ' Cijena sobe bez popusta ');
 	jr_define('JOMRES_COM_A_MAPSKEY', 'Google mape API key');
-	jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'Nije moguće dopiti google karte API ključ od <ahref="https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key" target="_blank">Google maps</a>. Upišite google mape ključ ovdje i tada će se vaše karte prikazivati ispravno');
+	jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'Nije moguće dopiti google karte API ključ od <ahref="https://console.cloud.google.com/projectselector2/google/maps-apis/credentials" target="_blank">Google maps</a>. Upišite google mape ključ ovdje i tada će se vaše karte prikazivati ispravno');
 	jr_define('_JOMCOMP_LASTMINUTE_CPANEL', 'Last minute');
 	jr_define('_JOMCOMP_LASTMINUTE_ACTIVE', 'Aktiviraj?');
 	jr_define('_JOMCOMP_LASTMINUTE_ACTIVE_DESC', 'Postavite na Da ukoliko želite aktivirati Last minute ponude.');
@@ -722,7 +713,7 @@ Micromanage -> Normal. All existing cross references and tariffs are removed.<br
 	jr_define('_JRPORTAL_LISTBOOKINGS_HEADER_BOOKINGTOTAL', 'Rezervacija ukupno');
 	jr_define('_JRPORTAL_LISTBOOKINGS_HEADER_DATEARCHIVED', 'Datum arhiviran');
 	jr_define('_JRPORTAL_ADD_ADHOC_ITEM_DESCRIPTION', 'Opis');
-	jr_define('_JOMRES_COM_PTYPES_PTYPE_DESC_FURTHER', 'You can have property type specific language files by setting the description to the name of a sub folder, e.g. "yachtbrokerage" and copying a language file to that subfolder. You can then modify that language file for this property type so rooms become, for example, DVDs, etc.');
+	jr_define('_JOMRES_COM_PTYPES_PTYPE_DESC_FURTHER', 'You can have property type specific language strings which are adjusted in the Translate Labels page. Set the language context to something like "toolhire" (no spaces or special characters) to use them.');
 	jr_define('_JOMRES_EDITPROPERTY_CONNOTDELETE1', 'You cannot delete this property as it is the only property that you have access to. If you want to disable it, please use the un-publish feature in your toolbar. ');
 // Jomres v3.0.6
 // Jomres v3.1
@@ -1167,7 +1158,7 @@ Ako nekretnina ima jednu ili više rezervacija za odabrano razdoblje, nećete je
 	jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD_DESC', 'Ovaj prag je broj dana u kojima upravitelj mora platiti fakturu prije nego što se obustavi i ne objavi njihova svojstva.');
 //4.7.2
 	jr_define('_JOMRES_COM_LANGUAGE_CONTEXT', 'Jezični kontekst');
-	jr_define('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', 'Koristite ovu opciju za promjenu jezičnog konteksta web lokacije. Ova značajka omogućuje Jomresu korištenje oznaka koje odgovaraju vašem trenutnom fokusu, pa ako je vaš fokus kao posrednik za jahte, tada će se promijeniti kontekst dopustiti Jomresu da predstavi oznake iz datoteke s drugim jezikom. Na primjer, ako postavite kontekst na "Posredovanje jahtama" tada će Jomres prvo pronaći trenutni jezik, a zatim u direktoriju /'.JOMRES_ROOT_DIRECTORY.'/jezik pronaći poddirektorij pod nazivom "yachtbrokerage". Ako datoteka postoji za trenutni jezik, tada će se ta datoteka koristiti. Ako ne, Jomres će potražiti datoteku na engleskom jeziku u tom istom direktoriju. Ako se to ne može pronaći, Jomres će koristiti jezična datoteka za trenutno odabrani jezik u /'.JOMRES_ROOT_DIRECTORY.'/imenik. ');
+	jr_define('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', 'Koristite ovu opciju za promjenu jezičnog konteksta stranice. Ova značajka omogućuje Jomresu da koristi oznake koje su prikladne za vaš način korištenja Jomresa, tako da ako ste usredotočeni na posredovanje jahti, tada će promjena konteksta omogućiti Jomresu da predstavi oznake prikladne za jahte. Na primjer, ako postavite kontekst na "Posredovanje jahti", tada će Jomres prvo pronaći trenutni jezik, a zatim pretražiti prilagođenu tekstualnu bazu podataka za nizove spremljene s jezičnim kontekstom "posredovanje jahti". Ako postoje prilagođeni nizovi za trenutačni jezik i kontekst, oni će se koristiti. Ako ne, Jomres će se vratiti na jezične definicije koje koriste njegove Core jezične datoteke.');
 // 4.7.3
 	jr_define('_JOMRES_COM_ADVANCED_SITE_CONFIG', 'Napredna konfiguracija web lokacije');
 	jr_define('_JOMRES_COM_ADVANCED_SITE_CONFIG_DESC', 'Postavite ovu opciju na Da ako želite koristiti napredne mogućnosti konfiguracije web mjesta. Ako tek počinjete s Jomresom, savjetujemo vam da to za sada ostavite na Ne, jer je zadana instalacija dovoljno za početak, umjesto toga trebate dodati Jomres u glavni izbornik i prijaviti se na sučelje kao "admin" te početi konfigurirati svojstvo (e). Imajte na umu da mnoge napredne opcije možda neće biti dostupne ako ne t imati instalirane odgovarajuće dodatke. Korisnici besplatnog jezgrenog sustava neće moći u potpunosti iskoristiti mogućnosti koje omogućuju. ');
@@ -2773,3 +2764,16 @@ Možete ostaviti ciljni jezik postavljen na vaš trenutni jezik i koristiti ovu 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Testni način");
 
 	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "Razvojni mod je omogućen, stoga ako koristite ovu značajku, ažurirat ćete svoju instalaciju Jomresa na Nightly granu. Ovo je najnovija verzija Jomresa i može, ali ne mora biti stabilna. Ako to učinite ne želite ažurirati na Nightly, posjetite Admin > Jomres > Postavke > Konfiguracija web-mjesta > karticu Debugging i postavite opciju Proizvodnja/Razvoj na Proizvodnja.");
+
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN', "Uključiti djecu u provjere razine popunjenosti?");
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN_DESC_MRP', "Kada gosti izvrše rezervaciju, sobe imaju maksimalan broj gostiju koje mogu primiti. Ako ukupni broj gostiju premašuje broj gostiju koje odabrane sobe mogu primiti, obrazac za rezervaciju će im reći da trebaju odabrati više soba.
+ 
+  Ako ovu opciju postavite na Da, tada će broj djece biti uključen u provjeru ukupnog broja gostiju. Ako ovu opciju postavite na Ne, tada broj djece neće biti uključen u ukupan broj gostiju. To znači da ako ovu opciju postavite na Ne, tada će grupa od 4 osobe, na primjer, 2 odrasle osobe i 2 djece, moći rezervirati dvokrevetnu sobu koja može primiti 2 odrasle osobe. ");
+
+
+	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Odaberite Da ako želite naplaćivati po osobi po noći.');
+
+	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"Istaknuto");
+jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', 'Unajmljivanje predmeta');
+
+jr_define('SHORTCODE_INFO_JOMRES_V_JOMRES_SCRIPT',"Kratki kodovi moraju biti umotani u &#123;&#125; u Joomli ili [] u Wordpressu (ZAGRADE). Postoje tri načina na koje se stranice generirane kratkim kodovima mogu vidjeti. Prvi je da dodajte kratki kod u članak/stranicu/modul u formatu BRACKETjomres argumenti kratkog koda BRACKET. Drugi je unutar Jomresovih datoteka predložaka, gdje biste stavili BRACKETjomres_script argumente kratkog koda BRACKET. Posljednji način je putem url-a, tako da biste na primjer u Joomli stavili www.domain.com/index.php?option=com_jomres&task=SHORTCODE&ARGUMENTS=ARGUMENTS. ");

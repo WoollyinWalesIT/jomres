@@ -4,16 +4,16 @@
 	 *
 	 * @author Vince Wooll <sales@jomres.net>
 	 *
-	  *  @version Jomres 10.6.0
+	  *  @version Jomres 10.7.0
 	 *
-	 * @copyright	2005-2022 Vince Wooll
+	 * @copyright	2005-2023 Vince Wooll
 	 * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
 	 **/
 
 // ################################################################
 	defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-
+	#[AllowDynamicProperties]
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
@@ -296,6 +296,13 @@ class j06000search
 			}
 		}
 
+		if (isset($_REQUEST[ 'pricerange_value_from' ]) && isset($_REQUEST[ 'pricerange_value_to' ] )) {
+			$rangefrom = jomresGetParam($_REQUEST, 'pricerange_value_from', 0);
+			$rangeto = jomresGetParam($_REQUEST, 'pricerange_value_to', 0);
+			$sch->filter[ 'priceranges' ] = array('from' => (int)$rangefrom , 'to' => (int)$rangeto, 'raw' => [] );
+		}
+
+
 		if (!empty($_REQUEST[ 'guestnumber' ])) {
 			if ($_REQUEST[ 'guestnumber' ] == $searchAll) {
 				$sch->filter[ 'guestnumber' ] = '%';
@@ -324,7 +331,12 @@ class j06000search
 			if ($_REQUEST[ 'stars' ] == $searchAll) {
 				$sch->filter[ 'stars' ] = '%';
 			} else {
-				$sch->filter[ 'stars' ] = (int) jomresGetParam($_REQUEST, 'stars', '');
+
+				foreach ($_REQUEST[ 'stars' ] as $k => $v) {
+					$sch->filter[ 'stars' ][]  = (int) $v;
+				}
+
+				//$sch->filter[ 'stars' ] = (int) jomresGetParam($_REQUEST, 'stars', '');
 			}
 		}
 
@@ -754,8 +766,8 @@ class j06000search
 			$output[ 'sleeps_adults_selected' ] = $sleeps_adults_selected;
 			$output[ 'sleeps_children_selected' ] = $sleeps_children_selected;
 
-			$output[ 'sleeps_adults_dropdown' ] = jomresHTML::integerSelectList(0, $output[ 'highest_adults' ], 1, 'sleeps_adults', 'class="inputbox" size="1"', $sleeps_adults_selected);
-			$output[ 'sleeps_children_dropdown' ] = jomresHTML::integerSelectList(0, $output[ 'highest_children' ], 1, 'sleeps_children', 'class="inputbox" size="1"', $sleeps_children_selected);
+			$output[ 'sleeps_adults_dropdown' ] = jomresHTML::integerSelectList(0, $output[ 'highest_adults' ], 1, 'sleeps_adults', '', $sleeps_adults_selected);
+			$output[ 'sleeps_children_dropdown' ] = jomresHTML::integerSelectList(0, $output[ 'highest_children' ], 1, 'sleeps_children', '', $sleeps_children_selected);
 		}
 
 		// -------------------------------------------------------------------------------------------------------------------------------------------
@@ -851,6 +863,10 @@ class j06000search
 				}
 				if (!empty($sch->filter[ 'arrival' ])) {
 					$sch->jomSearch_availability();
+				}
+
+				if (isset($_REQUEST['autocomplete_field'])) {
+					$sch->jomSearch_autocomplete();
 				}
 			}
 		}

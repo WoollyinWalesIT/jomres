@@ -4,16 +4,16 @@
 	 *
 	 * @author Vince Wooll <sales@jomres.net>
 	 *
-	 *  @version Jomres 10.6.0
+	 *  @version Jomres 10.7.0
 	 *
-	 * @copyright	2005-2022 Vince Wooll
+	 * @copyright	2005-2023 Vince Wooll
 	 * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
 	 **/
 
 // ################################################################
 	defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-
+	#[AllowDynamicProperties]
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
@@ -141,17 +141,24 @@
 				for ($i = 0; $i < $count; ++$i) {
 					$r = array();
 
-					if (isset($imagesArray[ $i ][ 'small' ])) {
-						$r[ 'IMAGETHUMB' ] = $imagesArray[ $i ][ 'small' ];
-					} else {
-						$r[ 'IMAGETHUMB' ] = $jomres_media_centre_images->multi_query_images['noimage-small'];
-					}
-
 					if (isset($imagesArray[ $i ][ 'large' ])) {
 						$r[ 'IMAGE' ] = $imagesArray[ $i ][ 'large' ];
 					} else {
 						$r[ 'IMAGE' ] = $jomres_media_centre_images->multi_query_images['noimage-large'];
 					}
+
+					if (isset($imagesArray[ $i ][ 'small' ])) {
+						if ($componentArgs[ 'size' ] == 'large') {
+							$r[ 'IMAGETHUMB' ] = $imagesArray[ $i ][ 'large' ];
+						} else {
+							$r[ 'IMAGETHUMB' ] = $imagesArray[ $i ][ 'small' ];
+						}
+
+					} else {
+						$r[ 'IMAGETHUMB' ] = $jomres_media_centre_images->multi_query_images['noimage-small'];
+					}
+
+
 
 					if ($link_to_property_details && (int) $componentArgs[ 'property_uid' ] > 0) {
 						$r[ 'LINK' ] = get_property_details_url((int)$componentArgs[ 'property_uid' ]);

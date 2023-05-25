@@ -4,16 +4,16 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-	
+	#[AllowDynamicProperties]
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
@@ -71,12 +71,12 @@ class j06001edit_guest
 			$yesno = array();
 			$yesno[] = jomresHTML::makeOption('0', jr_gettext('_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false));
 			$yesno[] = jomresHTML::makeOption('1', jr_gettext('_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES', false));
-			$output[ 'BLACKLISTED' ] = jomresHTML::selectList($yesno, 'blacklisted', 'class="inputbox" size="1"', 'value', 'text', $jrportal_guests->blacklisted);
+			$output[ 'BLACKLISTED' ] = jomresHTML::selectList($yesno, 'blacklisted', '', 'value', 'text', $jrportal_guests->blacklisted);
 
-			$output[ 'DISCOUNT' ] = jomresHTML::integerSelectList(0, 99, 1, 'discount', 'class="inputbox" size="1"', $jrportal_guests->discount);
+			$output[ 'DISCOUNT' ] = jomresHTML::integerSelectList(0, 99, 1, 'discount', '', $jrportal_guests->discount);
 
 			//validation message
-			if (trim($jrportal_guests->vat_number_validation_response) != '') {
+			if (trim( (string) $jrportal_guests->vat_number_validation_response) != '') {
 				$vat_validation[0][ 'VAT_NUMBER_VALIDATION_STATUS'] = $jrportal_guests->vat_number_validation_response;
 				if ($jrportal_guests->vat_number_validated) {
 					if (using_bootstrap()) {
@@ -96,7 +96,7 @@ class j06001edit_guest
 			$id = 0;
 			$output[ 'REGION' ] = setupRegions('GB');
 			$output[ 'COUNTRY' ] = createSimpleCountriesDropdown('GB');
-			$output[ 'DISCOUNT' ] = jomresHTML::integerSelectList(0, 99, 1, 'discount', 'class="inputbox" size="1"', 0);
+			$output[ 'DISCOUNT' ] = jomresHTML::integerSelectList(0, 99, 1, 'discount', '', 0);
 		}
 
 		$output[ 'HFIRSTNAME' ] = jr_gettext('_JOMRES_COM_MR_DISPGUEST_FIRSTNAME', '_JOMRES_COM_MR_DISPGUEST_FIRSTNAME');

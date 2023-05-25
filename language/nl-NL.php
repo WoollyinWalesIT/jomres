@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 ##################################################################
@@ -610,26 +610,17 @@ jr_define('JOMRES_COM_A_TARIFFMODE_NORMAL', "Normaal ");
 jr_define('JOMRES_COM_A_TARIFFMODE_ADVANCED', "Geavanceerd ");
 jr_define('JOMRES_COM_A_TARIFFMODE_TARIFFTYPES', "Micromanage ");
 jr_define('JOMRES_COM_A_TARIFFMODE', "Tariefconfiguratiemodus ");
-jr_define('JOMRES_COM_A_TARIFFMODE_DESC', "<b> Waarschuwing: het wisselen van modus kan leiden tot het verlies van data.Zie de toelichting hieronder over dit </b>.
+jr_define('JOMRES_COM_A_TARIFFMODE_DESC', "<b>Waarschuwing: schakelen tussen verschillende tariefbewerkingsmodi kan leiden tot gegevensverlies. Zie de opmerking hieronder hierover.</b>.
 <br/><br/>
-U heeft drie opties over hoe u uw tarieven configureert. <br/>
-Normale modus: U hebt één tarief voor elk kamertype dat geldig is voor de komende 10 jaar. <br/>
-Micromanage: U kunt de prijs voor elke dag voor elk type kamer/verhuurobject beheren. <br/>
-Geavanceerd: Iets uitgereider dan de normale modus om tarieven te beheren. <br/>
+U heeft twee mogelijkheden om uw tarieven te configureren.<br/>
+Micromanage: U kunt de prijs voor elke dag wijzigen voor elk type kamer/accommodatie. <br/>
+Geavanceerd: U kunt een set tarieven aanmaken die niet aan elkaar gekoppeld zijn. <br/>
 <br/>
-Met de verschillende tariefmodi kunt u de methode kiezen voor het configureren van tarieven die het beste bij u passen. <br/>
-De normale modus is het meest eenvoudig, maar het is het makkelijkste te begrijpen omdat het u de mogelijkheid biedt om kamers en prijzen op dezelfde pagina te configureren. <br/>
-Met micromanage kunt u de tarieven dagelijks aanpassen, u kunt verschillende tarieven met elkaar combineren. Dit resulteert in een aantal tarieven die voor een periode worden gemaakt voor u, maar u kunt geen tarief over elkaar oplopen. <br/>
-Met de geavanceerde modus kunt u een kamer creëren en associëren met een kamertype. U maakt dan een tarief en associeert dat met een kamertype. Met behulp van deze methode is het mogelijk om verschillende tarieven als lagen over elkaar te halen, bijvoorbeeld een kamertype. Dubbel bed kan één bed en breakfast hebben, en een ander voor bed, ontbijt en avondmaaltijd. De geavanceerde methode vereist een beetje meer aandacht voor detail, omdat het mogelijk is om een ​​kamer of tarief van een verhuurobject/kamertype te ontkoppelen, maar het geeft u configuratie opties die de andere modi niet bieden. <br/>
+Met Micromanage kunt u de tarieven van dag tot dag variëren zonder dat u een hele reeks tarieven hoeft te beheren. Dit wordt gedaan door veel verschillende tarieven met elkaar te vergelijken. Dit resulteert in een aantal tarieven die voor een bepaalde periode voor u worden aangemaakt, maar u kunt geen tarieven over elkaar heen leggen.<br/>
+In de geavanceerde modus kunt u tarieven maken die niet gekoppeld zijn aan andere tarieven. Hierdoor kunt u prijzen voor uw onroerend goed maken die u anders niet kunt maken in de Micromanage-modus. Het is arbeidsintensiever in het gebruik, omdat u ervoor moet zorgen dat de geldig van/tot datums van elk tarief perfect overeenkomen, maar u kunt er ingewikkelder tarieven mee maken.<br/>
 <br/>
-Omdat de normale en Micromanage-modi een specifieke opstelling van kamers en tarieven vereisen voor de tariefmodus om te werken, moet het systeem mogelijk sommige gegevens opnieuw instellen om de huidige tariefconfiguraties compatibel te maken met de huidige tariefbewerkingsmodus. <br/>
-<br/>
-Normaal -> Geavanceerd. Geen verandering. Bestaande tarieven worden behouden. <br/>
-Normaal -> Micromanage. Alle bestaande tarieven worden verwijderd. <br/>
-Geavanceerd -> Normaal. Alle bestaande tarieven worden verwijderd. <br/>
-Geavanceerd -> Micromanage. Alle bestaande tarieven worden verwijderd. <br/>
-Micromanage -> Advanced. Alle bestaande kruisverwijzingen tussen tarieven worden verwijderd, maar de tarieven zelf blijven. <br/>
-Micromanage -> Normaal. Alle bestaande kruisverwijzingen en tarieven worden verwijderd. <br/> ");
+Als u overstapt van Advanced naar Micromanage, worden alle bestaande tarieven verwijderd.<br/>
+<br/>");
 jr_define('_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS', "Toon kamerlijst op pagina met verhuurobjectgegevens? ");
 jr_define('JOMRES_PROPERTYTYPE', "Verhuurobject type");
 jr_define('JOMRES_MAXPEOPLEINROOM', "Max gasten per kamer ");
@@ -661,7 +652,7 @@ jr_define('_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', " lastminute korting ");
 jr_define('_JOMCOMP_WISEPRICE_TO', " naar ");
 jr_define('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', " Korting niet toegepast ");
 jr_define('JOMRES_COM_A_MAPSKEY', "Google Maps API-key ");
-jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'U kunt een Google Maps API-sleutel krijgen van <a href="https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key" target="_blank"> Google Maps </a>. Zodra u uw kaartcode hier hebt ingevoerd, zal Jomres de kaart tonen op uw pagina voor verhuuurobject details. ');
+jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'U kunt een Google Maps API-sleutel krijgen van <a href="https://console.cloud.google.com/projectselector2/google/maps-apis/credentials" target="_blank"> Google Maps </a>. Zodra u uw kaartcode hier hebt ingevoerd, zal Jomres de kaart tonen op uw pagina voor verhuuurobject details. ');
 jr_define('_JOMCOMP_LASTMINUTE_CPANEL', "Last minute");
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE', "Actief?");
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE_DESC', "Stel dit in op Ja als u lastminute aanbiedingen wilt aanbieden. ");
@@ -1105,7 +1096,7 @@ jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD', "Automatisch o
 jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD_DESC', "Deze threasholding is het aantal dagen dat een manager een factuur moet betalen voordat ze worden geschorst en hun bedrijven ongepubliceerd zijn. ");
 //4.7.2', "
 jr_define('_JOMRES_COM_LANGUAGE_CONTEXT', "Taalcontext ");
-jr_define('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', "Gebruik deze optie om de taalcontext van de site te wijzigen. Met deze functie kan Jomres labels gebruiken die geschikt zijn voor uw huidige focus, dus als uw focus als een jachtmakelaar is, dan kunt u Jomres gebruiken om labels uit een ander taalbestand te presenteren. Als u bijvoorbeeld de context instelt op 'Yacht Brokerage', dan zal Jomres eerst de huidige taal vinden, en zoek dan de /'.JOMRES_ROOT_DIRECTORY.'languages ​​directory voor een sub-directory genaamd 'yachtbrokerage'. Als het bestand voor de huidige taal bestaat, dan wordt dat bestand gebruikt. Zo niet, dan zoekt Jomres naar een engels taalbestand in diezelfde map. Als dat niet kan worden gevonden, gebruikt Jomres het taalbestand voor de momenteel geselecteerde taal in de directory /'.JOMRES_ROOT_DIRECTORY.'languages. Merk op dat als u een nieuw type eigendom maakt, dan wordt een kopie van het huidige taalbestand gemaakt in een subdirectory onder /'.JOMRES_ROOT_DIRECTORY.'/taal met een naam die de beschrijving van het nieuwe eigendomsoort weerspiegelt. ");
+jr_define('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', 'Gebruik deze optie om de taalcontext van de site te wijzigen. Met deze functie kan Jomres labels gebruiken die geschikt zijn voor hoe u Jomres gebruikt, dus als u zich richt op een jachtmakelaardij, kan Jomres door de context te wijzigen labels presenteren die geschikt zijn voor jachten. Als u de context bijvoorbeeld instelt op "Yacht Brokerage", dan zal Jomres eerst de huidige taal vinden en vervolgens in de aangepaste tekstdatabase zoeken naar tekenreeksen die zijn opgeslagen met een taalcontext van "yachtbrokerage". Als er aangepaste tekenreeksen voor de huidige taal en context bestaan, worden die gebruikt. Zo niet, dan zal Jomres terugvallen op de taaldefinities die worden gebruikt door de kerntaalbestanden.');
 // 4.7.3', "
 jr_define('_JOMRES_CONFIG_JQUERY_UI', "Load Jomres jQuery UI-bibliotheek? ");
 jr_define('_JOMRES_SORTORDER_PRICE_DESC', "Prijs (hoogste eerst) ");
@@ -2699,3 +2690,17 @@ U kunt de doeltaal op uw huidige taal laten staan en deze pagina gebruiken om it
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Testmodus");
 
 	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "Ontwikkelingsmodus is ingeschakeld, dus als u deze functie gebruikt, werkt u uw installatie van Jomres bij naar de Nightly-tak. Dit is de meest recente versie van Jomres en kan al dan niet stabiel zijn. Als u dat doet niet wilt updaten naar Nightly, ga naar Beheer > Jomres > Instellingen > Siteconfiguratie > tabblad Foutopsporing en zet de optie Productie/Ontwikkeling op Productie.");
+
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN', "Kinderen opnemen in bezettingsgraadcontroles?");
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN_DESC_MRP', "Als gasten een boeking maken, hebben de kamers een maximum aantal gasten dat ze kunnen huisvesten. Als het totale aantal gasten groter is dan het aantal gasten dat de geselecteerde kamers kunnen herbergen, dan zal het boekingsformulier hen vertellen dat ze moeten meer kamers selecteren.
+ 
+  Als u deze optie op Ja zet, wordt het aantal kinderen meegenomen in het totaal aantal gasten. Als u deze optie op Nee zet, wordt het aantal kinderen niet meegeteld bij het totaal aantal gasten. Dit betekent dat als u deze optie instelt op Nee, een gezelschap van 4 personen, bijvoorbeeld 2 volwassenen en 2 kinderen, een tweepersoonskamer kan boeken voor 2 volwassenen. ");
+
+
+	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Selecteer Ja als u per persoon per nacht wilt rekenen.');
+
+	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"Aanbevolen");
+
+jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', 'Artikelverhuur');
+
+jr_define('SHORTCODE_INFO_JOMRES_V_JOMRES_SCRIPT',"Shortcodes moeten worden ingepakt in &#123;&#125; in Joomla, of [] in Wordpress (BRACKETS). Er zijn drie manieren waarop de door shortcodes gegenereerde pagina's kunnen worden bekeken. De eerste is om voeg een shortcode toe aan een artikel/pagina/module in het formaat BRACKETjomres shortcode argumentsBRACKET.De tweede is binnen Jomres sjabloonbestanden, waar je BRACKETjomres_script shortcode argumentenBRACKET zou plaatsen.De laatste manier is via de url, dus in Joomla zou je bijvoorbeeld www plaatsen /domain.com/index.php?option=com_jomres&task=SHORTCODE&ARGUMENTS=ARGUMENTEN. ");

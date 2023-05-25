@@ -4,16 +4,16 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-	
+	#[AllowDynamicProperties]
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
@@ -41,7 +41,23 @@ class j00001start
 		if ($MiniComponents->template_touch) {
 			$this->template_touchable = false;
 
-			return;
+
+		}
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
+
+		if ( isset($jrConfig['api_capable']) && (bool) $jrConfig['api_capable'] === true ) {
+			if (!$MiniComponents->eventSpecificlyExistsCheck('00005', 'api_feature_cmf')) {
+				$MiniComponents->specificEvent('16000', 'addplugin', array('plugin' => 'api_feature_cmf', 'autoupgrade' => true));
+			}
+			if (!$MiniComponents->eventSpecificlyExistsCheck('00005', 'channelmanagement_framework')) {
+				$MiniComponents->specificEvent('16000', 'addplugin', array('plugin' => 'channelmanagement_framework', 'autoupgrade' => true));
+			}
+		}
+
+		$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
+		if( isset($_REQUEST["calledByModule"]) && isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections'])) {
+			unset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']);
 		}
 	}
 

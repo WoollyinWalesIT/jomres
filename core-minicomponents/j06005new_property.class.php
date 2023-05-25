@@ -4,16 +4,16 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.');
 // ################################################################
-	
+	#[AllowDynamicProperties]
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
@@ -103,7 +103,7 @@ class j06005new_property
 		$output['JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_NOTE1'] = jr_gettext('JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_NOTE1', 'JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_NOTE1', false);
 		$output['JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_NOTE2'] = jr_gettext('JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_NOTE2', 'JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_NOTE2', false);
 
-		$output['DROPDOWN_MAX_OCCUPANCY'] = jomresHTML::integerSelectList(1, 1000, 1, 'max_occupancy', 'class="inputbox" size="1"', 6);
+		$output['DROPDOWN_MAX_OCCUPANCY'] = jomresHTML::integerSelectList(1, 1000, 1, 'max_occupancy', '', 6);
 		$output['JOMRES_OCCUPANCY_LEVELS_MAX_OCCUPANCY'] = jr_gettext('JOMRES_OCCUPANCY_LEVELS_MAX_OCCUPANCY', 'JOMRES_OCCUPANCY_LEVELS_MAX_OCCUPANCY', false);
 
 		$output['HPROPERTY_TYPE'] = jr_gettext('_JOMRES_FRONT_PTYPE', '_JOMRES_FRONT_PTYPE', false);

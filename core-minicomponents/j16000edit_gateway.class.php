@@ -4,16 +4,16 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-	
+	#[AllowDynamicProperties]
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
@@ -215,7 +215,7 @@ class j16000edit_gateway
 		$yesno[] = jomresHTML::makeOption('0', jr_gettext('_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false));
 		$yesno[] = jomresHTML::makeOption('1', jr_gettext('_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES', false));
 
-		$input = jomresHTML::selectList($yesno, $index, 'class="inputbox" size="1"', 'value', 'text', $setting['default']);
+		$input = jomresHTML::selectList($yesno, $index, '', 'value', 'text', $setting['default']);
 
 		$output = array();
 		$pageoutput = array();
@@ -244,7 +244,7 @@ class j16000edit_gateway
 				$options[] = jomresHTML::makeOption($selection, $text);
 			}
 
-			$input = jomresHTML::selectList($options, $index, 'class="inputbox" size="1"', 'value', 'text', $setting['default']);
+			$input = jomresHTML::selectList($options, $index, '', 'value', 'text', $setting['default']);
 
 			$output = array();
 			$pageoutput = array();

@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -24,6 +24,15 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class currency_codes
 {
+	/**
+	 * constructor.
+	 *
+	 * Sets $this->>codes with an array of currency codes and their descriptions.
+	 * Sets $this->>country_codes_to_currency_codes with an array of country codes and their currency codes.
+	 * Sets $this->symbols with an array of currency codes and their symbols.
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->code = '';
@@ -240,7 +249,7 @@ class currency_codes
 			'CG' => 'XAF',
 			'CD' => 'XAF',
 			'CR' => 'CRC',
-			'HR' => 'HRK',
+			'HR' => 'EUR',
 			'CU' => 'CUC',
 			'DK' => 'DKK',
 			'DJ' => 'DJF',
@@ -550,7 +559,7 @@ class currency_codes
 
 	/**
 	 *
-	 *
+	 * Not currently used by Core, however several plugins use it to make a dropdown of currency codes.
 	 *
 	 */
 
@@ -586,13 +595,13 @@ class currency_codes
 				$options[] = jomresHTML::makeOption($k, $v);
 			}
 		}
-//var_dump($options);exit;
-		return jomresHTML::selectList($options, $this->input_name, 'class="inputbox" size="1"', 'value', 'text', $this->code);
+
+		return jomresHTML::selectList($options, $this->input_name, '', 'value', 'text', $this->code);
 	}
 
 	/**
 	 *
-	 *
+	 * Not currently used.
 	 *
 	 */
 
@@ -609,7 +618,7 @@ class currency_codes
 
 	/**
 	 *
-	 *
+	 * not used by core, but used by some plugins
 	 *
 	 */
 

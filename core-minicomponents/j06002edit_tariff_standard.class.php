@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -15,7 +15,7 @@ defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.'
 // ################################################################
 
 use function \PHP81_BC\strftime;
-
+	#[AllowDynamicProperties]
 class j06002edit_tariff_standard
 {
 	function __construct()
@@ -147,7 +147,7 @@ class j06002edit_tariff_standard
 		$yesno[] = jomresHTML::makeOption('0', jr_gettext('_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false));
 		$yesno[] = jomresHTML::makeOption('1', jr_gettext('_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES', false));
 
-		$output['PERCENTAGE_YESNO'] = jomresHTML::selectList($yesno, 'modifier_is_percentage', 'class="inputbox" size="1"', 'value', 'text', $modifier_is_percentage);
+		$output['PERCENTAGE_YESNO'] = jomresHTML::selectList($yesno, 'modifier_is_percentage', '', 'value', 'text', $modifier_is_percentage);
 
 		//room classes for this property
 		if (!empty($basic_property_details->this_property_room_classes)) {
@@ -201,7 +201,7 @@ class j06002edit_tariff_standard
 
 
 			
-			$output['ROOMTYPEDROPDOWN'] = jomresHTML::selectList($options, 'roomClass', 'class="inputbox" size="1"', 'value', 'text', $roomclassid, false);
+			$output['ROOMTYPEDROPDOWN'] = jomresHTML::selectList($options, 'roomClass', '', 'value', 'text', $roomclassid, false);
 		}
 
 		// Let's make our years/months/days array
@@ -407,7 +407,7 @@ class j06002edit_tariff_standard
 		$options[] = jomresHTML::makeOption(6, jr_gettext("_JOMRES_COM_MR_WEEKDAYS_SATURDAY", '_JOMRES_COM_MR_WEEKDAYS_SATURDAY'));
 		$options[] = jomresHTML::makeOption(0, jr_gettext("_JOMRES_COM_MR_WEEKDAYS_SUNDAY", '_JOMRES_COM_MR_WEEKDAYS_SUNDAY'));
 		
-		$output['FIXED_ARRIVAL_DAYOFWEEK'] = jomresHTML::selectList($options, 'fixed_dayofweek', 'class="inputbox" size="1"', 'value', 'text', $fixed_dayofweek);
+		$output['FIXED_ARRIVAL_DAYOFWEEK'] = jomresHTML::selectList($options, 'fixed_dayofweek', '', 'value', 'text', $fixed_dayofweek);
 		
 		//labels
 		$output['HTARIFFTITLE']=jr_gettext('_JOMRES_COM_MR_LISTTARIFF_RATETITLE', '_JOMRES_COM_MR_LISTTARIFF_RATETITLE', false);

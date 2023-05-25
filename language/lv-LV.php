@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 //#################################################################
@@ -611,21 +611,17 @@ jr_define('JOMRES_COM_A_TARIFFMODE_NORMAL', 'Parasts');
 jr_define('JOMRES_COM_A_TARIFFMODE_ADVANCED', 'Paplašināts');
 jr_define('JOMRES_COM_A_TARIFFMODE_TARIFFTYPES', 'Mikromanage');
 jr_define('JOMRES_COM_A_TARIFFMODE', 'Tarifu konfigurācijas veids');
-jr_define('JOMRES_COM_A_TARIFFMODE_DESC', '<b>Uzmanību: Pārslēgšanās starp tarifu tipiem var izraisīt datu zudumu!<br/> Ja neesat pārliecināts kādu tarifu veidu Jums vajag izvēlēties vai vēlāk, konfigurējot tarifus nesaprotat kā to darīt, lūdzu rakstiet mums uz e-pastu support@bookingpro.eu vai support@rezervacija.lv, aprakstiet savu cenu politiku un mēs Jums palīdzēsim izvēlēties pareizo variantu.</b>
+jr_define('JOMRES_COM_A_TARIFFMODE_DESC', '<b>Brīdinājums: pārslēdzoties starp dažādiem tarifu rediģēšanas režīmiem, var tikt zaudēti dati. Par to skatiet tālāk sniegto piezīmi.</b>.
 <br/><br/>
-Jums ir trīs veidi kā konfigurēt tarifus.<br/><br/>
-<b>Parasts:</b> Jums ir viens tarifa veids katram numuru tipam. Šādu konfigurāciju var izvēlēties, ja Jums numuru cenas ir nemainīgas (neatkarīgi no nedēļas dienas vai rezervācijas ilguma). Vai arī, ja Jūs cenu aprēķināt no personu skaita rezervācijā. Ir iespējams norādīt dažādas cenas viesu tipiem, piem: pieaugušie, bērni, pensionāri, u.t.t.  Ļoti vienkārši konfigurējams. Nav iespējams norādīt numuru nosaukumus un kurā stāvā atrodas. Ja Jums vienāda tipa numuriem ir dažādas cenas (piem: divvietīgs numurs ar skatu uz ielu un divvietīgs numurs ar skatu uz ezeru), tad šis tarifu konfigurācijas veids Jums nav piemērots. <br/><br/>
-<b>Micromanage:</b> Konfigurācijas veids ar ļoti plašām cenu konfigurēšanas iespējām. Grūtāk apgūstams, bet ļoti elastīgs. Jūs varat norādīt cenu jebkuram numuru tipam jebkurā dienā. Norādiet nedēļas nogales cenas, svētku dienu cenas, mainiet cenas atkarībā no sezonas. Katram numuru tipam varat izveidot vairākus tarifus, piem: cena vienai dienai, cena vairākām dienām (varat norādīt min un max dienu skaitu, kad tarifs darbojās), cenu ar vai bez brokastīm, pusdienām, u.t.t. Var norādīt numura nosaukumu, stāvu, smēķešanas opciju, opciju pieejams invalīdiem vai nē. Var norādīt katram numuram aprīkojumu un pievienot numura attēlu. Ir iespējams aprēķināt cenu no personu daudzuma kā arī izveidot dažādas cenas dažādiem viesu tipiem. <br/><br/>
-<b>Paplašināts:</b> Nav tik plašas iespējas kā Micromanage, tomēr vairāk iespēju nekā Parastajam veidam. Šeit var norādīt vairākus tarifus vienam numuru tipam, piemēram, <b>divvietīgs numurs ar brokastīm</b> vai <b>divvietīgs numurs ar brokastīm un vakariņām</b>, tāpat var norādīt dažādas cenas atkarībā no rezervācijas ilguma. Nav iespējams izveidot vienam numuram dažādas cenas dažādām nedēļas dienām. Var norādīt numura nosaukumu, stāvu, smēķešanas opciju, opciju pieejams invalīdiem vai nē.Var norādīt katram numuram aprīkojumu un pievienot numura attēlu. Ir iespējams aprēķināt cenu no personu daudzuma kā arī izveidot dažādas cenas dažādiem viesu tipiem.  <br/>
+Jums ir divas iespējas, kā konfigurēt savus tarifus.<br/>
+Mikropārvaldība: varat mainīt cenu katrai telpai/īpašuma tipam katru dienu. <br/>
+Papildu: varat izveidot tarifu kopu, kas nav savstarpēji saistīti. <br/>
 <br/>
-Tarifu veidu saderība.<br/>
+Micromanage ļauj mainīt tarifus katru dienu, nepārvaldot tarifu virkni. Tas tiek darīts, savstarpēji atsaucoties uz dažādiem tarifiem. Tā rezultātā jums tiek izveidoti vairāki tarifi noteiktā laika periodā, taču jūs nevarat noslāņot tarifus viens otram.<br/>
+Uzlabotais režīms ļauj izveidot tarifus, kas nav saistīti ar citiem tarifiem. Tas ļauj savam īpašumam izveidot cenas, kuras citādi nevar izveidot mikropārvaldības režīmā. Tā lietošana ir darbietilpīgāka, jo ir jāpārliecinās, ka katra tarifa derīguma termiņš no/līdz perfekti sakrīt, taču tas ļauj izveidot sarežģītākus tarifus.<br/>
 <br/>
-Parasts -> Paplašināts. Nav izmaiņu.<br/>
-Parasts -> Mikromanage. Visi esošie tarifi tiek dzēsti.<br/>
-Paplašināts -> Parasts. Visi esošie tarifi tiek dzēsti.<br/>
-Paplašināts -> Mikromanage. Visi esošie tarifi tiek dzēsti.<br/>
-Mikromanage -> Paplašināts. Visi esošie tarifi tiek dzēsti.<br/>
-Mikromanage -> Parasts. Visi esošie tarifi tiek dzēsti.<br/>');
+Ja pārslēgsities no Advanced uz Micromanage, visi esošie tarifi tiks noņemti.<br/>
+<br/>');
 jr_define('_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS', 'Rādīt numuru sarakstu naktsmītnes detaļu lapā?');
 jr_define('JOMRES_PROPERTYTYPE', 'Naktsmītnes tips');
 jr_define('JOMRES_MAXPEOPLEINROOM', 'Max cilvēku skaits numurā');
@@ -657,7 +653,7 @@ jr_define('_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', ' atlaide tiek piemērota no '
 jr_define('_JOMCOMP_WISEPRICE_TO', ' līdz ');
 jr_define('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', ' Dinamiskā atlaide nav piemērota ');
 jr_define('JOMRES_COM_A_MAPSKEY', 'Google maps API key');
-jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'You can get a google maps API key from <a href="https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key" target="_blank">Google maps</a>. Once you have input your map key here, Jomres will show the map in your Business Details page.');
+jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'You can get a google maps API key from <a href="https://console.cloud.google.com/projectselector2/google/maps-apis/credentials" target="_blank">Google maps</a>. Once you have input your map key here, Jomres will show the map in your Business Details page.');
 jr_define('_JOMCOMP_LASTMINUTE_CPANEL', 'Pēdējā brīža atlaide');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE', 'Aktīva?');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE_DESC', 'Atzīmējiet Jā, ja vēlaties piešķirt pēdējā brīža atlaides. ');
@@ -1138,7 +1134,7 @@ jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD', 'Automātiski 
 jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD_DESC', 'Šis trīskāršais skaitlis ir dienu skaits, cik ilgi vadītājam ir jāmaksā rēķins, pirms tiek apturēta uzņēmuma darbība un netiek publicēta viņa uzņēmējdarbība.');
 //4.7.2
 jr_define('_JOMRES_COM_LANGUAGE_CONTEXT', 'Valodas konteksts');
-jr_define('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', 'Izmantojiet šo opciju, lai mainītu vietnes valodas kontekstu. Šī funkcija ļauj Jomres izmantot jūsu pašreizējai fokusam atbilstošas ​​etiķetes, tādēļ, ja jūsu uzmanības centrā ir jahtu brokeris, tad mainot kontekstu atļaut Jomres uzrādīt etiķetes no citas valodas faila. Piemēram, ja iestatāt kontekstu uz "Jahtu starpniecība", tad Jomres vispirms atradīs pašreizējo valodu, pēc tam meklēs /'.JOMRES_ROOT_DIRECTORY.'/languages ​​direktorijā apakšdirektoriju sauc par "yachtbrokerage". Ja fails pastāv pašreizējai valodai, tad šis fails tiks izmantots. Ja nē, tad Jomres meklēs failu angļu valodā tajā pašā direktorijā. Ja to nevar atrast, Jomres izmantos valodas fails pašlaik izvēlētajai valodai direktorijā /'.JOMRES_ROOT_DIRECTORY.'/languages. Ņemiet vērā: ja izveidojat jaunu rekvizītu veidu, pašreizējās valodas faila kopija tiek izveidota apakšdirektorijā zem /'.JOMRES_ROOT_DIRECTORY.'/ langua ge ar nosaukumu, kas atspoguļo jaunā īpašuma tipa aprakstu. ');
+jr_define('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', 'Izmantojiet šo opciju, lai mainītu vietnes valodas kontekstu. Šī funkcija ļauj Jomres izmantot etiķetes, kas ir piemērotas tam, kā jūs izmantojat Jomres, tādēļ, ja jūsu uzmanības centrā ir jahtu starpniecība, konteksta maiņa ļaus Jomres parādīt jahtām piemērotas etiķetes. Piemēram, ja iestatāt kontekstu uz "Yacht Brokerage", Džomres vispirms atradīs pašreizējo valodu un pēc tam meklēs pielāgotajā teksta datu bāzē virknes, kas saglabātas ar valodas kontekstu "jahtu starpniecība". Ja pašreizējai valodai un kontekstam pastāv pielāgotas virknes, tās tiks izmantotas. Ja nē, tad Jomres atgriezīsies pie valodu definīcijām, kuras izmanto tā Core valodas faili.');
 
 jr_define('_JOMRES_COM_ADVANCED_SITE_CONFIG', 'Papildu vietnes konfigurācija');
 jr_define('_JOMRES_COM_ADVANCED_SITE_CONFIG_DESC', 'Iestatiet šo opciju uz Jā, ja vēlaties izmantot vietnes papildu konfigurācijas opcijas. Ja jūs tikko sākat ar Jomres, iesakām pagaidām atstāt to Nē, jo noklusējuma instalācija ir Tas ir pietiekami, lai sāktu darbu, tā vietā pievienojiet Jomres galvenajai izvēlnei un piesakieties priekšpusē kā "administrators" un sāciet konfigurēt savu īpašumu. Lūdzu, ņemiet vērā, ka daudzas papildu opcijas var nebūt pieejamas, ja t ir instalēts atbilstošs (-i) spraudnis (-i). Bezmaksas kodolsistēmas lietotāji nevarēs pilnībā izmantot iespējotās funkcijas. ');
@@ -2733,3 +2729,17 @@ Varat atstāt mērķa valodu iestatītu uz savu pašreizējo valodu un izmantot 
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Pārbaudes režīms");
 
 	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "Izstrādes režīms ir iespējots, tādēļ, ja izmantojat šo līdzekli, jūs atjaunināsiet savu Jomres instalāciju uz Nakts filiāli. Šī ir jaunākā Jomres versija un var būt vai nav stabila. Ja jūs to darāt nevēlaties atjaunināt uz Nightly, lūdzu, apmeklējiet Administrēšana > Jomres > Iestatījumi > Vietnes konfigurācija > cilne Atkļūdošana un iestatiet opciju Ražošana/izstrāde uz Ražošana.");
+
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN', "Iekļaut bērnus aizņemtības līmeņa pārbaudēs?");
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN_DESC_MRP', "Kad viesi veic rezervācijas, istabās ir maksimālais viesu skaits, ko viņi var izmitināt. Ja kopējais viesu skaits pārsniedz viesu skaitu, ko var izmitināt izvēlētajās istabās, tad rezervācijas veidlapa viņiem paziņos viņiem ir jāizvēlas vairāk istabu.
+ 
+  Ja iestatīsiet šo opciju uz Jā, bērnu skaits tiks iekļauts kopējā viesu skaita pārbaudē. Ja iestatīsiet šo opciju uz Nē, bērnu skaits netiks iekļauts kopējā viesu skaitā. Tas nozīmē, ka, ja iestatīsiet šo opciju uz Nē, tad 4 cilvēku grupa, piemēram, 2 pieaugušie un 2 bērni, varēs rezervēt divvietīgu numuru, kurā var nakšņot 2 pieaugušie. ");
+
+
+	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Atlasiet Jā, ja vēlaties iekasēt maksu par personu par nakti.');
+
+	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"Piedāvātie");
+
+jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', 'Preces noma');
+
+jr_define('SHORTCODE_INFO_JOMRES_V_JOMRES_SCRIPT',"Īskodiem ir jābūt aplauztiem ar &#123;&#125; programmā Joomla vai [] programmā Wordpress (BRACKETS). Ir trīs veidi, kā skatīt īskodu ģenerētās lapas. Pirmais ir pievienojiet rakstam/lapai/modulim īskodu formātā BRACKETjomres shortcode argumentsBRACKET. Otrais ir Jomres veidņu failos, kur jāievieto BRACKETjomres_script shortcode argumentsBRACKET. Pēdējais veids ir caur url, tāpēc, piemēram, Joomla jūs ievietojat www.domain.com/index.php?option=com_jomres&task=SHORTCODE&ARGUMENTS=ARGUMENTI. ");

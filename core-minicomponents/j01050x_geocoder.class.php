@@ -4,16 +4,16 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-	
+	#[AllowDynamicProperties]
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
@@ -69,7 +69,14 @@ class j01050x_geocoder
 		$output = array();
 		$pageoutput = array();
 
-		$output['MAP_STYLE'] = file_get_contents(JOMRES_ASSETS_ABSPATH.'map_styles'.JRDS.$jrConfig['map_style'].'.style');
+		$override_directory = get_override_directory().'custom_code'.JRDS;
+
+		if ( file_exists($override_directory.'custom_map_style.style') ) {
+			$output['MAP_STYLE'] = file_get_contents($override_directory.'custom_map_style.style');
+		} else {
+			$output['MAP_STYLE'] = file_get_contents(JOMRES_ASSETS_ABSPATH.'map_styles'.JRDS.$jrConfig['map_style'].'.style');
+		}
+
 		$output['ZOOMLEVEL'] = (int)$jrConfig['map_zoom'];
 		if (isset($_REQUEST['map_zoom'])) {
 			$output['ZOOMLEVEL'] = (int) $_REQUEST['map_zoom'];

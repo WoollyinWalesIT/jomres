@@ -4,16 +4,16 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-	
+	#[AllowDynamicProperties]
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
@@ -126,20 +126,7 @@ class j00501tariffs
 		}
 
 		if ($mrConfig[ 'is_real_estate_listing' ] == '0') {
-			//if (isset($MiniComponents->registeredClasses['00005']['guest_types' ])) {
-			if ($mrConfig[ 'wholeday_booking' ] == '1') {
-				$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_TARIFFS_PER_WHOLEDAY', '_JOMRES_COM_A_TARIFFS_PER_WHOLEDAY', false));
-				$configurationPanel->setmiddle($lists[ 'perPersonPerNight' ]);
-				$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_TARIFFS_PER_DESC_WHOLEDAY', '_JOMRES_COM_A_TARIFFS_PER_DESC_WHOLEDAY', false));
-				$configurationPanel->insertSetting();
-			} else {
-				$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_TARIFFS_PER', '_JOMRES_COM_A_TARIFFS_PER', false));
-				$configurationPanel->setmiddle($lists[ 'perPersonPerNight' ]);
-				$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_TARIFFS_PER_DESC', '_JOMRES_COM_A_TARIFFS_PER_DESC', false));
-				$configurationPanel->insertSetting();
-			}
-			//}
-			
+
 			$configurationPanel->setleft(jr_gettext('POA_DISPLAY_PRICE', 'POA_DISPLAY_PRICE', false));
 			$configurationPanel->setmiddle('<input type="text" class="inputbox form-control"  size="5" name="cfg_poa_price" value="'.$mrConfig[ 'poa_price' ].'" />');
 			$configurationPanel->setright(jr_gettext('POA_DISPLAY_PRICE_DESC', 'POA_DISPLAY_PRICE_DESC', false));

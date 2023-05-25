@@ -4,16 +4,16 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-	
+	#[AllowDynamicProperties]
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
@@ -90,7 +90,7 @@ class j16000edit_user
 		$access_levels[] = jomresHTML::makeOption('50', 'Receptionist');
 		$access_levels[] = jomresHTML::makeOption('70', 'Property manager');
 		$access_levels[] = jomresHTML::makeOption('90', 'Super Property Manager');
-		$output[ 'ACCESSLEVEL' ] = jomresHTML::selectList($access_levels, 'access_level', 'class="inputbox" size="1"', 'value', 'text', $access_level);
+		$output[ 'ACCESSLEVEL' ] = jomresHTML::selectList($access_levels, 'access_level', '', 'value', 'text', $access_level);
 
 		foreach ($all_properties_in_system as $i) {
 			$r = array ();

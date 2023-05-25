@@ -4,16 +4,16 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-	
+	#[AllowDynamicProperties]
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
@@ -71,7 +71,7 @@ class j16000edit_taxrate
 		$yesno = array();
 		$yesno[ ] = jomresHTML::makeOption('0', jr_gettext('_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false));
 		$yesno[ ] = jomresHTML::makeOption('1', jr_gettext('_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES', false));
-		$output[ 'IS_EU_COUNTRY' ] = jomresHTML::selectList($yesno, 'is_eu_country', 'class="inputbox" size="1"', 'value', 'text', $selected);
+		$output[ 'IS_EU_COUNTRY' ] = jomresHTML::selectList($yesno, 'is_eu_country', '', 'value', 'text', $selected);
 
 		$jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
 		$jrtb = $jrtbar->startTable();

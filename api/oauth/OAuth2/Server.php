@@ -566,7 +566,7 @@ class Server implements ResourceControllerInterface,
         if (!isset($this->storages['client'])) {
             throw new \LogicException('You must supply a storage object implementing \OAuth2\Storage\ClientInterface to use the authorize server');
         }
-        if (0 == count($this->responseTypes)) {
+        if (!is_array($this->responseTypes) || 0 == count($this->responseTypes)) {
             $this->responseTypes = $this->getDefaultResponseTypes();
         }
         if ($this->config['use_openid_connect'] && !isset($this->responseTypes['id_token'])) {

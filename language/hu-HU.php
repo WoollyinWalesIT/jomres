@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 //#################################################################
@@ -606,26 +606,18 @@ jr_define('JOMRES_COM_A_TARIFFMODE_NORMAL', 'Normál');
 jr_define('JOMRES_COM_A_TARIFFMODE_ADVANCED', 'Fejlett');
 jr_define('JOMRES_COM_A_TARIFFMODE_TARIFFTYPES', 'Micromanage');
 jr_define('JOMRES_COM_A_TARIFFMODE', 'Díjszabás beállítás');
-jr_define('JOMRES_COM_A_TARIFFMODE_DESC', "<b>Warning: Switching between different tariff types may result in loss of data. See the note below regarding this</b>.
+jr_define('JOMRES_COM_A_TARIFFMODE_DESC', "<b>Warning: Switching between different tariff editing modes may result in loss of data. See the note below regarding this.</b>.
 <br/><br/>
-You have three options as to how you configure your tariffs.<br/>
-Normal mode: You will have one tariff for each room type that is valid for the next 10 years.<br/>
+You have two options as to how you configure your tariffs.<br/>
 Micromanage: You can modify the price for each and every day for each room/property type. <br/>
-Advanced: The \"old\" Jomres method of managing tariffs. <br/>
+Advanced: You can create a set of tariffs that are not linked to each other. <br/>
 <br/>
-The different tariff modes allow you to choose the method of configuring tariffs that suits you best.<br/>
-Normal mode is the most simplistic but it's the easiest to understand because it will cross reference rooms and tariffs to room/property types and allows you to configure rooms and prices on the same page.<br/>
-Micro manage allows you to vary the rates on a day to day basis without having to manage reams of tariffs, it is done by cross referencing lots of different tariffs with each other. This results in a number of tariffs being created for you covering a period of time, but you can not layer tariffs over each other.<br/>
-Advanced mode lets you create a room and associate it with a room type. You then create a tariff and associate THAT with a room type. Using this method it is possible to \"layer\" tariffs over each other, for example a room type \"Double bed\" can have one tariff for bed and breakfast, and another for bed, breakfast and evening meal. The advanced method requires a little more attention to detail because it is possible to dis-associate a room or tariff from a room/property type, or to incorrectly set valid from and to dates, but it does give you configuration options that the other modes do not offer. <br/>
+Micromanage allows you to vary the rates on a day to day basis without having to manage reams of tariffs, it is done by cross referencing lots of different tariffs with each other. This results in a number of tariffs being created for you covering a period of time, but you can not layer tariffs over each other.<br/>
+Advanced mode lets you create tariffs that are not linked with other tariffs. This allows you to create prices for your property that you cannot otherwise create in Micromanage mode. It is more laborious to use, because you need to ensure that each tariff's valid from/to dates perfectly match, but it allows you to create more complicated tariffs.<br/>
 <br/>
-Because Normal and Micromanage modes require a specific set up of rooms and tariffs for the tariff mode to work the system may need to reset some data to make the current tariff configurations compatible with the current tariff editing mode.<br/>
+If you switch from Advanced to Micromanage, all existing tariffs will be removed.<br/>
 <br/>
-Normal -> Advanced. No change. Existing tariffs are retained.<br/>
-Normal -> Micromanage. All existing tariffs are removed.<br/>
-Advanced -> Normal. All existing tariffs are removed.<br/>
-Advanced -> Micromanage. All existing tariffs are removed.<br/>
-Micromanage -> Advanced. All existing cross references between tariffs are removed, but the tariffs themselves will remain.<br/>
-Micromanage -> Normal. All existing cross references and tariffs are removed.<br/>");
+");
 jr_define('_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS', 'Szobalista megjelenítése a szállás részletei oldalon?');
 jr_define('JOMRES_PROPERTYTYPE', 'Property type');
 jr_define('JOMRES_MAXPEOPLEINROOM', 'Max fő/szoba');
@@ -657,7 +649,7 @@ jr_define('_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', ' has been discounted from ');
 jr_define('_JOMCOMP_WISEPRICE_TO', ' to ');
 jr_define('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', ' Room price not discounted ');
 jr_define('JOMRES_COM_A_MAPSKEY', 'Google maps API key');
-jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'You can get a google maps API key from <a href="https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key" target="_blank">Google maps</a>. Once you have input your map key here, Jomres will show the map in your Property Details page.');
+jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'You can get a google maps API key from <a href="https://console.cloud.google.com/projectselector2/google/maps-apis/credentials" target="_blank">Google maps</a>. Once you have input your map key here, Jomres will show the map in your Property Details page.');
 jr_define('_JOMCOMP_LASTMINUTE_CPANEL', 'Last minute');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE', 'Aktív?');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE_DESC', 'Set this to Yes if you want to offer last minute deals.');
@@ -703,7 +695,7 @@ jr_define('_JRPORTAL_LISTBOOKINGS_HEADER_INVOICE_ID', 'Invoice id');
 jr_define('_JRPORTAL_LISTBOOKINGS_HEADER_BOOKINGTOTAL', 'Booking total');
 jr_define('_JRPORTAL_LISTBOOKINGS_HEADER_DATEARCHIVED', 'Date archived');
 jr_define('_JRPORTAL_ADD_ADHOC_ITEM_DESCRIPTION', 'Leírás');
-jr_define('_JOMRES_COM_PTYPES_PTYPE_DESC_FURTHER', 'You can have property type specific language files by setting the description to the name of a sub folder, e.g. "yachtbrokerage" and copying a language file to that subfolder. You can then modify that language file for this property type so rooms become, for example, DVDs, etc.');
+jr_define('_JOMRES_COM_PTYPES_PTYPE_DESC_FURTHER', 'You can have property type specific language strings which are adjusted in the Translate Labels page. Set the language context to something like "toolhire" (no spaces or special characters) to use them.');
 jr_define('_JOMRES_EDITPROPERTY_CONNOTDELETE1', 'You cannot delete this property as it is the only property that you have access to. If you want to disable it, please use the un-publish feature in your toolbar. ');
 jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_TOTAL', 'Szállás végösszege');
 jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_NIGHTS', 'éjszakák a');
@@ -1136,7 +1128,7 @@ jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND', 'Automatikusan felfügges
 jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD', 'Threashold automatikus felfüggesztése');
 jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD_DESC', 'Ez a háromszoros nap azoknak a napoknak a száma, ameddig a menedzsernek számlát kell fizetnie, mielőtt felfüggesztik, és ingatlanjait közzéteszik.');
 jr_define('_JOMRES_COM_LANGUAGE_CONTEXT', 'Nyelvi kontextus');
-jr_define('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', 'Ezzel az opcióval módosíthatja a webhely nyelvi kontextusát. Ez a funkció lehetővé teszi a Jomres számára, hogy az aktuális fókuszának megfelelő címkéket használjon, tehát ha a hangsúly Yachtközvetítőként működik, akkor a kontextus módosítása engedélyezze a Jomres számára, hogy más nyelvű fájlból származó címkéket mutasson be. Ha például a kontextust "Yacht Brokerage" értékre állítja, akkor a Jomres először megtalálja az aktuális nyelvet, majd a /'.JOMRES_ROOT_DIRECTORY.'/languages ​​könyvtárban keres egy alkönyvtárat "yachtbrokerage". Ha a fájl létezik az aktuális nyelvhez, akkor ezt a fájlt fogja használni. Ha nem, akkor a Jomres angol nyelvű fájlt keres ugyanabban a könyvtárban. Ha ez nem található, a Jomres a nyelvfájl a jelenleg kiválasztott nyelvhez a /'.JOMRES_ROOT_DIRECTORY.'/languages ​​könyvtárban. ');
+jr_define('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', 'Ezzel a lehetőséggel módosíthatja a webhely nyelvi környezetét. Ez a funkció lehetővé teszi a Jomres számára, hogy olyan címkéket használjon, amelyek megfelelnek az Ön Jomres használatának, tehát ha a Yacht Brokerage-re összpontosít, akkor a kontextus megváltoztatása lehetővé teszi, hogy a Jomres a jachtoknak megfelelő címkéket jelenítsen meg. Például, ha a kontextust "Yacht Brokerage"-ra állítja, akkor a Jomres először megkeresi az aktuális nyelvet, majd megkeresi az egyéni szöveges adatbázisban a "yachtbrokerage" nyelvi kontextussal mentett karakterláncokat. Ha az aktuális nyelvhez és környezethez léteznek egyéni karakterláncok, akkor azokat a rendszer használja. Ha nem, akkor a Jomres visszatér a Core nyelvi fájljai által használt nyelvdefiníciókhoz. ');
 
 jr_define('_JOMRES_COM_ADVANCED_SITE_CONFIG', 'Speciális webhelykonfiguráció');
 jr_define('_JOMRES_COM_ADVANCED_SITE_CONFIG_DESC', 'Állítsa ezt az opciót Igen -re, ha a speciális webhelykonfigurációs beállításokat kívánja használni. Ha még csak a Jomres programmal kezdi, akkor azt javasoljuk, hogy ezt most hagyja a Nem értékre, mivel az alapértelmezett telepítés elegendő ahhoz, hogy elkezdhesse, ehelyett hozzá kell adnia a Jomres -t a főmenübe, és bejelentkeznie a kezelőfelületre "admin" -ként, és el kell kezdenie a tulajdon (ok) konfigurálását. Felhívjuk figyelmét, hogy előfordulhat, hogy számos speciális beállítás nem érhető el, ha nem t telepítse a megfelelő beépülő modul (oka) t. Az ingyenes, központi rendszer felhasználói nem fogják tudni teljes mértékben kihasználni az általuk engedélyezett funkciókat. ');
@@ -2730,3 +2722,17 @@ Meghagyhatja a célnyelvet az aktuális nyelven, és ezen az oldalon átnevezhet
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Tesztmód");
 
 	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "A Fejlesztési mód engedélyezve van, ezért ha ezt a funkciót használja, akkor frissíteni fogja a Jomres telepítését a Nightly ágra. Ez a Jomres legfrissebb verziója, és lehet, hogy stabil vagy nem. Ha igen nem szeretne Nightly-ra frissíteni, kérjük, keresse fel az Admin > Jomres > Beállítások > Webhely konfigurációja > Hibakeresés fület, és állítsa a Gyártás/Fejlesztés opciót Gyártás értékre.");
+
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN', "Bevonja a gyermekeket a foglaltsági ellenőrzésekbe?");
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN_DESC_MRP', "Amikor a vendégek foglalnak, a szobákban maximálisan elhelyezhető vendégek száma van. Ha a vendégek száma meghaladja a kiválasztott szobákban elhelyezhető vendégek számát, akkor a foglalási űrlap tájékoztatja őket több szobát kell kiválasztaniuk.
+ 
+  Ha ezt az opciót Igen értékre állítja, akkor a gyermekek száma beleszámít a teljes vendégszámba. Ha ezt az opciót Nem értékre állítja, akkor a gyermekek száma nem számít bele a teljes vendégszámba. Ez azt jelenti, hogy ha ezt az opciót Nem értékre állítja, akkor egy 4 fős társaság, például 2 felnőtt és 2 gyermek, 2 felnőtt elszállásolására alkalmas kétágyas szobát foglalhat. ");
+
+
+	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Válassza az Igen lehetőséget, ha személyenkénti éjszakánkénti díjat szeretne fizetni.');
+
+	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"Kiemelt");
+
+jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', 'Tételbérlés');
+
+jr_define('SHORTCODE_INFO_JOMRES_V_JOMRES_SCRIPT',"Joomlában a rövid kódokat &#123;&#125;-be, Wordpressben []-be kell csomagolni (BRACKETS). A rövid kódok által generált oldalak háromféleképpen tekinthetők meg. Az első adjunk hozzá egy rövid kódot egy cikkhez/oldalhoz/modulhoz BRACKETjomres shortcode argumentsBRACKET formátumban. A második a Jomres sablonfájlokon belül található, ahol a BRACKETjomres_script shortcode argumentsBRACKET parancsot kell elhelyezni. Az utolsó mód az url-en keresztül történik, így például a Joomlában a www-t kell tenni /domain.com/index.php?option=com_jomres&task=SHORTCODE&ARGUMENTS=ARGUMENTS. ");

@@ -2,6 +2,9 @@
 // ################################################################
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
+
+
+
 /**
  * Base class for patTemplate readers
  *
@@ -59,6 +62,7 @@ define( 'PATTEMPLATE_READER_NOTICE_INVALID_CDATA_SECTION', 6050 );
  */
 define( 'PATTEMPLATE_READER_NOTICE_TEMPLATE_EXISTS', 6051 );
 
+	#[AllowDynamicProperties]
 /**
  * Base class for patTemplate readers
  *

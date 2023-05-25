@@ -4,9 +4,9 @@
 	 *
 	 * @author Vince Wooll <sales@jomres.net>
 	 *
-	 *  @version Jomres 10.6.0
+	 *  @version Jomres 10.7.0
 	 *
-	 * @copyright	2005-2022 Vince Wooll
+	 * @copyright	2005-2023 Vince Wooll
 	 * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
 	 **/
 
@@ -27,47 +27,49 @@
 	 * ajax: ajax safe url
 	 *
 	 */
+	if (!function_exists('get_property_details_url')) {
+		function get_property_details_url($property_uid = 0, $type = 'sef', $params = '')
+		{
+			$jomres_access_control = jomres_singleton_abstract::getInstance('jomres_access_control');
 
+			if (!$jomres_access_control->this_user_can('viewproperty')) {
+				return false;
+			}
 
-	function get_property_details_url($property_uid = 0, $type = 'sef', $params = '')
-	{
-		$jomres_access_control = jomres_singleton_abstract::getInstance('jomres_access_control');
+			switch ($type) {
+				case 'sef':
+					$url = jomresURL(JOMRES_SITEPAGE_URL.'&task=viewproperty&property_uid='.$property_uid.$params);
+					break;
+				case 'nosef':
+					$url = jomresURL(JOMRES_SITEPAGE_URL_NOSEF.'&task=viewproperty&property_uid='.$property_uid.$params);
+					break;
+				case 'sefsafe':
+					$url = JOMRES_SITEPAGE_URL.'&task=viewproperty&property_uid='.$property_uid.$params;
+					break;
+				case 'ajax':
+					$url = JOMRES_SITEPAGE_URL_AJAX.'&task=viewproperty&property_uid='.$property_uid.$params;
+					break;
+				default:
+					$url = jomresURL(JOMRES_SITEPAGE_URL.'&task=viewproperty&property_uid='.$property_uid.$params);
+					break;
+			}
 
-		if (!$jomres_access_control->this_user_can('viewproperty')) {
-			return false;
-		}
-
-		switch ($type) {
-			case 'sef':
-				$url = jomresURL(JOMRES_SITEPAGE_URL.'&task=viewproperty&menuoff=1&nofollowmenuoff=1&property_uid='.$property_uid.$params);
-				break;
-			case 'nosef':
-				$url = jomresURL(JOMRES_SITEPAGE_URL_NOSEF.'&menuoff=1&nofollowmenuoff=1&task=viewproperty&property_uid='.$property_uid.$params);
-				break;
-			case 'sefsafe':
-				$url = JOMRES_SITEPAGE_URL.'&menuoff=1&nofollowmenuoff=1&task=viewproperty&property_uid='.$property_uid.$params;
-				break;
-			case 'ajax':
-				$url = JOMRES_SITEPAGE_URL_AJAX.'&menuoff=1&nofollowmenuoff=1&task=viewproperty&property_uid='.$property_uid.$params;
-				break;
-			default:
-				$url = jomresURL(JOMRES_SITEPAGE_URL.'&menuoff=1&nofollowmenuoff=1&task=viewproperty&property_uid='.$property_uid.$params);
-				break;
-		}
-
-		//if we have a joomla menu of type propertydetails created for this specific property, then we`ll use that url insetad, t avoid duplicates. This allows alows us having modules assigned only to this property details page.
-		if (this_cms_is_joomla()) {
-			$app = JFactory::getApplication();
-			$menu = $app->getMenu();
-			$menuItem = $menu->getItems('link', 'index.php?option=com_jomres&view=default&layout=propertydetails&selected_property='.$property_uid, $firstonly = true);
-			if ($menuItem) {
-				if ($type == 'sef' || $type == 'sefsafe') {
-					$url = JRoute::_($menuItem->link.'&Itemid='.$menuItem->id);
-				} else {
-					$url = jomresURL(get_showtime('live_site').'/'.$menuItem->link.'&Itemid='.$menuItem->id);
+			//if we have a joomla menu of type propertydetails created for this specific property, then we`ll use that url insetad, t avoid duplicates. This allows alows us having modules assigned only to this property details page.
+			if (this_cms_is_joomla()) {
+				$app = JFactory::getApplication();
+				$menu = $app->getMenu();
+				$menuItem = $menu->getItems('link', 'index.php?option=com_jomres&view=default&layout=propertydetails&selected_property='.$property_uid, $firstonly = true);
+				if ($menuItem) {
+					if ($type == 'sef' || $type == 'sefsafe') {
+						$url = JRoute::_($menuItem->link.'&Itemid='.$menuItem->id);
+					} else {
+						$url = jomresURL(get_showtime('live_site').'/'.$menuItem->link.'&Itemid='.$menuItem->id);
+					}
 				}
 			}
-		}
 
-		return $url;
+			return $url;
+		}
 	}
+
+

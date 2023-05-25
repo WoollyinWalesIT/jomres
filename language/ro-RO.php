@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 //#################################################################
@@ -629,26 +629,17 @@ jr_define('JOMRES_COM_A_TARIFFMODE_NORMAL', 'Normal');
 jr_define('JOMRES_COM_A_TARIFFMODE_ADVANCED', 'Avansat');
 jr_define('JOMRES_COM_A_TARIFFMODE_TARIFFTYPES', 'Micromanagement');
 jr_define('JOMRES_COM_A_TARIFFMODE', 'Mod configurare tarif');
-jr_define('JOMRES_COM_A_TARIFFMODE_DESC', "<b> Avertisment: Comutarea între diferite tipuri de tarife poate duce la pierderea datelor. Consultați nota de mai jos cu privire la acest lucru </b>.
-<br/> <br/>
-Aveți trei opțiuni cu privire la modul în care vă configurați tarifele. <br/>
-Mod normal: veți avea un tarif pentru fiecare tip de cameră valabil în următorii 10 ani. <br/>
-Micromanage: Puteți modifica prețul pentru fiecare zi pentru fiecare tip de cameră / proprietate. <br/>
-Avansat: metoda veche Jomres de gestionare a tarifelor. <br/>
+jr_define('JOMRES_COM_A_TARIFFMODE_DESC', "<b>Avertisment: comutarea între diferite moduri de editare a tarifelor poate duce la pierderea datelor. Consultați nota de mai jos referitoare la acest lucru.</b>.
+<br/><br/>
+Aveți două opțiuni cu privire la modul în care vă configurați tarifele.<br/>
+Micromanage: Puteți modifica prețul pentru fiecare zi pentru fiecare cameră/tip de proprietate. <br/>
+Avansat: puteți crea un set de tarife care nu sunt legate între ele. <br/>
 <br/>
-Diferitele moduri tarifare vă permit să alegeți metoda de configurare a tarifelor care vi se potrivește cel mai bine. <br/>
-Modul normal este cel mai simplist, dar este cel mai ușor de înțeles, deoarece va încrucișa camerele de referință și tarifele la tipurile de camere / proprietăți și vă permite să configurați camere și prețuri pe aceeași pagină. <br/>
-Gestionarea micro vă permite să modificați tarifele de la o zi la alta, fără a fi nevoie să gestionați raze de tarife, se face prin referențierea încrucișată a unor tarife diferite între ele. Acest lucru duce la crearea unui număr de tarife care acoperă o perioadă de timp, dar nu puteți strânge tarifele unul peste celălalt. <br/>
-Modul avansat vă permite să creați o cameră și să o asociați cu un tip de cameră. Apoi creați un tarif și îl asociați cu un tip de cameră. Folosind această metodă, este posibil să straturiți tarifele unul de celălalt, de exemplu un tip de cameră Pat dublu poate avea un tarif pentru cazare și micul dejun, iar altul pentru pat, mic dejun și masă de seară. Metoda avansată necesită un pic mai multă atenție la detalii, deoarece este posibil să se asocieze o cameră sau un tarif de la un tip de cameră / proprietate sau să se stabilească incorect valabil de la și până la date, dar vă oferă opțiuni de configurare pe care celelalte moduri nu oferi. <br/>
+Micromanage vă permite să variați tarifele de la o zi la alta, fără a fi nevoit să gestionați o mulțime de tarife, se realizează prin compararea mai multor tarife diferite între ele. Acest lucru duce la crearea unui număr de tarife pentru dvs. care acoperă o perioadă de timp, dar nu puteți suprapune tarifele unul peste altul.<br/>
+Modul avansat vă permite să creați tarife care nu sunt legate de alte tarife. Acest lucru vă permite să creați prețuri pentru proprietatea dvs. pe care altfel nu le puteți crea în modul Micromanage. Este mai laborios de utilizat, deoarece trebuie să vă asigurați că fiecare tarif valabil de la/până se potrivește perfect, dar vă permite să creați tarife mai complicate.<br/>
 <br/>
-Deoarece modurile Normale și Micromanage necesită o setare specifică de camere și tarife pentru ca modul tarifar să funcționeze, este posibil ca sistemul să fie nevoit să reseteze unele date pentru a face configurațiile tarifare actuale compatibile cu modul curent de editare tarifară. <br/>
-<br/>
-Normal -> Avansat. Nicio schimbare. Tarifele existente sunt păstrate. <br/>
-Normal -> Micromanage. Toate tarifele existente sunt eliminate. <br/>
-Avansat -> Normal. Toate tarifele existente sunt eliminate. <br/>
-Avansat -> Micromanage. Toate tarifele existente sunt eliminate. <br/>
-Micromanage -> Advanced. Toate referințele încrucișate existente între tarife sunt eliminate, dar tarifele în sine vor rămâne. <br/>
-Micromanage -> Normal. Toate referințele încrucișate și tarifele existente sunt eliminate. <br/> ");
+Dacă treceți de la Advanced la Micromanage, toate tarifele existente vor fi eliminate.<br/>
+<br/>");
 jr_define('_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS', 'Arata lista de camere in pagina cu detalii a unitatii de cazare?');
 jr_define('JOMRES_PROPERTYTYPE', 'Tip unitate de cazare');
 jr_define('JOMRES_MAXPEOPLEINROOM', 'Nr. maxim de persoane in camera');
@@ -680,7 +671,7 @@ jr_define('_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', ' a fost redus de la ');
 jr_define('_JOMCOMP_WISEPRICE_TO', ' la ');
 jr_define('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', ' Pretul camerei nu include discount ');
 jr_define('JOMRES_COM_A_MAPSKEY', 'Cheie API Google');
-jr_define("JOMRES_COM_A_MAPSKEY_DESC", "Puteți obține o cheie API Google Maps de la <a href =\"https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key\" target=\"_blank\"> Google maps </a>. Odată ce ați introdus cheia hartă aici, Jomres va afișa harta în pagina Detalii proprietate. ");
+jr_define("JOMRES_COM_A_MAPSKEY_DESC", "Puteți obține o cheie API Google Maps de la <a href =\"https://console.cloud.google.com/projectselector2/google/maps-apis/credentials\" target=\"_blank\"> Google maps </a>. Odată ce ați introdus cheia hartă aici, Jomres va afișa harta în pagina Detalii proprietate. ");
 jr_define('_JOMCOMP_LASTMINUTE_CPANEL', 'Ultimul moment');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE', 'Activ?');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE_DESC', 'Seteaza Da daca vrei sa oferi oefrte de ultim moment.');
@@ -1171,7 +1162,7 @@ jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD', 'Suspensie aut
 jr_define("_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD_DESC", "Această limită este numărul de zile în care un manager trebuie să plătească o factură înainte ca acestea să fie suspendate și proprietățile lor nepublicate.");
 //4.7.2
 jr_define('_JOMRES_COM_LANGUAGE_CONTEXT', 'Contextul limbii');
-jr_define("_JOMRES_COM_LANGUAGE_CONTEXT_DESC", "Utilizați această opțiune pentru a schimba contextul de limbă al site-ului. Această caracteristică permite Jomres să utilizeze etichete adecvate focalizării dvs. actuale, deci dacă accentul dvs. este ca un brokeraj de iahturi, atunci schimbarea contextului va fi permiteți lui Jomres să prezinte etichete dintr-un fișier de altă limbă. De exemplu, dacă setați contextul la Yacht Brokerage, atunci Jomres va găsi mai întâi limba curentă, apoi va căuta în directorul /'.JOMRES_ROOT_DIRECTORY.'/languages ​​pentru un subdirector numit yachtbrokerage. Dacă fișierul există pentru limba curentă, atunci fișierul respectiv va fi folosit. Dacă nu, atunci Jomres va căuta un fișier în limba engleză în același director. Dacă acest lucru nu poate fi găsit, Jomres va folosi fișier de limbă pentru limba selectată în prezent în directorul /'.JOMRES_ROOT_DIRECTORY.'/languages. ");
+jr_define("_JOMRES_COM_LANGUAGE_CONTEXT_DESC", "Utilizați această opțiune pentru a schimba contextul lingvistic al site-ului. Această caracteristică îi permite lui Jomres să utilizeze etichete adecvate pentru modul în care utilizați Jomres, așa că, dacă vă concentrați pe un brokeraj de iahturi, atunci schimbarea contextului va permite Jomres să prezinte etichete adecvate iahturilor. De exemplu, dacă setați contextul la „Yacht Brokerage”, atunci Jomres va găsi mai întâi limba curentă, apoi va căuta în baza de date de text personalizat șirurile salvate cu un context de limbă „yachtbrokerage”. Dacă există șiruri personalizate pentru limba și contextul curent, atunci acestea vor fi folosite. Dacă nu, atunci Jomres va reveni la definițiile de limbă utilizate de fișierele de limbă Core.");
 // 4.7.3
 jr_define('_JOMRES_COM_ADVANCED_SITE_CONFIG', 'Advanced site config');
 jr_define('_JOMRES_COM_ADVANCED_SITE_CONFIG_DESC', 'Setați această opțiune la Da dacă doriți să utilizați opțiunile avansate de configurare a site-ului. Dacă abia începeți cu Jomres, vă recomandăm să lăsați acest lucru la Nu pentru moment, deoarece instalarea implicită este suficient pentru a începe, în schimb, ar trebui să adăugați Jomres la meniul principal și să vă conectați la frontend ca "administrator" și să începeți să vă configurați proprietățile. Vă rugăm să rețineți că multe dintre opțiunile avansate ar putea să nu fie disponibile dacă nu nu aveți instalate plugin-urile corespunzătoare. Utilizatorii sistemului gratuit de bază nu vor putea profita din plin de caracteristicile pe care le activează. ');
@@ -2760,3 +2751,17 @@ Puteți lăsa limba țintă setată la limba dvs. curentă și puteți utiliza a
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Modul de testare");
 
 	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "Modul de dezvoltare este activat, prin urmare, dacă utilizați această caracteristică, veți actualiza instalarea Jomres la filiala Nightly. Aceasta este cea mai recentă versiune de Jomres și poate fi sau nu stabilă. Dacă o faceți nu doriți să actualizați la Nightly, vă rugăm să vizitați Administrator > Jomres > Setări > Configurare site > fila Depanare și setați opțiunea Producție/Dezvoltare la Producție.");
+
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN', "Includeți copiii în verificările nivelului de ocupare?");
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN_DESC_MRP', "Atunci când oaspeții fac rezervări, camerele au un număr maxim de oaspeți pe care îi pot găzdui. Dacă numărul total de oaspeți depășește numărul de oaspeți pe care camerele selectate îi pot găzdui, atunci formularul de rezervare le va comunica. trebuie să aleagă mai multe camere.
+ 
+  Dacă setați această opțiune la Da, atunci numărul de copii va fi inclus în numărul total de oaspeți. Dacă setați această opțiune la Nu, atunci numărul de copii nu va fi inclus în cecul pentru numărul total de oaspeți. Aceasta înseamnă că dacă setați această opțiune la Nu, atunci un grup de 4 persoane, de exemplu, 2 adulți și 2 copii, va putea rezerva o cameră dublă care poate găzdui 2 adulți. ");
+
+
+	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Selectați Da dacă doriți să taxați per-persoană-pe-noapte.');
+
+	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"Prezentate");
+
+jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', 'Închiriere articole');
+
+jr_define('SHORTCODE_INFO_JOMRES_V_JOMRES_SCRIPT',"Codurile scurte trebuie să fie împachetate în &#123;&#125; în Joomla sau [] în Wordpress (PARENTELE). Există trei moduri în care paginile generate de codurile scurte pot fi vizualizate. Prima este să adăugați un shortcode la un articol/pagină/modul în formatul BRACKETjomres shortcode argumentsBRACKET. Al doilea se află în fișierele șablon Jomres, unde ați pune BRACKETjomres_script shortcode argumentsBRACKET. Ultima modalitate este prin adresa URL, deci, de exemplu, în Joomla ați pune www. /domain.com/index.php?option=com_jomres&task=SHORTCODE&ARGUMENTS=ARGUMENTS. ");

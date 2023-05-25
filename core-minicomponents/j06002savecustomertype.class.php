@@ -2,16 +2,16 @@
 /**
 * Jomres CMS Agnostic Plugin
 * @author Woollyinwales IT <sales@jomres.net>
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
 * @package Jomres
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
 * Jomres (tm) PHP files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project.
 **/
 
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.');
 // ################################################################
-
+	#[AllowDynamicProperties]
 class j06002savecustomertype
 {
 	function __construct()

@@ -4,16 +4,16 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-	
+	#[AllowDynamicProperties]
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
@@ -44,10 +44,9 @@ class j16000jomres_install
 		}
 		
 		jr_import('jomres_install');
+		$jomres_install = new jomres_install('update', false, true);
 
 		try {
-			$jomres_install = new jomres_install('update', false, true);
-			
 			echo '<p class="alert alert-success">Congratulations! Update completed successfully.</p>';
 		} catch (Exception $e) {
 			$messages = $jomres_install->getMessages();

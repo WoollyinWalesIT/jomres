@@ -4,16 +4,16 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-	
+	#[AllowDynamicProperties]
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
@@ -115,7 +115,7 @@ class j16000list_invoices
 		$options[] = jomresHTML::makeOption('1', jr_gettext('_JOMRES_STATUS_COMMISSIONS', '_JOMRES_STATUS_COMMISSIONS', false));
 		$options[] = jomresHTML::makeOption('2', jr_gettext('_JOMRES_STATUS_SUBSCRIPTIONS', '_JOMRES_STATUS_SUBSCRIPTIONS', false));
 		$options[] = jomresHTML::makeOption('3', jr_gettext('_JOMRES_STATUS_UNISSUED', '_JOMRES_STATUS_UNISSUED', false));
-		$output['INVOICE_TYPE'] = jomresHTML::selectList($options, 'invoice_type', 'class="inputbox" size="1"', 'value', 'text', $invoice_type);
+		$output['INVOICE_TYPE'] = jomresHTML::selectList($options, 'invoice_type', '', 'value', 'text', $invoice_type);
 
 		$options = array();
 		$options[] = jomresHTML::makeOption('4', jr_gettext('_JOMRES_FRONT_ROOMSMOKING_EITHER', '_JOMRES_FRONT_ROOMSMOKING_EITHER', false));
@@ -123,7 +123,7 @@ class j16000list_invoices
 		$options[] = jomresHTML::makeOption('1', $output[ 'HPAID' ]);
 		$options[] = jomresHTML::makeOption('2', $output[ 'HCANCELLED' ]);
 		$options[] = jomresHTML::makeOption('3', $output[ 'HPENDING' ]);
-		$output['INVOICE_STATUS'] = jomresHTML::selectList($options, 'invoice_status', 'class="inputbox" size="1"', 'value', 'text', $invoice_status);
+		$output['INVOICE_STATUS'] = jomresHTML::selectList($options, 'invoice_status', '', 'value', 'text', $invoice_status);
 
 		$output['CMS_USER_ID'] = $cms_user_id;
 

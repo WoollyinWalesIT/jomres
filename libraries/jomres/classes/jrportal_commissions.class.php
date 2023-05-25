@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -305,7 +305,7 @@ class jrportal_commissions // Functions supplied as a class so that they can be 
 			$options[] = jomresHTML::makeOption($k, $v);
 		}
 
-		return jomresHTML::selectList($options, 'type', 'class="inputbox" size="1"', 'value', 'text', $selected);
+		return jomresHTML::selectList($options, 'type', '', 'value', 'text', $selected);
 	}
 	
 	/**

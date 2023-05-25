@@ -1,0 +1,111 @@
+
+.ui-datepicker {
+  background-color: #fff;
+  box-shadow: 0 0 0.25em rgba(0, 0, 0, 0.3);
+  display: none;
+  padding: 1em;
+  width: 25em;
+}
+
+.ui-datepicker-calendar a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.ui-datepicker-header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1em;
+}
+
+.ui-datepicker-prev,
+.ui-datepicker-next {
+  cursor: pointer;
+}
+
+.ui-datepicker-next {
+  order: 1;
+}
+
+.ui-datepicker-prev .ui-icon,
+.ui-datepicker-next .ui-icon {
+  background-image: url("https://cdn.rawgit.com/marcobiedermann/playground/3027274a/ui/datepicker/jquery-ui-datepicker/dist/assets/images/datepicker-arrows.svg");
+  background-repeat: no-repeat;
+  background-size: 300%;
+  display: inline-block;
+  height: 1em;
+  overflow: hidden;
+  text-indent: -999px;
+  width: 1em;
+}
+
+.ui-datepicker-prev:hover .ui-icon-circle-triangle-w {
+  background-position: -1em 0;
+}
+
+.ui-datepicker-prev.ui-state-disabled .ui-icon-circle-triangle-w {
+  background-position: -2em 0;
+}
+
+.ui-datepicker-next .ui-icon-circle-triangle-e {
+  background-position: 0 -1em;
+}
+
+.ui-datepicker-next:hover .ui-icon-circle-triangle-e {
+  background-position: -1em -1em;
+}
+
+.ui-datepicker-nextui-state-disabled .ui-icon-circle-triangle-e {
+  background-position: -2em -1em;
+}
+
+.ui-datepicker-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.ui-datepicker-calendar td,
+.ui-datepicker-calendar th {
+  text-align: center;
+}
+
+.ui-datepicker-calendar td a,
+.ui-datepicker-calendar td span {
+  background-color: #f6f6f6;
+  display: block;
+  padding: 0.5em 1em;
+}
+
+.ui-datepicker-calendar .ui-datepicker-unselectable {
+  color: #c8c8ca;
+}
+
+.ui-datepicker-calendar .ui-datepicker-today a,
+.ui-datepicker-calendar .ui-datepicker-today span {
+  color: #bed62f;
+  font-weight: 700;
+}
+
+.ui-datepicker-calendar .ui-datepicker-current-day a {
+  background-color: #bed62f;
+  color: #fff;
+  font-weight: 700;
+}
+
+.ui-datepicker-buttonpane {
+  margin-top: 1em;
+}
+
+.ui-datepicker-buttonpane button {
+  background-color: #484a4e;
+  color: #fff;
+  font-size: 0.75rem;
+  padding: 0.25em 0.5em;
+}
+
+.ui-datepicker-buttonpane button + button {
+  margin-left: 0.5em;
+}
+
+.ui-datepicker select.ui-datepicker-month,.ui-datepicker select.ui-datepicker-year{width:49%;}

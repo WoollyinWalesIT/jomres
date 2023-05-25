@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 //#################################################################
@@ -609,26 +609,17 @@ jr_define('JOMRES_COM_A_TARIFFMODE_NORMAL', 'Normal');
 jr_define('JOMRES_COM_A_TARIFFMODE_ADVANCED', 'Gelişmiş');
 jr_define('JOMRES_COM_A_TARIFFMODE_TARIFFTYPES', 'Micromanage');
 jr_define('JOMRES_COM_A_TARIFFMODE', 'Tariff Configuration Mode');
-jr_define('JOMRES_COM_A_TARIFFMODE_DESC', "<b>Uyarı: Farklı tarife türleri arasında geçiş yapılması veri kaybına neden olabilir. Bununla ilgili aşağıdaki nota bakın.</b>.
+jr_define('JOMRES_COM_A_TARIFFMODE_DESC', "<b>Uyarı: Farklı tarife düzenleme modları arasında geçiş yapılması veri kaybına neden olabilir. Bununla ilgili aşağıdaki nota bakın.</b>.
 <br/><br/>
-Tarifelerinizi nasıl yapılandırdığınız konusunda üç seçeneğiniz vardır.<br/>
-Normal mod: Önümüzdeki 10 yıl için geçerli olan her oda türü için bir tarifeniz olacak. <br/>
-Micromanage: Her bir kaynak / mülk türü için her birinin fiyatını değiştirebilirsiniz. <br/>
-Advanced: Tarife yönetmek için \"eski \" Jomres yöntemi. <br/>
+Tarifelerinizi nasıl yapılandıracağınız konusunda iki seçeneğiniz var.<br/>
+Micromanage: Her oda/tesis tipi için her gün için fiyatı değiştirebilirsiniz. <br/>
+Gelişmiş: Birbirine bağlı olmayan bir dizi tarife oluşturabilirsiniz. <br/>
 <br/>
-Farklı tarife modları, size en uygun tarifeleri yapılandırma yöntemini seçmenizi sağlar. <br/>
-Normal mod en basittir, ancak referans oda ve tarifeleri kaynak / mülk türlerine göre çaprazlayacak ve oda ve fiyatları aynı sayfada yapılandırmanıza olanak tanıdığından anlaşılması en kolay yoldur.<br/>
-Mikromanage tarifelerin hepsini yönetmek zorunda kalmadan, bir gün bazında oranları değiştirmenize olanak tanır, bu birbirleri ile çok sayıda farklı tarife çapraz başvurarak yapılır. Bu, sizin için belirli bir süre kapsayan bir dizi tarifeye neden olur, ancak tarifeleri tarif ettiremezsiniz. <br/>
-Gelişmiş mod, bir kaynak oluşturup bir kaynak türü ile ilişkilendirmenizi sağlar. Daha sonra bir tarife oluşturun ve MADDE ile bir kaynak türünü ilişkilendirin. Bu yöntemi kullanarak, birbiri üzerinde \"katman\" tarifeleri yapmak mümkündür, örneğin bir kaynak türü \"Çift kişilik yatak \" bir yatak ve kahvaltı için bir tarife, bir tane ise yatak, kahvaltı ve akşam yemeği içerebilir. Gelişmiş yöntem, bir kaynak / mülk türünün bir kaynak veya tarife ilişkisini ortadan kaldırmak ya da tarih ve tarihleri ​​hatalı olarak ayarlamak mümkündür, ancak diğer modların yapılandırma seçeneklerini vermesi nedeniyle, ayrıntıya biraz daha dikkat etmeniz gerekir. <br/>
+Mikro yönetim, tarife yığınlarını yönetmek zorunda kalmadan oranları günden güne değiştirmenize olanak tanır, birçok farklı tarife birbiriyle çapraz referans alınarak yapılır. Bu, sizin için belirli bir süreyi kapsayan bir dizi tarife oluşturulmasına neden olur, ancak tarifeleri birbiri üzerine katmanlayamazsınız.<br/>
+Gelişmiş mod, diğer tarifelerle bağlantılı olmayan tarifeler oluşturmanıza olanak sağlar. Bu, mülkünüz için Micromanage modunda başka türlü oluşturamayacağınız fiyatlar oluşturmanıza olanak tanır. Kullanımı daha zahmetlidir, çünkü her tarifenin geçerlilik başlangıç/bitiş tarihlerinin birbirine tam olarak uymasını sağlamanız gerekir, ancak daha karmaşık tarifeler oluşturmanıza olanak tanır.<br/>
 <br/>
-Normal ve Micromanage modları, tarife modunun çalışması için belirli bir oda ve tarif ayarlamasını gerektirdiğinden, sistem geçerli tarife yapılandırmalarını mevcut tarife düzenleme moduyla uyumlu hale getirmek için bazı verileri sıfırlamanız gerekebilir. .<br/>
-<br/>
-Normal -> Gelişmiş. Değişiklik yok. Mevcut tarife saklanır.<br/>
-Normal -> Mikromanage. Mevcut tarifelerin tümü kaldırılır. <br/>
-Gelişmiş -> Normal. Mevcut tarifelerin tümü kaldırılır.<br/>
-Gelişmiş -> Micromanage. Mevcut tarifelerin tümü kaldırılır. <br/>
-Mikromanage -> Gelişmiş. Tarifeler arasındaki mevcut tüm çapraz referanslar kaldırılır ancak tarife kendiliğinden kalır. <br/>
-Mikromanage -> Normal. Mevcut tüm çapraz referanslar ve tarife kaldırılır. <br/> ");
+Advanced'den Micromanage'e geçerseniz mevcut tüm tarifeler kaldırılacaktır.<br/>
+<br/>");
 jr_define('_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS', 'Odalar listesini mülk ayrıntıları sayfasında gösterilsin mi?');
 jr_define('JOMRES_PROPERTYTYPE', 'Özellik türü');
 jr_define('JOMRES_MAXPEOPLEINROOM', 'Oda başına maksimum kişi');
@@ -1141,7 +1132,7 @@ jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD', "Otomatik yede
 jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD_DESC', "Bu iptal, bir yöneticinin askıya alınmadan ve işletmelerinin yayımlanmadan önce bir faturayı ödemesi gereken gün sayısıdır");
 //4.7.2
 jr_define('_JOMRES_COM_LANGUAGE_CONTEXT', 'Dil bağlamı');
-jr_define('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', 'Sitenin dil bağlamını değiştirmek için bu seçeneği kullanın. Bu özellik, Jomres\'ın geçerli odakınıza uygun etiketleri kullanmasına izin verir; bu nedenle, odak alanınız bir Yat Aracılık olarak seçilirse, bağlamı değiştirirseniz Jomres\'ın farklı bir dil dosyasından etiket sunmasına izin verin Örneğin bağlamı "Yacht Brokerage" olarak ayarlarsanız, Jomres önce geçerli dili bulacaktır, daha sonra bir alt dizin için /'.JOMRES_ROOT_DIRECTORY.'/languages ​​dizininde arama yapacaktır. "Yacht brokerage" olarak adlandırılır.Eğer mevcut dilde dosya varsa, o dosya kullanılır.Eğer yoksa, Jomres aynı dizinde bir ingilizce dil dosyası arar.Eğer bulunamazsa, Jomres /'.JOMRES_ROOT_DIRECTORY.'/languages ​​dizininde seçili dilin dil dosyası.Yeni bir mülk türü oluşturursanız, geçerli dil dosyasının bir kopyası /'.JOMRES_ROOT_DIRECTORY.'/ altındaki bir alt dizinde yapılır. Yeni özellik türünün tanımlamasını yansıtan bir dil.');
+jr_define('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', 'Sitenin dil içeriğini değiştirmek için bu seçeneği kullanın. Bu özellik, Jomres\'in sizin Jomres\'i kullanma şeklinize uygun etiketleri kullanmasına olanak tanır, bu nedenle odak noktanız bir Yat Brokerliği ise, bağlamı değiştirmek Jomres\'in yatlara uygun etiketler sunmasına olanak tanır. Örneğin, bağlamı "Yat Brokerliği" olarak ayarlarsanız, Jomres önce mevcut dili bulur, ardından özel metin veritabanında "yachtbrokerage" dil bağlamı ile kaydedilen dizeleri arar. Geçerli dil ve bağlam için özel dizeler varsa, bunlar kullanılacaktır. Değilse, Jomres, Çekirdek dil dosyaları tarafından kullanılan dil tanımlarına geri dönecektir.');
 // 4.7.3
 jr_define('_JOMRES_COM_ADVANCED_SITE_CONFIG', 'Gelişmiş site yapılandırması');
 jr_define('_JOMRES_COM_ADVANCED_SITE_CONFIG_DESC', 'Gelişmiş site yapılandırma seçeneklerini kullanmak isterseniz bu seçeneği Yes (Evet) olarak ayarlayın.Eğer sadece Evet ile başlarsanız, varsayılan kurulum şu anda Hayır olarak bırakmanızı öneririz Jomres\'ı ana menüye ekleyip önyüzde "admin" olarak oturum açmanız ve mülkünüzü yapılandırmaya başlamanız gerekiyor.Geliştirilmediğiniz takdirde gelişmiş seçeneklerin birçoğunun mevcut olmayabileceğini lütfen unutmayın. Uygun eklentileri yüklemiş olmazlar.Katsız, çekirdek sistem kullanıcısı, etkinleştirdikleri özelliklerden tam olarak yararlanamaz. ');
@@ -2735,3 +2726,17 @@ Hedef dili mevcut dilinize ayarlı bırakabilir ve bu sayfayı, öğeleri tek te
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Test modu");
 
 	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "Geliştirme modu etkin, bu nedenle bu özelliği kullanırsanız Jomres kurulumunuzu Nightly şubesine güncelleyeceksiniz. Bu, Jomres'in en son sürümüdür ve kararlı olabilir veya olmayabilir. Bunu yaparsanız Nightly'ye güncellemek istemiyorsanız lütfen Yönetici > Jomres > Ayarlar > Site Yapılandırması > Hata Ayıklama sekmesini ziyaret edin ve Üretim/Geliştirme seçeneğini Üretim olarak ayarlayın.");
+
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN', "Doluluk seviyesi kontrollerine çocuklar dahil edilsin mi?");
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN_DESC_MRP', "Misafirler rezervasyon yaptığında, odalarda konaklayabilecekleri maksimum misafir sayısı vardır. Toplam misafir sayısı, seçilen odaların konaklayabileceği misafir sayısını aşarsa, rezervasyon formunda onlara şunu söyleyecektir: daha fazla oda seçmeleri gerekiyor.
+ 
+  Bu seçeneği Evet olarak ayarlarsanız çocuk sayısı, toplam misafir sayısı kontrolüne dahil edilecektir. Bu seçeneği Hayır olarak ayarlarsanız çocuk sayısı, toplam misafir sayısı kontrolüne dahil edilmeyecektir. Bu, bu seçeneği Hayır olarak ayarlarsanız, örneğin 2 yetişkin ve 2 çocuktan oluşan 4 kişilik bir grubun 2 yetişkinin kalabileceği çift kişilik bir oda rezerve edebileceği anlamına gelir. ");
+
+
+	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Kişi başı gecelik ücretlendirme yapmak istiyorsanız Evet\'i seçin.');
+
+	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"Öne Çıkanlar");
+
+jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', 'Öğe Kiralama');
+
+jr_define('SHORTCODE_INFO_JOMRES_V_JOMRES_SCRIPT',"Kısa kodların Joomla'da &#123;&#125; veya Wordpress'te (BRAKETLER) [] içine alınması gerekir. Kısa kodlar tarafından oluşturulan sayfaların görüntülenmesinin üç yolu vardır. Birincisi, BRACKETjomres kısa kod argümanlarıBRAKET biçiminde bir makaleye/sayfaya/modüle bir kısa kod ekleyin. İkincisi, Jomres şablon dosyaları içindedir, burada BRACKETjomres_script kısa kod argümanlarınıBRAKET koyarsınız. Son yol url'dir, yani örneğin Joomla'da www koyacaksınız www.domain.com/index.php?option=com_jomres&task=SHORTCODE&ARGUMENTS=ARGUMENTS. ");

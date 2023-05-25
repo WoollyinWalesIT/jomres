@@ -1,20 +1,4 @@
 <patTemplate:tmpl name="pageoutput">
-<style>
-	label.valid {
-		width: 24px;
-		height: 24px;
-		background: url({JOMRES_IMAGES_RELPATH}valid.png) center center no-repeat;
-		display: inline-block;
-		text-indent: -9999px;
-	}
-
-	label.error {
-		font-weight: bold;
-		color: red;
-		padding: 2px 8px;
-		margin-top: 2px;
-	}
-</style>
 <script type="text/javascript">
 	{BOOKEDDATES}
 	var isSRP = true;
@@ -130,12 +114,15 @@
 					}
 				},
 
-			highlight: function (label) {
-				jomresJquery(label).closest('.form-group').removeClass('has-success').addClass('has-error');
-			},
-			success: function (label) {
-				jomresJquery(label).closest('.form-group').removeClass('has-error').addClass('has-success');
-			}
+        highlight: function (label) {
+            jomresJquery(label).closest('.form-group').removeClass('alert alert-success').addClass('alert alert-danger mt-3');
+            jomresJquery('html, body').animate({
+                scrollTop: jomresJquery(label).offset().top
+            }, 2000);
+        },
+        success: function (label) {
+            jomresJquery(label).closest('.form-group').removeClass('alert alert-danger').addClass('alert alert-success');
+        }
 		});
 
 		{MODAL}
@@ -196,27 +183,22 @@
 			</div>
 		</div>
 	</div>
-	
-	<div id="tour_target_booking_extras"></div>
-	<patTemplate:tmpl name="extrasrow" type="simpleCondition" requiredVars="extras_header">
-	<div id="extrascontainer">
-		<div class="card">
-			<div class="card-body">
-				<div class="card-title">{EXTRAS_HEADER}</div>
-			</div>
-			<div class="card-text">
-				<patTemplate:tmpl name="third_party_extras" type="simpleCondition" requiredVars="third_party_extra">
-					{THIRD_PARTY_EXTRA}
-				</patTemplate:tmpl>
-				<div id="core_extras" class="row">
-					<patTemplate:tmpl name="extras">
-					{EXTRAS_TEMPLATE}
-					</patTemplate:tmpl>
+		
+		<pattemplate:tmpl name="extrasrow" type="simpleCondition" requiredvars="extras_header">
+			<div id="extrascontainer">
+				<div class="card">
+					<div class="card-header">
+						<div class="card-title"><strong>{EXTRAS_HEADER}</strong></div>
+					</div>
+					<div class="card-body">
+						<div id="core_extras" class="row">
+							<pattemplate:tmpl name="extras">{EXTRAS_TEMPLATE}</pattemplate:tmpl>
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
-	</div>
-	</patTemplate:tmpl>
+			<pattemplate:tmpl name="third_party_extras" type="simpleCondition" requiredvars="third_party_extra">{THIRD_PARTY_EXTRA}</pattemplate:tmpl>
+		</pattemplate:tmpl>
 	
 	<div class="row" id="bookingform_address">
 		<div class="col-md-7">
@@ -303,7 +285,7 @@
 							<div class="form-group {BOOTSTRAP_EMAIL_WARNING}">
 								<label class="col-form-label" for="eemail">{HEMAIL}</label>
 								<input type="email" name="eemail" id="eemail" value="{EMAIL}"
-									   class="form-control" {email_input_disabled}="">
+									   class="form-control" {EMAIL_INPUT_DISABLED}="" />
 							</div>
 							<pattemplate:tmpl name="customfields" type="simpleCondition" requiredvars="fieldname">
 								<div class="form-group {WARNING}">

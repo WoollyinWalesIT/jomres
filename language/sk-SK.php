@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 //#################################################################
@@ -627,26 +627,17 @@ jr_define('JOMRES_COM_A_TARIFFMODE_NORMAL', 'normálny');
 jr_define('JOMRES_COM_A_TARIFFMODE_ADVANCED', 'Rozšírené');
 jr_define('JOMRES_COM_A_TARIFFMODE_TARIFFTYPES', 'Micromanage');
 jr_define('JOMRES_COM_A_TARIFFMODE', 'režim konfigurácie tarify');
-jr_define('JOMRES_COM_A_TARIFFMODE_DESC', "<b> Upozornenie: Prepínanie medzi rôznymi druhmi taríf môže mať za následok stratu dát. K tomu si pozrite nasledujúcu poznámku </b>.
-<br/> <br/>
-Máte tri možnosti konfigurácie taríf. <br/>
-Normálny režim: Na každý typ miestnosti budete mať jednu tarifu, ktorá platí ďalších 10 rokov. <br/>
-Mikromanažment: Cenu môžete upravovať každý deň pre každú izbu/typ nehnuteľnosti. <br/>
-Rozšírené: \"starý\" Jomresov spôsob správy taríf. <br/>
+jr_define('JOMRES_COM_A_TARIFFMODE_DESC', "<b>Upozornenie: Prepínanie medzi rôznymi režimami úpravy taríf môže viesť k strate údajov. V tejto súvislosti si pozrite poznámku nižšie.</b>.
+<br/><br/>
+Máte dve možnosti, ako si nakonfigurovať tarify.<br/>
+Micromanage: Môžete upraviť cenu pre každý deň pre každý typ izby/nehnuteľnosti. <br/>
+Pokročilé: Môžete vytvoriť sadu taríf, ktoré nie sú navzájom prepojené. <br/>
 <br/>
-Rôzne tarifné režimy vám umožňujú vybrať si spôsob konfigurácie taríf, ktorý vám najviac vyhovuje. <br/>
-Normálny režim je najjednoduchší, ale je najľahšie pochopiteľný, pretože bude krížiť referenčné miestnosti a tarify s typmi izieb/nehnuteľností a umožní vám konfigurovať izby a ceny na tej istej stránke. <br/>
-Mikro správa vám umožňuje meniť sadzby na dennej báze bez toho, aby ste museli spravovať balíčky taríf, a to pomocou vzájomného krížového porovnávania mnohých rôznych taríf. Výsledkom je, že sa vám na určitý čas vytvorí niekoľko taríf, ale nemôžete ich vrstviť navzájom. <br/>
-Rozšírený režim vám umožní vytvoriť miestnosť a priradiť ju k typu miestnosti. Potom vytvoríte tarifu a priradíte TO k typu miestnosti. Pomocou tejto metódy je možné 'vrstviť'tarify nad sebou, napríklad pre typ miestnosti 'Manželská posteľ'môže byť jeden tarif pre nocľah s raňajkami a druhý pre nocľah, raňajky a večeru. Pokročilá metóda vyžaduje trochu viac pozornosti k detailom, pretože je možné odpojiť izbu alebo tarifu od typu miestnosti/nehnuteľnosti alebo nesprávne nastaviť platné dátumy a dátumy, ale poskytuje možnosti konfigurácie, ktoré ostatné režimy neponúkajte. <br/>
+Micromanage vám umožňuje meniť sadzby na dennej báze bez toho, aby ste museli spravovať množstvo taríf, robí sa to krížovým odkazovaním na množstvo rôznych taríf navzájom. Výsledkom je, že sa pre vás vytvorí niekoľko taríf pokrývajúcich určité časové obdobie, ale nemôžete navzájom vrstviť tarify.<br/>
+Pokročilý režim vám umožňuje vytvárať tarify, ktoré nie sú prepojené s inými tarifami. To vám umožňuje vytvárať ceny pre váš majetok, ktoré inak nemôžete vytvoriť v režime Micromanage. Jeho používanie je náročnejšie, pretože je potrebné zabezpečiť, aby sa dátumy platné od/do každej tarify dokonale zhodovali, no umožňuje vytvárať komplikovanejšie tarify.<br/>
 <br/>
-Pretože normálny a mikromanažérsky režim vyžadujú na fungovanie tarifného režimu špecifické nastavenia miestností a taríf, môže byť potrebné, aby systém resetoval niektoré údaje, aby boli aktuálne konfigurácie taríf kompatibilné s aktuálnym režimom úprav taríf. <br/>
-<br/>
-Normálne -> Rozšírené. Žiadna zmena. Existujúce tarify zostanú zachované. <br/>
-Normálne -> Mikromanáž. Všetky existujúce tarify budú odstránené. <br/>
-Rozšírené -> Normálne. Všetky existujúce tarify budú odstránené. <br/>
-Rozšírené -> Mikromanáž. Všetky existujúce tarify budú odstránené. <br/>
-Mikromanage -> Rozšírené. Všetky existujúce krížové odkazy medzi tarifami budú odstránené, ale samotné tarify zostanú. <br/>
-Mikromanage -> Normálne. Všetky existujúce krížové referencie a tarify budú odstránené. <br/> ");
+Ak prejdete z rozšíreného na Micromanage, všetky existujúce tarify budú odstránené.<br/>
+<br/>");
 jr_define('_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS', 'Zobraziť zoznam izieb na stránke podrobností nehnuteľnosti?');
 jr_define('JOMRES_PROPERTYTYPE', 'Property type');
 jr_define('JOMRES_MAXPEOPLEINROOM', 'Maximálny počet osôb na izbu');
@@ -678,7 +669,7 @@ jr_define('_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', 'bolo zľavnené z');
 jr_define('_JOMCOMP_WISEPRICE_TO', 'do');
 jr_define('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', 'cena za izbu nie je zľavnená');
 jr_define('JOMRES_COM_A_MAPSKEY', 'kľúč API služby Google Maps');
-jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'Kľúč rozhrania API služby Mapy Google môžete získať z <a href = "https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key" target="_blank"> Mapy Google </a>. Keď sem zadáte kľúč mapy, Jomres zobrazí mapu na vašej stránke s podrobnosťami o vlastníctve. ');
+jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'Kľúč rozhrania API služby Mapy Google môžete získať z <a href = "https://console.cloud.google.com/projectselector2/google/maps-apis/credentials" target="_blank"> Mapy Google </a>. Keď sem zadáte kľúč mapy, Jomres zobrazí mapu na vašej stránke s podrobnosťami o vlastníctve. ');
 jr_define('_JOMCOMP_LASTMINUTE_CPANEL', 'Last minute');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE', 'aktívny?');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE_DESC', 'Nastavte túto možnosť na Áno, ak chcete ponúkať ponuky na poslednú chvíľu.');
@@ -1170,7 +1161,7 @@ jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD', 'Automatické 
 jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD_DESC', 'Thisreadholdhold je počet dní, počas ktorých musí správca zaplatiť faktúru pred pozastavením a zrušením zverejnenia ich vlastností.');
 //4.7.2
 jr_define('_JOMRES_COM_LANGUAGE_CONTEXT', 'jazykový kontext');
-jr_define('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', 'Túto možnosť použite na zmenu jazykového kontextu stránky. Táto funkcia umožňuje Jomresu používať štítky, ktoré sú vhodné pre vaše aktuálne zameranie, takže ak sa zameriavate ako na Yacht Brokerage, zmena kontextu bude umožniť Jomresu prezentovať štítky z iného jazykového súboru. Ak napríklad nastavíte kontext na Yacht Brokerage, Jomres najskôr nájde aktuálny jazyk a potom vyhľadá v podadresári adresár /'.JOMRES_ROOT_DIRECTORY.'/languages nazýva sa yachtbrokerage. Ak súbor existuje pre aktuálny jazyk, použije sa tento súbor. Ak nie, Jomres vyhľadá súbor v anglickom jazyku v tom istom adresári. Ak to nemožno nájsť, Jomres použije jazykový súbor pre aktuálne zvolený jazyk v adresári /'.JOMRES_ROOT_DIRECTORY.'/languages. ');
+jr_define('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', 'Túto možnosť použite na zmenu jazykového kontextu stránky. Táto funkcia umožňuje spoločnosti Jomres používať štítky, ktoré sú vhodné pre to, ako používate Jomres, takže ak sa zameriavate na sprostredkovanie jácht, zmena kontextu umožní spoločnosti Jomres prezentovať štítky vhodné pre jachty. Napríklad, ak nastavíte kontext na „Sprostredkovanie jácht“, Jomres najprv nájde aktuálny jazyk a potom vo vlastnej textovej databáze vyhľadá reťazce uložené s jazykovým kontextom „sprostredkovanie jácht“. Ak existujú vlastné reťazce pre aktuálny jazyk a kontext, použijú sa tieto. Ak nie, Jomres sa vráti k jazykovým definíciám používaným v jeho základných jazykových súboroch.');
 // 4.7.3
 jr_define('_JOMRES_COM_ADVANCED_SITE_CONFIG', 'Rozšírená konfigurácia stránky');
 jr_define('_JOMRES_COM_ADVANCED_SITE_CONFIG_DESC', 'Nastavte túto možnosť na Áno, ak chcete používať rozšírené možnosti konfigurácie stránok. Ak začínate s Jomresom, odporúčame vám, aby ste to zatiaľ nechali na Nie, pretože predvolená inštalácia je stačí, aby ste mohli začať, namiesto toho by ste mali pridať Jomres do hlavnej ponuky a prihlásiť sa do klientskeho rozhrania ako správca a začať konfigurovať svoje vlastníctva. Upozorňujeme, že veľa pokročilých možností nemusí byť k dispozícii, ak nie t mať nainštalovaný príslušný (é) plugin (y). Používatelia bezplatného základného systému nebudú môcť plne využívať funkcie, ktoré povoľujú. ');
@@ -2760,3 +2751,17 @@ Môžete ponechať cieľový jazyk nastavený na váš aktuálny jazyk a použi�
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Testovací režim");
 
 	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "Režim vývoja je povolený, takže ak použijete túto funkciu, aktualizujete svoju inštaláciu Jomresu na vetvu Nightly. Toto je najnovšia verzia Jomres a môže, ale nemusí byť stabilná. Ak áno nechcete aktualizovať na Nightly, navštívte Správca > Jomres > Nastavenia > Konfigurácia lokality > karta Ladenie a nastavte možnosť Výroba/Vývoj na Produkciu.");
+
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN', "Zahrnúť deti do kontroly úrovne obsadenosti?");
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN_DESC_MRP', "Keď hostia robia rezervácie, izby majú maximálny počet hostí, ktorých môžu ubytovať. Ak celkový počet hostí prekročí počet hostí, ktoré môžu ubytovať vybrané izby, potom im rezervačný formulár oznámi, že potrebujú vybrať viac miestností.
+ 
+  Ak nastavíte túto možnosť na Áno, počet detí bude zahrnutý do celkového počtu hostí. Ak nastavíte túto možnosť na Nie, počet detí nebude zahrnutý do celkového počtu hosťovských šekov. To znamená, že ak nastavíte túto možnosť na Nie, potom si 4-členná skupina, napríklad 2 dospelí a 2 deti, bude môcť rezervovať dvojlôžkovú izbu, v ktorej sa môžu ubytovať 2 dospelí. ");
+
+
+	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Vyberte Áno, ak chcete účtovať za osobu a noc.');
+
+	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"Odporúčané");
+
+jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', 'Prenájom položky');
+
+jr_define('SHORTCODE_INFO_JOMRES_V_JOMRES_SCRIPT',"Krátke kódy musia byť zabalené v &#123;&#125; v Joomle alebo [] vo Wordpresse (BRACKETS). Existujú tri spôsoby zobrazenia stránok generovaných krátkymi kódmi. Prvým je pridať krátky kód do článku/stránky/modulu vo formáte BRACKETjomres shortcode argumentsBRACKET. Druhý je v súboroch šablón Jomres, kde by ste vložili BRACKETjomres_script shortcode argumentsBRACKET. Posledný spôsob je cez url, takže napríklad v Joomle by ste dali www.domain.com/index.php?option=com_jomres&task=SHORTCODE&ARGUMENTS=ARGUMENTS. ");

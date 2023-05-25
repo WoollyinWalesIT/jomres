@@ -4,16 +4,16 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-	
+
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
@@ -22,7 +22,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 jr_import('dobooking');
-
+#[AllowDynamicProperties]
 class j05000bookingobject
 {
 
@@ -151,7 +151,7 @@ if (!class_exists('booking')) {
 					$onchange .= ' getResponse_particulars(\'arrivalDate\',this.value); ';
 				} else {
 					$onchange .= ' ajaxADate(this.value,\''.$this->cfg_cal_input.'\'); getResponse_particulars(\'arrivalDate\',this.value,\''.$uniqueID.'\'); ';
-					$onchange .= ' jomresJquery("#'.get_showtime('departure_date_unique_id').'").datepicker(\'option\', {minDate: jomresJquery(this).datepicker(\'getDate\')})';
+					$onchange .= ' var departureMin = jomresJquery(this).datepicker(\'getDate\'); var result = new Date(departureMin); departureMin = departureMin.setDate(result.getDate() + '.$this->mininterval.'); ;  var newMin = new Date(departureMin); jomresJquery("#'.get_showtime('departure_date_unique_id').'").datepicker(\'option\', {minDate: newMin	}); ';
 					$onclose .= 'setTimeout(function(){ jomresJquery("#'.get_showtime('departure_date_unique_id').'").datepicker(\'show\');},0); ';
 				}
 			} else {
@@ -176,12 +176,22 @@ if (!class_exists('booking')) {
 
 			$output .= 'maxDate: "+5Y",';
 
+			$jquery_ui_calendar_icon_styles = get_showtime('jquery_ui_calendar_icon_styles');
+			$styles = '';
+			if (isset($jquery_ui_calendar_icon_styles)  && is_array($jquery_ui_calendar_icon_styles)) {
+				foreach ($jquery_ui_calendar_icon_styles as $style) {
+					$styles .= $style.' ';
+				}
+			} else {
+				$styles = 'input-group-addon input-group-text';
+			}
+			
 			if ((using_bootstrap() && jomres_bootstrap_version() == '2') || !using_bootstrap()) {
 				$output .= 'buttonImage: \''.JOMRES_IMAGES_RELPATH.'calendar.png\',';
 				$bs3_icon = '';
 			} else {
 				$output .= 'buttonText: "",';
-				$bs3_icon = '<span class="input-group-addon input-group-text" id="dp_trigger_'.$uniqueID.'"><span class="fa fa-calendar"></span></span>';
+				$bs3_icon = '<span class="'.$styles.'" id="dp_trigger_'.$uniqueID.'"><span class="fa fa-calendar"></span></span>';
 			}
 			$output .= '
 					autoSize:true,
@@ -225,9 +235,19 @@ if (!class_exists('booking')) {
 				';
 			}
 
+			$calendar_styles = get_showtime('jquery_ui_calendar_styles');
+			$styles = '';
+			if (isset($calendar_styles)  && is_array($calendar_styles)) {
+				foreach ($calendar_styles as $style) {
+					$styles .= $style.' ';
+				}
+			} else {
+				$styles = 'form-control shadow-none';
+			}
+
 			$output .= '
 			</script>
-			<input type="text" readonly="readonly" style="cursor:pointer; background-color: #FFFFFF;" ' .$size.' class="'.$input_class.' form-control input-group" name="'.$fieldName.'" id="'.$uniqueID.'" value="'.$dateValue.'" autocomplete="off" />'.$bs3_icon.'
+			<input type="text" readonly="readonly" style="cursor:pointer; background-color: #FFFFFF;" ' .$size.' class="'.$styles.$input_class.'" name="'.$fieldName.'" id="'.$uniqueID.'" value="'.$dateValue.'" autocomplete="off" />'.$bs3_icon.'
 			';
 
 			return $output;

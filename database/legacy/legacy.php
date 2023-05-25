@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -2872,6 +2872,9 @@ function installer_find_region_id($region)
 
     $jomres_regions = jomres_singleton_abstract::getInstance('jomres_regions');
     foreach ($jomres_regions->regions as $r) {
+		if (is_null($region)) {
+			$region =0;
+		}
         if (strcasecmp($r[ 'regionname' ], $region) == 0) {
             return (int) $r[ 'id' ];
         }

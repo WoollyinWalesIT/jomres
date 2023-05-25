@@ -3,9 +3,9 @@
  * Core file
  *
  * @author Vince Wooll <sales@jomres.net>
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  * @package Jomres
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
  **/
 
@@ -323,7 +323,7 @@ class jomres_property_features
 		
 		$jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
 		$jomres_media_centre_images->get_site_images('pfeatures');
-		
+
 		foreach ($jomres_media_centre_images->site_images['pfeatures'] as $image) {
 			$r = array();
 			

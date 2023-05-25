@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 //#################################################################
@@ -624,7 +624,17 @@ jr_define('JOMRES_COM_A_MESSAGE', 'Zpráva');
 jr_define('JOMRES_COM_A_TARIFFMODE_NORMAL', 'Normální');
 jr_define('JOMRES_COM_A_TARIFFMODE_ADVANCED', 'Rozšířený');
 jr_define('JOMRES_COM_A_TARIFFMODE', 'Režim cen');
-jr_define('JOMRES_COM_A_TARIFFMODE_DESC', 'Nastavte na rozšířený, pokud potřebujete pracovat se složitějšími ceníky');
+jr_define('JOMRES_COM_A_TARIFFMODE_DESC', '<b>Upozornění: Přepínání mezi různými režimy úpravy tarifů může vést ke ztrátě dat. Viz poznámka níže týkající se toho.</b>.
+<br/><br/>
+Máte dvě možnosti, jak si nakonfigurovat tarify.<br/>
+Micromanage: Můžete upravit cenu pro každý den pro každý typ pokoje/nemovitosti. <br/>
+Pokročilé: Můžete vytvořit sadu tarifů, které spolu nejsou propojeny. <br/>
+<br/>
+Micromanage vám umožňuje měnit sazby každý den, aniž byste museli spravovat stohy tarifů, provádí se křížovým odkazováním na mnoho různých tarifů mezi sebou. To má za následek, že pro vás bude vytvořeno několik tarifů pokrývajících určité časové období, ale nelze je vrstvit na sebe.<br/>
+Pokročilý režim umožňuje vytvářet tarify, které nejsou propojeny s jinými tarify. To vám umožní vytvářet ceny pro váš majetek, které jinak v režimu Micromanage vytvořit nemůžete. Používání je pracnější, protože je potřeba zajistit, aby každý tarif s platností od/do dokonale souhlasil, ale umožňuje vytvářet složitější tarify.<br/>
+<br/>
+Pokud přejdete z Advanced na Micromanage, všechny stávající tarify budou odstraněny.<br/>
+<br/>');
 jr_define('_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS', 'Ukázat seznam pokojů na základní stránce kapacity?');
 jr_define('JOMRES_PROPERTYTYPE', 'Typ kapacity');
 jr_define('JOMRES_MAXPEOPLEINROOM', 'Maximální počet osob na pokoji');
@@ -656,7 +666,7 @@ jr_define('_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', ' byla slevněna z původní c
 jr_define('_JOMCOMP_WISEPRICE_TO', ' na ');
 jr_define('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', ' Cena pokoje není slevněna ');
 jr_define('JOMRES_COM_A_MAPSKEY', 'Klíč API na Google maps');
-jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'Klíč API můžete získat z <a href="https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key" target="_blank">Google maps</a>. Jakmile uložíte API klíč, Jomres automaticky zobrazí mapu v detailu kapacity.');
+jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'Klíč API můžete získat z <a href="https://console.cloud.google.com/projectselector2/google/maps-apis/credentials" target="_blank">Google maps</a>. Jakmile uložíte API klíč, Jomres automaticky zobrazí mapu v detailu kapacity.');
 jr_define('_JOMCOMP_LASTMINUTE_CPANEL', 'Last minute');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE', 'Aktivní?');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE_DESC', 'Nastavte na ano, pokud chcte vytvářet Last Minute nabídky.');
@@ -1140,7 +1150,7 @@ jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD', 'Auto Suspend 
 jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD_DESC', 'This threadshold is the number of days has the manager must to a purchase anplate before they are guaranteed and their properties unublished.');
 //4.7.2
 jr_define('_JOMRES_COM_LANGUAGE_CONTEXT', 'jazykový kontext');
-jr_define('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', 'Tuto možnost použijte ke změně jazykového kontextu webu. Tato funkce umožňuje Jomresu používat štítky, které jsou vhodné pro vaše aktuální zaměření, takže pokud je vaše zaměření jako Yacht Brokerage, pak změna kontextu umožnit Jomresu prezentovat štítky z jiného jazykového souboru. Pokud například nastavíte kontext na "Yacht Brokerage", pak Jomres nejprve najde aktuální jazyk a poté vyhledá v podadresáři adresář /'.JOMRES_ROOT_DIRECTORY.'/languages nazývá se "yachtbrokerage". Pokud soubor pro aktuální jazyk existuje, použije se tento soubor. Pokud ne, pak Jomres vyhledá soubor v anglickém jazyce ve stejném adresáři. Pokud to nelze najít, Jomres použije jazykový soubor pro aktuálně vybraný jazyk v adresáři /'.JOMRES_ROOT_DIRECTORY.'/languages. ');
+jr_define('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', 'Tuto možnost použijte ke změně jazykového kontextu webu. Tato funkce umožňuje společnosti Jomres používat štítky, které jsou vhodné pro to, jak používáte Jomres, takže pokud se zaměřujete na zprostředkování jachet, pak změna kontextu umožní společnosti Jomres prezentovat štítky vhodné pro jachty. Pokud například nastavíte kontext na "Yacht Brokerage", pak Jomres nejprve najde aktuální jazyk a poté vyhledá ve vlastní textové databázi řetězce uložené s jazykovým kontextem "yachtbrokerage". Pokud existují vlastní řetězce pro aktuální jazyk a kontext, použijí se tyto. Pokud ne, Jomres se vrátí k jazykovým definicím používaným v jeho základních jazykových souborech.');
 // 4.7.3
 jr_define('_JOMRES_COM_ADVANCED_SITE_CONFIG', 'Advanced site config');
 jr_define('_JOMRES_COM_ADVANCED_SITE_CONFIG_DESC', 'Nastavte tuto možnost na Ano, pokud chcete používat pokročilé možnosti konfigurace webu. Pokud s Jomres teprve začínáte, doporučujeme prozatím ponechat toto nastavení na Ne, protože výchozí instalace je dostačující pro začátek, místo toho byste měli přidat Jomres do hlavní nabídky a přihlásit se do frontendu jako "admin" a začít konfigurovat své vlastnosti. Upozorňujeme, že mnoho pokročilých možností nemusí být k dispozici, pokud ne t mít nainstalován příslušný (é) plugin (y). Uživatelé bezplatného základního systému nebudou moci plně využívat funkcí, které povolují. ');
@@ -2706,3 +2716,17 @@ Můžete ponechat cílový jazyk nastavený na váš aktuální jazyk a použít
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Testovací režim");
 
 	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "Režim vývoje je povolen, takže pokud použijete tuto funkci, aktualizujete svou instalaci Jomres na větev Nightly. Toto je nejnovější verze Jomres a může, ale nemusí být stabilní. Pokud ano Nechcete aktualizovat na Nightly, navštivte Admin > Jomres > Nastavení > Konfigurace webu > karta Ladění a nastavte volbu Produkce/Vývoj na Produkci.");
+
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN', "Zahrnout děti do kontrol úrovně obsazenosti?");
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN_DESC_MRP', "Když hosté provádějí rezervace, mají pokoje maximální počet hostů, které mohou ubytovat. Pokud celkový počet hostů překročí počet hostů, které mohou ubytovat vybrané pokoje, pak jim rezervační formulář sdělí, že potřebují vybrat více místností.
+ 
+  Pokud tuto možnost nastavíte na Ano, počet dětí bude zahrnut do celkového počtu hostů. Pokud tuto možnost nastavíte na Ne, počet dětí nebude zahrnut do celkového počtu hostů. To znamená, že pokud nastavíte tuto možnost na Ne, pak si 4-členná skupina, například 2 dospělí a 2 děti, bude moci zarezervovat dvoulůžkový pokoj pro 2 dospělé. ");
+
+
+	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Zvolte Ano, pokud chcete účtovat za osobu a noc.');
+
+	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"Vybrané");
+
+jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', 'Pronájem položky');
+
+jr_define('SHORTCODE_INFO_JOMRES_V_JOMRES_SCRIPT',"Krátké kódy je třeba zabalit do &#123;&#125; v Joomle nebo [] ve Wordpressu (BRACKETS). Existují tři způsoby, jak lze prohlížet stránky generované krátkými kódy. První je přidat krátký kód do článku/stránky/modulu ve formátu BRACKETjomres shortcode argumentsBRACKET. Druhý je v souborech šablon Jomres, kam byste vložili BRACKETjomres_script shortcode argumentsBRACKET. Poslední způsob je přes url, takže například v Joomle byste dali www.domain.com/index.php?option=com_jomres&task=SHORTCODE&ARGUMENTS=ARGUMENTS. ");

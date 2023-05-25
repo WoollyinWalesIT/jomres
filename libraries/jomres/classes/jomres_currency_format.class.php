@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -174,7 +174,7 @@ class jomres_currency_format
 		foreach ($this->currency_formats as $key => $format) {
 			$fmts[ ] = jomresHTML::makeOption($key, $format);
 		}
-		$dropdown = jomresHTML::selectList($fmts, 'cfg_cformat', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'cformat' ]);
+		$dropdown = jomresHTML::selectList($fmts, 'cfg_cformat', '', 'value', 'text', $mrConfig[ 'cformat' ]);
 
 		return $dropdown;
 	}

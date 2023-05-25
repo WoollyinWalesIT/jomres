@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 //#################################################################
@@ -627,30 +627,17 @@ jr_define('JOMRES_COM_A_TARIFFMODE_NORMAL', 'רגיל');
 jr_define('JOMRES_COM_A_TARIFFMODE_ADVANCED', 'מתקדם');
 jr_define('JOMRES_COM_A_TARIFFMODE_TARIFFTYPES', 'ניהול מיקרו');
 jr_define('JOMRES_COM_A_TARIFFMODE', 'מצב הגדרת מבנה תעריף');
-jr_define('JOMRES_COM_A_TARIFFMODE_DESC', "<b>אזהרה: מעבר בין סוגי תעריפים שונים עלול להביא לאיבוד נתונים. ראה את ההערה להלן בהקשר זה</b>.
+jr_define('JOMRES_COM_A_TARIFFMODE_DESC', "<b>אזהרה: מעבר בין מצבי עריכת תעריפים שונים עלול לגרום לאובדן נתונים. ראה את ההערה שלהלן לגבי זה.</b>.
 <br/><br/>
-יש לך שלוש אפשרויות להגדרת מבני התעריפים שלך: <br/>
-מצב רגיל: יהיה לך תעריף אחד לכל סוג חדר שיהיה בתוקף לעשר השנים הבאות<br/>
-ניהול פרטני: אתה יכול לשנות את המחיר לכל יום ויום ולכל סוג חדר/נכס<br/>
-מתקדם: השיטה הישנה של ג'ומרס לניהול תעריפים <br/>
+יש לך שתי אפשרויות לגבי אופן הגדרת התעריפים שלך.<br/>
+Micromanage: ניתן לשנות את המחיר עבור כל יום ויום עבור כל סוג חדר/נכס. <br/>
+מתקדם: ניתן ליצור סט תעריפים שאינם מקושרים זה לזה. <br/>
 <br/>
-מבני התעריפים השונים מאפשרים לך לבחור את שיטת הגדרת התעריפים המתאימה לך ביותר.<br/>
-מבנה רגיל הוא הפשטני ביותר אך הוא הקל ביותר להבנה מאחר שהוא יעשה הצלבות בין חדרים לתעריפים לבין סוגי חדרים/ נכסים ומאפשר לך להגדיר חדרים ותעריפים באותו עמוד<br/>
-ניהול פרטני מאפשר לך לשנות את השערים על בסיס יום יומי בלי שתהיה חייב לנהל מבני תעריפים<br/>
-דבר זה נעשה על ידי הצלבת תעריפים רבים ושונים אחד עם השני וכתוצאה מכך נוצרים עבורך מספר תעריפים המכסים תקופת זמן אבל אינך יכול לסדר תעריפים בצורה שכבתית<br/>
-מצב מתקדם מאפשר לך ליצור חדר ולשייך אותו לסוג חדר. לאחר מכן אתה יוצר תעריף ומשייך אותו לסוג חדר. שימוש בשיטה זו מאפשר לך לסדר תעריפים בשכבות אחד על השני <br/>
-לדוגמא לחדר מסוג מיטה כפולה יכול להיות תעריף אחד ללינה וארוחת בוקר ותעריף אחר ללינה, ארוחת בוקר וארוחת ערב. המצב המתקדם דורש מעט יותר תשומת לב לפרטים מאחר ואפשרי  <br/>
-שלא לשייך חדר או תעריף לסוג חדר או נכס, או לקבוע בצורה לא נכונה תאריכי הגעה ועזבה תקפים, אבל נותן לך אפשרויות הגדרה שאינן אפשריות במבני תעריפים אחרים <br/>
+Micromanage מאפשרת לך לשנות את התעריפים על בסיס יומיומי מבלי שתצטרך לנהל רצף של תעריפים, זה נעשה על ידי הצלבה של המון תעריפים שונים אחד עם השני. כתוצאה מכך נוצרים עבורך מספר תעריפים המכסים פרק זמן מסוים, אך אינך יכול לשכב תעריפים אחד על השני.<br/>
+מצב מתקדם מאפשר לך ליצור תעריפים שאינם מקושרים לתעריפים אחרים. זה מאפשר לך ליצור מחירים עבור הנכס שלך שלא תוכל ליצור אחרת במצב Micromanage. זה יותר מייגע לשימוש, כי אתה צריך לוודא שכל תעריף תקף מ/עד תאריכים תואם בצורה מושלמת, אבל זה מאפשר לך ליצור תעריפים מסובכים יותר.<br/>
 <br/>
-מאחר ומצב רגיל ומצב ניהול פרטני דורשים סט ספציפי של חדרים ותעריפים על מנת לפעול, המערכת תצטרך לאפס נתונים על מנת שמבנה התעריף העכשווי יהיה תואם <br/>
-עם מצב עריכת התעריפים הנוכחי<br/>
-<br/>
-מצב רגיל למצב מתקדם: אין שינוי התעריפים הנוכחיים נשמרים<br/>
-מצב רגיל לניהול פרטני: כל התעריפים הקיימים נמחקים<br/>
-מצב מתקדם למצב רגיל: כל התעריפים הקיימים נמחקים<br/>
-מצב מתקדם לניהול פרטני: כל התעריפים הקיימים נמחקים<br/>
-ניהול פרטני למצב מתקדם: כל ההצלבות הקיימות בין תעריפים נמחקות, אבל התעריפים עצמם נשארים<br/>
-ניהול פרטני למצב רגיל: כל ההצלבות הקיימות והתעריפים עצמם נמחקים<br/>");
+אם תעבור ממתקדם ל-Micromanage, כל התעריפים הקיימים יוסרו.<br/>
+<br/>");
 jr_define('_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS', 'הראה רשימת חדרים בדף פרטי הנכס?');
 jr_define('JOMRES_PROPERTYTYPE', 'סוג נכס');
 jr_define('JOMRES_MAXPEOPLEINROOM', 'מספר אנשים מקסימלי לחדר');
@@ -686,7 +673,7 @@ jr_define('_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', ' אחרי הנחה מ - ');
 jr_define('_JOMCOMP_WISEPRICE_TO', ' אל ');
 jr_define('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', ' מחיר החדר ללא הנחה ');
 jr_define('JOMRES_COM_A_MAPSKEY', 'מפתח למפת גוגל');
-jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'פקודת GET יכולה לקבל ממשק למפת גוגל מהאתר<a href="https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key" target="_blank">Google maps</a>. לאחר שהכנסת את מפתח המפה שלך במקום זה, גומרס יראה את המפה בדף פרטי הנכס שלך');
+jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'פקודת GET יכולה לקבל ממשק למפת גוגל מהאתר<a href="https://console.cloud.google.com/projectselector2/google/maps-apis/credentials" target="_blank">Google maps</a>. לאחר שהכנסת את מפתח המפה שלך במקום זה, גומרס יראה את המפה בדף פרטי הנכס שלך');
 jr_define('_JOMCOMP_LASTMINUTE_CPANEL', 'רגע אחרון');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE', 'פעיל?');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE_DESC', 'בחר כן אם ברצונך להציע עסקאות רגע אחרון');
@@ -733,7 +720,7 @@ jr_define('_JRPORTAL_LISTBOOKINGS_HEADER_INVOICE_ID', 'זיהוי חשבונית
 jr_define('_JRPORTAL_LISTBOOKINGS_HEADER_BOOKINGTOTAL', 'סך כל הזמנה');
 jr_define('_JRPORTAL_LISTBOOKINGS_HEADER_DATEARCHIVED', 'תאריך שמירה בארכיון');
 jr_define('_JRPORTAL_ADD_ADHOC_ITEM_DESCRIPTION', 'תאור');
-jr_define('_JOMRES_COM_PTYPES_PTYPE_DESC_FURTHER', 'You can have property type specific language files by setting the description to the name of a sub folder, e.g. "yachtbrokerage" and copying a language file to that subfolder. You can then modify that language file for this property type so rooms become, for example, DVDs, etc.');
+jr_define('_JOMRES_COM_PTYPES_PTYPE_DESC_FURTHER', 'You can have property type specific language strings which are adjusted in the Translate Labels page. Set the language context to something like "toolhire" (no spaces or special characters) to use them.');
 jr_define('_JOMRES_EDITPROPERTY_CONNOTDELETE1', 'You cannot delete this property as it is the only property that you have access to. If you want to disable it, please use the un-publish feature in your toolbar. ');
 // Jomres v3.1
 jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_TOTAL', 'סך הכל אירוח');
@@ -1176,7 +1163,7 @@ jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD', 'השעיית 
 jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD_DESC', 'סף זה הוא מספר הימים שהמנהל צריך לשלם חשבונית לפני שהושעו והנכסים שלו לא פורסמו.');
 //4.7.2
 jr_define('_JOMRES_COM_LANGUAGE_CONTEXT', 'הקשר שפה');
-jr_define('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', 'השתמש באפשרות זו כדי לשנות את הקשר השפה של האתר. תכונה זו מאפשרת ל- Jomres להשתמש בתוויות המתאימות להתמקדות הנוכחית שלך, כך שאם המיקוד שלך הוא כתיווך יאכטות, שינוי הקשר יהיה אפשר לג ומרס להציג תוויות מקובץ שפה אחר. לדוגמה, אם תגדיר את ההקשר ל"תיווך יאכטות ", אז תחילה תמצא Jomres את השפה הנוכחית, ואז תחפש בספריית /'.JOMRES_ROOT_DIRECTORY.'/languages ​​אחר ספריית משנה. נקרא "yachtbrokerage". אם הקובץ קיים בשפה הנוכחית, הקובץ הזה ישמש. אם לא, Jomres יחפש קובץ בשפה האנגלית באותה ספריה. אם לא ניתן למצוא אותו, Jomres ישתמש קובץ השפה עבור השפה שנבחרה כעת בספרייה /'.JOMRES_ROOT_DIRECTORY.'/languages. ');
+jr_define('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', "השתמש באפשרות זו כדי לשנות את הקשר השפה של האתר. תכונה זו מאפשרת לג'ומרס להשתמש בתוויות שמתאימות לאופן שבו אתה משתמש בג'ומרס, כך שאם המיקוד שלך הוא כתיווך יאכטות, אז שינוי ההקשר יאפשר לג'ומרס להציג תוויות המתאימות ליאכטות. לדוגמה, אם תגדיר את ההקשר ל תיווך יאכטות אז Jomres ימצא תחילה את השפה הנוכחית, ולאחר מכן יחפש במסד הנתונים של הטקסט המותאם אישית אחר מחרוזות שנשמרו בהקשר שפה של תיווך יאכטות. אם קיימות מחרוזות מותאמות אישית עבור השפה וההקשר הנוכחיים, אלה ישמשו. אם לא, אז Jomres יחזור להגדרות השפה המשמשות את קבצי שפת הליבה שלה.");
 // 4.7.3
 jr_define('_JOMRES_COM_ADVANCED_SITE_CONFIG', 'הגדרת אתר מתקדם');
 jr_define('_JOMRES_COM_ADVANCED_SITE_CONFIG_DESC', 'הגדר אפשרות זו ל- Yes אם ברצונך להשתמש באפשרויות התצורה המתקדמות של האתר. אם אתה רק מתחיל ב- Jomres, אנו ממליצים לך להשאיר זאת ל- No לעת עתה, מכיוון שהתקנת ברירת המחדל היא מספיק כדי להתחיל, במקום זאת עליך להוסיף את Jomres לתפריט הראשי ולהיכנס לממשק הקדמי כ"אדמין "ולהתחיל להגדיר את הנכסים שלך. שים לב שאולי רבות מהאפשרויות המתקדמות אינן זמינות אם לא תעשה זאת. לא מותקנים התוספים המתאימים. משתמשי מערכת הליבה החינמית לא יוכלו לנצל את מלוא התכונות שהם מאפשרים. ');
@@ -2769,3 +2756,17 @@ jr_define('JOMRES_UPDATES_INFO', "דף זה יכול להוריד ולהתקין
 
 
 	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "מצב הפיתוח מופעל, לכן אם תשתמש בתכונה זו תעדכן את התקנת Jomres שלך לסניף Nightly. זוהי הגרסה העדכנית ביותר של Jomres ועשויה להיות יציבה או לא. אם תעשה זאת. לא רוצה לעדכן ל-Nightly, בקר ב-Admin > Jomres > הגדרות > תצורת אתר > כרטיסיית איתור באגים והגדר את אפשרות הפקה/פיתוח ל-Production.");
+
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN', "לכלול ילדים בבדיקות רמת התפוסה?");
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN_DESC_MRP', "כאשר אורחים מבצעים הזמנות, בחדרים יש מספר מקסימלי של אורחים שהם יכולים להכיל. אם המספר הכולל של האורחים עולה על מספר האורחים שהחדרים הנבחרים יכולים להכיל, טופס ההזמנה יאמר להם כי הם צריכים לבחור חדרים נוספים.
+ 
+  אם תגדיר אפשרות זו ל-כן, מספר הילדים ייכלל במספר הכולל של המחאה של האורחים. אם תגדיר אפשרות זו ל-No, מספר הילדים לא ייכלל במספר הכולל של המחאה של האורחים. המשמעות היא שאם תגדיר אפשרות זו ל-No אז מסיבה של 4, למשל, 2 מבוגרים ו-2 ילדים, תוכל להזמין חדר זוגי שמכיל 2 מבוגרים. ");
+
+
+	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'בחר כן אם ברצונך לגבות תשלום לאדם ללילה.');
+
+	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"מוצגים");
+
+jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', 'השכרת פריט');
+
+jr_define('SHORTCODE_INFO_JOMRES_V_JOMRES_SCRIPT',"קודים קצרים צריכים להיות עטופים ב-&#123;&#125; בג'ומלה, או ב-[] ב-Wordpress (BRACKETS). ישנן שלוש דרכים בהן ניתן לצפות בדפים שנוצרו על ידי קודי קצר. הראשונה היא הוסף קוד קצר למאמר/עמוד/מודול בפורמט BRACKETjomres shortcode argumentsBRACKET. השני נמצא בתוך קבצי תבנית Jomres, שם היית מכניס BRACKETjomres_script shortcode argumentsBRACKET. הדרך האחרונה היא דרך ה-url, כך למשל בג'ומלה תשים את www.domain.com/index.php?option=com_jomres&task=SHORTCODE&ARGUMENTS=ARGUMENTS. ");

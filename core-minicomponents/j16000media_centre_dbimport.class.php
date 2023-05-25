@@ -4,16 +4,16 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-	
+	#[AllowDynamicProperties]
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
@@ -77,7 +77,7 @@ class j16000media_centre_dbimport
 			//already imported, simply redirect back
 			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN), '');
 		}
-		
+
 		jr_import('jomres_media_centre_images_dbimport');
 		$jomres_media_centre_images_dbimport = new jomres_media_centre_images_dbimport(get_showtime('all_properties_in_system'), true);
 

@@ -4,16 +4,16 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-	
+	#[AllowDynamicProperties]
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
@@ -298,7 +298,12 @@ class j01070show_property_schema
 					$r[ 'ROOMNUMBER' ] = stripslashes($room['room_number']);
 					$r[ 'ROOMFLOOR' ] = stripslashes($room['room_floor']);
 					$r[ 'MAXPEOPLE' ] = $room['max_people'];
-					$r[ 'BED' ] = $current_property_details->room_types[$room_type_id]['abbv'];
+					if (isset($current_property_details->room_types[$room_type_id]['abbv'])) {
+						$r[ 'BED' ] = $current_property_details->room_types[$room_type_id]['abbv'];
+					} else {
+						$r['BED'] = '';
+					}
+
 
 					$r[ 'IMAGEMEDIUM' ] = JOMRES_IMAGES_RELPATH.'noimage.svg';
 
@@ -397,8 +402,13 @@ class j01070show_property_schema
 					if ($tariff->allow_we == '0') {
 						$r[ 'NOTWEEKENDS' ] = jr_gettext('_JOMRES_FRONT_TARIFFS_NOTWEEKEND', '_JOMRES_FRONT_TARIFFS_NOTWEEKEND');
 					}
-					
-					$r['ROOM_TYPE_IMAGE'] = $room_type_images[$tariff->roomclass_uid];
+
+					if (isset($room_type_images[$tariff->roomclass_uid])) {
+						$r['ROOM_TYPE_IMAGE'] = $room_type_images[$tariff->roomclass_uid];
+					} else {
+						$r['ROOM_TYPE_IMAGE'] = '';
+					}
+
 					$tariff_deets[ ] = $r;
 				}
 			}

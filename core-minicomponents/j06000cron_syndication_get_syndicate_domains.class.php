@@ -4,16 +4,16 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-	
+	#[AllowDynamicProperties]
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
@@ -66,7 +66,7 @@ class j06000cron_syndication_get_syndicate_domains
 					if ($domain) {
 						$now = date("Y-m-d H:i:s");
 						$new_site_domain					= $domain['host'];
-						$new_site_api_url					= $domain['scheme']."://".$domain['host'].filter_var($domain['path'], FILTER_SANITIZE_STRING);
+						$new_site_api_url					= $domain['scheme']."://".$domain['host'].filter_var($domain['path'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 						$new_site_datetime_added			= $now;
 						$new_site_datetime_last_checked		= $now;
 						

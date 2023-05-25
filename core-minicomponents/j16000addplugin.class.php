@@ -4,16 +4,16 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-	
+	#[AllowDynamicProperties]
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
@@ -302,7 +302,7 @@ class j16000addplugin
 					$returned_error = json_decode(file_get_contents($newfilename));
 
 					$output2['_JOMRES_ERROR'] = jr_gettext('_JOMRES_ERROR', '_JOMRES_ERROR', false, false);
-					$output2['MESSAGE'] = filter_var($returned_error->message, FILTER_SANITIZE_STRING);
+					$output2['MESSAGE'] = filter_var($returned_error->message, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 					$output2['PLUGIN_MANAGER_LINK'] = JOMRES_SITEPAGE_URL_ADMIN.'&task=showplugins';
 					$output2['PLUGIN_MANAGER_TEXT'] = jr_gettext('_JOMRES_CUSTOMCODE_PLUGINMANAGER', '_JOMRES_CUSTOMCODE_PLUGINMANAGER', false, false);
 					$pageoutput2[] = $output2;
@@ -321,8 +321,6 @@ class j16000addplugin
 					fclose($file_handle);
 				}
 			} else {
-				echo "Oops, that key isn't valid";
-
 				return;
 			}
 		}

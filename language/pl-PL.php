@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
 * @Polska adaptacja Patryk Doering - http://www.rekinet.pl - kontakt@rekinet.pl
 * @Aktualizacja wersji językowej z 07-10-2016r.
@@ -648,14 +648,17 @@ jr_define('JOMRES_COM_A_TARIFFMODE_NORMAL', 'Podstawowy');
 jr_define('JOMRES_COM_A_TARIFFMODE_TARIFFTYPES', 'Rozszerzony');
 jr_define('JOMRES_COM_A_TARIFFMODE_ADVANCED', 'Zaawansowany');
 jr_define('JOMRES_COM_A_TARIFFMODE', 'Tryb konfiguracji cen');
-jr_define('JOMRES_COM_A_TARIFFMODE_DESC', '<b>Ostrzeżenie! Przełączanie pomiędzy różnymi trybami konfiguracji cen może spowodować utratę danych, przeczytaj poniższe uwagi.</b>
-	<br /><br />
-	Dostępne są trzy opcje możliwości konfiguracji cen.
-	<ul>
-		<li>Tryb podstawowy - Będziesz miał jedną cenę dla każdego zasobu.</li>
-		<li>Rozszerzony - Można modyfikować cenę za każdy dzień i za każdy zasób w danym rodzaju oferty.</li>
-		<li>Zaawansowany - Dowolna możliwość kształtowania cen.</li>
-	</ul>');
+jr_define('JOMRES_COM_A_TARIFFMODE_DESC', '<b>Ostrzeżenie: Przełączanie między różnymi trybami edycji taryfy może spowodować utratę danych. Zobacz poniższą notatkę na ten temat.</b>.
+<br/><br/>
+Masz dwie możliwości konfiguracji taryf.<br/>
+Mikrozarządzanie: Możesz modyfikować cenę każdego dnia dla każdego rodzaju pokoju/obiektu. <br/>
+Zaawansowane: Możesz utworzyć zestaw taryf, które nie są ze sobą powiązane. <br/>
+<br/>
+Micromanage pozwala na codzienne zmienianie stawek bez konieczności zarządzania ryzami taryf, odbywa się to poprzez wzajemne odwoływanie się do wielu różnych taryf. Powoduje to utworzenie dla Ciebie wielu taryf obejmujących pewien okres czasu, ale nie możesz nakładać taryf na siebie.<br/>
+Tryb zaawansowany umożliwia tworzenie taryf, które nie są powiązane z innymi taryfami. Pozwala to na tworzenie cen dla Twojej nieruchomości, których nie można utworzyć w inny sposób w trybie Micromanage. Jest bardziej pracochłonny w użyciu, ponieważ musisz upewnić się, że daty obowiązywania od/do każdej taryfy są idealnie dopasowane, ale pozwala tworzyć bardziej skomplikowane taryfy.<br/>
+<br/>
+Jeśli przełączysz się z Zaawansowanego na Mikrozarządzanie, wszystkie istniejące taryfy zostaną usunięte.<br/>
+<br/>');
 jr_define('_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS', 'lista zasobówna stronie szczegółów oferty');
 jr_define('JOMRES_PROPERTYTYPE', 'Rodzaj oferty');
 jr_define('JOMRES_MAXPEOPLEINROOM', 'Maks klientów dla zasobu');
@@ -687,7 +690,7 @@ jr_define('_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', ' została odrzucona z ');
 jr_define('_JOMCOMP_WISEPRICE_TO', ' do ');
 jr_define('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', 'Podsumowanie Twojej płatności.');
 jr_define('JOMRES_COM_A_MAPSKEY', 'Klucz API map Google');
-jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'You can get a google maps API key from <a href="https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key" target="_blank">Google maps</a>. Once you have input your map key here, Jomres will show the map in your Property Details page.');
+jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'You can get a google maps API key from <a href="https://console.cloud.google.com/projectselector2/google/maps-apis/credentials" target="_blank">Google maps</a>. Once you have input your map key here, Jomres will show the map in your Property Details page.');
 jr_define('_JOMCOMP_LASTMINUTE_CPANEL', 'Last minute');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE', 'Aktywny?');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE_DESC', 'Ustaw Tak, jeśli chcesz zaoferować oferty Last minute.');
@@ -1138,7 +1141,7 @@ jr_define('_JOMRES_SEARCH_STARS', 'Liczba gwiazdek');
 jr_define('_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED', 'Liczba ofert');
 jr_define('_JOMRES_CONFIG_JQUERY', 'Obciążenie Jomres biblioteki jQuery');
 jr_define('_JOMRES_CONFIG_JQUERY_DESC', 'Można ustawić na Nie jeśli masz szablon, który używa jQuery. Może to rozwiązać problemy z jQuery i konflikty na niektórych szablonach, ale nie wszystkie.');
-jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'Enabling this option allows you to see the language switcher in the Fullscreen view in the frontend.');
+jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'Enabling this option allows you to see the language switcher in the Jomres Administrator area pages.');
 jr_define('_JOMRES_COM_A_UPLOADS_IMAGES_WIDTH_LARGE_DESC', 'Miniatury są tworzone automatycznie dla przesyłanych zdjęć.');
 jr_define('_JOMRES_COM_THUMBNAIL_SMALL_WIDTH', 'Małe miniaturki (szerokość maks px)');
 jr_define('_JOMRES_COM_THUMBNAIL_SMALL_WIDTH_DESC', 'Małe miniaturki są używane w wykazie ofert, podczas gdy średnie miniatury są używane w nagłówku ofert.');
@@ -1154,7 +1157,7 @@ jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND', 'Automatycznie zawieś of
 jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD', 'Automatycznie zawiesić gdy przekroczono');
 jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD_DESC', 'Jest to liczba dni w czasie jakim manager musi zapłacić fakturę, zanim zostanie on zawieszony, a jego oferty wyłączone z publikacji w portalu.');
 jr_define('_JOMRES_COM_LANGUAGE_CONTEXT', 'Kontekst języka');
-jr_define('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', 'Użyj tej opcji do zmiany kontekstu języka. Funkcja ta pozwala używać etykiet, które są odpowiednie dla aktualnej działalności.');
+jr_define('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', 'Użyj tej opcji, aby zmienić kontekst językowy witryny. Ta funkcja pozwala firmie Jomres używać etykiet odpowiednich do tego, w jaki sposób korzystasz z Jomres, więc jeśli koncentrujesz się na pośrednictwie w sprzedaży jachtów, zmiana kontekstu pozwoli firmie Jomres na prezentowanie etykiet odpowiednich dla jachtów. Na przykład, jeśli ustawisz kontekst na „Pośrednictwo w jachcie”, Jomres najpierw znajdzie bieżący język, a następnie przeszuka niestandardową bazę danych tekstowych w poszukiwaniu ciągów zapisanych w kontekście językowym „pośrednictwo w jachcie”. Jeśli istnieją niestandardowe ciągi dla bieżącego języka i kontekstu, zostaną one użyte. Jeśli nie, to Jomres cofnie się do definicji języka używanych przez jego podstawowe pliki językowe.');
 jr_define('_JOMRES_COM_ADVANCED_SITE_CONFIG', 'Konfiguracja zaawansowana');
 jr_define('_JOMRES_COM_ADVANCED_SITE_CONFIG_DESC', 'Ustaw Tak, jeśli chcesz korzystać z zaawansowanych opcji konfiguracyjnych. Jeśli dopiero zaczynasz z Jomres, to radzimy zostawić ustawione na Nie.');
 jr_define('_JOMRES_CONFIG_JQUERY_UI', 'Obciążenie Jomres biblioteki jQuery UI');
@@ -2751,3 +2754,17 @@ Możesz pozostawić język docelowy ustawiony na swój bieżący język i użyć
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Tryb testowy");
 
 	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "Tryb programistyczny jest włączony, dlatego jeśli użyjesz tej funkcji, zaktualizujesz swoją instalację Jomresa do gałęzi Nightly. Jest to najnowsza wersja Jomresa i może być stabilna lub nie. Jeśli to zrobisz nie chcesz aktualizować do Nightly, odwiedź Admin > Jomres > Ustawienia > Konfiguracja witryny > karta Debugowanie i ustaw opcję Produkcja/Rozwój na Produkcja.");
+
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN', "Czy uwzględniać dzieci w sprawdzaniu obłożenia?");
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN_DESC_MRP', "Kiedy goście dokonują rezerwacji, pokoje mają określoną maksymalną liczbę gości, których mogą pomieścić. Jeśli łączna liczba gości przekracza liczbę gości, które mogą pomieścić wybrane pokoje, wówczas formularz rezerwacji poinformuje ich, że muszą wybrać więcej pokoi.
+ 
+  Jeśli ustawisz tę opcję na Tak, liczba dzieci zostanie uwzględniona w czeku całkowitej liczby gości. Jeśli ustawisz tę opcję na Nie, liczba dzieci nie będzie uwzględniona w czeku całkowitej liczby gości. Oznacza to, że jeśli ustawisz tę opcję na Nie, grupa 4 osób, na przykład 2 osoby dorosłe i 2 dzieci, będzie mogła zarezerwować pokój dwuosobowy dla 2 osób dorosłych. ");
+
+
+	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Wybierz Tak, jeśli chcesz pobierać opłatę za osobę za noc.');
+
+	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"Polecane");
+
+jr_define('_JOMRES_PROPERTYPE_FLAG_HIRE', 'Wypożyczenie przedmiotu');
+
+jr_define('SHORTCODE_INFO_JOMRES_V_JOMRES_SCRIPT',"Skróty muszą być opakowane w &#123;&#125; w Joomla lub [] w Wordpressie (NAWIATY). Istnieją trzy sposoby przeglądania stron generowanych przez skróty. Pierwszy to dodaj krótki kod do artykułu/strony/modułu w formacie BRACKETjomres shortcode argumentsBRACKET. Drugi znajduje się w plikach szablonów Jomres, w których umieściłbyś BRACKETjomres_script shortcode argumentsBRACKET. Ostatnim sposobem jest adres URL, więc na przykład w Joomla umieściłbyś www.domain.com/index.php?option=com_jomres&task=SHORTCODE&ARGUMENTS=ARGUMENTY. ");

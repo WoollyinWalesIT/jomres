@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -247,7 +247,7 @@ class jrportal_taxrate
 			foreach ($this->taxrates as $r) {
 				$ratesOptions[ ] = jomresHTML::makeOption($r[ 'id' ], $r[ 'code' ].' '.$r[ 'description' ]);
 			}
-			$ratesDropdown = jomresHTML::selectList($ratesOptions, $name, 'class="inputbox" size="1"', 'value', 'text', $selected);
+			$ratesDropdown = jomresHTML::selectList($ratesOptions, $name, '', 'value', 'text', $selected);
 		}
 
 		return $ratesDropdown;

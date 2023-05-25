@@ -4,9 +4,9 @@
 	 *
 	 * @author Vince Wooll <sales@jomres.net>
 	 *
-	 *  @version Jomres 10.6.0
+	 *  @version Jomres 10.7.0
 	 *
-	 * @copyright	2005-2022 Vince Wooll
+	 * @copyright	2005-2023 Vince Wooll
 	 * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
 	 **/
 
@@ -168,9 +168,14 @@ function jomresGetParam($request, $element, $def = null) // variable type not us
 	}
 
 	if (!jomres_cmsspecific_areweinadminarea() && this_cms_is_joomla() && get_showtime('sef') == '1' && !AJAXCALL && !defined('AUTO_UPGRADE') && in_array($element, $sef_vars) && !array_key_exists($element, $request)) {
-		$app = Factory::getApplication();
-		$input = $app->input;
-		$dirty = $input->get($element, $def, 'STRING');
+		if ( _JOMRES_DETECTED_CMS == 'joomla4' || _JOMRES_DETECTED_CMS == 'joomla5') {
+			$dirty = Factory::getApplication()->getInput()->get($element);
+		} else {
+			$app = Factory::getApplication();
+			$input = $app->input;
+			$dirty = $input->get($element, $def, 'STRING');
+		}
+
 	} elseif (isset($request[ $element ])) {
 		$dirty = $request[ $element ];
 	} else {

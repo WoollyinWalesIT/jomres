@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -28,7 +28,7 @@ class booking_engine_adults_dropdown
 
 	/**
 	 *
-	 *
+	 * Constructor
 	 *
 	 */
 
@@ -42,16 +42,17 @@ class booking_engine_adults_dropdown
 	
 	/**
 	 *
-	 *
+	 * Build the adults dropdown used in the booking engine (old booking form)
 	 *
 	 */
 
-	public function build_adults_dropdown()
+	public function build_adults_dropdown($bkg)
 	{
 		if (!isset($this->mrConfig ["accommodates_adults"])) {
 			return array();
 		}
-		$guests_dropdown = jomresHTML::integerSelectList(1, $this->mrConfig ["accommodates_adults"], 1, 'standard_guests', 'size="1" class="input-mini  form-select"  autocomplete="off" onchange="getResponse_standardguests();"', 2, '%02d', $use_bootstrap_radios = false);
+
+		$guests_dropdown = jomresHTML::integerSelectList(1,  $bkg->absolute_max_guests_by_tariffs, 1, 'standard_guests', ' autocomplete="off" onchange="getResponse_standardguests();"', 2, '%02d', $use_bootstrap_radios = false);
 
 		$standard_guests[] = array (
 			"GUESTS_DROPDOWN" => $guests_dropdown ,

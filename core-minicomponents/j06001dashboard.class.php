@@ -4,16 +4,16 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-	
+	#[AllowDynamicProperties]
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
@@ -224,8 +224,8 @@ class j06001dashboard
 		$options = array();
 		$options[] = jomresHTML::makeOption('0', jr_gettext('_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false));
 		$options[] = jomresHTML::makeOption('1', jr_gettext('_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES', false));
-		$output['DEPOSIT_PAID'] = jomresHTML::selectList($options, 'deposit_paid', 'class="inputbox span12" size="1"', 'value', 'text', '2');
-		$output['BOOKED_IN'] = jomresHTML::selectList($options, 'booked_in', 'class="inputbox span12" size="1"', 'value', 'text', '2');
+		$output['DEPOSIT_PAID'] = jomresHTML::selectList($options, 'deposit_paid', '', 'value', 'text', '2');
+		$output['BOOKED_IN'] = jomresHTML::selectList($options, 'booked_in', '', 'value', 'text', '2');
 
 		//get the currency code
 		if (!isset($mrConfig[ 'property_currencycode' ])) { // for v4.5 converting the old currencyCode value to property_currencycode

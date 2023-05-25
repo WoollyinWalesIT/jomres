@@ -4,16 +4,16 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-	
+	#[AllowDynamicProperties]
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
@@ -57,6 +57,10 @@ class j00004b_init_javascript_css_files
 		} else {
 			return true;
 		}
+
+        if (defined('API_STARTED')) {
+            return true;
+        }
 
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
@@ -234,6 +238,9 @@ class j00004b_init_javascript_css_files
 		$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'galleria/dist/themes/classic/', 'galleria.classic.min.js');
 		$css_files[] = array(JOMRES_CSS_RELPATH, 'galleria.classic.css');
 
+        // File does not exist, deliberately. Developers can create that file in the override directory and then override jquery-ui css
+        $css_files[] = array(JOMRES_CSS_RELPATH, 'custom_jquery_ui.css');
+
 		$ls = jomresGetDomain();
 		if (stristr($ls, '.xn--', $ls) && !jomres_cmsspecific_areweinadminarea()) { // We check to see if we're in the admin area because our one and only client with an umlat in the domain name has found that the redirect function doesn't work in the administrator area if the domain's been converted.
 			//require_once JOMRES_LIBRARIES_ABSPATH.'idna_converter'.JRDS.'idna_convert.class.php';
@@ -241,13 +248,27 @@ class j00004b_init_javascript_css_files
 			$ls = $IDN->decode($ls);
 		}
 
+
+        $override_directory = get_override_directory().'custom_code'.JRDS;
+
 		//now let`s add the js and css in the head
+
 		foreach ($javascript_files as $file) {
-			jomres_cmsspecific_addheaddata('javascript', $file[0], $file[1]);
+            if (file_exists( $override_directory.JRDS.$file[1])) {
+                jomres_cmsspecific_addheaddata('javascript', jomres_get_relative_path_to_file($override_directory).'/', $file[1]);
+            } else {
+                jomres_cmsspecific_addheaddata('javascript', $file[0], $file[1]);
+            }
 		}
 
+
+
 		foreach ($css_files as $file) {
-			jomres_cmsspecific_addheaddata('css', $file[0], $file[1]);
+            if (file_exists( $override_directory.JRDS.$file[1])) {
+                 jomres_cmsspecific_addheaddata('css', jomres_get_relative_path_to_file($override_directory.JRDS).'/', $file[1]);
+            } else {
+                jomres_cmsspecific_addheaddata('css', $file[0], $file[1]);
+            }
 		}
 	}
 

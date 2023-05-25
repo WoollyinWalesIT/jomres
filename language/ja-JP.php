@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 /**
@@ -619,26 +619,17 @@ jr_define('JOMRES_COM_A_TARIFFMODE_NORMAL', '簡易');
 jr_define('JOMRES_COM_A_TARIFFMODE_ADVANCED', '標準');
 jr_define('JOMRES_COM_A_TARIFFMODE_TARIFFTYPES', 'ミクロマネージ');
 jr_define('JOMRES_COM_A_TARIFFMODE', '料金プラン設定のモード');
-jr_define('JOMRES_COM_A_TARIFFMODE_DESC', '注意：料金プランのタイプの切り替えはデータを失う可能性があります。以下の説明に参照してください。
+jr_define('JOMRES_COM_A_TARIFFMODE_DESC', '<b>警告: 異なるタリフ編集モードを切り替えると、データが失われる可能性があります。 これについては、以下の注を参照してください。</b>.
 <br/><br/>
-料金プランの設定環境モードは３つから選択できます。<br/>
-「簡易モード」：各リソースタイプに当たり１つの料金プランを設定し,今後１０年に有効となる環境です。<br/>
-「ミクロマネージモード」：各事業タイプの各リソースの各日(３６５日)かわる料金プランが作成できる環境です。<br/>
-「標準モード」：１リソースに当たり,複数の料金プランの選択肢を提供できる環境です。<br/>
+関税の設定方法には 2 つのオプションがあります。<br/>
+マイクロマネージ: 各部屋/プロパティ タイプの毎日の料金を変更できます。 <br/>
+高度: 相互にリンクされていない関税のセットを作成できます。 <br/>
 <br/>
-貴社のプロパティマネージメント考慮に最も効率だる料金プランの設定モードを選択できる環境です。<br/>
-「簡易モード」は,リソース(部屋)と料金プランをリソース・事業タイプに他所参照し,リソース(部屋)と料金プランをワンページで設定できるので最も分かりやすい設定環境です。<br/>
-「ミクロマネージモード」は,いくつかの料金プランの間で他所参照することにより,数多くの料金プランを作成せずに,料金をより簡単に日別に変動させる設定環境です。細かい料金プランが可能となりますが,顧客があるリソースに複数の料金プランから選ぶことができなくなります。<br/>
-「標準モード」では,リソースタイプが軸です。リソースタイプは,リソースにアサインするが,料金プランもリソースタイプにアサインするがため,複数の料金プランを一定のリソースに適応できる設定環境です。例えば,「ダッブル」というリソースタイプに「素泊まり」と「1泊２食付き」等の料金プランを関連させることができます。設定が他のモードより機能性が高いが,細やかな気配りが必要です。特にリソース⇄事業・リソースタイプと料金プラン⇄事業・リソースタイプとの関連性に,そして料金プランの有効期間に誤りがないように注意が必要です。<br/>
+Micromanage を使用すると、大量の料金表を管理することなく、日々料金を変更できます。これは、多くの異なる料金表を互いに相互参照することによって行われます。 これにより、一定期間をカバーする多数の関税が作成されますが、関税を相互に重ねることはできません。<br/>
+詳細モードでは、他のタリフとリンクされていないタリフを作成できます。 これにより、Micromanage モードでは作成できないプロパティの価格を作成できます。 各タリフの有効な開始日と終了日を完全に一致させる必要があるため、使用するのは面倒ですが、より複雑なタリフを作成できます。<br/>
 <br/>
-簡易モードとミクロマネージモードが特定のリソースと料金プランの他所参照情報(関連づけ)が必要とされるため,環境設定モードを切り替える際に料金プランと他所参照データがリセットされる場合があります。<br/>
-<br/>
-簡易モード→標準モード：問題なし。既存の料金プランはそのまま残されます。<br/>
-簡易モード→ミクロマネージモード：既存の料金プランは全て削除されます。<br/>
-標準モード→簡易モード：既存の料金プランは全て削除されます。<br/>
-標準モード→ミクロマネージモード：既存の料金プランは全て削除されます。<br/>
-ミクロマネージモード→標準モード： 既存の料金プランはそのままのこされますが,料金プランの他所参照情報は削除されます。<br/>
-ミクロマネージモード→簡易：既存の料金プランとその他所参照情報は削除されます。<br/>');
+Advanced から Micromanage に切り替えると、既存の料金表はすべて削除されます。<br/>
+<br/>');
 jr_define('_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS', 'ビジネス情報のページにリソースを表示しますか?');
 jr_define('JOMRES_PROPERTYTYPE', 'プロパティ タイプ');
 jr_define('JOMRES_MAXPEOPLEINROOM', 'MAX利用人数');
@@ -670,7 +661,7 @@ jr_define('_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', '割引前の価格：');
 jr_define('_JOMCOMP_WISEPRICE_TO', '割引後の価格：');
 jr_define('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', 'ダイナミック割引は適応されていません。');
 jr_define('JOMRES_COM_A_MAPSKEY', 'Google Maps のAPIキー');
-jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'You can get a google maps API key from <a href="https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key" target="_blank">Google maps</a>. Once you have input your map key here, Jomres will show the map in your Property Details page.');
+jr_define('JOMRES_COM_A_MAPSKEY_DESC', 'You can get a google maps API key from <a href="https://console.cloud.google.com/projectselector2/google/maps-apis/credentials" target="_blank">Google maps</a>. Once you have input your map key here, Jomres will show the map in your Property Details page.');
 jr_define('_JOMCOMP_LASTMINUTE_CPANEL', 'ギリギリ割');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE', '有効?');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE_DESC', 'チェックインまで間もなくぎりぎり割引を提供する場合には「YES」に設定してください。');
@@ -716,7 +707,7 @@ jr_define('_JRPORTAL_LISTBOOKINGS_HEADER_INVOICE_ID', '請求書ID');
 jr_define('_JRPORTAL_LISTBOOKINGS_HEADER_BOOKINGTOTAL', '予約合計');
 jr_define('_JRPORTAL_LISTBOOKINGS_HEADER_DATEARCHIVED', 'アーカイブ日');
 jr_define('_JRPORTAL_ADD_ADHOC_ITEM_DESCRIPTION', 'Description');
-jr_define('_JOMRES_COM_PTYPES_PTYPE_DESC_FURTHER', 'You can have property type specific language files by setting the description to the name of a sub folder, e.g. "yachtbrokerage" and copying a language file to that subfolder. You can then modify that language file for this property type so rooms become, for example, DVDs, etc.');
+jr_define('_JOMRES_COM_PTYPES_PTYPE_DESC_FURTHER', 'You can have property type specific languages and then converting  " yachtbrokerage" and copying a language file to that subfolder. You can then modify that language file for this property type so rooms become, for example, DVDs, etc.');
 jr_define('_JOMRES_EDITPROPERTY_CONNOTDELETE1', '唯一の登録ビッジネスであるため,削除できません。公開しない場合には,「非公開」に変更してください。');
 jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_TOTAL', '宿泊料金の合計');
 jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_NIGHTS', '/泊');
@@ -1118,7 +1109,7 @@ jr_define('_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED', 'アサインさ�
 //4.6.1
 jr_define('_JOMRES_CONFIG_JQUERY', 'Load Jomres jQuery library?');
 jr_define('_JOMRES_CONFIG_JQUERY_DESC', 'jqueryを活かすテンプレートを利用している場合,「NO」に設定できます。This MAY resolve jquery conflict issues on some templates, but not all.');
-jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'Enabling this option allows you to see the language switcher in the Fullscreen view in the frontend.');
+jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'Enabling this option allows you to see the language switcher in the Jomres Administrator area pages.');
 //4.7.1
 jr_define('_JOMRES_COM_THUMBNAIL_SMALL_WIDTH', '小サームネールのMAX幅員(px)');
 jr_define('_JOMRES_COM_THUMBNAIL_SMALL_WIDTH_DESC', '小サームネールは事業・プロパティ一覧に使用されます。中サームネールは事業・プロパティのヘッダーに使用されます。');
@@ -1135,7 +1126,7 @@ jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD', '自動一時�
 jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD_DESC', '管理者のコミッション請求書の支払が「未払い」と自動的に見なされ,管理者のアカウントが一時中断されるまでの日数を設定してください。');
 //4.7.2
 jr_define('_JOMRES_COM_LANGUAGE_CONTEXT', '特有の言語環境');
-jr_define('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', 'ホテル以外の事業タイプ(例えば：レンタカー)の予約を受ける場合,特有の言語のある事業タイプにふさわしいラベル等が蓄積されている個別な言語ファイルから読み込まれ,妥当な表現が表示されます。レンタカー事業を例えば,Jomresは,まず現在使われている言語(例のため,日本語=ja-JPとします)を認識します。その次,事業のサブフォルダー /'.JOMRES_ROOT_DIRECTORY.'/languages/rentalcar で試用中の言語の言語ファイル(ja-JP)を探し,見つかった場合に利用されます。見つからない場合には,同サブホルダでのen-GBファイル(Jomresのデフォルト言語はイギリス英語)が利用されます。rentalcarのen-GBファイルも見つからない場合には,/'.JOMRES_ROOT_DIRECTORY.'/languages での使用中の言語ファイル(ja-JP)が利用されます。Note that if you create a new property type, then a copy of the current language file is made in a subdirectory under /'.JOMRES_ROOT_DIRECTORY.'/language with a name that reflects the new property type\'s description.');
+jr_define('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', 'このオプションを使用して、サイトの言語コンテキストを変更します。 この機能により、Jomres は Jomres の使用方法に適したラベルを使用できるようになるため、ヨットの仲介に焦点を当てている場合は、コンテキストを変更することで、Jomres がヨットに適したラベルを表示できるようになります。 たとえば、コンテキストを「Yacht Brokerage」に設定すると、Jomres は最初に現在の言語を見つけ、次に「yachtbrokerage」の言語コンテキストで保存された文字列をカスタム テキスト データベースで検索します。 現在の言語とコンテキストのカスタム文字列が存在する場合は、それらが使用されます。 そうでない場合、Jomres はコア言語ファイルで使用される言語定義にフォールバックします。');
 //4.7.3
 jr_define('_JOMRES_COM_ADVANCED_SITE_CONFIG', 'Jomresの詳細設定環境');
 jr_define('_JOMRES_COM_ADVANCED_SITE_CONFIG_DESC', 'Set this option to Yes if you want to use the advanced site configuration options. If you\'re just starting with Jomres, then we advise you to leave this to No for now, as the default installation is sufficient to get you started, instead you should add Jomres to the main menu and log into the frontend as "admin" and start configuring your property(s). Please note that many of the advanced options may not be available if you don\'t have the appropriate plugin(s) installed. Users of the free, core system will not be able to take full advantage of the features that they enable.');
@@ -1581,7 +1572,7 @@ jr_define('_JOMRES_BOOTSTRAP_LOCATION_BOTTOM', 'ボタムに固定される');
 jr_define('_JOMRES_BOOTSTRAP_LOCATION_INVERSE', '二ビゲーション・ハー色を反転する');
 jr_define('_JOMRES_BOOKING_NUMBER', '予約番号');
 jr_define('_JOMRES_BOOTSTRAP_VERSION', 'Bootstrapバージョン');
-jr_define('_JOMRES_BOOTSTRAP_VERSION_DESC', "Jomres includes it's own template sets, one for each supported version of Bootstrap. Joomla and Wordpress templates/themes that are based on Bootstrap will offer a specific version of Bootstrap so you need to ensure that the option you choose here is compatible with your template/theme. If your theme does not provide any Bootstrap code set this option to No Bootstrap in Theme and then Jomres will automatically include Bootstrap 3 files for it's own use. ");
+jr_define('_JOMRES_BOOTSTRAP_VERSION_DESC', "Jomres includes it's own template sets, one for each supported version of Bootstrap. Joomla and Wordpress templates/themes that are based on Bootstrap will offer a specific version of Bootstrap so you need to ensure that the option you choose here is compatible with your template/theme. If your theme does not provide any Bootstrap code set this option to No Bootstrap in Theme and then Jomres will automatically include Bootstrap 5 files for it's own use. ");
 jr_define('_JOMRES_HSTATUS_SHOW_GUESTS_FOR', '表示する顧客：');
 jr_define('_JOMRES_HFIXED_PERIODS', '定期予約');
 jr_define('_JOMRES_HDEPOSITS', '予約金');
@@ -2731,3 +2722,17 @@ jr_define('JOMRES_TARGET_LANGUAGE', 'ターゲット言語');
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "テストモード");
 
 	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "開発モードが有効になっているため、この機能を使用すると Jomres のインストールを Nightly ブランチに更新することになります。これは Jomres の最新バージョンであり、安定している場合と安定していない場合があります。 Nightly に更新したくない場合は、[管理] > [Jomres] > [設定] > [サイトの構成] > [デバッグ] タブにアクセスし、[運用/開発] オプションを [運用] に設定してください。");
+
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN', "占有レベル チェックに子供を含めますか?");
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN_DESC_MRP', "ゲストが予約を行うと、客室には最大宿泊人数が設定されています。宿泊人数の合計が、選択した客室の宿泊人数を超える場合、予約フォームはその旨を伝えます。 より多くの部屋を選択する必要があります。
+ 
+  このオプションを [はい] に設定すると、子供の数がゲストの総数チェックに含まれます。 このオプションを [いいえ] に設定すると、子供の数はゲストの総数チェックに含まれません。 つまり、このオプションを [いいえ] に設定すると、大人 2 名と子供 2 名などの 4 名のパーティーで、大人 2 名が宿泊できるダブルルームを予約できることになります。 ");
+
+
+	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', '1 泊 1 人あたりの料金を請求する場合は [はい] を選択してください。');
+
+	jr_define('_ JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED', "注目");
+
+jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', 'アイテムレンタル');
+
+jr_define('SHORTCODE_INFO_JOMRES_V_JOMRES_SCRIPT',"ショートコードは、Joomla では &#123;&#125;、Wordpress では [] (BRACKETS) で囲む必要があります。ショートコードによって生成されたページを表示するには 3 つの方法があります。1 つ目は、 BRACKETjomres ショートコード引数BRACKET の形式で記事/ページ/モジュールにショートコードを追加します。2 つ目は Jomres テンプレート ファイル内にあり、BRACKETjomres_script ショートコード引数BRACKET を配置します。最後の方法は URL を使用するため、たとえば Joomla では www を入力します。 /domain.com/index.php?option=com_jomres&task=SHORTCODE&ARGUMENTS=ARGUMENTS. ");

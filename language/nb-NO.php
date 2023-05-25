@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
  
@@ -617,26 +617,17 @@ jr_define('JOMRES_COM_A_TARIFFMODE_NORMAL', 'Normal');
 jr_define('JOMRES_COM_A_TARIFFMODE_ADVANCED', 'Avansert');
 jr_define('JOMRES_COM_A_TARIFFMODE_TARIFFTYPES', 'Detaljstyrt');
 jr_define('JOMRES_COM_A_TARIFFMODE', 'Modus for prissetting');
-jr_define('JOMRES_COM_A_TARIFFMODE_DESC', '<b>Advarsel: Endring mellom forskjellige pristyper kan resultere i tap av data. Se melding under for mer informasjon.</b>.
+jr_define('JOMRES_COM_A_TARIFFMODE_DESC', '<b>Advarsel: Bytting mellom ulike tariffredigeringsmoduser kan føre til tap av data. Se merknaden nedenfor angående dette.</b>.
 <br/><br/>
-Du har tre valg for hvordan du vil definere priser.<br/>
-Normal modus: Du har én pris for hver enhetstype som er gyldig de neste 10 årene.<br/>
-Detaljstyrt: Du kan modifisere prisen for hver og en dag for hver enhetstype.<br/>
-Avansert: Den "gamle" metoden for å styre priser. <br/>
+Du har to alternativer for hvordan du konfigurerer tariffene dine.<br/>
+Micromanage: Du kan endre prisen for hver dag for hver rom/eiendomstype. <br/>
+Avansert: Du kan lage et sett med tariffer som ikke er knyttet til hverandre. <br/>
 <br/>
-De forskjellige modusene gjør at du kan velge den modusen som passer deg best.<br/>
-Normal modus er den enkleste, og den er enkel å forstå da den krysser enheter og priser med enhetstyper slik at du kan endre alt på én side.<br/>
-Detaljstyrt gjør at du kan variere prisene dag for dag uten å måtte endre en drøss med priser. Den krysser forskjellige priser med hverandre, og gjør at du har mange priser for å dekke forskjellige perioder. Men: du kan ikke legge priser over hverandre.<br/>
-Avansert modus lar deg lage en enhet og knytte den til en enhetstype. Du kan så lage et prisoppsett som du knytter om til DEN enhetstypen. Ved å bruke denne metoden er det mulig å legge forskjellige "lag"# med priser oppå hverandre, for eksempel en enhetstype "dobbeltrom" kan ha én pris for rom og frokost, og en annen pris for rom, frokost og middag. Den avanserte modusen krever mer fokus på detaljer siden det er mulig å IKKE knytte en enhet eller pris til en enhetstype, eller å sette datoer feil, men den gir deg innstillingsmuligheter som ingen andre moduser kan gi deg.<br/>
+Micromanage lar deg variere prisene fra dag til dag uten å måtte administrere mengder av tariffer, det gjøres ved å krysshenvise til mange forskjellige tariffer med hverandre. Dette resulterer i at det opprettes en rekke tariffer for deg som dekker en periode, men du kan ikke legge tariffer over hverandre.<br/>
+Avansert modus lar deg lage tariffer som ikke er knyttet til andre tariffer. Dette lar deg lage priser for eiendommen din som du ellers ikke kan lage i Micromanage-modus. Det er mer arbeidskrevende å bruke, fordi du må sørge for at hver tariff er gyldig fra/til datoene passer perfekt, men den lar deg lage mer kompliserte tariffer.<br/>
 <br/>
-Siden Normal og Detaljstyrt trenger spesifikke oppsett av enheter og priser for at oppsettene skal virke kan systemet trenge å slette data for å få det gjeldende prisoppsettet til å virke.<br/>
-<br/>
-Normal -> Avansert: Ingen endring. Eksisterende priser blir beholdt.<br/>
-Normal -> Detaljstyrt: Alle eksisterende prisoppsett blir fjernet.<br/>
-Avansert -> Normal: Alle eksisterende prisoppsett blir fjernet.<br/>
-Avansert -> Detaljstyrt. Alle eksisterende prisoppsett blir fjernet.<br/>
-Detaljstyrt -> Avansert. Alle eksisterende kryssreferanser mellom prisoppsett blir fjernet, men prisene i seg selv blir beholdt.<br/>
-Detaljstyrt -> Normal. Alle eksisterende kryssreferanser og priser blir fjernet.<br/>');
+Hvis du bytter fra Advanced til Micromanage, vil alle eksisterende tariffer bli fjernet.<br/>
+<br/>');
 jr_define('_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS', 'Vis enhetsliste i detaljefeltet for utleiested?');
 jr_define('JOMRES_PROPERTYTYPE', 'Utleietype');
 jr_define('JOMRES_MAXPEOPLEINROOM', 'Maks antall personer per enhet');
@@ -1129,7 +1120,7 @@ jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD', "Grense for au
 jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD_DESC', "Denne grensen er antall dager utleier har på seg for å betale en faktura før de blir utestengt og utleiestedene deres blir avpublisert.");
 //4.7.2
 jr_define('_JOMRES_COM_LANGUAGE_CONTEXT', 'Språk-kontekst');
-jr_define('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', 'Bruk denne opsjonen for å endre sidens språk-kontekst. Denne funksjonen gjør at systemet kan bruke tekst som passer for ditt gjeldende fokus, slik at hvis ditt fokus er å leie ut båter, så vil det å endre kontekst gjøre at systemet kan bruke tekst fra en annen språkfil. For eksempel, hvis du setter konteksten til Båtutleie, så vil systemet først finne det gjeldende språket, og så søke gjennom /jomres/languages for en undermappe kalt "båtutleie". Hvis filen eksisterer for språket vil den bli brukt. Hvis ikke vil systemet søke etter en engelsk språkfil i samme undermappe, og bruke denne. Hvis det heller ikke finnes vil systemet bruke språkfilen for det valgte språket som ligger under /jomres/languages.');
+jr_define('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', 'Bruk dette alternativet til å endre nettstedets språkkontekst. Denne funksjonen lar Jomres bruke etiketter som er passende for hvordan du bruker Jomres, så hvis fokuset ditt er som en Yacht Megler, vil endring av konteksten tillate Jomres å presentere etiketter som passer for yachter. For eksempel, hvis du setter konteksten til "Yacht Brokerage", vil Jomres først finne det gjeldende språket, deretter søke i den tilpassede tekstdatabasen etter strenger som er lagret med en språkkontekst "yachtbrokerage". Hvis det finnes egendefinerte strenger for gjeldende språk og kontekst, vil disse bli brukt. Hvis ikke, vil Jomres falle tilbake til språkdefinisjonene som brukes av dets kjernespråkfiler.');
 // 4.7.3
 jr_define('_JOMRES_CONFIG_JQUERY_UI', "Last systemets jQuery UI-bibliotek?");
 jr_define('_JOMRES_SORTORDER_PRICE_ASC', 'Pris (lavest først)');
@@ -2548,7 +2539,7 @@ jr_define('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE_DESC', 'Hvor mye skal de belaste
 
 jr_define('_JOMRES_SANITYCHECK_CHILD_RATES', 'You have not configured child rates yet.');
 jr_define('_JOMRES_SANITYCHECK_CHILD_RATES_BUTTON', 'Still child rate (s) now');
-jr_define('_JOMRES_SANITYCHECK_OCCUPANCY_LEVELS', 'You have configured your property to allow children but you have not set any occupancy levels for children yet.');
+jr_define('_JOMRES_SANITYCHECK_OCCUPANCY_LEVELS', 'You have configured your property to allow children but you have not set any occupancy levels for children yet. You can change this setting in Settings > Property Configuration > Bookings tab.');
 jr_define('_JOMRES_SANITYCHECK_OCCUPANCY_LEVELS_BUTTON', 'Still occupancy levels');
 jr_define('JOMRES_OCCUPANCY_LEVELS_INFO', 'Hver gang du redigerer et rom eller din eiendomstype, bør du kontrollere og oppdatere beleggsnivåene for eiendommen/rommene dine, da disse påvirker antall gjester som kan godtas i bestillingsskjemaet.');
 
@@ -2701,3 +2692,17 @@ Du kan la målspråket settes til ditt nåværende språk og bruke denne siden t
 	jr_define('_JOMRES_COM_A_GATEWAYLIST_TEST_MODE_STR', "Testmodus");
 
 	jr_define('JOMRES_ADMIN_UPDATE_NIGHTLY_WARNING', "Utviklingsmodus er aktivert, så hvis du bruker denne funksjonen vil du oppdatere installasjonen av Jomres til Nightly-avdelingen. Dette er den nyeste versjonen av Jomres og kan være stabil eller ikke. Hvis du gjør det ikke ønsker å oppdatere til Nightly, gå til Admin > Jomres > Innstillinger > Site Configuration > Debugging-fanen og sett Produksjon/Utvikling-alternativet til Produksjon.");
+
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN', "Inkludere barn i kontroller på beleggnivå?");
+	jr_define('JOMRES_POLICY_OCCUPANCY_LEVELS_INCLUDE_CHILDREN_DESC_MRP', "Når gjester foretar bestillinger, har rommene et maksimalt antall gjester som de kan ta imot. Hvis det totale antallet gjester overstiger antallet gjester de valgte rommene har plass til, vil bestillingsskjemaet fortelle dem at de må velge flere rom.
+ 
+  Hvis du setter dette alternativet til Ja, vil antall barn bli inkludert i det totale antallet gjestersjekker. Hvis du setter dette alternativet til Nei, vil ikke antall barn inkluderes i det totale antallet gjestersjekker. Dette betyr at hvis du setter dette alternativet til Nei, vil et parti på 4, for eksempel 2 voksne og 2 barn, kunne bestille et dobbeltrom som har plass til 2 voksne. ");
+
+
+	jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_SRP', 'Velg Ja hvis du vil belaste per person per natt.');
+
+	jr_define('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED',"Utvalgt");
+
+jr_define('_JOMRES_PROPERTYTYPE_FLAG_HIRE', 'Vareleie');
+
+jr_define('SHORTCODE_INFO_JOMRES_V_JOMRES_SCRIPT',"Shortcodes må pakkes inn i &#123;&#125; i Joomla, eller [] i Wordpress (BRACKETS). Det er tre måter sidene generert av kortkoder kan vises på. Den første er å legg til en kortkode til en artikkel/side/modul i formatet BRACKETjomres shortcode argumentsBRACKET. Den andre er innenfor Jomres malfiler, hvor du vil sette BRACKETjomres_script shortcode argumentsBRACKET. Den siste måten er via url, så for eksempel i Joomla vil du sette www.domain.com/index.php?option=com_jomres&task=SHORTCODE&ARGUMENTS=ARGUMENTS. ");

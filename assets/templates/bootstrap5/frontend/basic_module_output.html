@@ -1,7 +1,7 @@
 
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 	{JOMRES_POPUPURL_GLOBALVAR}
-	<div class="card mb-3 border-0">
+	<div class="card mb-3 border-0" {jomres_script animation_library}>
 		<div class="image-container ">
 			<a href="{MOREINFORMATIONLINK}">
 				{PROPERTY_IMAGE_OR_SLIDESHOW}
@@ -9,7 +9,7 @@
 			{RIBBON}
 			<div class="top-left  text-white rounded-1 p-1">{PROPERTY_TYPE_TITLE} {STARSIMAGES} <i class="fas fa-users fs-6"></i> {MAX_OCCUPANCY}</div>
 			<div class="bottom-left  text-white rounded-1 p-1"><strong><span class="price">{PRICE_PRICE}</span></strong> </div>
-			<a href="javascript:void(0);" id="shortlist_{UID}" onclick="shortlist('{UID}')" class=" text-white rounded-1 p-1">{SHORTLIST}</a>
+			<a href="javascript:void(0);" id="shortlist_{UID}" onclick="shortlist('{UID}')" class="bottom-right text-white rounded-1 p-1">{SHORTLIST}</a>
 		
 		</div>
 		<div class="card-body margin-0">

@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -29,7 +29,7 @@ class jomres_calculate_accommodates_value
 
 	/**
 	 *
-	 *
+	 * constructor
 	 *
 	 */
 
@@ -61,6 +61,12 @@ class jomres_calculate_accommodates_value
 
 		$mrConfig = getPropertySpecificSettings($this->property_uid, true);
 
+		if (!isset($mrConfig['occupancy_levels_include_children'])) {
+			$mrConfig['occupancy_levels_include_children'] = '0';
+		}
+
+		$this->occupancy_levels_include_children = (bool) $mrConfig['occupancy_levels_include_children'];
+
 		$accommodates_adults = 0;
 		if (isset($current_property_details->multi_query_result[$this->property_uid][ 'rooms_max_adults' ])) {
 			foreach ($current_property_details->multi_query_result[$this->property_uid][ 'rooms_max_adults' ] as $room) {
@@ -79,6 +85,12 @@ class jomres_calculate_accommodates_value
 			}
 		}
 
+		if ($this->occupancy_levels_include_children) {
+			$accommodates_total = $accommodates_adults + $accommodates_children;
+		} else {
+			$accommodates_total = $accommodates_adults;
+		}
+
 		if (!isset($mrConfig['accommodates'])) {
 			$query = "INSERT INTO #__jomres_settings 
 			(
@@ -90,11 +102,12 @@ class jomres_calculate_accommodates_value
 			(
 			".(int) $this->property_uid.",
 			'accommodates',
-			".($accommodates_adults + $accommodates_children)."
+			".($accommodates_total)."
 			)";
 		} else {
-			$query = "UPDATE #__jomres_settings SET `value` = ".($accommodates_adults + $accommodates_children)." WHERE `property_uid` = ".(int) $this->property_uid." AND `akey` = 'accommodates' ";
+			$query = "UPDATE #__jomres_settings SET `value` = ".($accommodates_total)." WHERE `property_uid` = ".(int) $this->property_uid." AND `akey` = 'accommodates' ";
 		}
+
 		$mrConfig = getPropertySpecificSettings($this->property_uid, true);
 
 		if (!doInsertSql($query, jr_gettext('_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS', '_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS', false))) {

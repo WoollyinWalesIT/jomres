@@ -4,16 +4,16 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-	
+	#[AllowDynamicProperties]
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
@@ -57,14 +57,14 @@ class j06001list_bookings_ajax
 		$tag = (int) jomresGetParam($_GET, 'tag', '0');
 		$guest_uid = (int) jomresGetParam($_GET, 'guest_uid', '0');
 
-		$img_pending = 'label label-grey';
-		$img_arrivetoday = 'label label-orange';
-		$img_resident = 'label label-green';
-		$img_late = 'label label-red';
-		$img_departtoday = 'label label-blue';
-		$img_stillhere = 'label label-purple';
-		$img_bookedout = 'label label-teal';
-		$img_cancelled = 'label label-black';
+		$img_pending = 'label label-grey badge bg-secondary';
+		$img_arrivetoday = 'label label-orange badge bg-warning text-dark';
+		$img_resident = 'label label-green badge bg-success';
+		$img_late = 'label label-red badge bg-danger';
+		$img_departtoday = 'label label-blue badge bg-info text-dark';
+		$img_stillhere = 'label label-purple badge bg-success text-dark';
+		$img_bookedout = 'label label-teal badge bg-light text-dark';
+		$img_cancelled = 'label label-black badge bg-dark';
 
 		$rows = array();
 
@@ -291,26 +291,7 @@ class j06001list_bookings_ajax
 				$thisProperty = '&thisProperty='.$p->property_uid;
 			}
 
-			if (!using_bootstrap()) {
-				$jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
-				$jrtb = $jrtbar->startTable();
-				$jrtb .= $jrtbar->toolbarItem('edit', jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_booking'.'&contract_uid='.$p->contract_uid.$thisProperty), jr_gettext('COMMON_EDIT', 'COMMON_EDIT', false));
-				if ($p->cancelled == 0) {
-					if ($p->booked_in == 0 && isset($MiniComponents->registeredClasses['06001']['checkin'])) {
-						if ($p->approved == 1) {
-							$jrtb .= $jrtbar->toolbarItem('bookGuestIn', jomresURL(JOMRES_SITEPAGE_URL.'&task=checkin'.'&contract_uid='.$p->contract_uid.$thisProperty), jr_gettext('_JOMRES_FRONT_MR_BOOKIN_TITLE', '_JOMRES_FRONT_MR_BOOKIN_TITLE', false));
-						}
-					} elseif ($p->bookedout == 0) {
-						$jrtb .= $jrtbar->toolbarItem('bookGuestOut', jomresURL(JOMRES_SITEPAGE_URL.'&task=checkout'.'&contract_uid='.$p->contract_uid.$thisProperty), jr_gettext('_JOMRES_FRONT_MR_BOOKOUT_TITLE', '_JOMRES_FRONT_MR_BOOKOUT_TITLE', false));
-						$jrtb .= $jrtbar->toolbarItem('mark_booking_noshow', jomresURL(JOMRES_SITEPAGE_URL.'&task=mark_booking_noshow'.'&contract_uid='.$p->contract_uid.$thisProperty), jr_gettext('BOOKING_NOSHOW_MENU', 'BOOKING_NOSHOW_MENU', false));
-					}
-				}
-				if ($p->approved == 0 && isset($MiniComponents->registeredClasses['00005']['booking_enquiries'])) {
-					$jrtb .= $jrtbar->toolbarItem('publish', jomresURL(JOMRES_SITEPAGE_URL.'&task=approve_enquiry'.'&contractUid='.$p->contract_uid.$thisProperty), jr_gettext('_JOMRES_BOOKING_APPROVE_INQUIRY', '_JOMRES_BOOKING_APPROVE_INQUIRY', false));
-					$jrtb .= $jrtbar->toolbarItem('unpublish', jomresURL(JOMRES_SITEPAGE_URL.'&task=reject_enquiry'.'&contractUid='.$p->contract_uid.$thisProperty), jr_gettext('_JOMRES_BOOKING_REJECT_INQUIRY', '_JOMRES_BOOKING_REJECT_INQUIRY', false));
-				}
-				$r[] = $jrtb .= $jrtbar->endTable();
-			} else {
+
 				$toolbar = jomres_singleton_abstract::getInstance('jomresItemToolbar');
 				$toolbar->newToolbar();
 				$toolbar->addSecondaryItem('fa fa-pencil-square-o', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_booking&contract_uid='.$p->contract_uid.$thisProperty), jr_gettext('_JOMRES_COM_CONFIRMATION_RESERVATION_DETAILS', '_JOMRES_COM_CONFIRMATION_RESERVATION_DETAILS', false));
@@ -354,7 +335,7 @@ class j06001list_bookings_ajax
 				$toolbar->addSecondaryItem('fa fa-file-text', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=view_invoice&id='.$p->invoice_uid.$thisProperty), jr_gettext('_JOMRES_MANAGER_SHOWINVOICE', '_JOMRES_MANAGER_SHOWINVOICE', false));
 				$toolbar->addSecondaryItem('fa fa-pencil-square-o', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=addnote&contract_uid='.$p->contract_uid.$thisProperty), jr_gettext('_JOMCOMP_BOOKINGNOTES_ADD', '_JOMCOMP_BOOKINGNOTES_ADD', false));
 				$r[] = $toolbar->getToolbar();
-			}
+
 
 			$r[] = $p->contract_uid;
 
@@ -388,11 +369,11 @@ class j06001list_bookings_ajax
 			$r[] = $p->last_changed;
 
 			if ((int) $p->approved == 1) {
-				$r[] = '<span class="label label-green">'.jr_gettext('_JOMRES_STATUS_APPROVED', '_JOMRES_STATUS_APPROVED', false).'</span>';
+				$r[] = '<span class="label label-green badge bg-success ">'.jr_gettext('_JOMRES_STATUS_APPROVED', '_JOMRES_STATUS_APPROVED', false).'</span>';
 			} elseif ((int) $p->approved == 0) {
-				$r[] = '<span class="label label-orange">'.jr_gettext('_JOMRES_STATUS_INQUIRY', '_JOMRES_STATUS_INQUIRY', false).'</span>';
+				$r[] = '<span class="label label-orange badge bg-warning text-dark">'.jr_gettext('_JOMRES_STATUS_INQUIRY', '_JOMRES_STATUS_INQUIRY', false).'</span>';
 			} else {
-				$r[] = '<span class="label label-red">'.jr_gettext('_JOMRES_STATUS_REJECTED', '_JOMRES_STATUS_REJECTED', false).'</span>';
+				$r[] = '<span class="label label-red badge bg-danger">'.jr_gettext('_JOMRES_STATUS_REJECTED', '_JOMRES_STATUS_REJECTED', false).'</span>';
 			}
 			
 			$r[] = $p->username;

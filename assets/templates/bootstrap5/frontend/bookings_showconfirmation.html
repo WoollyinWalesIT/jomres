@@ -34,10 +34,6 @@
 </script>
 
 <style>
-    input[type=checkbox] {
-        display: none;
-    }
-
     input:checked + label {
     }
 
@@ -60,14 +56,17 @@
     }
 </style>
 
-<div class="alert alert-info">{HEADER}</div>
+	<patTemplate:comment>
+		<div class="alert alert-info">{HEADER}</div>
+	</patTemplate:comment>
+
 
 <form action="" method="post" name="bookingForm" role="form" onsubmit="send.disabled = true; return true;">
 <div class="row">
 	<div class="col-md-4">
 		<div class="card h-100">
 			<div class="card-body">
-				<h2 class="card-title">{AJAXFORM_ADDRESS}</h2>
+				<h4 class="card-title">{AJAXFORM_ADDRESS}</h4>
 				<div class="card-text">
 					<div class="row">
 						<div class="col-md-12">
@@ -106,7 +105,7 @@
 	<div class="col-md-4">
 		<div class="card h-100">
 			<div class="card-body">
-				<h2 class="card-title">{AJAXFORM_PARTICULARS}</h2>
+				<h4 class="card-title">{AJAXFORM_PARTICULARS}</h4>
 				<div class="card-text">
 					<div class="row">
 						<div class="col-md-6 small">
@@ -198,7 +197,7 @@
 	<div class="col-md-4">
 		<div class="card h-100">
 			<div class="card-body">
-				<h2 class="card-title">{PRICE_SUMMARY}</h2>
+				<h4 class="card-title">{PRICE_SUMMARY}</h4>
 				<div class="card-text">
 					<div class="row">
 						<div class="col-md-12">
@@ -273,38 +272,33 @@
 							{TAX}
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-md-6 small">
-							<strong>{HDEPOSIT}</strong>
-						</div>
-						<div class="col-md-6 align-right">
-							{DEPOSIT}
-						</div>
-					</div>
 					<br/>
 					<div class="row">
 						<div class="col-md-6 text-uppercase  small">
 							<strong>{HGRANDTOTAL}</strong>
 						</div>
-						<div class="col-md-6 align-right ">
-							<strong><mark>{TOTAL}</mark></strong>
+						<div class="col-md-6 align-right text-info">
+							<strong>{TOTAL}</strong>
 						</div>
 					</div>
+
+					<br/>
+					<div class="row">
+						<div class="col-md-6 small">
+							<strong>{HDEPOSIT}</strong>
+						</div>
+						<div class="col-md-6 align-right text-success">
+							<u>{DEPOSIT}</u>
+						</div>
+					</div>
+
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
 
-<div class="row mt-5">
-	<div class="col-md-12" align="center">
-		<p>{AMENDTEXT}</p>
-		<a href="{BOOKINGFORMURL}"  class="btn btn-secondary">{AMEND}</a>
-		<p>&nbsp;</p>
-	</div>
-</div>
-
-<div class="row">
+<div class="row p-2">
 	<div class="col-md-6">
 		<div class="card h-100">
 			<div class="card-body">
@@ -341,10 +335,12 @@
 </div>
 
 <div class="row">
-	<div class="col-md-9 h-100">
+	<div class="col-md-9 h-100 ">
 		<div id="agreealert" class="alert alert-warning">
-			<input name="agreecheck"  id="agreecheck" type="checkbox" onchange="agreeAlert();" style="display: none"/>
-			<label for="agreecheck" class="btn btn-success"><span class="check">✓</span> {TERMSPRETEXT}</label>
+			<div class="form-check form-check-inline mb-3">
+				<input name="agreecheck"  id="agreecheck" type="checkbox" onchange="agreeAlert();" style="width: 20px; height: 20px;"/>
+				<label for="agreecheck"><span class="check">✓</span> {TERMSPRETEXT}</label>
+			</div>
 			<span>
 				<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#terms_modal">
 					{TERMS_NO_POPUP}
@@ -354,7 +350,6 @@
 	</div>
 	<div class="col-md-3 h-100">
 		<div class="form-actions alert alert-success text-center">
-
 				<input type="submit" id="send" name="send" value="{THEBUTTON}" class="btn btn-success btn-lg btn-block" onclick="return confirmation_validate(false);" disabled="disabled"/>
 				<patTemplate:tmpl name="cartoutput" type="simpleCondition" requiredVars="_jomres_saveforlater"> {_JOMRES_CART_OR}
 					<input class="btn btn-secondary btn-lg btn-block" type="submit" id="cart" name="cart" value="{_JOMRES_SAVEFORLATER}" onclick="return confirmation_validate(true);" disabled="disabled"/>
@@ -364,6 +359,13 @@
 	</div>
 </div>
 
+<div class="row mt-3">
+	<div class="col-md-12" align="center">
+		<p>{AMENDTEXT}</p>
+		<a href="{BOOKINGFORMURL}"  class="btn btn-secondary">{AMEND}</a>
+		<p>&nbsp;</p>
+	</div>
+</div>
 
 <input type="hidden" name="task" id="jomres_task" value="" />
 {CSRF_TOKEN}

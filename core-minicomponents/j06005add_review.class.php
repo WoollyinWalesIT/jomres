@@ -4,16 +4,16 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-	
+	#[AllowDynamicProperties]
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
@@ -111,7 +111,7 @@ class j06005add_review
 				$yesno = array();
 				$yesno[] = jomresHTML::makeOption('0', jr_gettext("_JOMRES_COM_MR_NO", '_JOMRES_COM_MR_NO', false));
 				$yesno[] = jomresHTML::makeOption('1', jr_gettext("_JOMRES_COM_MR_YES", '_JOMRES_COM_MR_YES', false));
-				$output['ANONYMISE_YESNO']		= jomresHTML::selectList($yesno, 'anonymise', 'class="inputbox" size="1"', 'value', 'text', 0);
+				$output['ANONYMISE_YESNO']		= jomresHTML::selectList($yesno, 'anonymise', '', 'value', 'text', 0);
 		
 				$output[ '_JOMRES_REVIEWS_ANONYMISE' ] = jr_gettext('_JOMRES_REVIEWS_ANONYMISE', '_JOMRES_REVIEWS_ANONYMISE', false, false);
 				$output[ '_JOMRES_REVIEWS_ANONYMISE_DESC' ] = jr_gettext('_JOMRES_REVIEWS_ANONYMISE_DESC', '_JOMRES_REVIEWS_ANONYMISE_DESC', false, false);

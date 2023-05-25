@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -164,6 +164,7 @@ if (!file_exists(JOMRES_VENDOR_ABSPATH.'autoload.php')) {
 //includes
 require_once JOMRES_VENDOR_ABSPATH.'autoload.php';
 require_once JOMRESPATH_BASE.'detect_cms.php';
+require_once JOMRES_FUNCTIONS_ABSPATH.'load_custom_functions.php';
 require_once JOMRES_FUNCTIONS_ABSPATH.'database.php';
 require_once JOMRES_FUNCTIONS_ABSPATH.'input_filtering.php';
 require_once JOMRES_FUNCTIONS_ABSPATH.'output_filters.php';
@@ -303,6 +304,9 @@ if ($jrConfig[ 'development_production' ] == 'production') {
 } else {
 	error_reporting(-1);
 	ini_set('display_errors', 'On');
+
+	// Only enable the following line when digging for depreciations
+	//set_error_handler('output_fatal_error');
 }
 
 //TODO find a better place, maybe jomres.php and framework.php

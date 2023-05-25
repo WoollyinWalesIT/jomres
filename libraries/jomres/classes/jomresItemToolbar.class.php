@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -60,9 +60,9 @@ class jomresItemToolbar
 		$title = str_replace('&#39;', "\'", $title);
 
 		if ($submitOnClick) {
-			$item = '<a class="'.$buttonClass.' btn-sm" href="javascript:jomres_submitbutton(\''.$task.'\');" '.$otherParams.'><i class="'.$icon.'"></i> '.$title.'</a> ';
+			$item = '<a class="btn btn-primary" href="javascript:jomres_submitbutton(\''.$task.'\');" '.$otherParams.'><i class="'.$icon.'"></i> '.$title.'</a> ';
 		} else {
-			$item = '<a class="'.$buttonClass.' btn-sm" href="'.$link.'" style="text-decoration:none;"><i class="'.$icon.'"></i> '.$title.'</a> ';
+			$item = '<a class="btn btn-primary" href="'.$link.'" style="text-decoration:none;"><i class="'.$icon.'"></i> '.$title.'</a> ';
 		}
 
 		$this->items[] = $item;
@@ -109,7 +109,7 @@ class jomresItemToolbar
 			';
 		} else { // Bootstrap 5
 			$this->toolbar = '
-						<nav class="navbar navbar-expand-lg navbar-light bg-light">
+						<div class="btn-group" role="group">
 			';
 		}
 
@@ -122,12 +122,11 @@ class jomresItemToolbar
 		if (!empty($this->secondaryItems)) {
 			if ($this->bs_version == '3') {
 				$this->toolbar .= '
-				<a class="btn btn-sm btn-default btn-secondary dropdown-toggle" data-toggle="dropdown" href="#"> <span class="caret"></span></a>
-					<ul class="dropdown-menu">
+				<div class="btn-group" role="group"><ul class="dropdown-menu">
 				';
 			} elseif ($this->bs_version == '5') {
 				$this->toolbar .= '
-				<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"> <span class="caret"></span></a>
+				<a class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" href="#"> <span class="caret">&nbsp;&nbsp;&nbsp;</span></a>
 				';
 			} else {
 				$this->toolbar .= '<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">'.jr_gettext('COMMON_MORE', 'COMMON_MORE', false).' <span class="caret"></span></a><ul class="dropdown-menu">
@@ -164,7 +163,7 @@ class jomresItemToolbar
 			$this->toolbar .= '</div>
 			';
 		} else { // Bootstrap 5
-			$this->toolbar .= '</nav>
+			$this->toolbar .= '</ul>
 			';
 		}
 

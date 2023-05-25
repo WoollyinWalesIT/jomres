@@ -4,16 +4,16 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.6.0
+ *  @version Jomres 10.7.0
  *
- * @copyright	2005-2022 Vince Wooll
+ * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-	
+	#[AllowDynamicProperties]
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
@@ -47,10 +47,23 @@ class j06000show_main_menu
 
 			return;
 		}
-		
-		set_showtime('menu_location_div_id', 'main_menu_location');
 
-		echo '<div id="main_menu_location"></div>';
+		if (isset($componentArgs['menu_location_div_id'])) {
+			$main_menu_location = $componentArgs['menu_location_div_id'];
+		} elseif(isset($_REQUEST['menu_location_div_id'])) {
+			$main_menu_location = jomresGetParam($_REQUEST, 'menu_location_div_id', 'main_menu_location');
+		} else {
+			echo '<div id="main_menu_location"></div>';
+			$main_menu_location = 'main_menu_location';
+		}
+
+		set_showtime('menu_location_div_id', $main_menu_location);
+		$disabled = get_showtime('main_menu_disabled');
+
+		if (isset($disabled) && $disabled == true) {
+			return;
+		}
+
 		$MiniComponents->triggerEvent('09995');
 		echo $MiniComponents->specificEvent('09997', 'menu', array());
 	}
