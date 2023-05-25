@@ -110,13 +110,6 @@ class j10501a_misc
 		$configurationPanel->insertSetting();
 
 		if ($jrConfig[ 'admin_options_level' ] > 1) {
-			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN', '_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN', false));
-			$configurationPanel->setmiddle($lists[ 'showLangDropdown' ]);
-			$configurationPanel->setright(jr_gettext('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', '_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', false));
-			$configurationPanel->insertSetting();
-		}
-
-		if ($jrConfig[ 'admin_options_level' ] > 1) {
 			$configurationPanel->setleft(jr_gettext('_JOMRES_REGION_TRANSLATION_SWITCH_TITLE', '_JOMRES_REGION_TRANSLATION_SWITCH_TITLE', false));
 			$configurationPanel->setmiddle($lists[ 'region_names_are_translatable' ]);
 			$configurationPanel->setright(jr_gettext('_JOMRES_REGION_TRANSLATION_SWITCH_DESC', '_JOMRES_REGION_TRANSLATION_SWITCH_DESC', false));
