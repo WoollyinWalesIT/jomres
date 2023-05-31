@@ -82,7 +82,10 @@
 					$filename = 'j'.$eventPoint.$eventName.$classFileSuffix;
 
 					if (file_exists($eventDetails[ 'filepath' ].$filename)) {
-						include_once $eventDetails[ 'filepath' ].$filename;
+						$event = 'j'.$eventPoint.$eventName;
+						if (!class_exists($event)){
+							include_once $eventDetails[ 'filepath' ].$filename;
+						}
 
 						if ($this->logging_enbled) {
 							$this->log[ ] = $eventDetails[ 'filepath' ].$filename;
@@ -91,8 +94,6 @@
 						$eLiveSite = str_replace(JOMRESCONFIG_ABSOLUTE_PATH, get_showtime('live_site').'/', $eventDetails[ 'filepath' ]);
 						$eLiveSite = str_replace(JRDS, '/', $eLiveSite);
 						set_showtime('eLiveSite', $eLiveSite);
-
-						$event = 'j'.$eventPoint.$eventName;
 
 						$e = new $event($eventArgs);
 
@@ -149,8 +150,10 @@
 					}
 
 					if ($can_access && file_exists($eventDetails[ 'filepath' ].$filename)) {
+						$event = 'j'.$eventPoint.$eventName;
+
 						$transposed =$this->transpose_property_type_replacement_for_minicomponent_if_exists($eventPoint,$eventName,$filename);
-						if (!$transposed) {
+						if (!$transposed && !class_exists($event)) {
 							include_once $this->registeredClasses[$eventPoint][$eventName][ 'filepath' ].$filename;
 						}
 
@@ -164,7 +167,7 @@
 						$eLiveSite = str_replace(JRDS, '/', $eLiveSite);
 						set_showtime('eLiveSite', $eLiveSite);
 
-						$event = 'j'.$eventPoint.$eventName;
+
 
 						if (!class_exists($event)) {
 							echo 'Error, class '.$event." does not exist. Most likely you've renamed a minicomponent file, but not the class in that file";
@@ -229,8 +232,10 @@
 				}
 
 				if ($can_access && file_exists($this->registeredClasses[$eventPoint][$eventName][ 'filepath' ].$filename)) {
+					$event = 'j'.$eventPoint.$eventName;
+
 					$transposed =$this->transpose_property_type_replacement_for_minicomponent_if_exists($eventPoint,$eventName,$filename);
-					if (!$transposed) {
+					if (!$transposed && !class_exists($event)) {
 						include_once $this->registeredClasses[$eventPoint][$eventName][ 'filepath' ].$filename;
 					}
 
@@ -244,7 +249,6 @@
 					$eLiveSite = str_replace(JRDS, '/', $eLiveSite);
 					set_showtime('eLiveSite', $eLiveSite);
 
-					$event = 'j'.$eventPoint.$eventName;
 					set_showtime('current_minicomp', $event);
 					$e = new $event($eventArgs);
 					$retVal = $e->getRetVals();
