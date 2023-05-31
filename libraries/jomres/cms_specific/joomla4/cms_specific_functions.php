@@ -346,7 +346,7 @@ use Joomla\CMS\Editor\Editor;
 				return;
 			}
 
-			if (!defined('API_STARTED') ) {
+			if (!defined('API_STARTED') && jomres_cmsspecific_areweinadminarea()) {
 				HTMLHelper::_('jquery.framework');
 				JHtml::_('bootstrap.framework');
 			}
