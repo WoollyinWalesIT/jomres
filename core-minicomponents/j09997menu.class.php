@@ -77,15 +77,31 @@ class j09997menu
 				}
 			}
 		}
-		
-		
+
+
+		$subscribable_features = get_showtime("subscribable_features");
+		if (!is_array($subscribable_features)) {
+			$subscribable_features = array();
+		}
+		$all_subscribable_features_array = array();
+		if (!empty($subscribable_features)) {
+			foreach ($subscribable_features as $eventPoint) {
+				if (is_array($eventPoint["minicomponents"])) {
+					foreach ($eventPoint["minicomponents"] as $mc) {
+						foreach ($mc as $m) {
+							$all_subscribable_features_array[] = $m;
+						}
+					}
+				}
+			}
+		}
+
 		
 		foreach ($jomres_menu->menu as $section_id => $tasks) {
 			$pageoutput = array();
 			$rows = array();
 			$output = array();
 
-			
 			foreach ($tasks as $task) {
 				$r = array();
 				
@@ -113,6 +129,11 @@ class j09997menu
 				//menu item disabled class
 				$r[ 'DISABLED_CLASS' ] = '';
 				if ($jomres_menu->items[$task]['disabled']) {
+					$r[ 'LINK' ] = '#';
+					$r[ 'DISABLED_CLASS' ] = 'disabled';
+				}
+
+				if (in_array($task,$all_subscribable_features_array)) {
 					$r[ 'LINK' ] = '#';
 					$r[ 'DISABLED_CLASS' ] = 'disabled';
 				}

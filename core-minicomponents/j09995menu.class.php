@@ -77,6 +77,7 @@
 			jr_import('jomres_occupancy_levels');
 			$jomres_occupancy_levels = new jomres_occupancy_levels($property_uid);
 
+
 			// There are some differences between J3 & J4 and the font awesome icons
 			$font_awesome_envelope = 'fa-envelope-o';
 			$font_awesome_picture = 'fa-picture-o';
