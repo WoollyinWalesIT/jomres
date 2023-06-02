@@ -73,7 +73,6 @@ class jomres_sanity_check
 		if ($disable_sanity_checks == true) {
 			return;
 		}
-var_dump(get_showtime('disable_sanity_checks'));exit;
 
 		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 		if ($thisJRUser->userIsManager || $blind == true) {
