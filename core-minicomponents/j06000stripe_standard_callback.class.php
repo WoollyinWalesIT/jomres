@@ -87,23 +87,28 @@ class j06000stripe_standard_callback
 				"stripe_version" => STRIPE_API_VERSION
 			]);
 
-			$sig_header = $_SERVER['HTTP_STRIPE_SIGNATURE'];
-			$event = null;
+			try {
+				$event = \Stripe\Event::constructFrom(
+					json_decode($payload, true)
+				);
+			} catch(\UnexpectedValueException $e) {
+				// Invalid payload
+				echo '⚠️  Webhook error while parsing basic request.';
+				http_response_code(400);
+				exit();
+			}
 
+			$sig_header = $_SERVER['HTTP_STRIPE_SIGNATURE'];
 			try {
 				$event = \Stripe\Webhook::constructEvent(
 					$payload, $sig_header, $endpoint_secret
-					);
-
-				} catch(\UnexpectedValueException $e) {
-					// Invalid payload
-					http_response_code(400);
-					exit();
-				} catch(\Stripe\Exception\SignatureVerificationException $e) {
-					// Invalid signature
-					http_response_code(400);
-					exit();
-				}
+				);
+			} catch(\Stripe\Exception\SignatureVerificationException $e) {
+				// Invalid signature
+				echo '⚠️  Webhook error while validating signature.';
+				http_response_code(400);
+				exit();
+			}
 
 				// Handle the event
 			switch ($event->type) {
