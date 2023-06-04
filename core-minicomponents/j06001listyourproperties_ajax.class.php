@@ -204,27 +204,6 @@ class j06001listyourproperties_ajax
 			$r = array();
 
 			//properties toolbar
-			if (!using_bootstrap()) {
-				$jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
-				$jrtb = $jrtbar->startTable();
-				if ($thisJRUser->accesslevel > 50) { //higher than receptionist
-					if (!$p->published) {
-						$jrtb .= $jrtbar->toolbarItem('unpublish', jomresURL(JOMRES_SITEPAGE_URL.'&task=publish_property'.'&property_uid='.$p->propertys_uid), jr_gettext('_JOMRES_COM_MR_VRCT_PUBLISH', '_JOMRES_COM_MR_VRCT_PUBLISH', false));
-					} else {
-						$jrtb .= $jrtbar->toolbarItem('publish', jomresURL(JOMRES_SITEPAGE_URL.'&task=publish_property'.'&property_uid='.$p->propertys_uid), jr_gettext('_JOMRES_COM_MR_VRCT_UNPUBLISH', '_JOMRES_COM_MR_VRCT_UNPUBLISH', false));
-					}
-					$jrtb .= $jrtbar->toolbarItem('edit', jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_property'.'&thisProperty='.$p->propertys_uid), jr_gettext('COMMON_EDIT', 'COMMON_EDIT', false));
-					if ($authorisedProperties_count > 1) {
-						$jrtb .= $jrtbar->toolbarItem('delete', jomresURL(JOMRES_SITEPAGE_URL.'&task=delete_property'.'&thisProperty='.$p->propertys_uid), jr_gettext('COMMON_DELETE', 'COMMON_DELETE', false));
-					}
-				}
-
-				if ($p->propertys_uid != $defaultProperty) {
-					$jrtb .= $jrtbar->toolbarItem('apply', jomresURL(JOMRES_SITEPAGE_URL.'&thisProperty='.$p->propertys_uid), jr_gettext('_JOMRES_ACTION_SET_CURRENT', '_JOMRES_ACTION_SET_CURRENT', false));
-				}
-
-				$r[] = $jrtb .= $jrtbar->endTable();
-			} else {
 				$toolbar = jomres_singleton_abstract::getInstance('jomresItemToolbar');
 				$toolbar->newToolbar();
 				if ($thisJRUser->accesslevel > 50) { //higher than receptionist
@@ -232,7 +211,7 @@ class j06001listyourproperties_ajax
 						if (!$p->published) {
 							$toolbar->addItem('fa fa-times', 'btn btn-default', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=publish_property'.'&property_uid='.$p->propertys_uid), jr_gettext('_JOMRES_COM_MR_VRCT_PUBLISH', '_JOMRES_COM_MR_VRCT_PUBLISH', false));
 						} else {
-							$toolbar->addItem('fa fa-check', 'btn btn-success', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=publish_property'.'&property_uid='.$p->propertys_uid), jr_gettext('_JOMRES_COM_MR_VRCT_UNPUBLISH', '_JOMRES_COM_MR_VRCT_UNPUBLISH', false));
+							$toolbar->addItem('fa fa-check', 'btn btn-success', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=unpublish_property'.'&property_uid='.$p->propertys_uid), jr_gettext('_JOMRES_COM_MR_VRCT_UNPUBLISH', '_JOMRES_COM_MR_VRCT_UNPUBLISH', false));
 						}
 					} else {
 						if (!$p->published) {
@@ -254,7 +233,7 @@ class j06001listyourproperties_ajax
 					}
 				}
 				$r[] = $toolbar->getToolbar();
-			}
+
 			//end properties toolbar
 
 			$r[] = $p->propertys_uid;

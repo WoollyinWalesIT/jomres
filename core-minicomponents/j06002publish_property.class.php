@@ -42,7 +42,49 @@ class j06002publish_property
 
 			return;
 		}
-		publishProperty();
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+
+		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
+
+		$defaultProperty = jomresGetParam($_REQUEST, 'property_uid', 0);
+
+		if ($defaultProperty == 0) {
+			$defaultProperty = getDefaultProperty();
+		}
+
+		if ($defaultProperty == 0) {
+			return false;
+		}
+
+		$current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
+		$current_property_details->gather_data($defaultProperty);
+
+		$jomres_properties = jomres_singleton_abstract::getInstance('jomres_properties');
+		$jomres_properties->propertys_uid = $defaultProperty;
+
+		if (!$current_property_details->approved) {
+			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=cannot_redirect'), '');
+		} else {
+			$jomres_messaging = jomres_singleton_abstract::getInstance('jomres_messages');
+
+			if (in_array($defaultProperty, $thisJRUser->authorisedProperties)) {
+				if ($current_property_details->published == false ) {
+					if ($jomres_properties->setPublished(1)) {
+						$MiniComponents->triggerEvent('02273'); // Optional trigger after property published
+
+						$jomres_messaging->set_message(jr_gettext('_JOMRES_MR_AUDIT_PUBLISH_PROPERTY', '_JOMRES_MR_AUDIT_PUBLISH_PROPERTY', false));
+					} else {
+						$jomres_messaging->set_message('There was a problem publishing the property.');
+						return false;
+					}
+				}
+			} else {
+				echo "You naughty little tinker, that's not your property";
+				return false;
+			}
+		}
 		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=listyourproperties'), '');
 	}
 
