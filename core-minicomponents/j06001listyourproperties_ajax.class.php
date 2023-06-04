@@ -209,9 +209,9 @@ class j06001listyourproperties_ajax
 				if ($thisJRUser->accesslevel > 50) { //higher than receptionist
 					if ($p->approved == 1) {
 						if (!$p->published) {
-							$toolbar->addItem('fa fa-times', 'btn btn-default', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=publish_property'.'&property_uid='.$p->propertys_uid), jr_gettext('_JOMRES_COM_MR_VRCT_PUBLISH', '_JOMRES_COM_MR_VRCT_PUBLISH', false));
+							$toolbar->addItem('fa fa-times', 'btn btn-success', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=publish_property'.'&property_uid='.$p->propertys_uid), jr_gettext('_JOMRES_COM_MR_VRCT_PUBLISH', '_JOMRES_COM_MR_VRCT_PUBLISH', false));
 						} else {
-							$toolbar->addItem('fa fa-check', 'btn btn-success', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=unpublish_property'.'&property_uid='.$p->propertys_uid), jr_gettext('_JOMRES_COM_MR_VRCT_UNPUBLISH', '_JOMRES_COM_MR_VRCT_UNPUBLISH', false));
+							$toolbar->addItem('fa fa-check', 'btn btn-warning', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=unpublish_property'.'&property_uid='.$p->propertys_uid), jr_gettext('_JOMRES_COM_MR_VRCT_UNPUBLISH', '_JOMRES_COM_MR_VRCT_UNPUBLISH', false));
 						}
 					} else {
 						if (!$p->published) {
