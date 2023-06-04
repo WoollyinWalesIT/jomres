@@ -96,7 +96,7 @@ class j06000show_user_profile
 		} elseif ((int)$thisJRUser->id == $cms_user_id) {
 			$can_view_private_details = true;
 		}
-		
+
 		jr_import('jrportal_guest_profile');
 		$jrportal_guest_profile = new jrportal_guest_profile();
 		$jrportal_guest_profile->cms_user_id = $cms_user_id;
@@ -132,7 +132,7 @@ class j06000show_user_profile
 		
 		$query = "SELECT access_level FROM #__jomres_managers WHERE userid = ".(int)$cms_user_id;
 		$manager_state = doSelectSql($query, 2);
-		
+
 		$output[ 'MY_PROPERTIES' ]		= '';
 		if (!empty($manager_state)) {
 			$guest_is_also_a_manager = true;

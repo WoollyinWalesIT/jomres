@@ -228,7 +228,7 @@ class j16000list_invoices_ajax
 
 			if (jomres_bootstrap_version() == '5') {
 				$font_awesome_tariffs = 'fa-dollar-sign';
-				$font_awesome_edit = 'fa-edit';
+				$font_awesome_edit = 'fas fa-edit';
 			}
 
 			$toolbar = jomres_singleton_abstract::getInstance('jomresItemToolbar');

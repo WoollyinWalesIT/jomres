@@ -59,10 +59,14 @@ class jomresItemToolbar
 		$title = str_replace("'", "\'", $title);
 		$title = str_replace('&#39;', "\'", $title);
 
+		if (!isset($buttonClass) || $buttonClass == '') {
+			$buttonClass = 'btn-primary';
+		}
+		
 		if ($submitOnClick) {
-			$item = '<a class="btn btn-primary" href="javascript:jomres_submitbutton(\''.$task.'\');" '.$otherParams.'><i class="'.$icon.'"></i> '.$title.'</a> ';
+			$item = '<a class="btn '.$buttonClass.'" href="javascript:jomres_submitbutton(\''.$task.'\');" '.$otherParams.'><i class="'.$icon.'"></i> '.$title.'</a> ';
 		} else {
-			$item = '<a class="btn btn-primary" href="'.$link.'" style="text-decoration:none;"><i class="'.$icon.'"></i> '.$title.'</a> ';
+			$item = '<a class="btn '.$buttonClass.'" href="'.$link.'" style="text-decoration:none;"><i class="'.$icon.'"></i> '.$title.'</a> ';
 		}
 
 		$this->items[] = $item;

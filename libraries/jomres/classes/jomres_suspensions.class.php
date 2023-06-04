@@ -64,7 +64,7 @@ class jomres_suspensions
 		if ($jomres_users->get_user($this->cms_user_id)) {
 			$this->id = $jomres_users->id;
 			$this->authorised_properties = $jomres_users->authorised_properties;
-			$this->accesslevel = $jomres_users->accesslevel;
+			$this->accesslevel = $jomres_users->access_level;
 		}
 	}
 	

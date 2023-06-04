@@ -77,15 +77,12 @@ class j09997menu
 				}
 			}
 		}
-		
-		
-		
+
 		foreach ($jomres_menu->menu as $section_id => $tasks) {
 			$pageoutput = array();
 			$rows = array();
 			$output = array();
 
-			
 			foreach ($tasks as $task) {
 				$r = array();
 				
@@ -116,7 +113,8 @@ class j09997menu
 					$r[ 'LINK' ] = '#';
 					$r[ 'DISABLED_CLASS' ] = 'disabled';
 				}
-				
+
+
 				//menu item badges TODO: find a better way or remove this completely
 				$r[ 'BADGES' ] = '';
 				

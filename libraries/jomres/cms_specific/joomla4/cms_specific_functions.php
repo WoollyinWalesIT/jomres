@@ -432,18 +432,19 @@ use Joomla\CMS\Editor\Editor;
 							$doc->addScript($data);
 						}
 					} else {
-						$dependency = 'keepalive';
+						$dependency = 'jquery';
 
-						if ($filename == 'jquery-ui.min.js') {
+/*						if ($filename == 'jquery-ui.min.js') {
 							$dependency = 'jquery';
 						}
 
 						if ($filename == 'jomres.js' || $filename == 'no-conflict.js') {
-							$dependency = 'bootstrap.es5';
+							$dependency = 'jquery';
 						}
 						if (strstr($filename, 'datepicker-')) {
 							$dependency = 'bootstrap.es5';
-						}
+						}*/
+
 						if (strstr($filename, 'galleria.classic.min.js')) {
 							$dependency = 'galleria.min.js';
 						}

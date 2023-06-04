@@ -132,17 +132,23 @@ class j06005view_invoice
 				trigger_error('Unable to get the contract details.', E_USER_ERROR);
 				return;
 			}
+
+			$current_contract_details = jomres_singleton_abstract::getInstance('basic_contract_details');
+			$current_contract_details->gather_data($invoice->contract_id, $invoice->property_uid);
+
+			$output['_JOMRES_SEARCH_FORM_ADULTS'] = jr_gettext('_JOMRES_SEARCH_FORM_ADULTS', '_JOMRES_SEARCH_FORM_ADULTS');
+			$output['ADULTS'] = $current_contract_details->contract[$invoice->contract_id]['contractdeets']['adults'];
+			$output['_JOMRES_SEARCH_FORM_CHILDREN'] = jr_gettext('_JOMRES_SEARCH_FORM_CHILDREN', '_JOMRES_SEARCH_FORM_CHILDREN');
+			$output['CHILDREN'] = $current_contract_details->contract[$invoice->contract_id]['contractdeets']['children'];
+
 		} else {
 			$contractData = array ('approved' => 1);
+			$output['_JOMRES_SEARCH_FORM_ADULTS'] = '';
+			$output['ADULTS'] = '';
+			$output['_JOMRES_SEARCH_FORM_CHILDREN'] = '';
+			$output['CHILDREN'] = '';
 		}
 
-		$current_contract_details = jomres_singleton_abstract::getInstance('basic_contract_details');
-		$current_contract_details->gather_data($invoice->contract_id, $invoice->property_uid);
-
-		$output['_JOMRES_SEARCH_FORM_ADULTS'] = jr_gettext('_JOMRES_SEARCH_FORM_ADULTS', '_JOMRES_SEARCH_FORM_ADULTS');
-		$output['ADULTS'] = $current_contract_details->contract[$invoice->contract_id]['contractdeets']['adults'];
-		$output['_JOMRES_SEARCH_FORM_CHILDREN'] = jr_gettext('_JOMRES_SEARCH_FORM_CHILDREN', '_JOMRES_SEARCH_FORM_CHILDREN');
-		$output['CHILDREN'] = $current_contract_details->contract[$invoice->contract_id]['contractdeets']['children'];
 
 		$output[ 'BUSINESS_DETAILS_TEMPLATE' ]	= $MiniComponents->specificEvent('06005', 'show_invoice_seller', array('invoice_id' => $invoice_id));
 		$output[ 'CLIENT_DETAILS_TEMPLATE' ]	= $MiniComponents->specificEvent('06005', 'show_invoice_buyer', array('invoice_id' => $invoice_id));

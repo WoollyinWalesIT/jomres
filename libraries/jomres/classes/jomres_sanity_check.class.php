@@ -69,6 +69,11 @@ class jomres_sanity_check
 			return;
 		}
 
+		$disable_sanity_checks = (bool)get_showtime('disable_sanity_checks');
+		if ($disable_sanity_checks == true) {
+			return;
+		}
+
 		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 		if ($thisJRUser->userIsManager || $blind == true) {
 			$this->warnings .= $this->check_editing_mode();
