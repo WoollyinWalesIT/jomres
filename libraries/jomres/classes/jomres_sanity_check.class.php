@@ -110,8 +110,8 @@ class jomres_sanity_check
 				$this->warnings .= $this->check_tours_exist();
 			}
 
-			$this->warnings .= $this->check_address();
 			$this->warnings .= $this->check_main_image();
+			$this->warnings .= $this->check_address();
 
 			if (trim($this->warnings) == '') {
 				$this->mark_as_complete(); // Add a flag that will show site managers when a property is ready to be reviewed after creation and when it is waiting approval
