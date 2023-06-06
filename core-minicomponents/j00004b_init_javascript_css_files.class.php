@@ -178,7 +178,7 @@ class j00004b_init_javascript_css_files
 				$javascript_files[] = array(JOMRES_JS_RELPATH, 'datatables.min.js');
 				$css_files[] = array(JOMRES_CSS_RELPATH, 'datatables.css');
 			} else {
-				$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'datatables.net/js/', 'jquery.dataTables.js');
+				$javascript_files[] = array(JOMRES_JS_RELPATH, 'jquery.dataTables.js');
 				$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'datatables.net-bs4/js/', 'dataTables.bootstrap4.js');
 				$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'datatables.net-buttons/js/', 'dataTables.buttons.min.js');
 				$javascript_files[] = array(JOMRES_JS_RELPATH, 'jszip.min.js');
