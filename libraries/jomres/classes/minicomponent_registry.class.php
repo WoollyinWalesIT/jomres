@@ -147,6 +147,11 @@ class minicomponent_registry
 			$jomres_shortcode_parser->build_shortcodes($force = true);
 		}
 
+		// Data sources are watched json files for countries, regions, towns etc. Normally they are updated when a property is modified, however we'll do it here so that we can be sure that they're up to date when the registry is rebuilt too, which happens at least daily.
+		jr_import('jomres_data_source_maintainer');
+		$jomres_data_source_maintainer = new jomres_data_source_maintainer();
+		$jomres_data_source_maintainer->build_all_libraries();
+
 		//reload page if registry changed
 		if ($this->original_filesize != $this->new_filesize && $force_reload_allowed) {
 			if (!defined('AUTO_UPGRADE')) { // We don't want to do this if the installer is running this script
