@@ -835,9 +835,13 @@ use Joomla\CMS\Editor\Editor;
 	if (!function_exists('jomres_cmsspecific_getcmslang')) {
 		function jomres_cmsspecific_getcmslang()
 		{
+			$currentLanguage = JFactory::getLanguage()->getTag();
+			if (isset($currentLanguage) && trim($currentLanguage) != '') {
+				return $currentLanguage;
+			}
 			$app = JFactory::getApplication();
 			if (method_exists($app , 'getTag')) {
-				$app->getLanguage()->getTag();
+				return $app->getLanguage()->getTag();
 			} else {
 				return 'en-GB';
 			}
