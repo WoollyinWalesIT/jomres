@@ -13,7 +13,7 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-	
+
 	/**
 	 *
 	 * @package Jomres\Core\Classes
@@ -34,7 +34,7 @@ class jomresItemToolbar
 		$this->newToolbar();
 		$this->bs_version = jomres_bootstrap_version();
 	}
-	
+
 	/**
 	 *
 	 *
@@ -47,7 +47,7 @@ class jomresItemToolbar
 		$this->items = array();
 		$this->secondaryItems = array();
 	}
-	
+
 	/**
 	 *
 	 *
@@ -62,7 +62,7 @@ class jomresItemToolbar
 		if (!isset($buttonClass) || $buttonClass == '') {
 			$buttonClass = 'btn-primary';
 		}
-		
+
 		if ($submitOnClick) {
 			$item = '<a class="btn '.$buttonClass.'" href="javascript:jomres_submitbutton(\''.$task.'\');" '.$otherParams.'><i class="'.$icon.'"></i> '.$title.'</a> ';
 		} else {
@@ -73,7 +73,7 @@ class jomresItemToolbar
 
 		return $this->items;
 	}
-	
+
 	/**
 	 *
 	 *
@@ -84,19 +84,19 @@ class jomresItemToolbar
 	{
 		$title = str_replace("'", "\'", $title);
 		$title = str_replace('&#39;', "\'", $title);
-		
+
 		if ($this->bs_version == '5') {
 			$item = '<a class="dropdown-item" href="'.$link.'"><i class="'.$icon.'"></i> '.$title.'</a> ';
 		} else {
 			$item = '<a tabindex="-1" href="'.$link.'"><i class="'.$icon.'"></i> '.$title.'</a> ';
 		}
-		
+
 
 		$this->secondaryItems[] = $item;
 
 		return $this->secondaryItems;
 	}
-	
+
 	/**
 	 *
 	 *
@@ -105,8 +105,8 @@ class jomresItemToolbar
 
 	public function getToolbar()
 	{
-		
-		
+
+
 		if ($this->bs_version == '3' || $this->bs_version == '2') {
 			$this->toolbar = '
 						<div id="jomres-item-toolbar" class="btn-group">
@@ -126,7 +126,8 @@ class jomresItemToolbar
 		if (!empty($this->secondaryItems)) {
 			if ($this->bs_version == '3') {
 				$this->toolbar .= '
-				<div class="btn-group" role="group"><ul class="dropdown-menu">
+				<a class="btn btn-sm btn-default btn-secondary dropdown-toggle" data-toggle="dropdown" href="#"> <span class="caret"></span></a>
+					<ul class="dropdown-menu">
 				';
 			} elseif ($this->bs_version == '5') {
 				$this->toolbar .= '
@@ -136,14 +137,14 @@ class jomresItemToolbar
 				$this->toolbar .= '<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">'.jr_gettext('COMMON_MORE', 'COMMON_MORE', false).' <span class="caret"></span></a><ul class="dropdown-menu">
 				';
 			}
-			
-			
+
+
 			if ($this->bs_version == '5') {
 				$this->toolbar .= '<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 				';
 			}
 
-			 
+
 			foreach ($this->secondaryItems as $secondaryItem) {
 				if ($this->bs_version == '5') {
 					$this->toolbar .= $secondaryItem.'
@@ -153,7 +154,7 @@ class jomresItemToolbar
 					';
 				}
 			}
-			
+
 			if ($this->bs_version == '5') {
 				$this->toolbar .= '</div>
 				';
