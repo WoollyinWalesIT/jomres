@@ -780,7 +780,7 @@ jr_define('_JOMRES_REGISTRYREBUILD', 'Reconstruir registro');
 jr_define('_JOMRES_REGISTRYREBUILD_NOTES', 'Normalmente, el Jomres plugin Registro se reconstruye automáticamente cada vez que ve que el administrador de plugins agrega o quita un plugin, sin embargo es posible que usted no pueda usar estas características, por alguna razón, por lo tanto usted puede utilizar esta función para reconstruir el Registro manualmente. Si usted tiene acceso a la función del administrador de complementos y actualizaciones, entonces es poco probable que usted tenga que utilizar esta función. Tendrá que reconstruir del plugin de registro siempre que agregue un nuevo mini-componente y no utilice el Administrador de complementos para agregarlo.');
 jr_define('_JOMRES_REGISTRYREBUILD_SUCCESS', 'Registro reconstruido con éxito');
 jr_define('_JOMRES_REGISTRYREBUILD_FAILURE', 'Hubo un error con la reconstrucción del registro de minicomponentes. Usted debe verificar su registro de errores Jomres para ver si hay un registro que provocó el error.');
-jr_define('_JOMRES_SEARCH_PRICERANGES', 'Buscar por rango de precio.');
+jr_define('_JOMRES_SEARCH_PRICERANGES', 'Buscar por rango de precio');
 jr_define('_JOMCOMP_MYUSER_VIEWBOOKINGS_NONE', '¡No tiene ninguna reserva todavía!');
 jr_define('_JOMRES_COM_MR_VRCT_PROPERTY_TYPE', 'Editar su tipo propiedad');
 jr_define('_JOMRES_COM_MR_VRCT_PROPERTY_TYPE_INFO', 'Seleccionar su tipo propiedad');
