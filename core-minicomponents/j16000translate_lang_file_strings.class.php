@@ -64,6 +64,10 @@ class j16000translate_lang_file_strings
 		$jomres_language->get_language('shotcodes');
 		$jomres_language->get_language('video_tutorials');
 
+		echo '<script type="text/javascript">
+			var jomres_target_language = "'.get_showtime('lang').'"
+			</script>';
+
 		$javascript = 'onchange="switch_language_context(this.value);"';
 
 		echo '<h2 class="page-header">'.jr_gettext('_JOMRES_TOUCHTEMPLATES', '_JOMRES_TOUCHTEMPLATES', false).' - '.get_showtime('lang').'</h2>';
