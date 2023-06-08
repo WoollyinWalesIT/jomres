@@ -90,6 +90,9 @@ if (!defined('JOMRES_OVERRIDE_PATH')) {
 
 function load_custom_functions_scanAllDir($dir) {
     $result = array();
+
+	if (!is_dir($dir)) return $result;
+
     foreach(scandir($dir) as $filename) {
         if ($filename[0] === '.') continue;
         $filePath = $dir . DIRECTORY_SEPARATOR . $filename;
