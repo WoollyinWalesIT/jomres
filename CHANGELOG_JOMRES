@@ -1,3 +1,29 @@
+<h3>Jomres 10.7.0 09/06/2023</h3>
+
+<span class="label label-warning">Change</span> Added a check to ensure if the class doesn't already exist, to not include the file. Didn't need to do previously but new changes now make it necessary.
+<span class="label label-warning">Change</span> Subscription handling related tweaks.
+<span class="label label-warning">Change</span> Show the medium image by default in search results.
+<span class="label label-warning">Change</span> Added a feature to programatically disable sanity checks.
+<span class="label label-warning">Change</span> Prevent a couple of Misc frontend menu options from showing to non-super managers.
+<span class="label label-warning">Change</span> Changed publishing functionality, there are now two distinct tasks to either publish or unpublish properties. This allows the subscription feature to distinguish between allowing unpublishing, thereby allowing managers who have downgraded their subscriptions to still have a limited number of published properties.
+<span class="label label-warning">Change</span> Tweaked jomresItemToolbar method to ensure that it uses the correct class, if handed to it.
+<span class="label label-warning">Change</span> Removed old publishProperty function, it's not used in Core or any plugins.
+<span class="label label-warning">Change</span> Tweaked the publish/unpublish ajax toolbar buttons to make it clear that publish/unpublish have colours to indicate the activity.
+<span class="label label-warning">Change</span> Changed logo
+<span class="label label-warning">Change</span> Improved label and map in edit property page.
+<span class="label label-warning">Change</span> Rebuild data sources when the registry is rebuilt
+<span class="label label-warning">Change</span> Fixed the logout font awesome icon in BS5/FA5
+<span class="label label-warning">Change</span> Switch over to using our own version of jquery.dataTables.js so that we can provide a useful message regarding the possible cause of a js error in datatables (expect this to fix 98% of reports).
+<span class="label label-warning">Change</span> Reordered sanity checks slightly. Show the address check after the image upload check. Once the user has clicked Save on the address, then they'll see the Publish button. It's a slightly better flow because from the Upload page the user has to visit another dashboard page before the Publish hint is shown.
+<span class="label label-warning">Change</span> Resolved an issue with BS3 toolbar secondary items not showing.
+<span class="label label-warning">Change</span> Modify how we find the current language in Joomla.
+<span class="label label-warning">Change</span> Improve how we find the current lang in translate lang file strings page.
+
+
+<span class="label label-important label-danger">Fix</span> Fixed a bug in suspension functionality that was preventing the class from unpublishing properties.
+<span class="label label-important label-danger">Fix</span> If the directory we're scanning does not exist yet (installation phase?) return an empty array instead of triggering an error.
+
+
 <h3>Jomres 10.7.0 25/05/2023</h3>
 
 <span class="label label-success">Feature</span> Lots of changes related to overrides in this version. A lot of scripts can be overridden by dropping a copy of the script into the template or theme directory, /html/com_jomres/custom_code sub directory.
