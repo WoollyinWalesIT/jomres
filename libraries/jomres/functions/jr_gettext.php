@@ -117,6 +117,10 @@
 			}
 
 			$language_context = get_showtime('property_type');
+
+			if (is_null($language_context)) {
+				$language_context = 'propertyrental';
+			}
 			if (isset($jrConfig[ 'prioritise_sitewide_label_definitions' ]) && $jrConfig[ 'prioritise_sitewide_label_definitions' ] == "1") {
 				if (isset($customTextObj->global_custom_text[$language_context][$theConstant])) {
 					$theText = $customTextObj->global_custom_text[$language_context][$theConstant];
