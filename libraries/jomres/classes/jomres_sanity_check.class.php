@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.7.0
+ *  @version Jomres 10.7.1
  *
  * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -110,8 +110,8 @@ class jomres_sanity_check
 				$this->warnings .= $this->check_tours_exist();
 			}
 
-			$this->warnings .= $this->check_address();
 			$this->warnings .= $this->check_main_image();
+			$this->warnings .= $this->check_address();
 
 			if (trim($this->warnings) == '') {
 				$this->mark_as_complete(); // Add a flag that will show site managers when a property is ready to be reviewed after creation and when it is waiting approval

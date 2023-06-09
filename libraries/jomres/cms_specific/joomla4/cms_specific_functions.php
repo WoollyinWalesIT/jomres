@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.7.0
+ *  @version Jomres 10.7.1
  *
  * @copyright	2005-2023 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -835,9 +835,13 @@ use Joomla\CMS\Editor\Editor;
 	if (!function_exists('jomres_cmsspecific_getcmslang')) {
 		function jomres_cmsspecific_getcmslang()
 		{
+			$currentLanguage = JFactory::getLanguage()->getTag();
+			if (isset($currentLanguage) && trim($currentLanguage) != '') {
+				return $currentLanguage;
+			}
 			$app = JFactory::getApplication();
 			if (method_exists($app , 'getTag')) {
-				$app->getLanguage()->getTag();
+				return $app->getLanguage()->getTag();
 			} else {
 				return 'en-GB';
 			}

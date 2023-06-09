@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.7.0
+ *  @version Jomres 10.7.1
  *
  * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -146,6 +146,11 @@ class minicomponent_registry
 			$jomres_shortcode_parser = jomres_singleton_abstract::getInstance('jomres_shortcode_parser');
 			$jomres_shortcode_parser->build_shortcodes($force = true);
 		}
+
+		// Data sources are watched json files for countries, regions, towns etc. Normally they are updated when a property is modified, however we'll do it here so that we can be sure that they're up to date when the registry is rebuilt too, which happens at least daily.
+		jr_import('jomres_data_source_maintainer');
+		$jomres_data_source_maintainer = new jomres_data_source_maintainer();
+		$jomres_data_source_maintainer->build_all_libraries();
 
 		//reload page if registry changed
 		if ($this->original_filesize != $this->new_filesize && $force_reload_allowed) {

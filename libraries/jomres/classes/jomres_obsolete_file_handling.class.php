@@ -4,7 +4,7 @@
 	 *
 	 * @author Vince Wooll <sales@jomres.net>
 	 *
-	 *  @version Jomres 10.7.0
+	 *  @version Jomres 10.7.1
 	 *
 	 * @copyright	2005-2023 Vince Wooll
 	 * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1350,6 +1350,7 @@ class jomres_obsolete_file_handling
 
 		$this->add_file($this->dir_minicomponents.'j00501gateways.class.php'); // Gateway configuration has been moved to it's own page, we no longer need this tab
 		$this->add_file($this->dir_minicomponents.'j16000show_feedback_message.class.php');
+		$this->add_file($this->dir_minicomponents.'16000purchase_plugins.class.php');
 
 	}
 
