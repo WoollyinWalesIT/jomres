@@ -1,4 +1,4 @@
-<h3>Jomres 10.7.0 09/06/2023</h3>
+<h3>Jomres 10.7.1 09/06/2023</h3>
 
 <span class="label label-warning">Change</span> Added a check to ensure if the class doesn't already exist, to not include the file. Didn't need to do previously but new changes now make it necessary.
 <span class="label label-warning">Change</span> Subscription handling related tweaks.
