@@ -44,7 +44,30 @@ class j16000touch_templates
 		if (!translation_user_check()) {
 			return;
 		}
-		echo '<h2>'.jr_gettext('_JOMRES_TOUCHTEMPLATES', '_JOMRES_TOUCHTEMPLATES', false).' - '.get_showtime('lang').'</h2><br/>';
+
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
+
+		if ($jrConfig['language_context'] == '') {
+			$jrConfig['language_context'] = '0';
+		}
+
+		$language_context = jomresGetParam($_GET, 'language_context', $jrConfig['language_context']);
+		set_showtime('property_type', $language_context);
+
+		echo '<script type="text/javascript">
+			var jomres_target_language = "'.get_showtime('lang').'"
+			</script>';
+
+		$javascript = 'onchange="switch_language_context(this.value);"';
+
+		echo '<h2 class="page-header">'.jr_gettext('_JOMRES_TOUCHTEMPLATES', '_JOMRES_TOUCHTEMPLATES', false).' - '.get_showtime('lang').'</h2>';
+
+		$jomres_property_types = jomres_singleton_abstract::getInstance('jomres_property_types');
+		echo '<p>'.jr_gettext('_JOMRES_COM_LANGUAGE_CONTEXT', '_JOMRES_COM_LANGUAGE_CONTEXT', false) . ' ' . $jomres_property_types->getPropertyTypeDescDropdown($language_context, 'language_context', $javascript).'</p>';
+
+		echo simple_template_output(JOMRES_TEMPLATEPATH_ADMINISTRATOR, $template = 'translate_lang_file_strings_header.html', jr_gettext( '_JOMRES_COM_TRANSLATE_LANGUAGEFILES_INFO', '_JOMRES_COM_TRANSLATE_LANGUAGEFILES_INFO' , false ));
+
 
 		$basic_subscription_package_details = jomres_singleton_abstract::getInstance('basic_subscription_package_details');
 
