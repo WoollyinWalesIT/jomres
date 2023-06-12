@@ -43,7 +43,7 @@ class j16000edit_property_type
             return;
         }
 
-        $id = intval(jomresGetParam($_REQUEST, 'id', 0));
+        $id = intval(jomresGetParam($_GET, 'id', 0));
 
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $jrConfig = $siteConfig->get();
@@ -63,7 +63,21 @@ class j16000edit_property_type
 
         //get property type details by id
         $jomres_property_types = jomres_singleton_abstract::getInstance('jomres_property_types');
-        $jomres_property_types->get_property_type($id);
+
+		if ($id >0) {
+			$jomres_property_types->get_property_type($id);
+		} else {
+			$jomres_property_types->property_type['id']             = 0;
+			$jomres_property_types->property_type['ptype']          = '';
+			$jomres_property_types->property_type['ptype_desc']     = '';
+			$jomres_property_types->property_type['published']      = 1;
+			$jomres_property_types->property_type['order']          = 0;
+			$jomres_property_types->property_type['mrp_srp_flag']   = 0;
+			$jomres_property_types->property_type['marker']         = '';
+			$jomres_property_types->property_type['has_stars']      = 1;
+		}
+
+
 
         if (!is_array($jomres_property_types->property_type)) {
             return;
