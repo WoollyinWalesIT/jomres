@@ -8,7 +8,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.7.1
+ *  @version Jomres 10.7.2
  *
  * @copyright	2005-2023 Vince Wooll
  *
