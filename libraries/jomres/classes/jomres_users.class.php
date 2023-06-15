@@ -323,7 +323,7 @@ class jomres_users
 		$webhook_notification->webhook_event			= 'manager_deleted';
 		$webhook_notification->webhook_event_description= 'A property manager has been updated, either their access level or their assigned properties';
 		$webhook_notification->data					 	= new stdClass();
-		$webhook_notification->data->manager_id 	   	=  (int)$this->cms_user_id;
+		$webhook_notification->data->manager_id 	   	=  (int)$cms_user_id;
 		add_webhook_notification($webhook_notification);
 
 		return true;
