@@ -41,6 +41,7 @@ class j99994webhook_watcher
 			return;
 		}
 
+
 		if (get_showtime('task') == 'background_process') {
 			return;
 		}
@@ -70,7 +71,7 @@ class j99994webhook_watcher
 
 			logging::log_message("Webhook watcher start.", 'Webhooks', 'DEBUG');
 
-			if ($property_uid == 0) {
+			if ($property_uid == 0 && !jomres_cmsspecific_areweinadminarea() ) {
 				logging::log_message("Webhook watcher. Property uid not found. Returning. ", 'Webhooks', 'DEBUG');
 				return;
 			}
