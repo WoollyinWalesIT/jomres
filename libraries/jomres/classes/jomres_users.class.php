@@ -235,14 +235,23 @@ class jomres_users
 						" . (int) reset($this->authorised_properties) . ",
 						'" . $this->apikey . "'
 						)";
-		
-		if (!doInsertSql($query, '')) {
+
+		$manager_id = doInsertSql($query, '');
+		if ( !$manager_id ) {
 			throw new Exception("Error: User insert failed.");
 		}
 		
 		//update user`s assigned properties
 		updateManagerIdToPropertyXrefTable($this->cms_user_id, $this->authorised_properties);
-		
+
+		$webhook_notification						   	= new stdClass();
+		$webhook_notification->webhook_event			= 'manager_added';
+		$webhook_notification->webhook_event_description= 'A property manager has been added';
+		$webhook_notification->data					 	= new stdClass();
+		$webhook_notification->data->manager_id 	   	=  $manager_id;
+		$webhook_notification->data->property_ids 	   	=  $this->authorised_properties;
+		add_webhook_notification($webhook_notification);
+
 		return true;
 	}
 	
@@ -276,7 +285,15 @@ class jomres_users
 		}
 		
 		updateManagerIdToPropertyXrefTable($this->cms_user_id, $this->authorised_properties);
-		
+
+		$webhook_notification						   	= new stdClass();
+		$webhook_notification->webhook_event			= 'manager_updated';
+		$webhook_notification->webhook_event_description= 'A property manager has been updated, either their access level or their assigned properties';
+		$webhook_notification->data					 	= new stdClass();
+		$webhook_notification->data->manager_id 	   	=  (int)$this->cms_user_id;
+		$webhook_notification->data->property_ids 	   	=  $this->authorised_properties;
+		add_webhook_notification($webhook_notification);
+
 		return true;
 	}
 	
@@ -301,7 +318,14 @@ class jomres_users
 		
 		//this will remove all user`s assigned properties
 		updateManagerIdToPropertyXrefTable($cms_user_id, array());
-		
+
+		$webhook_notification						   	= new stdClass();
+		$webhook_notification->webhook_event			= 'manager_deleted';
+		$webhook_notification->webhook_event_description= 'A property manager has been updated, either their access level or their assigned properties';
+		$webhook_notification->data					 	= new stdClass();
+		$webhook_notification->data->manager_id 	   	=  (int)$this->cms_user_id;
+		add_webhook_notification($webhook_notification);
+
 		return true;
 	}
 	
