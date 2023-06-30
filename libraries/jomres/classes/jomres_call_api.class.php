@@ -173,6 +173,9 @@
 					} else { // Allows some dumping when called by other scripts
 						return $response['response'];
 					}
+				} elseif ( $response['response_code'] == '400' ) {
+					$messsage = json_decode($response['response']);
+					return [ "error" => "400" , "remote_response" => $messsage ];
 				} elseif ($response['response_code'] == '404') {
 					return false;
 				} else {
