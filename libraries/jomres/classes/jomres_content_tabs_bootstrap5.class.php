@@ -42,7 +42,7 @@ class jomres_content_tabs_bootstrap5
 		$this->randomString = '';
 		$this->useCookies = false;
 
-		if (this_cms_is_joomla()== true) {
+		if ( _JOMRES_DETECTED_CMS == 'joomla4' || _JOMRES_DETECTED_CMS == 'joomla5' ) {
 			Factory::getDocument()->getWebAssetManager()
 				->useStyle('webcomponent.joomla-tab')
 				->useScript('webcomponent.joomla-tab');
