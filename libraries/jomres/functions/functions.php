@@ -602,7 +602,7 @@ if (!function_exists('get_remote_plugin_data')) {
         if (!file_exists(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php')) {
             $remote_plugins_data = '';
 
-            $base_uri = 'http://plugins.jomres4.net/';
+            $base_uri = 'http://plugins.jomres.net/';
             $query_string = 'index.php?r=dp&format=json&cms='._JOMRES_DETECTED_CMS.'&jomresver='.$jrConfig['version'];
 
             try {
@@ -3207,9 +3207,9 @@ if (!function_exists('queryUpdateServer')) {
         $jrConfig = $siteConfig->get();
 
         if ($serverType == 'plugin') {
-            $updateServer = 'http://plugins.jomres4.net';
+            $updateServer = 'http://plugins.jomres.net';
         } else {
-            $updateServer = 'http://updates.jomres4.net';
+            $updateServer = 'http://updates.jomres.net';
         }
 
         if (strlen($script) == 0) {
@@ -5762,7 +5762,7 @@ if (!function_exists('get_latest_jomres_version')) {
         }
 
         if (!file_exists(JOMRES_TEMP_ABSPATH.'latest_version.php')) {
-            $base_uri = 'http://updates.jomres4.net/';
+            $base_uri = 'http://updates.jomres.net/';
             $query_string = 'versions.php';
 
             $buffer = '';
@@ -5787,7 +5787,7 @@ if (!function_exists('get_latest_jomres_version')) {
 
         if (empty($buffer)) {
             if ($outputText) {
-                echo '<div class="alert alert-error alert-danger">Sorry, could not get latest version of Jomres, is there a firewall preventing communication with http://updates.jomres4.net ? Alternatively, please check that CURL is enabled on this webserver</div>';
+                echo '<div class="alert alert-error alert-danger">Sorry, could not get latest version of Jomres, is there a firewall preventing communication with http://updates.jomres.net ? Alternatively, please check that CURL is enabled on this webserver</div>';
             } else {
                 return false;
             }

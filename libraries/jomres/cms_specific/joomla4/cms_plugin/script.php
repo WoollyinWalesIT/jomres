@@ -72,8 +72,8 @@ class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687
 		} */
 		
 		//set the jomres download url
-		$url = 'http://updates.jomres4.net/getlatest.php?includebeta=true';
-		$nightly_url = 'http://updates.jomres4.net/nightly/';
+		$url = 'http://updates.jomres.net/getlatest.php?includebeta=true';
+		$nightly_url = 'http://updates.jomres.net/nightly/';
 		
 		$debugging = JFactory::getConfig()->get('debug');
 		$nightly = false;

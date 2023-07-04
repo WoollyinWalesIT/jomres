@@ -111,8 +111,8 @@ if (!function_exists('run_jomres_installer')) {
 		global $wp_filesystem;
 
 		//get the latest jomres version download url
-		$url = 'http://updates.jomres4.net/getlatest.php?includebeta=true';
-		$nightly_url = 'http://updates.jomres4.net/nightly/';
+		$url = 'http://updates.jomres.net/getlatest.php?includebeta=true';
+		$nightly_url = 'http://updates.jomres.net/nightly/';
 
 		$nightly = false;
 

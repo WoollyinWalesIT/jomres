@@ -37,6 +37,6 @@
 	</administration>
 	
 	<updateservers>
-		<server type="extension" name="Jomres Update">http://updates.jomres4.net/jomres_updates.xml</server>
+		<server type="extension" name="Jomres Update">http://updates.jomres.net/jomres_updates.xml</server>
 	</updateservers>
 </extension>

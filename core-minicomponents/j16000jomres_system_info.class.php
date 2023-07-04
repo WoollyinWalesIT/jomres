@@ -76,7 +76,7 @@ class j16000jomres_system_info
 		if (empty($latest_version)) {
 			$output[ 'JOMRES_VERSION_LABEL_CLASS' ] = 'label-red';
 			$output[ 'LATEST_JOMRES_VERSION' ] = 'Unknown';
-			$output[ 'ERROR' ] = 'Sorry, could not get latest version of Jomres, is there a firewall preventing communication with http://updates.jomres4.net ? Alternatively, please check that CURL is enabled on this webserver<p>';
+			$output[ 'ERROR' ] = 'Sorry, could not get latest version of Jomres, is there a firewall preventing communication with http://updates.jomres.net ? Alternatively, please check that CURL is enabled on this webserver<p>';
 			$output[ 'HIGHLIGHT' ] = (using_bootstrap() ? 'alert alert-error' : 'ui-state-error');
 		} else {
 			$current_version_is_uptodate = check_jomres_version();

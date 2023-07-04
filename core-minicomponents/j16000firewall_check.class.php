@@ -52,8 +52,8 @@ class j16000firewall_check
 		
 		$remote_services = array (
 			'https://license-server.jomres.net/remote.php',
-			'http://plugins.jomres4.net/',
-			'http://updates.jomres4.net/',
+			'http://plugins.jomres.net/',
+			'http://updates.jomres.net/',
 			'https://maps-api-ssl.google.com/',
 			'https://api.openweathermap.org',
 			'https://openexchangerates.org/api/latest.json'
