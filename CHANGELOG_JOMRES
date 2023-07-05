@@ -1,6 +1,19 @@
 <h3>Jomres 10.7.2 13/06/2023</h3>
 
+<span class="label label-warning">Change</span> Add language context switching to label translations page.
+<span class="label label-warning">Change</span> If language context is null, then this could be a property feature string we're looking for. They're queried very early in the run, before we know the property's type, so we'll fall back to setting the context to propertyrental so that we get translated property features and categories.
+<span class="label label-warning">Change</span> Added link to Telegram channel to admin area cpanel.
+<span class="label label-warning">Change</span> Improved how we assign the manager id to webhook events.
+<span class="label label-warning">Change</span> Added webhook events of managers being added/deleted/updated so that cmf can catch their properties and update the local property  uids xref table. This will allow them to use the under development cmf ui functionality that takes advantage of cmf endpoints to provide additional features to Jomres.
+<span class="label label-warning">Change</span> Added group by definition to API handling.
+<span class="label label-warning">Change</span> Change how we handle 400 errors from self api
+<span class="label label-warning">Change</span> Allow calls to update/plugin servers to silently follow redirects.
+<span class="label label-warning">Change</span> Updated domains for plugins/updates servers.
+
 <span class="label label-important label-danger">Fix</span> Resolved an issue where new property types couldn't be created.
+<span class="label label-important label-danger">Fix</span> Ensure that we only try to include webassetmanager on Joomla4 or joomla 5
+<span class="label label-important label-danger">Fix</span> Remove carriage returns from select list template so that it doesn't trigger js errors when evalulated in the booking form.
+
 
 <h3>Jomres 10.7.1 09/06/2023</h3>
 
