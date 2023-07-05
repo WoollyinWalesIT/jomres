@@ -9,6 +9,7 @@
 <span class="label label-warning">Change</span> Change how we handle 400 errors from self api
 <span class="label label-warning">Change</span> Allow calls to update/plugin servers to silently follow redirects.
 <span class="label label-warning">Change</span> Updated domains for plugins/updates servers.
+<span class="label label-warning">Change</span> Switch to browser validation in booking forms.
 
 <span class="label label-important label-danger">Fix</span> Resolved an issue where new property types couldn't be created.
 <span class="label label-important label-danger">Fix</span> Ensure that we only try to include webassetmanager on Joomla4 or joomla 5
