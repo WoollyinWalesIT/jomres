@@ -170,7 +170,7 @@ class j16000addplugin
 		if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'updates')) {
 			if (!mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'updates')) {
 				$error_messsage[ 'ERROR' ] = "Couldn't make the folder ".JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'updates'.' so quitting.';
-				echo $error_messsage[ 'ERROR' ];
+				//echo $error_messsage[ 'ERROR' ];
 
 				return;
 			}
@@ -188,7 +188,7 @@ class j16000addplugin
 			$progress_messages[ ] = array('MESSAGE' => 'Made '.$updateDirPath.' for a new installation of the plugin.');
 		} else {
 			$error_messsage[ 'ERROR' ] = "Couldn't make the folder ".$updateDirPath.' so quitting.';
-			echo $error_messsage[ 'ERROR' ];
+			//echo $error_messsage[ 'ERROR' ];
 
 			return;
 		}
@@ -197,7 +197,7 @@ class j16000addplugin
 			$progress_messages[ ] = array('MESSAGE' => 'Made '.$updateDirPath.'unpacked for a new installation of the plugin.');
 		} else {
 			$error_messsage[ 'ERROR' ] = "Couldn't make the folder ".$updateDirPath.'unpacked so quitting.';
-			echo $error_messsage[ 'ERROR' ];
+			//echo $error_messsage[ 'ERROR' ];
 
 			return;
 		}
