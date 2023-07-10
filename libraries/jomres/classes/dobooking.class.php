@@ -3837,7 +3837,7 @@
 			$this->room_allocations = array();
 			$guests = $this->getVariantsOfType('guesttype');
 
-			if ($mrConfig[ 'tariffmode' ] == '5' || count($this->jomres_occupancy_levels->occupancy_levels) > 0 ) {
+			if ($mrConfig[ 'tariffmode' ] == '3' || count($this->jomres_occupancy_levels->occupancy_levels) > 0 ) {
 				$totalNumberOfGuests = $this->standard_guest_numbers + $this->extra_guest_numbers;
 			} else {
 				$totalNumberOfGuests = 0;
@@ -3851,15 +3851,17 @@
 			}
 
 			$this->setErrorLog('checkAllGuestsAllocatedToRooms::Starting ');
-			if (!empty($guests) || $mrConfig[ 'tariffmode' ] == '5' || count($this->jomres_occupancy_levels->occupancy_levels) > 0) {
+			if (!empty($guests) || $mrConfig[ 'tariffmode' ] == '3' || count($this->jomres_occupancy_levels->occupancy_levels) > 0) {
 				$this->setErrorLog('checkAllGuestsAllocatedToRooms:: count($guests) > 0 ');
 
 				if (empty($this->requestedRoom)) {
 					$this->setErrorLog('checkAllGuestsAllocatedToRooms:: No rooms have been selected yet');
 					return true;
 				}
+				$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+				$jrConfig = $siteConfig->get();
 
-				if (!empty($guests)) {
+				if (!empty($guests) && isset( $jrConfig['secret_setting_use_old_guest_types'] ) && $jrConfig['secret_setting_use_old_guest_types'] == '1') {
 					foreach ($guests as $g) {
 						$totalNumberOfGuests = $totalNumberOfGuests + $g[ 'qty' ];
 					}
@@ -6480,14 +6482,24 @@
 		public function calcSinglePersonSuppliment()
 		{
 			$totalBooking = $this->getRoomtotal();
-			$guests = $this->getVariantsOfType('guesttype');
-			$totalNumberOfGuests = 0;
+
+			$mrConfig = $this->mrConfig;
+
+			if ($mrConfig[ 'tariffmode' ] == '3' || count($this->jomres_occupancy_levels->occupancy_levels) > 0 ) {
+				$totalNumberOfGuests = $this->standard_guest_numbers + $this->extra_guest_numbers;
+			} else {
+				$guests = $this->getVariantsOfType('guesttype');
+				$totalNumberOfGuests = 0;
+				foreach ($guests as $g) {
+					$totalNumberOfGuests = $totalNumberOfGuests + $g[ 'qty' ];
+				}
+			}
 
 			if (empty($this->requestedRoom)) { // No rooms selected yet
 				return;
 			}
 
-			if ( $this->getTotalInParty() == 0 && empty($guests) ) { // Guest numbers not chosen/used/selected yet
+			if ( $totalNumberOfGuests == 0 ) { // Guest numbers not chosen/used/selected yet
 				return;
 			}
 
@@ -6500,9 +6512,6 @@
 				$rm_idArr = explode('^', $r);
 				$rm_id = $rm_idArr[ 0 ];
 				$allRoomsMaxPeople[ $rm_id ] = $this->allPropertyRooms[ $rm_id ][ 'max_people' ];
-			}
-			foreach ($guests as $g) {
-				$totalNumberOfGuests = $totalNumberOfGuests + $g[ 'qty' ];
 			}
 
 			if ($this->cfg_singlePersonSuppliment == '1') { // Property-wide SPS
