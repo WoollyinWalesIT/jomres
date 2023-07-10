@@ -458,6 +458,8 @@ if (!function_exists('is_channel_property')) {
             return false;
         }
 
+return false;
+
         $is_channel_property = false;
         $property_ids = array();
         if (class_exists('channelmanagement_framework_properties')) {  // The channel management framework is installed
