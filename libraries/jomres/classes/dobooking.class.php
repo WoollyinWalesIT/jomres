@@ -5603,6 +5603,13 @@
 						$this->resetPricingOutput = true;
 						$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_CHOOSE_MORE_ROOMS', '_JOMRES_BOOKINGFORM_MONITORING_CHOOSE_MORE_ROOMS', false, false)));
 					}
+
+					if ($requestedRoom_count == 0 ) {
+						$this->resetPricingOutput = true;
+						$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_SELECT_A_ROOM', '_JOMRES_BOOKINGFORM_MONITORING_SELECT_A_ROOM', false, false)));
+					}
+
+
 				} else {
 					if (!$this->ignore_guest_number_checks) {
 						if ( $this->cfg_singleRoomProperty != '1') {
