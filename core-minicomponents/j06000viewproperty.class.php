@@ -110,6 +110,10 @@
 			$output[ 'IMAGEMEDIUM' ] = $jomres_media_centre_images->images ['property'][0][0]['medium'];
 			$output[ 'IMAGETHUMB' ] = $jomres_media_centre_images->images ['property'][0][0]['small'];
 
+			jr_import('jomres_image_captions');
+			$jomres_image_captions = new jomres_image_captions();
+
+			$output['IMAGECAPTION'] = $jomres_image_captions->get_caption($output[ 'IMAGELARGE' ]);
 			//property features
 			$output['FEATURES'] = $MiniComponents->specificEvent('06000', 'show_property_features', array('output_now' => false, 'property_uid' => $property_uid, 'show_feature_categories' => false));
 
