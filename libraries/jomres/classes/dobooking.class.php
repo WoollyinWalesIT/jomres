@@ -6464,7 +6464,11 @@
 						$city_tax = ((float)$mrConfig[ 'city_tax_value' ]  * $this->stayDays)  * $this->city_tax_number_of_guests ;
 						break;
 					case 'percentbookingtotal':
-						$city_tax = $totalBooking * ((float)$mrConfig[ 'city_tax_value' ] / 100);
+						$city_tax = 0;
+						if ((float)$mrConfig[ 'city_tax_value' ] > 0) {
+							$city_tax = $totalBooking * ((float)$mrConfig[ 'city_tax_value' ] / 100);
+						}
+
 						break;
 				}
 
