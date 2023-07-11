@@ -57,7 +57,7 @@ class j06005save_my_account
 			return false;
 		}
 
-		$MiniComponents->triggerEvent('03160', [] ); // Optional
+		$MiniComponents->triggerEvent('03700', [] ); // Optional
 
 		$user_details = jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id($thisJRUser->id);
 
@@ -304,7 +304,9 @@ class j06005save_my_account
 		$tmpBookingHandler->updateGuestField('tel_landline', $this->jomres_encryption->decrypt($landline));
 		$tmpBookingHandler->updateGuestField('tel_mobile', $this->jomres_encryption->decrypt($mobile));
 		$tmpBookingHandler->updateGuestField('email', $this->jomres_encryption->decrypt($email));
-		
+
+		$MiniComponents->triggerEvent('03710', [] ); // Optional
+
 		if ($return_url != '') {
 			$return_url = jr_base64url_decode($return_url);
 			jomresRedirect($return_url, '');
