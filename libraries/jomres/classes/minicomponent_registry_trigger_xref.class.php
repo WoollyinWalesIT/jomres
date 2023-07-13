@@ -97,7 +97,7 @@ class minicomponent_registry_trigger_xref
 		$this->trigger_xref['event_numbers']['03710'] = [ 'event_number' => '03710', 'event_name' => 'onAfterSaveAccount' , 'comment' => 'Currently unused, but available. Triggered after a user changes their account.' ];
 	}
 
-
+/*
 03379 These scripts are used by the media centre to configure media uploading options.
 03381 Media centre uses these to determine individual ids for uploading of resource specific images.
 03383 Media centre uses these to determine images that already exist for specific resources.
@@ -179,5 +179,6 @@ class minicomponent_registry_trigger_xref
 	19997 builds the admin cpanel menu
 
 	99998 jomres feedback messages
+*/
 
 	}
