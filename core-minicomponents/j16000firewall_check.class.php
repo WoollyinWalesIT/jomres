@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.7.1
+ *  @version Jomres 10.7.2
  *
  * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -52,8 +52,8 @@ class j16000firewall_check
 		
 		$remote_services = array (
 			'https://license-server.jomres.net/remote.php',
-			'http://plugins.jomres4.net/',
-			'http://updates.jomres4.net/',
+			'http://plugins.jomres.net/',
+			'http://updates.jomres.net/',
 			'https://maps-api-ssl.google.com/',
 			'https://api.openweathermap.org',
 			'https://openexchangerates.org/api/latest.json'

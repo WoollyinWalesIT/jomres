@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.7.1
+ *  @version Jomres 10.7.2
  *
  * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -67,7 +67,7 @@ class j16000jomres_news
 		}
 
 		if (!file_exists(JOMRES_TEMP_ABSPATH.'news.php')) {
-			$base_uri = 'http://updates.jomres4.net/';
+			$base_uri = 'http://updates.jomres.net/';
 			$query_string = 'news.php';
 			
 			$buffer = '';
@@ -91,7 +91,7 @@ class j16000jomres_news
 		}
 
 		if (empty($buffer)) {
-			$output[ 'LATEST_JOMRES_VERSION' ] = 'Sorry, could not get latest Jomres news, is there a firewall or slow internet connection preventing communication with http://updates.jomres4.net ?<p>';
+			$output[ 'LATEST_JOMRES_VERSION' ] = 'Sorry, could not get latest Jomres news, is there a firewall or slow internet connection preventing communication with http://updates.jomres.net ?<p>';
 		} else {
 			$news = json_decode($buffer);
 			$counter = 0;

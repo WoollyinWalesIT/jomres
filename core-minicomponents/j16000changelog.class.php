@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.7.1
+ *  @version Jomres 10.7.2
  *
  * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -41,7 +41,7 @@ class j16000changelog
 
 			return;
 		}
-		$changelog = nl2br(file_get_contents('http://updates.jomres4.net/CHANGELOG_JOMRES'));
+		$changelog = nl2br(file_get_contents('http://updates.jomres.net/CHANGELOG_JOMRES'));
 		echo $changelog;
 	}
 

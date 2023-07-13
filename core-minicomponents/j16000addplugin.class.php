@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.7.1
+ *  @version Jomres 10.7.2
  *
  * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -170,7 +170,7 @@ class j16000addplugin
 		if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'updates')) {
 			if (!mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'updates')) {
 				$error_messsage[ 'ERROR' ] = "Couldn't make the folder ".JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'updates'.' so quitting.';
-				echo $error_messsage[ 'ERROR' ];
+				//echo $error_messsage[ 'ERROR' ];
 
 				return;
 			}
@@ -188,7 +188,7 @@ class j16000addplugin
 			$progress_messages[ ] = array('MESSAGE' => 'Made '.$updateDirPath.' for a new installation of the plugin.');
 		} else {
 			$error_messsage[ 'ERROR' ] = "Couldn't make the folder ".$updateDirPath.' so quitting.';
-			echo $error_messsage[ 'ERROR' ];
+			//echo $error_messsage[ 'ERROR' ];
 
 			return;
 		}
@@ -197,7 +197,7 @@ class j16000addplugin
 			$progress_messages[ ] = array('MESSAGE' => 'Made '.$updateDirPath.'unpacked for a new installation of the plugin.');
 		} else {
 			$error_messsage[ 'ERROR' ] = "Couldn't make the folder ".$updateDirPath.'unpacked so quitting.';
-			echo $error_messsage[ 'ERROR' ];
+			//echo $error_messsage[ 'ERROR' ];
 
 			return;
 		}
@@ -275,7 +275,7 @@ class j16000addplugin
 					$p = '&plugin='.$pluginName;
 				}
 
-				$base_uri = 'http://plugins.jomres4.net/';
+				$base_uri = 'http://plugins.jomres.net/';
 				$query_string = 'index.php?r=gp&cms='._JOMRES_DETECTED_CMS.'&vnw=1&key='.$key_to_send.$p.'&jomresver='.$jrConfig[ 'version' ].'&hostname='.get_showtime('live_site').'&php_version='.$php_version;
 
 				$progress_messages[ ] = array('MESSAGE' => $base_uri.$query_string);

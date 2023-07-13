@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.7.1
+ *  @version Jomres 10.7.2
  *
  * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -57,7 +57,7 @@ class j06005save_my_account
 			return false;
 		}
 
-		$MiniComponents->triggerEvent('03160', [] ); // Optional
+		$MiniComponents->triggerEvent('03700', [] ); // Optional
 
 		$user_details = jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id($thisJRUser->id);
 
@@ -304,7 +304,9 @@ class j06005save_my_account
 		$tmpBookingHandler->updateGuestField('tel_landline', $this->jomres_encryption->decrypt($landline));
 		$tmpBookingHandler->updateGuestField('tel_mobile', $this->jomres_encryption->decrypt($mobile));
 		$tmpBookingHandler->updateGuestField('email', $this->jomres_encryption->decrypt($email));
-		
+
+		$MiniComponents->triggerEvent('03710', [] ); // Optional
+
 		if ($return_url != '') {
 			$return_url = jr_base64url_decode($return_url);
 			jomresRedirect($return_url, '');

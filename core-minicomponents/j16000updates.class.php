@@ -36,9 +36,9 @@ class j16000updates
 
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
-		$this->updateServer = 'http://updates.jomres4.net';
+		$this->updateServer = 'http://updates.jomres.net';
 		$this->updateFolder = JOMRESPATH_BASE.JRDS.'updates';
-		$this->nightly_url = 'http://updates.jomres4.net/nightly/';
+		$this->nightly_url = 'http://updates.jomres.net/nightly/';
 		$this->development_production = $jrConfig['development_production'];
 		$this->test_download = false;
 

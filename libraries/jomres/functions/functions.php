@@ -5,7 +5,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.7.1
+ *  @version Jomres 10.7.2
  *
  * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -458,6 +458,8 @@ if (!function_exists('is_channel_property')) {
             return false;
         }
 
+return false;
+
         $is_channel_property = false;
         $property_ids = array();
         if (class_exists('channelmanagement_framework_properties')) {  // The channel management framework is installed
@@ -602,7 +604,7 @@ if (!function_exists('get_remote_plugin_data')) {
         if (!file_exists(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php')) {
             $remote_plugins_data = '';
 
-            $base_uri = 'http://plugins.jomres4.net/';
+            $base_uri = 'http://plugins.jomres.net/';
             $query_string = 'index.php?r=dp&format=json&cms='._JOMRES_DETECTED_CMS.'&jomresver='.$jrConfig['version'];
 
             try {
@@ -3207,9 +3209,9 @@ if (!function_exists('queryUpdateServer')) {
         $jrConfig = $siteConfig->get();
 
         if ($serverType == 'plugin') {
-            $updateServer = 'http://plugins.jomres4.net';
+            $updateServer = 'http://plugins.jomres.net';
         } else {
-            $updateServer = 'http://updates.jomres4.net';
+            $updateServer = 'http://updates.jomres.net';
         }
 
         if (strlen($script) == 0) {
@@ -3222,7 +3224,8 @@ if (!function_exists('queryUpdateServer')) {
 
         try {
             $client = new GuzzleHttp\Client([
-                'base_uri' => $updateServer
+                'base_uri' => $updateServer,
+                'track_redirects' => false
             ]);
 
             logging::log_message('Starting guzzle call to '.$updateServer.'/'.$query_string, 'Guzzle', 'DEBUG');
@@ -5761,7 +5764,7 @@ if (!function_exists('get_latest_jomres_version')) {
         }
 
         if (!file_exists(JOMRES_TEMP_ABSPATH.'latest_version.php')) {
-            $base_uri = 'http://updates.jomres4.net/';
+            $base_uri = 'http://updates.jomres.net/';
             $query_string = 'versions.php';
 
             $buffer = '';
@@ -5786,7 +5789,7 @@ if (!function_exists('get_latest_jomres_version')) {
 
         if (empty($buffer)) {
             if ($outputText) {
-                echo '<div class="alert alert-error alert-danger">Sorry, could not get latest version of Jomres, is there a firewall preventing communication with http://updates.jomres4.net ? Alternatively, please check that CURL is enabled on this webserver</div>';
+                echo '<div class="alert alert-error alert-danger">Sorry, could not get latest version of Jomres, is there a firewall preventing communication with http://updates.jomres.net ? Alternatively, please check that CURL is enabled on this webserver</div>';
             } else {
                 return false;
             }
@@ -5914,7 +5917,7 @@ if (!function_exists('max_input_vars_test')) {
         $max_vars = (int) ini_get('max_input_vars');
         if ($max_vars < 1001 && isset($MiniComponents->registeredClasses[ '00005']['advanced_micromanage_tariff_editing_modes' ])) { // The default is 1000 on most installations
             $highlight = (using_bootstrap() ? 'alert alert-error alert-danger' : 'ui-state-highlight');
-            $response = "<div class='".$highlight."'>Please note, your max_input_vars setting seems to be set to 1000, which is the default setting. If you're using the Micromanage or Standard tariff editing modes and wish to save prices for more than a year in advance, we recommend that you change this setting to 3000 or more. <a href=\"http://www.jomres.net/manual/developers-guide/56-other-discussions/364-max-input-vars-max-input-vars-in-php-ini\" target=\"_blank\">This page </a>has  more information.</div>";
+            $response = "<div class='".$highlight."'>Please note, your max_input_vars setting seems to be set to 1000, which is the default setting. If you're using the Micromanage or Standard tariff editing modes and wish to save prices for more than a year in advance, we recommend that you change this setting to 3000 or more.</div>";
         }
 
         return $response;

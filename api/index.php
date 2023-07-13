@@ -8,7 +8,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.7.1
+ *  @version Jomres 10.7.2
  *
  * @copyright	2005-2023 Vince Wooll
  *
@@ -73,6 +73,11 @@ foreach ($rii as $file) {
     }
 }
 
+if ($jrConfig[ 'use_groupby_fix' ] == 1 ) {
+	define("SET_GLOBAL_STRING" , "SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
+} else {
+	define("SET_GLOBAL_STRING" , "");
+}
 
 if ($jrConfig['development_production'] == 'development') {
 	define('PRODUCTION', false);
@@ -193,7 +198,7 @@ if (isset($server) && !is_null($server)) {
 	);
 }
 
-	
+
 	/**
 	 * 
 	 * A special script that creates a "new" PUT super global because PHP doesn't manage PUT requests natively, and the syntax of REST API assumes that PUT requests are for changing existing records.

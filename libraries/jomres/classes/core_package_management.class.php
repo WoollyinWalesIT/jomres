@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.7.1
+ *  @version Jomres 10.7.2
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -157,7 +157,7 @@ class core_package_management
 
 	private function retrieve_remote_file_time($library)
 	{
-		$url = 'http://updates.jomres4.net/library_packages/jomres_'.$library.'_last_modified.txt';
+		$url = 'http://updates.jomres.net/library_packages/jomres_'.$library.'_last_modified.txt';
 		$ch = curl_init();
 
 		curl_setopt($ch, CURLOPT_HEADER, 0);
@@ -336,12 +336,12 @@ class core_package_management
 		$this->repos = array();
 		
 		$this->repos['node_modules'] =  array(
-			'download_url'	=> 'http://updates.jomres4.net/library_packages/index.php?repo=jomres_node_modules',
+			'download_url'	=> 'http://updates.jomres.net/library_packages/index.php?repo=jomres_node_modules',
 			'local_abs_path'	=> JOMRES_NODE_MODULES_ABSPATH
 			);
 		
 		$this->repos['vendor'] =  array(
-			'download_url' => 'http://updates.jomres4.net/library_packages/index.php?repo=jomres_vendor',
+			'download_url' => 'http://updates.jomres.net/library_packages/index.php?repo=jomres_vendor',
 			'local_abs_path'	=> JOMRES_VENDOR_ABSPATH
 			);
 	}

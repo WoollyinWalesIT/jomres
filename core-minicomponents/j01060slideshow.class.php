@@ -4,7 +4,7 @@
 	 *
 	 * @author Vince Wooll <sales@jomres.net>
 	 *
-	 *  @version Jomres 10.7.1
+	 *  @version Jomres 10.7.2
 	 *
 	 * @copyright	2005-2023 Vince Wooll
 	 * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -45,6 +45,9 @@
 			}
 			$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 			$jrConfig = $siteConfig->get();
+
+			jr_import('jomres_image_captions');
+			$jomres_image_captions = new jomres_image_captions();
 
 			$imagesArray = array();
 			$jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
@@ -158,7 +161,7 @@
 						$r[ 'IMAGETHUMB' ] = $jomres_media_centre_images->multi_query_images['noimage-small'];
 					}
 
-
+					$r['CAPTION'] = $jomres_image_captions->get_image_caption ( $r[ 'IMAGETHUMB' ] );
 
 					if ($link_to_property_details && (int) $componentArgs[ 'property_uid' ] > 0) {
 						$r[ 'LINK' ] = get_property_details_url((int)$componentArgs[ 'property_uid' ]);
@@ -179,7 +182,8 @@
 				$this->retVals[ 'slideshow' ] = $tmpl->getParsedTemplate();
 			} else {
 				$jomres_media_centre_images->get_images($property_uid, array('property'));
-				$this->retVals[ 'slideshow' ] = '<img src="'.$jomres_media_centre_images->images['property'][0][0]['medium'].'" class="responsive img-responsive" alt="property image"/>';
+				$caption = $jomres_image_captions->get_image_caption ( $jomres_media_centre_images->images['property'][0][0]['medium'] );
+				$this->retVals[ 'slideshow' ] = '<img src="'.$jomres_media_centre_images->images['property'][0][0]['medium'].'" class="responsive img-responsive" alt="'.$caption.'"/>';
 			}
 		}
 

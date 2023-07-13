@@ -1,161 +1,77 @@
 
 <patTemplate:tmpl name="pageoutput">
-<script type="text/javascript">
-	{BOOKEDDATES}
-	var isSRP = true;
-	/*var x*/
-	var mininterval = {MININTERVAL};
-	var rel_path = "{RELPATH}";
-	var livesite = "{SUBMITURL}";
-	var ajaxurl = "{JOMRES_SITEPAGE_URL_AJAX}";
+	<script type="text/javascript">
+        {BOOKEDDATES}
+        var isSRP = true;
+        /*var x*/
+        var mininterval = {MININTERVAL};
+        var rel_path = "{RELPATH}";
+        var livesite = "{SUBMITURL}";
+        var ajaxurl = "{JOMRES_SITEPAGE_URL_AJAX}";
 
-	var validation_firstname = {VALIDATION_FIRSTNAME};
-	var validation_surname = {VALIDATION_SURNAME};
-	var validation_houseno = {VALIDATION_HOUSENO};
-	var validation_street = {VALIDATION_STREET};
-	var validation_town = {VALIDATION_TOWN};
-	var validation_postcode = {VALIDATION_POSTCODE};
-	var validation_country = {VALIDATION_COUNTRY};
-	var validation_landline = {VALIDATION_LANDLINE};
-	var validation_cellmobile = {VALIDATION_CELLMOBILE};
-	var validation_email = {VALIDATION_EMAIL};
+        var validation_firstname = {VALIDATION_FIRSTNAME};
+        var validation_surname = {VALIDATION_SURNAME};
+        var validation_houseno = {VALIDATION_HOUSENO};
+        var validation_street = {VALIDATION_STREET};
+        var validation_town = {VALIDATION_TOWN};
+        var validation_postcode = {VALIDATION_POSTCODE};
+        var validation_country = {VALIDATION_COUNTRY};
+        var validation_landline = {VALIDATION_LANDLINE};
+        var validation_cellmobile = {VALIDATION_CELLMOBILE};
+        var validation_email = {VALIDATION_EMAIL};
 
-	var show_extras = {SHOWEXTRAS};
-	var rooms_list_enabled = {JOMRES_ROOMSLISTENABLED};
+        var show_extras = {SHOWEXTRAS};
+        var rooms_list_enabled = {JOMRES_ROOMSLISTENABLED};
 
-	var error_class = "alert alert-danger";
-	var highlight_class = "alert alert-warning";
+        var error_class = "alert alert-danger";
+        var highlight_class = "alert alert-warning";
 
-	function dateStatus(date) {
-		var min = new Date({EARLIESTYEAR}, {EARLIESTMON}, {EARLIESTDAY});
-		//var max = new Date(2050,10,05);
-		if (date.getTime() < min.getTime())
-			return true; // true says "disable"
-		else
-			return false; // leave other dates enabled
-		//if (date.getTime() < min.getTime() || date.getTime() > max.getTime())
-	}
-
-	var success_class = "alert alert-success";
-
-	var running_bootstrap = {BOOTSTRAP_JS_VAR};
-
-	document.addEventListener('DOMContentLoaded', function(){
-
-		jomresJquery('#ajaxform').attr('novalidate', 'novalidate'); // Disable html5 validation
-
-		jomresJquery('#ajaxform').validate(
-			{
-			rules: {
-				firstname: {
-					minlength: 1,
-					required: {VALIDATION_FIRSTNAME}
-				},
-				surname: {
-					minlength: 1,
-					required: {VALIDATION_SURNAME}
-				},
-				house: {
-					minlength: 1,
-					required: {VALIDATION_HOUSENO}
-				},
-				street: {
-					minlength: 1,
-					required: {VALIDATION_STREET}
-				},
-				town: {
-					minlength: 1,
-					required: {VALIDATION_TOWN}
-				},
-				postcode: {
-					minlength: 1,
-					required: {VALIDATION_POSTCODE}
-				},
-				tel_landline: {
-					minlength: 1,
-					required: {VALIDATION_LANDLINE}
-				},
-				tel_mobile: {
-					minlength: 1,
-					required: {VALIDATION_CELLMOBILE}
-				},
-				eemail: {
-					email: true,
-					required: {VALIDATION_EMAIL},
-					remote: {
-						url: ajaxurl + '&task=handlereq',
-						type: "get",
-						data: {
-							field: 'email_usage_check',
-							value: function () {
-								return jomresJquery('#ajaxform :input[name="eemail"]').val();
-							},
-							property_uid_check: function () {
-								return jomresJquery('#booking_form_property_uid').val();
-							},
-						}
-					}
-				}
-				{CUSTOMFIELD_JAVASCRIPT}
-
-			},
-
-			messages: {
-				firstname: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_FIRSTNAME}",
-				surname: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_SURNAME}",
-				house: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_HOUSENO}",
-				street: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_STREET}",
-				town: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_TOWN}",
-				postcode: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_POSTCODE}",
-				tel_landline: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_LANDLINE}",
-				tel_mobile: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_CELLPHONE}",
-				eemail: { 
-					required: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_EMAIL}",
-					remote: "{EMAIL_ALREADY_INUSE}" 
-					}
-				},
-        highlight: function (label) {
-            jomresJquery(label).closest('.form-group').removeClass('alert alert-success').addClass('alert alert-danger mt-3');
-            jomresJquery('html, body').animate({
-                scrollTop: jomresJquery(label).offset().top
-            }, 2000);
-        },
-        success: function (label) {
-            jomresJquery(label).closest('.form-group').removeClass('alert alert-danger').addClass('alert alert-success');
+        function dateStatus(date) {
+            var min = new Date({EARLIESTYEAR}, {EARLIESTMON}, {EARLIESTDAY});
+            //var max = new Date(2050,10,05);
+            if (date.getTime() < min.getTime())
+                return true; // true says "disable"
+            else
+                return false; // leave other dates enabled
+            //if (date.getTime() < min.getTime() || date.getTime() > max.getTime())
         }
-		});
 
-		{MODAL}
-		jomresJquery.jheartbeat.set({
-			url: ajaxurl + "&task=handlereq&no_html=1&field=heartbeat&property_uid={PROPERTYUID}",
-			delay: 30000
-		});
-		<patTemplate:tmpl name="onload">{ONLOAD}</patTemplate:tmpl>
-	}, false);
+        var success_class = "alert alert-success";
 
-	function open_booking_form() {
-		jomresJquery("#booking_form").dialog("open");
-	}
-	;
+        var running_bootstrap = {BOOTSTRAP_JS_VAR};
 
-	jomresJquery(function(){
-		jomresJquery("#country").change(function(){
-			populateDiv("guest_region_div" , '<div class="spinner-border text-info" role="status">\n' +
-					'  <span class="visually-hidden">Loading...</span>\n' +
-					'</div>');
-			var selectedValue = jomresJquery(this).find(":selected").val();
-			clause = "&task=get_region_dropdown_for_country_code&country="+selectedValue;
-			jomresJquery.get(live_site_ajax + clause, function (data) {
-				populateDiv("guest_region_div",data);
-				});
-			});
-		});
-</script>
+        document.addEventListener('DOMContentLoaded', function(){
+            {MODAL}
+            jomresJquery.jheartbeat.set({
+                url: ajaxurl + "&task=handlereq&no_html=1&field=heartbeat&property_uid={PROPERTYUID}",
+                delay: 30000
+            });
+            <patTemplate:tmpl name="onload">{ONLOAD}</patTemplate:tmpl>
+        }, false);
 
-{OPENBOOKINGOFRM_BUTTON} {BUTTON_BACK_TO_PROPERTY_DETAILS}
+        function open_booking_form() {
+            jomresJquery("#booking_form").dialog("open");
+        }
+        ;
+
+        jomresJquery(function(){
+            jomresJquery("#country").change(function(){
+                populateDiv("guest_region_div" , '<div class="spinner-border text-info" role="status">\n' +
+                    '  <span class="visually-hidden">Loading...</span>\n' +
+                    '</div>');
+                var selectedValue = jomresJquery(this).find(":selected").val();
+                clause = "&task=get_region_dropdown_for_country_code&country="+selectedValue;
+                jomresJquery.get(live_site_ajax + clause, function (data) {
+                    populateDiv("guest_region_div",data);
+                });
+            });
+        });
+	</script>
+	
+	{OPENBOOKINGOFRM_BUTTON} {BUTTON_BACK_TO_PROPERTY_DETAILS}
 	<div id="booking_form" {hiddenstyle}>
 		<form action="javascript:dobooking_validate();" name="ajaxform" id="ajaxform"
-		      method="post" role="form">
+			  method="post" role="form">
 			<div id="messages">&#xA0;</div>
 			<!--<p>{AJAXFORM_INSTRUCTIONS}</p>-->
 			<div id="arrivalcontainer">
@@ -238,6 +154,7 @@
 							<div class="form-group">
 								<label class="col-form-label" for="existingCustomers"></label>{GUESTDROPDOWN}
 							</div>
+							
 							<div class="row">
 								<div class="col-sm-12">
 									<div class="row">
@@ -245,14 +162,14 @@
 											<div class="form-group {BOOTSTRAP_FIRSTNAME_WARNING}">
 												<label class="col-form-label" for="firstname">{HFIRSTNAME}</label>
 												<input type="text" name="firstname" id="firstname"
-													   value="{FIRSTNAME}" class="form-control" placeholder="{COMMON_PLACEHOLDER_FIRSTNAME}">
+													   value="{FIRSTNAME}" class="form-control" placeholder="{COMMON_PLACEHOLDER_FIRSTNAME}" {REQUIRED_FIRSTNAME}>
 											</div>
 										</div>
 										<div class="col">
 											<div class="form-group {BOOTSTRAP_SURNAME_WARNING}">
 												<label class="col-form-label" for="surname">{HSURNAME}</label>
 												<input type="text" name="surname" id="surname" value="{SURNAME}"
-													   class="form-control" placeholder="{COMMON_PLACEHOLDER_SURNAME}">
+													   class="form-control" placeholder="{COMMON_PLACEHOLDER_SURNAME}"  {REQUIRED_SURNAME}>
 											</div>
 										</div>
 									</div>
@@ -260,12 +177,12 @@
 									<div class="form-group  {BOOTSTRAP_HOUSENO_WARNING}" {INPUT_FORM_REQUIRED_FIELD_HIDDEN_FIELD_HOUSENO}>
 										<label class="col-form-label" for="house">{HHOUSENO}</label>
 										<input type="text" name="house" id="house" value="{HOUSENO}"
-											   class="form-control" placeholder="{COMMON_PLACEHOLDER_HOUSENUMBER}">
+											   class="form-control" placeholder="{COMMON_PLACEHOLDER_HOUSENUMBER}" {REQUIRED_HOUSENO}>
 									</div>
 									<div class="form-group {BOOTSTRAP_STREET_WARNING}" {INPUT_FORM_REQUIRED_FIELD_HIDDEN_FIELD_STREET}>
 										<label class="col-form-label" for="street">{HSTREET}</label>
 										<input type="text" name="street" id="street" value="{STREET}"
-											   class="form-control" placeholder="{COMMON_PLACEHOLDER_STREET}">
+											   class="form-control" placeholder="{COMMON_PLACEHOLDER_STREET}"  {REQUIRED_STREET}>
 									</div>
 									<div class="form-group {BOOTSTRAP_TOWN_WARNING} " {INPUT_FORM_REQUIRED_FIELD_HIDDEN_FIELD_TOWN}>
 										<label class="col-form-label" for="town">{HTOWN}</label>
@@ -275,7 +192,7 @@
 									<div class="form-group {BOOTSTRAP_POSTCODE_WARNING} "{INPUT_FORM_REQUIRED_FIELD_HIDDEN_FIELD_POSTCODE}>
 										<label class="col-form-label" for="postcode">{HPOSTCODE}</label>
 										<input type="text" name="postcode" id="postcode" value="{POSTCODE}"
-											   class="form-control" placeholder="{COMMON_PLACEHOLDER_POSTCODE}">
+											   class="form-control" placeholder="{COMMON_PLACEHOLDER_POSTCODE}" {REQUIRED_POSTCODE}>
 									</div>
 									<div class="row">
 										<div class="col">
@@ -291,13 +208,12 @@
 										</div>
 									</div>
 									
-									
 									<div class="row">
 										<div class="col">
 											<div class="form-group {BOOTSTRAP_CELLMOBILE_WARNING} " {INPUT_FORM_REQUIRED_FIELD_HIDDEN_FIELD_MOBILE}>
 												<label class="col-form-label" for="tel_mobile">{HMOBILE}</label>
 												<input type="tel" name="tel_mobile" id="tel_mobile" value="{MOBILE}"
-													   class="form-control" placeholder="{COMMON_PLACEHOLDER_MOBILE}">
+													   class="form-control" placeholder="{COMMON_PLACEHOLDER_MOBILE}" {REQUIRED_CELLMOBILE}>
 											</div>
 										
 										</div>
@@ -305,7 +221,7 @@
 											<div class="form-group {BOOTSTRAP_LANDLINE_WARNING} " {INPUT_FORM_REQUIRED_FIELD_HIDDEN_FIELD_TEL}>
 												<label class="col-form-label" for="tel_landline">{HTEL}</label>
 												<input type="tel" name="tel_landline" id="tel_landline"
-													   value="{TEL}" class="form-control" placeholder="{COMMON_PLACEHOLDER_LANDLINE}">
+													   value="{TEL}" class="form-control" placeholder="{COMMON_PLACEHOLDER_LANDLINE}" {REQUIRED_LANDLINE}>
 											</div>
 										</div>
 									</div>
@@ -319,7 +235,7 @@
 										<div class="form-group {WARNING}">
 											<label class="col-form-label" for="{FIELDNAME}">{DESCRIPTION}</label>
 											<input type="text" name="{FIELDNAME}" id="{FIELDNAME}"
-												   value="{DEFAULT_VALUE}" class="form-control" placeholder="{XXXXXXX}">
+												   value="{DEFAULT_VALUE}" class="form-control" placeholder="{XXXXXXX}" {REQUIRED_EMAIL}>
 										</div>
 									</pattemplate:tmpl>
 								</div>
@@ -412,7 +328,7 @@
 									<div class="col-3">	<span id="balance"></span>
 									</div>
 								</div>
-
+							
 							</div>
 						</div>
 						<pattemplate:tmpl name="coupons" type="simpleCondition" requiredvars="coupon_title">
@@ -426,7 +342,7 @@
 									<div class="form-group">
 										<!--<label class="col-form-label" for="coupon">{COUPON_TITLE}</label>-->
 										<input class="form-control ignore" size="25" type="text" name="coupon"
-										       id="coupon" value="{COUPON_CODE}" placeholder="{COUPON_TITLE}">
+											   id="coupon" value="{COUPON_CODE}" placeholder="{COUPON_TITLE}">
 										<div id="coupon_response" class="jomres_message form-text"></div>
 									</div>
 								</div>
@@ -442,22 +358,22 @@
 										<div class="form-group">
 											<label class="col-form-label" for="override_room_total">{_JOMCOMP_AMEND_OVERRIDE_ACCOMMODATION_TOTAL}</label>
 											<input class="form-control ignore"
-											       name="override_room_total" id="override_room_total" value="" type="number"
-											       pattern="[0-9]+([\,|\.][0-9]+)?" step="0.01">
+												   name="override_room_total" id="override_room_total" value="" type="number"
+												   pattern="[0-9]+([\,|\.][0-9]+)?" step="0.01">
 										</div>
 									</div>
 									<div class="col-lg-12">
 										<div class="form-group">
 											<label class="col-form-label" for="override_deposit">{_JOMCOMP_AMEND_OVERRIDE_DEPOSIT}</label>
 											<input class="form-control ignore"
-											       name="override_deposit" id="override_deposit" value="" type="number" pattern="[0-9]+([\,|\.][0-9]+)?"
-											       step="0.01">
+												   name="override_deposit" id="override_deposit" value="" type="number" pattern="[0-9]+([\,|\.][0-9]+)?"
+												   step="0.01">
 										</div>
 									</div>
 									<div id="override_response" class="jomres_message"></div>
 								</div>
 								<div class="card-footer">	<a href="javascript:void(0);" onclick="getResponse_override(&apos;override&apos;,jomresJquery(&apos;#override_room_total&apos;).val()+&apos;^&apos;+jomresJquery(&apos;#override_deposit&apos;).val())"
-								                                class="btn btn-secondary">{_JOMCOMP_AMEND_OVERRIDE_SAVE}</a>
+																class="btn btn-secondary">{_JOMCOMP_AMEND_OVERRIDE_SAVE}</a>
 								</div>
 							</div>
 						</pattemplate:tmpl>
@@ -472,9 +388,9 @@
 				</div>
 			</div>
 			<input type="hidden" id="booking_form_property_uid" name="property_uid"
-			       value="{PROPERTYUID}">{CSRF_TOKEN}</form>
+				   value="{PROPERTYUID}">{CSRF_TOKEN}</form>
 	</div>
-
+	
 	<div class="modal fade modal-dialog-scrollable"  id="availability_calendar_model" tabindex="-1" role="dialog">
 		<div class="modal-dialog modal-xl">
 			<div class="modal-content">

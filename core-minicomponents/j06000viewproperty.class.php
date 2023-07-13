@@ -4,7 +4,7 @@
 	 *
 	 * @author Vince Wooll <sales@jomres.net>
 	 *
-	 *  @version Jomres 10.7.1
+	 *  @version Jomres 10.7.2
 	 *
 	 * @copyright	2005-2023 Vince Wooll
 	 * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -110,6 +110,10 @@
 			$output[ 'IMAGEMEDIUM' ] = $jomres_media_centre_images->images ['property'][0][0]['medium'];
 			$output[ 'IMAGETHUMB' ] = $jomres_media_centre_images->images ['property'][0][0]['small'];
 
+			jr_import('jomres_image_captions');
+			$jomres_image_captions = new jomres_image_captions();
+
+			$output['IMAGECAPTION'] = $jomres_image_captions->get_caption($output[ 'IMAGELARGE' ]);
 			//property features
 			$output['FEATURES'] = $MiniComponents->specificEvent('06000', 'show_property_features', array('output_now' => false, 'property_uid' => $property_uid, 'show_feature_categories' => false));
 

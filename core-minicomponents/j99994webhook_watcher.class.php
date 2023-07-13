@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.7.1
+ *  @version Jomres 10.7.2
  *
  * @copyright	2005-2023 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -41,6 +41,7 @@ class j99994webhook_watcher
 			return;
 		}
 
+
 		if (get_showtime('task') == 'background_process') {
 			return;
 		}
@@ -50,9 +51,11 @@ class j99994webhook_watcher
 			$webhook_messages = array_unique($webhook_messages, SORT_REGULAR); // Remove duplicate objects
 		}
 
+		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+
 		if (get_showtime('task') == 'save_new_property') {
 			// We can rely on the JRUser object
-			$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+
 			$thisJRUser->init_user($thisJRUser->id);
 			if ($thisJRUser->userIsManager) {
 				$manager_id 	= $thisJRUser->id;
@@ -68,7 +71,7 @@ class j99994webhook_watcher
 
 			logging::log_message("Webhook watcher start.", 'Webhooks', 'DEBUG');
 
-			if ($property_uid == 0) {
+			if ($property_uid == 0 && !jomres_cmsspecific_areweinadminarea() ) {
 				logging::log_message("Webhook watcher. Property uid not found. Returning. ", 'Webhooks', 'DEBUG');
 				return;
 			}
@@ -81,6 +84,10 @@ class j99994webhook_watcher
 
 			if (array_key_exists($property_uid, $property_manager_xref)) {
 				$manager_id = (int)$property_manager_xref[ $property_uid ];
+			}
+
+			if ($thisJRUser->userIsManager) {
+				$manager_id = $thisJRUser->id;
 			}
 
 			if ($manager_id == 0) { // The function will try to find the manager id for a property. If it cannot be found the function will return the first super property manager's id will be returned. It's a last-ditch attempt to find a manager's id for a property. In the case of Beds24 calls, if there are more than one super property manager, and if the the first super property manager isn't registered with Beds24 then bookings still will not be sent.
@@ -163,7 +170,7 @@ class j99994webhook_watcher
 				}
 			}
 		}
-		
+
 		if (!empty($all_webhooks) && !empty($webhook_messages)) {
 			logging::log_message("Preparing deferred messages ", 'Webhooks', 'DEBUG');
 			foreach ($all_webhooks as $webhook) {
@@ -177,7 +184,7 @@ class j99994webhook_watcher
 					$watcher_authmethod = "watcher_authmethod_process_".$webhook['settings']['authmethod'];
 
 					// Trigger number 07310 is for tasks that *have* to be carried out now. 07320 is for tasks that can be deferred slightly
-					
+
 					 //logging::log_message("Looking for j07310".$watcher_authmethod, 'Webhooks', 'DEBUG');
 					if ($MiniComponents->eventSpecificlyExistsCheck('07310', $watcher_authmethod)) {
 						//logging::log_message("Starting call to authmethod ".$webhook['settings']['url'], 'Webhooks', 'DEBUG');

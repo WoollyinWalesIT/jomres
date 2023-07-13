@@ -4,7 +4,7 @@
 	 *
 	 * @author Vince Wooll <sales@jomres.net>
 	 *
-	 *  @version Jomres 10.7.1
+	 *  @version Jomres 10.7.2
 	 *
 	 * @copyright	2005-2023 Vince Wooll
 	 * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -173,6 +173,9 @@
 					} else { // Allows some dumping when called by other scripts
 						return $response['response'];
 					}
+				} elseif ( $response['response_code'] == '400' ) {
+					$messsage = json_decode($response['response']);
+					return [ "error" => "400" , "remote_response" => $messsage ];
 				} elseif ($response['response_code'] == '404') {
 					return false;
 				} else {
