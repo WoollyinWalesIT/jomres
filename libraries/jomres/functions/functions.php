@@ -3209,9 +3209,9 @@ if (!function_exists('queryUpdateServer')) {
         $jrConfig = $siteConfig->get();
 
         if ($serverType == 'plugin') {
-            $updateServer = 'http://plugins.jomres.net';
+            $updateServer = 'https://plugins.jomres.net';
         } else {
-            $updateServer = 'http://updates.jomres.net';
+            $updateServer = 'https://updates.jomres.net';
         }
 
         if (strlen($script) == 0) {
