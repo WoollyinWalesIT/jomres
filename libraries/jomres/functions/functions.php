@@ -6151,3 +6151,37 @@ if (! function_exists("array_key_last")) {
         return array_keys($array)[count($array)-1];
     }
 }
+
+
+	/**
+	 * When building custom fields that are required, this code will add to the "jquery validator" javascript that by necessity is built inline in the form.
+	 */
+	if (!function_exists('generateCustomFieldsJavascript')) {
+		function generateCustomFieldsJavascript($customFields)
+		{
+			$someRequired = false;
+			foreach ($customFields as $c) {
+				if ($c[ 'REQUIRED' ] != '&nbsp;') {
+					$someRequired = true;
+				}
+			}
+
+			if (!$someRequired) {
+				$js = '';
+			} else {
+				$js = ', ';
+				foreach ($customFields as $c) {
+					if ($c[ 'REQUIRED' ] != '&nbsp;') {
+						$js .= $c[ 'FIELDNAME' ].': {
+						minlength: 1,
+						required : true
+					},';
+					}
+				}
+				rtrim($js, ',');
+			}
+
+			return $js;
+		}
+	}
+
