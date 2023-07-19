@@ -69,9 +69,10 @@ class jomres_api_capability_test
 					// throw new Exception('Error: invalid response from local API, received '.$e->getMessage() );
 				}
 				if (isset($response->meta->code) && $response->meta->code == 200 ) {
-					$this-> set_api_capable();
+					$this-> set_api_capable(false);
 					$jrConfig = $siteConfig->get();
 				} else {
+					$this-> set_api_capable(false);
 					return false;
 				}
 			} else {
@@ -84,10 +85,10 @@ class jomres_api_capability_test
 		 * save the api_capable setting
 		 *
 		 */
-		public function set_api_capable()
+		public function set_api_capable($capable = false )
 		{
 			$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-			$siteConfig->update_setting('api_capable', true);
+			$siteConfig->update_setting('api_capable', $capable);
 			$siteConfig->save_config();
 		}
 
