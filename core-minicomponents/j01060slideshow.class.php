@@ -161,7 +161,7 @@
 						$r[ 'IMAGETHUMB' ] = $jomres_media_centre_images->multi_query_images['noimage-small'];
 					}
 
-					$r['CAPTION'] = $jomres_image_captions->get_image_caption ( $r[ 'IMAGETHUMB' ] );
+					$r['CAPTION'] = $jomres_image_captions->get_caption ( $r[ 'IMAGETHUMB' ] );
 
 					if ($link_to_property_details && (int) $componentArgs[ 'property_uid' ] > 0) {
 						$r[ 'LINK' ] = get_property_details_url((int)$componentArgs[ 'property_uid' ]);
@@ -182,7 +182,7 @@
 				$this->retVals[ 'slideshow' ] = $tmpl->getParsedTemplate();
 			} else {
 				$jomres_media_centre_images->get_images($property_uid, array('property'));
-				$caption = $jomres_image_captions->get_image_caption ( $jomres_media_centre_images->images['property'][0][0]['medium'] );
+				$caption = $jomres_image_captions->get_caption ( $jomres_media_centre_images->images['property'][0][0]['medium'] );
 				$this->retVals[ 'slideshow' ] = '<img src="'.$jomres_media_centre_images->images['property'][0][0]['medium'].'" class="responsive img-responsive" alt="'.$caption.'"/>';
 			}
 		}
