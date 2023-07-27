@@ -71,37 +71,11 @@
 							</div>
 						</div>
 					</div>
-
-					<div id="effect{UID}" style="display: none">
-						<p>&nbsp;</p>
-						<div class="row">
-							<div class="col-2 ">
-								<div><strong>{_JOMRES_AGENT}</strong></div>
-								<div>{AGENT_LINK}</div>
-							</div>
-							<div class="col-5 ">
-								<div><strong>{_JOMRES_FRONT_ROOMTYPES}</strong></div>
-								<div>{ROOMTYPES}</div>
-								<div style="clear:both;"></div>
-								<div><strong>{_JOMRES_COM_MR_VRCT_ROOM_HEADER_FEATURES}</strong></div>
-								<div>{FEATURELIST}</div>
-								<div style="clear:both;"></div>
-							</div>
-							<div class="col-5 ">
-								{CUSTOM_PROPERTY_FIELDS_DATA_SNIPPET}
-								<div class="clearfix"></div>
-								<div>&nbsp;</div>
-								<div class="{LASTBOOKING_STYLE}">{LASTBOOKED}</div>
-							</div>
-						</div>
-					</div>
+		
 				</div>
 				<div class="card-footer">
 					<a href="{LINK}" class="btn btn-primary pull-right"><i class="fa fa-shopping-cart"></i> {BOOKTHIS_TEXT}</a>
 					<a href="{MOREINFORMATIONLINK}" class="btn btn-info"><i class="fa fa-info"></i> {MOREINFORMATION}</a>
-					<a href="javascript:void(0);" onclick="quick_info({UID});" role="button" class="btn btn-secondary hidden-xs hidden-sm">
-						<i class="fa fa-info"></i> {_JOMRES_QUICK_INFO}
-					</a>
 					{REVIEWS_BUTTON}
 					<a href="javascript:void(0);" id="shortlist_{UID}" onclick="shortlist('{UID}')" class="btn btn-secondary hidden-xs hidden-sm">{SHORTLIST}</a>
 				</div>
