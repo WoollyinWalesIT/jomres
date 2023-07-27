@@ -52,7 +52,7 @@ INSERT INTO `#__jomres_hotel_features` (`hotel_features_uid`, `hotel_feature_abb
 (22, 'Safe', 'Safe available', 'hotel_safe.png', '0', '1', 0, 1),
 (23, 'Conference', 'Conference facilities', 'conference_facilities.png', '0', '1', 0, 1),
 (24, 'Cycle path', 'Cycle paths nearby', 'cycle_paths.png', '0', '0', 0, 1),
-(25, 'Disabled access', 'Disabled facilites available', 'disabled_access.png', '0', '1', 0, 1),
+(25, 'Disabled access', 'Disabled facilities available', 'disabled_access.png', '0', '1', 0, 1),
 (26, 'Disabled toilet faci', 'Disabled WC available', 'disabled_facilities.png', '0', 'a:0:{}', 3, 1),
 (27, 'No dogs', 'Dogs not welcome', 'dogs_not_permitted.png', '0', '0', 0, 1),
 (28, 'Dogs welcome', 'Dog friendly ', 'dogs_permitted.png', '0', '0', 0, 1),
