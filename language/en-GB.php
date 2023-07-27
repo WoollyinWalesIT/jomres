@@ -2388,7 +2388,7 @@ jr_define('_JOMRES_MICROMANAGE_PRICE', "Per night");
 jr_define('_JOMRES_MICROMANAGE_MINDAYS', "Min nights");
 jr_define('_JOMRES_MICROMANAGE_MAXDAYS', "Max nights");
 
-jr_define('_JOMRES_MICROMANAGE_INTRO', "Here you can create you tariffs, which are associated with the room types that you have in your property. ");
+jr_define('_JOMRES_MICROMANAGE_INTRO', "Here you can create your tariffs, which are associated with the room types that you have in your property. ");
 
 jr_define('_JOMRES_MICROMANAGE_BASIC_SETTINGS', "Most commonly used options");
 
