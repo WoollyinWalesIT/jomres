@@ -131,7 +131,7 @@ class jomresItemToolbar
 				';
 			} elseif ($this->bs_version == '5') {
 				$this->toolbar .= '
-				<a class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" href="#"> <span class="caret">&nbsp;&nbsp;&nbsp;</span></a>
+				<a class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" href="#"><span class="sr-only">'.jr_gettext('_JOMRES_MICROMANAGE_EXTRAOPTIONS','_JOMRES_MICROMANAGE_EXTRAOPTIONS',false,false).'</span><span class="caret">&nbsp;&nbsp;&nbsp;</span></a>
 				';
 			} else {
 				$this->toolbar .= '<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">'.jr_gettext('COMMON_MORE', 'COMMON_MORE', false).' <span class="caret"></span></a><ul class="dropdown-menu">
