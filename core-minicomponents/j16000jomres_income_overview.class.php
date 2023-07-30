@@ -88,6 +88,10 @@ class j16000jomres_income_overview
 		if ((int) $jrConfig['useSubscriptions'] == 1) {
 			$r = array();
 
+			if (!isset($result['subscriptions_total'])) {
+				$result['subscriptions_total'] = 0;
+			}
+
 			$r['SUBSCRIPTIONS_INCOME'] = output_price(abs($result['subscriptions_total']));
 			$r['SUBSCRIPTIONS_INCOME_LABEL_CLASS'] = 'label-blue';
 
