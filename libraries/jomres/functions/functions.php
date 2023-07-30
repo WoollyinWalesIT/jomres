@@ -4867,11 +4867,7 @@ if (!function_exists('JSCalConvertInputDates')) {
         if (count($test) ==3) { // It's an api date, the date needs to be converted from YYYY-MM-DD to YYYY/MM/DD format so that existing functionality can work with the booking's dates
             $inputDate = str_replace("-", '/', $inputDate);
         }
-
-		if (!is_numeric($date_elements[ 0 ]) || !is_numeric($date_elements[ 1 ]) || !is_numeric($date_elements[ 2 ]) ) {
-			$date_elements = [ 0 => date("d") , 1 =>  date("m") , 2 =>  date("Y")];
-		}
-
+		
         switch ($dateFormat) {
             case '%d/%m/%Y':
                 $date_elements = explode('/', $inputDate);
