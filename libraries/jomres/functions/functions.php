@@ -4868,37 +4868,62 @@ if (!function_exists('JSCalConvertInputDates')) {
             $inputDate = str_replace("-", '/', $inputDate);
         }
 
+		if (!is_numeric($date_elements[ 0 ]) || !is_numeric($date_elements[ 1 ]) || !is_numeric($date_elements[ 2 ]) ) {
+			$date_elements = [ 0 => date("d") , 1 =>  date("m") , 2 =>  date("Y")];
+		}
+
         switch ($dateFormat) {
             case '%d/%m/%Y':
                 $date_elements = explode('/', $inputDate);
+	            if (!is_numeric($date_elements[ 0 ]) || !is_numeric($date_elements[ 1 ]) || !is_numeric($date_elements[ 2 ]) ) {
+		            $date_elements = [ 0 => date("d") , 1 =>  date("m") , 2 =>  date("Y")];
+	            }
                 $unixDate = mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 0 ], $date_elements[ 2 ]);
                 break;
             case '%Y/%m/%d':
                 $date_elements = explode('/', $inputDate);
+	            if (!is_numeric($date_elements[ 0 ]) || !is_numeric($date_elements[ 1 ]) || !is_numeric($date_elements[ 2 ]) ) {
+		            $date_elements = [ 0 => date("Y") , 1 =>  date("m") , 2 =>  date("d")];
+	            }
                 $unixDate = mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ]);
                 break;
             case '%m/%d/%Y':
                 $date_elements = explode('/', $inputDate);
+	            if (!is_numeric($date_elements[ 0 ]) || !is_numeric($date_elements[ 1 ]) || !is_numeric($date_elements[ 2 ]) ) {
+		            $date_elements = [ 0 => date("m") , 1 =>  date("d") , 2 =>  date("Y")];
+	            }
                 $unixDate = mktime(0, 0, 0, $date_elements[ 0 ], $date_elements[ 1 ], $date_elements[ 2 ]);
                 break;
             case '%d-%m-%Y':
                 $inputDate = str_replace("/", "-", $inputDate);
                 $date_elements = explode('-', $inputDate);
+	            if (!is_numeric($date_elements[ 0 ]) || !is_numeric($date_elements[ 1 ]) || !is_numeric($date_elements[ 2 ]) ) {
+		            $date_elements = [ 0 => date("d") , 1 =>  date("m") , 2 =>  date("Y")];
+	            }
                 $unixDate = mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 0 ], $date_elements[ 2 ]);
                 break;
             case '%Y-%m-%d':
                 $inputDate = str_replace("/", "-", $inputDate);
                 $date_elements = explode('-', $inputDate);
+	            if (!is_numeric($date_elements[ 0 ]) || !is_numeric($date_elements[ 1 ]) || !is_numeric($date_elements[ 2 ]) ) {
+		            $date_elements = [ 0 => date("Y") , 1 =>  date("m") , 2 =>  date("d")];
+	            }
                 $unixDate = mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ]);
                 break;
             case '%m-%d-%Y':
                 $inputDate = str_replace("/", "-", $inputDate);
                 $date_elements = explode('-', $inputDate);
+	            if (!is_numeric($date_elements[ 0 ]) || !is_numeric($date_elements[ 1 ]) || !is_numeric($date_elements[ 2 ]) ) {
+		            $date_elements = [ 0 => date("m") , 1 =>  date("d") , 2 =>  date("Y")];
+	            }
                 $unixDate = mktime(0, 0, 0, $date_elements[ 0 ], $date_elements[ 1 ], $date_elements[ 2 ]);
                 break;
             case '%d.%m.%Y':
                 $inputDate = str_replace("/", ".", $inputDate);
                 $date_elements = explode('.', $inputDate);
+	            if (!is_numeric($date_elements[ 0 ]) || !is_numeric($date_elements[ 1 ]) || !is_numeric($date_elements[ 2 ]) ) {
+		            $date_elements = [ 0 => date("d") , 1 =>  date("m") , 2 =>  date("Y")];
+	            }
                 $unixDate = mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 0 ], $date_elements[ 2 ]);
                 break;
             default:
