@@ -25,6 +25,28 @@
 		{
 			output_ribbon_styling();
 
+			if (!is_array($property_uid_array)) {
+				return null;
+			}
+
+			// We need to replace any property uids of properties that may have been unpublished/deleted since the module calling us was added to the CMS. If we simply remove the property uid then admins will potentially see an empty module position so we'll create a "fake" property module of -999 property uid and populate it with data that shows that the property is missing.
+			$jomres_properties = jomres_singleton_abstract::getInstance('jomres_properties');
+			$jomres_properties->get_all_properties();
+			$all_published_propertys =  $jomres_properties->all_property_uids["all_published_propertys"];
+			$count = count($property_uid_array);
+
+			$unpublished_deleted_property_uids_array = array();
+			$valid_property_uids = array();
+			for ($i=0; $i<$count; $i++) {
+				$pid = $property_uid_array[$i];
+				if (!in_array($pid, $all_published_propertys) ) {
+					$unpublished_deleted_property_uids_array[] = $pid;
+				} else {
+					$valid_property_uids[] = $pid;
+				}
+			}
+
+
 			$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
 			$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 			$jrConfig = $siteConfig->get();
@@ -42,13 +64,13 @@
 			$animationDelay = 0;
 
 			$current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
-			$current_property_details->gather_data_multi($property_uid_array);
+			$current_property_details->gather_data_multi($valid_property_uids);
 
 			$jomres_property_list_prices = jomres_singleton_abstract::getInstance('jomres_property_list_prices');
-			$jomres_property_list_prices->gather_lowest_prices_multi($property_uid_array);
+			$jomres_property_list_prices->gather_lowest_prices_multi($valid_property_uids);
 
 			$jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
-			$jomres_media_centre_images->get_images_multi($property_uid_array, array('property'));
+			$jomres_media_centre_images->get_images_multi($valid_property_uids, array('property'));
 
 			jr_import('jomres_ribbon_generator');
 
@@ -110,7 +132,7 @@
 			$cache_feature_enabled = false;
 
 			foreach ($property_uid_array as $property_uid) {
-				if ($property_uid > 0) {
+				if ($property_uid > 0 && !in_array($property_uid,$unpublished_deleted_property_uids_array) ) {
 
 					$cache_dir = JOMRES_TEMP_ABSPATH.'get_property_module_data';
 					if (!is_dir($cache_dir)) {
@@ -353,6 +375,20 @@
 							);
 						}
 					}
+				} else {
+					$output = array();
+					$pageoutput = array();
+
+					$output[ 'IMAGE' ] = JOMRES_IMAGES_RELPATH.'noimage.svg';
+					$output[ 'ERROR_MESSAGE' ] = 'Property id '.$property_uid.' has been unpublished or deleted. Generated in shortcode <strong>'.get_showtime('task').'</strong>. Admin, you will need to modify the shortcode to use only valid property uids.';
+
+					$pageoutput[]=$output;
+					$tmpl = new patTemplate();
+					$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+					$tmpl->addRows('pageoutput', $pageoutput);
+					$tmpl->readTemplatesFromInput('basic_module_output_unpublished_deleted_property.html');
+					$res[ $property_uid ][ 'template' ] = $tmpl->getParsedTemplate();
+					$res[ $property_uid ][ 'data' ] = array();
 				}
 			}
 
