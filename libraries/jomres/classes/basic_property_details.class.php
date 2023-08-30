@@ -132,6 +132,9 @@ class basic_property_details
 			$this->get_property_name_multi(array($property_uid));
 		}
 
+		if (!isset($this->property_names[ $property_uid ])) {
+			throw new exception ( "Property uid ".$property_uid." name requested however it doesn't appear to exist");
+		}
 		$property_name = $this->property_names[ $property_uid ];
 
 		return $property_name;
