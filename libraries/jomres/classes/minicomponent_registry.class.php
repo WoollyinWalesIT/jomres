@@ -297,6 +297,7 @@ $this->miniComponentDirectories = ' .var_export($this->miniComponentDirectories,
 	{
 		$listdir = JOMRES_APP_ABSPATH;
 		$d = @dir($listdir);
+
 		if ($d) {
 			while (false !== ($entry = $d->read())) {
 				$filename = $entry;

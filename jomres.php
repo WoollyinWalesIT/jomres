@@ -36,7 +36,7 @@ if (isset($_REQUEST['task']) && isset($_REQUEST['field'])) { // Booking engine h
 	}
 }
 
-define('JOMRES_CORE_HAS_RUN' , 1, );
+define('JOMRES_CORE_HAS_RUN' , 1 );
 
 ob_start('removeBOM');
 
