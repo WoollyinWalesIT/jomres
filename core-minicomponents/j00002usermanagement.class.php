@@ -20,10 +20,9 @@ defined('_JOMRES_INITCHECK') or die('');
 	 * Loads the thisJRUser object, which is used throughout the system to make decisions based on who the current user is and their status within the system.
 	 *
 	 */
-#[AllowDynamicProperties]
+ #[AllowDynamicProperties]
 class j00002usermanagement
 {
-
 	/**
 	 *
 	 * Constructor
