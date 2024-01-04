@@ -467,6 +467,7 @@ function no_task_set($property_uid = 0)
 		}
 	}
 }
+
 // Jomres 4.7.8 strips BOM from all areas of the output, not just the beginning.
 function removeBOM($str = '')
 {

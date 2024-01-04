@@ -20,7 +20,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	 *
 	 */
 
-class j06000show_main_menu
+class j16000run_installation_scripts
 {
 
 	/**
@@ -33,43 +33,36 @@ class j06000show_main_menu
 	 *
 	 */
 	 
-	public function __construct($componentArgs)
+	function __construct()
 	{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch) {
 			$this->template_touchable = false;
-			$this->shortcode_data = array(
-				'task' => 'show_main_menu',
-				'info' => '_JOMRES_SHORTCODES_06000SHOW_MAIN_MENU',
-				'arguments' => array()
-				);
-
 			return;
 		}
 
-		if (isset($componentArgs['menu_location_div_id'])) {
-			$main_menu_location = $componentArgs['menu_location_div_id'];
-		} elseif(isset($_REQUEST['menu_location_div_id'])) {
-			$main_menu_location = jomresGetParam($_REQUEST, 'menu_location_div_id', 'main_menu_location');
-		} else {
-			echo '<div id="main_menu_location"></div>';
-			$main_menu_location = 'main_menu_location';
-		}
+		define('JOMRES_INSTALLER',1);
+        if (!empty($MiniComponents->miniComponentDirectories)) {
+            echo '<div class="alert alert-info">'.jr_gettext('_JOMRES_RUN_PLUGIN_INSTALLATION_SCRIPTS_INFO','_JOMRES_RUN_PLUGIN_INSTALLATION_SCRIPTS_INFO').'</div>';
+            foreach ($MiniComponents->miniComponentDirectories as $plugin_directory) {
+                $dir_contents = scandir($plugin_directory);
+                if (!empty($dir_contents)) {
+                    if (in_array('plugin_install.php',$dir_contents)) {
+                       echo 'requiring file '.$plugin_directory.'plugin_install.php'.'<br/>';
+                       require_once($plugin_directory.'plugin_install.php');
 
-		set_showtime('menu_location_div_id', $main_menu_location);
-		$disabled = (bool)get_showtime('main_menu_disabled');
+                    }
+                }
+            }
 
-		if (isset($disabled) && $disabled == true) {
-			return;
-		}
-
-		$MiniComponents->triggerEvent('09995');
-		echo $MiniComponents->specificEvent('09997', 'menu', array());
+        }
+        echo 'Finished';
 	}
 
+  
 
-	public function getRetVals()
+	function getRetVals()
 	{
 		return null;
 	}

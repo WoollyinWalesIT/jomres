@@ -130,6 +130,7 @@ class j19995menu
 
 		if ($jrConfig[ 'admin_options_level' ] > 0) {
 			$jomres_menu->add_admin_item(70, jr_gettext('_JOMRES_REST_API_CONNECTIVITY_TEST', '_JOMRES_REST_API_CONNECTIVITY_TEST', false), 'rest_api_connectivity_test', 'fa-arrows-h');
+            $jomres_menu->add_admin_item(70, jr_gettext('_JOMRES_RUN_PLUGIN_INSTALLATION_SCRIPTS', '_JOMRES_RUN_PLUGIN_INSTALLATION_SCRIPTS', false), 'run_installation_scripts', 'fa-arrows-h');
 		}
 
 		if ($jrConfig[ 'admin_options_level' ] > 0) {

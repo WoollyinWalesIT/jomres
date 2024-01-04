@@ -47,7 +47,7 @@ class j06001cpanel
 			return;
 		}
 		jomres_cmsspecific_setmetadata('title', jomres_purify_html(jr_gettext('_JRPORTAL_CPANEL', '_JRPORTAL_CPANEL', false)));
-		
+
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
 		
@@ -74,7 +74,7 @@ class j06001cpanel
 			'output_now' => false,
 			'is_widget' => true
 		);
-	
+
 		if (!empty($jomres_widgets->this_page_widgets)) {
 			foreach ($jomres_widgets->this_page_widgets as $widget => $w) {
 				if (isset($w['column']) && $w['column'] <= $number_of_columns) {
@@ -82,14 +82,14 @@ class j06001cpanel
 				} else {
 					$c = 1;
 				}
-				
+
 				$widget_output = array();
 				
 				$widget_output['JR_WIDGET_TASK'] = $widget;
 
 				//$widget_output['WIDGET_SHORTCODE'] = '{jomres_shortcode '.$widget.'}';
 				$widget_output['WIDGET_SHORTCODE'] = $MiniComponents->specificEvent($jomres_widgets->widgets[$widget]['eventPoint'], $widget, $componentArgs);
-				
+
 				$widget_output['WIDGET_TITLE'] = $jomres_widgets->widgets[$widget]['title'];
 				
 				$pageoutput = array();
@@ -108,7 +108,7 @@ class j06001cpanel
 				${'output'.$c}['COLUMN_SIZE'] = 12 * $grid_layout[$c-1]; //array keys in $grid_layout start from 0, column ids start from 1
 			}
 		}
-		
+
 		$pageoutput = array();
 		$pageoutput[] = $output;
 		$tmpl = new patTemplate();
@@ -125,6 +125,7 @@ class j06001cpanel
 		}
 
 		$tmpl->readTemplatesFromInput('cpanel.html');
+
 		$tmpl->displayParsedTemplate();
 	}
 
