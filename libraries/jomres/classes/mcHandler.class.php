@@ -92,7 +92,7 @@
 						}
 
 						$eLiveSite = str_replace(JOMRESCONFIG_ABSOLUTE_PATH, get_showtime('live_site').'/', $eventDetails[ 'filepath' ]);
-						$eLiveSite = str_replace(JRDS, '/', $eLiveSite);
+						$eLiveSite = str_replace(JRDS, DIRECTORY_SEPARATOR, $eLiveSite);
 						set_showtime('eLiveSite', $eLiveSite);
 
 						$e = new $event($eventArgs);
@@ -164,7 +164,7 @@
 						$this->currentEvent = $eventDetails[ 'filepath' ].$filename;
 
 						$eLiveSite = str_replace(JOMRESCONFIG_ABSOLUTE_PATH, get_showtime('live_site').'/', $ePointFilepath);
-						$eLiveSite = str_replace(JRDS, '/', $eLiveSite);
+						$eLiveSite = str_replace(JRDS, DIRECTORY_SEPARATOR, $eLiveSite);
 						set_showtime('eLiveSite', $eLiveSite);
 
 
@@ -246,7 +246,7 @@
 					$this->currentEvent = $this->registeredClasses[$eventPoint][$eventName][ 'filepath' ].$filename;
 
 					$eLiveSite = str_replace(JOMRESCONFIG_ABSOLUTE_PATH, get_showtime('live_site').'/', $ePointFilepath);
-					$eLiveSite = str_replace(JRDS, '/', $eLiveSite);
+					$eLiveSite = str_replace(JRDS, DIRECTORY_SEPARATOR, $eLiveSite);
 					set_showtime('eLiveSite', $eLiveSite);
 
 					set_showtime('current_minicomp', $event);
