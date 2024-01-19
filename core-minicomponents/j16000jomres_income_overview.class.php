@@ -100,7 +100,9 @@ class j16000jomres_income_overview
 
 		if ((int) $jrConfig['use_commission'] == 1) {
 			$r = array();
-
+            if ( is_null($result['commission_total'])) {
+                $result['commission_total'] = 0.00;
+            }
 			$r['COMMISSION_INCOME'] = output_price(abs($result['commission_total']));
 			$r['COMMISSION_INCOME_LABEL_CLASS'] = 'label-blue';
 
