@@ -47,7 +47,7 @@ class j06001cpanel
 			return;
 		}
 		jomres_cmsspecific_setmetadata('title', jomres_purify_html(jr_gettext('_JRPORTAL_CPANEL', '_JRPORTAL_CPANEL', false)));
-		
+
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
 		
@@ -82,7 +82,7 @@ class j06001cpanel
 				} else {
 					$c = 1;
 				}
-				
+
 				$widget_output = array();
 				
 				$widget_output['JR_WIDGET_TASK'] = $widget;
@@ -108,7 +108,7 @@ class j06001cpanel
 				${'output'.$c}['COLUMN_SIZE'] = 12 * $grid_layout[$c-1]; //array keys in $grid_layout start from 0, column ids start from 1
 			}
 		}
-		
+
 		$pageoutput = array();
 		$pageoutput[] = $output;
 		$tmpl = new patTemplate();

@@ -58,7 +58,7 @@ class j06000show_main_menu
 		}
 
 		set_showtime('menu_location_div_id', $main_menu_location);
-		$disabled = get_showtime('main_menu_disabled');
+		$disabled = (bool)get_showtime('main_menu_disabled');
 
 		if (isset($disabled) && $disabled == true) {
 			return;
