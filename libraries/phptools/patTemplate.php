@@ -1195,6 +1195,7 @@ class patTemplate
      */
     function readTemplatesFromInput( $input, $reader = 'Jomres', $options = null, $parseInto = null )
     {
+        $this->template_name = $input;
         $this->rows_samples['patTemplate_file'] = $input;
 
         if (is_array($this->current_template_files))
