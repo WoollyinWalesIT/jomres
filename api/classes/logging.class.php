@@ -136,7 +136,7 @@ class logging
                 $logger->pushProcessor(new \Monolog\Processor\WebProcessor); // pushing the web server preprocessor
                 $browserHandler = new \Monolog\Handler\BrowserConsoleHandler(\Monolog\Logger::DEBUG);
                 $logger->pushHandler($browserHandler);
-                $logger->addDebug($message, array ("info_dump" => $further_info_dump) );
+               // $logger->addDebug($message, array ("info_dump" => $further_info_dump) );
                 $logger->debug($message);
             }
         }
@@ -220,29 +220,29 @@ class logging
             default:
             case 'DEBUG':
                 if ($jrConfig['development_production'] == 'development') {
-                    $logger->addDebug($message, $context); // Detailed debug information.
+                    $logger->debug($message, $context); // Detailed debug information.
                 }
                 break;
             case 'INFO':
-                $logger->addInfo($message, $context); // Interesting events. Examples: User logs in, SQL logs.
+                $logger->info($message, $context); // Interesting events. Examples: User logs in, SQL logs.
                 break;
             case 'NOTICE':
-                $logger->addNotice($message, $context); // Normal but significant events.
+                $logger->notice($message, $context); // Normal but significant events.
                 break;
             case 'WARNING':
-                $logger->addWarning($message, $context); // Exceptional occurrences that are not errors. Examples: Use of deprecated APIs, poor use of an API, undesirable things that are not necessarily wrong.
+                $logger->warning($message, $context); // Exceptional occurrences that are not errors. Examples: Use of deprecated APIs, poor use of an API, undesirable things that are not necessarily wrong.
                 break;
             case 'ERROR':
-                $logger->addError($message, $context); // Runtime errors that do not require immediate action but should typically be logged and monitored.
+                $logger->error($message, $context); // Runtime errors that do not require immediate action but should typically be logged and monitored.
                 break;
             case 'CRITICAL':
-                $logger->addCritical($message, $context); // Critical conditions. Example: Application component unavailable, unexpected exception.
+                $logger->critical($message, $context); // Critical conditions. Example: Application component unavailable, unexpected exception.
                 break;
             case 'ALERT':
-                $logger->addAlert($message, $context); // Action must be taken immediately. Example: Entire website down, database unavailable, etc. This should trigger the SMS alerts and wake you up.
+                $logger->alert($message, $context); // Action must be taken immediately. Example: Entire website down, database unavailable, etc. This should trigger the SMS alerts and wake you up.
                 break;
             case 'EMERGENCY':
-                $logger->addEmergency($message, $context); //Emergency: system is unusable.
+                $logger->emergency($message, $context); //Emergency: system is unusable.
                 break;
             }
 
