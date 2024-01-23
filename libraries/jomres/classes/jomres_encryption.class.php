@@ -66,6 +66,7 @@ class jomres_encryption
 			
 		$str = '<?php
 // Do NOT delete this file, otherwise you will not be able to decrypt guest data
+#[AllowDynamicProperties]
 class encryption_key 
 {
 	public function __construct()

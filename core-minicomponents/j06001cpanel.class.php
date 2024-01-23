@@ -74,7 +74,7 @@ class j06001cpanel
 			'output_now' => false,
 			'is_widget' => true
 		);
-	
+
 		if (!empty($jomres_widgets->this_page_widgets)) {
 			foreach ($jomres_widgets->this_page_widgets as $widget => $w) {
 				if (isset($w['column']) && $w['column'] <= $number_of_columns) {
@@ -89,7 +89,7 @@ class j06001cpanel
 
 				//$widget_output['WIDGET_SHORTCODE'] = '{jomres_shortcode '.$widget.'}';
 				$widget_output['WIDGET_SHORTCODE'] = $MiniComponents->specificEvent($jomres_widgets->widgets[$widget]['eventPoint'], $widget, $componentArgs);
-				
+
 				$widget_output['WIDGET_TITLE'] = $jomres_widgets->widgets[$widget]['title'];
 				
 				$pageoutput = array();
@@ -125,6 +125,7 @@ class j06001cpanel
 		}
 
 		$tmpl->readTemplatesFromInput('cpanel.html');
+
 		$tmpl->displayParsedTemplate();
 	}
 

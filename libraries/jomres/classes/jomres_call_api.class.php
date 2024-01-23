@@ -74,7 +74,7 @@
 				$client_secret = $auth_deets['client_secret'];
 			}
 
-			if ($this->token == '') {
+            if ($this->token == '' && !AJAXCALL ) {
 				$MiniComponents = jomres_getSingleton('mcHandler');
 				if (isset($MiniComponents->registeredClasses['06005']['oauth']) && isset($client_secret) && trim($client_secret) != '') {
 					$data = array('grant_type' => 'client_credentials', 'client_id' => $client_id, 'client_secret' => $client_secret);

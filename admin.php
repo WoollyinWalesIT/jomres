@@ -170,6 +170,7 @@ try {
 		}
 	}
 
+
 	//output bottom area
 	if (!AJAXCALL) {
 //		$pageoutput[] = $output;

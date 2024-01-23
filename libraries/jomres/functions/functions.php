@@ -3101,35 +3101,6 @@ if (!function_exists('test_and_make_directory')) {
  *
  * @package Jomres\Core\Functions
  *
- * An alternative file_get_contents function because IIRC one version of PHP had problems with this function not existing.
- */
-if (!function_exists('file_get_contents')) {
-    function file_get_contents($filename, $incpath = false, $resource_context = null)
-    {
-        if (false === $fh = fopen($filename, 'rb', $incpath)) {
-            trigger_error('file_get_contents() failed to open stream: No such file or directory', E_USER_WARNING);
-
-            return false;
-        }
-        clearstatcache();
-        if ($fsize == @filesize($filename)) {
-            $data = fread($fh, $fsize);
-        } else {
-            $data = '';
-            while (!feof($fh)) {
-                $data .= fread($fh, 8192);
-            }
-        }
-        fclose($fh);
-
-        return $data;
-    }
-}
-
-/**
- *
- * @package Jomres\Core\Functions
- *
  * Delete all files and subdirectories in a directory.
  */
 if (!function_exists('emptyDir')) {
@@ -4953,7 +4924,7 @@ if (!function_exists('importSettings')) {
                 }
             }
         } else { // We have created a new property and are inserting their default settings into the db by pulling the default settings from the 0 property uid list
-            $query = 'SELECT akey,value FROM #__jomres_settings WHERE property_uid = '.$source_property_uid." AND akey = '".$k."'";
+            $query = 'SELECT akey,value FROM #__jomres_settings WHERE property_uid = '.$source_property_uid;
             $settingsList = doSelectSql($query);
             foreach ($settingsList as $set) {
                 if (!insertSetting($property_uid, $set->akey, $set->value)) {
@@ -5582,7 +5553,7 @@ if (!function_exists('scandir_getfiles_recursive')) {
 if (!function_exists('this_cms_is_joomla')) {
     function this_cms_is_joomla()
     {
-        if (_JOMRES_DETECTED_CMS != 'joomla3' && _JOMRES_DETECTED_CMS != 'joomla4' && _JOMRES_DETECTED_CMS != 'joomla5') {
+        if (_JOMRES_DETECTED_CMS != 'joomla3' && _JOMRES_DETECTED_CMS != 'joomla4'  && _JOMRES_DETECTED_CMS != 'joomla5') {
             return false;
         }
 
