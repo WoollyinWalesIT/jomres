@@ -113,10 +113,10 @@ class j00004b_init_javascript_css_files
 
 
 		if (jomres_cmsspecific_areweinadminarea()) {
-			if (_JOMRES_DETECTED_CMS != 'joomla4') {
+			if (_JOMRES_DETECTED_CMS != 'joomla4' && _JOMRES_DETECTED_CMS != 'joomla5') {
 				$css_files[] = array(JOMRES_ROOT_DIRECTORY.'/libraries/fullscreen_view/jomres_bootstrap_wrapper/css/', 'jomres_bootstrap_wrapper.css');
 			}
-			
+
 			if (this_cms_is_wordpress()) {
 				$javascript_files[] = array(JOMRES_ROOT_DIRECTORY.'/libraries/fullscreen_view/jomres_bootstrap_wrapper/js/', 'bootstrap-modal.js');
 				$javascript_files[] = array(JOMRES_ROOT_DIRECTORY.'/libraries/fullscreen_view/jomres_bootstrap_wrapper/js/', 'bootstrap-tooltip.js');

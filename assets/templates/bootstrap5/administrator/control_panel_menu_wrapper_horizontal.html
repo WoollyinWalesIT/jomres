@@ -1,11 +1,13 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-	<div class="collapse navbar-collapse" id="navbarSupportedContent">
-		<ul class="navbar-nav mr-auto">
-			<patTemplate:tmpl name="menu_sections">
-				{SECTION}
-			</patTemplate:tmpl>
-		</ul>
+<nav class="navbar navbar-expand-lg">
+	<div class="container-fluid">
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<patTemplate:tmpl name="menu_sections">
+					{SECTION}
+				</patTemplate:tmpl>
+			</ul>
+		</div>
 	</div>
 </nav>
 </patTemplate:tmpl>

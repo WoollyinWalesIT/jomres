@@ -56,6 +56,9 @@ class j00021colourscheme
 					case 'joomla4':
 						$css_file = 'jomrescss_bootstrap5.css';
 						break;
+                    case 'joomla5':
+                        $css_file = 'jomrescss_bootstrap5.css';
+                        break;
 					default:
 						$css_file = 'jomrescss_bootstrap.css';
 						break;
