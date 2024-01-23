@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+        <view title="component=com_jomres">
+                <message>Property features</message>
+        </view>
+	<!-- Add fields to the request variables for the layout. -->
+	<fields name="request">
+		<fieldset name="request">
+		
+			<field name="feature_abbv" type="sql" default="1" label="Select a property feature" query="SELECT hotel_features_uid AS value, hotel_feature_abbv AS feature_abbv FROM #__jomres_hotel_features WHERE `property_uid` = 0 ORDER BY hotel_feature_abbv" />
+			
+		</fieldset>
+		
+	</fields>
+</metadata>
