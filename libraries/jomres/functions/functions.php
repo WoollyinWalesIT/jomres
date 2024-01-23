@@ -5582,7 +5582,7 @@ if (!function_exists('scandir_getfiles_recursive')) {
 if (!function_exists('this_cms_is_joomla')) {
     function this_cms_is_joomla()
     {
-        if (_JOMRES_DETECTED_CMS != 'joomla3' && _JOMRES_DETECTED_CMS != 'joomla4') {
+        if (_JOMRES_DETECTED_CMS != 'joomla3' && _JOMRES_DETECTED_CMS != 'joomla4' && _JOMRES_DETECTED_CMS != 'joomla5') {
             return false;
         }
 
