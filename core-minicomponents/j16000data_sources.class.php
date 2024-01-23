@@ -2,9 +2,9 @@
 /**
 * Jomres CMS Agnostic Plugin
 * @author Woollyinwales IT <sales@jomres.net>
-* @version Jomres 9
+* @version Jomres 10.7.2
 * @package Jomres
-* @copyright	2005-2015 Woollyinwales IT
+* @copyright    2005-2024 Vince Wooll
 * Jomres (tm) PHP files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project.
 **/
 
