@@ -1505,7 +1505,7 @@ if (!function_exists('jomres_bootstrap_version')) {
             $jrConfig[ 'bootstrap_version' ] = '';
         }
 
-        if (jomres_cmsspecific_areweinadminarea() && _JOMRES_DETECTED_CMS == 'joomla4') {
+        if (jomres_cmsspecific_areweinadminarea() && (_JOMRES_DETECTED_CMS == 'joomla4' || _JOMRES_DETECTED_CMS == 'joomla5')) {
             // check to see if we are in admin area & bs version is not set. If so, it's a new installation so we'll auto configure our bs version templates to run bs5
             if ($jrConfig[ 'bootstrap_version' ] == '') {
                 $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
@@ -1556,7 +1556,7 @@ if (!function_exists('find_plugin_template_directory')) {
     {
         $template_dir = 'bootstrap';
 
-        if (jomres_cmsspecific_areweinadminarea()  && _JOMRES_DETECTED_CMS != 'joomla4') {
+        if (jomres_cmsspecific_areweinadminarea()  && (_JOMRES_DETECTED_CMS != 'joomla4' || _JOMRES_DETECTED_CMS != 'joomla5')) {
             $template_dir = 'bootstrap';
         } elseif (using_bootstrap()) {
             $template_dir = 'bootstrap';
