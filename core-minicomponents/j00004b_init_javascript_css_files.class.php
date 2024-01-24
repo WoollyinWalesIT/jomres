@@ -174,7 +174,7 @@ class j00004b_init_javascript_css_files
 		}
 
 		if ($thisJRUser->userIsRegistered || jomres_cmsspecific_areweinadminarea()) {
-			if (_JOMRES_DETECTED_CMS != 'joomla4') {
+			if (_JOMRES_DETECTED_CMS != 'joomla4' && _JOMRES_DETECTED_CMS != 'joomla5' ) {
 				$javascript_files[] = array(JOMRES_JS_RELPATH, 'datatables.min.js');
 				$css_files[] = array(JOMRES_CSS_RELPATH, 'datatables.css');
 			} else {

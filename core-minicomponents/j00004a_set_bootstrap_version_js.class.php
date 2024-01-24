@@ -53,7 +53,7 @@ class j00004a_set_bootstrap_version_js
 
 		$template_dir = find_plugin_template_directory();
 		if (jomres_cmsspecific_areweinadminarea()) {
-			if (_JOMRES_DETECTED_CMS != 'joomla4') {
+			if (_JOMRES_DETECTED_CMS != 'joomla4' && _JOMRES_DETECTED_CMS != 'joomla5') {
 				$template_dir = 'bootstrap';
 			} else {
 				$template_dir = 'bootstrap5';
