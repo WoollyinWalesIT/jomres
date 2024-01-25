@@ -611,7 +611,9 @@
 			echo '; document.ajaxform.postcode.value="'.jomres_decode($result[ 'postcode' ]).'"';
 			echo '; document.ajaxform.tel_landline.value="'.jomres_decode($result[ 'tel_landline' ]).'"';
 			echo '; document.ajaxform.tel_mobile.value="'.jomres_decode($result[ 'tel_mobile' ]).'"';
-			echo '; populateDiv("guest_region_div","'.str_replace('"', '\"', setupRegions($result[ 'country' ], $result[ 'region' ])).'")';
+            $regions_dropdown = str_replace('"', '\"', setupRegions($result[ 'country' ], $result[ 'region' ]));
+            $regions_dropdown = str_replace(array("\r", "\n"), '', $regions_dropdown);
+			echo '; populateDiv("guest_region_div","'.$regions_dropdown.'")';
 			if ($bkg->checkEmail($result[ 'email' ])) {
 				echo '; document.ajaxform.eemail.value="'.jomres_decode($result[ 'email' ]).'"';
 			}
