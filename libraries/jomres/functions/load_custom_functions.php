@@ -31,13 +31,18 @@
 	 * Tests with Postman suggests that the directory searching adds appx 100ms to the time it takes for a response to be generated. I'll monitor this. If it causes problems I'll use the registry regeneration process to create a registry of custom_functions files like we do with minicomponent scripts and classes.
 	 *
 	 */
-
+use Joomla\CMS\Factory;
 
 if (!defined('JOMRES_OVERRIDE_PATH')) {
     if (_JOMRES_DETECTED_CMS !== 'wordpress') {
 
         if (!defined('API_STARTED')) {
-            $app = JFactory::getApplication();
+            if (_JOMRES_DETECTED_CMS == 'joomla4') {
+                $app = JFactory::getApplication();
+            } else if (_JOMRES_DETECTED_CMS == 'joomla5') {
+                $app = Factory::getApplication();
+            }
+
             $joomla_templateName = $app->getTemplate('template')->template;
         } else { // Joomla will throw an error if we try to do this via the api, so on API calls, we'll have to search for the file "manually"
             $files = load_custom_functions_scanAllDir(JPATH_ROOT.'templates');

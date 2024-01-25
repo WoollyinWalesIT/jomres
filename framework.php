@@ -62,7 +62,7 @@
 				$bang = explode(".",$JoomlaVersion);
 				$MajorVersion = (int)$bang[0];
 
-				if($MajorVersion == 4) {
+				if($MajorVersion == 4 || $MajorVersion == 5) {
 					$container = \Joomla\CMS\Factory::getContainer();
 					$container->alias(\Joomla\Session\SessionInterface::class, 'session.web.site');
 					$app      = $container->get(\Joomla\CMS\Application\SiteApplication::class);

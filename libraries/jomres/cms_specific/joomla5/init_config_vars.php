@@ -19,62 +19,15 @@ defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.'
 	 * @package Jomres\Core\CMS_Specific
 	 *
 	 */
+use Joomla\CMS\Factory;
+use Joomla\CMS\Language\LanguageHelper;
+use Joomla\CMS\Uri\Uri;
 
 require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'configuration.php';
 $CONFIG = new JConfig();
 
-if (!defined('AUTO_UPGRADE')) {
-	//JFactory::getConfig()->setValue('config.caching', 0);
-	//JRegistry::set('config.caching', 0);
-	if (class_exists('JURI')) {
-		$jomresConfig_live_site = @JURI::root();
-	} else {
-		$detect_os = strtoupper($_SERVER[ 'SERVER_SOFTWARE' ]); // converted to uppercase
-		$IIS = strpos($detect_os, 'IIS');
-		if ($IIS > 0) { // Win NT, therefore $_SERVER['REQUEST_URI'] == null
-			$path_info = $_SERVER[ 'PATH_INFO' ];
-			$_URI = explode('/', $path_info);
-		} else {
-			if (!strpos("/", $_SERVER[ 'REQUEST_URI' ])) {
-				list($path, $args) = $_SERVER[ 'REQUEST_URI' ];
-			} else {
-				list($path, $args) = explode('?', $_SERVER[ 'REQUEST_URI' ]);
-			}
-
-			$_URI = explode('/', $path);
-		}
-		array_shift($_URI);
-		$_URI = array_slice($_URI, 0, count($_URI) - 1);
-		array_unshift($_URI, $_SERVER[ 'SERVER_NAME' ]);
-
-		$jomresConfig_live_site = 'http://'.implode('/', $_URI);
-	}
-} else {
-	$detect_os = strtoupper($_SERVER[ 'SERVER_SOFTWARE' ]); // converted to uppercase
-	$IIS = strpos($detect_os, 'IIS');
-	if ($IIS > 0) { // Win NT, therefore $_SERVER['REQUEST_URI'] == null
-		$path_info = $_SERVER[ 'PATH_INFO' ];
-		$_URI = explode('/', $path_info);
-	} else {
-		@list($path, $args) = explode('?', $_SERVER[ 'REQUEST_URI' ]);
-		$_URI = explode('/', $path);
-	}
-	array_shift($_URI);
-	$_URI = array_slice($_URI, 0, count($_URI) - 1);
-	array_unshift($_URI, $_SERVER[ 'SERVER_NAME' ]);
-
-	$jomresConfig_live_site = 'http://'.implode('/', $_URI);
-}
-
-if ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443) {
-	$jomresConfig_live_site = str_replace('http://', 'https://', $jomresConfig_live_site);
-}
-
-$jomresConfig_live_site = str_replace('/administrator/', '', $jomresConfig_live_site);
-$jomresConfig_live_site = str_replace('/administrator', '', $jomresConfig_live_site);
-if (substr($jomresConfig_live_site, -1) == '/') {
-	$jomresConfig_live_site = substr($jomresConfig_live_site, 0, -1);
-}
+$uri = Uri::getInstance();
+$jomresConfig_live_site = rtrim(Uri::root(), '/');
 
 if (defined('API_STARTED')) {
 	$jomresConfig_live_site = str_replace('/jomres/api', '', $jomresConfig_live_site);
@@ -83,11 +36,12 @@ if (defined('API_STARTED')) {
 $jomresConfig_lang = 'en-GB';
 $jomresConfig_lang_shortcode = 'en';
 if (!defined('AUTO_UPGRADE')) {
-	$jomresConfig_lang = JFactory::getLanguage()->getTag();
+	$jomresConfig_lang = Factory::getLanguage()->getTag();
 	
 	//get lang short code
-	$languages = JLanguageHelper::getLanguages('lang_code');
-	
+	$languages = LanguageHelper::getLanguages('lang_code');
+
+
 	if (isset($languages[$jomresConfig_lang])) {
 		$jomresConfig_lang_shortcode = $languages[$jomresConfig_lang]->sef;
 	}

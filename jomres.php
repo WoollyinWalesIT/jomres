@@ -393,8 +393,14 @@ try {
 	// This page http://www.jelte.nl/nieuws/24-joomla-remove-base-href suggests removing the base tag for SEO reasons
 	// More reading https://groups.google.com/forum/?fromgroups=#!topic/joomla-devel/HOHzzne5HYo
 	if (this_cms_is_joomla()) {
-		$document = JFactory::getDocument();
-		$document->setBase(null);
+        if (_JOMRES_DETECTED_CMS == 'joomla4') {
+            $document = JFactory::getDocument();
+            $document->setBase(null);
+        } else if (_JOMRES_DETECTED_CMS == 'joomla5') {
+           //
+        }
+
+
 	}
 
 	//done

@@ -52,7 +52,7 @@ class j06001cpanel
 		$jrConfig = $siteConfig->get();
 		
 		$property_uid = getDefaultProperty();
-		
+
 		$jomres_widgets = jomres_singleton_abstract::getInstance('jomres_widgets');
 		$jomres_widgets->get_widgets($property_uid);
 
@@ -74,7 +74,7 @@ class j06001cpanel
 			'output_now' => false,
 			'is_widget' => true
 		);
-
+       // var_dump($jomres_widgets->this_page_widgets);
 		if (!empty($jomres_widgets->this_page_widgets)) {
 			foreach ($jomres_widgets->this_page_widgets as $widget => $w) {
 				if (isset($w['column']) && $w['column'] <= $number_of_columns) {
@@ -91,24 +91,26 @@ class j06001cpanel
 				$widget_output['WIDGET_SHORTCODE'] = $MiniComponents->specificEvent($jomres_widgets->widgets[$widget]['eventPoint'], $widget, $componentArgs);
 
 				$widget_output['WIDGET_TITLE'] = $jomres_widgets->widgets[$widget]['title'];
-				
+
 				$pageoutput = array();
 				$pageoutput[] = $widget_output;
 				$tmpl = new patTemplate();
 				$tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
 				$tmpl->addRows('pageoutput', $pageoutput);
 				$tmpl->readTemplatesFromInput('widget.html');
-				
+
 				if (isset(${'output'.$c}['WIDGETS'])) {
 					${'output'.$c}['WIDGETS'] .= $tmpl->getParsedTemplate();
 				} else {
 					${'output'.$c}['WIDGETS'] = $tmpl->getParsedTemplate();
 				}
-
+              //  var_dump($widget);
 				${'output'.$c}['COLUMN_SIZE'] = 12 * $grid_layout[$c-1]; //array keys in $grid_layout start from 0, column ids start from 1
+
 			}
 		}
 
+     //exit;
 		$pageoutput = array();
 		$pageoutput[] = $output;
 		$tmpl = new patTemplate();

@@ -13,7 +13,7 @@
 // ################################################################
 	defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-
+use Joomla\CMS\Factory;
 	/**
 	 *
 	 * @package Jomres\Core\CMS_Specific
@@ -33,7 +33,7 @@ if (defined('AUTO_UPGRADE')) {
 	$jomresItemid = 0;
 
 if (!defined('AUTO_UPGRADE') && !isset($_REQUEST['itemId'])) {
-	$app = JFactory::getApplication();
+	$app = Factory::getApplication();
 	$menu = $app->getMenu();
 	$wotweislookingfor = 'index.php?option=com_jomres&view=default';
 
@@ -123,13 +123,12 @@ if (isset($_REQUEST['lang'])) {
 	define('JOMRES_SITEPAGE_URL_ADMIN', get_showtime('live_site').'/'.JOMRES_ADMINISTRATORDIRECTORY.'/index.php?option=com_jomres'.$tmpl.$lang_param);
 	define('JOMRES_SITEPAGE_URL_ADMIN_AJAX', get_showtime('live_site').'/'.JOMRES_ADMINISTRATORDIRECTORY.'/index.php?option=com_jomres&no_html=1&jrajax=1'.$lang_param.$tmpl);
 
-if (class_exists('JFactory')) {
-	$config = JFactory::getConfig();
-	if ($config->get('sef') == '1') {
+
+	$config = Factory::getConfig();
+
+	if ($config->get('sef') == true) {
 		define('JOMRES_SITEPAGE_URL', 'index.php?option=com_jomres&Itemid='.$jomresItemid.$tmpl.'&lang='.$lang.$lang_param);
 	} else {
 		define('JOMRES_SITEPAGE_URL', get_showtime('live_site').'/index.php?option=com_jomres&Itemid='.$jomresItemid.$tmpl.'&lang='.$lang.$lang_param);
 	}
-} else {
-	define('JOMRES_SITEPAGE_URL', get_showtime('live_site').'/index.php?option=com_jomres&Itemid='.$jomresItemid.$tmpl.'&lang='.$lang.$lang_param);
-}
+

@@ -17,6 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 
 
 use Joomla\CMS\Helper\ModuleHelper;
+use Joomla\CMS\Factory;
+
+if (!function_exists('get_joomla_factory')) {
+    function get_joomla_factory()
+    {
+        if (_JOMRES_DETECTED_CMS == 'joomla4') {
+            $app = JFactory::getApplication();
+        } else if (_JOMRES_DETECTED_CMS == 'joomla5') {
+            $app = Factory::getApplication();
+        }
+        return $app;
+    }
+}
+
 
 if (!function_exists('jomres_get_relative_path_to_file')) {
     function jomres_get_relative_path_to_file($file_path)
@@ -123,7 +137,7 @@ if (!function_exists('jomres_parse_modules')) {
                     $contents = str_replace($matches[0][0] , $shortcode_contents, $contents );
                 }
             } else {
-                $app = JFactory::getApplication();
+                $app = get_joomla_factory();
                 $document = $app->getDocument();
 
                 foreach ($matches as $match)

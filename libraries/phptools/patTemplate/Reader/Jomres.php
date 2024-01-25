@@ -2,7 +2,7 @@
 // ################################################################
 	defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
-
+use Joomla\CMS\Factory;
 	#[AllowDynamicProperties]
 
 	/**
@@ -105,7 +105,7 @@
 
 			if (this_cms_is_joomla())
 			{
-				$app = JFactory::getApplication();
+				$app = Factory::getApplication();
 				$joomla_templateName = $app->getTemplate('template')->template;
 
 				if (jomres_cmsspecific_areweinadminarea())

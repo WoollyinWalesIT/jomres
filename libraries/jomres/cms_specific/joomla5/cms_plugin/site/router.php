@@ -10,7 +10,7 @@
 	 * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
 	 **/
 	defined('_JEXEC') or die('');
-
+    use Joomla\CMS\Factory;
 	/**
 	 *
 	 * @package Jomres\Core\CMS_Specific
@@ -47,7 +47,7 @@
 			include_once $override_path.'router.php';
 		}
 	} else {
-		$app = JFactory::getApplication();
+		$app = Factory::getApplication();
 		$joomla_templateName = $app->getTemplate('template')->template;
 		$path_to_template = JPATH_SITE .DIRECTORY_SEPARATOR. "templates" .DIRECTORY_SEPARATOR. $joomla_templateName ;
 		$override_path = $path_to_template .DIRECTORY_SEPARATOR . 'html' . DIRECTORY_SEPARATOR . 'com_jomres'.DIRECTORY_SEPARATOR.'custom_code'.DIRECTORY_SEPARATOR;

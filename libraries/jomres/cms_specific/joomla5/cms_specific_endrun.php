@@ -13,7 +13,7 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.');
 // ################################################################
-
+use Joomla\CMS\Factory;
 /**
  *
  * Installation script run by the installer when it detects that we are installing on this CMS.
@@ -25,7 +25,7 @@ defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.'
  */
 
 if (AJAXCALL) {
-	JFactory::getApplication()->close();
+	Factory::getApplication()->close();
 }
 
 // If Jomres is set to Development mode, it will set it's own error handler. Here we'll hand error handling back to the host CMS once Jomres has done it's thing.

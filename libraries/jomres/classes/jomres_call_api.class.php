@@ -266,6 +266,7 @@
 					throw new Exception("Cannot get token from self");
 				}
 			}
+
 			return array('response_code' => $response_code, 'response' => $result, 'status' => $status);
 		}
 

@@ -4,7 +4,7 @@
 // Joomla 4
 
 defined('_JEXEC') or die('');
-
+use Joomla\CMS\Factory;
 use Joomla\Archive\Archive;
 	
 	/**
@@ -34,7 +34,7 @@ class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687
 		
 		// Clear Joomla system cache.
 		/** @var JCache|JCacheController $cache */
-		$cache = JFactory::getCache();
+		$cache = Factory::getCache();
 		$cache->clean('_system');
 
 		// Remove all compiled files from APC cache.
@@ -75,7 +75,7 @@ class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687
 		$url = 'http://updates.jomres.net/getlatest.php?includebeta=true';
 		$nightly_url = 'http://updates.jomres.net/nightly/';
 		
-		$debugging = JFactory::getConfig()->get('debug');
+		$debugging = Factory::getConfig()->get('debug');
 		$nightly = false;
 		
 		if ($debugging == '1') {
@@ -111,7 +111,7 @@ class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687
 		$archivename = JPath::clean($archivename);
 
 		//set paths
-		$tmp_path = JFactory::getConfig()->get('tmp_path');
+		$tmp_path = Factory::getConfig()->get('tmp_path');
 		
 		if ($tmp_path == '') {
 			$tmp_path = JPATH_ROOT . DIRECTORY_SEPARATOR . 'tmp';

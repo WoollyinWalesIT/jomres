@@ -131,7 +131,7 @@ class j00012pathway
 			}
 
 			foreach ($pathwayArray as $p) {
-				$app = JFactory::getApplication();
+				$app = get_joomla_factory();
 				$pathway = $app->getPathway();
 				$pathway->addItem($p[ 'text' ], $p[ 'url' ]);
 			}

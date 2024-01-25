@@ -13,6 +13,8 @@
 // ################################################################
 	defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+use \Joomla\CMS\Document\HtmlDocument;
+
 	#[AllowDynamicProperties]
 	/**
 	 * @package Jomres\Core\Minicomponents
@@ -140,9 +142,12 @@
 			}
 
 			if (this_cms_is_joomla()) {
-				$doc     = JFactory::getDocument();
+                $app = get_joomla_factory();
+                $document = $app->getDocument();
+
 				$canonicalLink = '<link href="' .get_showtime('live_site').get_property_details_url($property_uid, 'sef') . '" rel="canonical" />';
-				$doc->addCustomTag($canonicalLink);
+				$document->addCustomTag($canonicalLink);
+
 			} else {
 				echo '<link rel="canonical" href="'.get_showtime('live_site').get_property_details_url($property_uid, 'sef').'">';
 

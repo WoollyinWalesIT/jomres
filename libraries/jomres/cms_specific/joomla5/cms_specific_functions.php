@@ -23,6 +23,11 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\User\UserFactoryInterface;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Editor\Editor;
+use Joomla\CMS\Uri\Uri as JUri;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Filter\OutputFilter;
+use Joomla\CMS\Router\Route;
+use Joomla\CMS\User\UserHelper;
 
 	if (!function_exists('jomres_cmsspecific_error_logging_cms_files_to_not_backtrace')) {
 		function jomres_cmsspecific_error_logging_cms_files_to_not_backtrace()
@@ -40,7 +45,7 @@ use Joomla\CMS\Editor\Editor;
 	if (!function_exists('jomres_cmsspecific_getsessionid')) {
 		function jomres_cmsspecific_getsessionid()
 		{
-			$app = JFactory::getApplication();
+			$app = Factory::getApplication();
 			$session =  $app->getSession();
 
 			return $session->getId();
@@ -57,10 +62,10 @@ use Joomla\CMS\Editor\Editor;
 		function jomres_cmsspecific_output_date($date, $format = false)
 		{
 			if (!$format) {
-				$format = JText::_('DATE_FORMAT_LC');
+				$format = Text::_('DATE_FORMAT_LC');
 			}
 
-			$result = JHtml::date($date, $format, $usertimezone = false);
+			$result = HtmlHelper::date($date, $format);
 
 			return $result;
 		}
@@ -159,8 +164,8 @@ use Joomla\CMS\Editor\Editor;
 			$usertype = 'Registered';
 			$block = '0';
 
-			$clear_password = JUserHelper::genRandomPassword(20);
-			$encryptedPassword = JUserHelper::hashPassword($clear_password);
+			$clear_password = UserHelper::genRandomPassword(20);
+			$encryptedPassword = UserHelper::hashPassword($clear_password);
 
 			$query = "INSERT INTO #__users (
 		`name`,
@@ -230,14 +235,7 @@ use Joomla\CMS\Editor\Editor;
 				}
 
 				if (!$thisJRUser->userIsManager) {
-					//JLoader::import('joomla.user.authentication');
-					//$credentials = array('username' => $guest_email, 'password' => $password);
-					//$app = JFactory::getApplication();
-					//$options = array('remember' => true);
-					//$authenticate = JAuthentication::getInstance();
-					// $result = $authenticate->authenticate($credentials, $options);
-
-					$result_login = JFactory::getApplication()->login(
+					$result_login = Factory::getApplication()->login(
 						[
 							'username' => $guest_email,
 							'password' => $clear_password
@@ -299,7 +297,7 @@ use Joomla\CMS\Editor\Editor;
 			$id = 0;
 
 			if (!defined('AUTO_UPGRADE')) {
-				$app = JFactory::getApplication();
+				$app = Factory::getApplication();
 				$user = $app->getIdentity();
 				$id = $user->get('id');
 			}
@@ -318,7 +316,7 @@ use Joomla\CMS\Editor\Editor;
 		function jomres_cmsspecific_getcurrentusers_username()
 		{
 			$username = '';
-			$app = JFactory::getApplication();
+			$app = Factory::getApplication();
 			$user = $app->getIdentity();
 			$username = $user->get('username');
 			return $username;
@@ -348,13 +346,13 @@ use Joomla\CMS\Editor\Editor;
 
 			if (!defined('API_STARTED') && jomres_cmsspecific_areweinadminarea()) {
 				HTMLHelper::_('jquery.framework');
-				JHtml::_('bootstrap.framework');
+                HTMLHelper::_('bootstrap.framework');
 			}
 
 			if (jomres_cmsspecific_areweinadminarea()) {
 				$in_admin_area = true;
 
-				$app = JFactory::getApplication();
+				$app = Factory::getApplication();
 				$doc = $app->getDocument();
 			} else {
 				$in_admin_area = false;
@@ -368,41 +366,6 @@ use Joomla\CMS\Editor\Editor;
 
 				// Throws a depreciated warning, but the following code doesn't work either so for now we'll continue to use this
 				HTMLHelper::_('bootstrap.framework');
-
-
-				// https://gist.github.com/dgrammatiko/efb3de4aa7cab4813a244f93f73cc0fd
-				// Link says that the following should work, but it throws a depreciated for J5 message for me. I'll leave it here for now, but will probably delete it at some point. Above also throws depreciated, see note.
-/*				\Joomla\CMS\HTML\HTMLHelper::_('bootstrap.alert', '.alert');
-				\Joomla\CMS\HTML\HTMLHelper::_('bootstrap.button', '.selector');
-				\Joomla\CMS\HTML\HTMLHelper::_('bootstrap.carousel', '.selector', []);
-				\Joomla\CMS\HTML\HTMLHelper::_('bootstrap.collapse', '.selector', []);
-				\Joomla\CMS\HTML\HTMLHelper::_('bootstrap.dropdown', '.selector', []);
-				\Joomla\CMS\HTML\HTMLHelper::_('bootstrap.modal', '.selector', []);
-				\Joomla\CMS\HTML\HTMLHelper::_('bootstrap.offcanvas', '.btn', []);
-				\Joomla\CMS\HTML\HTMLHelper::_('bootstrap.popover', '.btn', []);
-				\Joomla\CMS\HTML\HTMLHelper::_('bootstrap.popover', 'a', []);
-				\Joomla\CMS\HTML\HTMLHelper::_('bootstrap.scrollspy', '.selector', []);
-				\Joomla\CMS\HTML\HTMLHelper::_('bootstrap.tab', '.selector', []);
-				\Joomla\CMS\HTML\HTMLHelper::_('bootstrap.tooltip', '.btn', []);
-				\Joomla\CMS\HTML\HTMLHelper::_('bootstrap.tooltip', 'a', []);
-				\Joomla\CMS\HTML\HTMLHelper::_('bootstrap.toast', '.toast', []);
-
-				or https://gist.github.com/dgrammatiko/efb3de4aa7cab4813a244f93f73cc0fd?permalink_comment_id=4101117#gistcomment-4101117
-
-				Factory::getApplication()->getDocument()->getWebAssetManager()->useScript('bootstrap.alert');
-				Factory::getApplication()->getDocument()->getWebAssetManager()->useScript('bootstrap.button');
-				Factory::getApplication()->getDocument()->getWebAssetManager()->useScript('bootstrap.carousel');
-				Factory::getApplication()->getDocument()->getWebAssetManager()->useScript('bootstrap.collapse');
-				Factory::getApplication()->getDocument()->getWebAssetManager()->useScript('bootstrap.dropdown');
-				Factory::getApplication()->getDocument()->getWebAssetManager()->useScript('bootstrap.modal');
-				Factory::getApplication()->getDocument()->getWebAssetManager()->useScript('bootstrap.offcanvas');
-				Factory::getApplication()->getDocument()->getWebAssetManager()->useScript('bootstrap.popover');
-				Factory::getApplication()->getDocument()->getWebAssetManager()->useScript('bootstrap.scrollspy');
-				Factory::getApplication()->getDocument()->getWebAssetManager()->useScript('bootstrap.tabs');
-				Factory::getApplication()->getDocument()->getWebAssetManager()->useScript('bootstrap.tooltip');
-				Factory::getApplication()->getDocument()->getWebAssetManager()->useScript('bootstrap.toast');
-
-				*/
 			}
 
 
@@ -413,7 +376,7 @@ use Joomla\CMS\Editor\Editor;
 			$includeVersion ? $version = '?v='.$jrConfig['update_time'] : $version = '';
 
 			if (strpos($path, 'http') === false) {
-				$data = JURI::base(true).'/'.$path.$filename.$version;
+				$data = JUri::base(true).'/'.$path.$filename.$version;
 				if ($in_admin_area) {
 					$data = str_replace('/administrator/', '/', $data);
 				}
@@ -480,7 +443,7 @@ use Joomla\CMS\Editor\Editor;
 		function jomres_cmsspecific_setmetadata($meta, $data)
 		{
 			$data = jomres_decode($data);
-			$app = JFactory::getApplication();
+			$app = Factory::getApplication();
 			$document = $app->getDocument();
 
 			switch ($meta) {
@@ -689,10 +652,8 @@ use Joomla\CMS\Editor\Editor;
 			if (!jomres_cmsspecific_areweinadminarea() &&  strstr($link, '&Itemid=0')) {
 				throw new \Exception("Error. Jomres has detected that Itemid in the url is set to 0 (zero). The most likely cause is that you have not added a link to Jomres in your main menu. Joomla will throw an uncaught error without it. Add Jomres to your main menu before attempting to use Jomres again.", 500);
 			}
-			jimport('joomla.application.helper');
-			if (class_exists('JRoute')) {
-				$link = JRoute::_($link, $xhtml = true);
-			}
+
+			$link = Route::_($link);
 			$link = jomres_decode($link);
 
 			return stripslashes($link);
@@ -708,16 +669,17 @@ use Joomla\CMS\Editor\Editor;
 	if (!function_exists('jomres_cmsspecific_parseByBots')) {
 		function jomres_cmsspecific_parseByBots($str)
 		{
-			$limitstart = 0;
+            // Disabled in Joomla 5 because, frankly, I don't think anybody uses it
+/*			$limitstart = 0;
 			$params = '';
-			$app = JFactory::getApplication();
+			$app = Factory::getApplication();
 			JPluginHelper::importPlugin('content');
 			$obj = new stdClass();
 			$obj->text = $str;
 			$output = $app->triggerEvent('onContentPrepare', array('jomres.default', &$obj, &$params, $limitstart));
-			$output = $obj->text;
+			$output = $obj->text;*/
 
-			return $output;
+			return $str;
 		}
 	}
 
@@ -731,11 +693,11 @@ use Joomla\CMS\Editor\Editor;
 		function jomres_cmsspecific_stringURLSafe($str)
 		{
 			if (!defined('AUTO_UPGRADE')) {
-				$config = JFactory::getConfig();
+				$config = Factory::getConfig();
 				if ($config->get('unicodeslugs') == '1') {
-					$str = JFilterOutput::stringURLUnicodeSlug($str);
+					$str = OutputFilter::stringURLUnicodeSlug($str);
 				} else {
-					$str = JFilterOutput::stringURLSafe($str);
+					$str = OutputFilter::stringURLSafe($str);
 				}
 
 				return $str;
@@ -754,7 +716,7 @@ use Joomla\CMS\Editor\Editor;
 	if (!function_exists('jomres_cmsspecific_addcustomtag')) {
 		function jomres_cmsspecific_addcustomtag($data)
 		{
-			$document = JFactory::getDocument();
+			$document = Factory::getDocument();
 			if ($document->getType() === 'html') {
 				$document->addCustomTag($data);
 			}
@@ -783,7 +745,7 @@ use Joomla\CMS\Editor\Editor;
 	if (!function_exists('jomres_cmsspecific_patchJoomlaTemplate')) {
 		function jomres_cmsspecific_patchJoomlaTemplate($force = false)
 		{
-			$app = JFactory::getApplication();
+			$app = Factory::getApplication();
 			$templateName = $app->getTemplate('template')->template;
 			$tmplcomponent = get_showtime('tmplcomponent');
 			$tmplcomponent_source = get_showtime('tmplcomponent_source');
@@ -835,11 +797,11 @@ use Joomla\CMS\Editor\Editor;
 	if (!function_exists('jomres_cmsspecific_getcmslang')) {
 		function jomres_cmsspecific_getcmslang()
 		{
-			$currentLanguage = JFactory::getLanguage()->getTag();
+			$currentLanguage = Factory::getLanguage()->getTag();
 			if (isset($currentLanguage) && trim($currentLanguage) != '') {
 				return $currentLanguage;
 			}
-			$app = JFactory::getApplication();
+			$app = Factory::getApplication();
 			if (method_exists($app , 'getTag')) {
 				return $app->getLanguage()->getTag();
 			} else {
@@ -926,7 +888,7 @@ use Joomla\CMS\Editor\Editor;
 	if (!function_exists('jomres_cmsspecific_isRtl')) {
 		function jomres_cmsspecific_isRtl($cms_user_id = 0)
 		{
-			$language = JFactory::getLanguage();
+			$language = Factory::getLanguage();
 			$isRtl = $language->isRtl();
 
 			return $isRtl;
@@ -942,7 +904,7 @@ use Joomla\CMS\Editor\Editor;
 	if (!function_exists('jomres_cmsspecific_user_is_admin')) {
 		function jomres_cmsspecific_user_is_admin()
 		{
-			$user = JFactory::getUser();
+			$user = Factory::getUser();
 
 			if ($user->authorise('core.admin')) {
 				return true;
