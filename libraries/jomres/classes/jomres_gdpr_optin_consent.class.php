@@ -40,14 +40,20 @@ class jomres_gdpr_optin_consent
 		$this->user_id = 0;
 		$this->optin_content = '';
 		if ( !defined('API_STARTED') ) {
-			$MiniComponents = jomres_getSingleton('mcHandler');
-			$consent_form = $MiniComponents->specificEvent('06000', 'show_consent_form', array ('output_now' => false));
-			$this->optin_content =  filter_var($consent_form, FILTER_SANITIZE_SPECIAL_CHARS, FILTER_FLAG_STRIP_HIGH) ;
+			$this->optin_content =  $this->get_consent_form_content();
 		}
 
 		$this->optedin = false;
 	}
-		
+
+
+    private function get_consent_form_content()
+    {
+        $MiniComponents = jomres_getSingleton('mcHandler');
+        $consent_form = $MiniComponents->specificEvent('06000', 'show_consent_form', array ('output_now' => false , 'force' => true ));
+
+       return filter_var($consent_form, FILTER_SANITIZE_SPECIAL_CHARS, FILTER_FLAG_STRIP_HIGH) ;
+    }
 	/**
 	 *
 	 *
@@ -98,7 +104,13 @@ class jomres_gdpr_optin_consent
 			header('Set-Cookie: jomres_gdpr_consent_form_processed='.(int)$this->optedin.'; expires=Fri, 31-Dec-9999 23:59:59 GMT');
 			return;
 		}
-		
+        
+        if (is_null($this->optin_content) || trim($this->optin_content) == '' ) {
+            $this->optin_content = $this->get_consent_form_content();
+        }
+
+        $compressed = base64_encode(gzcompress($this->optin_content, 9));
+
 		$query = "INSERT INTO #__jomres_gdpr_optins
 			(
 				`date_time`,
@@ -112,12 +124,13 @@ class jomres_gdpr_optin_consent
 				'".$this->date_time."',
 				".$this->user_id.",
 				'".$this->ip."',
-				'".$this->optin_content."',
-				'".$this->optedin."'
+				'".$compressed."',  
+				'".(int)$this->optedin."'
 			)
 		";
+
 		doInsertSql($query);
-		
+
 		header('Set-Cookie: jomres_gdpr_consent_form_processed='.(int)$this->optedin.'; expires=Fri, 31-Dec-9999 23:59:59 GMT');
 	}
 }
