@@ -46,7 +46,14 @@ class j06000show_consent_form
 
 			return;
 		}
-		
+
+        if (defined('GDPR_CONSENT_FORM_SHOWN') && get_showtime('task') != 'show_consent_form' && !isset($componentArgs['force']) ) {
+            return;
+        }
+
+        define('GDPR_CONSENT_FORM_SHOWN',true);
+
+
 		$output_now = true;
 		if (isset($componentArgs[ 'output_now' ])) {
 			$output_now = (bool) $componentArgs[ 'output_now' ];
