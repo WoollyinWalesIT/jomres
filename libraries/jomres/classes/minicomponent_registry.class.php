@@ -13,6 +13,8 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+use Joomla\CMS\Factory;
+
 /**
  * New for v3.2 of Jomres. Allows the system to create a registry file so that the minicomponent handler doesn't need to constantly search folders and record minicomponents on each run.
  */
@@ -225,7 +227,11 @@ $this->miniComponentDirectories = ' .var_export($this->miniComponentDirectories,
 		}
 
 		if (this_cms_is_joomla()) {
-			$db = JFactory::getDBO();
+            if (_JOMRES_DETECTED_CMS == 'joomla4') {
+                $db = JFactory::getDBO();
+            } elseif ( _JOMRES_DETECTED_CMS == 'joomla5' ) {
+                $db = Factory::getDBO();
+            }
 			$query = 'SELECT `template` FROM #__template_styles WHERE `client_id` = 0 AND `home` = 1';
 			$db->setQuery($query);
 			$templateName = $db->loadResult();
