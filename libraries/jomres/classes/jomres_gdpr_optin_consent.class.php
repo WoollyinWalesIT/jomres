@@ -104,7 +104,7 @@ class jomres_gdpr_optin_consent
 			header('Set-Cookie: jomres_gdpr_consent_form_processed='.(int)$this->optedin.'; expires=Fri, 31-Dec-9999 23:59:59 GMT');
 			return;
 		}
-        
+
         if (is_null($this->optin_content) || trim($this->optin_content) == '' ) {
             $this->optin_content = $this->get_consent_form_content();
         }
