@@ -48,15 +48,27 @@ class j06000logout
 		$tmpBookingHandler->resetCart();
 
 		if (this_cms_is_joomla()) {
-			$app = JFactory::getApplication();
-			$error = $app->logout();
-			// Check if the log out succeeded.
-			if (!($error instanceof Exception)) {
-				// Redirect the user.
-				$app->redirect(JRoute::_(get_showtime('live_site').'/index.php?option=com_jomres', false));
-			} else {
-				$app->redirect(JRoute::_('index.php?option=com_users&view=login', false));
-			}
+            if (_JOMRES_DETECTED_CMS == 'joomla4') {
+                $app = JFactory::getApplication();
+                $error = $app->logout();
+                // Check if the log out succeeded.
+                if (!($error instanceof Exception)) {
+                    // Redirect the user.
+                    $app->redirect(JRoute::_(get_showtime('live_site').'/index.php?option=com_jomres', false));
+                } else {
+                    $app->redirect(JRoute::_('index.php?option=com_users&view=login', false));
+                }
+            } else if (_JOMRES_DETECTED_CMS == 'joomla5') {
+                $app = Factory::getApplication();
+                $error = $app->logout();
+                // Check if the log out succeeded.
+                if (!($error instanceof Exception)) {
+                    // Redirect the user.
+                    $app->redirect(Route::_(get_showtime('live_site').'/index.php?option=com_jomres', false));
+                } else {
+                    $app->redirect(Route::_('index.php?option=com_users&view=login', false));
+                }
+            }
 		} else {
 			jomresRedirect(jomresURL(get_showtime('live_site').'/'.jomres_cmsspecific_getlogout_task()));
 		}
