@@ -4375,7 +4375,6 @@
 							$numberPeopleValid = $this->filter_tariffs_peoplenumbercheck($tariff); // If the total number of people in the booking fall within the tariff's min/max people range?
 						}
 
-						$numberPeopleValid =
 						$dowCheck = $this->filter_tariffs_dowcheck($tariff); // Does the tariff allow selections on the arrival date's day of week?
 
 
