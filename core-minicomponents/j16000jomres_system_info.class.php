@@ -43,6 +43,9 @@ class j16000jomres_system_info
 			return;
 		}
 
+        $this->retVals = '';
+        return false;
+
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
 

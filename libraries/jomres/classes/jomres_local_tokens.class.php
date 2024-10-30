@@ -87,7 +87,6 @@ class jomres_local_tokens
 		} else {
 			$params = array();
 		}
-
 		if (!isset($params[$token_name]) ) {
 			$IDENTIFIER=$identifier;
 			$CLIENT_ID=generateJomresRandomString( 15 );
@@ -129,7 +128,12 @@ class jomres_local_tokens
 
 			if ($expired) { // The token is expired, we need to get a new one. First we'll find the client id and secret, and if they don't exist, we'll generate new ones
 				$query = "SELECT client_id , client_secret FROM #__jomres_oauth_clients  WHERE scope = '".$scope."' AND user_id = ".$this->user_id ;
-				$client_select = doSelectSql($query,2);
+
+				//$client_select = doSelectSql($query,2);
+                $client_select = doSelectSql($query);
+                if (count((array)$client_select) > 1 ) {
+                    $client_select = (array)$client_select[0];
+                }
 				$TOKEN_REQUEST_URL = get_showtime('live_site') . '/jomres/api/';
 				$IDENTIFIER =  $identifier;
 

@@ -51,7 +51,10 @@ class j06000show_consent_form
             return;
         }
 
-        define('GDPR_CONSENT_FORM_SHOWN',true);
+        if (!defined('GDPR_CONSENT_FORM_SHOWN')) {
+            define('GDPR_CONSENT_FORM_SHOWN',true);
+        }
+
 
 
 		$output_now = true;

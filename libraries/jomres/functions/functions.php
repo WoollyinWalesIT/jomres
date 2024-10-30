@@ -602,6 +602,7 @@ Previously just a feature of the add plugin script, it's usage has been moved to
 if (!function_exists('get_remote_plugin_data')) {
     function get_remote_plugin_data()
     {
+        return false;
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $jrConfig = $siteConfig->get();
 
@@ -1868,9 +1869,9 @@ if (!function_exists('jomres_make_qr_code')) {
         $dir = JOMRES_TEMP_ABSPATH.'qr_codes';
         test_and_make_directory($dir);
 
-        if ($string == '') {
-            return false;
-        }
+        //if ($string == '') {
+            return array();
+        //}
 
         $filename = md5($string);
         if (!file_exists($dir.JRDS.'qr_code_'.$filename.'.png')) {
@@ -3204,6 +3205,7 @@ if (!function_exists('queryUpdateServer')) {
         }
 
         $response = '';
+        return $response;
 
         $query_string = $script.'?'.$queryString.'&jomresver='.$jrConfig[ 'version' ].'&hostname='.get_showtime('live_site');
 
@@ -5756,6 +5758,8 @@ if (!function_exists('get_jomres_current_version')) {
 if (!function_exists('get_latest_jomres_version')) {
     function get_latest_jomres_version($outputText = true)
     {
+        return false;
+
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $jrConfig = $siteConfig->get();
 

@@ -42,6 +42,8 @@ class j07310watcher_authmethod_process_app_server
 			return;
 		}
 
+        return;
+
 		// This script will collate and send information to the remote site using the authentication information provided in the componentArgs variable.
 		$ePointFilepath=get_showtime('ePointFilepath');
 		$this->retVals = false;

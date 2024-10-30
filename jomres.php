@@ -44,7 +44,7 @@ ob_start('removeBOM');
 header('X-Clacks-Overhead: GNU Terry Pratchett');
 
 // Project pups
-header('X-Clacks-Overhead-Jomres-ProjectPups: GNU Tosie, Bonnie, Penny, Lily, Sheba, Jason, Sally, Lena, JD Johnson');
+header('X-Clacks-Overhead-Jomres-ProjectPups: GNU Tosie, Bonnie, Penny, Lily, Sheba, Jason, Sally, Lena, JD Johnson, Bella');
 
 require_once dirname(__FILE__).'/integration.php';
 
@@ -79,7 +79,7 @@ try {
 
 	//custom text object - load all custom text
 	$customTextObj = jomres_singleton_abstract::getInstance('custom_text');
-	
+
 	//trigger 00001 event
 	$MiniComponents->triggerEvent('00001');
 

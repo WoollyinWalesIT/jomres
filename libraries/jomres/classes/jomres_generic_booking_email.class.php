@@ -300,12 +300,18 @@ class jomres_generic_booking_email
 			$terms_pdf = array('type' => 'pdf', 'path' => JOMRES_MPDF_ABSPATH, 'filename' => $terms_pdf_name);
 			$this->parsed_email['attachments'][] = $terms_pdf;
 		}
-		
-		$office_qr_code = array('type' => 'image', 'image_path' => $this->data[$contract_uid]['QR_CODE_OFFICE'][ 'absolute_path' ], 'CID' => 'qr_code_office');
-		$this->parsed_email['attachments'][] = $office_qr_code;
 
-		$map_qr_code = array('type' => 'image', 'image_path' => $this->data[$contract_uid]['QR_CODE_MAP'][ 'absolute_path' ], 'CID' => 'qr_code_map');
-		$this->parsed_email['attachments'][] = $map_qr_code;
+        if (isset($this->data[$contract_uid]['QR_CODE_OFFICE'][ 'absolute_path' ])) {
+            $office_qr_code = array('type' => 'image', 'image_path' => $this->data[$contract_uid]['QR_CODE_OFFICE'][ 'absolute_path' ], 'CID' => 'qr_code_office');
+            $this->parsed_email['attachments'][] = $office_qr_code;
+        }
+
+
+        if (isset( $this->data[$contract_uid]['QR_CODE_MAP'][ 'absolute_path' ])) {
+            $map_qr_code = array('type' => 'image', 'image_path' => $this->data[$contract_uid]['QR_CODE_MAP'][ 'absolute_path' ], 'CID' => 'qr_code_map');
+            $this->parsed_email['attachments'][] = $map_qr_code;
+        }
+
 		
 
 		

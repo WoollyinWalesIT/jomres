@@ -366,6 +366,9 @@
 				echo "Error: Configuration settings don't appear to be set. There are ".count($mrConfig).' elements in the mrConfig var and '.count($jrConfig).' in the jrConfig var. If you have just installed Jomres you should log into the frontend as a property manager. This will set up sufficient data so that you can proceed.';
 				exit;
 			}
+
+            $this->absolute_max_guests_by_tariffs = 0;
+
 			$this->cfg_tariffmode = $mrConfig[ 'tariffmode' ];
 			$this->cfg_errorChecking = $mrConfig[ 'errorChecking' ];
 			$this->cfg_singlePersonSuppliment = $mrConfig[ 'singlePersonSuppliment' ];
@@ -714,7 +717,6 @@
 			AND DATE_FORMAT(`validto`, '%Y/%m/%d') >= DATE_FORMAT('".$this->today."', '%Y/%m/%d')
 			";
 
-			$this->absolute_max_guests_by_tariffs = 0;
 			$tariffs = doSelectSql($query);
 
 			//$this->setErrorLog("getAllTariffsData:: ".$query );
